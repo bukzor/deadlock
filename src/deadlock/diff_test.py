@@ -1,4 +1,10 @@
-from .diff import ManifestDiff, diff_manifests, format_diff, parse_manifest
+from .diff import (
+    ManifestDiff,
+    diff_manifests,
+    diff_records,
+    format_diff,
+    parse_manifest,
+)
 
 
 class DescribeParseManifest:
@@ -43,3 +49,14 @@ class DescribeFormatDiff:
     def it_prefixes_with_plus_minus_tilde_interleaved_by_path(self):
         result = ManifestDiff(added=["b"], removed=["a"], changed=["c"])
         assert format_diff(result) == "- a\n+ b\n~ c\n"
+
+
+class DescribeDiffRecords:
+    def it_describes_each_change_as_a_jsonl_ready_dict(self):
+        old = parse_manifest("gone\tBB\t1\nf\tAA\t1\n")
+        new = parse_manifest("fresh\tCC\t2\nf\tDD\t3\n")
+        assert diff_records(old, new) == [
+            {"change": "changed", "path": "f", "old_crc32": "AA", "new_crc32": "DD"},
+            {"change": "added", "path": "fresh", "crc32": "CC"},
+            {"change": "removed", "path": "gone", "crc32": "BB"},
+        ]

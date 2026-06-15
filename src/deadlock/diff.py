@@ -1,6 +1,6 @@
 """Diff two VPK manifests to see exactly what a patch changed.
 
-    python -m deadlock.diff data/old.tsv data/new.tsv
+    python -m deadlock.diff [--jsonl] data/old.tsv data/new.tsv
 
 Operates on the manifests produced by ``deadlock.manifest`` (sorted
 ``path\tcrc32\tsize`` lines). All logic is pure; only ``main`` does I/O.
@@ -12,6 +12,8 @@ import sys
 from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
+
+from . import jsonl
 
 # path -> (crc32 hex, size)
 ManifestMap = Mapping[str, tuple[str, int]]
@@ -60,10 +62,30 @@ def format_diff(result: ManifestDiff) -> str:
     return "".join(line + "\n" for line in sorted(lines, key=lambda s: s[2:]))
 
 
+def diff_records(old: ManifestMap, new: ManifestMap) -> list[dict[str, object]]:
+    """Path-sorted, JSONL-ready dicts describing each change."""
+    result = diff_manifests(old, new)
+    records: list[dict[str, object]] = []
+    for p in result.added:
+        records.append({"change": "added", "path": p, "crc32": new[p][0]})
+    for p in result.removed:
+        records.append({"change": "removed", "path": p, "crc32": old[p][0]})
+    for p in result.changed:
+        records.append(
+            {"change": "changed", "path": p, "old_crc32": old[p][0], "new_crc32": new[p][0]}
+        )
+    return sorted(records, key=lambda r: str(r["path"]))
+
+
 def main(argv: list[str]) -> None:
-    old = parse_manifest(Path(argv[1]).read_text())
-    new = parse_manifest(Path(argv[2]).read_text())
-    sys.stdout.write(format_diff(diff_manifests(old, new)))
+    as_jsonl = "--jsonl" in argv
+    rest = [a for a in argv[1:] if a != "--jsonl"]
+    old = parse_manifest(Path(rest[0]).read_text())
+    new = parse_manifest(Path(rest[1]).read_text())
+    if as_jsonl:
+        sys.stdout.write(jsonl.dump_lines(diff_records(old, new)))
+    else:
+        sys.stdout.write(format_diff(diff_manifests(old, new)))
 
 
 if __name__ == "__main__":

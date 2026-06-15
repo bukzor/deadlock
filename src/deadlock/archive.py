@@ -37,6 +37,14 @@ def manifest(entries: Iterable[Entry]) -> str:
     return "".join(line + "\n" for line in lines)
 
 
+def manifest_records(entries: Iterable[Entry]) -> list[dict[str, object]]:
+    """Path-sorted, JSONL-ready dicts: ``{path, crc32 (hex), size}``."""
+    return [
+        {"path": e.path, "crc32": f"{e.crc32:08x}", "size": e.file_length}
+        for e in sorted(entries, key=lambda e: e.path)
+    ]
+
+
 def read_entries(vpk_dir_file: Path) -> Iterator[Entry]:
     """Yield every entry in a ``pak01_dir.vpk`` (impure: opens the archive)."""
     pak = vpk.open(str(vpk_dir_file))

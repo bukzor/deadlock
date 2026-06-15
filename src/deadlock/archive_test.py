@@ -1,4 +1,4 @@
-from .archive import Entry, manifest
+from .archive import Entry, manifest, manifest_records
 
 
 def _entry(path: str, crc32: int = 0, file_length: int = 0) -> Entry:
@@ -24,3 +24,12 @@ class DescribeManifest:
     def it_is_deterministic_regardless_of_input_order(self):
         entries = [_entry("b"), _entry("a")]
         assert manifest(entries) == manifest(reversed(entries))
+
+
+class DescribeManifestRecords:
+    def it_yields_path_sorted_jsonl_ready_dicts(self):
+        records = manifest_records([_entry("b", 0xFF, 9), _entry("a", 0x01, 0)])
+        assert records == [
+            {"path": "a", "crc32": "00000001", "size": 0},
+            {"path": "b", "crc32": "000000ff", "size": 9},
+        ]
