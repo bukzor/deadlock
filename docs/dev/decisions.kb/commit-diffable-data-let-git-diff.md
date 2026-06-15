@@ -1,0 +1,41 @@
+---
+status: accepted
+date: "2026-06-15"
+---
+
+# Commit line-grained data; let git diff do the diffing
+
+Rather than maintaining bespoke diff code, the deterministic outputs are
+committed to git as line-grained text. To understand a patch: regenerate the
+outputs against the new install and read `git diff`.
+
+## Why
+
+- `git diff` is a better, free diff engine than anything we'd write — and the
+  data is already deterministic and sorted, so a regeneration produces minimal,
+  localized line changes.
+- It removed a whole module (the old `deadlock.diff`): the manifest and the
+  game-data JSONL are now self-diffing.
+
+## Grain is the whole game
+
+A diff is only useful if a single logical change maps to a single line. So each
+output is shaped to the right grain:
+
+- **manifest** (`data/manifest.jsonl`) — one file per line, path-sorted. A
+  changed/added/removed file is one line.
+- **game data** (`data/gamedata.jsonl`) — flattened to one *leaf scalar* per
+  line (`{file, path, value}`), sorted. A balance change to one stat is one
+  line; a whole-record-per-line form made 27 KB lines that `git diff` couldn't
+  resolve. The reusable re-graining step is `deadlock.flatten`.
+
+When adding a new output, decide its grain deliberately: if a likely single
+change would rewrite a large line, flatten finer; if lines are so fine the file
+is noise, coarsen. The goal is "one meaningful change ≈ one changed line".
+
+## What does NOT get committed
+
+Bulk/binary assets (textures, models, audio), the vendored VRF tool, and
+intermediate extraction dirs stay gitignored. Only the small, line-grained,
+text artifacts are tracked. See
+`generated-output-under-data-via-redo.md` for the data/ + redo mechanics.

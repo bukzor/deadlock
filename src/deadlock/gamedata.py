@@ -1,11 +1,14 @@
-"""Turn a decompiled KV3 game-data file into JSONL records.
+"""Flatten decompiled KV3 game-data into git-trackable JSONL leaf records.
 
-    python -m deadlock.gamedata data/gamedata/scripts/heroes.vdata
+    python -m deadlock.gamedata scripts/heroes.vdata [more.vdata ...]
 
-Each top-level entry becomes one line: a mapping entry (e.g. a single hero) is
-emitted as its fields plus a ``_key`` naming it; a scalar/list entry is emitted
-as ``{"_key": ..., "_value": ...}``. This makes ``heroes.vdata`` one hero per
-line, ``abilities.vdata`` one ability per line, etc. — grep/jq-friendly.
+Each scalar becomes one line: ``{"file": ..., "path": ..., "value": ...}`` where
+``path`` is the dotted/indexed location within the file (e.g.
+``hero_inferno.m_flStaminaCooldown``). One stat per line means a balance patch
+shows up in ``git diff`` as exactly the lines that changed.
+
+Output is unsorted per file; sort the combined stream (e.g. ``sort``) for a
+stable, diff-friendly ordering — see ``data/gamedata.jsonl.do``.
 """
 
 import sys
@@ -13,35 +16,19 @@ from collections.abc import Iterator, Mapping
 from pathlib import Path
 
 from . import jsonl, kv3
-from .types import is_str_mapping
+from .flatten import leaves
 
 
-def records(
-    root: Mapping[str, object], *, source: str | None = None
-) -> Iterator[dict[str, object]]:
-    """One record per top-level entry, keyed by its name under ``_key``.
-
-    ``source`` (a file label) is added as ``_file`` so records from many files
-    can be concatenated into one JSONL stream and still filtered by origin.
-    """
-    for key, value in root.items():
-        jsonable = jsonl.to_jsonable(value)
-        record: dict[str, object] = {}
-        if source is not None:
-            record["_file"] = source
-        record["_key"] = key
-        if is_str_mapping(jsonable):
-            record.update(jsonable)
-        else:
-            record["_value"] = jsonable
-        yield record
+def records(root: Mapping[str, object], source: str) -> Iterator[dict[str, object]]:
+    """One ``{file, path, value}`` record per leaf scalar in ``root``."""
+    for path, value in leaves(jsonl.to_jsonable(root)):
+        yield {"file": source, "path": path, "value": value}
 
 
 def main(argv: list[str]) -> None:
     for arg in argv[1:]:
-        path = Path(arg)
-        source = arg if len(argv) > 2 else None
-        sys.stdout.write(jsonl.dump_lines(records(kv3.load(path), source=source)))
+        records_for_file = records(kv3.load(Path(arg)), arg)
+        sys.stdout.write(jsonl.dump_lines(records_for_file))
 
 
 if __name__ == "__main__":

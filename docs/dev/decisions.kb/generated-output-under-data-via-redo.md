@@ -6,8 +6,10 @@ date: "2026-06-15"
 # Generated output under data/, regenerated with redo
 
 All derived artifacts — VPK manifests, extracted/raw files, decompiled assets,
-parsed KV3 — live under `data/` and are produced by `redo` `.do` scripts. `data/`
-is gitignored; vendored external tools (the VRF CLI) live under `data/tools/`.
+parsed KV3 — live under `data/` and are produced by `redo` `.do` scripts. Most of
+`data/` is gitignored; the small line-grained JSONL artifacts are the exception
+and ARE committed (see `commit-diffable-data-let-git-diff.md`). Vendored external
+tools (the VRF CLI) live under `data/tools/`.
 
 ## Why
 

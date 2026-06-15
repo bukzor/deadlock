@@ -1,7 +1,11 @@
-# generated output / extracted assets / vendored tools.
-# redo .do scripts under data/ are source and stay tracked.
+# Generated output under data/ is mostly ignored: bulk/binary assets, the
+# vendored VRF tool, and intermediate dirs (e.g. data/gamedata/).
+# Exceptions are the line-grained, git-diffable JSONL artifacts and the redo
+# .do scripts (source) — these ARE committed so `git diff` shows patch changes.
 /data/*
 !/data/*.do
+!/data/manifest.jsonl
+!/data/gamedata.jsonl
 
 # python / tooling
 /.redo/

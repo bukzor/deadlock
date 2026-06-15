@@ -1,9 +1,9 @@
-"""Read the VPK directory as structured entries, and render it deterministically.
+"""Read the VPK directory as structured entries, and render a stable manifest.
 
 The container layer is handled by the ``vpk`` library; this module gives it a
-typed boundary and a stable text manifest. The manifest is the basis for
-patch-diffing: sorted ``path\tcrc32\tsize`` lines mean a plain ``diff`` of two
-patches' manifests shows exactly which files were added, removed, or changed.
+typed boundary and a path-sorted ``{path, crc32, size}`` record per file. Commit
+the manifest and regenerate it after a patch: ``git diff`` then shows exactly
+which files were added, removed, or changed (one file per line).
 """
 
 from __future__ import annotations
@@ -27,18 +27,15 @@ class Entry:
     archive_offset: int
 
 
-def manifest(entries: Iterable[Entry]) -> str:
-    """Render entries as a deterministic, path-sorted manifest.
-
-    >>> manifest([Entry("b", 1, 9, 0, 0, 0), Entry("a", 255, 0, 0, 0, 0)])
-    'a\\t000000ff\\t0\\nb\\t00000001\\t9\\n'
-    """
-    lines = sorted(f"{e.path}\t{e.crc32:08x}\t{e.file_length}" for e in entries)
-    return "".join(line + "\n" for line in lines)
-
-
 def manifest_records(entries: Iterable[Entry]) -> list[dict[str, object]]:
-    """Path-sorted, JSONL-ready dicts: ``{path, crc32 (hex), size}``."""
+    """Path-sorted, JSONL-ready dicts: ``{path, crc32 (hex), size}``.
+
+    Path-sorted (not key-sorted) so a file's line keeps its position across
+    versions and a content change shows as a single in-place ``git diff`` line.
+
+    >>> manifest_records([Entry("b", 1, 9, 0, 0, 0), Entry("a", 255, 0, 0, 0, 0)])
+    [{'path': 'a', 'crc32': '000000ff', 'size': 0}, {'path': 'b', 'crc32': '00000001', 'size': 9}]
+    """
     return [
         {"path": e.path, "crc32": f"{e.crc32:08x}", "size": e.file_length}
         for e in sorted(entries, key=lambda e: e.path)

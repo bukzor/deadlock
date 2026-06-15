@@ -1,28 +1,21 @@
-"""CLI: write a deterministic VPK manifest to stdout.
+"""CLI: write a path-sorted VPK manifest as JSONL.
 
-    python -m deadlock.manifest [--jsonl] [pak01_dir.vpk] > data/manifest.tsv
+    python -m deadlock.manifest [pak01_dir.vpk] > data/manifest.jsonl
 
-The manifest (sorted ``path\tcrc32\tsize`` lines, or ``--jsonl`` records) is the
-unit of patch-diffing: diff two versions' manifests to see exactly what changed.
+One ``{path, crc32, size}`` object per line. Commit it and regenerate after a
+patch; ``git diff`` shows precisely which files changed (one file per line).
 """
 
 import sys
 from pathlib import Path
 
 from . import jsonl, paths
-from .archive import manifest, manifest_records, read_entries
+from .archive import manifest_records, read_entries
 
 
 def main(argv: list[str]) -> None:
-    args = argv[1:]
-    as_jsonl = "--jsonl" in args
-    rest = [a for a in args if a != "--jsonl"]
-    vpk_dir_file = Path(rest[0]) if rest else paths.vpk_dir_file()
-    entries = read_entries(vpk_dir_file)
-    if as_jsonl:
-        sys.stdout.write(jsonl.dump_lines(manifest_records(entries)))
-    else:
-        sys.stdout.write(manifest(entries))
+    vpk_dir_file = Path(argv[1]) if len(argv) > 1 else paths.vpk_dir_file()
+    sys.stdout.write(jsonl.dump_lines(manifest_records(read_entries(vpk_dir_file))))
 
 
 if __name__ == "__main__":
