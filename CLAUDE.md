@@ -29,9 +29,15 @@ binary, to: diff patch changes precisely, understand game mechanics from data
 
 ## Knowledge bases (`docs/dev/`)
 
-- `decisions.kb/` — why the project is built the way it is (architecture/tooling
-  choices and their rationale). Read before changing an established approach.
-- `formats.kb/` — reference for the on-disk binary formats we parse (VPK
-  container, Source 2 compiled resources, KV3) and the asset-type inventory.
+Three `llm-kb` knowledge bases, each a directory of per-topic files — `ls` them
+to see the full range; read the one whose name matches before acting.
+
+- `decisions.kb/` — why the project is built the way it is, one file per choice:
+  reuse existing parsers, generated output under `data/` via `redo`, commit
+  line-grained diffable data (no bespoke diff), tests alongside modules, VRF runs
+  natively (no Docker). Read before changing an established approach.
+- `formats.kb/` — reference for the on-disk formats we parse (VPK v2 container,
+  Source 2 compiled `_c` resources, KV3) and the asset-type/extension inventory.
 - `environment.kb/` — facts about this host and the game install that the code
-  depends on (paths, OS/libc quirks, pinned external tool versions).
+  depends on (game-install paths, host Alpine/musl + gcompat quirks, the pinned
+  toolchain).

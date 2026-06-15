@@ -1,13 +1,18 @@
 # Generated output under data/ is mostly ignored: bulk/binary assets, the
 # vendored VRF tool, and intermediate dirs (e.g. data/gamedata/).
-# Exceptions are the line-grained, git-diffable JSONL artifacts and the redo
+# Exceptions are the line-grained, git-diffable text artifacts and the redo
 # .do scripts (source) — these ARE committed so `git diff` shows patch changes.
 /data/*
 !/data/*.do
 !/data/manifest.jsonl
 !/data/gamedata.jsonl
+!/data/levels.tsv
+
+# redo's marker for the phony `all` aggregator target (all.do)
+/all
 
 # python / tooling
+/trash/
 /.redo/
 /.venv/
 __pycache__/
