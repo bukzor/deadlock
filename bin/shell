@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+DEBUG="${DEBUG:-0}"
+if (( DEBUG > 0 )); then
+  set -x
+fi
+
+# load bearing: set variable before eval to avoid clobbering exit codes
+env="$(direnv export bash)"
+eval "$env"
+"$@"
