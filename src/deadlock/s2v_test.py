@@ -41,6 +41,19 @@ class DescribeExtractArgv:
             "vtex_c,vmdl_c",
         ]
 
+    def it_exports_models_as_glb_when_gltf_requested(self):
+        argv = extract_argv(Path("/g/p.vpk"), Path("/out"), decompile=True, gltf=True)
+        assert argv == [
+            "-i",
+            "/g/p.vpk",
+            "-o",
+            "/out",
+            "-d",
+            "--gltf_export_format",
+            "glb",
+            "--gltf_export_materials",
+        ]
+
 
 class DescribeDecompileArgv:
     def it_decompiles_one_resource_to_a_file(self):

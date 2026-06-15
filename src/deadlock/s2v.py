@@ -37,11 +37,13 @@ def extract_argv(
     decompile: bool = False,
     filepath: str | None = None,
     extensions: Sequence[str] = (),
+    gltf: bool = False,
 ) -> list[str]:
     """Argv to extract from a VPK into ``out_dir``.
 
     ``decompile`` converts ``_c`` resources to usable forms; ``filepath`` and
-    ``extensions`` narrow what is extracted.
+    ``extensions`` narrow what is extracted. ``gltf`` exports models as ``.glb``
+    (with materials) instead of the default ``.dmx`` — far more viewable.
     """
     argv = ["-i", str(vpk_dir_file), "-o", str(out_dir)]
     if decompile:
@@ -50,6 +52,8 @@ def extract_argv(
         argv += ["-f", filepath]
     if extensions:
         argv += ["-e", ",".join(extensions)]
+    if gltf:
+        argv += ["--gltf_export_format", "glb", "--gltf_export_materials"]
     return argv
 
 
