@@ -1,7 +1,10 @@
-# generated output / extracted assets
-/data/
+# generated output / extracted assets / vendored tools.
+# redo .do scripts under data/ are source and stay tracked.
+/data/*
+!/data/*.do
 
 # python / tooling
+/.redo/
 /.venv/
 __pycache__/
 *.pyc
