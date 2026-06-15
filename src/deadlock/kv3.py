@@ -10,17 +10,14 @@ returns it, so callers narrow from a known shape rather than ``object``.
 
 from collections.abc import Mapping
 from pathlib import Path
-from typing import TypeGuard
 
 import keyvalues3 as kv3
 
-
-def _is_str_mapping(value: object) -> TypeGuard[Mapping[str, object]]:
-    return isinstance(value, Mapping)
+from .types import is_str_mapping
 
 
 def load(path: Path) -> Mapping[str, object]:
     """Read a KV3 file and return its root mapping."""
     root = kv3.read(path).value
-    assert _is_str_mapping(root), type(root)
+    assert is_str_mapping(root), type(root)
     return root
