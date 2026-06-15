@@ -1,0 +1,27 @@
+#!/bin/bash
+# Provision the pinned ValveResourceFormat / Source2Viewer-CLI into data/tools/.
+# Idempotent: re-running with the binary already present is a no-op.
+set -euo pipefail
+trap 'echo "fetch-vrf failed at line $LINENO" >&2' ERR
+(( ${DEBUG:-0} > 0 )) && set -x
+
+VERSION=19.2
+SHA256=30d86dfd72bf35c8a38015c81bd92f0b04b1f49304e73a5d734c875803b2685b
+URL="https://github.com/ValveResourceFormat/ValveResourceFormat/releases/download/${VERSION}/cli-linux-x64.zip"
+
+ROOT=$(cd "$(dirname "$0")/.." && pwd)
+TOOLS="$ROOT/data/tools"
+ZIP="$TOOLS/cli-linux-x64.zip"
+BIN="$TOOLS/Source2Viewer-CLI"
+
+if [[ -x "$BIN" ]]; then
+  : "already provisioned: $BIN"
+  exit 0
+fi
+
+mkdir -p "$TOOLS"
+wget -q -O "$ZIP" "$URL"
+echo "$SHA256  $ZIP" | sha256sum -c -
+unzip -o -q "$ZIP" -d "$TOOLS"
+chmod +x "$BIN"
+"$BIN" --version
