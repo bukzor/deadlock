@@ -13,4 +13,5 @@ redo-ifchange \
   data/items.tsv \
   data/abilities.tsv \
   data/weapons.tsv \
-  data/item_bonuses.tsv
+  data/item_bonuses.tsv \
+  data/ability_upgrades.tsv
