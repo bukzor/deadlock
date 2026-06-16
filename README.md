@@ -46,6 +46,7 @@ redo data/heroes.tsv        # wide per-hero base stat sheet (one hero per row)
 redo data/items.tsv         # shop economy: tier, resolved soul cost, slot, components
 redo data/abilities.tsv     # each live hero's four signature abilities
 redo data/weapons.tsv       # each live hero's primary weapon (+ derived DPS)
+redo data/item_bonuses.tsv  # the passive stat bonuses each shop item grants
 ```
 
 All are committed and line-grained, so a patch's changes show up as a clean
@@ -63,6 +64,7 @@ python -m deadlock.heroes    data/gamedata.jsonl  # per-hero base stat sheet TSV
 python -m deadlock.items     data/gamedata.jsonl  # shop item economy TSV
 python -m deadlock.abilities data/gamedata.jsonl  # hero signature abilities TSV
 python -m deadlock.weapons   data/gamedata.jsonl  # hero primary weapon stats TSV
+python -m deadlock.item_bonuses data/gamedata.jsonl # per-item stat bonuses TSV
 ```
 
 Assets are bulk/binary and **extracted on demand** into gitignored `data/`

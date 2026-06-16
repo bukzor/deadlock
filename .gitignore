@@ -11,6 +11,7 @@
 !/data/items.tsv
 !/data/abilities.tsv
 !/data/weapons.tsv
+!/data/item_bonuses.tsv
 
 # redo's marker for the phony `all` aggregator target (all.do)
 /all
