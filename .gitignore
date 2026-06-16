@@ -10,6 +10,7 @@
 !/data/heroes.tsv
 !/data/items.tsv
 !/data/abilities.tsv
+!/data/weapons.tsv
 
 # redo's marker for the phony `all` aggregator target (all.do)
 /all

@@ -11,4 +11,5 @@ redo-ifchange \
   data/levels.tsv \
   data/heroes.tsv \
   data/items.tsv \
-  data/abilities.tsv
+  data/abilities.tsv \
+  data/weapons.tsv
