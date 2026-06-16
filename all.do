@@ -8,4 +8,7 @@ set -eu
 redo-ifchange \
   data/manifest.jsonl \
   data/gamedata.jsonl \
-  data/levels.tsv
+  data/levels.tsv \
+  data/heroes.tsv \
+  data/items.tsv \
+  data/abilities.tsv

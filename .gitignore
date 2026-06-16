@@ -7,6 +7,9 @@
 !/data/manifest.jsonl
 !/data/gamedata.jsonl
 !/data/levels.tsv
+!/data/heroes.tsv
+!/data/items.tsv
+!/data/abilities.tsv
 
 # redo's marker for the phony `all` aggregator target (all.do)
 /all

@@ -32,11 +32,22 @@ Game paths default to a WSL Steam install; override with `DEADLOCK_GAME_DIR`.
 VPK or the parser changes):
 
 ```sh
+redo all                    # rebuild every committed leaf below
+
 redo data/manifest.jsonl    # one file per line: {path, crc32, size}
 redo data/gamedata.jsonl    # one game-data leaf per line: {file, path, value}
 ```
 
-Both are committed and line-grained, so a patch's changes show up as a clean
+From `gamedata.jsonl` we also compile focused, diff-friendly mechanics tables:
+
+```sh
+redo data/levels.tsv        # player level/souls/ability-point curve
+redo data/heroes.tsv        # wide per-hero base stat sheet (one hero per row)
+redo data/items.tsv         # shop economy: tier, resolved soul cost, slot, components
+redo data/abilities.tsv     # each live hero's four signature abilities
+```
+
+All are committed and line-grained, so a patch's changes show up as a clean
 `git diff`. To inspect a patch: update the game, re-run the `redo`s, `git diff`.
 
 ## CLI entry points
@@ -45,6 +56,11 @@ Both are committed and line-grained, so a patch's changes show up as a clean
 python -m deadlock.manifest [vpk]                 # VPK manifest as JSONL
 python -m deadlock.gamedata <file.vdata> ...      # KV3 -> flat leaf JSONL
 python -m deadlock.extract [--gltf] <dir> [ext…]  # extract+decompile assets
+
+python -m deadlock.levels    data/gamedata.jsonl  # level/souls/AP curve TSV
+python -m deadlock.heroes    data/gamedata.jsonl  # per-hero base stat sheet TSV
+python -m deadlock.items     data/gamedata.jsonl  # shop item economy TSV
+python -m deadlock.abilities data/gamedata.jsonl  # hero signature abilities TSV
 ```
 
 Assets are bulk/binary and **extracted on demand** into gitignored `data/`
