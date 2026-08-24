@@ -24,8 +24,10 @@ binary, to: diff patch changes precisely, understand game mechanics from data
   (`~/.claude/reference.kb/python/`).
 - Tests live beside their module as `{module}_test.py`, Describe/it naming;
   doctests run automatically. Observe every assertion fail before trusting it.
-- Generated output goes under `data/` (gitignored) and is regenerated with
-  `redo`. Never commit extracted assets or vendored tools.
+- Generated output goes under `data/` and is regenerated with `redo`. Only the
+  transformative TSV views and the build stamp are committed; the raw extracts
+  (flats, manifest), assets, and vendored tools are gitignored — never commit
+  them.
 
 ## Knowledge bases (`docs/dev/`)
 
@@ -33,9 +35,9 @@ Three `llm-kb` knowledge bases, each a directory of per-topic files — `ls` the
 to see the full range; read the one whose name matches before acting.
 
 - `decisions.kb/` — why the project is built the way it is, one file per choice:
-  reuse existing parsers, generated output under `data/` via `redo`, commit
-  line-grained diffable data (no bespoke diff), tests alongside modules, VRF runs
-  natively (no Docker). Read before changing an established approach.
+  reuse existing parsers, generated output under `data/` via `redo`, commit the
+  line-grained transformative views (no bespoke diff), tests alongside modules,
+  VRF runs natively (no Docker). Read before changing an established approach.
 - `formats.kb/` — reference for the on-disk formats we parse (VPK v2 container,
   Source 2 compiled `_c` resources, KV3) and the asset-type/extension inventory.
 - `environment.kb/` — facts about this host and the game install that the code

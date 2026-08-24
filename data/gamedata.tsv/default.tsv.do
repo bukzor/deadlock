@@ -1,7 +1,7 @@
 #!/bin/bash
-# Recompile one TSV view from the committed, flattened game data. Build-local,
-# not committed: every view derives entirely from gamedata.flat/ (what each
-# view shows is documented in its deadlock.<view> module docstring). The case
+# Compile one TSV view from the local, flattened game data. These views are the
+# committed artifact — our transformative work, and the consumable one (what
+# each shows is documented in its deadlock.<view> module docstring). The case
 # table maps each view to its stdin source and extra sources; anything unlisted
 # fails loudly rather than being silently captured by this default rule.
 # redo runs this with cwd = data/gamedata.tsv/; the repo root is two levels up.
@@ -31,6 +31,7 @@ esac
 
 redo-ifchange \
   "$root/src/deadlock/$2.py" \
+  "$root/data/deadlock-version.json" \
   "${deps[@]}" \
   "$flat/$stdin.jsonl" \
   "${args[@]}"

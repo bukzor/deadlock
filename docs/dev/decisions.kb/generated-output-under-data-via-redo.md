@@ -7,9 +7,9 @@ date: "2026-06-15"
 
 All derived artifacts — VPK manifests, extracted/raw files, decompiled assets,
 parsed KV3 — live under `data/` and are produced by `redo` `.do` scripts. Most of
-`data/` is gitignored; the small line-grained JSONL artifacts are the exception
-and ARE committed (see `commit-diffable-data-let-git-diff.md`). Vendored external
-tools (the VRF CLI) live under `data/tools/`.
+`data/` is gitignored; the curated TSV views (`data/gamedata.tsv/`) are the
+exception and ARE committed (see `commit-diffable-data-let-git-diff.md`).
+Vendored external tools (the VRF CLI) live under `data/tools/`.
 
 ## Why
 
@@ -24,7 +24,8 @@ tools (the VRF CLI) live under `data/tools/`.
 
 - Python does the parsing; `.do` scripts orchestrate (declare deps, run
   `python -m ...`, place files). Keep `.do` scripts small.
-- Never commit anything under `data/`.
+- Never commit raw or bulk data under `data/` — only the transformative TSV
+  views (and their `.do` sources) are tracked.
 
 ## What would change this
 

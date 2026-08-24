@@ -18,6 +18,12 @@ class DescribeVpkDirFile:
         assert paths.vpk_dir_file(env) == Path("/g/citadel/pak01_dir.vpk")
 
 
+class DescribeSteamInf:
+    def it_points_at_steam_inf_under_citadel(self):
+        env = {"DEADLOCK_GAME_DIR": "/g"}
+        assert paths.steam_inf(env) == Path("/g/citadel/steam.inf")
+
+
 class DescribeDataDir:
     def it_defaults_under_the_repo_root(self):
         assert paths.data_dir({}) == paths.repo_root() / "data"

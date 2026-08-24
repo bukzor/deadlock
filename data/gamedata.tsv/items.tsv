@@ -1,0 +1,278 @@
+item	tier	cost	slot	shop_filter	disabled	components
+armor_upgrade_t1	1	800	Armor		false	
+armor_upgrade_t2	2	1600	Armor		false	
+armor_upgrade_t3	3	3200	Armor		false	
+armor_upgrade_t4	4	6400	Armor		false	
+armor_upgrade_t5	5	9999	Armor		false	
+item_projectile_test_01	1	800	WeaponMod	WeaponDamage	true	
+item_projectile_test_02	1	800	WeaponMod	WeaponDamage	true	
+item_projectile_test_03	1	800	WeaponMod	WeaponDamage	true	
+item_projectile_test_04	1	800	WeaponMod	WeaponDamage	true	
+item_projectile_test_05	1	800	WeaponMod	WeaponDamage	true	
+item_projectile_test_06	1	800	WeaponMod	WeaponDamage	true	
+tech_upgrade_t1	1	800	Tech		false	
+tech_upgrade_t2	2	1600	Tech		false	
+tech_upgrade_t3	3	3200	Tech		false	
+tech_upgrade_t4	4	6400	Tech		false	
+tech_upgrade_t5	5	9999	Tech		false	
+tier1_base	1	800			false	
+tier2_base	2	1600			false	
+tier3_base	3	3200			false	
+tier4_base	4	6400			false	
+tier5_base	5	9999			false	
+upgrade_ability_power_shard	4	6400	Tech	Movement | EShopFilterMagicDamage	false	
+upgrade_ability_refresher	4	6400	Tech		false	
+upgrade_absorbing_armor	4	6400	Armor	WeaponDamage | EShopFilterDurability	false	
+upgrade_acolytes_glove	1	800	Tech	MagicDamage | EShopFilterMelee	false	
+upgrade_active_bullet_shield	4	6400	Armor		true	
+upgrade_active_reload	2	1600	WeaponMod	WeaponDamage	false	
+upgrade_aerial_assault	4	6400	Armor		true	
+upgrade_aerial_supremacy	5	9999	Armor	MagicDamage | EShopFilterMovement | EShopFilterFireRate	true	upgrade_superior_stamina
+upgrade_ammo_scavenger	1	800	Tech	WeaponDamage | EShopFilterClipSize	true	
+upgrade_ancient_shield	5	9999	Armor	WeaponDamage	true	
+upgrade_aoe_root	4	6400	Tech		false	upgrade_containment
+upgrade_aoe_silence	3	3200	Tech	MagicDamage | EShopFilterDisruption	true	
+upgrade_aoe_smoke_bomb	3	3200	Tech		true	
+upgrade_aoe_tech_shield	2	1600	Tech		true	
+upgrade_apex_combat	5	9999	WeaponMod	ClipSize	true	upgrade_ricochet
+upgrade_aprounds	4	6400	WeaponMod	ClipSize | EShopFilterWeaponDamage	false	upgrade_high_velocity_mag
+upgrade_arcane_eater	2	1600	WeaponMod	MagicDamage | EShopFilterFireRate	true	
+upgrade_arcane_extension	2	1600	Tech		false	
+upgrade_arcane_medallion	3	3200	Tech		true	
+upgrade_arcane_surge	2	1600	Tech	MagicDamage | EShopFilterFireRate | EShopFilterClipSize | EShopFilterMovement | EShopFilterDurability	false	upgrade_improved_stamina
+upgrade_arctic_blast	4	6400	Tech	MagicDamage | EShopFilterDisruption | EShopFilterDurability	false	upgrade_cold_front
+upgrade_attack_speed_1	2	1600	WeaponMod		true	
+upgrade_attack_speed_2	3	3200	WeaponMod		true	
+upgrade_auto_cleanse	4	6400	Armor	Durability	false	upgrade_vex_barrier
+upgrade_banshee_slugs	4	6400	WeaponMod	WeaponDamage | EShopFilterDisruption	false	upgrade_headshot_booster2
+upgrade_belt_fed_magazine	4	6400	WeaponMod	FireRate | EShopFilterClipSize	true	
+upgrade_berserker	3	3200	WeaponMod	WeaponDamage | EShopFilterClipSize | EShopFilterDurability	false	
+upgrade_blitz_bullets	2	1600	WeaponMod	FireRate	false	upgrade_rapid_rounds
+upgrade_blood_tribute	3	3200	WeaponMod	WeaponDamage	false	
+upgrade_bonus_ability_charge_3	3	3200	Tech		true	
+upgrade_boundless_spirit	4	6400	Tech	MagicDamage | EShopFilterMovement | EShopFilterHealing	false	upgrade_soaring_spirit
+upgrade_boxing_glove	3	3200	Armor	Durability | EShopFilterMelee | EShopFilterHealing	false	upgrade_lifestrike_gauntlets
+upgrade_bullet_armor	2	1600	Armor	WeaponDamage | EShopFilterDurability	true	
+upgrade_bullet_armor_reduction_aura	3	3200	WeaponMod	WeaponDamage | EShopFilterDisruption | EShopFilterClipSize	false	
+upgrade_bullet_damage_reduction_aura	2	1600	Armor		true	
+upgrade_bullet_resist_shredder	2	1600	Tech	WeaponDamage | EShopFilterDurability	false	
+upgrade_bulletshredimbue	3	3200	WeaponMod	WeaponDamage	false	upgrade_magic_reach
+upgrade_burst_fire	3	3200	WeaponMod	FireRate	false	upgrade_rapid_rounds
+upgrade_burst_fire_actuator	2	1600	WeaponMod		true	
+upgrade_camouflage	2	1600	Armor		true	
+upgrade_capacitor	4	6400	WeaponMod	MagicDamage | EShopFilterFireRate	false	upgrade_chain_lightning
+upgrade_cardio_calibrator	2	1600	Armor	Movement | EShopFilterDurability	false	upgrade_sprint_booster
+upgrade_celestial_guidance	5	9999	Armor		false	
+upgrade_chain_lightning	3	3200	WeaponMod	MagicDamage | EShopFilterFireRate	false	
+upgrade_charge_mastery	4	6400	Tech		true	
+upgrade_charmed_wraps	2	1600	Tech		true	
+upgrade_cheat_death	4	6400	Armor		false	
+upgrade_chonky	3	3200	Armor	WeaponDamage | EShopFilterDurability | EShopFilterHealing | EShopFilterMovement	false	upgrade_health
+upgrade_clip_size	1	800	WeaponMod	WeaponDamage | EShopFilterClipSize	false	
+upgrade_clip_size_2	2	1600	WeaponMod		true	
+upgrade_clip_size_3	3	3200	WeaponMod		true	
+upgrade_clip_size_fixed	2	1600	WeaponMod		true	
+upgrade_clip_size_fixed_t3	3	3200	WeaponMod		true	
+upgrade_cloak_of_opportunity	5	9999	Armor		false	
+upgrade_cloaking_device	3	3200	Armor		true	
+upgrade_cloaking_device_active	3	3200	WeaponMod	MagicDamage | EShopFilterFireRate | EShopFilterMovement	false	
+upgrade_close_quarter_combat	3	3200	WeaponMod	WeaponDamage | EShopFilterDurability | EShopFilterDisruption	false	upgrade_close_range
+upgrade_close_range	1	800	WeaponMod	WeaponDamage | EShopFilterDurability	false	
+upgrade_cold_front	2	1600	Tech	MagicDamage | EShopFilterDisruption | EShopFilterDurability	false	
+upgrade_colossus	4	6400	Armor	Durability	false	upgrade_health
+upgrade_containment	2	1600	Tech	Movement | EShopFilterDisruption | EShopFilterMagicDamage	false	
+upgrade_cooldown_reduction	3	3200	Tech	Healing	false	upgrade_magic_tempo
+upgrade_corpse_explosion	3	3200	Tech	MagicDamage | EShopFilterMovement	true	
+upgrade_counterspell	3	3200	Armor	Durability | EShopFilterMelee | EShopFilterHealing	false	
+upgrade_crackshot	2	1600	WeaponMod	WeaponDamage | EShopFilterMagicDamage	false	
+upgrade_critshot	4	6400	WeaponMod	WeaponDamage | EShopFilterClipSize	false	
+upgrade_crushing_fists	4	6400	WeaponMod	Melee	false	upgrade_melee_charge
+upgrade_damage_recycler	4	6400	Armor	MagicDamage | EShopFilterHealing	false	upgrade_vampire,upgrade_health_stealing_magic
+upgrade_debuff_reducer	2	1600	Armor	WeaponDamage	false	
+upgrade_deflecting_armor	4	6400	Armor	Durability	false	
+upgrade_disarm	1	800	Tech	MagicDamage | EShopFilterDisruption	true	
+upgrade_discord	4	6400	Tech		false	
+upgrade_divine_barrier	4	6400	Armor	Durability | EShopFilterMovement	false	upgrade_guardian_ward
+upgrade_diviners_kevlar	4	6400	Armor	MagicDamage | EShopFilterDurability | EShopFilterHealing	false	
+upgrade_double_jump	1	800	Armor		true	
+upgrade_dps_aura	3	3200	WeaponMod	FireRate | EShopFilterHealing | EShopFilterMovement	false	
+upgrade_drum_magazine	3	3200	WeaponMod		true	
+upgrade_duration_extender	2	1600	Tech	Durability	true	
+upgrade_eldritch_shot	5	9999	WeaponMod	WeaponDamage | EShopFilterMagicDamage	false	
+upgrade_electric_slippers	5	9999	Armor		false	
+upgrade_enchanted_holsters	4	6400	WeaponMod	MagicDamage | EShopFilterFireRate	false	
+upgrade_endurance	1	800	Armor	ClipSize | EShopFilterHealing	false	
+upgrade_escalating_exposure	4	6400	Tech	MagicDamage | EShopFilterDurability	false	upgrade_magic_vulnerability
+upgrade_eternal_gift	5	9999	Armor		false	
+upgrade_ethereal_bullets	4	6400	Tech	MagicDamage | EShopFilterFireRate	false	upgrade_quick_silver
+upgrade_express_shot	3	3200	WeaponMod	WeaponDamage	false	upgrade_high_velocity_mag
+upgrade_extra_charge	1	800	Tech	MagicDamage	false	
+upgrade_fervor	4	6400	WeaponMod	WeaponDamage | EShopFilterFireRate | EShopFilterClipSize | EShopFilterMovement	false	
+upgrade_fire_rate_aura	2	1600	WeaponMod		true	
+upgrade_fleetfoot_boots	2	1600	WeaponMod	ClipSize | EShopFilterMovement	false	
+upgrade_focus_lens	4	6400	Tech	Disruption | EShopFilterMagicDamage	false	upgrade_spirit_sap
+upgrade_frenzy	4	6400	Armor		true	
+upgrade_full_spectrum	4	6400	Tech		true	
+upgrade_fury_trance	3	3200	Armor	FireRate | EShopFilterWeaponDamage | EShopFilterMovement | EShopFilterHealing	false	upgrade_vampire
+upgrade_galvanic_storm	4	6400	WeaponMod		true	
+upgrade_glass_cannon	4	6400	WeaponMod	WeaponDamage | EShopFilterClipSize | EShopFilterFireRate	false	
+upgrade_glass_cannon2	4	6400	WeaponMod	WeaponDamage | EShopFilterFireRate	true	
+upgrade_glitch	4	6400	Tech	Disruption | EShopFilterWeaponDamage	false	
+upgrade_goose_egg	1	800	Tech	Movement	false	
+upgrade_greater_withering_whip	3	3200	Tech	Disruption | EShopFilterMagicDamage	false	upgrade_withering_whip
+upgrade_grit	1	800	Armor	Durability	false	
+upgrade_guardian_ward	2	1600	Armor	Durability | EShopFilterMovement	false	upgrade_grit
+upgrade_haunting_scream	5	9999	Tech	WeaponDamage | EShopFilterDisruption	true	
+upgrade_headhunter	3	3200	WeaponMod	WeaponDamage	false	upgrade_headshot_booster
+upgrade_headshot_booster	1	800	WeaponMod	Durability | EShopFilterFireRate	false	
+upgrade_headshot_booster2	2	1600	WeaponMod	Durability | EShopFilterFireRate	false	
+upgrade_heal_on_level	1	800	Armor	Durability | EShopFilterHealing	true	
+upgrade_healbane	2	1600	Armor	Healing | EShopFilterDisruption | EShopFilterDurability	false	
+upgrade_healbuff	4	6400	Armor	FireRate | EShopFilterHealing	false	upgrade_healing_booster
+upgrade_healing_booster	2	1600	Armor	Healing	false	upgrade_endurance
+upgrade_health	1	800	Armor	WeaponDamage | EShopFilterDurability	false	
+upgrade_health_2	2	1600	Armor	WeaponDamage | EShopFilterDurability	true	
+upgrade_health_nova	3	3200	Armor	Healing	false	upgrade_health_stimpak
+upgrade_health_regen_1	1	800	Armor		true	
+upgrade_health_regen_aura	3	3200	Armor		true	
+upgrade_health_stealing_magic	2	1600	Armor	MagicDamage | EShopFilterHealing | EShopFilterDurability	false	
+upgrade_health_stimpak	1	800	Armor	Healing	false	
+upgrade_high_impact_armor	2	1600	Armor		true	
+upgrade_high_velocity_mag	1	800	WeaponMod	WeaponDamage	false	
+upgrade_hollow_point_rounds	3	3200	WeaponMod	MagicDamage | EShopFilterDurability	false	
+upgrade_icarus_wings	5	9999	Armor		false	
+upgrade_imbued_ability	4	6400	Tech		true	
+upgrade_imbued_duration_extender	3	3200	Tech		false	upgrade_arcane_extension
+upgrade_improved_bullet_armor	3	3200	Armor	Durability	false	
+upgrade_improved_spirit	1	800	Tech	MagicDamage | EShopFilterHealing	false	
+upgrade_improved_stamina	1	800	Armor	FireRate | EShopFilterMovement	false	
+upgrade_infinite_rounds	5	9999	WeaponMod	ClipSize | EShopFilterWeaponDamage	false	
+upgrade_infinitemagazine	4	6400	WeaponMod	WeaponDamage | EShopFilterFireRate | EShopFilterClipSize	true	
+upgrade_infuser	4	6400	Armor	MagicDamage	false	upgrade_health_stealing_magic
+upgrade_inhibitor	4	6400	Armor	WeaponDamage | EShopFilterDisruption | EShopFilterFireRate	false	
+upgrade_intensifying_clip	2	1600	WeaponMod	ClipSize | EShopFilterWeaponDamage	false	
+upgrade_juggernaut	4	6400	Armor	Durability	false	upgrade_cardio_calibrator
+upgrade_kinetic_sash	2	1600	WeaponMod	FireRate | EShopFilterClipSize | EShopFilterMovement | EShopFilterDurability	false	upgrade_improved_stamina
+upgrade_lifestrike_gauntlets	1	800	Armor	Durability | EShopFilterMelee | EShopFilterHealing	false	
+upgrade_long_range	2	1600	WeaponMod	WeaponDamage | EShopFilterClipSize	false	
+upgrade_long_range_slowing_tech	3	3200	Tech		true	
+upgrade_magic_burst	1	800	Tech	MagicDamage | EShopFilterHealing	false	
+upgrade_magic_carpet	4	6400	Tech	Movement	false	
+upgrade_magic_clarity	2	1600	Tech		true	
+upgrade_magic_missile	4	6400	WeaponMod	WeaponDamage | EShopFilterClipSize | EShopFilterFireRate	true	
+upgrade_magic_reach	1	800	Tech		false	
+upgrade_magic_shield	2	1600	Armor	MagicDamage | EShopFilterDurability	false	
+upgrade_magic_shock	3	3200	Tech	MagicDamage | EShopFilterDisruption	false	upgrade_magic_burst
+upgrade_magic_slow	2	1600	Tech	Disruption	false	
+upgrade_magic_storm	3	3200	Tech	MagicDamage | EShopFilterMovement	false	upgrade_improved_spirit
+upgrade_magic_tempo	2	1600	Tech	Healing	false	
+upgrade_magic_vulnerability	2	1600	Tech	MagicDamage | EShopFilterDisruption	false	
+upgrade_medic_bullets	1	800	WeaponMod	WeaponDamage | EShopFilterHealing	false	
+upgrade_melee_charge	2	1600	WeaponMod	Melee	false	
+upgrade_melee_rebuttal	1	800	Armor	Durability | EShopFilterMelee | EShopFilterHealing	false	
+upgrade_metal_skin	3	3200	Armor	Durability | EShopFilterFireRate	false	
+upgrade_mod_disruptor	4	6400	Tech		true	
+upgrade_mystic_regeneration	1	800	Tech	MagicDamage | EShopFilterHealing	false	
+upgrade_mystic_reverb	4	6400	Tech	MagicDamage | EShopFilterHealing	false	
+upgrade_mystical_piano	5	9999	Tech		false	
+upgrade_nearby_enemy_boost	3	3200	WeaponMod	WeaponDamage | EShopFilterFireRate | EShopFilterMovement	true	
+upgrade_non_player_bonus	1	800	WeaponMod	WeaponDamage | EShopFilterDurability | EShopFilterHealing	false	
+upgrade_non_player_bonus_sacrifice	3	3200	WeaponMod	WeaponDamage | EShopFilterDurability | EShopFilterHealing	false	upgrade_non_player_bonus
+upgrade_nullification_aura	5	9999	Armor	Disruption	false	
+upgrade_omnicharge_pendant	5	9999	Tech		false	
+upgrade_patrons_blessing	5	9999	Tech		false	
+upgrade_personal_rejuvenator	3	3200	Tech		true	
+upgrade_phantom_strike	4	6400	Armor	WeaponDamage | EShopFilterDurability | EShopFilterMovement | EShopFilterDisruption	false	
+upgrade_predator_precision	2	1600	WeaponMod	FireRate	true	
+upgrade_prism_blast	5	9999	Tech	FireRate	false	
+upgrade_pristine_emblem	2	1600	WeaponMod	MagicDamage | EShopFilterDurability	false	upgrade_high_velocity_mag
+upgrade_proc_disarm	2	1600	WeaponMod		true	
+upgrade_proc_silence	4	6400	WeaponMod	Disruption | EShopFilterWeaponDamage	false	
+upgrade_proc_tech_damage	3	3200	WeaponMod		true	
+upgrade_quarantine	2	1600	Tech		true	
+upgrade_quick_silver	2	1600	Tech	MagicDamage | EShopFilterFireRate	false	
+upgrade_rapid_recharge	3	3200	Tech		false	upgrade_extra_charge
+upgrade_rapid_rounds	1	800	WeaponMod	FireRate | EShopFilterMovement	false	
+upgrade_rebirth	4	6400	Armor		true	
+upgrade_rechargingbullets	2	1600	WeaponMod	WeaponDamage | EShopFilterDurability	false	
+upgrade_reduce_debuff_duration	3	3200	Armor	WeaponDamage	false	
+upgrade_regenerating_bullet_shield	2	1600	Armor	WeaponDamage | EShopFilterDurability	false	
+upgrade_regenerative_armor	2	1600	Armor		true	
+upgrade_reinforcing_casings	3	3200	WeaponMod	WeaponDamage | EShopFilterDurability | EShopFilterFireRate	false	upgrade_clip_size
+upgrade_reload_speed	2	1600	WeaponMod		true	
+upgrade_rescue_beam	3	3200	Armor	MagicDamage | EShopFilterDurability | EShopFilterHealing | EShopFilterMovement	false	upgrade_health_stimpak
+upgrade_resilience	1	800	Armor	MagicDamage | EShopFilterDurability	true	
+upgrade_resonant_healing	3	3200	Tech	MagicDamage | EShopFilterMovement | EShopFilterHealing	false	upgrade_mystic_regeneration
+upgrade_restorative_locket	2	1600	Armor	Healing | EShopFilterDurability	false	
+upgrade_return_fire	2	1600	Armor	Durability | EShopFilterMagicDamage | EShopFilterFireRate	false	
+upgrade_ricochet	4	6400	WeaponMod	ClipSize	false	
+upgrade_rocket_booster	3	3200	Armor	Movement	false	
+upgrade_rocket_boots	3	3200	Armor	MagicDamage | EShopFilterMovement	true	
+upgrade_runed_gauntlets	5	9999	WeaponMod		false	
+upgrade_rupture	3	3200	Tech	MagicDamage | EShopFilterDisruption	false	
+upgrade_self_bubble	4	6400	Tech	FireRate	false	
+upgrade_shadow_step	5	9999	Armor	WeaponDamage | EShopFilterMovement	true	
+upgrade_shadow_strike	5	9999	Armor		false	
+upgrade_sharpshooter	3	3200	WeaponMod	WeaponDamage | EShopFilterClipSize	false	upgrade_long_range,upgrade_high_velocity_mag
+upgrade_shivas_bracelet	5	9999	Tech		false	
+upgrade_shrink_ray	5	9999	Tech	Healing	false	
+upgrade_silencer	4	6400	WeaponMod	Disruption	true	
+upgrade_siphon_bullets	4	6400	Armor	WeaponDamage | EShopFilterHealing	false	
+upgrade_slow_immunity	2	1600	Armor		true	
+upgrade_slowing_bullets	2	1600	WeaponMod	WeaponDamage | EShopFilterDisruption	false	
+upgrade_slowing_tech	1	800	Tech		true	
+upgrade_small_attack_speed	1	800	WeaponMod		true	
+upgrade_soaring_spirit	2	1600	Tech	Movement | EShopFilterMagicDamage	false	upgrade_improved_spirit
+upgrade_spellbreaker	4	6400	Armor	Durability	false	upgrade_debuff_reducer
+upgrade_spellshield	3	3200	Armor	Durability	true	
+upgrade_spellslinger_headshots	3	3200	WeaponMod	WeaponDamage | EShopFilterMagicDamage	false	upgrade_tech_defense_shredders
+upgrade_spirit_bubble	2	1600	Armor	Durability	false	upgrade_grit
+upgrade_spirit_burn	4	6400	Tech	MagicDamage | EShopFilterDurability	false	
+upgrade_spirit_sap	2	1600	Tech	MagicDamage	false	
+upgrade_spirit_snatch	3	3200	Tech	MagicDamage | EShopFilterMelee	false	upgrade_acolytes_glove
+upgrade_split_shot	2	1600	WeaponMod	WeaponDamage	false	
+upgrade_sprint_booster	1	800	Armor	WeaponDamage | EShopFilterHealing | EShopFilterMovement	false	
+upgrade_stabilizer	1	800	WeaponMod		true	
+upgrade_stabilizing_tripod	3	3200	WeaponMod		true	
+upgrade_stasis_bomb	4	6400	Armor		true	
+upgrade_superacolytes_glove	3	3200	Tech	MagicDamage | EShopFilterMelee	true	
+upgrade_superior_stamina	3	3200	Armor	MagicDamage | EShopFilterMovement | EShopFilterFireRate	false	upgrade_improved_stamina
+upgrade_suppressor	2	1600	Tech	Healing | EShopFilterDisruption	false	
+upgrade_surging_power	4	6400	Armor	FireRate | EShopFilterWeaponDamage | EShopFilterMovement | EShopFilterHealing	false	upgrade_vampire
+upgrade_target_stun	3	3200	Tech	MagicDamage | EShopFilterDisruption	false	
+upgrade_targeted_silence	3	3200	Tech	WeaponDamage | EShopFilterDisruption	false	
+upgrade_tech_armor	2	1600	Armor	MagicDamage | EShopFilterDurability	true	
+upgrade_tech_cleave	3	3200	Tech		true	
+upgrade_tech_damage_pulse	3	3200	Tech	MagicDamage | EShopFilterDurability	false	
+upgrade_tech_defense_shredders	2	1600	WeaponMod	MagicDamage | EShopFilterHealing	false	
+upgrade_tech_overflow	4	6400	WeaponMod	MagicDamage | EShopFilterFireRate	false	upgrade_health_stealing_magic
+upgrade_tech_purge	3	3200	Armor	Durability	false	
+upgrade_tech_range	3	3200	Tech	MagicDamage | EShopFilterDurability	false	upgrade_magic_reach
+upgrade_thermal_detonator	3	3200	WeaponMod	WeaponDamage | EShopFilterMagicDamage	false	
+upgrade_timeless_emblem	5	9999	Tech	Healing	true	upgrade_transcendent_cooldown
+upgrade_titan_round	2	1600	WeaponMod	ClipSize | EShopFilterWeaponDamage	false	upgrade_clip_size
+upgrade_toughness_3	2	1600	Armor		true	
+upgrade_toxic_bullets	3	3200	WeaponMod	MagicDamage | EShopFilterDisruption	false	
+upgrade_transcendent_cooldown	4	6400	Tech	Healing	false	upgrade_cooldown_reduction
+upgrade_trophy_collector	2	1600	Armor	WeaponDamage | EShopFilterHealing | EShopFilterMovement	false	upgrade_sprint_booster
+upgrade_ultimate_burst	4	6400	Tech	MagicDamage | EShopFilterDisruption	false	upgrade_magic_slow
+upgrade_unstable_concoction	5	9999	Tech		false	
+upgrade_unstoppable	4	6400	Armor	Durability | EShopFilterMovement	false	upgrade_debuff_reducer
+upgrade_vampire	2	1600	Armor	Durability | EShopFilterHealing	false	
+upgrade_veil_walker	3	3200	Armor	Durability | EShopFilterClipSize	false	upgrade_sprint_booster
+upgrade_vex_barrier	2	1600	Armor	Durability	false	upgrade_grit
+upgrade_warp_stone	3	3200	Armor	WeaponDamage | EShopFilterMovement	false	
+upgrade_weapon_backstabber	2	1600	WeaponMod	WeaponDamage	false	
+upgrade_weapon_detention_ammo	4	6400	WeaponMod	Disruption	true	
+upgrade_weapon_eater	2	1600	WeaponMod		true	
+upgrade_weapon_instant_reload	3	3200	WeaponMod		true	
+upgrade_weapon_overdrive_clip	3	3200	WeaponMod		true	
+upgrade_weapon_power_and_health_drain	2	1600	Armor		true	
+upgrade_weapon_shielding	2	1600	Armor	Durability	false	upgrade_grit
+upgrade_weighted_shots	3	3200	WeaponMod	WeaponDamage	false	upgrade_slowing_bullets
+upgrade_withering_whip	1	800	Tech	Disruption | EShopFilterMagicDamage	false	
+weapon_upgrade_t1	1	800	WeaponMod		false	
+weapon_upgrade_t2	2	1600	WeaponMod		false	
+weapon_upgrade_t3	3	3200	WeaponMod		false	
+weapon_upgrade_t4	4	6400	WeaponMod		false	
+weapon_upgrade_t5	5	9999	WeaponMod		false	
