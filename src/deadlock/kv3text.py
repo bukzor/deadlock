@@ -11,6 +11,12 @@ extracted corpus.
 """
 
 
+import re
+
+# one token per match: punctuation, or a word (number/key/null/true/false/flags:)
+_TOKEN_RE = re.compile(r'[{}\[\]=,]|[^\s{}\[\]=,"]+')
+
+
 def parse(text: str) -> object:
     """Parse KV3 text (header included) and return the root value."""
     if text.startswith("<!--"):
@@ -25,8 +31,8 @@ def _tokens(text: str) -> list[str]:
     """Split into tokens: quoted strings verbatim, then words/punctuation.
 
     Strings are the only tokens that may contain whitespace or punctuation, so
-    jump quote to quote with ``find`` and tokenize the code between quotes by
-    whitespace — every inner loop stays in C.
+    jump quote to quote with ``find`` and let ``_TOKEN_RE`` pick the tokens out
+    of the code between quotes — every inner loop stays in C.
     """
     tokens: list[str] = []
     i, n = 0, len(text)
@@ -34,20 +40,13 @@ def _tokens(text: str) -> list[str]:
         j = text.find('"', i)
         if j == -1:
             j = n
-        tokens += _bare(text[i:j])
+        tokens += _TOKEN_RE.findall(text, i, j)
         if j == n:
             break
         end = _string_end(text, j)
         tokens.append(text[j:end])
         i = end
     return tokens
-
-
-def _bare(code: str) -> list[str]:
-    """Tokenize quote-free text: numbers, keys, null/true/false, punctuation."""
-    for punct in "{}[]=,":
-        code = code.replace(punct, f" {punct} ")
-    return code.split()
 
 
 def _string_end(text: str, start: int) -> int:
