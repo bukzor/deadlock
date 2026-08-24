@@ -24,4 +24,4 @@ class DescribeLoads:
 
     def it_rejects_a_non_mapping_root(self):
         with pytest.raises(AssertionError):
-            loads(_HEADER + "[ 1, 2, 3 ]\n")
+            _ = loads(_HEADER + "[ 1, 2, 3 ]\n")

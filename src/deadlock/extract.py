@@ -21,7 +21,7 @@ def main(argv: list[str]) -> None:
     out_dir = Path(rest[0])
     extensions = tuple(rest[1:])
     out_dir.mkdir(parents=True, exist_ok=True)
-    s2v.run(
+    _ = s2v.run(
         s2v.extract_argv(
             paths.vpk_dir_file(),
             out_dir,

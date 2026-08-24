@@ -27,12 +27,13 @@ item shows as a single ``disabled`` cell change.
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
+
+from . import jsonl
 
 _PRICE = re.compile(r"^m_nItemPricePerTier\[(\d+)\]$")
 _ENTITY = re.compile(r"^(\w+)\.(.+)$")
@@ -99,8 +100,18 @@ def items(records: Iterable[Mapping[str, object]], prices: Mapping[int, int]) ->
 def render(items: Iterable[Item]) -> str:
     """Render items as a tab-separated table with a header line."""
     body = "".join(
-        f"{i.name}\t{i.tier}\t{i.cost}\t{i.slot}\t{i.shop_filter}\t"
-        f"{'true' if i.disabled else 'false'}\t{','.join(i.components)}\n"
+        "\t".join(
+            (
+                i.name,
+                str(i.tier),
+                str(i.cost),
+                i.slot,
+                i.shop_filter,
+                "true" if i.disabled else "false",
+                ",".join(i.components),
+            )
+        )
+        + "\n"
         for i in items
     )
     return "item\ttier\tcost\tslot\tshop_filter\tdisabled\tcomponents\n" + body
@@ -132,10 +143,10 @@ def _int(value: object) -> int:
 
 def main(argv: list[str]) -> None:
     [generic_source] = argv[1:]
-    defs = (json.loads(line) for line in sys.stdin)
+    defs = jsonl.load_lines(sys.stdin)
     with Path(generic_source).open() as generic_lines:
-        generic = (json.loads(line) for line in generic_lines)
-        sys.stdout.write(render(items(defs, prices(generic))))
+        generic = jsonl.load_lines(generic_lines)
+        _ = sys.stdout.write(render(items(defs, prices(generic))))
 
 
 if __name__ == "__main__":

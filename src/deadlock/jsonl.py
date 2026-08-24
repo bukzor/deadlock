@@ -9,9 +9,10 @@ serializes cleanly.
 from __future__ import annotations
 
 import json
-from collections.abc import Iterable
+from collections.abc import Iterable, Iterator, Mapping
 
 import keyvalues3 as kv3
+import typed_json
 
 from .types import Lines, is_sequence, is_str_mapping
 
@@ -35,3 +36,15 @@ def dumps(obj: object) -> str:
 def dump_lines(objs: Iterable[object]) -> Lines:
     """Serialize values to JSONL lines (one newline-terminated line per object)."""
     return (dumps(o) + "\n" for o in objs)
+
+
+def load_lines(lines: Iterable[str]) -> Iterator[Mapping[str, object]]:
+    """Parse JSONL records (one JSON object per line).
+
+    >>> list(load_lines(['{"a":1}\\n', '{"b":2}\\n']))
+    [{'a': 1}, {'b': 2}]
+    """
+    for line in lines:
+        record = typed_json.loads(line)
+        assert is_str_mapping(record), record
+        yield record

@@ -69,11 +69,11 @@ class DescribeParse:
 
     def it_rejects_junk(self):
         with pytest.raises((AssertionError, ValueError)):
-            _parse(_HEADER + "{ a = bogus }")
+            _ = _parse(_HEADER + "{ a = bogus }")
 
     def it_rejects_bare_text_to_prevent_char_iteration(self):
         with pytest.raises(AssertionError):
-            parse(_HEADER + "{ }")
+            _ = parse(_HEADER + "{ }")
 
     class WhenComparedToKeyvalues3:
         @pytest.mark.parametrize(

@@ -29,12 +29,13 @@ asserted so a missing field or dangling weapon fails loudly.
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
+
+from . import jsonl
 
 TEMPLATE_HERO = "hero_base"
 _PRIMARY = re.compile(r"^(hero_\w+)\.m_mapBoundAbilities\.ESlot_Weapon_Primary$")
@@ -111,8 +112,20 @@ def _weapon(hero: str, weapon: str, v: Mapping[str, float]) -> Weapon:
 def render(weapons: Iterable[Weapon]) -> str:
     """Render weapons as a tab-separated table with a header line."""
     body = "".join(
-        f"{w.hero}\t{w.weapon}\t{_fmt(w.damage)}\t{w.bullets}\t{w.clip}\t"
-        f"{_fmt(w.cycle)}\t{_fmt(w.reload)}\t{_fmt(w.range)}\t{w.dps}\n"
+        "\t".join(
+            (
+                w.hero,
+                w.weapon,
+                _fmt(w.damage),
+                str(w.bullets),
+                str(w.clip),
+                _fmt(w.cycle),
+                _fmt(w.reload),
+                _fmt(w.range),
+                str(w.dps),
+            )
+        )
+        + "\n"
         for w in weapons
     )
     return "hero\tweapon\tdamage\tbullets\tclip\tcycle\treload\trange\tdps\n" + body
@@ -140,10 +153,10 @@ def _bool(value: object) -> bool:
 
 def main(argv: list[str]) -> None:
     [abilities_source] = argv[1:]
-    heroes = (json.loads(line) for line in sys.stdin)
+    heroes = jsonl.load_lines(sys.stdin)
     with Path(abilities_source).open() as defs_lines:
-        defs = (json.loads(line) for line in defs_lines)
-        sys.stdout.write(render(weapons(heroes, defs)))
+        defs = jsonl.load_lines(defs_lines)
+        _ = sys.stdout.write(render(weapons(heroes, defs)))
 
 
 if __name__ == "__main__":

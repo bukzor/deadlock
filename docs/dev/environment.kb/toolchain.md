@@ -4,7 +4,8 @@
   Recreate the venv with `uv venv --python 3.12 && uv sync`. lz4 (a
   `keyvalues3` dep) compiles from source on musl — the managed interpreter
   bundles the headers needed.
-- **Type/test:** `pyright` (strict) and `pytest` (with `--doctest-modules`), run
+- **Type/test:** `basedpyright` (`all` mode; answers to `pyright` via the
+  `basedpyright-as-pyright` shim) and `pytest` (with `--doctest-modules`), run
   via `./bin/shell`.
 - **Build:** `redo` (apenwarr, 0.42d) for regenerating `data/`.
 - **ValveResourceFormat — pinned to 19.2.** Provision with `./bin/fetch-vrf`

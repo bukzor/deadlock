@@ -60,7 +60,7 @@ class DescribeBound:
         heroes = _hero("hero_b", disabled=False, signatures=["sig_a1"])
         defs = _ability("sig_a1", type="EAbilityType_Signature", cooldown="20", charges="0")
         with pytest.raises(AssertionError, match="hero_b"):
-            bound(heroes, defs)
+            _ = bound(heroes, defs)
 
     def it_fails_when_a_live_signature_binding_is_undefined(self):
         heroes = _hero("hero_b", disabled=False, signatures=["ghost", "x2", "x3", "x4"])
@@ -70,7 +70,7 @@ class DescribeBound:
             *_ability("x4", type="EAbilityType_Signature", cooldown="1", charges="0"),
         ]
         with pytest.raises(AssertionError, match="ghost"):
-            bound(heroes, defs)
+            _ = bound(heroes, defs)
 
 
 class DescribeRender:

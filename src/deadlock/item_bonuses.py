@@ -27,11 +27,12 @@ stats defaulting to 0, which would otherwise be ~46% noise.
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
+
+from . import jsonl
 
 _ENTITY = re.compile(r"^(\w+)\.(.+)$")
 _PROP = re.compile(r"^m_mapAbilityProperties\.([^.]+)\.(m_eProvidedPropertyType|m_strValue)$")
@@ -97,8 +98,8 @@ def _str(value: object) -> str:
 
 
 def main() -> None:
-    records = (json.loads(line) for line in sys.stdin)
-    sys.stdout.write(render(bonuses(records)))
+    records = jsonl.load_lines(sys.stdin)
+    _ = sys.stdout.write(render(bonuses(records)))
 
 
 if __name__ == "__main__":

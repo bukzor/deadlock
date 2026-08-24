@@ -12,8 +12,8 @@ import struct
 
 class BinaryReader:
     def __init__(self, data: bytes, offset: int = 0) -> None:
-        self._data = data
-        self._pos = offset
+        self._data: bytes = data
+        self._pos: int = offset
 
     @property
     def pos(self) -> int:
@@ -40,8 +40,10 @@ class BinaryReader:
 
     def _unpack(self, fmt: str) -> int:
         size = struct.calcsize(fmt)
-        (value,) = struct.unpack_from(fmt, self._data, self._pos)
+        values: tuple[object, ...] = struct.unpack_from(fmt, self._data, self._pos)
+        (value,) = values
         self._pos += size
+        assert isinstance(value, int), value
         return value
 
     def u8(self) -> int:

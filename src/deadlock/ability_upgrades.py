@@ -24,13 +24,13 @@ accepted so its upgrade isn't silently dropped.
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
+from . import jsonl
 from .abilities import bound
 
 _ENTITY = re.compile(r"^(\w+)\.(.+)$")
@@ -93,11 +93,11 @@ def _str(value: object) -> str:
 
 def main(argv: list[str]) -> None:
     [heroes_source] = argv[1:]
-    defs = [json.loads(line) for line in sys.stdin]
+    defs = list(jsonl.load_lines(sys.stdin))
     with Path(heroes_source).open() as heroes_lines:
-        heroes = (json.loads(line) for line in heroes_lines)
+        heroes = jsonl.load_lines(heroes_lines)
         signatures = {b.ability for b in bound(heroes, defs)}
-    sys.stdout.write(render(upgrades(defs, signatures)))
+    _ = sys.stdout.write(render(upgrades(defs, signatures)))
 
 
 if __name__ == "__main__":

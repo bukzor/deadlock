@@ -29,7 +29,7 @@ class DescribeCanonical:
 
     def it_raises_when_a_hero_diverges(self):
         with pytest.raises(AssertionError, match="hero_a"):
-            canonical(
+            _ = canonical(
                 {
                     "hero_base": {1: Level(gold=0, bonus="unlock")},
                     "hero_a": {1: Level(gold=99, bonus="unlock")},

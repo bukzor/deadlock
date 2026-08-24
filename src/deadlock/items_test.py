@@ -34,7 +34,7 @@ class DescribeItems:
     def it_fails_when_a_tier_has_no_price(self):
         rows = [{"path": "x.m_iItemTier", "value": "EModTier_9"}]
         with pytest.raises(AssertionError, match="9"):
-            items(rows, {0: 0})
+            _ = items(rows, {0: 0})
 
 
 class DescribeRender:

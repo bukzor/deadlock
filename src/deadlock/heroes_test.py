@@ -22,7 +22,7 @@ class DescribeStats:
     def it_requires_every_hero_to_define_all_base_stats(self):
         missing = {"hero_base": {"EMaxHealth": 780.0}, "hero_a": {"EStamina": 3}}
         with pytest.raises(AssertionError, match="hero_a"):
-            columns(missing)
+            _ = columns(missing)
 
 
 class DescribeColumns:

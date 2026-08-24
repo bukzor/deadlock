@@ -5,6 +5,7 @@ description = "Deterministic parsers for inspecting the Deadlock (Source 2) game
 requires-python = ">=3.12"
 dependencies = [
     "keyvalues3>=0.3",
+    "python-typed-json>=0.1.0",
     "vpk>=1.4.0",
 ]
 
@@ -12,6 +13,7 @@ dependencies = [
 dev = [
     "pytest>=8",
     "pyright>=1.1.380",
+    "basedpyright-as-pyright",
 ]
 
 [build-system]
@@ -30,8 +32,11 @@ python_functions = ["it_*", "test_*"]
 [tool.pyright]
 include = ["src", "tests"]
 pythonVersion = "3.12"
-typeCheckingMode = "strict"
+typeCheckingMode = "all"
 venvPath = "."
 venv = ".venv"
 # third-party container/KV3 libs ship no type stubs; we wrap them at typed boundaries
 reportMissingTypeStubs = false
+
+[tool.uv.sources]
+basedpyright-as-pyright = { git = "https://github.com/bukzor/basedpyright-as-pyright" }

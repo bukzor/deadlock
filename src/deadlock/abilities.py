@@ -33,12 +33,13 @@ loudly.
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
+
+from . import jsonl
 
 _BOUND = re.compile(r"^(hero_\w+)\.m_mapBoundAbilities\.ESlot_(Signature_\d)$")
 _DISABLED = re.compile(r"^(hero_\w+)\.m_bDisabled$")
@@ -153,10 +154,10 @@ def _bool(value: object) -> bool:
 
 def main(argv: list[str]) -> None:
     [abilities_source] = argv[1:]
-    heroes = (json.loads(line) for line in sys.stdin)
+    heroes = jsonl.load_lines(sys.stdin)
     with Path(abilities_source).open() as defs_lines:
-        defs = (json.loads(line) for line in defs_lines)
-        sys.stdout.write(render(bound(heroes, defs)))
+        defs = jsonl.load_lines(defs_lines)
+        _ = sys.stdout.write(render(bound(heroes, defs)))
 
 
 if __name__ == "__main__":

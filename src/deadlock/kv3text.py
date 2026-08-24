@@ -20,14 +20,18 @@ from collections.abc import Iterable, Iterator
 from .types import Line, Lines
 
 _TOKEN = re.compile(
-    r'"""\r?\n.*?"""'  # multiline string (content starts after the newline)
-    r'|"(?:[^"\\]|\\.)*"'  # quoted string
-    r"|[{}\[\]=,]"  # punctuation
-    r"|<!--.*?-->"  # header
-    r"|//[^\n]*"  # line comment
-    r"|/\*.*?\*/"  # block comment
-    r"|\s+"  # whitespace
-    r'|[^\s{}\[\]=,"]+',  # word: number, bool, null, key, flags:
+    "|".join(
+        (
+            r'"""\r?\n.*?"""',  # multiline string (content starts after the newline)
+            r'"(?:[^"\\]|\\.)*"',  # quoted string
+            r"[{}\[\]=,]",  # punctuation
+            r"<!--.*?-->",  # header
+            r"//[^\n]*",  # line comment
+            r"/\*.*?\*/",  # block comment
+            r"\s+",  # whitespace
+            r'[^\s{}\[\]=,"]+',  # word: number, bool, null, key, flags:
+        )
+    ),
     re.DOTALL,
 )
 # a multiline string opens as `"""` + newline, in value position

@@ -40,7 +40,7 @@ class DescribeBinaryReader:
     def it_raises_on_read_past_end(self):
         r = BinaryReader(b"ab")
         with pytest.raises(EOFError):
-            r.read(3)
+            _ = r.read(3)
 
     def it_raises_on_out_of_range_seek(self):
         r = BinaryReader(b"ab")

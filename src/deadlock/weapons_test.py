@@ -41,7 +41,7 @@ class DescribeWeapons:
     def it_fails_when_a_live_primary_weapon_is_undefined(self):
         heroes = _hero("hero_b", disabled=False, primary="ghost")
         with pytest.raises(AssertionError, match="ghost"):
-            weapons(heroes, [])
+            _ = weapons(heroes, [])
 
 
 class DescribeRender:

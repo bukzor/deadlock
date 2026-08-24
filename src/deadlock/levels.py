@@ -25,11 +25,12 @@ the rest.
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
+
+from . import jsonl
 
 STARTING_SOULS = 600
 _PATH = re.compile(r"^(hero_\w+)\.m_mapLevelInfo\.(\d+)\.(.+)$")
@@ -122,8 +123,8 @@ def _int(value: object) -> int:
 
 
 def main() -> None:
-    records = (json.loads(line) for line in sys.stdin)
-    sys.stdout.write(render(rows(canonical(curves(records)))))
+    records = jsonl.load_lines(sys.stdin)
+    _ = sys.stdout.write(render(rows(canonical(curves(records)))))
 
 
 if __name__ == "__main__":

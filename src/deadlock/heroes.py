@@ -19,10 +19,11 @@ so a patch dropping a stat from one hero fails loudly.
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from collections.abc import Iterable, Mapping
+
+from . import jsonl
 
 _PATH = re.compile(r"^(hero_\w+)\.m_mapStartingStats\.(\w+)$")
 
@@ -66,8 +67,8 @@ def _str(value: object) -> str:
 
 
 def main() -> None:
-    records = (json.loads(line) for line in sys.stdin)
-    sys.stdout.write(render(stats(records)))
+    records = jsonl.load_lines(sys.stdin)
+    _ = sys.stdout.write(render(stats(records)))
 
 
 if __name__ == "__main__":

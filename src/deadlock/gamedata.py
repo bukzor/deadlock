@@ -27,7 +27,7 @@ def records(root: Mapping[str, object]) -> Iterator[dict[str, object]]:
 
 
 def main() -> None:
-    sys.stdout.writelines(jsonl.dump_lines(records(kv3.load(sys.stdin))))
+    _ = sys.stdout.writelines(jsonl.dump_lines(records(kv3.load(sys.stdin))))
 
 
 if __name__ == "__main__":
