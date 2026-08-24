@@ -23,6 +23,9 @@
 /all
 /clean
 
+# machine-local env, loaded last by .envrc (e.g. DEADLOCK_HOME on a WSL box)
+/localhost.env
+
 # python / tooling
 /.redo/
 /.venv/

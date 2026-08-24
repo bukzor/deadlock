@@ -10,7 +10,6 @@ Relevant quirks:
 - **No init system** in the usual sense: boot runs `runsvdir /etc/service`
   (daemontools-style, per `/etc/wsl.conf`). There's no `systemctl`/`rc-service`;
   services are `sv`-managed runit dirs under `/etc/service`.
-- `sudo` is passwordless.
 - Docker is installed but the daemon is not running (and Docker Desktop
   integration is dead). We don't use it — see
   `../decisions.kb/vrf-runs-natively-no-docker.md`.
