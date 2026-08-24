@@ -9,8 +9,8 @@
   via `./bin/shell`.
 - **Build:** `redo` (apenwarr, 0.42d) for regenerating `data/`.
 - **ValveResourceFormat — pinned to 19.2** (reports `Version: 19.2.6339`). The
-  pin and the fetch live in `bin/fetch-vrf`; `redo` provisions it on demand as
-  `data/tools/Source2Viewer-CLI.d`. The glibc `cli-linux-x64` build runs
+  pin and the fetch live in `bin/fetch-vrf`; `redo` provisions it on demand at
+  `data/tools/Source2Viewer-CLI`. The glibc `cli-linux-x64` build runs
   natively here.
   `deadlock.s2v.binary_path` resolves the binary (override `DEADLOCK_S2V`).
   Upstream warns CLI flags aren't stable across releases — re-check `--help` and

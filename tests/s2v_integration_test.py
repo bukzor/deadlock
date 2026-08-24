@@ -1,6 +1,7 @@
 """Exercises Source2Viewer-CLI against the real install.
 
-Skips unless both the provisioned binary (`redo data/tools/Source2Viewer-CLI.d`) and the game VPK exist.
+Skips unless both the provisioned binary (`redo data/tools/Source2Viewer-CLI`)
+and the game VPK exist.
 """
 
 import pytest

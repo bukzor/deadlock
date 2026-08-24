@@ -3,7 +3,7 @@
 # - gitignored outputs (extraction, gamedata.flat/, manifest, gamedata.list)
 #   via git clean, scoped by explicit pathspecs — the provisioned VRF CLI
 #   (a 51MB download) is deliberately NOT listed; to force a re-provision,
-#   `rm -r data/tools/Source2Viewer-CLI.d`
+#   `rm -r data/tools/Source2Viewer-CLI*`
 # - committed outputs (the TSV views, the build stamp) via rm; git has them,
 #   and rebuilding then reading `git diff` is the whole workflow
 # redo-always: `redo clean` never considers itself up to date.
