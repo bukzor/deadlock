@@ -18,11 +18,12 @@ committed=(
   data/gamedata.tsv/ability_upgrades.tsv
 )
 
-# redo refuses to overwrite a target it didn't generate ("exists and not marked
-# as generated"), which would silently leave the committed outputs stale in a
-# fresh clone. Dropping them first hands ownership back to redo; they recompile
-# from the local flats in seconds, so the expensive steps stay incremental.
-rm -f "${committed[@]}"
+# A fresh clone's committed outputs came from git, not from redo, so redo would
+# treat them as hand-written and skip them (silently, exiting 0). Adopting says
+# "these are mine": redo rebuilds them when their dependencies change, and
+# leaves them alone when they don't — unlike deleting them, which forfeits
+# incrementality and destroys the outputs if the build then fails.
+./bin/redo-adopt --if-exists "${committed[@]}"
 
 redo-ifchange data/gamedata.list
 
