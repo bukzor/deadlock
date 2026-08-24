@@ -39,8 +39,9 @@ committed views as hand-written and skip them *while exiting 0*, leaving stale
 data with no error. Deleting them first, the obvious workaround, forfeits
 incrementality and destroys the outputs when a build then fails.
 
-Instead `all.do` runs `bin/redo-adopt`, which marks them as redo's own but
-never-built, so redo rebuilds them once and verifies them normally thereafter.
+Instead `all.do` runs `redo-adopt` (from `packages/bukzor-redotools/`, a
+dev dependency kept separate so it can be published on its own), which makes
+redo rebuild a committed output when it's out of date instead of skipping it.
 Alternatives weighed: a second committed tree with a publish step and a
 `check` target (more moving parts, and adopt makes the drift it guards against
 impossible); making the whole directory one target, since redo exempts

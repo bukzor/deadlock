@@ -2,6 +2,12 @@ version = 1
 revision = 3
 requires-python = ">=3.12"
 
+[manifest]
+members = [
+    "bukzor-redotools",
+    "deadlock",
+]
+
 [[package]]
 name = "basedpyright"
 version = "1.39.10"
@@ -22,6 +28,11 @@ dependencies = [
     { name = "basedpyright" },
     { name = "pyright" },
 ]
+
+[[package]]
+name = "bukzor-redotools"
+version = "0.1.0"
+source = { editable = "packages/bukzor-redotools" }
 
 [[package]]
 name = "colorama"
@@ -45,6 +56,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "basedpyright-as-pyright" },
+    { name = "bukzor-redotools" },
     { name = "pyright" },
     { name = "pytest" },
 ]
@@ -59,6 +71,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "basedpyright-as-pyright", git = "https://github.com/bukzor/basedpyright-as-pyright" },
+    { name = "bukzor-redotools", editable = "packages/bukzor-redotools" },
     { name = "pyright", specifier = ">=1.1.380" },
     { name = "pytest", specifier = ">=8" },
 ]
