@@ -4,6 +4,9 @@
 # .do scripts (source) — these ARE committed so `git diff` shows patch changes.
 /data/*
 !/data/*.do
+!/data/gamedata.flat/
+/data/gamedata.flat/*
+!/data/gamedata.flat/default.jsonl.do
 !/data/manifest.jsonl
 !/data/gamedata.jsonl
 !/data/levels.tsv
