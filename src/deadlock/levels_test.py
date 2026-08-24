@@ -3,17 +3,17 @@ import pytest
 from .levels import Level, Row, canonical, curves, render, rows
 
 RECORDS = [
-    {"file": "scripts/heroes.vdata", "path": "hero_base.m_mapLevelInfo.1.m_unRequiredGold", "value": 0},
-    {"file": "scripts/heroes.vdata", "path": "hero_base.m_mapLevelInfo.1.m_mapBonusCurrencies.EAbilityUnlocks", "value": 1},
-    {"file": "scripts/heroes.vdata", "path": "hero_base.m_mapLevelInfo.2.m_unRequiredGold", "value": 300},
-    {"file": "scripts/heroes.vdata", "path": "hero_base.m_mapLevelInfo.2.m_mapBonusCurrencies.EAbilityPoints", "value": 1},
-    {"file": "scripts/heroes.vdata", "path": "hero_base.m_mapLevelInfo.2.m_bUseStandardUpgrade", "value": True},
-    {"file": "scripts/abilities.vdata", "path": "ignored.path", "value": 1},
+    {"path": "hero_base.m_mapLevelInfo.1.m_unRequiredGold", "value": 0},
+    {"path": "hero_base.m_mapLevelInfo.1.m_mapBonusCurrencies.EAbilityUnlocks", "value": 1},
+    {"path": "hero_base.m_mapLevelInfo.2.m_unRequiredGold", "value": 300},
+    {"path": "hero_base.m_mapLevelInfo.2.m_mapBonusCurrencies.EAbilityPoints", "value": 1},
+    {"path": "hero_base.m_mapLevelInfo.2.m_bUseStandardUpgrade", "value": True},
+    {"path": "ignored.path", "value": 1},
 ]
 
 
 class DescribeCurves:
-    def it_builds_per_hero_level_maps_ignoring_other_files(self):
+    def it_builds_per_hero_level_maps_ignoring_other_paths(self):
         assert curves(RECORDS) == {
             "hero_base": {
                 1: Level(gold=0, bonus="unlock"),

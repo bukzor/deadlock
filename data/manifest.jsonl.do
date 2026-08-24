@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 # Regenerate the path-sorted VPK manifest as JSONL (one file per line).
 # Commit this output; `git diff` after a patch shows exactly what changed.
 # redo runs this with cwd = data/; the repo root is one level up.
-set -eu
+set -euo pipefail
+if [[ "${REDO:-}" ]]; then exec > >(tee >(redo-stamp)); fi
 
 root=$(cd .. && pwd)
 py="$root/.venv/bin/python"
@@ -17,4 +18,4 @@ vpk=$("$py" -c 'from deadlock import paths; print(paths.vpk_dir_file())')
 redo-ifchange "$vpk"
 
 # already path-sorted by manifest_records; no external sort needed
-"$py" -m deadlock.manifest "$vpk" >"$3"
+"$py" -m deadlock.manifest "$vpk"

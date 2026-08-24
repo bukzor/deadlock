@@ -15,7 +15,7 @@ from .archive import manifest_records, read_entries
 
 def main(argv: list[str]) -> None:
     vpk_dir_file = Path(argv[1]) if len(argv) > 1 else paths.vpk_dir_file()
-    sys.stdout.write(jsonl.dump_lines(manifest_records(read_entries(vpk_dir_file))))
+    sys.stdout.writelines(jsonl.dump_lines(manifest_records(read_entries(vpk_dir_file))))
 
 
 if __name__ == "__main__":

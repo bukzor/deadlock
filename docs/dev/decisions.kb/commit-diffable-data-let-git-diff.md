@@ -24,10 +24,12 @@ output is shaped to the right grain:
 
 - **manifest** (`data/manifest.jsonl`) — one file per line, path-sorted. A
   changed/added/removed file is one line.
-- **game data** (`data/gamedata.jsonl`) — flattened to one *leaf scalar* per
-  line (`{file, path, value}`), sorted. A balance change to one stat is one
-  line; a whole-record-per-line form made 27 KB lines that `git diff` couldn't
-  resolve. The reusable re-graining step is `deadlock.flatten`.
+- **game data** (`data/gamedata.flat/<file>.jsonl`, one per vdata) — flattened
+  to one *leaf scalar* per line (`{path, value}`), sorted. A balance change to
+  one stat is one line, in the file named for its source; a whole-record-per-line
+  form made 27 KB lines that `git diff` couldn't resolve, and a single merged
+  stream repeated the source filename on every line and rewrote one 28 MB git
+  blob per patch. The reusable re-graining step is `deadlock.flatten`.
 
 When adding a new output, decide its grain deliberately: if a likely single
 change would rewrite a large line, flatten finer; if lines are so fine the file

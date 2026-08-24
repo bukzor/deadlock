@@ -3,17 +3,17 @@ import pytest
 from .heroes import columns, render, stats
 
 RECORDS = [
-    {"file": "scripts/heroes.vdata", "path": "hero_base.m_mapStartingStats.EMaxHealth", "value": 780.0},
-    {"file": "scripts/heroes.vdata", "path": "hero_base.m_mapStartingStats.EStamina", "value": 3},
-    {"file": "scripts/heroes.vdata", "path": "hero_a.m_mapStartingStats.EMaxHealth", "value": 830.0},
-    {"file": "scripts/heroes.vdata", "path": "hero_a.m_mapStartingStats.EStamina", "value": 3},
-    {"file": "scripts/heroes.vdata", "path": "hero_a.m_mapStartingStats.EMeleeResist", "value": 0.1},
-    {"file": "scripts/abilities.vdata", "path": "ignored.path", "value": 1},
+    {"path": "hero_base.m_mapStartingStats.EMaxHealth", "value": 780.0},
+    {"path": "hero_base.m_mapStartingStats.EStamina", "value": 3},
+    {"path": "hero_a.m_mapStartingStats.EMaxHealth", "value": 830.0},
+    {"path": "hero_a.m_mapStartingStats.EStamina", "value": 3},
+    {"path": "hero_a.m_mapStartingStats.EMeleeResist", "value": 0.1},
+    {"path": "hero_a.m_bDisabled", "value": False},
 ]
 
 
 class DescribeStats:
-    def it_collects_per_hero_starting_stats_ignoring_other_files(self):
+    def it_collects_per_hero_starting_stats_ignoring_other_paths(self):
         assert stats(RECORDS) == {
             "hero_base": {"EMaxHealth": 780.0, "EStamina": 3},
             "hero_a": {"EMaxHealth": 830.0, "EStamina": 3, "EMeleeResist": 0.1},

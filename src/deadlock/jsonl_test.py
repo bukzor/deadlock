@@ -24,5 +24,5 @@ class DescribeDumps:
 
 
 class DescribeDumpLines:
-    def it_writes_one_json_object_per_line(self):
-        assert dump_lines([{"a": 1}, {"b": 2}]) == '{"a":1}\n{"b":2}\n'
+    def it_yields_one_newline_terminated_json_line_per_object(self):
+        assert list(dump_lines([{"a": 1}, {"b": 2}])) == ['{"a":1}\n', '{"b":2}\n']

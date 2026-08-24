@@ -1,6 +1,6 @@
 """Recompile ``item_bonuses.tsv`` — the stat bonuses each shop item grants — from data.
 
-Source: the committed, flattened ``data/gamedata.jsonl``. This is the
+Source: the committed, flattened ``data/gamedata.flat/scripts/abilities.jsonl``. This is the
 "what does it do" companion to ``deadlock.items`` (which gives cost/tier/slot).
 An item's passive stat bonuses are the ``m_mapAbilityProperties`` entries that
 carry an ``m_eProvidedPropertyType`` (the engine modifier they provide) — which
@@ -22,7 +22,7 @@ per-level upgrades) is skipped — a bonus needs a value. Zero-valued bonuses ar
 dropped too: nearly every item inherits ``WeaponPower``/``TechPower`` provided
 stats defaulting to 0, which would otherwise be ~46% noise.
 
-    python -m deadlock.item_bonuses data/gamedata.jsonl
+    python -m deadlock.item_bonuses < data/gamedata.flat/scripts/abilities.jsonl
 """
 
 from __future__ import annotations
@@ -32,9 +32,7 @@ import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
-from pathlib import Path
 
-ABILITIES_FILE = "scripts/abilities.vdata"
 _ENTITY = re.compile(r"^(\w+)\.(.+)$")
 _PROP = re.compile(r"^m_mapAbilityProperties\.([^.]+)\.(m_eProvidedPropertyType|m_strValue)$")
 _MODIFIER_PREFIX = "MODIFIER_VALUE_"
@@ -55,8 +53,6 @@ def bonuses(records: Iterable[Mapping[str, object]]) -> list[Bonus]:
     fields: dict[str, dict[str, dict[str, object]]] = {}
     is_item: set[str] = set()
     for record in records:
-        if record["file"] != ABILITIES_FILE:
-            continue
         entity = _ENTITY.match(_str(record["path"]))
         if not entity:
             continue
@@ -100,11 +96,10 @@ def _str(value: object) -> str:
     return value
 
 
-def main(argv: list[str]) -> None:
-    [source] = argv[1:]
-    records = (json.loads(line) for line in Path(source).read_text().splitlines())
+def main() -> None:
+    records = (json.loads(line) for line in sys.stdin)
     sys.stdout.write(render(bonuses(records)))
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()

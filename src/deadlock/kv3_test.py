@@ -1,8 +1,6 @@
-from pathlib import Path
-
 import pytest
 
-from .kv3 import load
+from .kv3 import load, loads
 
 _HEADER = (
     "<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d}"
@@ -10,20 +8,20 @@ _HEADER = (
 )
 
 
-def _write_kv3(tmp_path: Path, body: str) -> Path:
-    p = tmp_path / "data.kv3"
-    p.write_text(_HEADER + body)
-    return p
-
-
 class DescribeLoad:
-    def it_loads_a_text_kv3_root_mapping(self, tmp_path: Path):
-        path = _write_kv3(tmp_path, '{\n\tfoo = "bar"\n\tn = 3\n}\n')
-        root = load(path)
+    def it_loads_a_root_mapping_from_a_line_stream(self):
+        lines = iter([_HEADER, "{\n", '\tfoo = "bar"\n', "\tn = 3\n", "}\n"])
+        root = load(lines)
         assert root["foo"] == "bar"
         assert root["n"] == 3
 
-    def it_rejects_a_non_mapping_root(self, tmp_path: Path):
-        path = _write_kv3(tmp_path, "[ 1, 2, 3 ]\n")
+
+class DescribeLoads:
+    def it_loads_a_root_mapping_from_text(self):
+        root = loads(_HEADER + '{\n\tfoo = "bar"\n\tn = 3\n}\n')
+        assert root["foo"] == "bar"
+        assert root["n"] == 3
+
+    def it_rejects_a_non_mapping_root(self):
         with pytest.raises(AssertionError):
-            load(path)
+            loads(_HEADER + "[ 1, 2, 3 ]\n")

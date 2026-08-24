@@ -1,20 +1,20 @@
 """Recompile ``heroes.tsv`` — the per-hero base stat sheet — from data.
 
-Source: the committed, flattened ``data/gamedata.jsonl``. Each hero in
-``scripts/heroes.vdata`` stores its full ``m_mapStartingStats`` (the compiled
+Source: the committed, flattened ``data/gamedata.flat/scripts/heroes.jsonl``.
+Each hero stores its full ``m_mapStartingStats`` (the compiled
 data materializes every stat per hero, not just overrides of ``hero_base``).
 
-The output is the wide complement to ``data/gamedata.jsonl``: one row per hero,
+The output is the wide complement to the flat leaves: one row per hero,
 one column per stat (``EMaxHealth``, ``EMaxMoveSpeed``, melee, stamina, …), so
 heroes read side-by-side. The fine grain (one stat = one line) already lives in
-``gamedata.jsonl``; this view exists for human comparison. ``hero_base`` is the
+the flat file; this view exists for human comparison. ``hero_base`` is the
 reference row, so a column blank for a hero means a *hero-unique* stat the base
 doesn't define.
 
 Every hero must define all of ``hero_base``'s stats; that invariant is asserted
 so a patch dropping a stat from one hero fails loudly.
 
-    python -m deadlock.heroes data/gamedata.jsonl
+    python -m deadlock.heroes < data/gamedata.flat/scripts/heroes.jsonl
 """
 
 from __future__ import annotations
@@ -23,18 +23,14 @@ import json
 import re
 import sys
 from collections.abc import Iterable, Mapping
-from pathlib import Path
 
-HEROES_FILE = "scripts/heroes.vdata"
 _PATH = re.compile(r"^(hero_\w+)\.m_mapStartingStats\.(\w+)$")
 
 
 def stats(records: Iterable[Mapping[str, object]]) -> dict[str, dict[str, object]]:
-    """Per-hero ``{stat: value}`` maps, parsed from gamedata.jsonl leaf records."""
+    """Per-hero ``{stat: value}`` maps, parsed from heroes.jsonl leaf records."""
     result: dict[str, dict[str, object]] = {}
     for record in records:
-        if record["file"] != HEROES_FILE:
-            continue
         match = _PATH.match(_str(record["path"]))
         if not match:
             continue
@@ -69,11 +65,10 @@ def _str(value: object) -> str:
     return value
 
 
-def main(argv: list[str]) -> None:
-    [source] = argv[1:]
-    records = (json.loads(line) for line in Path(source).read_text().splitlines())
+def main() -> None:
+    records = (json.loads(line) for line in sys.stdin)
     sys.stdout.write(render(stats(records)))
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()

@@ -5,10 +5,8 @@
 /data/*
 !/data/*.do
 !/data/gamedata.flat/
-/data/gamedata.flat/*
-!/data/gamedata.flat/default.jsonl.do
+!/data/gamedata.flat/**
 !/data/manifest.jsonl
-!/data/gamedata.jsonl
 !/data/levels.tsv
 !/data/heroes.tsv
 !/data/items.tsv

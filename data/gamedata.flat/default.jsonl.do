@@ -1,17 +1,19 @@
-#!/bin/sh
-# Flatten one decompiled vdata file into sorted JSONL leaves — one intermediate
-# per source file, so a patch re-flattens only the files it touched and
-# `redo -j` parallelizes across them. gamedata.jsonl.do merges these.
+#!/bin/bash
+# Flatten one decompiled vdata file into sorted JSONL leaves — one committed
+# target per source file, so a patch re-flattens only the files it touched,
+# `redo -j` parallelizes across them, and `git diff` shows balance changes as
+# exactly the lines that changed.
 # Guard: buildable iff the matching source vdata exists; anything else fails
 # loudly rather than being silently captured by this default rule.
 # redo runs this with cwd = data/gamedata.flat/; $2 = target minus ".jsonl".
-set -eu
+set -euo pipefail
+if [[ "${REDO:-}" ]]; then exec > >(tee >(redo-stamp)); fi
 
 root=$(cd ../.. && pwd)
 py="$root/.venv/bin/python"
 src="$root/data/gamedata/$2.vdata"
 
-[ -f "$src" ] || { echo "no such game data: $2.vdata (run: redo data/gamedata.list)" >&2; exit 1; }
+[[ -f "$src" ]] || { echo "no such game data: $2.vdata (run: redo data/gamedata.list)" >&2; exit 1; }
 
 redo-ifchange \
   "$root/src/deadlock/gamedata.py" \
@@ -22,13 +24,8 @@ redo-ifchange \
   "$root/src/deadlock/types.py" \
   "$src"
 
-# $3 is relative to gamedata.flat/; make it absolute before changing directory,
-# and create the target's subdirectory (redo doesn't)
-out=$3
-case "$out" in /*) ;; *) out="$PWD/$out" ;; esac
-mkdir -p "$(dirname "$out")"
+# redo doesn't create target subdirectories
+mkdir -p "$(dirname "$1")"
 
-# run from inside gamedata/ so the file label is relative (scripts/heroes.vdata);
-# pre-sorted per file so the combiner can merge (sort -m) instead of re-sorting
-cd "$root/data/gamedata"
-"$py" -m deadlock.gamedata "$2.vdata" | LC_ALL=C sort >"$out"
+# pre-sorted per file: stable, diff-friendly ordering
+"$py" -m deadlock.gamedata <"$src" | LC_ALL=C sort

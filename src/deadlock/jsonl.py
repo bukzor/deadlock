@@ -13,7 +13,7 @@ from collections.abc import Iterable
 
 import keyvalues3 as kv3
 
-from .types import is_sequence, is_str_mapping
+from .types import Lines, is_sequence, is_str_mapping
 
 
 def to_jsonable(value: object) -> object:
@@ -32,6 +32,6 @@ def dumps(obj: object) -> str:
     return json.dumps(to_jsonable(obj), separators=(",", ":"), sort_keys=True)
 
 
-def dump_lines(objs: Iterable[object]) -> str:
-    """Serialize an iterable of values to JSONL text (one object per line)."""
-    return "".join(dumps(o) + "\n" for o in objs)
+def dump_lines(objs: Iterable[object]) -> Lines:
+    """Serialize values to JSONL lines (one newline-terminated line per object)."""
+    return (dumps(o) + "\n" for o in objs)

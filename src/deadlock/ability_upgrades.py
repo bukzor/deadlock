@@ -1,6 +1,7 @@
 """Recompile ``ability_upgrades.tsv`` — what each signature ability upgrade does — from data.
 
-Source: the committed, flattened ``data/gamedata.jsonl``. Each ability's three
+Source: the committed, flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``.
+Each ability's three
 upgrades (bought with ability points) live in ``m_vecAbilityUpgrades[tier]``,
 whose ``m_vecPropertyUpgrades`` list each names a property and a flat bonus.
 This is the "what does leveling it do" companion to ``deadlock.abilities``,
@@ -18,7 +19,7 @@ property name, or an ``m_eUpgradeType`` unlock) are out of scope. One ability,
 a typo'd key, ``m_StrPropertyNAme`` (on yamato's ult); both spellings are
 accepted so its upgrade isn't silently dropped.
 
-    python -m deadlock.ability_upgrades data/gamedata.jsonl
+    python -m deadlock.ability_upgrades heroes.jsonl < abilities.jsonl
 """
 
 from __future__ import annotations
@@ -32,7 +33,6 @@ from pathlib import Path
 
 from .abilities import bound
 
-ABILITIES_FILE = "scripts/abilities.vdata"
 _ENTITY = re.compile(r"^(\w+)\.(.+)$")
 _UPGRADE = re.compile(
     r"^m_vecAbilityUpgrades\[(\d+)\]\.m_vecPropertyUpgrades\[(\d+)\]\.(m_strPropertyName|m_StrPropertyNAme|m_strBonus)$"
@@ -55,8 +55,6 @@ def upgrades(records: Iterable[Mapping[str, object]], abilities: frozenset[str] 
     # collate each (ability, tier, index) entry's name + bonus before pairing
     entries: dict[tuple[str, int, int], dict[str, object]] = {}
     for record in records:
-        if record["file"] != ABILITIES_FILE:
-            continue
         entity = _ENTITY.match(_str(record["path"]))
         if not entity or entity.group(1) not in abilities:
             continue
@@ -94,10 +92,12 @@ def _str(value: object) -> str:
 
 
 def main(argv: list[str]) -> None:
-    [source] = argv[1:]
-    records = [json.loads(line) for line in Path(source).read_text().splitlines()]
-    signatures = {b.ability for b in bound(records)}
-    sys.stdout.write(render(upgrades(records, signatures)))
+    [heroes_source] = argv[1:]
+    defs = [json.loads(line) for line in sys.stdin]
+    with Path(heroes_source).open() as heroes_lines:
+        heroes = (json.loads(line) for line in heroes_lines)
+        signatures = {b.ability for b in bound(heroes, defs)}
+    sys.stdout.write(render(upgrades(defs, signatures)))
 
 
 if __name__ == "__main__":

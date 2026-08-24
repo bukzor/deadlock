@@ -1,6 +1,6 @@
 """Recompile ``levels.tsv`` — the player level / souls / ability curve — from data.
 
-Source: the committed, flattened ``data/gamedata.jsonl``. The game stores, per
+Source: the committed, flattened ``data/gamedata.flat/scripts/heroes.jsonl``. The game stores, per
 level 1..36 under each hero's ``m_mapLevelInfo``:
 
 - ``m_unRequiredGold`` — cumulative souls *earned* to reach the level.
@@ -20,7 +20,7 @@ Every hero shares one curve; that invariant is asserted (``canonical``) so a
 patch diverging a single hero fails loudly instead of silently mis-representing
 the rest.
 
-    python -m deadlock.levels data/gamedata.jsonl
+    python -m deadlock.levels < data/gamedata.flat/scripts/heroes.jsonl
 """
 
 from __future__ import annotations
@@ -30,9 +30,7 @@ import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
-from pathlib import Path
 
-HEROES_FILE = "scripts/heroes.vdata"
 STARTING_SOULS = 600
 _PATH = re.compile(r"^(hero_\w+)\.m_mapLevelInfo\.(\d+)\.(.+)$")
 _BONUS = {"m_mapBonusCurrencies.EAbilityUnlocks": "unlock", "m_mapBonusCurrencies.EAbilityPoints": "ap"}
@@ -58,12 +56,10 @@ class Row:
 
 
 def curves(records: Iterable[Mapping[str, object]]) -> dict[str, dict[int, Level]]:
-    """Per-hero ``{level: Level}`` maps, parsed from gamedata.jsonl leaf records."""
+    """Per-hero ``{level: Level}`` maps, parsed from heroes.jsonl leaf records."""
     gold: dict[str, dict[int, int]] = {}
     bonus: dict[str, dict[int, str]] = {}
     for record in records:
-        if record["file"] != HEROES_FILE:
-            continue
         match = _PATH.match(_str(record["path"]))
         if not match:
             continue
@@ -125,11 +121,10 @@ def _int(value: object) -> int:
     return value
 
 
-def main(argv: list[str]) -> None:
-    [source] = argv[1:]
-    records = (json.loads(line) for line in Path(source).read_text().splitlines())
+def main() -> None:
+    records = (json.loads(line) for line in sys.stdin)
     sys.stdout.write(render(rows(canonical(curves(records)))))
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()

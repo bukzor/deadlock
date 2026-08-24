@@ -4,8 +4,8 @@ from .ability_upgrades import Upgrade, render, upgrades
 def _upg(ability: str, tier: int, i: int, *, prop: str, bonus: object, key: str = "m_strPropertyName") -> list[dict[str, object]]:
     base = f"{ability}.m_vecAbilityUpgrades[{tier}].m_vecPropertyUpgrades[{i}]"
     return [
-        {"file": "scripts/abilities.vdata", "path": f"{base}.{key}", "value": prop},
-        {"file": "scripts/abilities.vdata", "path": f"{base}.m_strBonus", "value": bonus},
+        {"path": f"{base}.{key}", "value": prop},
+        {"path": f"{base}.m_strBonus", "value": bonus},
     ]
 
 
@@ -15,7 +15,7 @@ RECORDS = [
     # the Valve typo spelling must still be captured:
     *_upg("ability_a", 1, 1, prop="AbilityCooldown", bonus="-2", key="m_StrPropertyNAme"),
     # a behavior-only upgrade (a bonus with no property name) is skipped:
-    {"file": "scripts/abilities.vdata", "path": "ability_a.m_vecAbilityUpgrades[2].m_vecPropertyUpgrades[0].m_strBonus", "value": "9"},
+    {"path": "ability_a.m_vecAbilityUpgrades[2].m_vecPropertyUpgrades[0].m_strBonus", "value": "9"},
     # an ability outside the requested set is ignored:
     *_upg("ability_other", 0, 0, prop="X", bonus="1"),
 ]

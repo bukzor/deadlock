@@ -1,6 +1,7 @@
 """Recompile ``items.tsv`` — the shop item economy — from data.
 
-Source: the committed, flattened ``data/gamedata.jsonl``. Shop items live in
+Source: the committed, flattened ``data/gamedata.flat/scripts/{abilities,generic_data}.jsonl``.
+Shop items live in
 ``scripts/abilities.vdata`` (an item is an ability with an ``m_iItemTier``).
 Their soul cost is *not* stored per item: it is derived from the item's tier via
 the global ``m_nItemPricePerTier`` table in ``scripts/generic_data.vdata``
@@ -21,7 +22,7 @@ All tiered items are emitted (including disabled and internal infrastructure
 items) rather than editorially filtered, so a patch that enables/disables an
 item shows as a single ``disabled`` cell change.
 
-    python -m deadlock.items data/gamedata.jsonl
+    python -m deadlock.items generic_data.jsonl < abilities.jsonl
 """
 
 from __future__ import annotations
@@ -33,8 +34,6 @@ from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
-ABILITIES_FILE = "scripts/abilities.vdata"
-GENERIC_FILE = "scripts/generic_data.vdata"
 _PRICE = re.compile(r"^m_nItemPricePerTier\[(\d+)\]$")
 _ENTITY = re.compile(r"^(\w+)\.(.+)$")
 _COMPONENT = re.compile(r"^m_vecComponentItems\[(\d+)\]$")
@@ -57,8 +56,6 @@ def prices(records: Iterable[Mapping[str, object]]) -> dict[int, int]:
     """The ``{tier: souls}`` cost table from ``generic_data.vdata``."""
     result: dict[int, int] = {}
     for record in records:
-        if record["file"] != GENERIC_FILE:
-            continue
         match = _PRICE.match(_str(record["path"]))
         if match:
             result[int(match.group(1))] = _int(record["value"])
@@ -70,8 +67,6 @@ def items(records: Iterable[Mapping[str, object]], prices: Mapping[int, int]) ->
     fields: dict[str, dict[str, object]] = {}
     components: dict[str, dict[int, str]] = {}
     for record in records:
-        if record["file"] != ABILITIES_FILE:
-            continue
         entity = _ENTITY.match(_str(record["path"]))
         if not entity:
             continue
@@ -136,9 +131,11 @@ def _int(value: object) -> int:
 
 
 def main(argv: list[str]) -> None:
-    [source] = argv[1:]
-    records = list(json.loads(line) for line in Path(source).read_text().splitlines())
-    sys.stdout.write(render(items(records, prices(records))))
+    [generic_source] = argv[1:]
+    defs = (json.loads(line) for line in sys.stdin)
+    with Path(generic_source).open() as generic_lines:
+        generic = (json.loads(line) for line in generic_lines)
+        sys.stdout.write(render(items(defs, prices(generic))))
 
 
 if __name__ == "__main__":

@@ -4,24 +4,24 @@ from .item_bonuses import Bonus, bonuses, render
 def _prop(item: str, prop: str, *, stat: str, value: object) -> list[dict[str, object]]:
     base = f"{item}.m_mapAbilityProperties.{prop}"
     return [
-        {"file": "scripts/abilities.vdata", "path": f"{base}.m_eProvidedPropertyType", "value": stat},
-        {"file": "scripts/abilities.vdata", "path": f"{base}.m_strValue", "value": value},
+        {"path": f"{base}.m_eProvidedPropertyType", "value": stat},
+        {"path": f"{base}.m_strValue", "value": value},
     ]
 
 
 RECORDS = [
-    {"file": "scripts/abilities.vdata", "path": "upgrade_a.m_iItemTier", "value": "EModTier_1"},
+    {"path": "upgrade_a.m_iItemTier", "value": "EModTier_1"},
     *_prop("upgrade_a", "BonusHealth", stat="MODIFIER_VALUE_HEALTH_MAX", value="210"),
     *_prop("upgrade_a", "FireRate", stat="MODIFIER_VALUE_FIRE_RATE", value=8.0),
     # an inherited zero-valued provided stat is noise, not a bonus:
     *_prop("upgrade_a", "WeaponPower", stat="MODIFIER_VALUE_WEAPON_POWER", value="0"),
     # an internal param (no provided type) is not a bonus:
-    {"file": "scripts/abilities.vdata", "path": "upgrade_a.m_mapAbilityProperties.ChannelMoveSpeed.m_strValue", "value": "-1"},
+    {"path": "upgrade_a.m_mapAbilityProperties.ChannelMoveSpeed.m_strValue", "value": "-1"},
     # a provided property with no value is skipped (value applied only via upgrades):
-    {"file": "scripts/abilities.vdata", "path": "upgrade_a.m_mapAbilityProperties.NoVal.m_eProvidedPropertyType", "value": "MODIFIER_VALUE_X"},
+    {"path": "upgrade_a.m_mapAbilityProperties.NoVal.m_eProvidedPropertyType", "value": "MODIFIER_VALUE_X"},
     # a non-item ability is ignored entirely:
-    {"file": "scripts/abilities.vdata", "path": "ability_z.m_mapAbilityProperties.Dmg.m_eProvidedPropertyType", "value": "MODIFIER_VALUE_Y"},
-    {"file": "scripts/abilities.vdata", "path": "ability_z.m_mapAbilityProperties.Dmg.m_strValue", "value": "99"},
+    {"path": "ability_z.m_mapAbilityProperties.Dmg.m_eProvidedPropertyType", "value": "MODIFIER_VALUE_Y"},
+    {"path": "ability_z.m_mapAbilityProperties.Dmg.m_strValue", "value": "99"},
 ]
 
 

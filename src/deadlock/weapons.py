@@ -1,7 +1,7 @@
 """Recompile ``weapons.tsv`` — each live hero's primary weapon — from data.
 
-Source: the committed, flattened ``data/gamedata.jsonl``. Heroes in
-``scripts/heroes.vdata`` bind a primary weapon to ``ESlot_Weapon_Primary``; the
+Source: the committed, flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``.
+Heroes bind a primary weapon to ``ESlot_Weapon_Primary``; the
 weapon's stats live in that entity's ``m_WeaponInfo`` in
 ``scripts/abilities.vdata``. This table resolves that join for the live roster.
 
@@ -24,7 +24,7 @@ One row per hero, sorted, in raw weapon units:
 Every live hero's primary must define all six base fields; that invariant is
 asserted so a missing field or dangling weapon fails loudly.
 
-    python -m deadlock.weapons data/gamedata.jsonl
+    python -m deadlock.weapons abilities.jsonl < heroes.jsonl
 """
 
 from __future__ import annotations
@@ -36,8 +36,6 @@ from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
-HEROES_FILE = "scripts/heroes.vdata"
-ABILITIES_FILE = "scripts/abilities.vdata"
 TEMPLATE_HERO = "hero_base"
 _PRIMARY = re.compile(r"^(hero_\w+)\.m_mapBoundAbilities\.ESlot_Weapon_Primary$")
 _DISABLED = re.compile(r"^(hero_\w+)\.m_bDisabled$")
@@ -67,24 +65,26 @@ class Weapon:
     dps: float
 
 
-def weapons(records: Iterable[Mapping[str, object]]) -> list[Weapon]:
+def weapons(
+    hero_records: Iterable[Mapping[str, object]],
+    ability_records: Iterable[Mapping[str, object]],
+) -> list[Weapon]:
     """Live heroes' primaries joined to weapon stats, with derived DPS; sorted."""
     primary: dict[str, str] = {}
     disabled: dict[str, bool] = {}
     info: dict[str, dict[str, object]] = {}
-    for record in records:
+    for record in hero_records:
         path = _str(record["path"])
-        if record["file"] == HEROES_FILE:
-            slot = _PRIMARY.match(path)
-            if slot:
-                primary[slot.group(1)] = _str(record["value"])
-            flag = _DISABLED.match(path)
-            if flag:
-                disabled[flag.group(1)] = _bool(record["value"])
-        elif record["file"] == ABILITIES_FILE:
-            field = _INFO.match(path)
-            if field:
-                info.setdefault(field.group(1), {})[field.group(2)] = record["value"]
+        slot = _PRIMARY.match(path)
+        if slot:
+            primary[slot.group(1)] = _str(record["value"])
+        flag = _DISABLED.match(path)
+        if flag:
+            disabled[flag.group(1)] = _bool(record["value"])
+    for record in ability_records:
+        field = _INFO.match(_str(record["path"]))
+        if field:
+            info.setdefault(field.group(1), {})[field.group(2)] = record["value"]
     result: list[Weapon] = []
     for hero, weapon in primary.items():
         if hero == TEMPLATE_HERO or disabled[hero]:
@@ -139,9 +139,11 @@ def _bool(value: object) -> bool:
 
 
 def main(argv: list[str]) -> None:
-    [source] = argv[1:]
-    records = (json.loads(line) for line in Path(source).read_text().splitlines())
-    sys.stdout.write(render(weapons(records)))
+    [abilities_source] = argv[1:]
+    heroes = (json.loads(line) for line in sys.stdin)
+    with Path(abilities_source).open() as defs_lines:
+        defs = (json.loads(line) for line in defs_lines)
+        sys.stdout.write(render(weapons(heroes, defs)))
 
 
 if __name__ == "__main__":

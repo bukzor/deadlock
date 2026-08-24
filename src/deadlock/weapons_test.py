@@ -5,41 +5,43 @@ from .weapons import Weapon, render, weapons
 
 def _hero(name: str, *, disabled: bool, primary: str) -> list[dict[str, object]]:
     return [
-        {"file": "scripts/heroes.vdata", "path": f"{name}.m_bDisabled", "value": disabled},
-        {"file": "scripts/heroes.vdata", "path": f"{name}.m_mapBoundAbilities.ESlot_Weapon_Primary", "value": primary},
+        {"path": f"{name}.m_bDisabled", "value": disabled},
+        {"path": f"{name}.m_mapBoundAbilities.ESlot_Weapon_Primary", "value": primary},
     ]
 
 
 def _weapon(name: str, *, damage: object, bullets: int, clip: int, cycle: object, reload: object, rng: object) -> list[dict[str, object]]:
     info = f"{name}.m_WeaponInfo"
     return [
-        {"file": "scripts/abilities.vdata", "path": f"{info}.m_flBulletDamage", "value": damage},
-        {"file": "scripts/abilities.vdata", "path": f"{info}.m_iBullets", "value": bullets},
-        {"file": "scripts/abilities.vdata", "path": f"{info}.m_iClipSize", "value": clip},
-        {"file": "scripts/abilities.vdata", "path": f"{info}.m_flCycleTime", "value": cycle},
-        {"file": "scripts/abilities.vdata", "path": f"{info}.m_reloadDuration", "value": reload},
-        {"file": "scripts/abilities.vdata", "path": f"{info}.m_flRange", "value": rng},
+        {"path": f"{info}.m_flBulletDamage", "value": damage},
+        {"path": f"{info}.m_iBullets", "value": bullets},
+        {"path": f"{info}.m_iClipSize", "value": clip},
+        {"path": f"{info}.m_flCycleTime", "value": cycle},
+        {"path": f"{info}.m_reloadDuration", "value": reload},
+        {"path": f"{info}.m_flRange", "value": rng},
     ]
 
 
-RECORDS = [
+HERO_RECORDS = [
     *_hero("hero_a", disabled=False, primary="weap_a"),
     *_hero("hero_base", disabled=False, primary="weap_a"),
     *_hero("hero_dev", disabled=True, primary="weap_dev"),
+]
+ABILITY_RECORDS = [
     *_weapon("weap_a", damage=4.0, bullets=9, clip=9, cycle=0.5, reload=2.0, rng=7000.0),
 ]
 
 
 class DescribeWeapons:
     def it_joins_live_primaries_excludes_base_and_computes_dps(self):
-        assert weapons(RECORDS) == [
+        assert weapons(HERO_RECORDS, ABILITY_RECORDS) == [
             Weapon("hero_a", "weap_a", damage=4.0, bullets=9, clip=9, cycle=0.5, reload=2.0, range=7000.0, dps=72.0)
         ]
 
     def it_fails_when_a_live_primary_weapon_is_undefined(self):
-        records = _hero("hero_b", disabled=False, primary="ghost")
+        heroes = _hero("hero_b", disabled=False, primary="ghost")
         with pytest.raises(AssertionError, match="ghost"):
-            weapons(records)
+            weapons(heroes, [])
 
 
 class DescribeRender:
