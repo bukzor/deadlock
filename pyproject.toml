@@ -2,6 +2,7 @@
 name = "deadlock"
 version = "0.0.0"
 description = "Deterministic parsers for inspecting the Deadlock (Source 2) game binary."
+license = "Apache-2.0"
 requires-python = ">=3.12"
 dependencies = [
     "keyvalues3>=0.3",
