@@ -13,7 +13,8 @@ install and read `git diff`.
 ## What gets committed: the transformative views only
 
 The committed artifacts are the curated TSV views (`data/gamedata.tsv/*.tsv`)
-plus `version.tsv`, a build-provenance stamp from the install's `steam.inf`.
+plus `data/deadlock-version.json`, a build-provenance stamp from the install's
+`steam.inf`.
 
 The raw intermediates — the flattened per-file JSONL (`data/gamedata.flat/`)
 and the VPK manifest — are **local build outputs, never committed**. They are
@@ -28,6 +29,23 @@ views. Broad changes (a stat no view covers, asset churn) are visible only
 transiently in the local flats/manifest at rebuild time. The mitigation is to
 grow view coverage: when a patch investigation needs data no view exposes,
 that's the prompt to add or widen a view.
+
+## Committing a redo target: adopt it, don't delete it
+
+A committed build output is a file redo must own but git creates. redo decides
+ownership from its own state database (djb's rule: never clobber a file you
+didn't generate), which a fresh clone doesn't have — so it would treat the
+committed views as hand-written and skip them *while exiting 0*, leaving stale
+data with no error. Deleting them first, the obvious workaround, forfeits
+incrementality and destroys the outputs when a build then fails.
+
+Instead `all.do` runs `bin/redo-adopt`, which marks them as redo's own but
+never-built, so redo rebuilds them once and verifies them normally thereafter.
+Alternatives weighed: a second committed tree with a publish step and a
+`check` target (more moving parts, and adopt makes the drift it guards against
+impossible); making the whole directory one target, since redo exempts
+directories from the ownership rule (loses per-view targets, and puts a `.d`
+in a published path).
 
 ## Why git diff
 
