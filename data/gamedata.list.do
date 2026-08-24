@@ -16,6 +16,7 @@ redo-ifchange \
   "$root/src/deadlock/extract.py" \
   "$root/src/deadlock/s2v.py" \
   "$root/src/deadlock/paths.py" \
+  "$root/data/deadlock-version.json" \
   "$bin"
 
 vpk=$("$py" -c 'from deadlock import paths; print(paths.vpk_dir_file())')

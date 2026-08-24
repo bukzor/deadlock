@@ -39,6 +39,11 @@ def vpk_dir_file(environ: dict[str, str] | None = None) -> Path:
     return citadel_dir(environ) / "pak01_dir.vpk"
 
 
+def steam_inf(environ: dict[str, str] | None = None) -> Path:
+    """The build-identity file (``ClientVersion``, ``SourceRevision``, date)."""
+    return citadel_dir(environ) / "steam.inf"
+
+
 def repo_root() -> Path:
     """Repository root, from ``REPO_ROOT`` (set by .envrc) or this file's tree."""
     env = os.environ.get("REPO_ROOT")

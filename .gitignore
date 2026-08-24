@@ -1,24 +1,26 @@
-# Generated output under data/ is mostly ignored: bulk/binary assets, the
-# vendored VRF tool, intermediate dirs (e.g. data/gamedata/), and the TSV views
-# (derivable from committed data alone; `redo` them on demand).
-# Exceptions — committed so `git diff` shows patch changes — are the artifacts
-# that need the game install to regenerate (the manifest and the flattened
-# leaves), plus the redo .do scripts (source).
+# Generated output under data/ is ignored by default: bulk/binary assets, the
+# vendored VRF tool, intermediate dirs (data/gamedata/), and the near-verbatim
+# Valve extracts (gamedata.flat/, manifest.jsonl).
+# Exceptions — committed so `git diff` shows patch changes — are the
+# transformative TSV views, the build stamp naming the game version that
+# produced them, and the redo .do scripts (source).
+# See docs/dev/decisions.kb/commit-diffable-data-let-git-diff.md
 /data/*
 !/data/*.do
+!/data/deadlock-version.json
 !/data/gamedata.flat/
-!/data/gamedata.flat/**
+/data/gamedata.flat/*
+!/data/gamedata.flat/*.do
 !/data/gamedata.tsv/
 /data/gamedata.tsv/*
 !/data/gamedata.tsv/*.do
-!/data/manifest.jsonl
+!/data/gamedata.tsv/*.tsv
 
 # redo's markers for the phony aggregator targets (all.do, clean.do)
 /all
 /clean
 
 # python / tooling
-/trash/
 /.redo/
 /.venv/
 __pycache__/
