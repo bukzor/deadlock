@@ -60,9 +60,6 @@ class DescribeParse:
             "k": "line1\nline2"
         }
 
-    def it_skips_comments(self):
-        assert parse(_HEADER + "{ // one\n a = 1 /* two */ }") == {"a": 1}
-
     def it_rejects_junk(self):
         with pytest.raises((AssertionError, ValueError)):
             parse(_HEADER + "{ a = bogus }")

@@ -2,30 +2,19 @@
 
 ``keyvalues3``'s text reader (a parsimonious PEG) needs ~26s for the 7MB
 ``scripts/abilities.vdata`` — the entire build's hot path. This module parses
-the narrow subset VRF actually writes (regex tokenizer + recursive descent),
-returning the same structure ``keyvalues3`` would after ``jsonl.to_jsonable``
-normalization: value flags (``subclass:"..."``) are dropped to the underlying
-value. ``keyvalues3`` remains the oracle — ``kv3text_test`` asserts
-output-equality across the extracted corpus.
+the narrow subset VRF actually writes (no comments, header first) with plain
+string operations and recursive descent, returning the same structure
+``keyvalues3`` would after ``jsonl.to_jsonable`` normalization: value flags
+(``subclass:"..."``) are dropped to the underlying value. ``keyvalues3``
+remains the oracle — ``kv3text_test`` asserts output-equality across the
+extracted corpus.
 """
-
-import re
-
-_TOKEN = re.compile(
-    r'"""\r?\n.*?"""'  # multiline string (content starts after the newline)
-    r'|"(?:[^"\\]|\\.)*"'  # quoted string
-    r"|[{}\[\]=,]"  # punctuation
-    r"|<!--.*?-->"  # header
-    r"|//[^\n]*"  # line comment
-    r"|/\*.*?\*/"  # block comment
-    r"|\s+"  # whitespace
-    r'|[^\s{}\[\]=,"]+',  # word: number, bool, null, key, flags:
-    re.DOTALL,
-)
 
 
 def parse(text: str) -> object:
     """Parse KV3 text (header included) and return the root value."""
+    if text.startswith("<!--"):
+        text = text[text.index("-->") + 3 :]
     tokens = _tokens(text)
     value, end = _value(tokens, 0)
     assert end == len(tokens), tokens[end]
@@ -33,18 +22,47 @@ def parse(text: str) -> object:
 
 
 def _tokens(text: str) -> list[str]:
-    """Split into significant tokens; every input byte must be covered."""
+    """Split into tokens: quoted strings verbatim, then words/punctuation.
+
+    Strings are the only tokens that may contain whitespace or punctuation, so
+    jump quote to quote with ``find`` and tokenize the code between quotes by
+    whitespace — every inner loop stays in C.
+    """
     tokens: list[str] = []
-    pos = 0
-    for match in _TOKEN.finditer(text):
-        assert match.start() == pos, text[pos : match.start()]
-        pos = match.end()
-        token = match.group()
-        if token[0].isspace() or token.startswith(("<!--", "//", "/*")):
-            continue
-        tokens.append(token)
-    assert pos == len(text), text[pos:]
+    i, n = 0, len(text)
+    while i < n:
+        j = text.find('"', i)
+        if j == -1:
+            j = n
+        tokens += _bare(text[i:j])
+        if j == n:
+            break
+        end = _string_end(text, j)
+        tokens.append(text[j:end])
+        i = end
     return tokens
+
+
+def _bare(code: str) -> list[str]:
+    """Tokenize quote-free text: numbers, keys, null/true/false, punctuation."""
+    for punct in "{}[]=,":
+        code = code.replace(punct, f" {punct} ")
+    return code.split()
+
+
+def _string_end(text: str, start: int) -> int:
+    """Index just past the string starting at ``start`` (a ``"`` or ``\"\"\"``)."""
+    if text.startswith('"""', start):
+        return text.index('"""', start + 3) + 3
+    j = start + 1
+    while True:
+        j = text.index('"', j)
+        k = j
+        while text[k - 1] == "\\":
+            k -= 1
+        if (j - k) % 2 == 0:  # even backslashes: the quote is unescaped
+            return j + 1
+        j += 1
 
 
 def _value(tokens: list[str], i: int) -> tuple[object, int]:
