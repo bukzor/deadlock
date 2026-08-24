@@ -37,7 +37,11 @@ is noise, coarsen. The goal is "one meaningful change ≈ one changed line".
 
 ## What does NOT get committed
 
-Bulk/binary assets (textures, models, audio), the vendored VRF tool, and
-intermediate extraction dirs stay gitignored. Only the small, line-grained,
-text artifacts are tracked. See
-`generated-output-under-data-via-redo.md` for the data/ + redo mechanics.
+Commit exactly what needs the game install to regenerate; build what derives
+from the repo alone. The TSV views (`data/gamedata.tsv/`) derive entirely from
+the committed flats, so they are gitignored build outputs — `redo` them on
+demand. Committing them would also fight redo: git checkouts count as "modified
+outside redo", which redo refuses to clobber. Bulk/binary assets (textures,
+models, audio), the vendored VRF tool, and intermediate extraction dirs stay
+gitignored too. See `generated-output-under-data-via-redo.md` for the
+data/ + redo mechanics.
