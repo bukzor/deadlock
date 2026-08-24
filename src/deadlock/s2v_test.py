@@ -68,7 +68,7 @@ class DescribeDecompileArgv:
 
 class DescribeBinaryPath:
     def it_defaults_under_the_data_tools_dir(self):
-        assert binary_path({}) == Path(__file__).resolve().parents[2] / "data/tools/Source2Viewer-CLI"
+        assert binary_path({}) == Path(__file__).resolve().parents[2] / "data/tools/Source2Viewer-CLI.d/Source2Viewer-CLI"
 
     def it_honors_the_environment_override(self):
         assert binary_path({"DEADLOCK_S2V": "/opt/s2v"}) == Path("/opt/s2v")

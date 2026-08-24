@@ -7,17 +7,16 @@ if [[ "${REDO:-}" ]]; then exec > >(tee >(redo-stamp)); fi
 
 root=$(cd .. && pwd)
 py="$root/.venv/bin/python"
-bin="$root/data/tools/Source2Viewer-CLI"
 out="$root/data/gamedata"
 
-[ -x "$bin" ] || { echo "Source2Viewer-CLI missing; run ./bin/fetch-vrf" >&2; exit 1; }
-
+# the CLI is a directory target: depending on it provisions the pinned VRF on
+# demand (and re-extracts here if any file in it changes)
 redo-ifchange \
   "$root/src/deadlock/extract.py" \
   "$root/src/deadlock/s2v.py" \
   "$root/src/deadlock/paths.py" \
   "$root/data/deadlock-version.json" \
-  "$bin"
+  "$root/data/tools/Source2Viewer-CLI.d"
 
 vpk=$("$py" -c 'from deadlock import paths; print(paths.vpk_dir_file())')
 redo-ifchange "$vpk"

@@ -9,7 +9,8 @@ All derived artifacts — VPK manifests, extracted/raw files, decompiled assets,
 parsed KV3 — live under `data/` and are produced by `redo` `.do` scripts. Most of
 `data/` is gitignored; the curated TSV views (`data/gamedata.tsv/`) are the
 exception and ARE committed (see `commit-diffable-data-let-git-diff.md`).
-Vendored external tools (the VRF CLI) live under `data/tools/`.
+Vendored external tools (the VRF CLI) live under `data/tools/`, each its own
+redo directory target — provisioning is a dependency, not a documented chore.
 
 ## Why
 

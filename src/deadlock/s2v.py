@@ -3,7 +3,7 @@
 VRF is the canonical Source 2 decompiler (the only thing that turns compiled
 ``_c`` resources into usable assets). We don't reimplement it; we build its argv
 (pure, testable) and shell out (one impure ``run``). The binary is vendored under
-``data/tools/`` and pinned — see ``docs/dev/environment.kb/toolchain.md``.
+``data/tools/Source2Viewer-CLI.d/`` and pinned — see ``docs/dev/environment.kb/toolchain.md``.
 
 Flag reference: https://github.com/ValveResourceFormat/ValveResourceFormat
 (note: VRF does not guarantee CLI flag stability across releases).
@@ -22,7 +22,7 @@ from . import paths
 def binary_path(environ: dict[str, str] | None = None) -> Path:
     """Location of the Source2Viewer-CLI binary (override: ``DEADLOCK_S2V``)."""
     override = (environ if environ is not None else os.environ).get("DEADLOCK_S2V")
-    return Path(override) if override else paths.data_dir(environ) / "tools/Source2Viewer-CLI"
+    return Path(override) if override else paths.data_dir(environ) / "tools/Source2Viewer-CLI.d/Source2Viewer-CLI"
 
 
 def list_argv(vpk_dir_file: Path) -> list[str]:
