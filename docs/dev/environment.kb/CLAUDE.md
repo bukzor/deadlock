@@ -5,8 +5,10 @@ on: filesystem paths, OS/libc quirks, and pinned versions of external tools and
 the game itself.
 
 What belongs: things that are true of *this machine* (or the current install)
-and would surprise an agent assuming a stock Linux box — paths under
-`/mnt/c`, the musl/gcompat situation, the pinned VRF version, how the box boots.
+and would surprise an agent assuming a stock Linux box — where the install
+actually lives, the musl/gcompat situation, the pinned VRF version, how the box
+boots. Record such a value here and name where it's configured; machine-local
+*settings* themselves belong in the gitignored `localhost.env`, never in code.
 
 What does not: format details (`formats.kb/`), rationale for choices
 (`decisions.kb/`). State the fact and where it's configured; put the "why we

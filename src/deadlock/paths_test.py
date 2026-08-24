@@ -7,24 +7,24 @@ from . import paths
 
 
 class DescribeGameDir:
-    def it_defaults_to_the_stock_steam_install(self):
-        assert paths.game_dir({}) == paths.DEFAULT_GAME_DIR
+    def it_defaults_under_the_stock_steam_install(self):
+        assert paths.game_dir({}) == paths.DEFAULT_HOME / "game"
 
     def it_honors_the_environment_override(self):
-        env = {"DEADLOCK_GAME_DIR": "/games/deadlock/game"}
+        env = {"DEADLOCK_HOME": "/games/deadlock"}
         assert paths.game_dir(env) == Path("/games/deadlock/game")
 
 
 class DescribeVpkDirFile:
     def it_points_at_pak01_dir_under_citadel(self):
-        env = {"DEADLOCK_GAME_DIR": "/g"}
-        assert paths.vpk_dir_file(env) == Path("/g/citadel/pak01_dir.vpk")
+        env = {"DEADLOCK_HOME": "/g"}
+        assert paths.vpk_dir_file(env) == Path("/g/game/citadel/pak01_dir.vpk")
 
 
 class DescribeSteamInf:
     def it_points_at_steam_inf_under_citadel(self):
-        env = {"DEADLOCK_GAME_DIR": "/g"}
-        assert paths.steam_inf(env) == Path("/g/citadel/steam.inf")
+        env = {"DEADLOCK_HOME": "/g"}
+        assert paths.steam_inf(env) == Path("/g/game/citadel/steam.inf")
 
 
 class DescribeMain:

@@ -2,10 +2,11 @@
 
 Every path the parsers touch comes from here so that runs are reproducible and
 overridable in tests / CI without editing code. Defaults point at a stock
-Windows Steam install seen through WSL (``/mnt/c``).
+native-Linux Steam library; set the override durably in ``localhost.env``
+(gitignored, loaded by ``.envrc``).
 
 Environment overrides:
-    DEADLOCK_GAME_DIR  the ``.../Deadlock/game`` directory
+    DEADLOCK_HOME      the install root — Steam's "Browse local files" dir
     DEADLOCK_DATA_DIR  where generated output is written (default ``<repo>/data``)
 """
 
@@ -16,19 +17,22 @@ import sys
 from collections.abc import Callable, Mapping
 from pathlib import Path
 
-DEFAULT_GAME_DIR = Path(
-    "/mnt/c/Program Files (x86)/Steam/steamapps/common/Deadlock/game"
-)
+DEFAULT_HOME = Path.home() / ".local/share/Steam/steamapps/common/Deadlock"
 
 
 def _env(name: str, environ: dict[str, str] | None) -> str | None:
     return (environ if environ is not None else os.environ).get(name)
 
 
+def home(environ: dict[str, str] | None = None) -> Path:
+    """The install root — what Steam's "Browse local files" opens."""
+    override = _env("DEADLOCK_HOME", environ)
+    return Path(override) if override else DEFAULT_HOME
+
+
 def game_dir(environ: dict[str, str] | None = None) -> Path:
     """The Deadlock ``game`` directory (contains ``citadel/`` and ``core/``)."""
-    override = _env("DEADLOCK_GAME_DIR", environ)
-    return Path(override) if override else DEFAULT_GAME_DIR
+    return home(environ) / "game"
 
 
 def citadel_dir(environ: dict[str, str] | None = None) -> Path:

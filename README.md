@@ -43,9 +43,16 @@ redo       # regenerate everything from the local game install
 bootstrap step.
 
 Run tooling through the env wrapper: `./bin/shell pytest`, `./bin/shell pyright`.
-Requires a local Deadlock install; paths default to a WSL Steam install and are
-overridable with `DEADLOCK_GAME_DIR` (see
-`docs/dev/environment.kb/game-install-paths.md`).
+Requires a local Deadlock install. Paths default to the stock native-Linux Steam
+library (`~/.local/share/Steam/steamapps/common/Deadlock`); point
+`DEADLOCK_HOME` at yours — durably, in a gitignored `localhost.env` that
+`.envrc` loads:
+
+```sh
+echo 'DEADLOCK_HOME="/mnt/c/Program Files (x86)/Steam/steamapps/common/Deadlock"' > localhost.env
+```
+
+See `docs/dev/environment.kb/game-install-paths.md`.
 
 ## CLI entry points
 
