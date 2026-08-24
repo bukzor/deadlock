@@ -8,6 +8,9 @@
 /data/*
 !/data/*.do
 !/data/deadlock-version.json
+!/data/tools/
+/data/tools/*
+!/data/tools/*.do
 !/data/gamedata.flat/
 /data/gamedata.flat/*
 !/data/gamedata.flat/*.do

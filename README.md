@@ -35,10 +35,12 @@ sort, so a balance change is a one-line diff:
 ## Setup
 
 ```sh
-uv sync                 # managed CPython + deps
-./bin/fetch-vrf         # vendor the pinned Source2Viewer-CLI into data/tools/
-redo                    # regenerate everything from the local game install
+uv sync    # managed CPython + deps
+redo       # regenerate everything from the local game install
 ```
+
+`redo` provisions the pinned Source2Viewer-CLI itself, so there's no separate
+bootstrap step.
 
 Run tooling through the env wrapper: `./bin/shell pytest`, `./bin/shell pyright`.
 Requires a local Deadlock install; paths default to a WSL Steam install and are
