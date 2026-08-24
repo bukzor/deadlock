@@ -23,7 +23,7 @@ committed=(
 # "these are mine": redo rebuilds them when their dependencies change, and
 # leaves them alone when they don't — unlike deleting them, which forfeits
 # incrementality and destroys the outputs if the build then fails.
-./bin/redo-adopt --if-exists "${committed[@]}"
+redo-adopt "${committed[@]}"
 
 redo-ifchange data/gamedata.list
 

@@ -1,7 +1,7 @@
-"""Exercises bin/redo-adopt against a real redo build tree.
+"""Exercises the redo-adopt command against a real redo build tree.
 
-Skips unless `redo` is on PATH. Uses a scratch tree so it can't disturb this
-repo's own build state.
+Skips unless both `redo` and the installed `redo-adopt` entrypoint are on
+PATH. Uses a scratch tree, so it can't disturb any real build state.
 """
 
 import shutil
@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-ADOPT = Path(__file__).resolve().parents[1] / "bin/redo-adopt"
+ADOPT = shutil.which("redo-adopt")
 
 # `foo` records each build, so a rebuild is observable; `parent` reaches it via
 # redo-ifchange, since naming a target on redo's command line always rebuilds it
@@ -49,6 +49,7 @@ def _adopt(tree: Path, *args: str) -> None:
 
 
 @pytest.mark.skipif(not shutil.which("redo"), reason="redo not installed")
+@pytest.mark.skipif(not ADOPT, reason="redo-adopt not installed")
 class DescribeRedoAdopt:
     def it_leaves_an_unadopted_file_alone(self, tree: Path):
         """redo's own rule: never clobber a file it didn't generate."""
@@ -97,12 +98,8 @@ class DescribeRedoAdopt:
         assert (tree / "foo").read_text() == "BUILT\n"
         assert _builds(tree) == 2
 
-    def it_fails_on_a_missing_path(self, tree: Path):
-        done = subprocess.run([str(ADOPT), "nope"], cwd=tree, capture_output=True, text=True)
-        assert done.returncode != 0
-        assert "no such file" in done.stderr
-
-    def it_skips_a_missing_path_when_asked(self, tree: Path):
-        _adopt(tree, "--if-exists", "nope", "foo")
+    def it_skips_a_missing_path(self, tree: Path):
+        """redo builds a target that doesn't exist, so it needs no adopting."""
+        _adopt(tree, "nope", "foo")
         _redo(tree, "parent")
         assert _builds(tree) == 1
