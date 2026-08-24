@@ -14,7 +14,7 @@ redo-ifchange \
   "$root/src/deadlock/version.py" \
   "$root/src/deadlock/paths.py"
 
-inf=$("$py" -c 'from deadlock import paths; print(paths.steam_inf())')
+inf=$("$py" -m deadlock.paths steam_inf)
 redo-ifchange "$inf"
 
 "$py" -m deadlock.version <"$inf"

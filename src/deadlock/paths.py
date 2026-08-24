@@ -12,6 +12,8 @@ Environment overrides:
 from __future__ import annotations
 
 import os
+import sys
+from collections.abc import Callable, Mapping
 from pathlib import Path
 
 DEFAULT_GAME_DIR = Path(
@@ -56,3 +58,26 @@ def data_dir(environ: dict[str, str] | None = None) -> Path:
     """Output directory for generated artifacts (gitignored)."""
     override = _env("DEADLOCK_DATA_DIR", environ)
     return Path(override) if override else repo_root() / "data"
+
+
+# Exposed to the .do scripts, which need these paths to declare dependencies.
+# A named table beats `python -c '...'` in the build scripts: that is real code
+# in a string, which no type checker or test ever sees.
+RESOLVERS: Mapping[str, Callable[[], Path]] = {
+    "game_dir": game_dir,
+    "citadel_dir": citadel_dir,
+    "vpk_dir_file": vpk_dir_file,
+    "steam_inf": steam_inf,
+    "data_dir": data_dir,
+}
+
+
+def main(argv: list[str] | None = None) -> None:
+    """Print one named path: ``python -m deadlock.paths vpk_dir_file``."""
+    [name] = (sys.argv if argv is None else argv)[1:]
+    assert name in RESOLVERS, (name, sorted(RESOLVERS))
+    _ = sys.stdout.write(f"{RESOLVERS[name]()}\n")
+
+
+if __name__ == "__main__":
+    main()

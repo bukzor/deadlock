@@ -32,7 +32,7 @@ python_classes = ["Describe*", "When*", "Test*"]
 python_functions = ["it_*", "test_*"]
 
 [tool.pyright]
-include = ["src", "tests", "packages"]
+include = ["src", "tests", "packages", "typings"]
 pythonVersion = "3.12"
 typeCheckingMode = "all"
 venvPath = "."
