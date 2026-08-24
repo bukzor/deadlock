@@ -17,7 +17,7 @@ redo-ifchange \
   "$root/data/deadlock-version.json" \
   "$root/data/tools/Source2Viewer-CLI"
 
-vpk=$("$py" -c 'from deadlock import paths; print(paths.vpk_dir_file())')
+vpk=$("$py" -m deadlock.paths vpk_dir_file)
 redo-ifchange "$vpk"
 
 # rebuild cleanly so removed assets don't linger, in gamedata/ and in the

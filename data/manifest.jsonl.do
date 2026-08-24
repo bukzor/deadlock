@@ -16,7 +16,7 @@ redo-ifchange \
   "$root/src/deadlock/paths.py" \
   "$root/data/deadlock-version.json"
 
-vpk=$("$py" -c 'from deadlock import paths; print(paths.vpk_dir_file())')
+vpk=$("$py" -m deadlock.paths vpk_dir_file)
 redo-ifchange "$vpk"
 
 # already path-sorted by manifest_records; no external sort needed

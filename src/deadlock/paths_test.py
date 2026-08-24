@@ -1,4 +1,7 @@
+import re
 from pathlib import Path
+
+import pytest
 
 from . import paths
 
@@ -22,6 +25,26 @@ class DescribeSteamInf:
     def it_points_at_steam_inf_under_citadel(self):
         env = {"DEADLOCK_GAME_DIR": "/g"}
         assert paths.steam_inf(env) == Path("/g/citadel/steam.inf")
+
+
+class DescribeMain:
+    def it_prints_the_named_path(self, capsys: pytest.CaptureFixture[str]):
+        paths.main(["paths", "vpk_dir_file"])
+        assert capsys.readouterr().out == f"{paths.vpk_dir_file()}\n"
+
+    def it_fails_loudly_on_an_unknown_name(self):
+        with pytest.raises(AssertionError, match="bogus"):
+            paths.main(["paths", "bogus"])
+
+    def it_resolves_every_name_the_do_scripts_use(self):
+        do_scripts = Path(__file__).resolve().parents[2].glob("**/*.do")
+        used = {
+            match.group(1)
+            for text in (p.read_text() for p in do_scripts)
+            for match in re.finditer(r"deadlock\.paths (\w+)", text)
+        }
+        assert used, "expected the .do scripts to resolve paths this way"
+        assert used <= set(paths.RESOLVERS)
 
 
 class DescribeDataDir:
