@@ -4,12 +4,12 @@ hero_atlas	citadel_weapon_bull_set	3.6	9	9	0.63	0.3525	7000	51.4
 hero_bebop	citadel_weapon_bebop_set	4.98	1	66	0.084	2.35	1259.84	59.3
 hero_bookworm	citadel_weapon_bookworm_set2	35	1	14	0.5	2.5	7000	70.0
 hero_chrono	citadel_weapon_chrono_set	6.8	1	40	0.294	2.585	7000	23.1
-hero_doorman	citadel_weapon_doorman_set	29.26	1	8	0.63	2.4	7000	46.4
+hero_doorman	citadel_weapon_doorman_set	24	1	8	0.63	2.4	7000	38.1
 hero_drifter	citadel_weapon_drifter_set	19.5	3	12	0.441	2.444	7000	132.7
 hero_dynamo	citadel_weapon_sumo_set	12.6	1	20	0.2625	2.35	7000	48.0
 hero_familiar	ability_familiar_primary_weapon_bubblegun	16	1	13	0.26	2	3000	61.5
 hero_fencer	citadel_weapon_fencer_set	18.5	1	15	0.38	2.5	1000	48.7
-hero_forge	citadel_weapon_engineer_set	6.4	1	66	0.21	3.29	7000	30.5
+hero_forge	citadel_weapon_engineer_set	6.08	1	66	0.21	3.29	7000	29.0
 hero_frank	citadel_weapon_frank_set2	12	1	24	0.198	2.4	7000	60.6
 hero_genericperson	citadel_weapon_genericperson_set	11.6	1	15	0.2	2	7000	58.0
 hero_ghost	citadel_weapon_ghost_set	20.7	1	9	0.4725	2.585	7000	43.8
