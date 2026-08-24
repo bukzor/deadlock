@@ -9,14 +9,13 @@ root=$(cd .. && pwd)
 py="$root/.venv/bin/python"
 out="$root/data/gamedata"
 
-# the CLI is a directory target: depending on it provisions the pinned VRF on
-# demand (and re-extracts here if any file in it changes)
+# depending on the CLI provisions the pinned VRF on demand
 redo-ifchange \
   "$root/src/deadlock/extract.py" \
   "$root/src/deadlock/s2v.py" \
   "$root/src/deadlock/paths.py" \
   "$root/data/deadlock-version.json" \
-  "$root/data/tools/Source2Viewer-CLI.d"
+  "$root/data/tools/Source2Viewer-CLI"
 
 vpk=$("$py" -c 'from deadlock import paths; print(paths.vpk_dir_file())')
 redo-ifchange "$vpk"
