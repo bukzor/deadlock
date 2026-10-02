@@ -29,24 +29,21 @@ asserted so a missing field or dangling weapon fails loudly.
 
 from __future__ import annotations
 
-import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import jsonl
+from . import flatten, jsonl
+from .types import is_str_mapping
 
 TEMPLATE_HERO = "hero_base"
-_PRIMARY = re.compile(r"^(hero_\w+)\.m_mapBoundAbilities\.ESlot_Weapon_Primary$")
-_DISABLED = re.compile(r"^(hero_\w+)\.m_bDisabled$")
 # A weapon's stats sit in ``m_mapWeaponInfos``, a map keyed by profile name.
 # Every weapon in the data has exactly one key, ``primary``, so this table reads
 # only that. A second key would mean a weapon has another profile (alt-fire,
 # zoomed, ...) whose stats this table would silently drop, so it fails instead
 # and the table's shape needs a decision.
 _INFO_KEY = "primary"
-_INFO = re.compile(r"^(\w+)\.m_mapWeaponInfos\.(\w+)\.(\w+)$")
 _FIELDS = {
     "damage": "m_flBulletDamage",
     "bullets": "m_iBullets",
@@ -72,37 +69,36 @@ class Weapon:
     dps: float
 
 
-def weapons(
-    hero_records: Iterable[Mapping[str, object]],
-    ability_records: Iterable[Mapping[str, object]],
-) -> list[Weapon]:
-    """Live heroes' primaries joined to weapon stats, with derived DPS; sorted."""
-    primary: dict[str, str] = {}
-    disabled: dict[str, bool] = {}
-    info: dict[str, dict[str, object]] = {}
-    for record in hero_records:
-        path = _str(record["path"])
-        slot = _PRIMARY.match(path)
-        if slot:
-            primary[slot.group(1)] = _str(record["value"])
-        flag = _DISABLED.match(path)
-        if flag:
-            disabled[flag.group(1)] = _bool(record["value"])
-    for record in ability_records:
-        field = _INFO.match(_str(record["path"]))
-        if field:
-            weapon, key, name = field.groups()
-            assert key == _INFO_KEY, (weapon, key)
-            info.setdefault(weapon, {})[name] = record["value"]
+def weapons(heroes: Mapping[str, object], abilities: Mapping[str, object]) -> list[Weapon]:
+    """Live heroes' primaries joined to weapon stats, with derived DPS; sorted.
+
+    ``heroes`` and ``abilities`` are the nested trees of ``heroes.vdata`` and
+    ``abilities.vdata`` (see ``deadlock.flatten.tree``).
+    """
+    for name, entity in abilities.items():
+        profiles = _dig(entity, "m_mapWeaponInfos")
+        if is_str_mapping(profiles):
+            assert set(profiles) <= {_INFO_KEY}, (name, sorted(profiles))
     result: list[Weapon] = []
-    for hero, weapon in primary.items():
-        if hero == TEMPLATE_HERO or disabled[hero]:
+    for hero, entity in heroes.items():
+        primary = _dig(entity, "m_mapBoundAbilities", "ESlot_Weapon_Primary")
+        if primary is None or hero == TEMPLATE_HERO or _bool(_dig(entity, "m_bDisabled")):
             continue
-        assert weapon in info, (hero, weapon)
-        stats = info[weapon]
+        weapon = _str(primary)
+        stats = _dig(abilities, weapon, "m_mapWeaponInfos", _INFO_KEY)
+        assert is_str_mapping(stats), (hero, weapon)
         values = {name: _num(stats[key]) for name, key in _resolved(hero, weapon, stats)}
         result.append(_weapon(hero, weapon, values))
     return sorted(result, key=lambda w: w.hero)
+
+
+def _dig(node: object, *keys: str) -> object:
+    """Follow ``keys`` through nested mappings; ``None`` if the path ends early."""
+    for key in keys:
+        if not is_str_mapping(node):
+            return None
+        node = node.get(key)
+    return node
 
 
 def _resolved(hero: str, weapon: str, stats: Mapping[str, object]) -> Iterable[tuple[str, str]]:
@@ -161,10 +157,10 @@ def _bool(value: object) -> bool:
 
 def main(argv: list[str]) -> None:
     [abilities_source] = argv[1:]
-    heroes = jsonl.load_lines(sys.stdin)
+    heroes = flatten.tree(jsonl.load_lines(sys.stdin))
     with Path(abilities_source).open() as defs_lines:
-        defs = jsonl.load_lines(defs_lines)
-        _ = sys.stdout.write(render(weapons(heroes, defs)))
+        abilities = flatten.tree(jsonl.load_lines(defs_lines))
+    _ = sys.stdout.write(render(weapons(heroes, abilities)))
 
 
 if __name__ == "__main__":

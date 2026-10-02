@@ -3,50 +3,54 @@ import pytest
 from .weapons import Weapon, render, weapons
 
 
-def _hero(name: str, *, disabled: bool, primary: str) -> list[dict[str, object]]:
-    return [
-        {"path": f"{name}.m_bDisabled", "value": disabled},
-        {"path": f"{name}.m_mapBoundAbilities.ESlot_Weapon_Primary", "value": primary},
-    ]
+def _hero(*, disabled: bool, primary: str | None) -> dict[str, object]:
+    bound = {} if primary is None else {"ESlot_Weapon_Primary": primary}
+    return {"m_bDisabled": disabled, "m_mapBoundAbilities": bound}
 
 
-def _weapon(name: str, *, damage: object, bullets: int, clip: int, cycle: object, reload: object, rng: object) -> list[dict[str, object]]:
-    info = f"{name}.m_mapWeaponInfos.primary"
-    return [
-        {"path": f"{info}.m_flBulletDamage", "value": damage},
-        {"path": f"{info}.m_iBullets", "value": bullets},
-        {"path": f"{info}.m_iClipSize", "value": clip},
-        {"path": f"{info}.m_flCycleTime", "value": cycle},
-        {"path": f"{info}.m_reloadDuration", "value": reload},
-        {"path": f"{info}.m_flRange", "value": rng},
-    ]
+def _weapon(*, damage: object, bullets: int, clip: int, cycle: object, reload: object, rng: object) -> dict[str, object]:
+    info = {
+        "m_flBulletDamage": damage,
+        "m_iBullets": bullets,
+        "m_iClipSize": clip,
+        "m_flCycleTime": cycle,
+        "m_reloadDuration": reload,
+        "m_flRange": rng,
+    }
+    return {"m_mapWeaponInfos": {"primary": info}}
 
 
-HERO_RECORDS = [
-    *_hero("hero_a", disabled=False, primary="weap_a"),
-    *_hero("hero_base", disabled=False, primary="weap_a"),
-    *_hero("hero_dev", disabled=True, primary="weap_dev"),
-]
-ABILITY_RECORDS = [
-    *_weapon("weap_a", damage=4.0, bullets=9, clip=9, cycle=0.5, reload=2.0, rng=7000.0),
-]
+HEROES = {
+    "hero_a": _hero(disabled=False, primary="weap_a"),
+    "hero_base": _hero(disabled=False, primary="weap_a"),
+    "hero_dev": _hero(disabled=True, primary="weap_dev"),
+    "hero_unarmed": _hero(disabled=False, primary=None),
+}
+ABILITIES = {
+    "weap_a": _weapon(damage=4.0, bullets=9, clip=9, cycle=0.5, reload=2.0, rng=7000.0),
+}
 
 
 class DescribeWeapons:
     def it_joins_live_primaries_excludes_base_and_computes_dps(self):
-        assert weapons(HERO_RECORDS, ABILITY_RECORDS) == [
+        assert weapons(HEROES, ABILITIES) == [
             Weapon("hero_a", "weap_a", damage=4.0, bullets=9, clip=9, cycle=0.5, reload=2.0, range=7000.0, dps=72.0)
         ]
 
     def it_fails_when_a_live_primary_weapon_is_undefined(self):
-        heroes = _hero("hero_b", disabled=False, primary="ghost")
+        heroes = {"hero_b": _hero(disabled=False, primary="ghost")}
         with pytest.raises(AssertionError, match="ghost"):
-            _ = weapons(heroes, [])
+            _ = weapons(heroes, {})
 
-    def it_fails_when_a_weapon_gains_a_second_weapon_info(self):
-        alt = [{"path": "weap_a.m_mapWeaponInfos.secondary.m_flBulletDamage", "value": 1.0}]
+    def it_fails_when_a_stat_is_missing(self):
+        abilities = {"weap_a": {"m_mapWeaponInfos": {"primary": {"m_flBulletDamage": 1.0}}}}
+        with pytest.raises(AssertionError, match="m_iBullets"):
+            _ = weapons({"hero_a": _hero(disabled=False, primary="weap_a")}, abilities)
+
+    def it_fails_when_any_weapon_gains_a_second_weapon_info(self):
+        abilities: dict[str, object] = {**ABILITIES, "weap_alt": {"m_mapWeaponInfos": {"primary": {}, "secondary": {}}}}
         with pytest.raises(AssertionError, match="secondary"):
-            _ = weapons(HERO_RECORDS, [*ABILITY_RECORDS, *alt])
+            _ = weapons(HEROES, abilities)
 
 
 class DescribeRender:
