@@ -2,7 +2,7 @@
 
 Source: the committed, flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``.
 Heroes bind a primary weapon to ``ESlot_Weapon_Primary``; the
-weapon's stats live in that entity's ``m_WeaponInfo`` in
+weapon's stats live in that entity's ``m_mapWeaponInfos.primary`` in
 ``scripts/abilities.vdata``. This table resolves that join for the live roster.
 
 ``hero_base`` is excluded: it is the inheritance template (every hero ``_base``s
@@ -40,7 +40,13 @@ from . import jsonl
 TEMPLATE_HERO = "hero_base"
 _PRIMARY = re.compile(r"^(hero_\w+)\.m_mapBoundAbilities\.ESlot_Weapon_Primary$")
 _DISABLED = re.compile(r"^(hero_\w+)\.m_bDisabled$")
-_INFO = re.compile(r"^(\w+)\.m_WeaponInfo\.(\w+)$")
+# A weapon's stats sit in ``m_mapWeaponInfos``, a map keyed by profile name.
+# Every weapon in the data has exactly one key, ``primary``, so this table reads
+# only that. A second key would mean a weapon has another profile (alt-fire,
+# zoomed, ...) whose stats this table would silently drop, so it fails instead
+# and the table's shape needs a decision.
+_INFO_KEY = "primary"
+_INFO = re.compile(r"^(\w+)\.m_mapWeaponInfos\.(\w+)\.(\w+)$")
 _FIELDS = {
     "damage": "m_flBulletDamage",
     "bullets": "m_iBullets",
@@ -85,7 +91,9 @@ def weapons(
     for record in ability_records:
         field = _INFO.match(_str(record["path"]))
         if field:
-            info.setdefault(field.group(1), {})[field.group(2)] = record["value"]
+            weapon, key, name = field.groups()
+            assert key == _INFO_KEY, (weapon, key)
+            info.setdefault(weapon, {})[name] = record["value"]
     result: list[Weapon] = []
     for hero, weapon in primary.items():
         if hero == TEMPLATE_HERO or disabled[hero]:

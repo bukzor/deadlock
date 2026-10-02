@@ -11,7 +11,7 @@ def _hero(name: str, *, disabled: bool, primary: str) -> list[dict[str, object]]
 
 
 def _weapon(name: str, *, damage: object, bullets: int, clip: int, cycle: object, reload: object, rng: object) -> list[dict[str, object]]:
-    info = f"{name}.m_WeaponInfo"
+    info = f"{name}.m_mapWeaponInfos.primary"
     return [
         {"path": f"{info}.m_flBulletDamage", "value": damage},
         {"path": f"{info}.m_iBullets", "value": bullets},
@@ -42,6 +42,11 @@ class DescribeWeapons:
         heroes = _hero("hero_b", disabled=False, primary="ghost")
         with pytest.raises(AssertionError, match="ghost"):
             _ = weapons(heroes, [])
+
+    def it_fails_when_a_weapon_gains_a_second_weapon_info(self):
+        alt = [{"path": "weap_a.m_mapWeaponInfos.secondary.m_flBulletDamage", "value": 1.0}]
+        with pytest.raises(AssertionError, match="secondary"):
+            _ = weapons(HERO_RECORDS, [*ABILITY_RECORDS, *alt])
 
 
 class DescribeRender:
