@@ -116,7 +116,7 @@ hero_shiv	Signature_2	citadel_ability_shiv_dash	Signature	16	0
 hero_shiv	Signature_3	citadel_ability_shiv_defer_damage	Signature	25	0
 hero_shiv	Signature_4	citadel_ability_shiv_killing_blow	Ultimate	145	0
 hero_synth	Signature_1	synth_barrage	Signature	32	0
-hero_synth	Signature_2	synth_plasma_flux	Signature	25	0
+hero_synth	Signature_2	synth_plasma_flux	Signature	26	0
 hero_synth	Signature_3	synth_pulse	Signature	17	0
 hero_synth	Signature_4	synth_affliction	Ultimate	170	0
 hero_targetdummy	Signature_1	targetdummy_ability_1	Signature	10.5	0
@@ -128,7 +128,7 @@ hero_tengu	Signature_2	citadel_ability_tangotether	Signature	37	0
 hero_tengu	Signature_3	citadel_ability_tengu_stone_form	Signature	40	0
 hero_tengu	Signature_4	citadel_ability_tengu_airlift	Ultimate	100	0
 hero_unicorn	Signature_1	ability_unicorn_radiantblast	Signature	20	0
-hero_unicorn	Signature_2	ability_unicorn_prismaticguard	Signature	34	0
+hero_unicorn	Signature_2	ability_unicorn_prismaticguard	Signature	38	0
 hero_unicorn	Signature_3	ability_unicorn_luminousstrike	Signature	33	1
 hero_unicorn	Signature_4	ability_unicorn_dazzlingorb	Ultimate	160	0
 hero_vampirebat	Signature_1	ability_vampirebat_steallife	Signature	16	0
@@ -138,10 +138,10 @@ hero_vampirebat	Signature_4	ability_vampirebat_batswarm	Ultimate	150	0
 hero_viper	Signature_1	ability_viper_debuffdagger	Signature	10	2
 hero_viper	Signature_2	ability_viper_venom	Signature	28	0
 hero_viper	Signature_3	ability_viper_snakedash	Signature	0	0
-hero_viper	Signature_4	ability_viper_petrifybola	Ultimate	105	0
+hero_viper	Signature_4	ability_viper_petrifybola	Ultimate	115	0
 hero_viscous	Signature_1	viscous_goo_grenade	Signature	26	0
 hero_viscous	Signature_2	viscous_restorative_goo	Signature	42	0
-hero_viscous	Signature_3	viscous_telepunch	Signature	21	1
+hero_viscous	Signature_3	viscous_telepunch	Signature	24	1
 hero_viscous	Signature_4	viscous_goo_bowling_ball	Ultimate	150	0
 hero_warden	Signature_1	ability_warden_crowd_control	Signature	12	0
 hero_warden	Signature_2	ability_warden_high_alert	Signature	40	0

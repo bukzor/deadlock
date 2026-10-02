@@ -1,61 +1,69 @@
-hero	EAbilityResourceMax	EAbilityResourceRegenPerSecond	EAirDashDistanceInMeters	EAirDashDuration	EBaseHealthRegen	EBuildUpRate	EBulletLifesteal	ECritDamageBonusScale	ECritDamageReceivedScale	ECrouchSpeed	EDebuffResist	EGroundDashDistanceInMeters	EGroundDashDuration	EHeavyMeleeDamage	EHeroBulletLifestealEffectiveness	EHeroSpiritLifestealEffectiveness	ELightMeleeDamage	EMaxHealth	EMaxMoveSpeed	EMeleeResist	EMoveAcceleration	EProcBuildUpRateScale	EReloadSpeed	ESprintSpeed	EStamina	EStaminaRegenPerSecond	ETechArmorDamageReduction	ETechDuration	ETechRange	EWeaponPower	EWeaponPowerScale
-hero_astro	0	0	8.0	0.43	2.0			1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	780.0	8.2		4	1	1	1.6	2	0.222222		1	1	0	1
-hero_atlas	0	0	8.0	0.51	1.5			1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	800.0	6.4		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_base	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_bebop	0	0	8.0	0.51	2.5			1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	63	880.0	6.45		4	1	1	4.0	3	0.181818		1	1	0	1
-hero_boho	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	705.0	8.0		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_bomber	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_bookworm	0	0	8.0	0.51	2.0			1.0	1.0	4.75		10.0	0.72	120.0	1.0	1.0	42.0	680.0	6.9		4	1	1	3.5	3	0.222222		1	1	0	1
-hero_cadence	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	830.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_chrono	0	0	8.0	0.43	1.0			1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	730.0	6.7		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_doorman	0	0	8.0	0.43	1.0			0.7	1.0	4.75		10.0	0.62	116	1.0	1.0	50	755.0	7.9		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_drifter	0	0	8.0	0.47	3.5			0.55	1.0	4.75		10.0	0.68	120	1.0	1.0	51.5	755.0	6.9		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_dynamo	0	0	8.0	0.51	1.75			1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	880.0	6.7		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_familiar	0	0	8.0	0.51	2.0			0.8	0.9	4.75		10.0	0.72	116	1.0	1.0	58	680.0	7.2	-5.0	4	1	1	4.0	3.0	0.222222		1	1	0	1
-hero_fencer	0	0	8.0	0.47	1.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	63	770.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_forge	0	0	8.0	0.47	2			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	6.7		4	1	1	1.6	2	0.222222		1	1	0	1
-hero_fortuna	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	680.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_frank	0	0	8.0	0.51	1.5			1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	800.0	6.3		4	1	1	1.1	3	0.222222	0.0	1	1	0	1
-hero_genericperson	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_ghost	0	0	8.0	0.51	1.0			1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	880.0	6.3		4	1	1	2.4	3	0.222222		1	1	0	1
-hero_gigawatt	0	0	8.0	0.47	1.0			1.0	0.45	4.75		10.0	0.68	116	1.0	1.0	50	730.0	6.7		4	1	1	1.8	3	0.222222		1	1	0	1
-hero_graf	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	510.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_gunslinger	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_haze	0	0	8.0	0.43	2.0			1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	730.0	8.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_hornet	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	755.0	7.9		4	1	1	1.6	2	0.222222		1	1	0	1
-hero_inferno	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	830.0	6.7		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_kali	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_kelvin	0	0	8.0	0.51	1.0			0.75	1.0	4.75		10.0	0.72	116	1.0	1.0	50	880.0	6.7		4	1	1	1.1	3	0.18181		1	1	0	1
-hero_krill	0	0	8.0	0.51	1.0			1.0	0.8	4.75		10.0	0.72	116	1.0	1.0	50	930.0	8.0		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_lash	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	2.1	3	0.222222	10.0	1	1	0	1
-hero_magician	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	730.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_mirage	0	0	8.0	0.47	1.5			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	730.0	7.0		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_nano	0	0	8.0	0.43	2.0			1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	63	730.0	6.8		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_necro	0	0	8.0	0.47	1.0	-50.0	8.0	1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	730.0	7.0		4	1	1	2.2	2.0	0.222222		1	1	0	1
-hero_operative	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_orion	0	0	8.0	0.43	1.5			1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	780.0	6.3		4	1	1	1.6	4	0.222222		1	1	0	1
-hero_priest	0	0	8.0	0.51	2.0			1.0	1.0	4.75		10.0	0.72	125.0	1.0	1.0	50	820.0	6.4		4	1	1	1.0	3	0.222222		1	1	0	1
-hero_punkgoat	0	0	8.0	0.47	2.0			0.8	1.0	4.75		10.0	0.68	116	1.0	1.0	50	820.0	7.0		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_rutger	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_shieldguy	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_shiv	0	0	8.0	0.51	2.0			1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	830.0	6.5		4	1	1	1.6	3	0.166667		1	1	0	1
-hero_skyrunner	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	2.5	3	0.222222	10.0	1	1	0	1
-hero_slork	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_swan	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	6.8		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_synth	0	0	8.0	0.47	1.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	60	780.0	7.2		4	1	1	1.6	3	0.222222	-15.0	1	1	0	1
-hero_targetdummy	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	2990.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_tengu	0	0	8.0	0.43	2.0			1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	755.0	7.2		4	1	1	1.6	4	0.222222		1	1	0	1
-hero_thumper	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_tokamak	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_trapper	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222	-15.0	1	1	0	1
-hero_unicorn	0	0	8.0	0.43	1			0.75	1.0	4.75		10.0	0.62	116	1.0	1.0	50	690.0	6.2		4	1	1	1.6	4	0.2		1	1	0	1
-hero_vampirebat	0	0	8.0	0.43	2.0			1.0	1.0	4.75	-8	10.0	0.62	116	1.0	1.0	50	660.0	6.5		4	1	1	1.6	2.0	0.238095		1	1	0	1
-hero_vandal	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	4	0.222222		1	1	0	1
-hero_viper	0	0	8.0	0.47	2.0			0.7	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	6.9		4	1	1	1.6	4	0.222222		1	1	0	1
-hero_viscous	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	63	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_warden	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	805.0	6.3		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_werewolf	0	0	8.0	0.47	2.5			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	830.0	6.7		4	1	1	1.5	2	0.222222		1	1	0	1
-hero_wraith	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	730.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_wrecker	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_yakuza	0	0	8.0	0.47	2.0			1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	1	1	1.6	3	0.222222		1	1	0	1
-hero_yamato	0	0	8.0	0.47	1.0			1.0	1.0	4.75		10.0	0.68	128	1.0	1.0	55	730.0	8.2		4	1	1	1.6	3	0.222222		1	1	0	1
+hero	name	id	disabled	in_development	player_selectable	limited_testing	needs_testing	prerelease_only	assigned_players_only	complexity	EAbilityResourceMax	EAbilityResourceRegenPerSecond	EAirDashDistanceInMeters	EAirDashDuration	EBaseHealthRegen	EBulletLifesteal	ECritDamageBonusScale	ECritDamageReceivedScale	ECrouchSpeed	EDebuffResist	EGroundDashDistanceInMeters	EGroundDashDuration	EHeavyMeleeDamage	EHeroBulletLifestealEffectiveness	EHeroSpiritLifestealEffectiveness	ELightMeleeDamage	EMaxHealth	EMaxMoveSpeed	EMeleeResist	EMoveAcceleration	EOOCHealthRegen	EProcBuildUpRateScale	EReloadSpeed	ESprintSpeed	EStamina	EStaminaRegenPerSecond	ETechArmorDamageReduction	ETechDuration	ETechRange	EWeaponPower	EWeaponPowerScale
+hero_artist	Violet	86	false	false		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_astro	Holliday	14	false	false		false	false			3	0	0	8.0	0.43	2.0		1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	780.0	8.2		4	0	1	1	1.6	2	0.222222		1	1	0	1
+hero_atlas	Abrams	6	false	false		false	false			1	0	0	8.0	0.51	1.5		1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	800.0	6.4		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_baba	Baba	88	false	false		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_base		0	false	false		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_bebop	Bebop	15	false	false		false	false			2	0	0	8.0	0.51	2.5		1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	63	880.0	6.45		4	0	1	1	4.0	3	0.181818		1	1	0	1
+hero_boho	Boho	68	true	true		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	705.0	8.0		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_bomber	Bomber	56	true	true		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_bookworm	Paige	67	false	false		false	false			1	0	0	8.0	0.51	2.0		1.0	1.0	4.75		10.0	0.72	120.0	1.0	1.0	42.0	680.0	6.9		4	0	1	1	3.5	3	0.222222		1	1	0	1
+hero_cadence	Cadence	54	true	true		false	true			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	830.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_chessmaster	Solomon	85	false	false		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_chrono	Paradox	10	false	false		false	false			3	0	0	8.0	0.43	1.0		1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	730.0	6.7		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_deadpack	Deadman Danny	78	false	false		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_doorman	The Doorman	69	false	false		false	false			1	0	0	8.0	0.43	1.0		0.7	1.0	4.75		10.0	0.62	116	1.0	1.0	50	755.0	7.9		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_drifter	Drifter	64	false	false		false	false			3	0	0	8.0	0.47	3.5		0.55	1.0	4.75		10.0	0.68	120	1.0	1.0	51.5	755.0	6.9		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_druid	Druid	73	true	true		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_dynamo	Dynamo	11	false	false		false	false			2	0	0	8.0	0.51	1.75		1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	880.0	6.7		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_familiar	Rem	79	false	false		false	false			3	0	0	8.0	0.51	2.0		0.8	0.9	4.75		10.0	0.72	116	1.0	1.0	58	680.0	7.2	-5.0	4	0	1	1	4.0	3.0	0.222222		1	1	0	1
+hero_fencer	Apollo	77	false	false		false	false			2	0	0	8.0	0.47	1.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	63	770.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_forge	McGinnis	8	false	false		false	false			1	0	0	8.0	0.47	2		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	6.7		4	0	1	1	1.6	2	0.222222		1	1	0	1
+hero_fortuna	Fortuna	75	true	true		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	680.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_frank	Victor	66	false	false		false	false			2	0	0	8.0	0.51	1.5		1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	800.0	6.3		4	0	1	1	1.1	3	0.222222	0.0	1	1	0	1
+hero_genericperson	Generic Person	46	false	true		false	true			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_ghost	Lady Geist	4	false	false		false	false			2	0	0	8.0	0.51	1.0		1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	880.0	6.3		4	0	1	1	2.4	3	0.222222		1	1	0	1
+hero_gigawatt	Seven	2	false	false		false	false			1	0	0	8.0	0.47	1.0		1.0	0.45	4.75		10.0	0.68	116	1.0	1.0	50	730.0	6.7		4	0	1	1	1.8	3	0.222222		1	1	0	1
+hero_graf	Graf	74	true	true		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	510.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_gunslinger	Gunslinger	38	true	true		false	true			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_haze	Haze	13	false	false		false	false			1	0	0	8.0	0.43	2.0		1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	730.0	8.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_hornet	Vindicta	3	false	false		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	755.0	7.9		4	0	1	1	1.6	2	0.222222		1	1	0	1
+hero_inferno	Infernus	1	false	false		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	830.0	6.7		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_kali	Kali	21	true	false		false	false			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_kelvin	Kelvin	12	false	false		false	false			2	0	0	8.0	0.51	1.0		0.75	1.0	4.75		10.0	0.72	116	1.0	1.0	50	880.0	6.7		4	0	1	1	1.1	3	0.18181		1	1	0	1
+hero_krill	Mo & Krill	18	false	false		false	false			3	0	0	8.0	0.51	1.0		1.0	0.8	4.75		10.0	0.72	116	1.0	1.0	50	930.0	8.0		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_lash	Lash	31	false	false		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	2.1	3	0.222222	10.0	1	1	0	1
+hero_magician	Sinclair	60	false	false		false	false			4	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	730.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_mirage	Mirage	52	false	false		false	false			2	0	0	8.0	0.47	1.5		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	730.0	7.0		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_nano	Calico	16	false	false		false	false			2	0	0	8.0	0.43	2.0		1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	63	730.0	6.8		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_necro	Graves	76	false	false		false	false			2	0	0	8.0	0.47	1.0	8.0	1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	730.0	7.0		4	0	1	1	2.2	2.0	0.222222		1	1	0	1
+hero_nurse	Nurse Harrow	87	false	false		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_opera	Opera	82	true	true		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_operative	Raven	62	true	true		false	false			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_orion	Grey Talon	17	false	false		false	false			2	0	0	8.0	0.43	1.5		1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	780.0	6.3		4	0	1	1	1.6	4	0.222222		1	1	0	1
+hero_priest	Venator	65	false	false		false	false			2	0	0	8.0	0.51	2.0		1.0	1.0	4.75		10.0	0.72	125.0	1.0	1.0	50	820.0	6.4		4	0	1	1	1.0	3	0.222222		1	1	0	1
+hero_punkgoat	Billy	72	false	false		false	false			3	0	0	8.0	0.47	2.0		0.8	1.0	4.75		10.0	0.68	116	1.0	1.0	50	820.0	7.0		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_ratking	Rat King	84	false	false		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_rutger	Rutger	49	true	true		false	true			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_shieldguy	Shield Guy	57	true	true		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_shiv	Shiv	19	false	false		false	false			3	0	0	8.0	0.51	2.0		1.0	1.0	4.75		10.0	0.72	116	1.0	1.0	50	830.0	6.5		4	0	1	1	1.6	3	0.166667		1	1	0	1
+hero_skyrunner	Skyrunner	70	true	true		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	2.5	3	0.222222	10.0	1	1	0	1
+hero_slork	Fathom	53	true	true		false	false			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_swan	Swan	71	true	true		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	6.8		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_synth	Pocket	50	false	false		false	false			2	0	0	8.0	0.47	1.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	60	780.0	7.2		4	0	1	1	1.6	3	0.222222	-15.0	1	1	0	1
+hero_targetdummy	TargetDummy	55	false	false		false	false			2	0	0	8.0	0.47	0.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	2990.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_tengu	Ivy	20	false	false		false	false			3	0	0	8.0	0.43	2.0		1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	50	755.0	7.2		4	0	1	1	1.6	4	0.222222		1	1	0	1
+hero_testhero		83	true	true		false	false			2	0	0	8.0	0.43	2.0		1.0	1.0	4.75		10.0	0.62	116	1.0	1.0	63	730.0	6.8		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_thumper	Thumper	51	true	true		false	true			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_trapper	Trapper	61	true	true		false	false			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222	-15.0	1	1	0	1
+hero_unicorn	Celeste	81	false	false		false	false			2	0	0	8.0	0.43	1		0.75	1.0	4.75		10.0	0.62	116	1.0	1.0	50	690.0	6.2		4	0	1	1	1.6	4	0.18867		1	1	0	1
+hero_vampirebat	Mina	63	false	false		false	false			3	0	0	8.0	0.43	2.0		1.0	1.0	4.75	-8	10.0	0.62	116	1.0	1.0	50	660.0	6.5		4	0	1	1	1.6	2.0	0.238095		1	1	0	1
+hero_vandal	Vandal	59	true	true		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	4	0.222222		1	1	0	1
+hero_viper	Vyper	58	false	false		false	false			1	0	0	8.0	0.47	2.0		0.7	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	6.9		4	0	1	1	1.6	4	0.222222		1	1	0	1
+hero_viscous	Viscous	35	false	false		false	false			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	63	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_warden	Warden	25	false	false		false	false			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	805.0	6.3		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_werewolf	Silver	80	false	false		false	false			1	0	0	8.0	0.47	2.5		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	830.0	6.7		4	0	1	1	2.5	2	0.222222		1	1	0	1
+hero_wraith	Wraith	7	false	false		false	false			1	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	730.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_wrecker	Wrecker	48	true	true		false	false			3	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_yakuza	The Boss	39	true	true		false	false			2	0	0	8.0	0.47	2.0		1.0	1.0	4.75		10.0	0.68	116	1.0	1.0	50	780.0	7.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
+hero_yamato	Yamato	27	false	false		false	false			3	0	0	8.0	0.47	1.0		1.0	1.0	4.75		10.0	0.68	128	1.0	1.0	55	730.0	8.2		4	0	1	1	1.6	3	0.222222		1	1	0	1
