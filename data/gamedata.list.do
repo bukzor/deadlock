@@ -20,10 +20,10 @@ redo-ifchange \
 vpk=$("$py" -m deadlock.paths vpk_dir_file)
 redo-ifchange "$vpk"
 
-# rebuild cleanly so removed assets don't linger, in gamedata/ and in the
-# committed flattened mirror (every flat rebuilds after extraction anyway)
+# rebuild cleanly so removed assets don't linger, in gamedata/ and in its
+# JSON mirror (every JSON file rebuilds after extraction anyway)
 if [[ -d "$out" ]]; then rm -r "$out"; fi
-find gamedata.flat -name '*.jsonl' -delete
+find gamedata.json -name '*.json' -delete
 "$py" -m deadlock.extract "$out" vdata_c
 
 ( cd "$out" && find . -type f | sort )

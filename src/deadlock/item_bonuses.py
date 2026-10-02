@@ -1,6 +1,6 @@
 """Recompile ``item_bonuses.tsv`` — the stat bonuses each shop item grants — from data.
 
-Source: the flattened ``data/gamedata.flat/scripts/abilities.jsonl``, read as a nested tree. This is the
+Source: ``data/gamedata.json/scripts/abilities.json``. This is the
 "what does it do" companion to ``deadlock.items`` (which gives cost/tier/slot).
 An item's passive stat bonuses are the ``m_mapAbilityProperties`` entries that
 carry an ``m_eProvidedPropertyType`` (the engine modifier they provide) — which
@@ -22,7 +22,7 @@ per-level upgrades) is skipped — a bonus needs a value. Zero-valued bonuses ar
 dropped too: nearly every item inherits ``WeaponPower``/``TechPower`` provided
 stats defaulting to 0, which would otherwise be ~46% noise.
 
-    python -m deadlock.item_bonuses < data/gamedata.flat/scripts/abilities.jsonl
+    python -m deadlock.item_bonuses < data/gamedata.json/scripts/abilities.json
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 
-from . import flatten, jsonl
+from . import gamedata
 from .types import dig, is_str_mapping
 
 _MODIFIER_PREFIX = "MODIFIER_VALUE_"
@@ -50,7 +50,7 @@ class Bonus:
 def bonuses(abilities: Mapping[str, object]) -> list[Bonus]:
     """Provided-stat bonuses for every tiered item, sorted by (item, property).
 
-    ``abilities`` is the nested tree of ``abilities.vdata`` (see ``deadlock.flatten.tree``).
+    ``abilities`` is the nested tree of ``abilities.vdata`` (see ``deadlock.gamedata``).
     """
     result: list[Bonus] = []
     for item, entity in abilities.items():
@@ -92,7 +92,7 @@ def _str(value: object) -> str:
 
 
 def main() -> None:
-    abilities = flatten.tree(jsonl.load_lines(sys.stdin))
+    abilities = gamedata.load(sys.stdin)
     _ = sys.stdout.write(render(bonuses(abilities)))
 
 

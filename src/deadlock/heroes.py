@@ -1,13 +1,11 @@
 """Recompile ``heroes.tsv`` — the per-hero base stat sheet — from data.
 
-Source: the flattened ``data/gamedata.flat/scripts/heroes.jsonl``, read as a nested tree.
+Source: ``data/gamedata.json/scripts/heroes.json``.
 Each hero stores its full ``m_mapStartingStats`` (the compiled
 data materializes every stat per hero, not just overrides of ``hero_base``).
 
-The output is the wide complement to the flat leaves: one row per hero,
-one column per stat (``EMaxHealth``, ``EMaxMoveSpeed``, melee, stamina, …), so
-heroes read side-by-side. The fine grain (one stat = one line) already lives in
-the flat file; this view exists for human comparison. ``hero_base`` is the
+One row per hero, one column per stat (``EMaxHealth``, ``EMaxMoveSpeed``,
+melee, stamina, …), so heroes read side-by-side. ``hero_base`` is the
 reference row, so a column blank for a hero means a *hero-unique* stat the base
 doesn't define.
 
@@ -19,7 +17,7 @@ patch never explains. Their flags flipping is itself the interesting diff.
 Every hero must define all of ``hero_base``'s stats; that invariant is asserted
 so a patch dropping a stat from one hero fails loudly.
 
-    python -m deadlock.heroes <loc-file> < data/gamedata.flat/scripts/heroes.jsonl
+    python -m deadlock.heroes <loc-file> < data/gamedata.json/scripts/heroes.json
 """
 
 from __future__ import annotations
@@ -28,7 +26,7 @@ import sys
 from collections.abc import Mapping
 from pathlib import Path
 
-from . import flatten, jsonl, loc
+from . import gamedata, loc
 from .types import dig, is_str_mapping
 
 
@@ -48,7 +46,7 @@ ATTRS: Mapping[str, str] = {
 
 
 def stats(heroes: Mapping[str, object]) -> dict[str, dict[str, object]]:
-    """Per-hero ``{stat: value}`` maps, from the ``heroes.vdata`` tree (see ``deadlock.flatten.tree``)."""
+    """Per-hero ``{stat: value}`` maps, from the ``heroes.vdata`` tree (see ``deadlock.gamedata``)."""
     result: dict[str, dict[str, object]] = {}
     for hero, entity in heroes.items():
         starting = dig(entity, "m_mapStartingStats")
@@ -102,7 +100,7 @@ def _cell(value: object) -> str:
 
 def main(argv: list[str]) -> None:
     [names_source] = argv[1:]
-    heroes = flatten.tree(jsonl.load_lines(sys.stdin))
+    heroes = gamedata.load(sys.stdin)
     with Path(names_source).open(encoding="utf-8-sig") as name_lines:
         names = loc.tokens(name_lines)
     _ = sys.stdout.write(render(stats(heroes), attrs(heroes), names))

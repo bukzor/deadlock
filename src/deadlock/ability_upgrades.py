@@ -1,7 +1,6 @@
 """Recompile ``ability_upgrades.tsv`` — what each signature ability upgrade does — from data.
 
-Source: the flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``, read as
-nested trees. Each ability's three upgrades (bought with ability points) live in ``m_vecAbilityUpgrades[tier]``,
+Source: ``data/gamedata.json/scripts/{heroes,abilities}.json``. Each ability's three upgrades (bought with ability points) live in ``m_vecAbilityUpgrades[tier]``,
 whose ``m_vecPropertyUpgrades`` list each names a property and a flat bonus.
 This is the "what does leveling it do" companion to ``deadlock.abilities``,
 scoped to the same live signature abilities (via ``abilities.bound``).
@@ -18,7 +17,7 @@ property name, or an ``m_eUpgradeType`` unlock) are out of scope. One ability,
 a typo'd key, ``m_StrPropertyNAme`` (on yamato's ult); both spellings are
 accepted so its upgrade isn't silently dropped.
 
-    python -m deadlock.ability_upgrades heroes.jsonl < abilities.jsonl
+    python -m deadlock.ability_upgrades heroes.json < abilities.json
 """
 
 from __future__ import annotations
@@ -28,7 +27,7 @@ from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import flatten, jsonl
+from . import gamedata
 from .abilities import bound
 from .types import dig, is_sequence
 
@@ -48,7 +47,7 @@ class Upgrade:
 def upgrades(defs: Mapping[str, object], abilities: frozenset[str] | set[str]) -> list[Upgrade]:
     """Named property upgrades for the requested abilities, sorted by (ability, tier, property).
 
-    ``defs`` is the nested tree of ``abilities.vdata`` (see ``deadlock.flatten.tree``).
+    ``defs`` is the nested tree of ``abilities.vdata`` (see ``deadlock.gamedata``).
     """
     result: list[Upgrade] = []
     for ability in abilities:
@@ -92,9 +91,9 @@ def _str(value: object) -> str:
 
 def main(argv: list[str]) -> None:
     [heroes_source] = argv[1:]
-    defs = flatten.tree(jsonl.load_lines(sys.stdin))
-    with Path(heroes_source).open() as heroes_lines:
-        heroes = flatten.tree(jsonl.load_lines(heroes_lines))
+    defs = gamedata.load(sys.stdin)
+    with Path(heroes_source).open() as heroes_file:
+        heroes = gamedata.load(heroes_file)
     signatures = {b.ability for b in bound(heroes, defs)}
     _ = sys.stdout.write(render(upgrades(defs, signatures)))
 

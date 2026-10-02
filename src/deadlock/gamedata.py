@@ -1,33 +1,39 @@
-"""Flatten one decompiled KV3 game-data file into git-trackable JSONL leaves.
+"""Convert one decompiled KV3 game-data file to JSON.
 
-    python -m deadlock.gamedata < scripts/heroes.vdata
+    python -m deadlock.gamedata < scripts/heroes.vdata > scripts/heroes.json
 
-Each scalar becomes one line: ``{"path": ..., "value": ...}`` where ``path`` is
-the dotted/indexed location within the file (e.g.
-``hero_inferno.m_flStaminaCooldown``). One stat per line means a balance patch
-shows up in ``git diff`` as exactly the lines that changed. The source file is
-not repeated per record — each output file covers exactly one vdata (see
-``data/gamedata.flat/default.jsonl.do``), so the filename carries it.
-
-Output is unsorted; sort the stream (e.g. ``sort``) for a stable, diff-friendly
-ordering.
+A local cache, never committed (see
+``docs/dev/decisions.kb/commit-diffable-data-let-git-diff.md``): the views
+``load`` it rather than re-parse KV3, which is ~25x slower. Keys keep source
+order and KV3 ``flagged_value`` wrappers are unwrapped. Indented, so the caches
+from two builds ``diff`` usefully.
 """
 
+import json
 import sys
-from collections.abc import Iterator, Mapping
+from collections.abc import Mapping
+from typing import IO
+
+import typed_json
 
 from . import jsonl, kv3
-from .flatten import leaves
+from .types import is_str_mapping
 
 
-def records(root: Mapping[str, object]) -> Iterator[dict[str, object]]:
-    """One ``{path, value}`` record per leaf scalar in ``root``."""
-    for path, value in leaves(jsonl.to_jsonable(root)):
-        yield {"path": path, "value": value}
+def dumps(root: Mapping[str, object]) -> str:
+    """Serialize a parsed game-data root, newline-terminated."""
+    return json.dumps(jsonl.to_jsonable(root), indent=2) + "\n"
+
+
+def load(file: IO[str]) -> Mapping[str, object]:
+    """Read a game-data root written by ``dumps``."""
+    root = typed_json.load(file)
+    assert is_str_mapping(root), type(root)
+    return root
 
 
 def main() -> None:
-    _ = sys.stdout.writelines(jsonl.dump_lines(records(kv3.load(sys.stdin))))
+    _ = sys.stdout.write(dumps(kv3.load(sys.stdin)))
 
 
 if __name__ == "__main__":

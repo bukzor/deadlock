@@ -1,6 +1,6 @@
 """Recompile ``items.tsv`` — the shop item economy — from data.
 
-Source: the flattened ``data/gamedata.flat/scripts/{abilities,generic_data}.jsonl``, read as nested trees.
+Source: ``data/gamedata.json/scripts/{abilities,generic_data}.json``.
 Shop items live in
 ``scripts/abilities.vdata`` (an item is an ability with an ``m_iItemTier``).
 Their soul cost is *not* stored per item: it is derived from the item's tier via
@@ -22,7 +22,7 @@ All tiered items are emitted (including disabled and internal infrastructure
 items) rather than editorially filtered, so a patch that enables/disables an
 item shows as a single ``disabled`` cell change.
 
-    python -m deadlock.items generic_data.jsonl < abilities.jsonl
+    python -m deadlock.items generic_data.json < abilities.json
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import flatten, jsonl
+from . import gamedata
 from .types import dig, is_sequence
 
 
@@ -59,7 +59,7 @@ def prices(generic: Mapping[str, object]) -> dict[int, int]:
 def items(abilities: Mapping[str, object], prices: Mapping[int, int]) -> list[Item]:
     """Items joined to their tier cost, sorted by name; assert every tier is priced.
 
-    ``abilities`` is the nested tree of ``abilities.vdata`` (see ``deadlock.flatten.tree``).
+    ``abilities`` is the nested tree of ``abilities.vdata`` (see ``deadlock.gamedata``).
     """
     result: list[Item] = []
     for name, item in abilities.items():
@@ -136,9 +136,9 @@ def _int(value: object) -> int:
 
 def main(argv: list[str]) -> None:
     [generic_source] = argv[1:]
-    abilities = flatten.tree(jsonl.load_lines(sys.stdin))
-    with Path(generic_source).open() as generic_lines:
-        generic = flatten.tree(jsonl.load_lines(generic_lines))
+    abilities = gamedata.load(sys.stdin)
+    with Path(generic_source).open() as generic_file:
+        generic = gamedata.load(generic_file)
     _ = sys.stdout.write(render(items(abilities, prices(generic))))
 
 

@@ -15,7 +15,7 @@ The committed artifacts are the curated TSV views (`data/gamedata.tsv/*.tsv`)
 plus `data/deadlock-version.json`, a build-provenance stamp from the install's
 `steam.inf`.
 
-The raw intermediates — the flattened per-file JSONL (`data/gamedata.flat/`)
+The raw intermediates — the per-file game-data JSON (`data/gamedata.json/`)
 and the VPK manifest — are **local build outputs, never committed**. They are
 near-verbatim Valve game data; the TSVs are our transformative work (chosen
 columns, joins, derived values). Publishing only the transformative layer is
@@ -24,7 +24,7 @@ artifact anyway. No commit in the history contains the raw files.
 
 **Accepted trade-off:** git diff shows patch changes only in the curated
 views. Broad changes (a stat no view covers, asset churn) are visible only
-transiently in the local flats/manifest at rebuild time. The mitigation is to
+transiently in the local JSON/manifest at rebuild time. The mitigation is to
 grow view coverage: when a patch investigation needs data no view exposes,
 that's the prompt to add or widen a view.
 
@@ -59,13 +59,14 @@ committed output is shaped to that grain: one entity per row, columns for the
 stats that matter, stable sort. When adding a view, decide its grain
 deliberately: the goal is "one meaningful change ≈ one changed line".
 
-(The same principle shaped the local flats — one leaf scalar per line, one
-file per vdata source — because the redo pipeline still diffs them
-implicitly: an unchanged flat short-circuits view rebuilds via `redo-stamp`.)
+The local game-data JSON needs no grain of its own, since git never sees it:
+it is plain JSON in source order (what the views consume), indented so two
+builds' copies still `diff` readably, one file per vdata so `redo-stamp`
+short-circuits views over untouched files.
 
 ## What does NOT get committed
 
-Everything else under `data/`: the raw flats and manifest (above), bulk/binary
-assets (textures, models, audio), the vendored VRF tool, and intermediate
-extraction dirs. See `generated-output-under-data-via-redo.md` for the
-data/ + redo mechanics.
+Everything else under `data/`: the game-data JSON and manifest (above),
+bulk/binary assets (textures, models, audio), the vendored VRF tool, and
+intermediate extraction dirs. See `generated-output-under-data-via-redo.md` for
+the data/ + redo mechanics.

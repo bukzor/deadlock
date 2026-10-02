@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build all generated data: the committed, transformative TSV views
 # (gamedata.tsv/) and the build stamp (deadlock-version.json), plus the local
-# intermediates they derive from (extraction, gamedata.flat/, manifest.jsonl —
+# intermediates they derive from (extraction, gamedata.json/, manifest.jsonl —
 # gitignored, near-verbatim Valve data). `redo` from the repo root regenerates
 # everything against the current install; then read `git diff`.
 # redo runs this with cwd = repo root.
@@ -27,7 +27,7 @@ redo-adopt "${committed[@]}"
 
 redo-ifchange data/gamedata.list
 
-sed 's#^\./#data/gamedata.flat/#; s#\.vdata$#.jsonl#' data/gamedata.list |
+sed 's#^\./#data/gamedata.json/#; s#\.vdata$#.json#' data/gamedata.list |
   xargs redo-ifchange \
     data/manifest.jsonl \
     "${committed[@]}" \

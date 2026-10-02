@@ -1,6 +1,6 @@
 """Recompile ``levels.tsv`` — the player level / souls / ability curve — from data.
 
-Source: the flattened ``data/gamedata.flat/scripts/heroes.jsonl``, read as a nested tree. The game stores, per
+Source: ``data/gamedata.json/scripts/heroes.json``. The game stores, per
 level 1..36 under each hero's ``m_mapLevelInfo``:
 
 - ``m_unRequiredGold`` — cumulative souls *earned* to reach the level.
@@ -20,7 +20,7 @@ Every hero shares one curve; that invariant is asserted (``canonical``) so a
 patch diverging a single hero fails loudly instead of silently mis-representing
 the rest.
 
-    python -m deadlock.levels < data/gamedata.flat/scripts/heroes.jsonl
+    python -m deadlock.levels < data/gamedata.json/scripts/heroes.json
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 
-from . import flatten, jsonl
+from . import gamedata
 from .types import dig, is_str_mapping
 
 STARTING_SOULS = 600
@@ -56,7 +56,7 @@ class Row:
 
 
 def curves(heroes: Mapping[str, object]) -> dict[str, dict[int, Level]]:
-    """Per-hero ``{level: Level}`` maps, from the ``heroes.vdata`` tree (see ``deadlock.flatten.tree``)."""
+    """Per-hero ``{level: Level}`` maps, from the ``heroes.vdata`` tree (see ``deadlock.gamedata``)."""
     result: dict[str, dict[int, Level]] = {}
     for hero, entity in heroes.items():
         levels = dig(entity, "m_mapLevelInfo")
@@ -122,7 +122,7 @@ def _int(value: object) -> int:
 
 
 def main() -> None:
-    heroes = flatten.tree(jsonl.load_lines(sys.stdin))
+    heroes = gamedata.load(sys.stdin)
     _ = sys.stdout.write(render(rows(canonical(curves(heroes)))))
 
 

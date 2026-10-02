@@ -1,6 +1,6 @@
 """Recompile ``abilities.tsv`` — each live hero's four signature abilities — from data.
 
-Source: the flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``, read as nested trees.
+Source: ``data/gamedata.json/scripts/{heroes,abilities}.json``.
 Heroes bind abilities to slots via ``m_mapBoundAbilities``; the abilities are
 defined in ``scripts/abilities.vdata``. This table resolves
 that join for the four ``ESlot_Signature_*`` slots — the upgradeable, hero-
@@ -28,7 +28,7 @@ Every live hero must bind four signatures that all resolve and carry these base
 stats; that invariant is asserted so a dangling binding on a shipped hero fails
 loudly.
 
-    python -m deadlock.abilities abilities.jsonl < heroes.jsonl
+    python -m deadlock.abilities abilities.json < heroes.json
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import flatten, jsonl
+from . import gamedata
 from .types import dig, is_str_mapping
 
 _SLOT_PREFIX = "ESlot_"
@@ -97,7 +97,7 @@ def bound(heroes: Mapping[str, object], defs: Mapping[str, object]) -> list[Boun
     """Live heroes' signature bindings joined to ability stats; assert each resolves.
 
     ``heroes`` and ``defs`` are the nested trees of ``heroes.vdata`` and
-    ``abilities.vdata`` (see ``deadlock.flatten.tree``).
+    ``abilities.vdata`` (see ``deadlock.gamedata``).
     """
     defined = abilities(defs)
     result: list[Bound] = []
@@ -143,9 +143,9 @@ def _bool(value: object) -> bool:
 
 def main(argv: list[str]) -> None:
     [abilities_source] = argv[1:]
-    heroes = flatten.tree(jsonl.load_lines(sys.stdin))
-    with Path(abilities_source).open() as defs_lines:
-        defs = flatten.tree(jsonl.load_lines(defs_lines))
+    heroes = gamedata.load(sys.stdin)
+    with Path(abilities_source).open() as defs_file:
+        defs = gamedata.load(defs_file)
     _ = sys.stdout.write(render(bound(heroes, defs)))
 
 

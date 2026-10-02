@@ -1,6 +1,6 @@
 """Recompile ``weapons.tsv`` — each live hero's primary weapon — from data.
 
-Source: the flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``, read as nested trees.
+Source: ``data/gamedata.json/scripts/{heroes,abilities}.json``.
 Heroes bind a primary weapon to ``ESlot_Weapon_Primary``; the
 weapon's stats live in that entity's ``m_mapWeaponInfos.primary`` in
 ``scripts/abilities.vdata``. This table resolves that join for the live roster.
@@ -24,7 +24,7 @@ One row per hero, sorted, in raw weapon units:
 Every live hero's primary must define all six base fields; that invariant is
 asserted so a missing field or dangling weapon fails loudly.
 
-    python -m deadlock.weapons abilities.jsonl < heroes.jsonl
+    python -m deadlock.weapons abilities.json < heroes.json
 """
 
 from __future__ import annotations
@@ -34,7 +34,7 @@ from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import flatten, jsonl
+from . import gamedata
 from .types import dig, is_str_mapping
 
 TEMPLATE_HERO = "hero_base"
@@ -73,7 +73,7 @@ def weapons(heroes: Mapping[str, object], abilities: Mapping[str, object]) -> li
     """Live heroes' primaries joined to weapon stats, with derived DPS; sorted.
 
     ``heroes`` and ``abilities`` are the nested trees of ``heroes.vdata`` and
-    ``abilities.vdata`` (see ``deadlock.flatten.tree``).
+    ``abilities.vdata`` (see ``deadlock.gamedata``).
     """
     for name, entity in abilities.items():
         profiles = dig(entity, "m_mapWeaponInfos")
@@ -148,9 +148,9 @@ def _bool(value: object) -> bool:
 
 def main(argv: list[str]) -> None:
     [abilities_source] = argv[1:]
-    heroes = flatten.tree(jsonl.load_lines(sys.stdin))
-    with Path(abilities_source).open() as defs_lines:
-        abilities = flatten.tree(jsonl.load_lines(defs_lines))
+    heroes = gamedata.load(sys.stdin)
+    with Path(abilities_source).open() as defs_file:
+        abilities = gamedata.load(defs_file)
     _ = sys.stdout.write(render(weapons(heroes, abilities)))
 
 

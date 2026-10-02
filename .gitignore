@@ -1,6 +1,6 @@
 # Generated output under data/ is ignored by default: bulk/binary assets, the
 # vendored VRF tool, intermediate dirs (data/gamedata/), and the near-verbatim
-# Valve extracts (gamedata.flat/, manifest.jsonl).
+# Valve extracts (gamedata.json/, manifest.jsonl).
 # Exceptions — committed so `git diff` shows patch changes — are the
 # transformative TSV views, the build stamp naming the game version that
 # produced them, and the redo .do scripts (source).
@@ -11,9 +11,9 @@
 !/data/tools/
 /data/tools/*
 !/data/tools/*.do
-!/data/gamedata.flat/
-/data/gamedata.flat/*
-!/data/gamedata.flat/*.do
+!/data/gamedata.json/
+/data/gamedata.json/*
+!/data/gamedata.json/*.do
 !/data/gamedata.tsv/
 /data/gamedata.tsv/*
 !/data/gamedata.tsv/*.do

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Compile one TSV view from the local, flattened game data. These views are the
+# Compile one TSV view from the local JSON game data. These views are the
 # committed artifact — our transformative work, and the consumable one (what
 # each shows is documented in its deadlock.<view> module docstring). The case
 # table maps each view to its stdin source and extra sources; anything unlisted
@@ -10,7 +10,7 @@ if [[ "${REDO:-}" ]]; then exec > >(tee >(redo-stamp)); fi
 
 root=$(cd ../.. && pwd)
 py="$root/.venv/bin/python"
-flat=../gamedata.flat/scripts
+json=../gamedata.json/scripts
 
 deps=()
 case "$2" in
@@ -22,11 +22,11 @@ case "$2" in
   item_bonuses)
     stdin=abilities; args=() ;;
   abilities | weapons)
-    stdin=heroes; args=("$flat/abilities.jsonl") ;;
+    stdin=heroes; args=("$json/abilities.json") ;;
   items)
-    stdin=abilities; args=("$flat/generic_data.jsonl") ;;
+    stdin=abilities; args=("$json/generic_data.json") ;;
   ability_upgrades)
-    stdin=abilities; args=("$flat/heroes.jsonl")
+    stdin=abilities; args=("$json/heroes.json")
     deps=("$root/src/deadlock/abilities.py") ;;
   *)
     echo "no such view: $2 (add it to default.tsv.do's table)" >&2; exit 1 ;;
@@ -34,9 +34,10 @@ esac
 
 redo-ifchange \
   "$root/src/deadlock/$2.py" \
+  "$root/src/deadlock/gamedata.py" \
   "$root/data/deadlock-version.json" \
   "${deps[@]}" \
-  "$flat/$stdin.jsonl" \
+  "$json/$stdin.json" \
   "${args[@]}"
 
-"$py" -m "deadlock.$2" "${args[@]}" <"$flat/$stdin.jsonl"
+"$py" -m "deadlock.$2" "${args[@]}" <"$json/$stdin.json"
