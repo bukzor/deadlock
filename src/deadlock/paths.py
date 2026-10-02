@@ -45,6 +45,15 @@ def vpk_dir_file(environ: dict[str, str] | None = None) -> Path:
     return citadel_dir(environ) / "pak01_dir.vpk"
 
 
+def hero_names_loc(environ: dict[str, str] | None = None) -> Path:
+    """English localization for hero names — codename tokens to display names."""
+    return (
+        citadel_dir(environ)
+        / "resource/localization/citadel_gc_hero_names"
+        / "citadel_gc_hero_names_english.txt"
+    )
+
+
 def steam_inf(environ: dict[str, str] | None = None) -> Path:
     """The build-identity file (``ClientVersion``, ``SourceRevision``, date)."""
     return citadel_dir(environ) / "steam.inf"
@@ -71,6 +80,7 @@ RESOLVERS: Mapping[str, Callable[[], Path]] = {
     "game_dir": game_dir,
     "citadel_dir": citadel_dir,
     "vpk_dir_file": vpk_dir_file,
+    "hero_names_loc": hero_names_loc,
     "steam_inf": steam_inf,
     "data_dir": data_dir,
 }

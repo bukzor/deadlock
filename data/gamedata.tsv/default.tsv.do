@@ -14,7 +14,10 @@ flat=../gamedata.flat/scripts
 
 deps=()
 case "$2" in
-  heroes | levels)
+  heroes)
+    stdin=heroes; args=("$("$py" -m deadlock.paths hero_names_loc)")
+    deps=("$root/src/deadlock/loc.py") ;;
+  levels)
     stdin=heroes; args=() ;;
   item_bonuses)
     stdin=abilities; args=() ;;

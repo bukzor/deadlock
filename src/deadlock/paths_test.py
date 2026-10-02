@@ -21,6 +21,15 @@ class DescribeVpkDirFile:
         assert paths.vpk_dir_file(env) == Path("/g/game/citadel/pak01_dir.vpk")
 
 
+class DescribeHeroNamesLoc:
+    def it_points_at_the_english_hero_name_tokens(self):
+        env = {"DEADLOCK_HOME": "/g"}
+        loc = "/g/game/citadel/resource/localization/citadel_gc_hero_names"
+        assert paths.hero_names_loc(env) == Path(
+            f"{loc}/citadel_gc_hero_names_english.txt"
+        )
+
+
 class DescribeSteamInf:
     def it_points_at_steam_inf_under_citadel(self):
         env = {"DEADLOCK_HOME": "/g"}

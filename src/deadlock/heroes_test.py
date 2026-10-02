@@ -1,15 +1,23 @@
 import pytest
 
-from .heroes import columns, render, stats
+from .heroes import attrs, columns, render, stats
 
 RECORDS = [
     {"path": "hero_base.m_mapStartingStats.EMaxHealth", "value": 780.0},
     {"path": "hero_base.m_mapStartingStats.EStamina", "value": 3},
+    {"path": "hero_base.m_bDisabled", "value": False},
     {"path": "hero_a.m_mapStartingStats.EMaxHealth", "value": 830.0},
     {"path": "hero_a.m_mapStartingStats.EStamina", "value": 3},
     {"path": "hero_a.m_mapStartingStats.EMeleeResist", "value": 0.1},
-    {"path": "hero_a.m_bDisabled", "value": False},
+    {"path": "hero_a.m_HeroID", "value": 7},
+    {"path": "hero_a.m_bDisabled", "value": True},
+    {"path": "hero_a.m_bPlayerSelectable", "value": True},
+    {"path": "hero_a.m_strModelName", "value": "models/heroes_wip/a/a.vmdl"},
+    {"path": "hero_a.m_colorUI[0]", "value": 142},
+    {"path": "generic_data_type.m_bDisabled", "value": False},
 ]
+
+NAMES = {"hero_a:n": "Amber"}
 
 
 class DescribeStats:
@@ -25,15 +33,26 @@ class DescribeStats:
             _ = columns(missing)
 
 
+class DescribeAttrs:
+    def it_collects_only_the_listed_identity_and_status_fields(self):
+        assert attrs(RECORDS) == {
+            "hero_base": {"disabled": False},
+            "hero_a": {"id": 7, "disabled": True, "player_selectable": True},
+        }
+
+
 class DescribeColumns:
     def it_is_the_sorted_union_of_every_stat(self):
         assert columns(stats(RECORDS)) == ["EMaxHealth", "EMeleeResist", "EStamina"]
 
 
 class DescribeRender:
-    def it_emits_a_tsv_row_per_hero_blank_for_absent_stats(self):
-        assert render(stats(RECORDS)) == (
-            "hero\tEMaxHealth\tEMeleeResist\tEStamina\n"
-            "hero_a\t830.0\t0.1\t3\n"
-            "hero_base\t780.0\t\t3\n"
+    def it_leads_with_identity_then_stats_blank_where_absent(self):
+        assert render(stats(RECORDS), attrs(RECORDS), NAMES) == (
+            "hero\tname\tid\tdisabled\tin_development\tplayer_selectable"
+            "\tlimited_testing\tneeds_testing\tprerelease_only"
+            "\tassigned_players_only\tcomplexity"
+            "\tEMaxHealth\tEMeleeResist\tEStamina\n"
+            "hero_a\tAmber\t7\ttrue\t\ttrue\t\t\t\t\t\t830.0\t0.1\t3\n"
+            "hero_base\t\t\tfalse\t\t\t\t\t\t\t\t780.0\t\t3\n"
         )
