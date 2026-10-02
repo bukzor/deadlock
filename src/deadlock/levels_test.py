@@ -2,24 +2,31 @@ import pytest
 
 from .levels import Level, Row, canonical, curves, render, rows
 
-RECORDS = [
-    {"path": "hero_base.m_mapLevelInfo.1.m_unRequiredGold", "value": 0},
-    {"path": "hero_base.m_mapLevelInfo.1.m_mapBonusCurrencies.EAbilityUnlocks", "value": 1},
-    {"path": "hero_base.m_mapLevelInfo.2.m_unRequiredGold", "value": 300},
-    {"path": "hero_base.m_mapLevelInfo.2.m_mapBonusCurrencies.EAbilityPoints", "value": 1},
-    {"path": "hero_base.m_mapLevelInfo.2.m_bUseStandardUpgrade", "value": True},
-    {"path": "ignored.path", "value": 1},
-]
+HEROES = {
+    "hero_base": {
+        "m_mapLevelInfo": {
+            "1": {"m_unRequiredGold": 0, "m_mapBonusCurrencies": {"EAbilityUnlocks": 1}},
+            "2": {"m_unRequiredGold": 300, "m_mapBonusCurrencies": {"EAbilityPoints": 1}, "m_bUseStandardUpgrade": True},
+        }
+    },
+    "hero_no_levels": {"m_bDisabled": True},
+    "_include": ["scripts/other.vdata"],
+}
 
 
 class DescribeCurves:
-    def it_builds_per_hero_level_maps_ignoring_other_paths(self):
-        assert curves(RECORDS) == {
+    def it_builds_per_hero_level_maps_ignoring_other_entries(self):
+        assert curves(HEROES) == {
             "hero_base": {
                 1: Level(gold=0, bonus="unlock"),
                 2: Level(gold=300, bonus="ap"),
             }
         }
+
+    def it_fails_when_a_level_grants_two_bonuses(self):
+        both = {"m_unRequiredGold": 0, "m_mapBonusCurrencies": {"EAbilityUnlocks": 1, "EAbilityPoints": 1}}
+        with pytest.raises(AssertionError, match="hero_x"):
+            _ = curves({"hero_x": {"m_mapLevelInfo": {"1": both}}})
 
 
 class DescribeCanonical:

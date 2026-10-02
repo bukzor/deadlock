@@ -1,6 +1,6 @@
 """Recompile ``levels.tsv`` — the player level / souls / ability curve — from data.
 
-Source: the committed, flattened ``data/gamedata.flat/scripts/heroes.jsonl``. The game stores, per
+Source: the flattened ``data/gamedata.flat/scripts/heroes.jsonl``, read as a nested tree. The game stores, per
 level 1..36 under each hero's ``m_mapLevelInfo``:
 
 - ``m_unRequiredGold`` — cumulative souls *earned* to reach the level.
@@ -25,16 +25,15 @@ the rest.
 
 from __future__ import annotations
 
-import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 
-from . import jsonl
+from . import flatten, jsonl
+from .types import dig, is_str_mapping
 
 STARTING_SOULS = 600
-_PATH = re.compile(r"^(hero_\w+)\.m_mapLevelInfo\.(\d+)\.(.+)$")
-_BONUS = {"m_mapBonusCurrencies.EAbilityUnlocks": "unlock", "m_mapBonusCurrencies.EAbilityPoints": "ap"}
+_BONUS = {"EAbilityUnlocks": "unlock", "EAbilityPoints": "ap"}
 
 
 @dataclass(frozen=True)
@@ -56,23 +55,28 @@ class Row:
     ap: int
 
 
-def curves(records: Iterable[Mapping[str, object]]) -> dict[str, dict[int, Level]]:
-    """Per-hero ``{level: Level}`` maps, parsed from heroes.jsonl leaf records."""
-    gold: dict[str, dict[int, int]] = {}
-    bonus: dict[str, dict[int, str]] = {}
-    for record in records:
-        match = _PATH.match(_str(record["path"]))
-        if not match:
+def curves(heroes: Mapping[str, object]) -> dict[str, dict[int, Level]]:
+    """Per-hero ``{level: Level}`` maps, from the ``heroes.vdata`` tree (see ``deadlock.flatten.tree``)."""
+    result: dict[str, dict[int, Level]] = {}
+    for hero, entity in heroes.items():
+        levels = dig(entity, "m_mapLevelInfo")
+        if levels is None:
             continue
-        hero, level, field = match.group(1), int(match.group(2)), match.group(3)
-        if field == "m_unRequiredGold":
-            gold.setdefault(hero, {})[level] = _int(record["value"])
-        elif field in _BONUS:
-            bonus.setdefault(hero, {})[level] = _BONUS[field]
-    return {
-        hero: {level: Level(g, bonus[hero][level]) for level, g in sorted(levels.items())}
-        for hero, levels in gold.items()
-    }
+        assert is_str_mapping(levels), hero
+        result[hero] = {int(level): _level(hero, info) for level, info in sorted(levels.items(), key=_by_level)}
+    return result
+
+
+def _by_level(item: tuple[str, object]) -> int:
+    return int(item[0])
+
+
+def _level(hero: str, info: object) -> Level:
+    currencies = dig(info, "m_mapBonusCurrencies")
+    assert is_str_mapping(currencies), hero
+    assert len(currencies) == 1, (hero, sorted(currencies))  # exactly one bonus per level
+    [currency] = currencies
+    return Level(_int(dig(info, "m_unRequiredGold")), _BONUS[currency])
 
 
 def canonical(curves: Mapping[str, Mapping[int, Level]]) -> Mapping[int, Level]:
@@ -112,19 +116,14 @@ def render(rows: Iterable[Row]) -> str:
     return "level\tsouls\tdelta\tability\tAP\n" + body
 
 
-def _str(value: object) -> str:
-    assert isinstance(value, str), value
-    return value
-
-
 def _int(value: object) -> int:
     assert isinstance(value, int), value
     return value
 
 
 def main() -> None:
-    records = jsonl.load_lines(sys.stdin)
-    _ = sys.stdout.write(render(rows(canonical(curves(records)))))
+    heroes = flatten.tree(jsonl.load_lines(sys.stdin))
+    _ = sys.stdout.write(render(rows(canonical(curves(heroes)))))
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 """Recompile ``abilities.tsv`` — each live hero's four signature abilities — from data.
 
-Source: the committed, flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``.
+Source: the flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``, read as nested trees.
 Heroes bind abilities to slots via ``m_mapBoundAbilities``; the abilities are
 defined in ``scripts/abilities.vdata``. This table resolves
 that join for the four ``ESlot_Signature_*`` slots — the upgradeable, hero-
@@ -33,19 +33,16 @@ loudly.
 
 from __future__ import annotations
 
-import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import jsonl
+from . import flatten, jsonl
+from .types import dig, is_str_mapping
 
-_BOUND = re.compile(r"^(hero_\w+)\.m_mapBoundAbilities\.ESlot_(Signature_\d)$")
-_DISABLED = re.compile(r"^(hero_\w+)\.m_bDisabled$")
-_PROP = re.compile(
-    r"^(\w+)\.(?:m_eAbilityType$|m_mapAbilityProperties\.(AbilityCooldown|AbilityCharges)\.m_strValue$)"
-)
+_SLOT_PREFIX = "ESlot_"
+_SIGNATURE = "Signature_"
 SIGNATURE_SLOTS = 4
 
 
@@ -70,51 +67,43 @@ class Bound:
     charges: str
 
 
-def abilities(records: Iterable[Mapping[str, object]]) -> dict[str, Ability]:
-    """Per-ability ``{type, cooldown, charges}``, parsed from abilities.vdata."""
-    raw: dict[str, dict[str, object]] = {}
-    for record in records:
-        match = _PROP.match(_str(record["path"]))
-        if not match:
+def abilities(defs: Mapping[str, object]) -> dict[str, Ability]:
+    """Per-ability ``{type, cooldown, charges}``, from the ``abilities.vdata`` tree."""
+    result: dict[str, Ability] = {}
+    for name, entity in defs.items():
+        kind = dig(entity, "m_eAbilityType")
+        cooldown = _prop(entity, "AbilityCooldown")
+        charges = _prop(entity, "AbilityCharges")
+        if kind is None or cooldown is None or charges is None:
             continue
-        key = match.group(2) or "type"
-        raw.setdefault(match.group(1), {})[key] = record["value"]
-    return {
-        name: Ability(
-            type=_str(f["type"]).removeprefix("EAbilityType_"),
-            cooldown=_value(f["AbilityCooldown"]),
-            charges=_value(f["AbilityCharges"]),
-        )
-        for name, f in raw.items()
-        if {"type", "AbilityCooldown", "AbilityCharges"} <= set(f)
-    }
+        result[name] = Ability(_str(kind).removeprefix("EAbilityType_"), _value(cooldown), _value(charges))
+    return result
 
 
-def bindings(records: Iterable[Mapping[str, object]]) -> tuple[dict[str, dict[str, str]], dict[str, bool]]:
-    """Per-hero signature ``{slot: ability}`` maps and the ``m_bDisabled`` flag."""
-    bound: dict[str, dict[str, str]] = {}
-    disabled: dict[str, bool] = {}
-    for record in records:
-        path = _str(record["path"])
-        slot = _BOUND.match(path)
-        if slot:
-            bound.setdefault(slot.group(1), {})[slot.group(2)] = _str(record["value"])
-        flag = _DISABLED.match(path)
-        if flag:
-            disabled[flag.group(1)] = _bool(record["value"])
-    return bound, disabled
+def _prop(entity: object, prop: str) -> object:
+    return dig(entity, "m_mapAbilityProperties", prop, "m_strValue")
 
 
-def bound(
-    hero_records: Iterable[Mapping[str, object]],
-    ability_records: Iterable[Mapping[str, object]],
-) -> list[Bound]:
-    """Live heroes' signature bindings joined to ability stats; assert each resolves."""
-    defined = abilities(ability_records)
-    sigs, disabled = bindings(hero_records)
+def signatures(entity: object) -> dict[str, str]:
+    """A hero's ``{slot: ability}`` for the ``ESlot_Signature_*`` bindings."""
+    slots = dig(entity, "m_mapBoundAbilities")
+    if not is_str_mapping(slots):
+        return {}
+    prefix = _SLOT_PREFIX + _SIGNATURE
+    return {slot.removeprefix(_SLOT_PREFIX): _str(ability) for slot, ability in slots.items() if slot.startswith(prefix)}
+
+
+def bound(heroes: Mapping[str, object], defs: Mapping[str, object]) -> list[Bound]:
+    """Live heroes' signature bindings joined to ability stats; assert each resolves.
+
+    ``heroes`` and ``defs`` are the nested trees of ``heroes.vdata`` and
+    ``abilities.vdata`` (see ``deadlock.flatten.tree``).
+    """
+    defined = abilities(defs)
     result: list[Bound] = []
-    for hero, slots in sigs.items():
-        if disabled[hero]:
+    for hero, entity in heroes.items():
+        slots = signatures(entity)
+        if not slots or _bool(dig(entity, "m_bDisabled")):
             continue
         assert len(slots) == SIGNATURE_SLOTS, (hero, sorted(slots))
         for slot, ability in slots.items():
@@ -154,10 +143,10 @@ def _bool(value: object) -> bool:
 
 def main(argv: list[str]) -> None:
     [abilities_source] = argv[1:]
-    heroes = jsonl.load_lines(sys.stdin)
+    heroes = flatten.tree(jsonl.load_lines(sys.stdin))
     with Path(abilities_source).open() as defs_lines:
-        defs = jsonl.load_lines(defs_lines)
-        _ = sys.stdout.write(render(bound(heroes, defs)))
+        defs = flatten.tree(jsonl.load_lines(defs_lines))
+    _ = sys.stdout.write(render(bound(heroes, defs)))
 
 
 if __name__ == "__main__":

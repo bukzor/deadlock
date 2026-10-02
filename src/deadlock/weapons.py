@@ -1,6 +1,6 @@
 """Recompile ``weapons.tsv`` — each live hero's primary weapon — from data.
 
-Source: the committed, flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``.
+Source: the flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``, read as nested trees.
 Heroes bind a primary weapon to ``ESlot_Weapon_Primary``; the
 weapon's stats live in that entity's ``m_mapWeaponInfos.primary`` in
 ``scripts/abilities.vdata``. This table resolves that join for the live roster.
@@ -35,7 +35,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from . import flatten, jsonl
-from .types import is_str_mapping
+from .types import dig, is_str_mapping
 
 TEMPLATE_HERO = "hero_base"
 # A weapon's stats sit in ``m_mapWeaponInfos``, a map keyed by profile name.
@@ -76,29 +76,20 @@ def weapons(heroes: Mapping[str, object], abilities: Mapping[str, object]) -> li
     ``abilities.vdata`` (see ``deadlock.flatten.tree``).
     """
     for name, entity in abilities.items():
-        profiles = _dig(entity, "m_mapWeaponInfos")
+        profiles = dig(entity, "m_mapWeaponInfos")
         if is_str_mapping(profiles):
             assert set(profiles) <= {_INFO_KEY}, (name, sorted(profiles))
     result: list[Weapon] = []
     for hero, entity in heroes.items():
-        primary = _dig(entity, "m_mapBoundAbilities", "ESlot_Weapon_Primary")
-        if primary is None or hero == TEMPLATE_HERO or _bool(_dig(entity, "m_bDisabled")):
+        primary = dig(entity, "m_mapBoundAbilities", "ESlot_Weapon_Primary")
+        if primary is None or hero == TEMPLATE_HERO or _bool(dig(entity, "m_bDisabled")):
             continue
         weapon = _str(primary)
-        stats = _dig(abilities, weapon, "m_mapWeaponInfos", _INFO_KEY)
+        stats = dig(abilities, weapon, "m_mapWeaponInfos", _INFO_KEY)
         assert is_str_mapping(stats), (hero, weapon)
         values = {name: _num(stats[key]) for name, key in _resolved(hero, weapon, stats)}
         result.append(_weapon(hero, weapon, values))
     return sorted(result, key=lambda w: w.hero)
-
-
-def _dig(node: object, *keys: str) -> object:
-    """Follow ``keys`` through nested mappings; ``None`` if the path ends early."""
-    for key in keys:
-        if not is_str_mapping(node):
-            return None
-        node = node.get(key)
-    return node
 
 
 def _resolved(hero: str, weapon: str, stats: Mapping[str, object]) -> Iterable[tuple[str, str]]:

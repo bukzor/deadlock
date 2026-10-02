@@ -1,6 +1,6 @@
 """Recompile ``heroes.tsv`` — the per-hero base stat sheet — from data.
 
-Source: the committed, flattened ``data/gamedata.flat/scripts/heroes.jsonl``.
+Source: the flattened ``data/gamedata.flat/scripts/heroes.jsonl``, read as a nested tree.
 Each hero stores its full ``m_mapStartingStats`` (the compiled
 data materializes every stat per hero, not just overrides of ``hero_base``).
 
@@ -24,15 +24,13 @@ so a patch dropping a stat from one hero fails loudly.
 
 from __future__ import annotations
 
-import re
 import sys
-from collections.abc import Iterable, Mapping
+from collections.abc import Mapping
 from pathlib import Path
 
-from . import jsonl, loc
+from . import flatten, jsonl, loc
+from .types import dig, is_str_mapping
 
-_PATH = re.compile(r"^(hero_\w+)\.m_mapStartingStats\.(\w+)$")
-_ATTR = re.compile(r"^(hero_\w+)\.(m_\w+)$")
 
 # Which scalar hero fields to surface, and under what column name. Everything
 # else on the hero (models, particles, sounds, UI art) is noise in a stat sheet.
@@ -49,25 +47,23 @@ ATTRS: Mapping[str, str] = {
 }
 
 
-def stats(records: Iterable[Mapping[str, object]]) -> dict[str, dict[str, object]]:
-    """Per-hero ``{stat: value}`` maps, parsed from heroes.jsonl leaf records."""
+def stats(heroes: Mapping[str, object]) -> dict[str, dict[str, object]]:
+    """Per-hero ``{stat: value}`` maps, from the ``heroes.vdata`` tree (see ``deadlock.flatten.tree``)."""
     result: dict[str, dict[str, object]] = {}
-    for record in records:
-        match = _PATH.match(_str(record["path"]))
-        if not match:
-            continue
-        result.setdefault(match.group(1), {})[match.group(2)] = record["value"]
+    for hero, entity in heroes.items():
+        starting = dig(entity, "m_mapStartingStats")
+        if is_str_mapping(starting):
+            result[hero] = dict(starting)
     return result
 
 
-def attrs(records: Iterable[Mapping[str, object]]) -> dict[str, dict[str, object]]:
+def attrs(heroes: Mapping[str, object]) -> dict[str, dict[str, object]]:
     """Per-hero ``{column: value}`` maps for the ``ATTRS`` fields, if present."""
     result: dict[str, dict[str, object]] = {}
-    for record in records:
-        match = _ATTR.match(_str(record["path"]))
-        if not match or match.group(2) not in ATTRS:
-            continue
-        result.setdefault(match.group(1), {})[ATTRS[match.group(2)]] = record["value"]
+    for hero, entity in heroes.items():
+        present = {column: dig(entity, field) for field, column in ATTRS.items() if dig(entity, field) is not None}
+        if present:
+            result[hero] = present
     return result
 
 
@@ -104,17 +100,12 @@ def _cell(value: object) -> str:
     return str(value)
 
 
-def _str(value: object) -> str:
-    assert isinstance(value, str), value
-    return value
-
-
 def main(argv: list[str]) -> None:
     [names_source] = argv[1:]
-    records = list(jsonl.load_lines(sys.stdin))
+    heroes = flatten.tree(jsonl.load_lines(sys.stdin))
     with Path(names_source).open(encoding="utf-8-sig") as name_lines:
         names = loc.tokens(name_lines)
-    _ = sys.stdout.write(render(stats(records), attrs(records), names))
+    _ = sys.stdout.write(render(stats(heroes), attrs(heroes), names))
 
 
 if __name__ == "__main__":

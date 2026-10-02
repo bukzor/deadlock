@@ -1,6 +1,6 @@
 """Recompile ``item_bonuses.tsv`` — the stat bonuses each shop item grants — from data.
 
-Source: the committed, flattened ``data/gamedata.flat/scripts/abilities.jsonl``. This is the
+Source: the flattened ``data/gamedata.flat/scripts/abilities.jsonl``, read as a nested tree. This is the
 "what does it do" companion to ``deadlock.items`` (which gives cost/tier/slot).
 An item's passive stat bonuses are the ``m_mapAbilityProperties`` entries that
 carry an ``m_eProvidedPropertyType`` (the engine modifier they provide) — which
@@ -27,15 +27,13 @@ stats defaulting to 0, which would otherwise be ~46% noise.
 
 from __future__ import annotations
 
-import re
 import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 
-from . import jsonl
+from . import flatten, jsonl
+from .types import dig, is_str_mapping
 
-_ENTITY = re.compile(r"^(\w+)\.(.+)$")
-_PROP = re.compile(r"^m_mapAbilityProperties\.([^.]+)\.(m_eProvidedPropertyType|m_strValue)$")
 _MODIFIER_PREFIX = "MODIFIER_VALUE_"
 
 
@@ -49,30 +47,26 @@ class Bonus:
     value: str
 
 
-def bonuses(records: Iterable[Mapping[str, object]]) -> list[Bonus]:
-    """Provided-stat bonuses for every tiered item, sorted by (item, property)."""
-    fields: dict[str, dict[str, dict[str, object]]] = {}
-    is_item: set[str] = set()
-    for record in records:
-        entity = _ENTITY.match(_str(record["path"]))
-        if not entity:
-            continue
-        name, rest = entity.group(1), entity.group(2)
-        if rest == "m_iItemTier":
-            is_item.add(name)
-        prop = _PROP.match(rest)
-        if prop:
-            fields.setdefault(name, {}).setdefault(prop.group(1), {})[prop.group(2)] = record["value"]
+def bonuses(abilities: Mapping[str, object]) -> list[Bonus]:
+    """Provided-stat bonuses for every tiered item, sorted by (item, property).
+
+    ``abilities`` is the nested tree of ``abilities.vdata`` (see ``deadlock.flatten.tree``).
+    """
     result: list[Bonus] = []
-    for item in is_item:
-        for prop, sub in fields.get(item, {}).items():
-            if "m_eProvidedPropertyType" not in sub or "m_strValue" not in sub:
+    for item, entity in abilities.items():
+        if dig(entity, "m_iItemTier") is None:
+            continue
+        props = dig(entity, "m_mapAbilityProperties")
+        if not is_str_mapping(props):
+            continue
+        for prop, sub in props.items():
+            provided, raw = dig(sub, "m_eProvidedPropertyType"), dig(sub, "m_strValue")
+            if provided is None or raw is None:
                 continue
-            value = _value(sub["m_strValue"])
+            value = _value(raw)
             if value == "0":
                 continue
-            stat = _str(sub["m_eProvidedPropertyType"]).removeprefix(_MODIFIER_PREFIX)
-            result.append(Bonus(item, prop, stat, value))
+            result.append(Bonus(item, prop, _str(provided).removeprefix(_MODIFIER_PREFIX), value))
     return sorted(result, key=lambda b: (b.item, b.property))
 
 
@@ -98,8 +92,8 @@ def _str(value: object) -> str:
 
 
 def main() -> None:
-    records = jsonl.load_lines(sys.stdin)
-    _ = sys.stdout.write(render(bonuses(records)))
+    abilities = flatten.tree(jsonl.load_lines(sys.stdin))
+    _ = sys.stdout.write(render(bonuses(abilities)))
 
 
 if __name__ == "__main__":

@@ -1,8 +1,7 @@
 """Recompile ``ability_upgrades.tsv`` — what each signature ability upgrade does — from data.
 
-Source: the committed, flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``.
-Each ability's three
-upgrades (bought with ability points) live in ``m_vecAbilityUpgrades[tier]``,
+Source: the flattened ``data/gamedata.flat/scripts/{heroes,abilities}.jsonl``, read as
+nested trees. Each ability's three upgrades (bought with ability points) live in ``m_vecAbilityUpgrades[tier]``,
 whose ``m_vecPropertyUpgrades`` list each names a property and a flat bonus.
 This is the "what does leveling it do" companion to ``deadlock.abilities``,
 scoped to the same live signature abilities (via ``abilities.bound``).
@@ -24,19 +23,15 @@ accepted so its upgrade isn't silently dropped.
 
 from __future__ import annotations
 
-import re
 import sys
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import jsonl
+from . import flatten, jsonl
 from .abilities import bound
+from .types import dig, is_sequence
 
-_ENTITY = re.compile(r"^(\w+)\.(.+)$")
-_UPGRADE = re.compile(
-    r"^m_vecAbilityUpgrades\[(\d+)\]\.m_vecPropertyUpgrades\[(\d+)\]\.(m_strPropertyName|m_StrPropertyNAme|m_strBonus)$"
-)
 _NAME_KEYS = ("m_strPropertyName", "m_StrPropertyNAme")  # the second is a typo shipped in the data
 
 
@@ -50,25 +45,29 @@ class Upgrade:
     bonus: str
 
 
-def upgrades(records: Iterable[Mapping[str, object]], abilities: frozenset[str] | set[str]) -> list[Upgrade]:
-    """Named property upgrades for the requested abilities, sorted by (ability, tier, property)."""
-    # collate each (ability, tier, index) entry's name + bonus before pairing
-    entries: dict[tuple[str, int, int], dict[str, object]] = {}
-    for record in records:
-        entity = _ENTITY.match(_str(record["path"]))
-        if not entity or entity.group(1) not in abilities:
-            continue
-        upgrade = _UPGRADE.match(entity.group(2))
-        if upgrade:
-            key = (entity.group(1), int(upgrade.group(1)), int(upgrade.group(2)))
-            entries.setdefault(key, {})[upgrade.group(3)] = record["value"]
+def upgrades(defs: Mapping[str, object], abilities: frozenset[str] | set[str]) -> list[Upgrade]:
+    """Named property upgrades for the requested abilities, sorted by (ability, tier, property).
+
+    ``defs`` is the nested tree of ``abilities.vdata`` (see ``deadlock.flatten.tree``).
+    """
     result: list[Upgrade] = []
-    for (ability, tier, _), entry in entries.items():
-        name = next((entry[k] for k in _NAME_KEYS if k in entry), None)
-        if name is None or "m_strBonus" not in entry:
-            continue
-        result.append(Upgrade(ability, tier + 1, _str(name), _value(entry["m_strBonus"])))
+    for ability in abilities:
+        for tier, tier_upgrades in enumerate(_list(dig(defs, ability, "m_vecAbilityUpgrades"))):
+            for entry in _list(dig(tier_upgrades, "m_vecPropertyUpgrades")):
+                name = next((n for n in (dig(entry, k) for k in _NAME_KEYS) if n is not None), None)
+                bonus = dig(entry, "m_strBonus")
+                if name is None or bonus is None:
+                    continue
+                result.append(Upgrade(ability, tier + 1, _str(name), _value(bonus)))
     return sorted(result, key=lambda u: (u.ability, u.tier, u.property))
+
+
+def _list(value: object) -> Sequence[object]:
+    """``value`` as a sequence; empty when absent."""
+    if value is None:
+        return ()
+    assert is_sequence(value), value
+    return value
 
 
 def render(upgrades: Iterable[Upgrade]) -> str:
@@ -93,10 +92,10 @@ def _str(value: object) -> str:
 
 def main(argv: list[str]) -> None:
     [heroes_source] = argv[1:]
-    defs = list(jsonl.load_lines(sys.stdin))
+    defs = flatten.tree(jsonl.load_lines(sys.stdin))
     with Path(heroes_source).open() as heroes_lines:
-        heroes = jsonl.load_lines(heroes_lines)
-        signatures = {b.ability for b in bound(heroes, defs)}
+        heroes = flatten.tree(jsonl.load_lines(heroes_lines))
+    signatures = {b.ability for b in bound(heroes, defs)}
     _ = sys.stdout.write(render(upgrades(defs, signatures)))
 
 
