@@ -3,6 +3,7 @@ managed-by: Skill(llm-subtask)
 status: active
 ---
 
+- [ ] <https:todo.kb/2026-11-05-000-per-dll-dump-tree.md> — convar/concommand dump: `dlls.list` → `dlls.json/` → `dlls.tsv/` (design: `docs/dev/convar-dump.kb/output-views.md`)
 - [x] Convert the remaining flat-path regex modules to `flatten.tree` (nested dicts), following `weapons.py`; fix each module's stale "committed, flattened" docstring (flats are local-only) as it's touched
   - [x] `items.py` (`_PRICE`, `_ENTITY`, `_COMPONENT`)
   - [x] `levels.py` (`_PATH`)

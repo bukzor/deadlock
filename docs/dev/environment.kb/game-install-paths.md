@@ -22,6 +22,12 @@ Layout below `$DEADLOCK_HOME`:
   - `core/` — shared engine content (also paked).
   - `citadel_<lang>/` — localized content; **disregard non-English.**
   - `bin/win64/` — the Windows engine binaries.
+  - **Logs** (in `citadel/`, timestamps in local time, typed commands not echoed):
+    - `console.log` — the client console, incl. any in-process listen server
+      (`[Server]` lines). Exists only because the Steam launch options here are
+      `-console -condebug`; truncated at each launch.
+    - `citadel_local_server.log` — the local bot match's dedicated child
+      process (`-con_logfile`; see `../game-runtime.kb/local-bot-match.md`).
 - **Version markers** (`citadel/steam.inf`): `ClientVersion`/`ServerVersion`
   (e.g. 6583), `SourceRevision`, `VersionDate`. Use these to label a manifest
   snapshot when diffing patches.

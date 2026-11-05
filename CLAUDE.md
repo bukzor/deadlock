@@ -31,7 +31,7 @@ binary, to: diff patch changes precisely, understand game mechanics from data
 
 ## Knowledge bases (`docs/dev/`)
 
-Three `llm-kb` knowledge bases, each a directory of per-topic files — `ls` them
+Five `llm-kb` knowledge bases, each a directory of per-topic files — `ls` them
 to see the full range; read the one whose name matches before acting.
 
 - `decisions.kb/` — why the project is built the way it is, one file per choice:
@@ -43,3 +43,9 @@ to see the full range; read the one whose name matches before acting.
 - `environment.kb/` — facts about this host and the game install that the code
   depends on (game-install paths, host Alpine/musl + gcompat quirks, the pinned
   toolchain).
+- `game-runtime.kb/` — how the running game behaves (console, cvars, listen vs
+  dedicated server, local bot-match hosting), dug out of binary strings and
+  console logs. Read before driving or configuring the live game.
+- `convar-dump.kb/` — design of our own offline convar/concommand dumper (how
+  the engine registers cvars, the capture approach and the options it beat,
+  validation). Read before building or changing it.
