@@ -75,6 +75,6 @@ Evidence, build 6854 (`../../probes/hook_probe3.py`, 2026-11-05), `server.dll`:
   client (`host_timescale`, `violence_*`).
 
 > [!QUESTION] Whether those 11 are `server`'s reference declarations, filled in
-> when the owning DLL registers; whether every in-scope DLL replays before its
+> when the owning DLL registers; whether every DLL with a queue replays before its
 > `Init` stops; and whether tier0's own queue (`find`, `cvarlist`) needs tier0's
 > `Init`.

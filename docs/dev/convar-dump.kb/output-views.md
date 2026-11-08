@@ -1,46 +1,71 @@
-# Output: a comprehensive dump per DLL; TSV views derived from it
+# Output: a lossless store of data about the DLLs; views derived from it
 
 Per `../decisions.kb/commit-diffable-data-let-git-diff.md`, shaped like the
 existing `gamedata` pipeline (`gamedata.list` → `gamedata.json/` →
-`gamedata.tsv/`). Agreed with the user 2026-11-05.
+`gamedata.tsv/`). Convars and concommands are the first purpose, not the
+store's shape. A **facet** is one side of a DLL that one producer dumps (its
+file, its load, its convar queue); each facet is dumped losslessly for every
+DLL, and a purpose is a filter or view over the store, so the store stays
+valid for the next question about DLLs.
 
-> [!TODO] The layout:
+> [!TODO] The layout, facet-first under one root, one process per (facet, DLL):
 >
-> - `data/dlls.list` (gitignored, like `gamedata.list`): every DLL in scope
->   (`dll-coverage.md`) minus the exclusion list, one path per line relative to
->   `game/`. DLL basenames are unique across `bin/win64` and
->   `citadel/bin/win64` (6854), so a basename keys everything below.
-> - `data/dlls.json/default.json.do` (gitignored: near-verbatim Valve data): one
->   DLL → one JSON document, from the Windows-side scanner
->   (`windows-python-host.md`) on stdout. Guard: the name must be in
->   `dlls.list`; anything else fails loudly. One process per DLL, no input but
->   the DLL and the pinned build knowledge, so targets are independent and
->   `redo -j` runs them in parallel.
-> - `data/dlls.tsv/default.tsv.do` (committed `*.tsv`): a case table of views,
->   as `gamedata.tsv/default.tsv.do` has. Each view calls `redo-ifchange` once
->   over every `dlls.json/<dll>.json` named in `dlls.list` (one call, so redo
->   parallelises), then runs a WSL-side `deadlock.<view>` module with tests.
->   First views: `convars.tsv`, `concommands.tsv`.
+> - `data/dlls.list` (gitignored, like `gamedata.list`): membership only, every
+>   `*.dll` under `game/`, one path per line relative to `game/`. DLL basenames
+>   are unique (97 DLLs, 6860), so a basename keys everything below. Nothing
+>   that changes on a patch goes here: every atom depends on this file, so a
+>   size or hash in it would re-run them all.
+> - `data/dlls/<facet>/default.json.do` (gitignored: near-verbatim Valve data):
+>   one facet of one DLL → one JSON document; `$2` is the basename. Guard: the
+>   name must be in `dlls.list`, and for a load-time facet `load/<dll>.json`
+>   must say `ok`; anything else fails loudly. No input but the DLL and the
+>   pinned build knowledge, so atoms are independent and `redo -j` runs them in
+>   parallel. Process overhead is ~0.2 s per atom (6860,
+>   `../probes/load_time.py`).
+> - `data/dlls/default.tsv.do`: a case table on the facet, as
+>   `gamedata.dense.tsv/default.tsv.do` has. Each calls `redo-ifchange` once
+>   over its facet's documents (one call, so redo parallelises), then runs a
+>   WSL-side `deadlock.dlls_<facet>` module with tests, writing `<facet>.tsv`, the
+>   facet's lossless aggregate. Committed per facet; `convars.tsv` and
+>   `concommands.tsv` are.
 
-The per-DLL JSON is the lossless record and grows by sections: `convars` and
-`concommands` first, later interfaces, logging channels, schemas as needed. Each section is a
+> [!TODO] The first facets: `file` (size, sha256), `load` (outcome: `ok` with
+> the modules the load pulled in, `failed` with the error, or `excluded` with
+> its reason; `dll-coverage.md`), `convars`, `concommands`. Later: `pe` (static
+> PE metadata; relocations and `.pdata` as count + hash, the rest whole: 14 MB
+> for all 97 in `pefile`'s own shape, 6860, `../probes/pe_size.py`),
+> `interfaces` (the `InterfaceReg` list), logging channels, schemas.
+
+A `convars` or `concommands` document is the lossless record of one queue: a
 list in queue order, every declaration kept, duplicates included: on 6854
 `server.dll` alone declares `developer` and three `citadel_*_reveal_duration`
-more than once (2008 declarations, 2003 names). Plain JSON, not JSONL: it is
-loaded whole, small (~2500 entries for `server`), and its sections have
-different shapes; the same call `gamedata.json/` made (commit `da6d907`).
+more than once (2008 declarations, 2003 names). Commands are their own facet,
+not convars: separate creation struct, queue, registration slot and registry
+(`registration-flow.md`). Plain JSON, not JSONL: a document is loaded whole and
+small (~2000 entries for `server`); the same call `gamedata.json/` made
+(commit `da6d907`).
 
 > [!TODO] JSON content rules: no addresses (ASLR makes them differ per run);
 > each entry carries its queue index; flags as names, unknown bits as
 > `flag_<n>`; values decoded by type, anything undecodable kept as hex, never
-> dropped. Commands are their own section, not convars: separate creation
-> struct, queue, registration slot and registry (`registration-flow.md`).
+> dropped.
 
-> [!TODO] Views: one row per declaration, sorted by (name, module, index),
-> lossless and diffable; a DLL's patch shows as its rows. Columns, convars:
-> name, module, index, type, default, min, max, flags, help; commands: name,
-> module, index, flags, help. Rows the engine never shows make a diff slightly
-> over-sensitive, never blind.
+> [!TODO] The `convars` and `concommands` aggregates: one row per declaration,
+> sorted by (name, module, index), lossless and diffable; a DLL's patch shows
+> as its rows. Columns, convars: name, module, index, type, default, min, max,
+> flags, help; commands: name, module, index, flags, help. Rows the engine
+> never shows make a diff slightly over-sensitive, never blind.
+
+> [!QUESTION] The aggregates' `index` column. Queue position follows link
+> order, so one declaration added early in a DLL shifts every later index in
+> it (~1000 changed rows for one change in `server.dll`), which breaks "one
+> meaningful change ≈ one changed line". Proposed: the name's occurrence within
+> its DLL (0 first, 1 its first duplicate) in the TSV, the queue index kept in
+> the JSON. Settle before the first commit: past builds can't be re-rendered,
+> since Steam overwrites the DLLs and the JSON is gitignored.
+
+A per-DLL overview, `data/dlls.tsv` (one row per DLL, scalars joined across
+facets), is a later view, built when a question needs it.
 
 The engine's merged view ("as the engine sees it") is a later, separate view
 over the same JSON. It derives from the declarations but they can't be

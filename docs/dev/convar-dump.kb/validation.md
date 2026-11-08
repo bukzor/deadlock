@@ -16,8 +16,8 @@ from checks that fail loudly, not from the dumper's author.
   `developmentonly` command, `citadel_lane_swap_available_duration_prematch` a
   `replicated cheat` convar, `find` a tier0 command. These also decide which
   stride is which. (The first three pass on 6848, `find` on 6851.)
-- **Coverage:** every DLL in scope (`dll-coverage.md`) is scanned or on the
-  exclusion list; `engine2`, `client` and `server` each yield both queues.
+- **Coverage:** every DLL (`dll-coverage.md`) has a `load` record, and every
+  `ok` one is scanned; `engine2`, `client` and `server` each yield both queues.
 - **Oracle:** the non-`developmentonly` entries equal the engine's own
   `cvarlist` (`capture-approach.kb/runtime-cvarlist.md`) for the same build, on
   name, flags, and default. The only check that catches a DLL whose queue the

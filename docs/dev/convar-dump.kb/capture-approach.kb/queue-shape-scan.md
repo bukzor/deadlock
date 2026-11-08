@@ -16,7 +16,7 @@ Two passes:
    single block can't fix a stride — schema/datamap objects also lead with name
    pointers and admitted dozens of false positives — so this pass needs a DLL
    with multi-block queues.
-2. **Scan every in-scope DLL (`../dll-coverage.md`) at those two strides**, any
+2. **Scan every DLL that loads (`../dll-coverage.md`) at those two strides**, any
    length, keeping a head only if every entry's last qword (the `ConVar` /
    command ref the static initializer queued) points into that DLL's own
    writable sections.
