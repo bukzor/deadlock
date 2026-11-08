@@ -15,3 +15,7 @@ DLL search: add `game/bin/win64` and `game/citadel/bin/win64` with
 
 The script prints its dump to stdout; the WSL side owns everything after that
 (`output-views.md`).
+
+> [!TODO] `bin/winpy` is the one entry point: `src/` on `PYTHONPATH` via
+> `WSLENV`, cwd a scratch dir, a timeout. A host without `python.exe` fails the
+> build loudly: `all.do` never skips the DLL views.
