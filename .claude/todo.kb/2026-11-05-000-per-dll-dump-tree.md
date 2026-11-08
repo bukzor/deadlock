@@ -101,7 +101,7 @@ WSL pytest drives it with a fake. It must be 3.12-compatible (WSL pins 3.12).
 | `reglist` | the reg-list queue: `walk(mem, head, stride, image)` → entry addresses in replay order (or `None` on misfit); `find_heads(mem, image, stride)` over writable sections with the owner check; `learn_strides` (pass 1); `STRIDES = {convars: 160, concommands: 64}` pinned |
 | `flags` | FCVAR bit → name (s2sdk `convar.h`, lowercased, unprefixed, DumpSource2 spelling), unknown bits → `flag_<n>` |
 | `values` | the binary's `EConVarType` table; decodes `CVValue_t` bytes by type to a JSON value, anything undecodable to hex |
-| `entries` | `decode_convar(mem, addr, image)` / `decode_concommand(…)`: creation-struct offsets → `{index, name, help, flags, type, default, min, max}` / `{index, name, help, flags}`; every shape check from `validation.md` raises `ShapeError` |
+| `entries` | `decode_convar(mem, addr, image)` / `decode_concommand(…)`: creation-struct offsets → `{name, help, flags, type, default, min, max}` / `{name, help, flags}` (queue index is list position, never a field); every shape check from `validation.md` raises `ShapeError` |
 | `document` | the `TypedDict`s of every facet's document; `deadlock` imports them, so pyright checks both sides of the process boundary |
 | `win32` | the only Windows-only module (ctypes): `add_dll_directory` both bin dirs and the DLL's own, `LoadLibraryExW` → base, loaded-module list, `ReadProcessMemory` as the `read` callable, `hard_exit(code)`: flush stdout, then `TerminateProcess` (skips DLL detach / static destructors) |
 | `__main__` | CLI, one subcommand per load-time facet: `load DLL`, `convars DLL`, `concommands DLL` print that facet's document; `strides DLL` learns and compares to the pinned values. Any exception → message on stderr, `hard_exit(1)` |
@@ -131,7 +131,7 @@ the DLL facets, never skips them.
 | `dll_inventory` | prints `dlls.list`: every `*.dll` under `game/`, sorted, basenames asserted unique |
 | `dll_file` | the `file` facet |
 | `dll_load` | `EXCLUDED: dict[basename, reason]`, the `excluded` record; `helpsystem`, `assetpreview`, `propertyeditor`, `toolframework2` hang in `LoadLibrary` (unkillable process, 6851) |
-| `dlls_<facet>` | one aggregator per facet: that facet's documents → `<facet>.tsv`, sorted, cells escaped |
+| `dlls_<facet>` | one aggregator per facet: that facet's documents → `<facet>.tsv`, sorted, cells escaped; `convars`/`concommands` keep queue order within a module (test: row ordinal = list position) |
 | `registry_check` (later) | `registry` vs `convars`: every once-declared name's type, flags minus the per-DLL flag, and default |
 
 ## Implementation Steps
@@ -191,13 +191,6 @@ on another prototype.
 
 ## Open Questions
 
-- The TSV's `index` column. Queue position follows link order, so one convar
-  added early in a DLL shifts every later index: ~1000 changed lines for one
-  change in `server.dll`. Proposed: in the aggregate, replace it with the
-  occurrence of the name within its DLL (0 first, 1 its first duplicate); the
-  per-DLL JSON keeps the queue index. Decide before the first commit of the
-  TSVs: past builds can't be re-rendered (Steam overwrites the DLLs, the
-  JSON is gitignored).
 - `convars` and `concommands` as two facets, or one `reglists` facet: two
   atoms scan the same writable sections twice. Merge if `find_heads` on
   `server.dll` turns out slow.

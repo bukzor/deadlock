@@ -46,23 +46,22 @@ small (~2000 entries for `server`); the same call `gamedata.json/` made
 (commit `da6d907`).
 
 > [!TODO] JSON content rules: no addresses (ASLR makes them differ per run);
-> each entry carries its queue index; flags as names, unknown bits as
-> `flag_<n>`; values decoded by type, anything undecodable kept as hex, never
-> dropped.
+> flags as names, unknown bits as `flag_<n>`; values decoded by type, anything
+> undecodable kept as hex, never dropped.
 
 > [!TODO] The `convars` and `concommands` aggregates: one row per declaration,
-> sorted by (name, module, index), lossless and diffable; a DLL's patch shows
-> as its rows. Columns, convars: name, module, index, type, default, min, max,
-> flags, help; commands: name, module, index, flags, help. Rows the engine
-> never shows make a diff slightly over-sensitive, never blind.
-
-> [!QUESTION] The aggregates' `index` column. Queue position follows link
-> order, so one declaration added early in a DLL shifts every later index in
-> it (~1000 changed rows for one change in `server.dll`), which breaks "one
-> meaningful change ≈ one changed line". Proposed: the name's occurrence within
-> its DLL (0 first, 1 its first duplicate) in the TSV, the queue index kept in
-> the JSON. Settle before the first commit: past builds can't be re-rendered,
-> since Steam overwrites the DLLs and the JSON is gitignored.
+> lossless and diffable; a DLL's patch shows as its rows. Columns, convars:
+> module, name, type, default, min, max, flags, help; commands: module, name,
+> flags, help. Rows the engine never shows make a diff slightly
+> over-sensitive, never blind.
+>
+> Queue position is never stored as a value, in the JSON or the TSV: it is
+> position. A document's list is in queue order, and an aggregate's rows are
+> sorted by module, then in queue order, so a row's ordinal among its module's
+> rows is its queue index, and a test checks the two match. Queue order follows
+> link order, so a stored index would make one declaration added early in a DLL
+> renumber every later row (~1000 in `server.dll`); as position, it is one
+> added row. Order changes still show, as moved rows.
 
 A per-DLL overview, `data/dlls.tsv` (one row per DLL, scalars joined across
 facets), is a later view, built when a question needs it.
