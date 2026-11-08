@@ -26,7 +26,7 @@ Two passes:
 > check target that re-learns them from `server.dll` and fails the build if
 > they moved.
 
-Evidence, pass 1, build 6848 (`scratchpad/convar_scan.py`, 2026-11-05):
+Evidence, pass 1, build 6848 (`../../probes/convar_scan.py`, 2026-11-05):
 
 | DLL | convar queue (stride 160) | command queue (stride 64) |
 |---|---|---|
@@ -41,8 +41,8 @@ checked (`citadel_bot_kick` `0x100000002` = developmentonly|defensive;
 `citadel_lane_swap_available_duration_prematch` `0x6000` = replicated|cheat),
 and help strings match.
 
-Evidence, pass 2, build 6851 (`scratchpad/fixed_stride_scan.py`, results in
-`scratchpad/fixed_stride_6851.jsonl`, 2026-11-05), strides fixed at 160/64 over
+Evidence, pass 2, build 6851 (`../../probes/fixed_stride_scan.py`, results in
+`../../probes/fixed_stride_6851.jsonl`, 2026-11-05), strides fixed at 160/64 over
 the 42 DLLs that load: 35 yield queues, 6 yield none. 6221 convar and 1417
 command declarations — 1503 and 277 more than the three DLLs above. `server` and
 `client` counts are unchanged from 6848. `tier0` has its own queues (24

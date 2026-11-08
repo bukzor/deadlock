@@ -98,8 +98,7 @@ developmentonly) would presumably abandon a hung match eventually. Because
 `player_slot` = team base + member count, and you're the only real member, you're
 always slot 0 → lane 1. Commands cap at 511 chars (client.dll 0xca34bf).
 
-`~/claude/deadlock/scratchpad/local_lobby.py` is now cut down to the one useful
-part: a single-member payload with `--team` and hero (`citadel_start_local_bot_match`).
+`../probes/local_lobby.py` builds a single-member payload with `--team` and hero (`citadel_start_local_bot_match`).
 
 ## `citadel_create_unit`: random-hero bots inside a lobby match (untested)
 

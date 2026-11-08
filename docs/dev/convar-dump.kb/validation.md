@@ -25,6 +25,6 @@ from checks that fail loudly, not from the dumper's author.
 - **Registry readback:** for `server` and `client`, every queue entry is a
   registration call, and each name declared once decodes, from the queue, to
   the type, flags (minus the per-DLL flag) and default tier0's own registry
-  holds (`capture-approach.kb/icvar-hook.md`; `scratchpad/hook_probe3.py` does
+  holds (`capture-approach.kb/icvar-hook.md`; `../probes/hook_probe3.py` does
   the readback). Checks the value decoding against the engine, not against our
   reading of the SDK. Run on demand, and on each new build.

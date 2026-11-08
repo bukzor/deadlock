@@ -21,5 +21,4 @@ it departs from `reuse-existing-parsers.md`, which a later agent would otherwise
 "fix".
 
 Prior art (read, not run): DumpSource2 at `00759ce`, s2sdk `deadlock` branch at
-`18139bd`. Clones live in the gitignored `trash/`; re-clone rather than trusting
-a stale one.
+`18139bd`. Clone them fresh into the gitignored `trash/` when needed.

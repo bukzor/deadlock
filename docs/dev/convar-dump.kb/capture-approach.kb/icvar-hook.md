@@ -17,7 +17,7 @@ Two pieces remove hard-coded slots and names:
   (hidden return pointer).
 - **Interface names from the DLL's own requests** to our factory.
 
-Evidence, build 6851 (`scratchpad/hook_probe2.py`, 2026-11-05), factory serving
+Evidence, build 6851 (`../../probes/hook_probe2.py`, 2026-11-05), factory serving
 tier0 only. Controls: a `GetTier` call through the hooked object is logged; the
 DLL asks for `VEngineCvar007` and gets the hooked object; and, independent of the
 hook, each queue entry's result slot (`*pCvarData`, `*m_Command`) is snapshotted
@@ -39,7 +39,7 @@ Slots 38 and 42 are where s2sdk's `icvar.h` declaration order puts
 17, 23, 40, 41) are its `FindConVar`, change/filter callbacks, `FindConCommand`,
 `LockConVarValueInitialisation` and `GetConVarData`.
 
-The 6848 decline (`scratchpad/convar_probe.py`) was an artifact: it read the
+The 6848 decline (`../../probes/convar_probe.py`) was an artifact: it read the
 log only after `Init` returned, and `Init` raised, so the calls went unseen; its
 other signal, an unchanged queue head, can't show a replay, since s2sdk's
 `RegisterAll` leaves the blocks in place (`convar.cpp:161`).
@@ -53,7 +53,7 @@ Against: calls into each DLL's `Init` with most of the engine missing, which
 crashes; a DLL whose `Init` faults before its replay yields nothing. Depends on
 the `IAppSystem` slot order (`Connect` 0, `Init` 3).
 
-Evidence, build 6854 (`scratchpad/hook_probe3.py`, 2026-11-05), `server.dll`:
+Evidence, build 6854 (`../../probes/hook_probe3.py`, 2026-11-05), `server.dll`:
 
 - **Placeholder factory.** Every name tier0 can't serve gets its own object
   whose stubs log and return 0 during `Connect`, and trap (`ud2`) during
