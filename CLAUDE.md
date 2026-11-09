@@ -24,6 +24,12 @@ binary, to: diff patch changes precisely, understand game mechanics from data
   (`~/.claude/reference.kb/python/`).
 - Tests live beside their module as `{module}_test.py`, Describe/it naming;
   doctests run automatically. Observe every assertion fail before trusting it.
+- Look facts up in the committed TSVs (one row per record, a header, grep by
+  name): `data/gamedata.tsv/` for hero/item/ability stats, `data/dlls/*.tsv` for
+  the DLLs — `convars.tsv`/`concommands.tsv` hold every declaration's type,
+  default, range, flags and help. `data/convars.md`, `data/concommands.md` and
+  `data/dlls/load.tree.txt` render the same rows for humans (local, possibly
+  stale); the per-DLL JSON documents hold nothing the TSVs don't.
 - Generated output goes under `data/` and is regenerated with `redo`. Only the
   transformative TSV views and the build stamp are committed; the raw extracts
   (flats, manifest), assets, and vendored tools are gitignored — never commit

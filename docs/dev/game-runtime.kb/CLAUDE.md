@@ -9,6 +9,11 @@ may change a cvar, which cfg the server execs and when, how a local match is
 hosted). Cite the evidence (binary + string, or log + line/timestamp) and the
 build it was observed on; mark inference as such — these change with patches.
 
+A cvar's or command's declared type, default, range, flags and help are already
+extracted: grep `data/dlls/convars.tsv` or `concommands.tsv` (current build)
+before digging through strings, and cite the row. Files here are for behavior
+the declarations don't show.
+
 What does not: on-disk formats (`formats.kb/`), install paths and host quirks
 (`environment.kb/`), why the project is built a certain way (`decisions.kb/`).
 
