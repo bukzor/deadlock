@@ -232,8 +232,8 @@ on another prototype.
 - `convars` and `concommands` as two facets, or one `reglists` facet: two
   atoms scan the same writable sections twice. Merge if `find_heads` on
   `server.dll` turns out slow.
-- The engine's merged view (later, separate): the merge rule, the 5
-  unexplained flag changes, the 11 zero defaults, whether tier0's own queue
+- The engine's merged view (later, separate): the merge rule
+  (tier0's flag changes are measured: `data/dlls.check/registry`), the 11 zero defaults, whether tier0's own queue
   (`find`, `cvarlist`) registers only in tier0's `Init`, its scope (all DLLs
   is the default). All in `output-views.md` / `icvar-hook.md` `[!QUESTION]`s.
 

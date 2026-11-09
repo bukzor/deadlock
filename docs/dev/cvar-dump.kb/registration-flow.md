@@ -32,7 +32,8 @@ consistent with DumpSource2's comments; build 6848.
 Retail hiding is a flag, not absence: `developmentonly` entries are registered
 like any other (DumpSource2 dumps 3055 such convar lines for 6848), and
 `ICvar::StripDevelopmentFlags` exists. `ConVar_Register`'s per-DLL flag adds
-`gamedll` (server) or `clientdll` (client).
+`gamedll` (0x4, server) or `clientdll` (client) to every registration but a
+`reference` declaration's (6860, `validation.md`, "Registry readback").
 
 Entry sizes on 6848 and 6851, measured from the queues: `ConVarRegList::Entry_t`
 160 bytes, `ConCommandRegList::Entry_t` 64 (`capture-approach.kb/queue-shape-scan.md`).
@@ -52,7 +53,8 @@ The padding holds stale stack bytes (pointer fragments too). In all 30 convar
 queues (6223 entries), a present value's bytes past its type's size are zero,
 and an absent one (has-byte 0) is 16 zero bytes. has-default is 0 on exactly the
 `reference` declarations (181); for those tier0's registry holds the type's
-zero value and version -1.
+zero value, version -1, and the declared flags without `developmentonly
+defensive` (`capture-approach.kb/icvar-hook.md`).
 
 `m_eVarType` is the row index of tier0's type-traits table (`.data`, RVA
 `0x398610`, 88-byte rows: name pointer, byte size, …), not s2sdk's enum, which

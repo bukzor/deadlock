@@ -34,8 +34,8 @@ ref keeps the owner check (`capture-approach.kb/queue-shape-scan.md`).
 
 The hook (`capture-approach.kb/icvar-hook.md`) works (`Init` runs the replay)
 but adds no declarations. It is the instrument for the engine's side: the value
-layout was fit against its registry readback, and the readback check
-(`validation.md`) and the engine's merged view (`output-views.md`) are its later
-uses.
+layout was fit against its registry readback, the readback check
+(`validation.md`) runs it on demand, and the engine's merged view
+(`output-views.md`) is its later use.
 
 The candidates, chosen and declined alike, are in `capture-approach.kb/`.

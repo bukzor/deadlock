@@ -84,11 +84,14 @@ The engine's merged view ("as the engine sees it") is a later, separate view
 over the same JSON. It derives from the declarations but they can't be
 recovered from it: the registry keeps one entry per name.
 
-> [!QUESTION] The merge rule, and tier0's flag changes at registration, needed
-> by that view. Known on 6854 (`server.dll`): the registry adds the per-DLL flag
-> (`gamedll`, 0x4) to 1978 declarations, `developmentonly|defensive` to 20
-> instead (s2sdk's `SanitiseConVarFlags`), something else to 5. DumpSource2's
-> `MergeQueued` OR's flags except `cheat|replicated|dontrecord|archive|per_user`
+Registration's own flag changes are known: the per-DLL flag, except on a
+`reference` declaration, which loses `developmentonly defensive` instead
+(6860, `registration-flow.md`; checked by `validation.md`'s registry readback,
+which compares only the names a DLL declares once).
+
+> [!QUESTION] The merge rule for a name declared more than once, needed by
+> that view. DumpSource2's `MergeQueued` OR's flags except
+> `cheat|replicated|dontrecord|archive|per_user`
 > (later declaration wins) and takes the first default/min/max/help; tier0's
 > own conflict warnings (strings beside `VEngineCvar007`, 6851) say "parent
 > wins" on help, on default, and on conflicting `CHEAT`/`REPLICATED`/

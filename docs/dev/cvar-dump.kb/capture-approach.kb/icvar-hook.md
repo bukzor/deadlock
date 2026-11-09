@@ -65,18 +65,41 @@ Evidence, build 6854 (`../../probes/hook_probe3.py`, 2026-11-05), `server.dll`:
   `IPulseSystem_001` slot 52.
 - **Readback.** `FindFirstConVar`/`FindNextConVar` (12/13) skip hidden entries:
   785 of 2003, none `developmentonly`/`defensive`. `GetConVarData` (41) over
-  access indices 0.. yields all 2003, the queue's names exactly; commands via 44,
-  494 against the queue's 493. The `ConVarData` layout is s2sdk's, but
-  `EConVarType` has `int8`, `uint8` after `bool` (float32 is 9, string 11).
-  Registry flags are the queue's OR `gamedll` (0x4) for 1978; 20 gain
-  `developmentonly|defensive` instead (s2sdk's `SanitiseConVarFlags`); 5 others
-  unexplained. 1991 of 2002 defaults match GameTracking's DumpSource2 dump; the
-  11 that differ read zero where upstream has a value, all named for engine2 or
-  client (`host_timescale`, `violence_*`).
+  access indices 0.. yields all 2003, the queue's names exactly; commands via 44.
+  The `ConVarData` layout is s2sdk's, but `EConVarType` has `int8`, `uint8`
+  after `bool` (float32 is 9, string 11). 1991 of 2002 defaults match
+  GameTracking's DumpSource2 dump; the 11 that differ read zero where upstream
+  has a value, all named for engine2 or client (`host_timescale`, `violence_*`).
 
 Those 11 are `server`'s `reference` declarations: their has-default byte is 0,
 and for such a declaration tier0's registry holds the type's zero value and
 version -1 (6860, `../registration-flow.md`, "The convar entry's layout").
 
-> [!QUESTION] Whether every DLL with a queue replays before its `Init` stops;
-> and whether tier0's own queue (`find`, `cvarlist`) needs tier0's `Init`.
+The readback is built, without the vtable hook, as the registry readback check
+(`dllscan registry`; `../validation.md`, "Registry readback"). On 6860 it
+establishes, for `server` and `client`:
+
+- **Both replay their whole queues** before `Init` stops (`server` at
+  `IPulseSystem_001`, `client` at `RenderDevice003`): each registry holds
+  exactly the queue's distinct names (2003 convars and 493 commands, 2234 and
+  428), so none of tier0's own queue (3 convars, 24 commands): the cvar
+  system's `Connect` doesn't register it. A walk ends where `GetConVarData`
+  returns null, or where `GetConCommandData` returns what the invalid index
+  0xFFFF does: a shared tier0 `<unknown>` record, which 6854's count of 494
+  commands included.
+- **Registration's flag rule.** A once-declared entry registers with its
+  declared flags plus the per-DLL flag (`../registration-flow.md`); 4 and 76
+  convars and 6 and 8 commands declare it already. A `reference` declaration
+  (19 and 69) instead registers without `developmentonly defensive`, the
+  flags s2sdk's `SanitiseConVarFlags` put on the declaration, and gets no
+  per-DLL flag. Besides, one convar per DLL carries tier0's runtime bits
+  `initial_setvalue performing_callbacks` after `Init`
+  (`citadel_hero_release_vote_august_2025_debug_votes_cast_total`,
+  `r_citadel_shadow_quality`).
+
+> [!QUESTION] Why that one convar per DLL carries `initial_setvalue
+> performing_callbacks`.
+
+> [!QUESTION] Whether every other DLL with a queue replays before its `Init`
+> stops; and whether tier0's `Init` registers tier0's own queue (`find`,
+> `cvarlist`).
