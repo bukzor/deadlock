@@ -4,7 +4,7 @@ import pytest
 
 from .facets import ANCHORS, concommands, dumps, load_failed, load_ok, strides
 from .reglist import BLOCK, STRIDES
-from .reglist_test import Fake
+from .reglist_fake import Fake
 from .shape import ShapeError
 from .win32 import Win32Error
 

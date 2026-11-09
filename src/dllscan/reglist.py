@@ -118,13 +118,12 @@ def _fits(mem: Memory, entry: int, stride: int, image: Image, ref_test: RefTest)
     )
 
 
-def find_queues(mem: Memory, image: Image, stride: int) -> list[Queue]:
-    """Every head in the image's writable sections whose queue fits at `stride`,
-    a pinned one, under its kind's `REF_TESTS` entry, in address order. A DLL has
-    at most one queue per kind: a second one shows up as a second element, for
-    the caller to reject."""
-    (kind,) = (k for k, s in STRIDES.items() if s == stride)
-    ref_test = REF_TESTS[kind]
+def find_queues(mem: Memory, image: Image, kind: str) -> list[Queue]:
+    """Every head in the image's writable sections whose queue fits `kind`, a
+    `STRIDES` key (its stride and its `REF_TESTS` entry), in address order. A DLL
+    has at most one queue per kind: a second one shows up as a second element,
+    for the caller to reject."""
+    stride, ref_test = STRIDES[kind], REF_TESTS[kind]
     return [Queue(head, stride, e) for head, root in _candidates(mem, image) if (e := walk(mem, root, stride, image, ref_test))]
 
 

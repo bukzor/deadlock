@@ -173,6 +173,7 @@ on another prototype.
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-013-reglist-per-kind-ref-check.md>)
   - [x] Evidence (6860): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-007-rendersystemdx11-owner-check-evidence.md>
 - [ ] Decode the value fields against the engine (`dllscan.values`, `dllscan.entries`)
+  - [~] Fit the layout (research): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-018-convar-value-layout-fit.md>
   - [ ] Find `ConVarValueInfo_t`'s offsets inside the 160-byte entry (s2sdk
         `convar.h:630-730`: version, has-default/min/max, three `CVValue_t`,
         callbacks, `m_eVarType`; s2sdk's copy is stale on the type enum, so
@@ -206,9 +207,9 @@ on another prototype.
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-012-dlls-facet-aggregates.md>: all but `convars`)
 - [x] A document's `module` is the listed basename, case kept
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-014-module-is-the-listed-basename.md>)
-- [ ] `reglist.find_queues(mem, image, kind)` instead of a stride, and
-      `reglist_test.py` under 300 lines (move `Fake` to `reglist_fake.py`):
-      both edit `facets*`, so after 014 (013's Open Questions)
+- [x] `reglist.find_queues(mem, image, kind)` instead of a stride, and
+      `reglist_test.py` under 300 lines (move `Fake` to `reglist_fake.py`)
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-017-find-queues-by-kind-and-reglist-fake.md>)
 - [x] Commit the tree's prior uncommitted work
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-015-commit-prior-uncommitted-work.md>)
 - [x] `data/dlls.check/strides.do`; checks `validation.md` lists but no target

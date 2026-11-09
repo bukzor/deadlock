@@ -54,7 +54,7 @@ def concommands(mem: Memory, image: Image, dll: str) -> ConCommandsDocument:
     """The command queue of the image loaded from `dll` (a Windows path),
     decoded; empty if it has none, `ShapeError` if it has two. `module` is
     `dll`'s basename as given, case kept: the key into `data/dlls.list`."""
-    queues = find_queues(mem, image, STRIDES["concommands"])
+    queues = find_queues(mem, image, "concommands")
     if len(queues) > 1:
         raise ShapeError("more than one concommands queue", [hex(q.head) for q in queues])
     entries = [decode_concommand(mem, entry, image) for q in queues for entry in q.entries]

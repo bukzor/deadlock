@@ -2,85 +2,13 @@ import struct
 
 import pytest
 
-from .image import Image, read_image
-from .image_fake import FakeSection, loaded
 from .memory import Memory
 from .reglist import BLOCK, REF_TESTS, STRIDES, UNREGISTERED, Queue, RefTest, find_queues, learn_strides, name_at, owned_ref
 from .reglist import unregistered_command_ref, walk
+from .reglist_fake import DATA, HEAP, RDATA, Fake
 from .shape import ShapeError
 
-BASE = 0x180000000
-RDATA = BASE + 0x1000
-DATA = BASE + 0x10000
-SECTION_SIZE = 0x8000
-HEAP = 0x10000000
 CONVAR, COMMAND = STRIDES["convars"], STRIDES["concommands"]
-
-type Entry = tuple[int, int, int]
-"""(name pointer, help pointer, trailing ref): the fields `walk` checks."""
-
-
-class Fake:
-    """An image at `BASE`: `.rdata` holds strings, `.data` holds head slots and
-    the refs entries point back to. Reg-list blocks live on a heap outside it."""
-
-    def __init__(self) -> None:
-        self.rdata: bytearray = bytearray(8)
-        self.data: bytearray = bytearray(8)
-        self.heap: dict[int, bytearray] = {}
-
-    def string(self, text: bytes) -> int:
-        addr = RDATA + len(self.rdata)
-        self.rdata += text + b"\0"
-        return addr
-
-    def qword(self, value: int = 0) -> int:
-        """A new qword in `.data`: a head slot, or a ref's target."""
-        addr = DATA + len(self.data)
-        self.data += struct.pack("<Q", value)
-        return addr
-
-    def entry(self, name: bytes = b"sv_x", help: bytes | None = None, ref: int | None = None) -> Entry:
-        """An entry whose ref, by default, is a static unregistered ref in
-        `.data`: one that passes every kind's ref test."""
-        ref = self.qword(UNREGISTERED) if ref is None else ref
-        return (self.string(name), 0 if help is None else self.string(help), ref)
-
-    def heap_ref(self, value: int = UNREGISTERED) -> int:
-        """A ref outside the image (a heap-owned `ConCommand`) holding `value`."""
-        addr = HEAP - 0x1000 * (1 + sum(b < HEAP for b in self.heap))
-        self.heap[addr] = bytearray(struct.pack("<Q", value))
-        return addr
-
-    def queue(self, stride: int, entries: list[Entry]) -> tuple[int, list[int]]:
-        """Blocks holding `entries` in replay order, and a head slot pointing at
-        the first (the root, the only partial one): (slot, block addresses)."""
-        first = len(entries) % BLOCK or BLOCK
-        chunks = [entries[:first]] + [entries[i : i + BLOCK] for i in range(first, len(entries), BLOCK)]
-        blocks = [HEAP + 0x100000 * (len(self.heap) + i) for i in range(len(chunks))]
-        for block, prev, chunk in zip(blocks, [*blocks[1:], 0], chunks):
-            raw = bytearray(8 + BLOCK * stride + 8)
-            struct.pack_into("<I", raw, 0, len(chunk))
-            for i, (name, help, ref) in enumerate(chunk):
-                struct.pack_into("<QQ", raw, 8 + i * stride, name, help)
-                struct.pack_into("<Q", raw, 8 + i * stride + stride - 8, ref)
-            struct.pack_into("<Q", raw, 8 + BLOCK * stride, prev)
-            self.heap[block] = raw
-        return self.qword(blocks[0]), blocks
-
-    def poke(self, addr: int, fmt: str, value: int) -> None:
-        (base,) = (b for b, raw in self.heap.items() if b <= addr < b + len(raw))
-        struct.pack_into(fmt, self.heap[base], addr - base, value)
-
-    def load(self) -> tuple[Memory, Image]:
-        sections = [
-            FakeSection(".rdata", RDATA - BASE, 0x40000040, bytes(self.rdata), virtual_size=SECTION_SIZE),
-            FakeSection(".data", DATA - BASE, 0xC0000040, bytes(self.data), virtual_size=SECTION_SIZE),
-        ]
-        segments = loaded(BASE, sections)
-        segments.update((base, bytes(raw)) for base, raw in self.heap.items())
-        mem = Memory(segments)
-        return mem, read_image(mem, BASE)
 
 
 def addresses(blocks: list[int], sizes: list[int], stride: int) -> tuple[int, ...]:
@@ -246,26 +174,26 @@ class DescribeFindQueues:
         convars = fake.queue(CONVAR, [fake.entry() for _ in range(3)])
         commands = fake.queue(COMMAND, [fake.entry() for _ in range(5)])
         mem, image = fake.load()
-        assert find_queues(mem, image, CONVAR) == [Queue(convars[0], CONVAR, addresses(convars[1], [3], CONVAR))]
-        assert find_queues(mem, image, COMMAND) == [Queue(commands[0], COMMAND, addresses(commands[1], [5], COMMAND))]
+        assert find_queues(mem, image, "convars") == [Queue(convars[0], CONVAR, addresses(convars[1], [3], CONVAR))]
+        assert find_queues(mem, image, "concommands") == [Queue(commands[0], COMMAND, addresses(commands[1], [5], COMMAND))]
 
     def it_finds_a_command_queue_with_a_heap_owned_command(self):
         fake = Fake()
         head, blocks = fake.queue(COMMAND, [fake.entry(), fake.entry(ref=fake.heap_ref()), fake.entry()])
         mem, image = fake.load()
-        assert find_queues(mem, image, COMMAND) == [Queue(head, COMMAND, addresses(blocks, [3], COMMAND))]
+        assert find_queues(mem, image, "concommands") == [Queue(head, COMMAND, addresses(blocks, [3], COMMAND))]
 
     def it_skips_a_command_queue_whose_ref_reads_anything_else(self):
         fake = Fake()
         _ = fake.queue(COMMAND, [fake.entry(), fake.entry(ref=fake.qword(0))])
         mem, image = fake.load()
-        assert find_queues(mem, image, COMMAND) == []
+        assert find_queues(mem, image, "concommands") == []
 
     def it_skips_a_convar_queue_with_a_ref_outside_the_writable_sections(self):
         fake = Fake()
         _ = fake.queue(CONVAR, [fake.entry(), fake.entry(ref=fake.heap_ref())])
         mem, image = fake.load()
-        assert find_queues(mem, image, CONVAR) == []
+        assert find_queues(mem, image, "convars") == []
 
     def it_skips_a_root_inside_the_image(self):
         fake = Fake()
@@ -276,21 +204,21 @@ class DescribeFindQueues:
         struct.pack_into("<Q", fake.data, head - DATA, root)
         mem, image = fake.load()
         assert walk(mem, root, COMMAND, image, owned_ref) is not None
-        assert find_queues(mem, image, COMMAND) == []
+        assert find_queues(mem, image, "concommands") == []
 
     def it_reports_a_second_head_of_the_same_kind(self):
         fake = Fake()
         first = fake.queue(COMMAND, [fake.entry()])
         second = fake.queue(COMMAND, [fake.entry(), fake.entry()])
         mem, image = fake.load()
-        assert [q.head for q in find_queues(mem, image, COMMAND)] == [first[0], second[0]]
+        assert [q.head for q in find_queues(mem, image, "concommands")] == [first[0], second[0]]
 
     def it_raises_on_an_unreadable_writable_section(self):
         fake = Fake()
         mem, image = fake.load()
         read = mem.read
         with pytest.raises(ShapeError):
-            _ = find_queues(Memory(lambda addr, n: None if addr == DATA else read(addr, n)), image, COMMAND)
+            _ = find_queues(Memory(lambda addr, n: None if addr == DATA else read(addr, n)), image, "concommands")
 
 
 class DescribeLearnStrides:
