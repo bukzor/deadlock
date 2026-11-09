@@ -1,0 +1,18 @@
+column	value
+player_selectable	
+limited_testing	false
+prerelease_only	
+assigned_players_only	
+EAbilityResourceMax	0
+EAbilityResourceRegenPerSecond	0
+EAirDashDistanceInMeters	8.0
+ECrouchSpeed	4.75
+EGroundDashDistanceInMeters	10.0
+EMoveAcceleration	4
+EOOCHealthRegen	0
+EProcBuildUpRateScale	1
+EReloadSpeed	1
+ETechDuration	1
+ETechRange	1
+EWeaponPower	0
+EWeaponPowerScale	1

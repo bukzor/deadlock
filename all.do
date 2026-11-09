@@ -8,17 +8,12 @@
 # redo runs this with cwd = repo root.
 set -euo pipefail
 
-committed=(
-  data/deadlock-version.json
-  data/tools/vrf-release.json
-  data/gamedata.tsv/levels.tsv
-  data/gamedata.tsv/heroes.tsv
-  data/gamedata.tsv/items.tsv
-  data/gamedata.tsv/abilities.tsv
-  data/gamedata.tsv/weapons.tsv
-  data/gamedata.tsv/item_bonuses.tsv
-  data/gamedata.tsv/ability_upgrades.tsv
-)
+views=(levels heroes items abilities ability_profiles item_bonuses ability_upgrades)
+committed=(data/deadlock-version.json data/tools/vrf-release.json)
+# each view is a sparse X.tsv plus its X.defaults.tsv (absent when empty)
+for view in "${views[@]}"; do
+  committed+=("data/gamedata.tsv/$view.tsv" "data/gamedata.tsv/$view.defaults.tsv")
+done
 
 # A fresh clone's committed outputs came from git, not from redo, so redo would
 # treat them as hand-written and skip them (silently, exiting 0). Adopting says

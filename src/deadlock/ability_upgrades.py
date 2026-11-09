@@ -28,7 +28,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from . import gamedata
-from .abilities import bound
+from .abilities import SIGNATURE, bound
 from .types import dig, is_sequence
 
 _NAME_KEYS = ("m_strPropertyName", "m_StrPropertyNAme")  # the second is a typo shipped in the data
@@ -94,7 +94,7 @@ def main(argv: list[str]) -> None:
     defs = gamedata.load(sys.stdin)
     with Path(heroes_source).open() as heroes_file:
         heroes = gamedata.load(heroes_file)
-    signatures = {b.ability for b in bound(heroes, defs)}
+    signatures = {b.ability for b in bound(heroes, defs) if b.slot.startswith(SIGNATURE)}
     _ = sys.stdout.write(render(upgrades(defs, signatures)))
 
 

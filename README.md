@@ -16,15 +16,18 @@ decompilation. See `docs/dev/decisions.kb/` for why.
 ## The tables
 
 `data/gamedata.tsv/` holds the committed output — one row per entity, stable
-sort, so a balance change is a one-line diff:
+sort, so a balance change is a one-line diff. Columns with the same value in
+every row are kept out of `X.tsv` and listed once in `X.defaults.tsv` (absent
+when there are none); `python -m deadlock.sparse dense X.tsv X.defaults.tsv`
+rejoins them, and the local `data/gamedata.dense.tsv/` has the full views:
 
 | view | what it shows |
 | --- | --- |
 | `levels.tsv` | player level → souls → ability-point curve |
 | `heroes.tsv` | wide per-hero base stat sheet |
 | `items.tsv` | shop economy: tier, resolved soul cost, slot, components |
-| `abilities.tsv` | each live hero's four signature abilities |
-| `weapons.tsv` | each live hero's primary weapon (+ derived DPS) |
+| `abilities.tsv` | every ability bound to each live hero: signatures, guns, melee, innates, movement |
+| `ability_profiles.tsv` | each weapon profile (bullet stats + derived DPS) of each live hero's bound abilities, guns included; child of `abilities.tsv` |
 | `item_bonuses.tsv` | the passive stat bonuses each shop item grants |
 | `ability_upgrades.tsv` | what each signature ability's three upgrades do |
 

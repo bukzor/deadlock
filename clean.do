@@ -15,6 +15,6 @@ redo-always
 # progress/summaries belong on stderr; stdout is the (empty) target
 exec >&2
 
-git clean -fdX -- data/gamedata data/gamedata.json data/manifest.jsonl
+git clean -fdX -- data/gamedata data/gamedata.json data/gamedata.dense.tsv data/manifest.jsonl
 rm -vf data/gamedata.list data/deadlock-version.json
 find data/gamedata.tsv -name '*.tsv' -print0 | xargs -0 -r rm -vf

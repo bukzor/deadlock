@@ -1,6 +1,6 @@
 import pytest
 
-from .abilities import Ability, Bound, abilities, bound, render
+from .abilities import Ability, Bound, abilities, bindings, bound, render
 
 
 def _hero(*, disabled: bool, signatures: list[str], extra_slots: dict[str, str] | None = None) -> dict[str, object]:
@@ -22,8 +22,9 @@ HEROES = {
     "hero_a": _hero(
         disabled=False,
         signatures=["sig_a1", "sig_a2", "sig_a3", "sig_a4"],
-        extra_slots={"ESlot_Weapon_Melee": "ignored"},
+        extra_slots={"ESlot_Weapon_Melee": "melee_a"},
     ),
+    "hero_base": _hero(disabled=False, signatures=[], extra_slots={"ESlot_Weapon_Melee": "melee_a"}),
     "hero_dev": _hero(disabled=True, signatures=["unshipped"]),
     "_include": ["scripts/other.vdata"],
 }
@@ -32,6 +33,7 @@ ABILITIES = {
     "sig_a2": _ability(type="EAbilityType_Signature", cooldown="41", charges="1"),
     "sig_a3": _ability(type="EAbilityType_Signature", cooldown="20 18 16", charges="0"),
     "sig_a4": _ability(type="EAbilityType_Ultimate", cooldown=115.0, charges="0"),
+    "melee_a": _ability(type="EAbilityType_Melee", cooldown=0.0, charges="0"),
 }
 
 
@@ -49,14 +51,31 @@ class DescribeAbilities:
         assert abilities(partial) == {}
 
 
+class DescribeBindings:
+    def it_lists_every_bound_slot_of_live_heroes_skipping_the_template_and_disabled(self):
+        assert sorted(bindings(HEROES)) == [
+            ("hero_a", "Signature_1", "sig_a1"),
+            ("hero_a", "Signature_2", "sig_a2"),
+            ("hero_a", "Signature_3", "sig_a3"),
+            ("hero_a", "Signature_4", "sig_a4"),
+            ("hero_a", "Weapon_Melee", "melee_a"),
+        ]
+
+
 class DescribeBound:
-    def it_joins_live_hero_signatures_skipping_disabled_and_nonsignature_slots(self):
+    def it_joins_every_bound_slot_of_live_heroes(self):
         assert bound(HEROES, ABILITIES) == [
             Bound("hero_a", "Signature_1", "sig_a1", "Signature", "28", "2"),
             Bound("hero_a", "Signature_2", "sig_a2", "Signature", "41", "1"),
             Bound("hero_a", "Signature_3", "sig_a3", "Signature", "20 18 16", "0"),
             Bound("hero_a", "Signature_4", "sig_a4", "Ultimate", "115", "0"),
+            Bound("hero_a", "Weapon_Melee", "melee_a", "Melee", "0", "0"),
         ]
+
+    def it_fails_when_a_live_binding_outside_the_signatures_is_undefined(self):
+        heroes = {"hero_b": _hero(disabled=False, signatures=["sig_a1", "sig_a2", "sig_a3", "sig_a4"], extra_slots={"ESlot_Ability_Jump": "ghost"})}
+        with pytest.raises(AssertionError, match="ghost"):
+            _ = bound(heroes, ABILITIES)
 
     def it_fails_when_a_live_hero_lacks_four_signatures(self):
         heroes = {"hero_b": _hero(disabled=False, signatures=["sig_a1"])}

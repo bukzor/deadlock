@@ -1,22 +1,26 @@
-"""Recompile ``abilities.tsv`` — each live hero's four signature abilities — from data.
+"""Recompile ``abilities.tsv`` — every ability bound to each live hero — from data.
 
 Source: ``data/gamedata.json/scripts/{heroes,abilities}.json``.
 Heroes bind abilities to slots via ``m_mapBoundAbilities``; the abilities are
-defined in ``scripts/abilities.vdata``. This table resolves
-that join for the four ``ESlot_Signature_*`` slots — the upgradeable, hero-
-defining kit.
+defined in ``scripts/abilities.vdata``. This table resolves that join for every
+bound slot: the four ``Signature_*`` (the upgradeable, hero-defining kit), the
+guns and melee (``Weapon_*``; guns are abilities too), the innates, and the
+movement kit (``Ability_Jump``, ``Ability_Mantle``, ... — shared entities, so
+those rows repeat across heroes). ``bindings`` is the one enumeration of those
+``(hero, slot, ability)`` keys; ``ability_profiles.tsv`` is keyed by the same.
 
 Scope is the *live* roster (``m_bDisabled`` false). In-development heroes are
 excluded because their abilities aren't shipped in ``abilities.vdata`` at all
-(or are borrowed placeholders) — emitting them would fabricate rows. The weapon
-and movement slots are deliberately omitted: weapons aren't abilities with these
-stats, and the movement kit is shared.
+(or are borrowed placeholders) — emitting them would fabricate rows.
+``hero_base`` is excluded too: it is the inheritance template every hero
+``_base``s, not a hero.
 
-One row per (hero, slot), sorted:
+One row per (hero, slot), sorted; ``slot`` is the binding key with ``ESlot_``
+stripped:
 
 - ``ability``  — the bound ability entity name.
-- ``type``     — ``m_eAbilityType`` (``EAbilityType_`` stripped); the 4th slot
-  is the ``Ultimate``, the rest ``Signature``.
+- ``type``     — ``m_eAbilityType`` (``EAbilityType_`` stripped): ``Signature``
+  and ``Ultimate`` (the 4th signature), ``Weapon``, ``Melee``, ``Innate``.
 - ``cooldown`` — ``AbilityCooldown`` in seconds; a space-separated list when the
   cooldown scales per upgrade level (e.g. ``40 30 20``).
 - ``charges``  — ``AbilityCharges`` (0 = single cast on cooldown).
@@ -24,9 +28,9 @@ One row per (hero, slot), sorted:
 (``m_iMaxLevel`` and the upgrade-tier count are intentionally absent: both are
 constant across every ability, so they carry no information.)
 
-Every live hero must bind four signatures that all resolve and carry these base
-stats; that invariant is asserted so a dangling binding on a shipped hero fails
-loudly.
+Every live hero must bind four signatures, and every binding must resolve and
+carry these base stats; that invariant is asserted so a dangling binding on a
+shipped hero fails loudly.
 
     python -m deadlock.abilities abilities.json < heroes.json
 """
@@ -41,8 +45,9 @@ from pathlib import Path
 from . import gamedata
 from .types import dig, is_str_mapping
 
+TEMPLATE_HERO = "hero_base"
 _SLOT_PREFIX = "ESlot_"
-_SIGNATURE = "Signature_"
+SIGNATURE = "Signature_"
 SIGNATURE_SLOTS = 4
 
 
@@ -57,7 +62,7 @@ class Ability:
 
 @dataclass(frozen=True)
 class Bound:
-    """One emitted ``abilities.tsv`` row: a live hero's signature ability."""
+    """One emitted ``abilities.tsv`` row: one ability bound to a live hero."""
 
     hero: str
     slot: str
@@ -84,32 +89,32 @@ def _prop(entity: object, prop: str) -> object:
     return dig(entity, "m_mapAbilityProperties", prop, "m_strValue")
 
 
-def signatures(entity: object) -> dict[str, str]:
-    """A hero's ``{slot: ability}`` for the ``ESlot_Signature_*`` bindings."""
-    slots = dig(entity, "m_mapBoundAbilities")
-    if not is_str_mapping(slots):
-        return {}
-    prefix = _SLOT_PREFIX + _SIGNATURE
-    return {slot.removeprefix(_SLOT_PREFIX): _str(ability) for slot, ability in slots.items() if slot.startswith(prefix)}
+def bindings(heroes: Mapping[str, object]) -> list[tuple[str, str, str]]:
+    """Every ``(hero, slot, ability)`` binding of the live roster, ``ESlot_`` stripped."""
+    result: list[tuple[str, str, str]] = []
+    for hero, entity in heroes.items():
+        slots = dig(entity, "m_mapBoundAbilities")
+        if not is_str_mapping(slots) or hero == TEMPLATE_HERO or _bool(dig(entity, "m_bDisabled")):
+            continue
+        result.extend((hero, slot.removeprefix(_SLOT_PREFIX), _str(ability)) for slot, ability in slots.items())
+    return result
 
 
 def bound(heroes: Mapping[str, object], defs: Mapping[str, object]) -> list[Bound]:
-    """Live heroes' signature bindings joined to ability stats; assert each resolves.
+    """Live heroes' bindings joined to ability stats; assert each resolves.
 
     ``heroes`` and ``defs`` are the nested trees of ``heroes.vdata`` and
     ``abilities.vdata`` (see ``deadlock.gamedata``).
     """
     defined = abilities(defs)
     result: list[Bound] = []
-    for hero, entity in heroes.items():
-        slots = signatures(entity)
-        if not slots or _bool(dig(entity, "m_bDisabled")):
-            continue
-        assert len(slots) == SIGNATURE_SLOTS, (hero, sorted(slots))
-        for slot, ability in slots.items():
-            assert ability in defined, (hero, slot, ability)
-            stats = defined[ability]
-            result.append(Bound(hero, slot, ability, stats.type, stats.cooldown, stats.charges))
+    for hero, slot, ability in bindings(heroes):
+        assert ability in defined, (hero, slot, ability)
+        stats = defined[ability]
+        result.append(Bound(hero, slot, ability, stats.type, stats.cooldown, stats.charges))
+    for hero in {b.hero for b in result}:
+        kit = sorted(b.slot for b in result if b.hero == hero and b.slot.startswith(SIGNATURE))
+        assert len(kit) == SIGNATURE_SLOTS, (hero, kit)
     return sorted(result, key=lambda b: (b.hero, b.slot))
 
 
