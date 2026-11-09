@@ -191,7 +191,7 @@ on another prototype.
       check: the convar anchor (`citadel_lane_swap_available_duration_prematch`
       ⊇ `replicated cheat`) and convar coverage (`engine2`, `client`,
       `server` each yield a convar queue), as `data/dlls.check/concommands` does
-- [ ] Load-time atoms (`load`, `concommands`, `convars`) depend on the DLL's
+- [x] Load-time atoms (`load`, `concommands`, `convars`) depend on the DLL's
       import closure, not only its file: after the load, `redo-ifchange` the
       `modules` that are in `dlls.list`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-024-load-time-atoms-depend-on-import-closure.md>)

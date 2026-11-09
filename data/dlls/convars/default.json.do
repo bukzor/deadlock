@@ -12,5 +12,6 @@ redo-ifchange ../../../bin/winpy-facet.bash
 
 lookup "$2"
 require_loaded "$2"
+closure "../load/$2.json"
 dllscan convars "$dll" >"$3"
 redo-stamp <"$3"

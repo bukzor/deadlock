@@ -15,5 +15,6 @@ lookup "$2"
 "$py" -m deadlock.dll_load excluded "$2" >"$3"
 if [[ ! -s $3 ]]; then
   dllscan load "$dll" >"$3"
+  closure "$3"
 fi
 redo-stamp <"$3"

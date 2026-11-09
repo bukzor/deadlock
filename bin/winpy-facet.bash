@@ -25,6 +25,14 @@ require_loaded() {
   "$py" -m deadlock.dll_load ok "$load"
 }
 
+# Depend on the listed DLLs that the load in load document LOAD pulled in: a
+# load-time atom's output depends on its DLL's whole import closure.
+closure() {
+  redo-ifchange "$root/src/deadlock/dll_closure.py"
+  "$py" -m deadlock.dll_closure "$1" <"$root/data/dlls.list" |
+    tr '\n' '\0' | xargs -r0 redo-ifchange
+}
+
 # Print FACET's document for the DLL at DLL: `bin/winpy dllscan FACET`, given
 # the Windows paths of the DLL and the bin dirs.
 dllscan() {
