@@ -6,7 +6,8 @@ a declined idea isn't re-proposed without new evidence.
 
 What belongs: a distinct way to obtain the registrations. Not a detail of one
 candidate (that goes in the candidate's file, or a sibling design file at the
-`convar-dump.kb/` level if several candidates share it).
+`cvar-dump.kb/` level if several candidates share it).
 
-When the question closes, rewrite `../capture-approach.md` as the answer and
-keep these as the record of why the others lost.
+The question is closed: `../capture-approach.md` states the answer, and these
+files record why the others lost. Add one only for a way not yet weighed, and
+mark its verdict against the chosen answer.

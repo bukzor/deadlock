@@ -4,7 +4,7 @@ status: done
 required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/CLAUDE.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
-  - docs/dev/convar-dump.kb/output-views.md
+  - docs/dev/cvar-dump.kb/output-views.md
   - docs/dev/CLAUDE.md
   - data/gamedata.list.do
   - src/deadlock/paths.py

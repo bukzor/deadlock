@@ -3,7 +3,7 @@
 # still equal the pinned ones, and its anchors label each kind's queue
 # (deadlock.dlls_check strides). Either failing fails the build: every
 # load-time facet reads the queues at those strides. On success, the target
-# is the labelled strides, local only. docs/dev/convar-dump.kb/validation.md
+# is the labelled strides, local only. docs/dev/cvar-dump.kb/validation.md
 # redo runs this with cwd = data/dlls.check/; the repo root is two up.
 set -euo pipefail
 

@@ -8,8 +8,8 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-016-wire-the-store-into-the-build.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-018-convar-value-layout-fit.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-019-dllscan-convar-decode.md
-  - docs/dev/convar-dump.kb/output-views.md
-  - docs/dev/convar-dump.kb/validation.md
+  - docs/dev/cvar-dump.kb/output-views.md
+  - docs/dev/cvar-dump.kb/validation.md
 ---
 
 # The `convars` atom, `convars.tsv`, and the convars check

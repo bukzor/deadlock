@@ -8,9 +8,9 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-001-dllscan-skeleton-and-memory.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-003-dllscan-image-layout.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
-  - docs/dev/convar-dump.kb/capture-approach.kb/queue-shape-scan.md
-  - docs/dev/convar-dump.kb/validation.md
-  - docs/dev/convar-dump.kb/registration-flow.md
+  - docs/dev/cvar-dump.kb/capture-approach.kb/queue-shape-scan.md
+  - docs/dev/cvar-dump.kb/validation.md
+  - docs/dev/cvar-dump.kb/registration-flow.md
   - docs/dev/probes/convar_scan.py
   - docs/dev/probes/fixed_stride_scan.py
 ---

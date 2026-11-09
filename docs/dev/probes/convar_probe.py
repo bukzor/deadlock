@@ -1,7 +1,7 @@
 """Probe: does connecting server.dll replay its convar queue into a hooked ICvar?
 
 Runs under *Windows* Python (the DLLs are win64). Design:
-docs/dev/convar-dump.kb/capture-approach.kb/icvar-hook.md (declined on this result).
+docs/dev/cvar-dump.kb/capture-approach.kb/icvar-hook.md (declined on this result).
 
 1. Load tier0, take its cvar system, Connect it.
 2. Point the cvar object at a private vtable whose every slot is a logging stub

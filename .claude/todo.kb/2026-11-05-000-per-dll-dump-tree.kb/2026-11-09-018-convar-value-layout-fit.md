@@ -6,11 +6,11 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-006-dllscan-entries-names-help-flags.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-013-reglist-per-kind-ref-check.md
-  - docs/dev/convar-dump.kb/CLAUDE.md
-  - docs/dev/convar-dump.kb/registration-flow.md
-  - docs/dev/convar-dump.kb/capture-approach.kb/icvar-hook.md
-  - docs/dev/convar-dump.kb/output-views.md
-  - docs/dev/convar-dump.kb/validation.md
+  - docs/dev/cvar-dump.kb/CLAUDE.md
+  - docs/dev/cvar-dump.kb/registration-flow.md
+  - docs/dev/cvar-dump.kb/capture-approach.kb/icvar-hook.md
+  - docs/dev/cvar-dump.kb/output-views.md
+  - docs/dev/cvar-dump.kb/validation.md
   - docs/dev/probes/hook_probe3.py
 ---
 
@@ -54,9 +54,9 @@ enum is stale, so expect drift). Find where each field sits, and how each
 - **Whether the 64-byte command entry holds anything beyond
   name/help/flags worth dumping.** The callback is a pointer, so drop it.
 - **Docs:** record the layout in `registration-flow.md`, with the build, as
-  plain fact (`convar-dump.kb/CLAUDE.md` tense rules).
+  plain fact (`cvar-dump.kb/CLAUDE.md` tense rules).
 
-**Scope:** `trash/` and `docs/dev/convar-dump.kb/registration-flow.md` only.
+**Scope:** `trash/` and `docs/dev/cvar-dump.kb/registration-flow.md` only.
 No `src/` edits: a sibling (017) is editing `src/dllscan/` concurrently, so
 import it read-only and expect it to change under you; rerun a driver if an
 import fails mid-edit. Never load the hang-listed DLLs

@@ -9,9 +9,9 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-006-dllscan-entries-names-help-flags.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-008-dllscan-main-load-concommands-strides.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-017-find-queues-by-kind-and-reglist-fake.md
-  - docs/dev/convar-dump.kb/registration-flow.md
-  - docs/dev/convar-dump.kb/output-views.md
-  - docs/dev/convar-dump.kb/validation.md
+  - docs/dev/cvar-dump.kb/registration-flow.md
+  - docs/dev/cvar-dump.kb/output-views.md
+  - docs/dev/cvar-dump.kb/validation.md
 ---
 
 # `dllscan`: decode convars, and the `convars` subcommand
@@ -56,7 +56,7 @@ error, and an absent value.
   entry.
 
 **Scope:** `src/dllscan/{values,values_test,entries,entries_test,document,facets,facets_test,__main__}.py`,
-`docs/dev/convar-dump.kb/{capture-approach.kb/icvar-hook.md,output-views.md,registration-flow.md}`,
+`docs/dev/cvar-dump.kb/{capture-approach.kb/icvar-hook.md,output-views.md,registration-flow.md}`,
 and `trash/`.
 
 ## Steps

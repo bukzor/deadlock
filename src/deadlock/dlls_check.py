@@ -1,4 +1,4 @@
-"""The store's checks that no atom owns (``docs/dev/convar-dump.kb/validation.md``),
+"""The store's checks that no atom owns (``docs/dev/cvar-dump.kb/validation.md``),
 run by ``data/dlls.check/*.do``. Each fails with an ``AssertionError`` naming
 what is wrong, which fails the build.
 

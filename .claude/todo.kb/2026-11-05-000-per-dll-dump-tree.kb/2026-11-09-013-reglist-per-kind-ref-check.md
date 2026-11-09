@@ -8,8 +8,8 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-004-dllscan-reglist.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-007-rendersystemdx11-owner-check-evidence.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-008-dllscan-main-load-concommands-strides.md
-  - docs/dev/convar-dump.kb/CLAUDE.md
-  - docs/dev/convar-dump.kb/capture-approach.kb/queue-shape-scan.md
+  - docs/dev/cvar-dump.kb/CLAUDE.md
+  - docs/dev/cvar-dump.kb/capture-approach.kb/queue-shape-scan.md
 ---
 
 # `reglist`: the ref check, per queue kind
@@ -52,11 +52,11 @@ is outside the writable sections fails.
 **Docs (in scope for this unit):** in `queue-shape-scan.md`, replace the
 `[!QUESTION]` callout with the fact as built, starting from the sentence
 007 proposes. Make pass 2's "last qword … own writable sections" sentence
-say convar entries. Follow `convar-dump.kb/CLAUDE.md`'s tense rules: plain
+say convar entries. Follow `cvar-dump.kb/CLAUDE.md`'s tense rules: plain
 prose is fact.
 
 **Scope:** `src/dllscan/reglist.py`, `src/dllscan/reglist_test.py`,
-`docs/dev/convar-dump.kb/capture-approach.kb/queue-shape-scan.md`, and
+`docs/dev/cvar-dump.kb/capture-approach.kb/queue-shape-scan.md`, and
 `trash/`. The `concommands` atoms (011) depend on `src/dllscan/`, so after the
 change `redo` rebuilds them; run it and report the new total.
 

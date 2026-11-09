@@ -8,7 +8,7 @@ status: done
 **Priority:** wave 1 of the scanner core
 **Complexity:** low: types only, no runtime behaviour
 **Context:** parent plan <https:../2026-11-05-000-per-dll-dump-tree.md> (`src/dllscan/`
-table, `document` row); `docs/dev/convar-dump.kb/output-views.md`,
+table, `document` row); `docs/dev/cvar-dump.kb/output-views.md`,
 `dll-coverage.md`, `registration-flow.md`
 
 ## Problem Statement

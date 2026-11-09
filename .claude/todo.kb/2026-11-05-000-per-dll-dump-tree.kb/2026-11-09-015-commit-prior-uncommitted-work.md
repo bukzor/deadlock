@@ -102,5 +102,5 @@ ability, `ability_profiles`, sparse views, data regenerated on 6860;
 `539d9e2` `scratchpad/CLAUDE.md`. Scratchpad items now in
 `trash/scratchpad-retired/` (`client2.log`, `server2.log`, `geist.kb/`,
 `__pycache__/`). Untouched: per-DLL files, this `.kb/`, and a sibling's
-`docs/dev/convar-dump.kb/capture-approach.kb/queue-shape-scan.md`.
+`docs/dev/cvar-dump.kb/capture-approach.kb/queue-shape-scan.md`.
 Deviation: `bin/shell` needed the documented `env -u DIRENV_*` prefix.

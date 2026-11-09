@@ -7,7 +7,7 @@ status: open
 
 **Priority:** next up
 **Complexity:** medium-high: a Windows-side ctypes scanner driven from WSL redo, plus WSL aggregates
-**Context:** `docs/dev/convar-dump.kb/` (read all of it; `output-views.md` is the agreed layout)
+**Context:** `docs/dev/cvar-dump.kb/` (read all of it; `output-views.md` is the agreed layout)
 
 ## Problem Statement
 
@@ -172,25 +172,11 @@ on another prototype.
       check (commands: the ref reads u16 `0xFFFF`; convars: the owner check)
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-013-reglist-per-kind-ref-check.md>)
   - [x] Evidence (6860): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-007-rendersystemdx11-owner-check-evidence.md>
-- [ ] Decode the value fields against the engine (`dllscan.values`, `dllscan.entries`)
+- [x] Decode the value fields against the engine (`dllscan.values`, `dllscan.entries`)
   - [x] Fit the layout (research): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-018-convar-value-layout-fit.md>
   - [x] The decoder and `dllscan convars`: <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-019-dllscan-convar-decode.md>
   - [x] The entry layout as `ctypes` structs (`dllscan.convar_h`), the one
         source for its offsets: <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-021-entry-layout-as-ctypes-structs.md>
-  - [ ] Find `ConVarValueInfo_t`'s offsets inside the 160-byte entry (s2sdk
-        `convar.h:630-730`: version, has-default/min/max, three `CVValue_t`,
-        callbacks, `m_eVarType`; s2sdk's copy is stale on the type enum, so
-        expect drift). Fit them with `hook_probe3.py`'s readback: for names
-        declared once, the entry must contain the registry's type code and
-        default bytes
-  - [ ] Use the binary's `EConVarType`: `bool int8 uint8 int16 uint16 int32
-        uint32 int64 uint64 float32 float64 string color vector2 vector3
-        vector4 qangle vectorws` (`registration-flow.md`)
-  - [ ] Decode the 64-byte command entry beyond name/help/flags only if it
-        holds something worth dumping (callback is a pointer: drop it)
-  - [ ] Pass: every once-declared `server` and `client` convar's type, default,
-        min, max equal the registry's; record the layout in
-        `registration-flow.md` with the build
 - [x] `dllscan.__main__ strides`; all `validation.md` shape checks raise
 - [x] `deadlock.paths.bin_dirs`, `deadlock.dll_inventory`, `data/dlls.list.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-009-dll-inventory-and-dlls-list.md>)
@@ -208,8 +194,9 @@ on another prototype.
 - [ ] Load-time atoms (`load`, `concommands`, `convars`) depend on the DLL's
       import closure, not only its file: after the load, `redo-ifchange` the
       `modules` that are in `dlls.list`
-- [ ] One helper for the `bin/winpy dllscan <facet>` invocation, now copied
-      into three `.do` files (after 021: it rebuilds every atom)
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-024-load-time-atoms-depend-on-import-closure.md>)
+- [x] One helper for the `bin/winpy dllscan <facet>` invocation, now copied
+      into three `.do` files (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-023-one-winpy-facet-invocation.md>)
 - [x] `deadlock.dlls_{file,load,convars,concommands}`, `data/dlls/default.tsv.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-012-dlls-facet-aggregates.md>: all but `convars`)
 - [x] A document's `module` is the listed basename, case kept
@@ -226,13 +213,17 @@ on another prototype.
       and every `*.do`); add the committed aggregates to `all.do`'s
       `committed` list (`redo-adopt`) and the strides check to its deps;
       README views table
+- [x] Rename `docs/dev/convar-dump.kb/` to `cvar-dump.kb/`: it covers both
+      kinds (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-022-rename-convar-dump-kb-to-cvar-dump-kb.md>)
 - [ ] On-demand checks: `dllscan.registry` + `deadlock.registry_check` for
-      `server`/`client`; the `cvarlist` oracle (`capture-approach.kb/runtime-cvarlist.md`)
+      `server`/`client` (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-026-registry-readback-check.md>);
+      the `cvarlist` oracle (`capture-approach.kb/runtime-cvarlist.md`)
 - [ ] Docs: drop each `[!TODO]` callout as it lands; record the tool choice in
       `docs/dev/decisions.kb/` (it departs from `reuse-existing-parsers.md`,
-      `convar-dump.kb/CLAUDE.md` says why that matters), and the lossless
+      `cvar-dump.kb/CLAUDE.md` says why that matters), and the lossless
       store + atomic facets as a decision of its own; rewrite
       `capture-approach.md` as the answer once its `[!QUESTION]` closes
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-025-docs-state-the-built-store-as-fact.md>)
 - [ ] Commit (`Command(commit)`)
 
 ## Open Questions

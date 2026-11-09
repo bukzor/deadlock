@@ -11,8 +11,8 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-005-dllscan-win32-and-winpy.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-006-dllscan-entries-names-help-flags.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
-  - docs/dev/convar-dump.kb/validation.md
-  - docs/dev/convar-dump.kb/dll-coverage.md
+  - docs/dev/cvar-dump.kb/validation.md
+  - docs/dev/cvar-dump.kb/dll-coverage.md
 ---
 
 # `dllscan.__main__`: `load`, `concommands`, `strides`, and the first real run

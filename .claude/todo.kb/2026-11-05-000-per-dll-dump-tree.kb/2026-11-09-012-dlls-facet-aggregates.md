@@ -6,7 +6,7 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-000-dllscan-document-types.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-006-dllscan-entries-names-help-flags.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
-  - docs/dev/convar-dump.kb/output-views.md
+  - docs/dev/cvar-dump.kb/output-views.md
   - docs/dev/decisions.kb/commit-diffable-data-let-git-diff.md
   - docs/dev/decisions.kb/sparse-views-with-defaults-sidecar.md
   - data/gamedata.dense.tsv/default.tsv.do

@@ -1,5 +1,5 @@
 """The binary's `EConVarType` table, and a `CVValue_t` decoded by it into a JSON
-value (`docs/dev/convar-dump.kb/registration-flow.md`, "The convar entry's
+value (`docs/dev/cvar-dump.kb/registration-flow.md`, "The convar entry's
 layout", fitted on 6860).
 
 A `CVValue_t` is `SIZE` bytes; a type uses the first `TYPES[type]` of them. Every

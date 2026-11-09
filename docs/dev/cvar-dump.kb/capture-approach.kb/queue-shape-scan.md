@@ -1,4 +1,4 @@
-# Find each DLL's queue by its data shape (leading)
+# Find each DLL's queue by its data shape (chosen)
 
 After `LoadLibrary` (no `Connect`), scan the DLL's writable sections for a
 pointer to a heap block shaped like a reg-list (`../registration-flow.md` step
@@ -22,10 +22,11 @@ Two passes:
    point into that DLL's own writable sections (the owner check); command
    entries have their own test, below.
 
-> [!TODO] Pin the strides (160/64) in the scanner, so each DLL's dump depends
-> on nothing but that DLL (`../output-views.md`); pass 1 becomes a separate
-> check target that re-learns them from `server.dll` and fails the build if
-> they moved.
+The scanner pins the strides (160/64, `dllscan.reglist.STRIDES`), so each
+DLL's dump depends on nothing but that DLL (`../output-views.md`). Pass 1 is a
+check target of its own, `data/dlls.check/strides`: it re-learns the strides
+from `server.dll` every build and fails the build if they moved
+(`../validation.md`).
 
 Evidence, pass 1, build 6848 (`../../probes/convar_scan.py`, 2026-11-05):
 
@@ -70,7 +71,8 @@ prefix of the creation struct, and the scan fails rather than misreads if those
 change. Strides come out of the data; which stride is convars is decided by
 anchors, not by assumption.
 
-Against: the value fields past `+16` (type, default, min, max) still follow the
-SDK layout. Pass 2 assumes every DLL was built against the same SDK as
+Against: the value fields past `+16` (type, default, min, max) follow the SDK
+layout, checked against tier0's registry rather than derived from the data
+(`../registration-flow.md`, "The convar entry's layout"). Pass 2 assumes every DLL was built against the same SDK as
 `server.dll`; a DLL whose queue used another stride would scan as having none,
 which only the oracle (`runtime-cvarlist.md`) would notice.

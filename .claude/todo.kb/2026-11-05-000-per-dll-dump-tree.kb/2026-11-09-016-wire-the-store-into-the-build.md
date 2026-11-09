@@ -7,7 +7,7 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-008-dllscan-main-load-concommands-strides.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-011-dll-load-and-concommands-atoms.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-012-dlls-facet-aggregates.md
-  - docs/dev/convar-dump.kb/validation.md
+  - docs/dev/cvar-dump.kb/validation.md
   - docs/dev/decisions.kb/commit-diffable-data-let-git-diff.md
   - .gitignore
   - all.do

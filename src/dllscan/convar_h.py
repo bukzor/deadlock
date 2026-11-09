@@ -13,7 +13,7 @@ can't see `_fields_`; ctypes replaces each placeholder value with the field.
 
 Sizes and offsets agree with the queues: `convar_h_test` checks each entry's
 size against `reglist.STRIDES` and each field's offset against
-`docs/dev/convar-dump.kb/registration-flow.md`'s registry fit (6860).
+`docs/dev/cvar-dump.kb/registration-flow.md`'s registry fit (6860).
 
 >>> entry = ConVarRegList_Entry_t.from_buffer_copy(bytes(range(160)))
 >>> info = entry.m_Info.m_valueInfo

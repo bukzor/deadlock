@@ -6,7 +6,7 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-009-dll-inventory-and-dlls-list.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-000-dllscan-document-types.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
-  - docs/dev/convar-dump.kb/output-views.md
+  - docs/dev/cvar-dump.kb/output-views.md
   - data/gamedata.json/default.json.do
 ---
 

@@ -9,9 +9,9 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-004-dllscan-reglist.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-005-dllscan-win32-and-winpy.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
-  - docs/dev/convar-dump.kb/CLAUDE.md
-  - docs/dev/convar-dump.kb/capture-approach.kb/queue-shape-scan.md
-  - docs/dev/convar-dump.kb/registration-flow.md
+  - docs/dev/cvar-dump.kb/CLAUDE.md
+  - docs/dev/cvar-dump.kb/capture-approach.kb/queue-shape-scan.md
+  - docs/dev/cvar-dump.kb/registration-flow.md
 ---
 
 # `rendersystemdx11` owner-check exception: gather the evidence
@@ -40,7 +40,7 @@ On the real install (6860), with a throwaway driver in `trash/` run through
    trailing ref is.
 3. Compare it with the passing entries of the same queue, and with a
    `server.dll` entry. Using `registration-flow.md` and the s2sdk struct
-   (`docs/dev/convar-dump.kb/CLAUDE.md` pins the commit; clone it into
+   (`docs/dev/cvar-dump.kb/CLAUDE.md` pins the commit; clone it into
    `trash/` if needed), say what that field is and why it differs: a null
    default callback, a ref into another module, or something else.
 4. Run the same scan over every DLL that loads, apart from the hang list.

@@ -26,7 +26,7 @@ ANCHORS: Mapping[str, str] = {
     "citadel_lane_swap_available_duration_prematch": "convars",
 }
 """Names known by other means to be in a queue of this kind
-(`docs/dev/convar-dump.kb/validation.md`, "Anchors"). `find` is tier0's."""
+(`docs/dev/cvar-dump.kb/validation.md`, "Anchors"). `find` is tier0's."""
 
 
 class LearnedStride(TypedDict):

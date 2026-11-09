@@ -6,7 +6,7 @@ status: done
 # dllscan skeleton and memory
 
 **Parent:** <https:../2026-11-05-000-per-dll-dump-tree.md> (Wave 1: package skeleton + `dllscan.memory`)
-**Context:** `docs/dev/convar-dump.kb/` (`queue-shape-scan.md`, `validation.md`,
+**Context:** `docs/dev/cvar-dump.kb/` (`queue-shape-scan.md`, `validation.md`,
 `windows-python-host.md`); prototype `docs/dev/probes/convar_scan.py`
 
 ## Problem Statement
@@ -67,5 +67,5 @@ unchanged), `src/dllscan/{__init__,memory,memory_test,stdlib_only_test}.py`.
   - `cstr_in(addr, lo, hi) -> str | None`: the string if `lo <= addr < hi`, string+NUL inside `[lo, hi)`, readable, ≤ `MAX_CSTR` bytes, printable (above); else None
 
 Checks: `pytest src/dllscan` 26 passed (19 memory, 6 stdlib-only, 1 doctest);
-`pyright src/dllscan` 0 errors. Under this harness `./bin/shell` needs
+`pyright src/dllscan` 0 errors. Under this harness `bin/shell` needs
 `env -u DIRENV_DIR -u DIRENV_DIFF -u DIRENV_WATCHES -u DIRENV_FILE` first.

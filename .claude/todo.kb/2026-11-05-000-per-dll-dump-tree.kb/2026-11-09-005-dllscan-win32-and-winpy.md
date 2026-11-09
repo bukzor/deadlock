@@ -8,8 +8,8 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-001-dllscan-skeleton-and-memory.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-003-dllscan-image-layout.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
-  - docs/dev/convar-dump.kb/windows-python-host.md
-  - docs/dev/convar-dump.kb/dll-coverage.md
+  - docs/dev/cvar-dump.kb/windows-python-host.md
+  - docs/dev/cvar-dump.kb/dll-coverage.md
   - ~/.claude/must-read.kb/before/writing-bash-scripts.md
 ---
 

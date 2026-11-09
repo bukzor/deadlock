@@ -1,6 +1,6 @@
 """Find and walk a DLL's reg-list queues: the per-DLL lists of convar and
 concommand creation structs its static initializers queue for `ConVar_Register`
-(`docs/dev/convar-dump.kb/registration-flow.md`, step 2).
+(`docs/dev/cvar-dump.kb/registration-flow.md`, step 2).
 
 A queue is a chain of heap blocks `{u32 m_nSize; Entry_t m_Entries[100];
 block* m_pPrev}`, headed by a pointer (`s_pRoot`, the head) in one of the DLL's

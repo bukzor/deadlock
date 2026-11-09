@@ -1,4 +1,4 @@
-# How a convar gets registered
+# How a cvar gets registered
 
 Per s2sdk `deadlock` (`public/tier0/convar.h`, `tier0_perproject/convar.cpp`),
 consistent with DumpSource2's comments; build 6848.

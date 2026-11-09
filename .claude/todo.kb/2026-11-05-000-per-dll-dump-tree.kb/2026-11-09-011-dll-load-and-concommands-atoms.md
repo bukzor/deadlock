@@ -9,7 +9,7 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-009-dll-inventory-and-dlls-list.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-010-dll-file-facet.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
-  - docs/dev/convar-dump.kb/dll-coverage.md
+  - docs/dev/cvar-dump.kb/dll-coverage.md
 ---
 
 # `deadlock.dll_load`, the `load` and `concommands` atoms

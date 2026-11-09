@@ -3,7 +3,7 @@ managed-by: Skill(llm-subtask)
 status: open
 ---
 
-- [ ] <https:todo.kb/2026-11-05-000-per-dll-dump-tree.md> — per-DLL data store, first purpose the convar/concommand dump: `dlls.list` → `dlls/<facet>/<dll>.json` → `dlls/<facet>.tsv` (design: `docs/dev/convar-dump.kb/output-views.md`)
+- [ ] <https:todo.kb/2026-11-05-000-per-dll-dump-tree.md> — per-DLL data store, first purpose the convar/concommand dump: `dlls.list` → `dlls/<facet>/<dll>.json` → `dlls/<facet>.tsv` (design: `docs/dev/cvar-dump.kb/output-views.md`)
 - [x] Have redo handle VRF updates, the way `data/deadlock-version.json` tracks game patches: today the pin (`VERSION`/`SHA256`) is hardcoded in `bin/fetch-vrf`, and only a hand edit re-provisions `data/tools/Source2Viewer-CLI.d`
   - [x] Why now: pinned 19.2 can't read build 6851 (`UnexpectedMagicException: Unknown KVType for variable 'datatype': 26 (0x1A)` on `scripts/heroes.vdata_c` and `.vcss_c`), so gamedata is stuck at 6731 (Oct 1); latest is 20.1 (2026-10-15)
   - [x] New committed target `data/tools/vrf-release.json`, rechecked daily via `data/date.txt` (`redo-always` + `redo-stamp`), over `gh api repos/ValveResourceFormat/ValveResourceFormat/releases/latest`, recording the tag and `cli-linux-x64.zip`'s `digest` (sha256) — the stamp keeps it from invalidating anything until the release actually changes

@@ -6,7 +6,7 @@ lead with `CVarCreationBase_t`: name, help (may be null), flags. A command entry
 holds nothing past the base worth dumping (its callback is a pointer); a convar
 entry continues with its `ConVarValueInfo_t`. The layout is `convar_h`'s.
 
-What doesn't fit (`docs/dev/convar-dump.kb/validation.md`, "Shape") raises
+What doesn't fit (`docs/dev/cvar-dump.kb/validation.md`, "Shape") raises
 `ShapeError(what, hex(entry), ...)`: the entry comes from a queue that already
 fit, so a misfit is a bug or a layout change. The trailing-ref check needs the
 queue's stride and is `reglist.walk`'s. No address goes into the output.

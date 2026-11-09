@@ -5,7 +5,7 @@ scanner builds them on Windows and the ``deadlock.dlls_<facet>`` aggregators
 read them on WSL; both import these types, so pyright checks the documents on
 both sides of the process boundary.
 
-Rules shared by every document (``docs/dev/convar-dump.kb/output-views.md``):
+Rules shared by every document (``docs/dev/cvar-dump.kb/output-views.md``):
 
 - No addresses: ASLR moves them every run.
 - No build stamp: the DLL's bytes already key the target.

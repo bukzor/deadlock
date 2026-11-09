@@ -7,7 +7,7 @@ own), ``name``, ``flags`` (space-separated names), ``help`` (``\\N`` for a null
 help pointer, an empty cell for ``""``). Cells as ``deadlock.dlls_tsv``.
 
 Rows are sorted by module, then kept in queue order, so a row's ordinal among
-its module's rows is its queue index (``docs/dev/convar-dump.kb/output-views.md``):
+its module's rows is its queue index (``docs/dev/cvar-dump.kb/output-views.md``):
 one declaration added early in a DLL is one added row, not a renumbering.
 """
 

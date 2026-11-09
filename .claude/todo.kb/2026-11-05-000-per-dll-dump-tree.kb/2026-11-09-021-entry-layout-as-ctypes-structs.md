@@ -8,8 +8,8 @@ required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-006-dllscan-entries-names-help-flags.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-018-convar-value-layout-fit.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-019-dllscan-convar-decode.md
-  - docs/dev/convar-dump.kb/CLAUDE.md
-  - docs/dev/convar-dump.kb/registration-flow.md
+  - docs/dev/cvar-dump.kb/CLAUDE.md
+  - docs/dev/cvar-dump.kb/registration-flow.md
 ---
 
 # The queue entries' layout as `ctypes` structs: one source for the offsets

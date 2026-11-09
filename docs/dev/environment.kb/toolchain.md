@@ -6,7 +6,7 @@
   bundles the headers needed.
 - **Type/test:** `basedpyright` (`all` mode; answers to `pyright` via the
   `basedpyright-as-pyright` shim) and `pytest` (with `--doctest-modules`), run
-  via `./bin/shell`.
+  via `bin/shell`.
 - **Build:** `redo` (apenwarr, 0.42d) for regenerating `data/`.
 - **ValveResourceFormat — follows the latest release.** The pin (version +
   sha256) is the committed `data/tools/vrf-release.json`, which `redo` refreshes

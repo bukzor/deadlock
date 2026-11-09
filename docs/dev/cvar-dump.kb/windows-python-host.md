@@ -13,11 +13,12 @@ into its cwd — run it from a scratch directory, not the repo root.
 DLL search: add `game/bin/win64` and `game/citadel/bin/win64` with
 `os.add_dll_directory`; the install is only read, never written.
 
-The script prints its dump to stdout; the WSL side owns everything after that
-(`output-views.md`).
+`python -m dllscan` prints one document to stdout; the WSL side owns
+everything after that (`output-views.md`). It is stdlib-only, so the Windows
+side needs no environment of its own.
 
-> [!TODO] `bin/winpy` is the one entry point: `src/` on `PYTHONPATH` via
-> `WSLENV`, stdin from `/dev/null` (`python.exe` reads its inherited stdin, so
-> under redo it would eat the caller's), cwd a scratch dir, a timeout. A host
-> without `python.exe` fails the build loudly: `all.do` never skips the DLL
-> facets.
+`bin/winpy` is the one entry point: `src/` on `PYTHONPATH` via `WSLENV`, stdin
+from `/dev/null` (`python.exe` reads its inherited stdin, so under redo it would
+eat the caller's), cwd the scratch dir `trash/winpy/`, a timeout (exit 124). A
+host without `python.exe` fails the build loudly: `all.do` never skips the DLL
+facets.

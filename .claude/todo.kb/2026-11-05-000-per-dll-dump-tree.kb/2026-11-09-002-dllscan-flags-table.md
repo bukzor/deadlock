@@ -8,7 +8,7 @@ status: done
 **Priority:** part of the parent's `src/dllscan/` build-out
 **Complexity:** low
 **Context:** parent plan <https:../2026-11-05-000-per-dll-dump-tree.md> (`src/dllscan/` section);
-`docs/dev/convar-dump.kb/` (`CLAUDE.md` prior-art pins, `registration-flow.md`,
+`docs/dev/cvar-dump.kb/` (`CLAUDE.md` prior-art pins, `registration-flow.md`,
 `output-views.md`, `validation.md`); `docs/dev/probes/convar_scan.py` (no flag table)
 
 ## Problem Statement

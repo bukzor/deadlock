@@ -5,7 +5,7 @@ Each file here is one sub-agent's unit of work toward the parent plan,
 handoff: the coordinator's brief, then the agent's own record and report. Belongs
 here: work one agent can finish in one sitting (≤60 min), scoped to named
 files. Does not belong: plan-level design (the parent plan, or
-`docs/dev/convar-dump.kb/`), or work spanning waves (split it).
+`docs/dev/cvar-dump.kb/`), or work spanning waves (split it).
 
 ## Protocol
 
@@ -32,7 +32,7 @@ files. Does not belong: plan-level design (the parent plan, or
   repo's `CLAUDE.md`, `~/.claude/reference.kb/python/{style,tdd}.md`, then
   the parent plan's sections named in the brief.
 - Facet documents are JSON whose types fit the data; views adapt them to
-  their format (`docs/dev/convar-dump.kb/output-views.md`, JSON content rules).
+  their format (`docs/dev/cvar-dump.kb/output-views.md`, JSON content rules).
 - Stay inside the brief's file list. Sibling agents run concurrently on
   other files; never edit theirs, the parent plan, or `docs/`.
 - Never stage, commit, or otherwise touch the git index: the tree carries
