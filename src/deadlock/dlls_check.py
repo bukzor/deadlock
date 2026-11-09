@@ -4,13 +4,15 @@ what is wrong, which fails the build.
 
     python -m deadlock.dlls_check strides STRIDES.json         # no output
     python -m deadlock.dlls_check concommands concommands.tsv  # the anchor rows
+    python -m deadlock.dlls_check convars convars.tsv          # the anchor rows
 
 - ``strides``: ``server.dll``'s ``dllscan strides`` output labels each pinned
   kind on exactly one queue. ``dllscan`` already fails if the strides moved or
   an anchor sits in the other kind's queue; this adds that the anchors are
   there at all, since they decide which stride is which.
-- ``concommands``: each command anchor is in its DLL's queue, every copy with
-  the flags it must have, and each of ``QUEUE_DLLS`` has a command queue.
+- ``concommands``, ``convars``: each anchor of that kind is in its DLL's
+  queue, every copy with the flags it must have, and each of ``QUEUE_DLLS``
+  has a queue of that kind.
 """
 
 import sys
@@ -33,10 +35,18 @@ COMMAND_ANCHORS: Mapping[tuple[str, str], frozenset[str]] = {
 """(module, name) → the flags every copy must have. Anchors and flags as
 ``validation.md`` states them; ``bot_kick_all`` has no stated flags."""
 
-QUEUE_DLLS = ("client.dll", "engine2.dll", "server.dll")
-"""The DLLs that must each yield a command queue (``validation.md``, Coverage)."""
+CONVAR_ANCHORS: Mapping[tuple[str, str], frozenset[str]] = {
+    ("server.dll", "citadel_lane_swap_available_duration_prematch"): frozenset({"replicated", "cheat"}),
+}
+"""The same for convars (``validation.md``)."""
 
-_HEADER = ["module", "name", "flags", "help"]
+QUEUE_DLLS = ("client.dll", "engine2.dll", "server.dll")
+"""The DLLs that must each yield a queue of each kind (``validation.md``, Coverage)."""
+
+_HEADERS = {
+    "concommands": ["module", "name", "flags", "help"],
+    "convars": ["module", "name", "type", "version", "default", "min", "max", "flags", "help"],
+}
 
 
 def check_strides(learned: object) -> None:
@@ -50,18 +60,28 @@ def check_strides(learned: object) -> None:
 
 
 def check_concommands(table: Table) -> Table:
-    """The anchor rows of ``concommands.tsv``, in its order, help dropped;
-    asserts the anchors and the coverage."""
+    """The anchor rows of ``concommands.tsv``, in its order, as ``module name
+    flags``; asserts the anchors and the coverage."""
+    return _check_queue(table, _HEADERS["concommands"], COMMAND_ANCHORS)
+
+
+def check_convars(table: Table) -> Table:
+    """``check_concommands`` for ``convars.tsv`` and ``CONVAR_ANCHORS``."""
+    return _check_queue(table, _HEADERS["convars"], CONVAR_ANCHORS)
+
+
+def _check_queue(table: Table, expected: list[str], anchors: Mapping[tuple[str, str], frozenset[str]]) -> Table:
     header, rows = table
-    assert header == _HEADER, header
+    assert header == expected, header
     modules = {row[0] for row in rows}
-    assert modules >= set(QUEUE_DLLS), ("no command queue", sorted(set(QUEUE_DLLS) - modules))
-    anchors = [row[:3] for row in rows if (row[0], row[1]) in COMMAND_ANCHORS]
-    assert {(row[0], row[1]) for row in anchors} == set(COMMAND_ANCHORS), ("anchors missing", anchors)
-    for module, name, flags in anchors:
-        required = COMMAND_ANCHORS[module, name]
-        assert required <= set(unlist_cell(flags)), (module, name, "lacks", sorted(required), flags)
-    return _HEADER[:3], anchors
+    assert modules >= set(QUEUE_DLLS), ("no queue", sorted(set(QUEUE_DLLS) - modules))
+    flags = header.index("flags")
+    found = [[row[0], row[1], row[flags]] for row in rows if (row[0], row[1]) in anchors]
+    assert {(row[0], row[1]) for row in found} == set(anchors), ("anchors missing", found)
+    for module, name, names in found:
+        required = anchors[module, name]
+        assert required <= set(unlist_cell(names)), (module, name, "lacks", sorted(required), names)
+    return ["module", "name", "flags"], found
 
 
 def main() -> None:
@@ -70,8 +90,10 @@ def main() -> None:
             check_strides(typed_json.loads(Path(path).read_text()))
         case ["concommands", path]:
             _ = sys.stdout.write(render(check_concommands(parse(Path(path).read_text()))))
+        case ["convars", path]:
+            _ = sys.stdout.write(render(check_convars(parse(Path(path).read_text()))))
         case argv:
-            raise AssertionError("usage: dlls_check {strides|concommands} PATH", argv)
+            raise AssertionError("usage: dlls_check {strides|concommands|convars} PATH", argv)
 
 
 if __name__ == "__main__":

@@ -74,7 +74,9 @@ Evidence, build 6854 (`../../probes/hook_probe3.py`, 2026-11-05), `server.dll`:
   11 that differ read zero where upstream has a value, all named for engine2 or
   client (`host_timescale`, `violence_*`).
 
-> [!QUESTION] Whether those 11 are `server`'s reference declarations, filled in
-> when the owning DLL registers; whether every DLL with a queue replays before its
-> `Init` stops; and whether tier0's own queue (`find`, `cvarlist`) needs tier0's
-> `Init`.
+Those 11 are `server`'s `reference` declarations: their has-default byte is 0,
+and for such a declaration tier0's registry holds the type's zero value and
+version -1 (6860, `../registration-flow.md`, "The convar entry's layout").
+
+> [!QUESTION] Whether every DLL with a queue replays before its `Init` stops;
+> and whether tier0's own queue (`find`, `cvarlist`) needs tier0's `Init`.

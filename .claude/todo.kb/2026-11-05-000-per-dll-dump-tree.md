@@ -100,7 +100,7 @@ WSL pytest drives it with a fake. It must be 3.12-compatible (WSL pins 3.12).
 | `image` | a loaded PE image's layout read through `Memory`: image range, writable sections |
 | `reglist` | the reg-list queue: `walk(mem, head, stride, image)` → entry addresses in replay order (or `None` on misfit); `find_heads(mem, image, stride)` over writable sections with the owner check; `learn_strides` (pass 1); `STRIDES = {convars: 160, concommands: 64}` pinned |
 | `flags` | FCVAR bit → name (s2sdk `convar.h`, lowercased, unprefixed, DumpSource2 spelling), unknown bits → `flag_<n>` |
-| `values` | the binary's `EConVarType` table; decodes `CVValue_t` bytes by type to a JSON value, anything undecodable to hex |
+| `values` | the binary's `EConVarType` table; decodes `CVValue_t` bytes by type to a JSON value; bytes that don't fit their type raise `ShapeError` |
 | `entries` | `decode_convar(mem, addr, image)` / `decode_concommand(…)`: creation-struct offsets → `{name, help, flags, type, default, min, max}` / `{name, help, flags}` (queue index is list position, never a field); every shape check from `validation.md` raises `ShapeError` |
 | `document` | the `TypedDict`s of every facet's document; `deadlock` imports them, so pyright checks both sides of the process boundary |
 | `win32` | the only Windows-only module (ctypes): `add_dll_directory` both bin dirs and the DLL's own, `LoadLibraryExW` → base, loaded-module list, `ReadProcessMemory` as the `read` callable, `hard_exit(code)`: flush stdout, then `TerminateProcess` (skips DLL detach / static destructors) |
@@ -174,6 +174,9 @@ on another prototype.
   - [x] Evidence (6860): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-007-rendersystemdx11-owner-check-evidence.md>
 - [ ] Decode the value fields against the engine (`dllscan.values`, `dllscan.entries`)
   - [x] Fit the layout (research): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-018-convar-value-layout-fit.md>
+  - [x] The decoder and `dllscan convars`: <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-019-dllscan-convar-decode.md>
+  - [ ] The entry layout as packed `ctypes` structs, the one source for its
+        offsets (after 020): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-021-entry-layout-as-ctypes-structs.md>
   - [ ] Find `ConVarValueInfo_t`'s offsets inside the 160-byte entry (s2sdk
         `convar.h:630-730`: version, has-default/min/max, three `CVValue_t`,
         callbacks, `m_eVarType`; s2sdk's copy is stale on the type enum, so
@@ -197,7 +200,8 @@ on another prototype.
       any new hang to `EXCLUDED` with its reason; and
       `data/dlls/concommands/default.json.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-011-dll-load-and-concommands-atoms.md>, after 010)
-- [ ] `data/dlls/convars/default.json.do` (after the value decode), with its
+- [x] `data/dlls/convars/default.json.do`, `convars.tsv`
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-020-convars-atom-aggregate-check.md>), with its
       check: the convar anchor (`citadel_lane_swap_available_duration_prematch`
       ⊇ `replicated cheat`) and convar coverage (`engine2`, `client`,
       `server` each yield a convar queue), as `data/dlls.check/concommands` does

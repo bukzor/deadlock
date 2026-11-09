@@ -23,12 +23,12 @@ from collections.abc import Sequence
 from typing import Literal, TypedDict
 
 type ConVarValue = bool | int | float | str | Sequence[float]
-"""A ``CVValue_t`` decoded by its convar's ``type``.
+"""A ``CVValue_t`` decoded by its convar's ``type`` (``dllscan.values``).
 
-``bool``, ``int`` (int8 … uint64), ``float`` (float32, float64), ``str``
-(string), or a list of numbers (``color``: 4 ints; vector2/3/4, qangle:
-floats). Bytes that don't decode under the type, or whose type is unknown
-(``type_<n>``), are kept as a lowercase hex ``str``, never dropped.
+``bool``, ``int`` (int8 … uint64), ``float`` (float32 as the shortest decimal
+that reads back as the same float32; float64), ``str`` (string), or a list of
+numbers (``color``: 4 ints r, g, b, a; vector2/3/4, qangle, vectorws: floats).
+Every type decodes; bytes that don't fit theirs are a ``ShapeError``.
 """
 
 
@@ -71,15 +71,18 @@ class ConVar(TypedDict):
     """One convar declaration, as its reg-list queue entry records it.
 
     ``flags``: FCVAR names, unknown bits as ``flag_<n>``. ``type``: the
-    binary's ``EConVarType`` name, unknown values as ``type_<n>``.
+    binary's ``EConVarType`` name. ``version``: the declaration's
+    ``m_Version`` (nonzero on a few ``archive`` convars).
     ``default``/``min``/``max`` are ``null`` when the declaration's has-default
-    / has-min / has-max byte is 0.
+    / has-min / has-max byte is 0 (has-default is 0 on a ``reference``
+    declaration).
     """
 
     name: str
     help: str | None
     flags: Sequence[str]
     type: str
+    version: int
     default: ConVarValue | None
     min: ConVarValue | None
     max: ConVarValue | None

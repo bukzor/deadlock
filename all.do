@@ -16,7 +16,7 @@ committed=(data/deadlock-version.json data/tools/vrf-release.json)
 for view in "${views[@]}"; do
   committed+=("data/gamedata.tsv/$view.tsv" "data/gamedata.tsv/$view.defaults.tsv")
 done
-for facet in file load concommands; do
+for facet in file load concommands convars; do
   committed+=("data/dlls/$facet.tsv")
 done
 
@@ -34,5 +34,6 @@ sed 's#^\./#data/gamedata.json/#; s#\.vdata$#.json#' data/gamedata.list |
     data/manifest.jsonl \
     data/dlls.check/strides \
     data/dlls.check/concommands \
+    data/dlls.check/convars \
     "${committed[@]}" \
 ;

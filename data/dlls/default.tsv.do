@@ -18,7 +18,7 @@ mapfile -t dlls <<<"$all"
 
 case "$2" in
   file|load) ;;
-  concommands)
+  concommands|convars)
     loads=("${dlls[@]/#/load/}")
     loads=("${loads[@]/%/.json}")
     redo-ifchange "$src/dlls_load.py" "$src/dlls_tsv.py" "$src/types.py" "${loads[@]}"

@@ -1,8 +1,9 @@
 import json
+import struct
 
 import pytest
 
-from .facets import ANCHORS, concommands, dumps, load_failed, load_ok, strides
+from .facets import ANCHORS, concommands, convars, dumps, load_failed, load_ok, strides
 from .reglist import BLOCK, STRIDES
 from .reglist_fake import Fake
 from .shape import ShapeError
@@ -62,6 +63,45 @@ class DescribeConcommands:
         mem, image = fake.load()
         with pytest.raises(ShapeError, match="concommands"):
             _ = concommands(mem, image, DLL)
+
+
+ABSENT = {"type": "bool", "version": 0, "default": None, "min": None, "max": None}
+"""An all-zero convar entry's value info: a bool with no values."""
+
+
+class DescribeConvars:
+    def it_decodes_the_convar_queue_in_order(self):
+        fake = Fake()
+        _ = fake.queue(COMMAND, names(fake, b"cc", 2))
+        _, (block,) = fake.queue(CONVAR, [fake.entry(b"b"), fake.entry(b"a", b"some help"), fake.entry(b"c")])
+        second = block + 8 + CONVAR
+        fake.poke(second + 24, "<i", 3)
+        fake.poke(second + 28, "<B", 1)
+        fake.poke(second + 31, "<I", int.from_bytes(struct.pack("<f", 0.25), "little"))
+        fake.poke(second + 120, "<h", 9)
+        mem, image = fake.load()
+        assert convars(mem, image, DLL) == {
+            "module": "Server.DLL",
+            "convars": [
+                {"name": "b", "help": None, "flags": (), **ABSENT},
+                {"name": "a", "help": "some help", "flags": (), **ABSENT, "type": "float32", "version": 3, "default": 0.25},
+                {"name": "c", "help": None, "flags": (), **ABSENT},
+            ],
+        }
+
+    def it_is_empty_without_a_convar_queue(self):
+        fake = Fake()
+        _ = fake.queue(COMMAND, names(fake, b"cc", 2))
+        mem, image = fake.load()
+        assert convars(mem, image, "x.dll") == {"module": "x.dll", "convars": []}
+
+    def it_raises_on_a_second_convar_queue(self):
+        fake = Fake()
+        _ = fake.queue(CONVAR, names(fake, b"a", 1))
+        _ = fake.queue(CONVAR, names(fake, b"b", 2))
+        mem, image = fake.load()
+        with pytest.raises(ShapeError, match="more than one convars queue"):
+            _ = convars(mem, image, DLL)
 
 
 class DescribeStrides:

@@ -39,11 +39,12 @@ rejoins them, and the local `data/gamedata.dense.tsv/` has the full views:
 | `file.tsv` | each DLL's size and sha256 |
 | `load.tsv` | each DLL's load in a fresh Windows process: the modules it pulled in, the error, or why it is never loaded |
 | `concommands.tsv` | every console-command declaration, per DLL in registration order, duplicates kept: name, flags, help |
+| `convars.tsv` | every convar declaration, likewise: name, type, version, default, min, max, flags, help |
 
 Every `redo` also runs the checks in `data/dlls.check/`, which fail the build if
 the scan may be reading garbage: `strides` re-learns `server.dll`'s
-registration-queue layout and fails if it moved; `concommands` fails if a
-known anchor command or the `engine2`/`client`/`server` command queue is
+registration-queue layout and fails if it moved; `concommands` and `convars`
+fail if a known anchor or the `engine2`/`client`/`server` queue of that kind is
 missing.
 
 `data/deadlock-version.json` stamps which game build produced them

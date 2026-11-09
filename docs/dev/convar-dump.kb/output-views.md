@@ -45,11 +45,15 @@ not convars: separate creation struct, queue, registration slot and registry
 small (~2000 entries for `server`); the same call `gamedata.json/` made
 (commit `da6d907`).
 
-> [!TODO] JSON content rules. Every value takes the JSON type that fits the
-> data; adapting a value to a format (a TSV cell, an upstream dump's spelling)
-> is a view's job, never the store's. Also: no addresses (ASLR makes them
-> differ per run); flags as names, unknown bits as `flag_<n>`; values decoded
-> by type, anything undecodable kept as hex, never dropped.
+JSON content rules. Every value takes the JSON type that fits the data;
+adapting a value to a format (a TSV cell, an upstream dump's spelling) is a
+view's job, never the store's. Also: no addresses (ASLR makes them differ per
+run); flags as names, unknown bits as `flag_<n>`; a convar's values decoded by
+its `EConVarType` (`registration-flow.md`): a float32 as the shortest decimal
+that reads back as the same float32, a color as four ints, a vector as a list
+of floats, an absent value as `null`. Every type decodes, so bytes that don't
+fit their type fail the dump (`validation.md`, "Shape") rather than being kept
+as hex.
 
 > [!TODO] The `convars` and `concommands` aggregates: one row per declaration,
 > lossless and diffable; a DLL's patch shows as its rows. Columns, convars:

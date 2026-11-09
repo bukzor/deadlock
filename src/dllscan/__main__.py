@@ -8,6 +8,7 @@ document (`facets.dumps`, UTF-8, `\\n` line endings) to stdout:
 
 - `load`: `LoadOk` with the modules the load added, or `LoadFailed`; a refused
   load is data (exit 0), not an error.
+- `convars`: the convar queue, `ConVarsDocument`.
 - `concommands`: the command queue, `ConCommandsDocument`.
 - `strides`: the multi-block queues' strides re-learned and labelled; an error
   if they moved from `reglist.STRIDES`.
@@ -36,7 +37,7 @@ class _Args(argparse.Namespace):
 
 def _parse(argv: Sequence[str]) -> _Args:
     parser = argparse.ArgumentParser(prog="dllscan", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    _ = parser.add_argument("subcommand", choices=("load", "concommands", "strides"))
+    _ = parser.add_argument("subcommand", choices=("load", "convars", "concommands", "strides"))
     _ = parser.add_argument("dll", help="the DLL's Windows path")
     _ = parser.add_argument("dirs", nargs="*", metavar="dir", help="a DLL search dir, Windows form")
     return parser.parse_args(argv, namespace=_Args())
@@ -65,6 +66,8 @@ def proc_subcommand(subcommand: str, dll: str, dirs: Sequence[str]) -> object:
     match subcommand:
         case "load":
             return load(dll, dirs)
+        case "convars":
+            return facets.convars(*load_image(dll, dirs), dll)
         case "concommands":
             return facets.concommands(*load_image(dll, dirs), dll)
         case "strides":

@@ -11,8 +11,8 @@ import ntpath
 from collections.abc import Iterable, Mapping
 from typing import TypedDict
 
-from .document import ConCommandsDocument, LoadFailed, LoadOk
-from .entries import decode_concommand, decode_creation_base
+from .document import ConCommandsDocument, ConVarsDocument, LoadFailed, LoadOk
+from .entries import decode_concommand, decode_convar, decode_creation_base
 from .image import Image
 from .memory import Memory
 from .reglist import STRIDES, Queue, find_queues, learn_strides
@@ -54,11 +54,22 @@ def concommands(mem: Memory, image: Image, dll: str) -> ConCommandsDocument:
     """The command queue of the image loaded from `dll` (a Windows path),
     decoded; empty if it has none, `ShapeError` if it has two. `module` is
     `dll`'s basename as given, case kept: the key into `data/dlls.list`."""
-    queues = find_queues(mem, image, "concommands")
-    if len(queues) > 1:
-        raise ShapeError("more than one concommands queue", [hex(q.head) for q in queues])
-    entries = [decode_concommand(mem, entry, image) for q in queues for entry in q.entries]
+    entries = [decode_concommand(mem, entry, image) for entry in _queue(mem, image, "concommands")]
     return ConCommandsDocument(module=ntpath.basename(dll), concommands=entries)
+
+
+def convars(mem: Memory, image: Image, dll: str) -> ConVarsDocument:
+    """The convar queue, as `concommands` decodes the command queue."""
+    entries = [decode_convar(mem, entry, image) for entry in _queue(mem, image, "convars")]
+    return ConVarsDocument(module=ntpath.basename(dll), convars=entries)
+
+
+def _queue(mem: Memory, image: Image, kind: str) -> tuple[int, ...]:
+    """The entries of the image's one `kind` queue; none if it has none."""
+    queues = find_queues(mem, image, kind)
+    if len(queues) > 1:
+        raise ShapeError(f"more than one {kind} queue", [hex(q.head) for q in queues])
+    return queues[0].entries if queues else ()
 
 
 def strides(mem: Memory, image: Image) -> list[LearnedStride]:

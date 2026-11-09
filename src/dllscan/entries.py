@@ -1,5 +1,5 @@
 """Decode a reg-list queue entry (an address from `reglist.Queue.entries`) into
-the parts of its document known so far: name, help, flags.
+its document: a `ConCommand` or a `ConVar`.
 
 Both entry kinds lead with their creation struct (`Entry_t{m_Info, ...}`,
 `docs/dev/convar-dump.kb/registration-flow.md` step 2), and both creation
@@ -13,11 +13,16 @@ structs lead with `CVarCreationBase_t` (s2sdk `deadlock` 18139bdc96f1,
 The name and help offsets are the ones `docs/dev/probes/convar_scan.py` walks
 by; flags at +16 decode to upstream's for every anchor checked on 6848
 (`capture-approach.kb/queue-shape-scan.md`). A command entry holds nothing past
-the base worth dumping (its callback is a pointer), so `decode_concommand` is
-complete. A convar entry's value fields (`ConVarValueInfo_t`: type, default,
-min, max) are not located yet; `decode_convar` will be
-`ConVar(**decode_creation_base(...), type=..., default=..., min=..., max=...)`
-and add the type and has-value shape checks.
+the base worth dumping (its callback is a pointer). A convar entry continues
+with `ConVarValueInfo_t`, values packed (`registration-flow.md`, "The convar
+entry's layout", fitted against tier0's registry on 6860):
+
+    +24  int32       m_Version
+    +28  uint8[3]    has-default, has-min, has-max
+    +31  CVValue_t   default, then min at +47, max at +63 (16 bytes each)
+    +120 int16       m_eVarType
+
+The rest of the 160 bytes is pointers and padding: nothing to dump.
 
 What doesn't fit (`docs/dev/convar-dump.kb/validation.md`, "Shape") raises
 `ShapeError(what, hex(entry), ...)`: the entry comes from a queue that already
@@ -37,15 +42,22 @@ import struct
 from collections.abc import Sequence
 from typing import TypedDict
 
-from . import flags
-from .document import ConCommand
+from . import flags, values
+from .document import ConCommand, ConVar, ConVarValue
 from .image import Image
 from .memory import Memory
-from .reglist import name_at
+from .reglist import STRIDES, name_at
 from .shape import ShapeError
 
 _BASE = struct.Struct("<QQQ")
 """`CVarCreationBase_t`: name pointer, help pointer, flags."""
+
+_VERSION = struct.Struct("<i3B")
+"""`m_Version`, then the has-default, has-min, has-max bytes, at +24."""
+_VALUES = (31, 47, 63)
+"""The default, min and max `CVValue_t` offsets."""
+_TYPE = 120
+"""`m_eVarType`'s offset, an int16."""
 
 
 class CreationBase(TypedDict):
@@ -76,3 +88,33 @@ def decode_creation_base(mem: Memory, addr: int, image: Image) -> CreationBase:
 def decode_concommand(mem: Memory, addr: int, image: Image) -> ConCommand:
     """The command entry at `addr` (64 bytes; only its creation base is data)."""
     return decode_creation_base(mem, addr, image)
+
+
+def decode_convar(mem: Memory, addr: int, image: Image) -> ConVar:
+    """The convar entry at `addr` (`reglist.STRIDES["convars"]` bytes)."""
+    base = decode_creation_base(mem, addr, image)
+    raw = mem.read(addr, STRIDES["convars"])
+    if raw is None:
+        raise ShapeError("entry unreadable", hex(addr))
+    try:
+        return ConVar(**base, **_value_info(mem, raw))
+    except ShapeError as error:
+        args: tuple[object, ...] = error.args
+        what, *detail = args
+        raise ShapeError(what, hex(addr), *detail) from None
+
+
+class _ValueInfo(TypedDict):
+    type: str
+    version: int
+    default: ConVarValue | None
+    min: ConVarValue | None
+    max: ConVarValue | None
+
+
+def _value_info(mem: Memory, raw: bytes) -> _ValueInfo:
+    fields: tuple[int, int, int, int] = _VERSION.unpack_from(raw, 24)
+    version, *has = fields
+    type = values.type_name(int.from_bytes(raw[_TYPE : _TYPE + 2], "little", signed=True))
+    default, min, max = (values.decode(mem, type, h, raw[at : at + values.SIZE]) for h, at in zip(has, _VALUES, strict=True))
+    return _ValueInfo(type=type, version=version, default=default, min=min, max=max)
