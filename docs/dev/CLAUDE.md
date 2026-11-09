@@ -12,6 +12,9 @@ Developer docs: `llm-kb` knowledge bases, each a directory of per-topic files.
 - `environment.kb/` — facts about this host and the game install that the code
   depends on (game-install paths, host Alpine/musl + gcompat quirks, the pinned
   toolchain).
+- `mechanics.kb/` — how raw data fields combine into what a player sees (fire
+  rate, DPS, cooldowns), each formula with its in-game evidence. Read before
+  adding or changing a derived column.
 - `game-runtime.kb/` — how the running game behaves (console, cvars, listen vs
   dedicated server, local bot-match hosting), dug out of binary strings and
   console logs. Read before driving or configuring the live game.
