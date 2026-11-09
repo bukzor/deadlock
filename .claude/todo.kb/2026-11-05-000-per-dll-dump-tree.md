@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: active
+status: open
 ---
 
 # Per-DLL data store: `dlls.list` → `dlls/<facet>/<dll>.json` → `dlls/<facet>.tsv`
@@ -140,17 +140,39 @@ The scanner core comes first: the value-field fit reads entries through
 `memory`/`image`/`reglist`/`win32`, so it runs on the real scanner rather than
 on another prototype.
 
-- [ ] Scanner core, names/help/flags only (port `convar_scan.py` /
+- [x] Scanner core, names/help/flags only (port `convar_scan.py` /
       `fixed_stride_scan.py`, TDD against `Segments`)
-  - [ ] `pyproject.toml`: add `src/dllscan` to the hatch packages
-  - [ ] `dllscan.memory`, `dllscan.image`, `dllscan.reglist`, `dllscan.flags`, `stdlib_only_test.py`
-  - [ ] `dllscan.document`, `dllscan.win32`, `dllscan.__main__ load|convars|concommands`;
-        `bin/winpy`. Verify Windows Python takes a `\\wsl.localhost\…` entry on `PYTHONPATH`
-  - [ ] Time `find_heads` on `server.dll`; settle the `reglists` question below
-  - [ ] Re-run on 6860: `server`/`client` counts against the 6854 ones
+  One sub-agent per item, coordinated from the main session; waves run in
+  parallel, each wave after the one it depends on. Each agent's brief and
+  report is a file in `2026-11-05-000-per-dll-dump-tree.kb/` (protocol in
+  its `CLAUDE.md`).
+  - [x] Wave 1: package skeleton (`pyproject.toml` hatch packages,
+        `__init__`, `stdlib_only_test.py`) + `dllscan.memory`
+        (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-001-dllscan-skeleton-and-memory.md>)
+  - [x] Wave 1: `dllscan.flags`
+        (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-002-dllscan-flags-table.md>)
+  - [x] Wave 1: `dllscan.document`
+        (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-000-dllscan-document-types.md>)
+  - [x] Wave 2 (after memory): `dllscan.image`
+        (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-003-dllscan-image-layout.md>)
+  - [x] Wave 3 (after image): `dllscan.reglist`
+        (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-004-dllscan-reglist.md>)
+  - [x] Wave 3 (after memory, beside `reglist`): `dllscan.win32`, `bin/winpy`.
+        Verify Windows Python takes a `\\wsl.localhost\…` entry on `PYTHONPATH`
+        (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-005-dllscan-win32-and-winpy.md>)
+  - [x] Wave 4 (after `reglist`): `dllscan.entries`, names/help/flags only
+        (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-006-dllscan-entries-names-help-flags.md>)
+  - [x] Wave 5 (after `entries`): `dllscan.__main__ load|concommands|strides`
+        (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-008-dllscan-main-load-concommands-strides.md>)
+        (`convars` waits for the value decode: no placeholder values), and on
+        the real install: time `find_queues` on `server.dll` and settle the
+        `reglists` question below; re-run 6860 `server`/`client` queue counts
+        against the 6854 ones
 - [ ] Settle the `rendersystemdx11` owner-check exception (6 of 7 entries pass,
       6851; `queue-shape-scan.md` `[!QUESTION]`): read the odd entry, decide
       whether a null or out-of-image ref is legal, then make the check strict
+  - [x] Evidence (6860): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-007-rendersystemdx11-owner-check-evidence.md>.
+        Recommended: per-kind ref test (commands: ref reads u16 `0xFFFF`; convars: owner check). Awaiting the user.
 - [ ] Decode the value fields against the engine (`dllscan.values`, `dllscan.entries`)
   - [ ] Find `ConVarValueInfo_t`'s offsets inside the 160-byte entry (s2sdk
         `convar.h:630-730`: version, has-default/min/max, three `CVValue_t`,
@@ -167,12 +189,17 @@ on another prototype.
         min, max equal the registry's; record the layout in
         `registration-flow.md` with the build
 - [ ] `dllscan.__main__ strides`; all `validation.md` shape checks raise
-- [ ] `deadlock.paths.bin_dirs`, `deadlock.dll_inventory`, `data/dlls.list.do`
-- [ ] `deadlock.dll_file`, `data/dlls/file/default.json.do`
-- [ ] `deadlock.dll_load`, `data/dlls/load/default.json.do`; load all 97, add
-      any new hang to `EXCLUDED` with its reason
-- [ ] `data/dlls/{convars,concommands}/default.json.do`
-- [ ] `deadlock.dlls_{file,load,convars,concommands}`, `data/dlls/default.tsv.do`
+- [x] `deadlock.paths.bin_dirs`, `deadlock.dll_inventory`, `data/dlls.list.do`
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-009-dll-inventory-and-dlls-list.md>)
+- [x] `deadlock.dll_file`, `data/dlls/file/default.json.do`
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-010-dll-file-facet.md>)
+- [~] `deadlock.dll_load`, `data/dlls/load/default.json.do`; load all 97, add
+      any new hang to `EXCLUDED` with its reason; and
+      `data/dlls/concommands/default.json.do`
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-011-dll-load-and-concommands-atoms.md>, after 010)
+- [ ] `data/dlls/convars/default.json.do` (after the value decode)
+- [~] `deadlock.dlls_{file,load,convars,concommands}`, `data/dlls/default.tsv.do`
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-012-dlls-facet-aggregates.md>: all but `convars`)
 - [ ] `data/dlls.check/strides.do`; checks `validation.md` lists but no target
       owns yet: the anchors (they also label the strides) and coverage
       (`engine2`, `client`, `server` each yield both queues)

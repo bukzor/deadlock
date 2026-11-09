@@ -1,0 +1,41 @@
+#!/bin/bash
+# usage: bin/winpy MODULE ARGS...
+# Run `python.exe -m MODULE ARGS...` (Windows Python, from WSL) with the
+# repo's src/ on PYTHONPATH, stdin from /dev/null (python.exe reads its
+# inherited stdin, so under redo it would eat the caller's), cwd trash/winpy/
+# (catches *.mdmp crash dumps), under `timeout`; exits with python.exe's status
+# (124: timed out). WINPY_TIMEOUT: seconds, default 60.
+set -euo pipefail
+shopt -s failglob
+export DEBUG="${DEBUG:-0}"
+
+onerror() {
+  error="$?"
+  echo >&2 "ERROR($error)"
+  exit "$error"
+}
+trap onerror ERR
+
+repo="$(dirname "$(dirname "$(readlink -f "$0")")")"
+
+if (( DEBUG > 0 )); then
+  set -x
+fi
+
+if (( $# < 1 )); then
+  echo >&2 "usage: bin/winpy MODULE ARGS..."
+  exit 2
+fi
+if ! command -v python.exe >/dev/null; then
+  echo >&2 "winpy: python.exe (Windows Python) is not on PATH"
+  exit 127
+fi
+
+# /p: WSL interop hands python.exe the \\wsl.localhost\... form of the path.
+# PYTHONUTF8: stdout is UTF-8, not the ANSI code page (cp1252).
+export PYTHONPATH="$repo/src" PYTHONUTF8=1
+export WSLENV="PYTHONPATH/p:PYTHONUTF8${WSLENV:+:$WSLENV}"
+
+mkdir -p "$repo/trash/winpy"
+cd "$repo/trash/winpy"
+exec timeout "${WINPY_TIMEOUT:-60}" python.exe -m "$@" </dev/null

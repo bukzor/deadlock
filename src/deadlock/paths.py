@@ -40,6 +40,12 @@ def citadel_dir(environ: dict[str, str] | None = None) -> Path:
     return game_dir(environ) / "citadel"
 
 
+def bin_dirs(environ: dict[str, str] | None = None) -> tuple[Path, Path]:
+    """Where the game's DLLs load from: the engine's, then the game's own."""
+    game = game_dir(environ)
+    return game / "bin/win64", game / "citadel/bin/win64"
+
+
 def vpk_dir_file(environ: dict[str, str] | None = None) -> Path:
     """The VPK directory file that indexes all ``pak01_NNN.vpk`` archives."""
     return citadel_dir(environ) / "pak01_dir.vpk"
@@ -76,8 +82,9 @@ def data_dir(environ: dict[str, str] | None = None) -> Path:
 # Exposed to the .do scripts, which need these paths to declare dependencies.
 # A named table beats `python -c '...'` in the build scripts: that is real code
 # in a string, which no type checker or test ever sees.
-RESOLVERS: Mapping[str, Callable[[], Path]] = {
+RESOLVERS: Mapping[str, Callable[[], Path | tuple[Path, ...]]] = {
     "game_dir": game_dir,
+    "bin_dirs": bin_dirs,
     "citadel_dir": citadel_dir,
     "vpk_dir_file": vpk_dir_file,
     "hero_names_loc": hero_names_loc,
@@ -87,10 +94,15 @@ RESOLVERS: Mapping[str, Callable[[], Path]] = {
 
 
 def main(argv: list[str] | None = None) -> None:
-    """Print one named path: ``python -m deadlock.paths vpk_dir_file``."""
+    """Print one named path: ``python -m deadlock.paths vpk_dir_file``.
+
+    A list of paths (``bin_dirs``) prints one per line.
+    """
     [name] = (sys.argv if argv is None else argv)[1:]
     assert name in RESOLVERS, (name, sorted(RESOLVERS))
-    _ = sys.stdout.write(f"{RESOLVERS[name]()}\n")
+    resolved = RESOLVERS[name]()
+    for path in resolved if isinstance(resolved, tuple) else (resolved,):
+        _ = sys.stdout.write(f"{path}\n")
 
 
 if __name__ == "__main__":

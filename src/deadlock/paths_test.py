@@ -36,10 +36,27 @@ class DescribeSteamInf:
         assert paths.steam_inf(env) == Path("/g/game/citadel/steam.inf")
 
 
+class DescribeBinDirs:
+    def it_lists_the_engine_then_the_game_bin_dir(self):
+        env = {"DEADLOCK_HOME": "/g"}
+        assert paths.bin_dirs(env) == (
+            Path("/g/game/bin/win64"),
+            Path("/g/game/citadel/bin/win64"),
+        )
+
+
 class DescribeMain:
     def it_prints_the_named_path(self, capsys: pytest.CaptureFixture[str]):
         paths.main(["paths", "vpk_dir_file"])
         assert capsys.readouterr().out == f"{paths.vpk_dir_file()}\n"
+
+    def it_prints_a_path_list_one_per_line(
+        self, capsys: pytest.CaptureFixture[str]
+    ):
+        paths.main(["paths", "bin_dirs"])
+        assert capsys.readouterr().out == "".join(
+            f"{d}\n" for d in paths.bin_dirs()
+        )
 
     def it_fails_loudly_on_an_unknown_name(self):
         with pytest.raises(AssertionError, match="bogus"):
