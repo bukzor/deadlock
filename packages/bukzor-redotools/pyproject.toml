@@ -9,6 +9,7 @@ dependencies = []
 
 [project.scripts]
 redo-adopt = "bukzor_redotools.adopt:main"
+redo-trace = "bukzor_redotools.trace:main"
 
 [build-system]
 requires = ["hatchling"]

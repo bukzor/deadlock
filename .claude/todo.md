@@ -33,3 +33,5 @@ status: open
 
 - [ ] `data/dlls/load.edges.tsv` (`loader<TAB>loaded`, one inferred edge per line) as the diffable form of the load graph: one changed dependency is one changed line, where `load.tsv`'s closure cells change on every DLL above it; `load.tree.txt` and an inverted (`what loads X`) tree render from it
   - [ ] Hoist each shared subtree (loaded by ≥2, loads something) to its own root, so every `(*)` points at a root rather than wherever the sort first drew it
+- [ ] `redo-trace --all` (`packages/bukzor-redotools`): every root log on the real clock, one Perfetto track each — the latest known cost of every target. The default (the newest build) is often a no-op `redo all`; on 2026-11-09 the real timings sat in 318 separate root logs
+- [ ] `redo-trace --open`: serve the trace once to ui.perfetto.dev (its CSP allows `http://127.0.0.1:9001`; send `Access-Control-Allow-Origin: *`; 404 its `POST /status` trace_processor probe, then exit after the `GET`) and `wslview 'https://ui.perfetto.dev/#!/?url=http://127.0.0.1:9001/trace.json'` — prototyped and working by hand

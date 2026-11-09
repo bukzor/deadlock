@@ -34,6 +34,29 @@ fresh clone rebuilds them instead of trusting them:
 redo-adopt "${committed[@]}"
 ```
 
+## `redo-trace`
+
+Renders a build's timeline for `chrome://tracing` (or <https://ui.perfetto.dev>),
+from the logs redo already keeps — no instrumented rerun needed.
+
+```sh
+redo-trace [TARGET] > trace.json
+```
+
+`TARGET` defaults to the most recent build, finished or not. Each target is a
+span nested under the target that built it; parallel (`-j`) work spreads onto
+extra lanes; failed targets are red.
+
+What redo's logs can and can't tell it:
+
+- redo keeps only each target's *latest* build log, so a target rebuilt since
+  appears without its subtree. For a whole-build profile, trace right after a
+  clean build.
+- The root's own start and end aren't logged; its span runs from the first
+  line of its log to the last.
+- `redo-log` output is no substitute: it stamps replayed lines with the replay
+  time.
+
 ## Caveat
 
 There is no public API for this: upstream redo has no `redo-adopt`, and
@@ -41,4 +64,5 @@ There is no public API for this: upstream redo has no `redo-adopt`, and
 leaves a half-initialized row that crashes the next build). So this imports
 redo's own `state` module. That's a deliberately narrow dependency on internals
 — three field assignments — and the test suite fails loudly if those semantics
-ever shift. Developed against apenwarr redo 0.42d.
+ever shift. `redo-trace` likewise reads redo's private log format and
+`Files` table directly. Developed against apenwarr redo 0.42d.
