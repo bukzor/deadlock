@@ -41,7 +41,7 @@ class DescribeConcommands:
         _ = fake.queue(COMMAND, [fake.entry(b"b"), fake.entry(b"a", b"some help"), fake.entry(b"c")])
         mem, image = fake.load()
         assert concommands(mem, image, DLL) == {
-            "module": "server.dll",
+            "module": "Server.DLL",
             "concommands": [
                 {"name": "b", "help": None, "flags": ()},
                 {"name": "a", "help": "some help", "flags": ()},

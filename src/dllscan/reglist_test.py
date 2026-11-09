@@ -5,7 +5,8 @@ import pytest
 from .image import Image, read_image
 from .image_fake import FakeSection, loaded
 from .memory import Memory
-from .reglist import BLOCK, STRIDES, Queue, find_queues, learn_strides, name_at, walk
+from .reglist import BLOCK, REF_TESTS, STRIDES, UNREGISTERED, Queue, RefTest, find_queues, learn_strides, name_at, owned_ref
+from .reglist import unregistered_command_ref, walk
 from .shape import ShapeError
 
 BASE = 0x180000000
@@ -34,13 +35,22 @@ class Fake:
         return addr
 
     def qword(self, value: int = 0) -> int:
-        """A new qword in `.data`: a ref's target, or a head slot."""
+        """A new qword in `.data`: a head slot, or a ref's target."""
         addr = DATA + len(self.data)
         self.data += struct.pack("<Q", value)
         return addr
 
-    def entry(self, name: bytes = b"sv_x", help: bytes | None = None) -> Entry:
-        return (self.string(name), 0 if help is None else self.string(help), self.qword())
+    def entry(self, name: bytes = b"sv_x", help: bytes | None = None, ref: int | None = None) -> Entry:
+        """An entry whose ref, by default, is a static unregistered ref in
+        `.data`: one that passes every kind's ref test."""
+        ref = self.qword(UNREGISTERED) if ref is None else ref
+        return (self.string(name), 0 if help is None else self.string(help), ref)
+
+    def heap_ref(self, value: int = UNREGISTERED) -> int:
+        """A ref outside the image (a heap-owned `ConCommand`) holding `value`."""
+        addr = HEAP - 0x1000 * (1 + sum(b < HEAP for b in self.heap))
+        self.heap[addr] = bytearray(struct.pack("<Q", value))
+        return addr
 
     def queue(self, stride: int, entries: list[Entry]) -> tuple[int, list[int]]:
         """Blocks holding `entries` in replay order, and a head slot pointing at
@@ -117,40 +127,40 @@ class DescribeWalk:
         fake = Fake()
         _, blocks = fake.queue(CONVAR, [fake.entry(b"v%d" % i) for i in range(250)])
         mem, image = fake.load()
-        assert walk(mem, blocks[0], CONVAR, image) == addresses(blocks, [50, 100, 100], CONVAR)
+        assert walk(mem, blocks[0], CONVAR, image, owned_ref) == addresses(blocks, [50, 100, 100], CONVAR)
 
     def it_accepts_a_full_root_block(self):
         fake = Fake()
         _, blocks = fake.queue(COMMAND, [fake.entry() for _ in range(BLOCK)])
         mem, image = fake.load()
-        assert walk(mem, blocks[0], COMMAND, image) == addresses(blocks, [100], COMMAND)
+        assert walk(mem, blocks[0], COMMAND, image, owned_ref) == addresses(blocks, [100], COMMAND)
 
     def it_accepts_help_in_the_image(self):
         fake = Fake()
         _, blocks = fake.queue(COMMAND, [fake.entry(help=b"some help, with spaces")])
         mem, image = fake.load()
-        assert walk(mem, blocks[0], COMMAND, image) == addresses(blocks, [1], COMMAND)
+        assert walk(mem, blocks[0], COMMAND, image, owned_ref) == addresses(blocks, [1], COMMAND)
 
     def it_returns_none_on_a_broken_link(self):
         fake = Fake()
         _, blocks = fake.queue(CONVAR, [fake.entry() for _ in range(150)])
         del fake.heap[blocks[1]]
         mem, image = fake.load()
-        assert walk(mem, blocks[0], CONVAR, image) is None
+        assert walk(mem, blocks[0], CONVAR, image, owned_ref) is None
 
     def it_returns_none_on_an_unreadable_link(self):
         fake = Fake()
         _, blocks = fake.queue(COMMAND, [fake.entry()])
         fake.heap[blocks[0]] = fake.heap[blocks[0]][:-8]
         mem, image = fake.load()
-        assert walk(mem, blocks[0], COMMAND, image) is None
+        assert walk(mem, blocks[0], COMMAND, image, owned_ref) is None
 
     def it_returns_none_on_a_cycle(self):
         fake = Fake()
         _, blocks = fake.queue(COMMAND, [fake.entry() for _ in range(200)])
         fake.poke(blocks[1] + 8 + BLOCK * COMMAND, "<Q", blocks[0])
         mem, image = fake.load()
-        assert walk(mem, blocks[0], COMMAND, image) is None
+        assert walk(mem, blocks[0], COMMAND, image, owned_ref) is None
 
     @pytest.mark.parametrize(
         ("block", "size"),
@@ -165,7 +175,7 @@ class DescribeWalk:
         _, blocks = fake.queue(COMMAND, [fake.entry() for _ in range(150)])
         fake.poke(blocks[block], "<I", size)
         mem, image = fake.load()
-        assert walk(mem, blocks[0], COMMAND, image) is None
+        assert walk(mem, blocks[0], COMMAND, image, owned_ref) is None
 
     @pytest.mark.parametrize(
         ("field", "value"),
@@ -173,9 +183,6 @@ class DescribeWalk:
             pytest.param(0, 0, id="null-name"),
             pytest.param(0, HEAP, id="name-outside-image"),
             pytest.param(8, HEAP, id="help-outside-image"),
-            pytest.param(COMMAND - 8, 0, id="null-ref"),
-            pytest.param(COMMAND - 8, RDATA, id="ref-not-writable"),
-            pytest.param(COMMAND - 8, HEAP, id="ref-outside-image"),
         ],
     )
     def it_returns_none_on_an_entry_that_misfits(self, field: int, value: int):
@@ -183,13 +190,54 @@ class DescribeWalk:
         _, blocks = fake.queue(COMMAND, [fake.entry() for _ in range(150)])
         fake.poke(blocks[1] + 8 + 7 * COMMAND + field, "<Q", value)
         mem, image = fake.load()
-        assert walk(mem, blocks[0], COMMAND, image) is None
+        assert walk(mem, blocks[0], COMMAND, image, owned_ref) is None
 
     def it_returns_none_on_a_name_that_breaks_the_rule(self):
         fake = Fake()
         _, blocks = fake.queue(COMMAND, [fake.entry(), fake.entry(b"sv cheats")])
         mem, image = fake.load()
-        assert walk(mem, blocks[0], COMMAND, image) is None
+        assert walk(mem, blocks[0], COMMAND, image, owned_ref) is None
+
+    def it_applies_the_ref_test_it_is_given(self):
+        fake = Fake()
+        odd = fake.qword(UNREGISTERED)
+        _, blocks = fake.queue(COMMAND, [fake.entry(), fake.entry(ref=odd), fake.entry()])
+        mem, image = fake.load()
+        assert walk(mem, blocks[0], COMMAND, image, lambda mem, ref, image: True) == addresses(blocks, [3], COMMAND)
+        assert walk(mem, blocks[0], COMMAND, image, lambda mem, ref, image: ref != odd) is None
+
+
+PLACES = {"rdata": RDATA, "null": 0, "unmapped": HEAP + 0x7000000}
+"""Refs the fake doesn't write: `.rdata`'s first qword reads 0; nothing is mapped at the last."""
+
+
+class DescribeRefTests:
+    def it_has_one_per_kind(self):
+        assert REF_TESTS == {"convars": owned_ref, "concommands": unregistered_command_ref}
+
+    @pytest.mark.parametrize(
+        ("ref_test", "where", "value", "passes"),
+        [
+            (owned_ref, "data", 0, True),
+            (owned_ref, "rdata", 0, False),
+            (owned_ref, "heap", UNREGISTERED, False),
+            (owned_ref, "null", 0, False),
+            (unregistered_command_ref, "data", 0xFFFF, True),
+            (unregistered_command_ref, "data", 0xDEAD_FFFF, True),
+            (unregistered_command_ref, "heap", 0xFFFF, True),
+            (unregistered_command_ref, "heap", 0, False),
+            (unregistered_command_ref, "heap", 0xFFFE, False),
+            (unregistered_command_ref, "heap", 0xFFFF_0000, False),
+            (unregistered_command_ref, "null", 0, False),
+            (unregistered_command_ref, "unmapped", 0, False),
+        ],
+    )
+    def it_judges_a_ref_by_where_it_points_and_what_it_reads(self, ref_test: RefTest, where: str, value: int, passes: bool):
+        fake = Fake()
+        written = {"data": fake.qword, "heap": fake.heap_ref}
+        ref = written[where](value) if where in written else PLACES[where]
+        mem, image = fake.load()
+        assert ref_test(mem, ref, image) is passes
 
 
 class DescribeFindQueues:
@@ -201,12 +249,23 @@ class DescribeFindQueues:
         assert find_queues(mem, image, CONVAR) == [Queue(convars[0], CONVAR, addresses(convars[1], [3], CONVAR))]
         assert find_queues(mem, image, COMMAND) == [Queue(commands[0], COMMAND, addresses(commands[1], [5], COMMAND))]
 
-    def it_skips_a_queue_with_a_non_owner_ref(self):
+    def it_finds_a_command_queue_with_a_heap_owned_command(self):
         fake = Fake()
-        name, help, _ = fake.entry()
-        _ = fake.queue(COMMAND, [fake.entry(), (name, help, HEAP)])
+        head, blocks = fake.queue(COMMAND, [fake.entry(), fake.entry(ref=fake.heap_ref()), fake.entry()])
+        mem, image = fake.load()
+        assert find_queues(mem, image, COMMAND) == [Queue(head, COMMAND, addresses(blocks, [3], COMMAND))]
+
+    def it_skips_a_command_queue_whose_ref_reads_anything_else(self):
+        fake = Fake()
+        _ = fake.queue(COMMAND, [fake.entry(), fake.entry(ref=fake.qword(0))])
         mem, image = fake.load()
         assert find_queues(mem, image, COMMAND) == []
+
+    def it_skips_a_convar_queue_with_a_ref_outside_the_writable_sections(self):
+        fake = Fake()
+        _ = fake.queue(CONVAR, [fake.entry(), fake.entry(ref=fake.heap_ref())])
+        mem, image = fake.load()
+        assert find_queues(mem, image, CONVAR) == []
 
     def it_skips_a_root_inside_the_image(self):
         fake = Fake()
@@ -216,7 +275,7 @@ class DescribeFindQueues:
         fake.rdata += fake.heap.pop(blocks[0])
         struct.pack_into("<Q", fake.data, head - DATA, root)
         mem, image = fake.load()
-        assert walk(mem, root, COMMAND, image) is not None
+        assert walk(mem, root, COMMAND, image, owned_ref) is not None
         assert find_queues(mem, image, COMMAND) == []
 
     def it_reports_a_second_head_of_the_same_kind(self):
@@ -241,6 +300,14 @@ class DescribeLearnStrides:
         mem, image = fake.load()
         assert learn_strides(mem, image) == [Queue(head, 168, addresses(blocks, [1, 100], 168))]
         assert 168 not in STRIDES.values()
+
+    def it_owner_checks_whatever_the_stride(self):
+        fake = Fake()
+        entries = [fake.entry() for _ in range(BLOCK + 1)]
+        entries[3] = fake.entry(ref=fake.heap_ref())
+        _ = fake.queue(COMMAND, entries)
+        mem, image = fake.load()
+        assert learn_strides(mem, image) == []
 
     def it_ignores_a_single_block_queue(self):
         fake = Fake()

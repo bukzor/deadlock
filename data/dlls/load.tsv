@@ -1,0 +1,98 @@
+dll	outcome	detail
+Qt5Concurrent.dll	ok	cryptbase.dll mpr.dll netapi32.dll netutils.dll qt5concurrent.dll qt5core.dll shell32.dll srvcli.dll userenv.dll winmm.dll
+Qt5Core.dll	ok	cryptbase.dll mpr.dll netapi32.dll netutils.dll qt5core.dll shell32.dll srvcli.dll userenv.dll winmm.dll
+Qt5Gui.dll	ok	cryptbase.dll d3d11.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll shell32.dll srvcli.dll umpdc.dll userenv.dll winmm.dll
+Qt5Widgets.dll	ok	cryptbase.dll d3d11.dll dwmapi.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll qt5widgets.dll shell32.dll srvcli.dll umpdc.dll userenv.dll uxtheme.dll winmm.dll
+SDL3.dll	ok	hid.dll sdl3.dll setupapi.dll shell32.dll winmm.dll
+amd_ags_x64.dll	ok	amd_ags_x64.dll
+amd_fidelityfx_vk.dll	ok	amd_fidelityfx_vk.dll cfgmgr32.dll msvcp140.dll vcruntime140_1.dll vulkan-1.dll
+animationsystem.dll	ok	animationsystem.dll tier0.dll winmm.dll
+assetpreview.dll	excluded	LoadLibrary hangs and leaves an unkillable process (build 6851)
+ati_compress_wrapper.dll	ok	ati_compress_wrapper.dll
+bugreporter_filequeue.dll	ok	bugreporter_filequeue.dll tier0.dll winmm.dll wsock32.dll
+cairo.dll	ok	cairo.dll
+client.dll	ok	client.dll crypt32.dll dbghelp.dll embree3.dll libavcodec-58.dll libavformat-58.dll libavresample-4.dll libavutil-56.dll libswscale-5.dll msvcp140.dll mswsock.dll psapi.dll shell32.dll steam_api64.dll tier0.dll v8.dll v8_icui18n.dll v8_icuuc.dll v8_libbase.dll v8_zlib.dll vcruntime140_1.dll video64.dll winmm.dll wsock32.dll
+d3dcompiler_47.dll	ok	d3dcompiler_47.dll
+dbghelp.dll	ok	dbghelp.dll
+embree3.dll	ok	embree3.dll msvcp140.dll vcruntime140_1.dll
+engine2.dll	ok	engine2.dll iphlpapi.dll shell32.dll steam_api64.dll steamnetworkingsockets.dll tier0.dll winmm.dll
+filesystem_stdio.dll	ok	filesystem_stdio.dll shell32.dll steam_api64.dll tier0.dll winmm.dll
+gfsdk_aftermath_lib.x64.dll	ok	gfsdk_aftermath_lib.x64.dll
+helpsystem.dll	excluded	LoadLibrary hangs and leaves an unkillable process (build 6851)
+host.dll	ok	host.dll tier0.dll winmm.dll
+imemanager.dll	ok	imemanager.dll tier0.dll winmm.dll
+inputsystem.dll	ok	inputsystem.dll tier0.dll winmm.dll
+libavcodec-58.dll	ok	libavcodec-58.dll libavutil-56.dll
+libavformat-58.dll	ok	libavcodec-58.dll libavformat-58.dll libavutil-56.dll
+libavresample-4.dll	ok	libavresample-4.dll libavutil-56.dll
+libavutil-56.dll	ok	libavutil-56.dll
+libfbxsdk_2020_3_1.dll	ok	libfbxsdk_2020_3_1.dll
+libfontconfig-1.dll	ok	libfontconfig-1.dll libfreetype-6.dll
+libfreetype-6.dll	ok	libfreetype-6.dll
+libglib-2.0-0.dll	ok	libglib-2.0-0.dll shell32.dll winmm.dll
+libgmodule-2.0-0.dll	ok	libglib-2.0-0.dll libgmodule-2.0-0.dll shell32.dll winmm.dll
+libgobject-2.0-0.dll	ok	libglib-2.0-0.dll libgobject-2.0-0.dll shell32.dll winmm.dll
+libgthread-2.0-0.dll	ok	libglib-2.0-0.dll libgthread-2.0-0.dll shell32.dll winmm.dll
+libmpg123-0.dll	ok	libmpg123-0.dll shlwapi.dll
+libpango-1.0-0.dll	ok	libglib-2.0-0.dll libgmodule-2.0-0.dll libgobject-2.0-0.dll libpango-1.0-0.dll shell32.dll winmm.dll
+libpangoft2-1.0-0.dll	ok	libfontconfig-1.dll libfreetype-6.dll libglib-2.0-0.dll libgmodule-2.0-0.dll libgobject-2.0-0.dll libpango-1.0-0.dll libpangoft2-1.0-0.dll shell32.dll usp10.dll winmm.dll
+libswscale-5.dll	ok	libavutil-56.dll libswscale-5.dll
+localize.dll	ok	localize.dll shell32.dll steam_api64.dll tier0.dll winmm.dll
+materialsystem2.dll	ok	materialsystem2.dll tier0.dll winmm.dll
+meshsystem.dll	ok	meshsystem.dll tier0.dll winmm.dll
+navsystem.dll	ok	navsystem.dll tier0.dll winmm.dll
+netgraph_subtool.dll	ok	cryptbase.dll d3d11.dll dwmapi.dll dxgi.dll mpr.dll netapi32.dll netgraph_subtool.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll qt5widgets.dll shell32.dll srvcli.dll tier0.dll umpdc.dll userenv.dll uxtheme.dll winmm.dll
+networksystem.dll	ok	iphlpapi.dll networksystem.dll shell32.dll steam_api64.dll steamnetworkingsockets.dll tier0.dll winmm.dll
+nvngx_dlss.dll	ok	nvngx_dlss.dll
+p4lib.dll	ok	p4lib.dll tier0.dll winmm.dll
+panorama.dll	ok	crypt32.dll dbghelp.dll hid.dll libavcodec-58.dll libavformat-58.dll libavresample-4.dll libavutil-56.dll libswscale-5.dll mswsock.dll panorama.dll psapi.dll sdl3.dll setupapi.dll shell32.dll steam_api64.dll tier0.dll v8.dll v8_icui18n.dll v8_icuuc.dll v8_libbase.dll v8_zlib.dll video64.dll winmm.dll wsock32.dll
+panorama_text_pango.dll	ok	libfontconfig-1.dll libfreetype-6.dll libglib-2.0-0.dll libgmodule-2.0-0.dll libgobject-2.0-0.dll libpango-1.0-0.dll libpangoft2-1.0-0.dll panorama_text_pango.dll shell32.dll tier0.dll usp10.dll winmm.dll
+panoramauiclient.dll	ok	crypt32.dll dbghelp.dll libavcodec-58.dll libavformat-58.dll libavresample-4.dll libavutil-56.dll libswscale-5.dll mswsock.dll panoramauiclient.dll psapi.dll shell32.dll steam_api64.dll tier0.dll v8.dll v8_icui18n.dll v8_icuuc.dll v8_libbase.dll v8_zlib.dll video64.dll winmm.dll wsock32.dll
+particles.dll	ok	particles.dll tier0.dll winmm.dll
+phonon.dll	ok	cfgmgr32.dll phonon.dll
+phonon4.dll	failed	LoadLibraryExW: 126
+physicsbuilder.dll	ok	embree3.dll msvcp140.dll physicsbuilder.dll tier0.dll vcruntime140_1.dll winmm.dll
+propertyeditor.dll	excluded	LoadLibrary hangs and leaves an unkillable process (build 6851)
+pulse_system.dll	ok	pulse_system.dll tier0.dll winmm.dll
+qgif.dll	ok	cryptbase.dll d3d11.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qgif.dll qt5core.dll qt5gui.dll shell32.dll srvcli.dll umpdc.dll userenv.dll winmm.dll
+qico.dll	ok	cryptbase.dll d3d11.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qico.dll qt5core.dll qt5gui.dll shell32.dll srvcli.dll umpdc.dll userenv.dll winmm.dll
+qjpeg.dll	ok	cryptbase.dll d3d11.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qjpeg.dll qt5core.dll qt5gui.dll shell32.dll srvcli.dll umpdc.dll userenv.dll winmm.dll
+qtadvanceddocking-qt5.dll	ok	cryptbase.dll d3d11.dll dwmapi.dll dxgi.dll mpr.dll msvcp140.dll netapi32.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll qt5widgets.dll qtadvanceddocking-qt5.dll shell32.dll srvcli.dll umpdc.dll userenv.dll uxtheme.dll vcruntime140_1.dll winmm.dll
+qtga.dll	ok	cryptbase.dll d3d11.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll qtga.dll shell32.dll srvcli.dll umpdc.dll userenv.dll winmm.dll
+qtiff.dll	ok	cryptbase.dll d3d11.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll qtiff.dll shell32.dll srvcli.dll umpdc.dll userenv.dll winmm.dll
+qwindows.dll	ok	crypt32.dll cryptbase.dll d3d11.dll dwmapi.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll qwindows.dll shell32.dll srvcli.dll sspicli.dll umpdc.dll userenv.dll winmm.dll wtsapi32.dll
+qwindowsvistastyle.dll	ok	cryptbase.dll d3d11.dll dwmapi.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll qt5widgets.dll qwindowsvistastyle.dll shell32.dll srvcli.dll umpdc.dll userenv.dll uxtheme.dll winmm.dll
+rendersystemdx11.dll	ok	amd_ags_x64.dll cfgmgr32.dll crypt32.dll d3d11.dll d3d9.dll d3dcompiler_47.dll dwmapi.dll dxcore.dll dxgi.dll powrprof.dll rendersystemdx11.dll setupapi.dll shlwapi.dll tier0.dll umpdc.dll winmm.dll
+rendersystemempty.dll	ok	rendersystemempty.dll tier0.dll winmm.dll
+rendersystemvulkan.dll	ok	amd_ags_x64.dll cfgmgr32.dll crypt32.dll d3d11.dll d3d9.dll d3dcompiler_47.dll dwmapi.dll dxcore.dll dxgi.dll gfsdk_aftermath_lib.x64.dll powrprof.dll rendersystemdx11.dll rendersystemvulkan.dll setupapi.dll shlwapi.dll tier0.dll umpdc.dll winmm.dll
+resourcecompiler.dll	ok	dbghelp.dll embree3.dll libfbxsdk_2020_3_1.dll msvcp140.dll resourcecompiler.dll shell32.dll steam_api64.dll tier0.dll v8.dll v8_icui18n.dll v8_icuuc.dll v8_libbase.dll v8_zlib.dll vcruntime140_1.dll winmm.dll
+resourcesystem.dll	ok	resourcesystem.dll tier0.dll winmm.dll
+scenefilecache.dll	ok	scenefilecache.dll tier0.dll winmm.dll
+scenesystem.dll	ok	scenesystem.dll shell32.dll tier0.dll winmm.dll
+schemasystem.dll	ok	schemasystem.dll tier0.dll winmm.dll
+server.dll	ok	server.dll shell32.dll steam_api64.dll tier0.dll winmm.dll
+soundsystem.dll	ok	soundsystem.dll tier0.dll winmm.dll
+soundviewer_subtool.dll	ok	cryptbase.dll d3d11.dll dwmapi.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll qt5widgets.dll shell32.dll soundviewer_subtool.dll srvcli.dll tier0.dll umpdc.dll userenv.dll uxtheme.dll winmm.dll
+steam_api64.dll	ok	shell32.dll steam_api64.dll
+steamaudio.dll	ok	cfgmgr32.dll phonon.dll steamaudio.dll tier0.dll winmm.dll
+steamnetworkingsockets.dll	ok	iphlpapi.dll steamnetworkingsockets.dll winmm.dll
+symsrv.dll	ok	symsrv.dll
+tier0.dll	ok	tier0.dll winmm.dll
+toolframework2.dll	excluded	LoadLibrary hangs and leaves an unkillable process (build 6851)
+v8.dll	ok	dbghelp.dll v8.dll v8_icui18n.dll v8_icuuc.dll v8_libbase.dll v8_zlib.dll winmm.dll
+v8_icui18n.dll	ok	v8_icui18n.dll v8_icuuc.dll
+v8_icuuc.dll	ok	v8_icuuc.dll
+v8_libbase.dll	ok	dbghelp.dll v8_libbase.dll winmm.dll
+v8_libplatform.dll	ok	dbghelp.dll v8_libbase.dll v8_libplatform.dll winmm.dll
+v8_zlib.dll	ok	v8_zlib.dll
+v8system.dll	ok	dbghelp.dll tier0.dll v8.dll v8_icui18n.dll v8_icuuc.dll v8_libbase.dll v8_libplatform.dll v8_zlib.dll v8system.dll winmm.dll
+valve_avi.dll	ok	avifil32.dll comctl32.dll msacm32.dll msvfw32.dll shell32.dll tier0.dll valve_avi.dll winmm.dll
+valve_webm.dll	ok	tier0.dll valve_webm.dll winmm.dll
+valve_wmf.dll	ok	cfgmgr32.dll mfplat.dll mfreadwrite.dll rtworkq.dll shcore.dll tier0.dll valve_wmf.dll winmm.dll
+vconcomm.dll	ok	tier0.dll vconcomm.dll winmm.dll
+vfx_dx11.dll	failed	LoadLibraryExW: 126
+video64.dll	ok	crypt32.dll libavcodec-58.dll libavformat-58.dll libavresample-4.dll libavutil-56.dll libswscale-5.dll mswsock.dll psapi.dll shell32.dll video64.dll wsock32.dll
+visbuilder.dll	ok	tier0.dll visbuilder.dll winmm.dll
+vphysics2.dll	ok	tier0.dll vphysics2.dll winmm.dll
+vscript.dll	ok	tier0.dll vscript.dll winmm.dll
+worldrenderer.dll	ok	tier0.dll winmm.dll worldrenderer.dll

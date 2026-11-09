@@ -1,0 +1,1419 @@
+module	name	flags	help
+animationsystem.dll	ik_debug_fabrik_backwards_iteration_toggle	linked_concommand developmentonly defensive	
+animationsystem.dll	ik_debug_fabrik_forwards_iteration_toggle	linked_concommand developmentonly defensive	
+animationsystem.dll	cl_particles_dumplist	linked_concommand developmentonly defensive	Dump all new particles, optional name substring.
+animationsystem.dll	cl_particles_dumpsimlist	linked_concommand developmentonly defensive	Dump all simulating particles, optional name substring.
+client.dll	citadel_show_reporter_updates_popup_fake	developmentonly	[report type] - Shows the reporter updates popup filled in with a fake update
+client.dll	citadel_show_roster_select_popup	developmentonly	
+client.dll	citadel_show_hero_select_popup	developmentonly	
+client.dll	citadel_settings_reset_dismissed_settings	developmentonly defensive	
+client.dll	citadel_settings_show_popup	developmentonly defensive	
+client.dll	citadel_test_survey_popup	cheat	Tests bringing up the survey popup
+client.dll	citadel_match_details	release	<MatchID> [Metadata Salt] Opens the match details to the specified match
+client.dll	citadel_dump_rank_data	developmentonly defensive	Request rank confidence score from GC.
+client.dll	citadel_reload_rank_data	developmentonly defensive	Request rank confidence score from GC.
+client.dll	citadel_spectate_topbar_player	release	While spectating, switch to the Nth hero on the top bar, numbered 1-12 from left to right
+client.dll	citadel_hideout_survey_option	release	<option number> Submit a response to the current survey question
+client.dll	citadel_hideout_survey_skip	release	Skip the current survey question
+client.dll	citadel_radial_toggle_prop_open	developmentonly clientdll defensive	Toggle propping radial menus open. While on, an opened radial stays up and will not fire until toggled off again.
+client.dll	citadel_test_level_up_msg	developmentonly defensive	Draws a test level up message
+client.dll	citadel_test_game_over_message	developmentonly defensive	Draws the game over message: citadel_test_game_over_message <WINNING_TEAM>
+client.dll	citadel_test_streetbrawl_scoring_message	developmentonly defensive	Draws the street brawl scoring message: citadel_test_streetbrawl_scoring_message <ScoringTeam>
+client.dll	citadel_test_banned_heroes_message	developmentonly defensive	Draws the banned heroes message
+client.dll	hud_minimap_spectator_fow_team_view_sapphire	release	While a spectator, view team sapphire's minimap view
+client.dll	hud_minimap_spectator_fow_team_view_amber	release	While a spectator, view team amber's minimap view 
+client.dll	hud_minimap_spectator_fow_team_view_both_teams	release	While a spectator, view both teams' minimap view 
+client.dll	hud_minimap_spectator_fow_team_view_target_team	release	While a spectator and viewing a player, view team their minimap view 
+client.dll	citadel_test_player_ping	developmentonly defensive	Test pinging a player
+client.dll	citadel_render_minimap	release	Render the minimap
+client.dll	cl_citadel_dump_bullets	developmentonly client_can_execute	dump all bullet info to the console
+client.dll	model_dump_convert_info	linked_concommand developmentonly defensive	Print model load-time conversion info
+client.dll	panorama_console_reset_size_and_position	linked_concommand developmentonly hidden defensive	Resets the panorama console to its default size and position
+client.dll	cl_particles_dumplist	linked_concommand developmentonly defensive	Dump all new particles, optional name substring.
+client.dll	cl_particles_dumpsimlist	linked_concommand developmentonly defensive	Dump all simulating particles, optional name substring.
+client.dll	camerazoomin	developmentonly defensive	\N
+client.dll	camerazoomout	developmentonly defensive	\N
+client.dll	cl_dumpsplithacks	developmentonly defensive	Dump split screen workarounds.
+client.dll	convert_steamid	developmentonly defensive	Convert SteamID into multiple formats
+client.dll	cl_printfps	developmentonly defensive	Print information from cl_showfps.
+client.dll	cl_resetfps	developmentonly defensive	Reset information from cl_showfps.
+client.dll	ss_teleport	developmentonly cheat	Teleport other splitscreen player to my location.
+client.dll	impulse	release	Triggers impulse command
+client.dll	in_forceinput	developmentonly vconsole_fuzzy_matching	Forces a button to be a particular state -- WHEN SAMPLING INPUT
+client.dll	cam_command	cheat	Tells camera to change modes
+client.dll	thirdperson	cheat execute_per_tick	Switch to thirdperson camera.
+client.dll	firstperson	release execute_per_tick	Switch to firstperson camera.
+client.dll	thirdperson_mayamode	cheat	Switch to thirdperson Maya-like camera controls.
+client.dll	thirdpersonshoulder	developmentonly defensive	Switch to thirdperson-shoulder camera.
+client.dll	camortho	cheat	Switch to orthographic camera.
+client.dll	+cammousemove	developmentonly defensive	\N
+client.dll	-cammousemove	developmentonly defensive	\N
+client.dll	+camdistance	developmentonly defensive	\N
+client.dll	-camdistance	developmentonly defensive	\N
+client.dll	snapto	developmentonly defensive	\N
+client.dll	hud_reloadscheme	developmentonly defensive	Reloads hud layout and animation scripts.
+client.dll	cl_particles_dump_effects	developmentonly defensive	
+client.dll	cl_destroy_ragdolls	developmentonly defensive	Destroys all client-side ragdolls
+client.dll	cl_querycache_stats	cheat	Display status of the query cache (client only)
+client.dll	ragdoll_cleanup_all	linked_concommand cheat	Cleans up all ragdolls.
+client.dll	cl_report_soundpatch	developmentonly defensive	reports client-side sound patch count
+client.dll	spec_pos	cheat	dump position and angles to the console
+client.dll	getpos	cheat	dump position and angles to the console
+client.dll	getpos_exact	cheat	dump origin and angles to the console
+client.dll	getposcopy	cheat	dump position and angles to the console and clipboard
+client.dll	getposcopy_exact	cheat	dump origin and angles to the console and clipboard
+client.dll	shake_stop	cheat	Stops all active screen shakes.\n
+client.dll	shake_testpunch	cheat	Test a punch-style screen shake.\n
+client.dll	cc_emit	developmentonly defensive	Emits a closed caption
+client.dll	econ_show_items_with_tag	developmentonly clientdll defensive	Lists the item definitions that have a specified tag.
+client.dll	dev_send_gc_message	developmentonly defensive	<msgid> Send a blank body message with a given ID to gc for routing tests
+client.dll	dev_simulate_gcdown	developmentonly defensive	<state> Turn on/off simulated GC communications failure (GC is down in a way that we know it is down)
+client.dll	camera_cut_to_datadriven_camera	developmentonly hidden defensive	
+client.dll	say_chat	release	Opens chat menu to chat with everyone
+client.dll	say_chat_team	release	Opens chat menu to chat with Allies
+client.dll	chat_fake_player_say_allies	developmentonly	<player_slot> <message>
+client.dll	chat_fake_player_say_all	developmentonly	<player_slot> <message>
+client.dll	chat_fake_quick_response	developmentonly	
+client.dll	citadel_force_resolution	developmentonly defensive	Force a resolution change even if it's not supported on your monitor. [h] [w] [refresh rate]
+client.dll	citadel_start_new_player_placement_bot_match	developmentonly defensive	Starts a new_player_placement match
+client.dll	citadel_abandon_match	developmentonly defensive	Force abandons current match
+client.dll	citadel_book_open	release	[BookID/Book Name] Opens up the specified book by ID or name
+client.dll	citadel_show_hero_release_vote_page	developmentonly	
+client.dll	citadel_show_hero_vo_test_page	release	Open the Voice Lines page
+client.dll	citadel_post_game_force_hero_id	developmentonly defensive	
+client.dll	private_lobby_swap	developmentonly defensive	Swaps team members within the private lobby
+client.dll	private_lobby_shuffle_teams	developmentonly defensive	Randomly shuffle players among the various teams
+client.dll	private_lobby_shuffle_lanes	developmentonly defensive	Randomly shuffle players within teams
+client.dll	citadel_show_ranked_history_page	developmentonly	
+client.dll	citadel_show_ranked_season_page	developmentonly	
+client.dll	citadel_hero_release_vote_clear_submitted	developmentonly	
+client.dll	citadel_hero_release_vote_clear_all_submitted	developmentonly	
+client.dll	citadel_hero_release_vote_fake_received	developmentonly	[count] [delay seconds] [delay random extra seconds]
+client.dll	citadel_hideout_cancel_matchmaking	release	Remove yourself or your party from the matchmaking queue
+client.dll	citadel_hideout_accept_request	release	Accept an incoming request in the hideout
+client.dll	citadel_hideout_reject_request	release	Reject an incoming request in the hideout
+client.dll	citadel_test_flex_unlocked_message	developmentonly defensive	Draws a test message: citadel_test_flex_unlocked_message [1-4]
+client.dll	citadel_test_hud_game_announcement	developmentonly defensive	Shows a test game announcement: [title] [description] [classname]
+client.dll	citadel_spectator_voice_mode_toggle	release	Toggle the value of citadel_spectator_voice_mode
+client.dll	citadel_open_hero_sheet	release	Open the current hero character sheet
+client.dll	citadel_purchase_quickbuy	release	Purchase the next quickbuy item
+client.dll	citadel_show_seasonal_kill_toast	developmentonly	
+client.dll	minimap_zoom_in	release	Ping button pressed
+client.dll	minimap_zoom_out	release	Ping button released
+client.dll	citadel_playofthegame_hud_fake_intro	developmentonly defensive	Show POTG hud intro
+client.dll	citadel_playofthegame_hud_fake_outro	developmentonly defensive	Show POTG hud outro
+client.dll	citadel_playofthegame_hud_fake_show_replay	developmentonly defensive	Show POTG hud replay
+client.dll	citadel_playofthegame_hud_fake_hide	developmentonly defensive	Hide POTG hud
+client.dll	citadel_playofthegame_hud_fake_callout	developmentonly defensive	Show POTG hud callout
+client.dll	ping_quick_response	release	Responds to the last ping message received
+client.dll	citadel_increase_replay_speed	release	Increase the Replay speed while watching a replay
+client.dll	citadel_decrease_replay_speed	release	Decrease the Replay speed while watching a replay
+client.dll	citadel_replay_toggle_pause	release	Toggle a replay being paused
+client.dll	citadel_hideout_news	release	Show hideout news
+client.dll	+in_ability_ping	release	Ping button pressed. Long hold opens comms wheel.
+client.dll	-in_ability_ping	release	Ping button released. Long hold opens comms wheel.
+client.dll	+chatwheel	release	Opens the comms wheel instantly while held
+client.dll	-chatwheel	release	Sends the hovered comms wheel option
+client.dll	+in_ability_instant_ping	release	Ping without radial
+client.dll	-in_ability_instant_ping	release	Ping without radial
+client.dll	pingkeypress	release	Quick ping keybind pressed. Arg is the slot, 1-12.
+client.dll	citadel_spectate_lobby_id	developmentonly	[lobby id] Attempts to spectate the specified lobby ID
+client.dll	citadel_spectate_account_id	developmentonly	[lobby id] Attempts to spectate the specified player
+client.dll	internal_bot_test_queue_mm	developmentonly	Queues for internal bot test using matchmaking
+client.dll	internal_bot_test_private	developmentonly	[difficulty = 1-4] Starts a private internal bot test
+client.dll	citadel_invalidate_player_stats_cache	developmentonly defensive	Invalidate player stats cache so it's pulled from the GC
+client.dll	citadel_build_tag_picker	developmentonly	<HeroID>
+client.dll	citadel_dump_build_tags	developmentonly	dump all build tag tokens
+client.dll	citadel_commend_fake_received	release	
+client.dll	citadel_commend_player_clear	release	Reset the commend notification UI, discarding any commends it has accumulated
+client.dll	citadel_commend_player	release	<target account id> [match id] [hero_id]
+client.dll	citadel_show_hero_debut_popup	developmentonly	[hero id] [allow swap]
+client.dll	citadel_test_popup_news_post	developmentonly	[URL]
+client.dll	citadel_ranked_show_season_completed_popup	developmentonly	[rank interval] Shows the ranked season completed popup. Defaults to the most recently completed interval.
+client.dll	citadel_show_reporter_updates_popup	release	Shows the popup for a report you filed that we took action on, if there is one
+client.dll	party_leave	developmentonly	Leaves current party
+client.dll	party_accept_invite	developmentonly	Accepts an invite
+client.dll	party_join_code	developmentonly	Joins a party
+client.dll	party_invite_user	developmentonly	Invites in a user
+client.dll	party_start_match	developmentonly	Starts matchmaking for a party
+client.dll	mod_status	release	<Account ID>
+client.dll	citadel_ban_account	release	
+client.dll	citadel_ban_account_aim_assist	release	
+client.dll	citadel_ban_account_vision_assist	release	
+client.dll	citadel_ban_account_movement_assist	release	
+client.dll	citadel_grant_dev_account	developmentonly	<Account ID> [0/1] Grants or removes dev access to an account
+client.dll	citadel_fetch_cheat_reports	release	Request accounts recently reported for cheating
+client.dll	mmpri	developmentonly	<Clear|Hero> [target account ID] Indicates that you want to be prioritized in matchmaking with optionally a specific hero. Clear will clear your status
+client.dll	citadel_reset_survey_responses	developmentonly	Clears out all survey questions from this account and resets the state
+client.dll	citadel_exonerate_account	release	<Account ID> Clear recent cheat reports on this account.
+client.dll	citadel_set_mmr	developmentonly	<Account ID> <MMR> Sets the MMR of the specified account
+client.dll	citadel_lock_mmr	developmentonly	<Account ID> [MMR] Locks a user to the current MMR (optionally can set the MMR as well)
+client.dll	citadel_hero_unlock	developmentonly	<Hero ID> Unlocks the specified hero
+client.dll	citadel_hero_unlock_all	developmentonly	Unlocks all heroes for this account
+client.dll	citadel_hero_lock_all	developmentonly	Relocks all heroes for this account
+client.dll	citadel_book_reset	developmentonly	[BookID=1] Resets the current book progress
+client.dll	citadel_book_xp	developmentonly	<xp> [BookID=1] Grants the specified amount of XP to the book
+client.dll	show_steam_id	release	Prints out the local user's Steam ID. Handy for getting account ID for a player
+client.dll	citadel_debug_equip_econ_item	developmentonly	Equip an econ item <item_id> <hero_id> <slot_id>
+client.dll	cl_modifier_dump_visible	cheat	Print out non-hidden modifiers.
+client.dll	cl_modifier_cache_report	developmentonly defensive	Print per-EModifierValue cache statistics sorted by query volume. Use modifier_cache_reset_stats to clear.
+client.dll	cl_modifier_cache_reset_stats	developmentonly defensive	Reset modifier value cache statistics.
+client.dll	cl_modifier_stringtable_dump	cheat	Displays the contents of the modifier string table
+client.dll	cl_modifier_dump	cheat	Display all modifiers for the unit: <entityindex/name>
+client.dll	cl_modifier_spew_states	cheat	Call to have the client spew their unit states affecting them,
+client.dll	cl_modifier_dump_list	cheat	Dumps all modifiers that exist in the game
+client.dll	client_metrics_upload_immediate	developmentonly	
+client.dll	cl_pred_track	developmentonly defensive	<entindex> <fieldname>:  Track changes to entity index entindex, for field fieldname.
+client.dll	cl_pred_track_off	developmentonly defensive	clear field track changes.
+client.dll	cl_predictioncopy_describe	developmentonly defensive	Describe PredictionMap_t for entindex
+client.dll	cl_predictioncopy_print	developmentonly defensive	Print simple description of prediction copy fields for entindex
+client.dll	cl_report_predcopy_overrides	developmentonly defensive	Report prediction copy overrides
+client.dll	cl_dump_response_symbols	developmentonly defensive	print all response symbols to the console
+client.dll	cl_rr_dump_rules	cheat	Print all response rules
+client.dll	event_override_points	developmentonly	<event id> [points] - Set a clientside override of the point value for an event
+client.dll	event_override_premium_points	developmentonly	<event id> [premium points] - Set a clientside override of the premium points for an event. -1 to remove the override.
+client.dll	event_override_owned	developmentonly	<event id> [owned] - Set a clientside override of whether an event is owned. -1 for not owned, 1 for owned, 0 for no override.
+client.dll	event_override_clear	developmentonly	<event id> - Clear any clientside overrides for an event
+client.dll	event_override_level	developmentonly	<event id> [level] - Set a clientside override of the level value for an event. -1 to remove the override.
+client.dll	event_override_action	developmentonly	<event id> <action id> [action score] - Set a clientside override of an event action. -1 to remove the override.
+client.dll	event_grant_points	developmentonly	Reset all state on your account relating to the given event id
+client.dll	event_reset_state	developmentonly	Reset all state on your account relating to the given event id
+client.dll	event_grant_action	developmentonly	<event id> <action id> [quantity] - Grant an event action
+client.dll	event_reset_action	developmentonly	<event id> <action id> [remove audit]
+client.dll	event_reset_action_range	developmentonly	<event id> <start action id> <end action id> [remove audit]
+client.dll	event_reload_schema	linked_concommand developmentonly defensive	
+client.dll	cl_ent_animgraph_debug	cheat	Displays debug draws about the given entity(ies) animgraph\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	spec_stopsound	release	(Spectators only) Stop all sounds
+client.dll	cl_interp	release	Read the effective client simulation interpolation amount in terms of time.
+client.dll	cl_prop_debug	cheat	Toggle prop debug mode. If on, props will show colorcoded bounding boxes. Red means ignore all damage. White means respond physically to damage but never break. Green maps health in the range of 100 down to 1.
+client.dll	cl_debugoverlay_toggle	cheat	Toggles visibility of the debug overlay system.
+client.dll	cl_debugoverlay_cycle_domain	cheat	Toggles visibility of the debug overlay system.
+client.dll	cl_debugoverlay_cycle_state	cheat	Toggles visibility of the debug overlay system.
+client.dll	cl_debugoverlay_dashboard	cheat	Makes the debug overlay dashboard visible.
+client.dll	cl_debugoverlay_hide_imgui	cheat	Hides the overlay.
+client.dll	cl_imgui_set_selection	cheat	Sets ImGui selection
+client.dll	cl_imgui_debug_entity	cheat	Shows the entity browser, focused on the entity you specify.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_imgui_set_status_text	cheat	Sets ImGui header status text
+client.dll	game_particle_manager_dump_requeue	developmentonly	Dump contents of particle manager requeue
+client.dll	game_particle_manager_list_active	developmentonly	Dump counts of active particles
+client.dll	url_execute	developmentonly defensive	Executes url-based commands, used for incoming commands from url-based launches when the game's already running.
+client.dll	cl_report_entities	developmentonly cheat	Lists all entities
+client.dll	cl_showents	cheat	Dump entity list to console.
+client.dll	cl_ents	developmentonly clientdll defensive	List client entities, sorted by spawn group
+client.dll	cl_ent_spew_derived_classes	developmentonly	Prints out all entity classes which inherit from a specified base class
+client.dll	soundscape_dumpclient	cheat	Dumps the client's soundscape data.\n
+client.dll	cl_in_forcebuttonstate	developmentonly vconsole_fuzzy_matching	Forces a button to be a particular state - WHEN PROCESSING USERCOMMANDS
+client.dll	spec_next	clientcmd_can_execute	Spectate next player
+client.dll	spec_prev	clientcmd_can_execute	Spectate previous player
+client.dll	spec_mode	clientcmd_can_execute	Set spectator mode
+client.dll	spec_player	clientcmd_can_execute	Spectate a player by name or slot
+client.dll	buildsparseshadowtree	developmentonly hidden	Build Sparse Shadow Tree
+client.dll	cl_updatevisibility	developmentonly defensive	Updates visibility bits.
+client.dll	ic	developmentonly defensive	interp entity count\n
+client.dll	dlight_debug	cheat	Creates a dlight in front of the player
+client.dll	cl_removedecals	cheat	Remove the decals from the entity under the crosshair.
+client.dll	iv_debug	developmentonly defensive	Spew interpolated var info for entity.
+client.dll	iv_interp	developmentonly defensive	Spew interpolated var info for entity.
+client.dll	iv_on	developmentonly defensive	Spew both interpolated var debug info and history for entity.
+client.dll	iv_off	developmentonly defensive	Turn off all interpolation variable spew.
+client.dll	dump_entity_report	cheat	List all client-side entities in the scene
+client.dll	cl_dump_projected_texture_count	developmentonly defensive	Print out number of active projected textures
+client.dll	gameinstructor_reload_lessons	developmentonly defensive	Shuts down all open lessons and reloads them from the script file.
+client.dll	gameinstructor_reset_counts	developmentonly defensive	Resets all display and success counts to zero.
+client.dll	gameinstructor_dump_open_lessons	cheat	Gives a list of all currently open lessons.
+client.dll	gameinstructor_dump_run_lesson_counts	cheat	Gives a list of lessons that been completed or shown
+client.dll	gameinstructor_teach_lesson	developmentonly defensive	Force a specific lesson to be triggered
+client.dll	p2p_ping	developmentonly defensive	Ping a peer.
+client.dll	servervoice_dump	developmentonly defensive	servervoice_dump
+client.dll	servervoice_clear	developmentonly defensive	servervoice_clear
+client.dll	cl_soundscape_flush	cheat server_can_execute	Flushes the client side soundscapes
+client.dll	playsoundscape	cheat	Forces a soundscape to play
+client.dll	stopsoundscape	cheat	Stops all soundscape processing and fades current looping sounds
+client.dll	cl_soundscape_printdebuginfo	developmentonly defensive	print soundscapes
+client.dll	cl_ss_origin	developmentonly defensive	print origin in script format
+client.dll	cl_ent_grab	cheat	grabs the object in front of the player. Options: -loose -multiple -toggle
+client.dll	cl_ent_ungrab	cheat	un-grabs all objects
+client.dll	cl_ent_name	cheat	Displays the entity name
+client.dll	cl_ent_actornames	cheat	Displays the entity name for all entities that have ShouldDisplayInActorNames true in code
+client.dll	cl_ent_text	cheat vconsole_fuzzy_matching	Displays text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_text_radius	cheat	Displays text debugging information about the given entity(ies) [near the player] on top of the entity (See Overlay Text)\n\t2 Arguments:   \t<Radius> <{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}>
+client.dll	cl_ent_text256	cheat	Displays text debugging information about the given entity(ies) [within 256 units of the player] on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_text_clear	cheat	Hide text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_text_sticky_add	cheat	Adds to list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_text_sticky_remove	cheat	Removes from the list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_text_sticky_clear	cheat	Clears the list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_text_sticky_dump	cheat	Spews the list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_bbox	cheat	Displays the movement bounding box for the given entity(ies) in orange.  Some entites will also display entity specific overlays.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_absbox	cheat	Displays the total bounding box for the given entity(s) in green.  Some entites will also display entity specific overlays.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_attachments	cheat	Displays the attachment points on an entity.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_joints	cheat	Displays the joint names + axes an entity.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_viewoffset	cheat	Displays the eye position for the given entity(ies) in red.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_pivot	cheat	Displays the pivot for the given entity(ies).\n\t(y=up=green, z=forward=blue, x=left=red). \n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_visibility_traces	cheat vconsole_fuzzy_matching	Displays visibility traces for the given entity\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_skeleton	cheat	Displays the skeleton for the given entity(ies).\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_hitbox	cheat	Displays the hitboxes for the given entity(ies).\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_vcollide_wireframe	cheat	Displays the interpolated vcollide wireframe pm am entity.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_select	cheat	Select or deselects the given entities(s) for later manipulation\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_messages	cheat	Toggles input/output message display for the selected entity(ies).  The name of the entity will be displayed as well as any messages that it sends or receives.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_picker	cheat	Toggles 'picker' mode.  When picker is on, the bounding box, pivot and debugging text is displayed for whatever entity the player is looking at.\n\tArguments:\tfull - enables all debug information
+client.dll	cl_ent_show_damage	cheat	Sets damage display mode.  When on, you will see the amount of damage dealt over the target's head.
+client.dll	cl_ent_clear_debug_overlays	cheat	Clears all debug overlays
+client.dll	cl_ent_scale	cheat	Scales entities.\tArguments: <scale factor> <{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}>
+client.dll	cl_ent_remove	cheat	Removes the given entity(s)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_remove_all	cheat	Removes all entities of the specified type\n\tArguments:   \t{entity_name} / {class_name} 
+client.dll	cl_ent_animgraph2_record	cheat	Starts live debugging & recording the AG2 graph for a given entity\n\tArguments: entityName\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_animgraph2_open_graph	cheat	Opens the graph and starts live debugging the AG2 graph for a given entity\n\tArguments: entityName\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_drawline	cheat	Draws line between two 3D Points.\n\tGreen if no collision\n\tRed is collides with something\n\tArguments: x1 y1 z1 x2 y2 z2
+client.dll	cl_drawcross	cheat	Draws a cross at the given location\n\tArguments: x y z
+client.dll	cl_cleardraw	cheat	Clears all lines drawn by drawline and drawcross
+client.dll	cl_box	cheat	Draw a bbox\n\tArguments:  minx miny miny maxx maxy maxz <lifetime = 10.0> <r g b a>\n
+client.dll	cl_axis	cheat	Draw an axis\n\tArguments:  x y z pitch yaw roll <lifetime = 10.0> <r g b a>\n
+client.dll	ent_rbox	cheat	Displays the total bounding box for the given entity(s) in green.  Some entites will also display entity specific overlays.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cli_ent_pivot	cheat	Displays the interpolated pivot for the given entity(ies).\n\t(y=up=green, z=forward=blue, x=left=red). \n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cli_ent_skeleton	cheat	Displays the skeleton for the given entity(ies).\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cli_ent_hitbox	cheat	Displays the skeleton for the given entity(ies).\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cli_ent_attachments	cheat	Displays the interpolated attachment points on an entity.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cli_ent_vcollide_wireframe	cheat	Displays the interpolated vcollide wireframe pm am entity.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	ent_debug_anim	developmentonly defensive	Use the specified entity for animation debugging.
+client.dll	cl_dumpentity	cheat	Dumps info about an entity
+client.dll	cl_ent_hierarchy	cheat	Prints the entity hierarchy tree rooted at the specified ent(s)
+client.dll	cl_ent_scenehierarchy	cheat	Prints the entity scenenode hierarchy tree rooted at the specified ent(s)
+client.dll	cl_phys_dump_main_world	developmentonly	Dump physics main world to file
+client.dll	cl_phys_dump_intersection_controller	developmentonly	Dump intersection controller status
+client.dll	cl_phys_dump_memory	developmentonly	Dump memory usage
+client.dll	cl_phys_list	developmentonly	List all physics component contents of every entity in the game;\n    -stream [1|0]         initiate|terminate streaming to physics debugger\n    -allents              include non-physical entities\n    -classes              print class names\n    -sdk                  Rubikon-wide memory short status\n    -sdk -struct          Rubikon-wide memory use per struct\n    -sdk -rebuildsvms     Rubikon-wide SVM force rebuild and status\n    -world                current state of the world\n    -world -touch         list body pairs (bodies in contact)\n    -world -save <name>   save world to a file\n    -world -mem           memory dump (separately per game dll)\n    -world -snapshots     Start/Stop dumping snapshots of the world into the current directory\n    -world -agg           current aggregate data registry (loaded resources)\n
+client.dll	cl_phys_sleep	developmentonly	Put all physics in all the worlds to sleep
+client.dll	cl_phys_wakeup	developmentonly	Wake all physics objects in the Main physics up
+client.dll	cl_physics_highlight_active	developmentonly	Turns on the absbox for all active physics objects.\n  0 : un-highlight.\n
+client.dll	cl_physics_report_active	developmentonly	Lists all active physics objects\n  -more : extra info\n
+client.dll	cl_physics_add_test	developmentonly	add test object
+client.dll	cl_physics_remove_test	developmentonly	remove test object
+client.dll	cl_phys_create_test_character_proxy	developmentonly	Create test character proxy
+client.dll	dump_secondary_scene_worlds	developmentonly defensive	Lists secondary scene worlds and ref counts
+client.dll	cl_test_list_entities	cheat	test-list entities
+client.dll	cl_report_simthinklist	developmentonly	Lists all simulating/thinking entities
+client.dll	snd_sos_cl_soundevent_start	developmentonly defensive	Test
+client.dll	snd_sos_cl_soundevent_stop_last	developmentonly defensive	Test
+client.dll	snd_sos_cl_soundevent_pause_last	developmentonly defensive	Test
+client.dll	snd_sos_cl_soundevent_unpause_last	developmentonly defensive	Test
+client.dll	cl_script_reload	cheat	Reload scripts
+client.dll	cl_script_attach_debugger	cheat	Connect the vscript VM to the script debugger
+client.dll	cl_script_debug	cheat	Toggle the in-game script debug features
+client.dll	cl_script_add_watch	cheat	Add a watch to the game debug overlay
+client.dll	cl_script_remove_watch	cheat	Remove a watch from the game debug overlay
+client.dll	cl_script_add_watch_pattern	cheat	Add a watch to the game debug overlay
+client.dll	cl_script_remove_watch_pattern	cheat	Remove a watch from the game debug overlay
+client.dll	cl_script_add_debug_filter	cheat	Add a filter to the game debug overlay
+client.dll	cl_script_remove_debug_filter	cheat	Remove a filter from the game debug overlay
+client.dll	cl_script_trace_enable	cheat	Turn on a particular trace output by file or function name
+client.dll	cl_script_trace_disable	cheat	Turn off a particular trace output by file or function name
+client.dll	cl_script_trace_enable_key	cheat	Turn on a particular trace output by table/instance
+client.dll	cl_script_trace_disable_key	cheat	Turn off a particular trace output by table/instance
+client.dll	cl_script_trace_enable_all	cheat	Turn on all trace output
+client.dll	cl_script_trace_disable_all	cheat	Turn off all trace output
+client.dll	cl_script_clear_watches	cheat	Clear all watches from the game debug overlay
+client.dll	cl_script_find	cheat	Find a key in the VM 
+client.dll	cl_script_resurrect_unreachable	cheat	Use the garbage collector to track down reference cycles
+client.dll	cl_script_reload_code	cheat	Execute a vscript file, replacing existing functions with the functions in the run script
+client.dll	cl_script_reload_entity_code	cheat	Execute all of this entity's VScripts, replacing existing functions with the functions in the run scripts
+client.dll	cl_script_help	cheat	Output help for script functions
+client.dll	cl_script_help2	developmentonly defensive	Output help for script functions suitable for auto-completion
+client.dll	cl_script_dump_all	cheat	Dump the state of the VM to the console
+client.dll	dump_full_caches	developmentonly cheat	<type> Dumps the contents of the currently subscribed caches of a particular type
+client.dll	ranked_set_active_season	developmentonly cheat	<interval> Sets the override of the currently active ranked season to be the specified interval
+client.dll	dump_local_caches	developmentonly	Dumps a list of caches that the GC currently has information about
+client.dll	dump_user_cache	developmentonly	Dumps the SO cache for the current user
+client.dll	dump_lobby	developmentonly	Dumps the lobby that we are connected to
+client.dll	citadel_set_server_convar	developmentonly	[convar] [value] Set a server convar on the server that the player is currently connected to
+client.dll	citadel_playtest_kick_disconnected_players	developmentonly defensive	Reassign any network disconnected players to the unnassigned team
+client.dll	citadel_mm_high_pri	developmentonly	[account id] Marks an account for high priority match making for the next match
+client.dll	citadel_mm_low_pri	developmentonly	[account id] Marks an account for high priority match making for the next match
+client.dll	party_create	developmentonly	Creates a party
+client.dll	private_lobby_create	release	Creates a private lobby party
+client.dll	private_lobby_set_bot_difficulty	developmentonly	Sets the bot difficulty for a private lobby
+client.dll	cl_citadel_force_on_upgrade_for_all_abilities	developmentonly defensive	Force all abilities to call OnUpgrade()
+client.dll	cl_citadel_ability_active_report	developmentonly cheat	Print per-ability active window transition counts and dwell times. Use citadel_ability_active_reset_stats to clear.
+client.dll	cl_citadel_ability_active_reset_stats	developmentonly cheat	Clear the counters printed by citadel_ability_active_report.
+client.dll	cl_citadel_ability_activeness_report	developmentonly defensive	Print ability MODIFIER_VALUE contributions recorded while the ability was untrained or inactive. Use citadel_ability_activeness_reset_stats to clear.
+client.dll	cl_citadel_ability_activeness_reset_stats	developmentonly defensive	Clear the counters printed by citadel_ability_activeness_report.
+client.dll	spec_lock_to_current_player	developmentonly	As an observer, lock the spectator target to the currently observed target
+client.dll	citadel_open_hero_selection	developmentonly defensive	Convar to open hero selection
+client.dll	citadel_list_upgrades	developmentonly defensive	Shows the list of upgrades/items/mods a player has in the order they purchased them. 0-3 for verbosity
+client.dll	citadel_spew_active_movement_controller	developmentonly defensive	Spews what is the active movement controller on the local player
+client.dll	citadel_spew_player_modifiers	developmentonly defensive	Spews all modifiers on the local player
+client.dll	+citadel_swtich_player_cam	release	Player Cam switching button pressed
+client.dll	-citadel_swtich_player_cam	release	Player Cam switching button released
+client.dll	cl_citadel_forceangles	cheat	Force third person camera angles
+client.dll	account_stats_dump	developmentonly cheat	Dumps out the currently cached account stat information
+client.dll	account_stats_reset	developmentonly cheat	Called to reset any stats that match the specified filter. If you want to reset ALL stats, just enter * for the filter
+client.dll	camera_cut_to_default_camera	developmentonly hidden defensive	
+client.dll	account_sync_storage_dump	developmentonly defensive	Dumps out the information for the client sync storage state
+client.dll	account_sync_storage_set_max	developmentonly defensive	<ID> <Value> Sets a max style account sync storage value
+client.dll	account_sync_storage_set_bit	developmentonly defensive	<ID> <Bit Index> Sets a bit [0..15] on the sync storage value
+client.dll	account_sync_storage_force	developmentonly defensive	<ID> <Value> Forces a set of the specified variable
+client.dll	citadel_reset_new_player	release	Resets the new player experience back to the initial state
+client.dll	citadel_complete_new_player	release	[flag] Marks the new player state as complete
+client.dll	spec_target	release	Changes the target being spectated
+client.dll	spec_dolly_out	release	Moves the spectator camera position away from target target. This is otherwise known as Chase Mode.
+client.dll	spec_dolly_in	release	Moves the spectator camera position toward target. At zero, this will switch to in eye mode.
+client.dll	spec_goto	release	Changes the spectate mode to roaming and go to the location: spec_goto x y z <pitch yaw optional>
+client.dll	spec_setpos	release	Changes the spectate mode to roaming and moves the spectator camera: spec_setpos x y <z optional>
+client.dll	spec_setang	release	Points the spectator camera: spec_setang pitch yaw
+client.dll	citadel_hint_activate	developmentonly clientdll	Forces a hint to be ready to show in the HUD
+client.dll	citadel_get_rp	developmentonly	Retrieves the rich presence of the user (leave blank for local or specify user with SteamID.Render() format).
+client.dll	reset_camera	release	Pitch the camera back toward the horizon over time. Use citadel_reset_camera_duration_ms to tweak the speed.
+client.dll	citadel_toggle_mute	release	Toggles muting/unmuting the audio.
+client.dll	hud_free_cursor_toggle	release	Toggles free cursor convar.
+client.dll	citadel_pause	release	Send a game pause request.
+client.dll	mat_debug	developmentonly defensive	Sets a mat_fullbright debug visualization mode
+client.dll	r_citadel_shadow_caching_stats	developmentonly defensive	Print information about shadow caching
+client.dll	ctadel_camera_clear_ops	developmentonly defensive	Clear any camera operations that are active
+client.dll	citadel_show_combatlog	developmentonly defensive	\N
+client.dll	citadel_toggle_combatlog	developmentonly defensive	\N
+client.dll	citadel_combatlog_scan	developmentonly clientdll defensive	Scans for fights
+client.dll	citadel_combatlog_size	developmentonly clientdll defensive	Calculates the total allocations for a combatlog
+client.dll	citadel_combatlog_write_test	developmentonly clientdll defensive	Writes combatlog to disk if you have citadel_combatlog_file set
+client.dll	citadel_dev_test_endgame	cheat release client_can_execute	Set the Map to test End game content
+client.dll	citadel_dump_deleted_entity_counts	developmentonly defensive	Displays counts of which kinds of entities have been deleted since map started
+client.dll	cl_citadel_dump_corrupted_penalties	developmentonly defensive	Dumps the corrupted item penalty rolled for every corruptible item this match
+client.dll	cl_citadel_dump_corrupted_overrides	release	Dumps every corrupted item's penalty exclusions, fixed bonuses and integer-rounded bonuses
+client.dll	dump_hero_names	cheat	Lists all heroes by their technical names
+client.dll	citadel_hideout_use	release	Interact with a targeted hideout button
+client.dll	citadel_orbit_camera_in	release	Move in the hideout zone camera
+client.dll	citadel_orbit_camera_out	release	Move in the hideout zone camera
+client.dll	citadel_clear_all_post_process_effects	developmentonly defensive	Clear all post process effects that are active, and spew their state
+client.dll	citadel_pregame_hero_draft_test	developmentonly cheat	Test pregame draft
+client.dll	citadel_dump_player_stats	developmentonly defensive	Dump stat component values for local player
+client.dll	cl_citadel_stat_cache_report	developmentonly cheat	Print per-EStatsType cache statistics sorted by query volume. Use stat_cache_reset_stats to clear.
+client.dll	cl_stat_cache_reset_stats	developmentonly cheat	Reset stat value cache statistics.
+client.dll	cl_citadel_stat_cache_dump_deps	developmentonly cheat	Dump the full stat dependency graph for an entity. Usage: citadel_stat_cache_dump_deps [entindex/name]
+client.dll	citadel_catapult_draw_preview_paths	developmentonly clientdll	Debug draw every catapult's predicted launch path for x seconds (default 5)
+client.dll	cl_citadel_unit_query_registry_report	developmentonly cheat	Print a per-bucket classname list of the unit query registry
+client.dll	guide_bot_talk	developmentonly	Force guide bot to talk with reason.
+client.dll	citadel_tech_power_scaling_vdata_tweak	developmentonly	Command to tweak all ability tech power scaling, including ability upgrades.  Pass in scale factor, with 1.0 being no change.
+client.dll	citadel_tech_damage_vdata_tagging	developmentonly	Command to Tag abilities with 'm_bIsAbilityDamageProperty = true' 
+client.dll	citadel_ability_damage_vdata_tweak	developmentonly	Command to tweak base damage from abilities. \n** Usage\n- arg1 - Scale Value 1.0 being no change.\n- arg2 - 2: Affect Abilities and Upgrades, 1: Affects Upgrades Only, 0: Do no Affect Upgrades]
+client.dll	citadel_vdata_update_popular_items	developmentonly	Command to update popular items in hero vdata.
+client.dll	citadel_gun_boon_growth_vdata_tweak	developmentonly	Command to tweak boon gun damage growth. \n** Usage\n- arg1 - Scale Value 1.0 being no change.
+client.dll	citadel_tweak_weights	developmentonly	Tweaks the hero item bucketing.
+client.dll	citadel_cooldown_scaling_vdata_tweak_ult	developmentonly	Command to tweak all ultimate ability cooldowns, including ability upgrades.  Pass in scale factor (with 1.0 being no change), and a min delta.
+client.dll	citadel_cooldown_scaling_vdata_tweak	developmentonly	Command to tweak all ability cooldowns, including ability upgrades.  Pass in scale factor (with 1.0 being no change), and a min delta.
+client.dll	citadel_tweak_hero_base_health	developmentonly	Command to tweak base health.  Pass in scale factor and constant increase
+client.dll	citadel_tweak_hero_level_boons	developmentonly	Command to tweak level boons.  Pass in scale factor
+client.dll	citadel_tweak_hero_level_boons_health	developmentonly	Command to tweak level boons for health.  Pass in scale factor and fixed increase
+client.dll	citadel_buttons_tweak	developmentonly	Command to tweak level boons.  Pass in scale factor
+client.dll	citadel_ability_property_usage	developmentonly	Command to tweak level boons.  Pass in scale factor
+client.dll	citadel_ability_maintain	developmentonly	Command to tweak level boons.  Pass in scale factor
+client.dll	citadel_landing_to_predicted	developmentonly	Landing to prediction
+client.dll	citadel_ag2_remove_param	developmentonly	Remove a param from AG2 graphs
+client.dll	citadel_ag2_rename_param	developmentonly	Rename a param in AG2 graphs
+client.dll	citadel_port_muzzles	developmentonly	Port old muzzle defs to the new
+client.dll	citadel_convert_tight_camera_settings	developmentonly	Bake citadel_tightcamera scale onto camera settings
+client.dll	citadel_convert_deps	developmentonly	Command to tweak level boons.  Pass in scale factor
+client.dll	citadel_convert_particle_cfg	developmentonly	Convert team_relative_particle_cfg to CitadelTeamRelativeParticleSettings_t
+client.dll	citadel_dump_items_with_component	developmentonly	Dump to Console All items with components and their components
+client.dll	citadel_open_modeldoc_to_model	cheat	Open ModelDoc to the model under the cursor.  Pass any parameter to open your own model
+client.dll	citadel_open_vdata_file_to_node	cheat	Open the VData editor to a specified file and node
+client.dll	citadel_open_hero_vdata_by_name	cheat	Open the VData editor to a specified hero
+client.dll	citadel_open_ability_vdata_by_name	cheat	Open an ability by name in the VData editor
+client.dll	citadel_open_ability_vdata_by_slot	cheat	Open an ability by slot in the VData editor
+client.dll	cl_citadel_zipline_rebuildpaths	developmentonly	Rebuilds all zipline splines
+client.dll	cl_scale_function_dump	cheat	Print out all scale functions.
+client.dll	cl_ent_text_filter	cheat	Set which ent_text filters you want: 
+client.dll	cl_ent_setpos	cheat client_can_execute	Move entity to position
+client.dll	cl_ent_setang	cheat client_can_execute	Set entity angles
+client.dll	cl_ent_call	cheat	ent_call <funcname> <option:entname> calls function on current look target or filtername, checks on ent, then root, then mode, then map scope
+client.dll	cl_ent_script_dump	cheat	Dumps the names and values of this entity's script scope to the console\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+client.dll	cl_ent_setname	cheat	Sets the targetname of the given entity(s)\n\tArguments:   \t<new entity name> <{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}>
+client.dll	cl_ent_find	cheat	Find and list all entities with classnames or targetnames that contain the specified substrings.\nFormat: find_ent <substring>\n
+client.dll	cl_ent_find_index	cheat	Display data for entity matching specified index.\nFormat: find_ent_index <index>\n
+client.dll	buildcubemaps	developmentonly defensive	Build Cubemaps
+client.dll	capturecubemap	developmentonly defensive	Capture Cubemap
+client.dll	cl_animgraph_dump_update_list	developmentonly	Displays stats about which animations are updating
+client.dll	cl_anim_eval_stats	developmentonly	Displays stats about how many EvaluatePose calls are unused
+engine2.dll	sys_info	release	Print system information to the console
+engine2.dll	force_floating_point_exceptions	developmentonly	Enable floating point exceptions to find bugs
+engine2.dll	StackStats_Dump	developmentonly	Dump a named stackstats structure to disk. Usage: stackstats_dump "structname" ["filename"]
+engine2.dll	test_shipping_assert	release	Generate an assert to test shipping assertion code
+engine2.dll	loop_dump	developmentonly defensive	Print the listeners of the current loop mode
+engine2.dll	addons	developmentonly defensive	list current addon info.
+engine2.dll	engine_frametime_print_report	developmentonly defensive	Print a performance report from the current data in the vprof 'lite' profiler
+engine2.dll	host_timescale_inc	cheat	Increment the timescale by one step
+engine2.dll	host_timescale_dec	cheat	Decrement the timescale by one step
+engine2.dll	vis_debug_show	developmentonly defensive	Show/hide the vis debug visualization
+engine2.dll	vis_debug_sunclusters	developmentonly defensive	Showing clusters for sun/csm rendering. Red (full sun csm & lighting), Orange (no viewmodel sun or csm), Green (no sun at all)
+engine2.dll	vis_debug_record_start	developmentonly defensive	Record a path to debug vis
+engine2.dll	vis_debug_record_stop	developmentonly defensive	Record a path to debug vis
+engine2.dll	vis_debug_find_los	developmentonly defensive	Find or clear the vis LOS to here
+engine2.dll	vis_debug_tracelos	developmentonly defensive	Trace rays and check vis from the current camera
+engine2.dll	vis_debug_lock	developmentonly defensive	Lock vis LOS origin to current
+engine2.dll	vis_debug_currentcluster	developmentonly defensive	Show the current cluster number
+engine2.dll	vis_debug_dumpvisibleclusters	developmentonly defensive	Show the list of visible clusters
+engine2.dll	vis_debug_drawcluster	developmentonly defensive	Add cluster # to visualization, (-1) to clear
+engine2.dll	fog_override_color	cheat	Sets the fog color override
+engine2.dll	cl_break_on_missing_resource	developmentonly	Break in debugger when missing resource match is found.\nFormat: cl_break_on_missing_resource <substring> /(empty to break on all) / 0 to turn off.\n
+engine2.dll	toggleconsole	dontrecord release	Show/hide the console.
+engine2.dll	hideconsole	dontrecord release	Hide the console.
+engine2.dll	showconsole	dontrecord release	Show the console.
+engine2.dll	clear	dontrecord release	Clear console output.
+engine2.dll	clearall	dontrecord release	Clear console output from all views.
+engine2.dll	consoletool	dontrecord release	Open a VConsole subtool.
+engine2.dll	condump	release	dump the text currently in the console to condumpXX.log
+engine2.dll	key_listboundkeys	release	List bound keys with bindings.
+engine2.dll	key_findbinding	release	Find key bound to specified command string.
+engine2.dll	button_info	release	Display information about the specified key or button.
+engine2.dll	toggle	dontrecord release	Toggles specified convar value on and off.
+engine2.dll	blink	developmentonly dontrecord defensive	Blink specified convar value between two values at the specified duration.
+engine2.dll	incrementvar	dontrecord release	Increment specified convar value.
+engine2.dll	cyclevar	dontrecord release	Cycle through specified convar values.
+engine2.dll	exec	dontrecord release execute_immediately	Execute a cfg file
+engine2.dll	execifexists	dontrecord release execute_immediately	Execute a cfg file if file exists
+engine2.dll	exec_async	cheat dontrecord	Execute a cfg file over time
+engine2.dll	run_perftest	cheat dontrecord	Execute perftest.cfg
+engine2.dll	push_var_values	developmentonly defensive	Save convars and config values
+engine2.dll	pop_var_values	developmentonly defensive	Restore previously pushed convars and config values
+engine2.dll	multvar	dontrecord release	Multiply specified convar value.
+engine2.dll	bind	release	Bind a key.
+engine2.dll	bindss	release	Bind a key for a particular splitscreen player.
+engine2.dll	bindtoggle	developmentonly defensive	Performs a bind <key> "increment var <cvar> 0 1 1".
+engine2.dll	unbindall	release	Unbind all keys.
+engine2.dll	unbind	release	Unbind a key.
+engine2.dll	binddefaults	release	Bind all keys to their default values.
+engine2.dll	writekeybindings	release	Saves current key bindings to disk.
+engine2.dll	echoln	release	Echo the command arguments on the console
+engine2.dll	input_state	developmentonly	input_state
+engine2.dll	grep	release	grep line for pattern, print out matching lines only
+engine2.dll	alias	release	Alias a command.
+engine2.dll	echo	server_can_execute	Echo text to console.
+engine2.dll	repeat_last_console_command	release	Repeat last console command.
+engine2.dll	maps	release	Displays list of maps.
+engine2.dll	map	release vconsole_fuzzy_matching vconsole_set_focus	map <mapname> :Load a new map.
+engine2.dll	changelevel	release	changelevel <mapname> :Multiplayer change level.
+engine2.dll	connect	release	Connect to a remote server.
+engine2.dll	connect_hltv	release	Connect to a remote HLTV server.
+engine2.dll	restart	cheat vconsole_set_focus	Poor man's restart: reload the current map from disk.
+engine2.dll	reloadgame	cheat vconsole_set_focus	Reload the most recent saved game.
+engine2.dll	load	developmentonly dontrecord vconsole_fuzzy_matching defensive	Usage:\n   load [save file name]\n
+engine2.dll	disconnect	release	Disconnect from server
+engine2.dll	status	release	Print connection status
+engine2.dll	cl_fullupdate	cheat	Force uncompressed update
+engine2.dll	pause	release	Toggle the server pause state.
+engine2.dll	setpause	release	Set the pause state of the server.
+engine2.dll	unpause	release	Clear the pause state of the server.
+engine2.dll	cmd	developmentonly defensive	Forward command to server.
+engine2.dll	p2p_listpeers	developmentonly defensive	List currently known peers.
+engine2.dll	kickid	dontrecord release	Kick a player by userid or uniqueid, with a message.
+engine2.dll	kick	dontrecord release	Kick a player by name.
+engine2.dll	kickid_hltv	dontrecord release	Kick a player by userid or uniqueid, with a message.
+engine2.dll	demo_writemetafile	developmentonly dontrecord defensive	save current meta file demo_<version>.meta file for use in demo upconversion.
+engine2.dll	r_toggleviewportsize	developmentonly defensive	Toggles viewport size between small + full window.
+engine2.dll	r_viewport	developmentonly defensive	Slams viewport size to a specified value.
+engine2.dll	r_render_coordination_state	developmentonly defensive	Prints out the current render coordination state.
+engine2.dll	r_force_engine_render_frame	developmentonly defensive	Force a single render of the engine viewport.
+engine2.dll	screenshot	developmentonly defensive	Take a screenshot: screenshot [filename]
+engine2.dll	jpeg_screenshot	developmentonly defensive	Take a jpeg screenshot: jpeg_screenshot [filename] [quality 1-100].
+engine2.dll	png_screenshot	developmentonly defensive	Take a .png screenshot: png_screenshot [filename]
+engine2.dll	playsound	developmentonly defensive	playsound <soundname>
+engine2.dll	ss_add	developmentonly defensive	Adds a splitscreen user.
+engine2.dll	ss_remove	developmentonly defensive	Removes a splitscreen user.
+engine2.dll	host_writeconfig	release	Saves out the user config values.
+engine2.dll	splitscreen_testreadconfigconflict	developmentonly defensive	\N
+engine2.dll	stats_print	developmentonly defensive	Prints out perf statistics to the console, clears perf history
+engine2.dll	stats_print_gpu	developmentonly defensive	Prints out GPU perf statistics to the console.  Requires stats_display > 0, and stats_collect_gpu = true.  Optional argument of CSV filename
+engine2.dll	vprof_on	developmentonly defensive	Enable vprof
+engine2.dll	vprof_off	developmentonly defensive	Disable vprof
+engine2.dll	vprof_reset	developmentonly defensive	Reset the stats in VProf profiler
+engine2.dll	vprof_reset_peaks	developmentonly defensive	Reset just the peak time in VProf profiler
+engine2.dll	vprof_generate_report	developmentonly defensive	Generate a report to the console.
+engine2.dll	vprof_generate_report_budget	developmentonly defensive	Generate a report to the console based on budget group.
+engine2.dll	vprof_generate_report_hierarchy	developmentonly defensive	Generate a report to the console.
+engine2.dll	vprof_time_scale	developmentonly hidden	Scale used when displaying time (0 = use default)
+engine2.dll	vprof_loadhitstore_scale	developmentonly hidden	Scale used when displaying load-hit-stores (0 = use default)
+engine2.dll	vprof_dump_counters	developmentonly defensive	Dump vprof counters to the console
+engine2.dll	mem_dump	developmentonly defensive	Dump memory stats to text file or <stdout>.
+engine2.dll	mem_compact	developmentonly defensive	Compacts the heap
+engine2.dll	vmem_dump	developmentonly defensive	Dump memory stats to log.
+engine2.dll	memory	developmentonly defensive	Print memory stats.
+engine2.dll	memory_check_limit	developmentonly	Assert if peak memory use is over the limit.
+engine2.dll	quit	release vconsole_set_focus	Quit the game
+engine2.dll	crash	cheat	Crash the client. Optional parameter -- type of crash:\n 0: read from NULL\n 1: write to NULL\n 2: force an Assert\n 3: infinite loop\n 4: stack buffer overrun\n 5: multiple asserts across multiple threads. Optional number of threads (default 5)\n 6: looping memory leak until we're out of memory. Optional allocation size in bytes (default 1048576/1MB)
+engine2.dll	crash_job	cheat	Cause the engine to crash in a job thread (Debug!!)
+engine2.dll	crash_thread	cheat	Cause the engine to crash in a brand new non-main thread (Debug!!)
+engine2.dll	crash_error	cheat	Cause the engine to crash by Plat_FatalError on main thread (Debug!!)
+engine2.dll	crash_error_thread	cheat	Cause the engine to crash by Plat_FatalError on non-main thread (Debug!!)
+engine2.dll	crash_error_job	cheat	Cause the engine to crash by Plat_FatalError on job thread (Debug!!)
+engine2.dll	force_assert	developmentonly	Fire an assertion failure
+engine2.dll	force_fatal_error	developmentonly	Fire a fatal error
+engine2.dll	console_test	developmentonly	Output text to test console
+engine2.dll	open_asset	developmentonly defensive	Opens an asset in it's primary editor of choice. Specify the full path to the asset from the mod directory.
+engine2.dll	open_current_map_in_hammer	developmentonly	opens the current map in hammer.
+engine2.dll	disable_priority_boost	developmentonly defensive	Disable focus based priority boost
+engine2.dll	enable_priority_boost	developmentonly defensive	Disable focus based priority boost
+engine2.dll	print_changed_convars	release	Prints all convars that have changed from their default value
+engine2.dll	generate_minidump_comment	developmentonly	Generate a minidump comment and spew the results to the console
+engine2.dll	stop	release	Finish recording demo.
+engine2.dll	record	cheat dontrecord release	Record a demo.
+engine2.dll	_record	cheat dontrecord release	Record a demo incrementally.
+engine2.dll	vtune	developmentonly defensive	Controls VTune's sampling.
+engine2.dll	playdemo	release	Play a recorded demo file (.dem ).
+engine2.dll	timedemo	release	Play a demo and report performance info.
+engine2.dll	timedemoquit	release	Play a demo, report performance info, and then exit
+engine2.dll	listdemo	release	List demo file contents.
+engine2.dll	benchframe	release	Takes a snapshot of a particular frame in a time demo.
+engine2.dll	demo_pause	release	Pauses demo playback.
+engine2.dll	demo_resume	release	Resumes demo playback.
+engine2.dll	demo_togglepause	release	Toggles demo playback.
+engine2.dll	demo_step_tick	release	Play for N ticks (default=1) and then pause.
+engine2.dll	demo_pauseatservertick	release	Pauses when the 'render time' reaches the specified tick.
+engine2.dll	demo_goto	release	Skips to location in demo.
+engine2.dll	demo_gototick	release	Skips to a tick in demo.
+engine2.dll	demo_marktick	release	Marks the current demo playback tick for later use
+engine2.dll	demo_gotomark	release	Skips the current demo playback to the marked tick
+engine2.dll	demo_info	release	Print information about currently playing demo.
+engine2.dll	demo_timescale	release	Sets demo replay speed.
+engine2.dll	startdemos	release	Play demos in demo sequence.
+engine2.dll	nextdemo	release	Play next demo in sequence.
+engine2.dll	demolist	release	Print demo sequence list.
+engine2.dll	stopdemos	release	Stop looping demos (current demo will complete).
+engine2.dll	instant_replay_pause	developmentonly defensive	Pauses instant replay.
+engine2.dll	instant_replay_resume	developmentonly defensive	Resumes instant replay.
+engine2.dll	instant_replay_togglepause	developmentonly defensive	Toggles instant replay.
+engine2.dll	instant_replay_skip	developmentonly defensive	Number of seconds to skip back to instant replay from current position
+engine2.dll	instant_replay_skip_live	developmentonly defensive	Number of seconds to skip back to instant replay from live
+engine2.dll	instant_replay_goto_tick	developmentonly defensive	Goto a direct timestamp of the replay
+engine2.dll	instant_replay_goto_tick_relative	developmentonly defensive	Goto a direct timestamp of the replay
+engine2.dll	instant_replay_live	developmentonly defensive	If in replay, jumps back to live
+engine2.dll	instant_replay_timescale	developmentonly defensive	Sets instant replay speed.
+engine2.dll	vprof_remote_start	developmentonly defensive	Request a VProf data stream from the remote server (requires authentication)
+engine2.dll	vprof_remote_stop	developmentonly defensive	Stop an existing remote VProf data request
+engine2.dll	rcon	dontrecord release	Issue an rcon command.
+engine2.dll	cl_ticktiming	dontrecord release	{print|<interval>} [summary|detail]  Print timing stats now, or set report interval
+engine2.dll	cl_precacheinfo	developmentonly defensive	Show precache info (client).
+engine2.dll	cl_net_printsummary	dontrecord release	Print a summary report of Source2 engine networking statistics.  (Ticks, netchan messages, etc.)
+engine2.dll	cl_spewworldgroups	developmentonly	Spew world groups (client)
+engine2.dll	cl_spewserializers	cheat	Spew serializers
+engine2.dll	cl_checkdeclareclasses	cheat	Check game code serializers
+engine2.dll	sv_fullupdate	developmentonly defensive	Force a full update for all clients.
+engine2.dll	users	developmentonly defensive	Show user info for players on server.
+engine2.dll	sv_spewworldgroups	developmentonly	Spew world groups (server)
+engine2.dll	sv_shutdown	release	Sets the server to shutdown when all games have completed
+engine2.dll	sv_showtags	developmentonly defensive	Describe current gametags.
+engine2.dll	sv_clientrates	developmentonly defensive	Show client rates.
+engine2.dll	banip	developmentonly defensive	Add an IP address to the ban list.
+engine2.dll	addip	developmentonly defensive	Add an IP address to the ban list.
+engine2.dll	removeip	developmentonly defensive	Remove an IP address from the ban list.
+engine2.dll	listip	developmentonly defensive	List IP addresses on the ban list.
+engine2.dll	writeip	developmentonly defensive	Save the ban list to file.
+engine2.dll	banid	developmentonly defensive	Add a user ID to the ban list.
+engine2.dll	removeid	developmentonly defensive	Remove a user ID from the ban list.
+engine2.dll	listid	developmentonly defensive	Lists banned users.
+engine2.dll	writeid	developmentonly defensive	Writes a list of permanently-banned user IDs to file.
+engine2.dll	log	release	Enables logging to file, console, and udp < on | off >.
+engine2.dll	sv_packstats	release	Show entity packing stats, pass 'clear' as argument to reset counts.
+engine2.dll	sv_histogram	developmentonly defensive	var change info histogram\n
+engine2.dll	redirectstart	hidden release	Redirect server console output
+engine2.dll	redirectend	hidden release	Redirect server console output
+engine2.dll	stats	developmentonly defensive	Prints server performance variables
+engine2.dll	net_stats_json	developmentonly defensive	Output server networking statistics in json format
+engine2.dll	sv_spewmeta	cheat	Spew serializer meta
+engine2.dll	sv_metaduplication	cheat	Check serializer meta for duplication, add verbose to command for full spew
+engine2.dll	sv_setsteamaccount	release	token\nSet game server account token to use for logging in to a persistent game server account
+engine2.dll	startmovie	developmentonly dontrecord defensive	Start recording movie frames.
+engine2.dll	endmovie	developmentonly dontrecord defensive	Stop recording movie frames.
+engine2.dll	setinfo	clientcmd_can_execute	Adds a new user info value
+engine2.dll	cpuinfo	developmentonly defensive	Print CPU configuration information
+engine2.dll	reset_gameconvars	cheat	Reset game convars to default values
+engine2.dll	status_json	release	Print status in JSON format
+engine2.dll	mem_test	developmentonly defensive	
+engine2.dll	dumpstringtable	developmentonly defensive	Usage:  dumpstringtable <tablename |all> <sv | cl> <verbose | simple> <element>      Print string tables to console, verbose to dump data, simple to show name and count only, can specifiy a single numeric element index to restrict spew.
+engine2.dll	playcast	release	Play a broadcast
+engine2.dll	tv_broadcast_resend	developmentonly defensive	resend broadcast data to broadcast relay
+engine2.dll	tv_status	release	Show SourceTV server status.
+engine2.dll	tv_relay	release	Connect to SourceTV server and relay broadcast.
+engine2.dll	tv_stop	release	Stops the SourceTV broadcast.
+engine2.dll	tv_retry	release	Reconnects the SourceTV relay proxy.
+engine2.dll	tv_record	release	Starts SourceTV demo recording.
+engine2.dll	tv_broadcast_status	release	Print out broadcast status
+engine2.dll	tv_stoprecord	release	Stops SourceTV demo recording.
+engine2.dll	tv_clients	release	Shows list of connected SourceTV clients.
+engine2.dll	tv_mem	release	hltv memory statistics. Use with "ent 10" (dump entity 10 memory usage) or "top 8" (dump top 8 memory users) or "class" CWorld (dump CWorld class)
+engine2.dll	gameui_hide	release	Hides the game UI
+engine2.dll	escape	release clientcmd_can_execute	Escape key pressed.
+engine2.dll	gameui_activate	hidden release	Shows the game UI
+engine2.dll	gameui_preventescape	hidden release	Escape key doesn't hide game UI
+engine2.dll	gameui_allowescapetoshow	hidden release	Escape key allowed to show game UI
+engine2.dll	gameui_preventescapetoshow	hidden release	Escape key doesn't show game UI
+engine2.dll	gameui_allowescape	hidden release	Escape key allowed to hide game UI
+engine2.dll	progress_enable	developmentonly defensive	\N
+engine2.dll	bug	developmentonly dontrecord defensive	bug [auto_fill_tokens] [-title <text>] [-noscreenshot] : Activate the bug reporter.
+engine2.dll	auto_bug	developmentonly dontrecord defensive	auto_bug : create non-interactive bug report.
+engine2.dll	+bugvoice	developmentonly dontrecord defensive	Start recording bug voice attachment.
+engine2.dll	-bugvoice	developmentonly dontrecord defensive	Finish recording bug voice attachment.
+engine2.dll	bugvoice_clear	developmentonly dontrecord defensive	Clear voice attachment data.
+engine2.dll	bugvoice_save	developmentonly dontrecord defensive	Write buffered voice attachment data to file.
+filesystem_stdio.dll	path	developmentonly defensive	Show the filesystem path.
+filesystem_stdio.dll	fs_dump_open_duplicate_times	developmentonly defensive	Set fs_report_long_reads 1 before loading to use this. Prints a list of files that were opened more than once and ~how long was spent reading from them.
+filesystem_stdio.dll	fs_clear_open_duplicate_times	developmentonly defensive	Clear the list of files that have been opened.
+imemanager.dll	ime_installed_names	hidden dontrecord release	Spew list of installed IMEs.
+imemanager.dll	ime_info	developmentonly dontrecord defensive	Spew IME info.
+inputsystem.dll	key_updatelayout	developmentonly defensive	Updates game keyboard layout to current windows keyboard setting.
+localize.dll	dump_localization_files	developmentonly defensive	List all loaded localization files
+localize.dll	dump_loc_token	developmentonly defensive	List information on the given token
+materialsystem2.dll	mat_assert_on_shader_use	developmentonly	Assert on shader used based on substring of shader name
+materialsystem2.dll	mat_reinitmaterials	developmentonly defensive	Reinitializes all loaded materials, reloading their shaders.
+materialsystem2.dll	mat_reloadshaders	developmentonly defensive	Reloads all shaders. Takes optional substrings of shader names to recompile as arguments.
+materialsystem2.dll	mat_forcereloadshaders	developmentonly defensive	Force reloads all shaders (skips MD5 check). Takes optional substrings of shader names to recompile as arguments.
+materialsystem2.dll	mat_disable_dynamic_shader_compile	developmentonly defensive	Reloads all shaders from vcs files until the next time mat_reloadshaders is called
+materialsystem2.dll	mat_clearshadercache	developmentonly defensive	Clears the shader cache used for dynamic shader compile.
+materialsystem2.dll	mat_set_shader_quality	developmentonly defensive	Force shader quality setting (valid values are 0 or 1)
+materialsystem2.dll	mat_print_shader_quality	developmentonly defensive	Print current shader quality setting
+materialsystem2.dll	mat_print_materials	developmentonly defensive	Print loaded materials. Takes an optional substring as an argument.
+materialsystem2.dll	mat_print_dead_materials	developmentonly defensive	Print loaded materials that have no valid layers due to not supporting any of the modes in gameinfo.gi.
+materialsystem2.dll	mat_print_error_materials	developmentonly defensive	Print loaded materials that are using the error shader or material.
+materialsystem2.dll	mat_print_materials_last_frame	developmentonly defensive	Print materials used last frame
+materialsystem2.dll	mat_print_materials_unused	developmentonly defensive	Print materials that have never been used
+materialsystem2.dll	mat_print_expensive_materials	developmentonly defensive	Print materials sorted by cost heuristic
+materialsystem2.dll	mat_reset_material_costs	developmentonly defensive	Reset material cost heuristic
+materialsystem2.dll	mat_print_material_info	developmentonly defensive	Print info about a specific material
+materialsystem2.dll	mat_print_textures	developmentonly defensive	Print loaded textures in alphabetical order. Takes an optional substring as an argument.
+materialsystem2.dll	mat_print_textures_size	developmentonly defensive	Print loaded textures in ascending size order. Takes an optional substring as an argument.
+materialsystem2.dll	mat_print_textures_size_in_memory	developmentonly defensive	Print loaded textures in ascending size order as they are in memory. Takes an optional substring as an argument.
+materialsystem2.dll	mat_print_procedural_textures	developmentonly defensive	Print procedural textures ( render targets, UAVs, atlases and other textures created by code ) in ascending in memory size order. Takes an optional substring as an argument.
+materialsystem2.dll	mat_print_non_virtual_textures	developmentonly defensive	Print textures that are neither procedural nor virtual, i.e. the ones the mip streaming system manages, in alphabetical order. Takes an optional substring as an argument.
+materialsystem2.dll	mat_print_shaders	developmentonly defensive	Print loaded shaders. Takes a substring as an argument.
+materialsystem2.dll	mat_print_shader_info	developmentonly defensive	Print detailed info about a single shader. Takes a shader name (hero.vfx) as an argument.
+materialsystem2.dll	mat_print_modes	developmentonly defensive	Print supported rendering modes.
+materialsystem2.dll	spew_fonts	developmentonly defensive	Spew information about font manager fonts
+meshsystem.dll	model_dump_convert_info	linked_concommand developmentonly defensive	Print model load-time conversion info
+meshsystem.dll	print_model_bind_pose	developmentonly defensive	Prints the bind pose of the specified model. Optionally limits to a particular bone and its parent chain, otherwise prints the entire skeleton.
+meshsystem.dll	reload_model	developmentonly defensive	Force a reload of a vmdl resource
+meshsystem.dll	mesh_trace_data_memory_report	developmentonly defensive	Logs information about memory consumption by TraceDataForDraw_t/ToolsTraceData
+networksystem.dll	net_spewcounts	developmentonly defensive	Spew serializer counts, client only by default, specify server to spew server counts\n
+networksystem.dll	net_spewserializer	developmentonly	Spew serializer info\n
+networksystem.dll	net_why_field_excluded	developmentonly	<classname> <fieldname>:  spew why field was excluded from networking for classname.
+networksystem.dll	net_permutation_info	cheat vconsole_fuzzy_matching	show permutation information for serializer
+networksystem.dll	fs_spew_readfieldlist	cheat	index <threshold bytes>: spew changes to ent index, optionally only spewing if update is > than threshold bytes
+networksystem.dll	fp_trace	developmentonly defensive	Toggle field path tracing to file\n
+networksystem.dll	net_captureculldata	developmentonly defensive	Captures low-level data to replay path culling algorithm behavior in controlled unit test environment
+networksystem.dll	net_validatemessages	cheat	Activates/deactivates net message validation
+networksystem.dll	net_listallmessages	cheat	List all registered net messages
+networksystem.dll	net_messageinfo	cheat	Display info about a message (by classname or id)
+networksystem.dll	net_channels	release	Shows net channel info
+networksystem.dll	net_status	release	Shows current network status
+networksystem.dll	net_connections_stats	release	Print detailed network statistics for each network connection
+networksystem.dll	net_option	release	Get or set SteamNetworkingSockets options such as fake packet lag and loss
+networksystem.dll	sdr	release	An old command that has been renamed to 'net_option'
+networksystem.dll	net_fakelag	release	Shortcut to set both FakePacketLag_Recv and FakePacketLag_Send net options
+networksystem.dll	net_fakeloss	release	Shortcut to set both FakePacketLoss_Recv and FakePacketLoss_Send net options
+networksystem.dll	net_fakejitter	release	Shortcut to set jitter net options.  Run with no arguments for usage.
+networksystem.dll	net_fakeclear	release	Clear all simulated network conditions
+networksystem.dll	net_fakestatus	release	Print current simulated network condifions
+networksystem.dll	net_print_sdr_ping_times	release	Print current ping times to SDR points of presence, and selected route
+networksystem.dll	net_serializedentitymemory	developmentonly defensive	Spew CSerializedEntity memory
+networksystem.dll	net_serializedentitymetadatainfo	developmentonly defensive	Spew CSerializedEntity metadata information
+panorama.dll	panorama_dump_symbols	developmentonly defensive	<ESymbolType> Dump all of the symbols in the Panorama symbol table
+panorama.dll	panorama_print_cache_status	developmentonly defensive	Print internal panorama refcounts for every file
+panorama.dll	panorama_dispatch_event	developmentonly defensive	Dispatch the event defined by the argument string. No creating panel is specified.
+panorama.dll	panorama_generate_layout_xsd	developmentonly defensive	Generate the Layout XML Schema Definition for the current run-time (types are dependent on which game DLL is running).
+panorama.dll	dump_panorama_events	release	print panorama event types and their documentation
+panorama.dll	panorama_print_svg_stats	developmentonly	
+panorama.dll	dump_panorama_css_properties	release	Prints out all valid panorama CSS properties and their documentation
+panorama.dll	dump_panorama_render_command_stats	developmentonly defensive	
+panoramauiclient.dll	panorama_console_reset_size_and_position	linked_concommand developmentonly hidden defensive	Resets the panorama console to its default size and position
+particles.dll	cl_particles_dumplist	linked_concommand developmentonly defensive	Dump all new particles, optional name substring.
+particles.dll	cl_particles_dumpsimlist	linked_concommand developmentonly defensive	Dump all simulating particles, optional name substring.
+particles.dll	particle_reset_assertions	developmentonly	Causes all single-fire particle assertions to trigger once more.
+particles.dll	particle_stop_all	developmentonly clientdll cheat	Stops all particle systems currently playing
+particles.dll	particle_stop_specified	developmentonly clientdll cheat	Stops all particle systems that match specified name
+particles.dll	particle_stop_unspecified	developmentonly clientdll cheat	Stops all particle systems that don't match specified name
+particles.dll	dumpparticlelist	cheat	Print out information on existing particle systems
+particles.dll	particle_profile	developmentonly defensive	Profile particle
+particles.dll	particle_profile_spike	developmentonly defensive	Profile particle spike
+pulse_system.dll	pulse_debug_print	developmentonly	Usage: pulse_debug_print <vpulse_resource>
+pulse_system.dll	pulse_list_graphs	cheat	List all the active pulse graph instances
+pulse_system.dll	pulse_open_graph_id	cheat	Open a specific graph instance by id
+pulse_system.dll	open_current_map_pulse_in_tool	developmentonly vconsole_fuzzy_matching	Opens the specified pulse used in this map in the editor.\n\tArguments: <pulse_file>
+pulse_system.dll	pulse_print_graph_execution_history	cheat	Prints the execution history of a graph by filename or instanceid
+rendersystemdx11.dll	r_print_texture_stats	developmentonly defensive	Texture stats
+rendersystemdx11.dll	r_gpu_mem_stats	linked_concommand developmentonly defensive	Display GPU memory usage.
+rendersystemdx11.dll	r_print_buffers	linked_concommand developmentonly defensive	Print Vertex/Index/GPU buffers.
+rendersystemdx11.dll	r_dx11_report_live_objects	developmentonly defensive	Prints out live D3D11 objects (requires -dx11debug)
+rendersystemdx11.dll	r_textures_evict_all	linked_concommand developmentonly defensive	Evict all resident texture.
+rendersystemdx11.dll	r_renderdoc_capture_frame	linked_concommand developmentonly defensive	Triggers a RenderDoc capture
+rendersystemdx11.dll	r_renderdoc_capture_window_dx11	developmentonly	Triggers a RenderDoc capture of a specific Window
+rendersystemempty.dll	r_gpu_mem_stats	linked_concommand developmentonly defensive	Display GPU memory usage.
+rendersystemempty.dll	r_print_buffers	linked_concommand developmentonly defensive	Print Vertex/Index/GPU buffers.
+rendersystemempty.dll	r_textures_evict_all	linked_concommand developmentonly defensive	Evict all resident texture.
+rendersystemempty.dll	r_renderdoc_capture_frame	linked_concommand developmentonly defensive	Triggers a RenderDoc capture
+rendersystemempty.dll	r_renderdoc_capture_window_vulkan	developmentonly	Triggers a RenderDoc capture of a specific Window
+rendersystemvulkan.dll	r_gpu_mem_stats	linked_concommand developmentonly defensive	Display GPU memory usage.
+rendersystemvulkan.dll	r_print_buffers	linked_concommand developmentonly defensive	Print Vertex/Index/GPU buffers.
+rendersystemvulkan.dll	vulkan_vma_gpu_mem_dump	developmentonly defensive	Dump .json file for use by GpuMemDumpVis.py
+rendersystemvulkan.dll	vulkan_vma_defrag	developmentonly defensive	Force defragmenting memory with VMA
+rendersystemvulkan.dll	vulkan_memgr_print	developmentonly defensive	Prints out stats for the Vulkan memory manager
+rendersystemvulkan.dll	vulkan_memgr_fragmentation_print	developmentonly defensive	Prints out detailed memory fragmentation stats for the Vulkan memory manager
+rendersystemvulkan.dll	vulkan_pipelinemgr_print	developmentonly defensive	Prints out stats for the Vulkan Pipeline manager
+rendersystemvulkan.dll	vulkan_framebuffermgr_print	developmentonly defensive	Prints out stats for the Vulkan Framebuffer manager
+rendersystemvulkan.dll	vulkan_shader_table_print	developmentonly defensive	Prints out stats for the Vulkan shader table
+rendersystemvulkan.dll	r_vulkan_print_pipeline_compile_times	developmentonly defensive	Prints out information on pipeline compile times.
+rendersystemvulkan.dll	r_renderdoc_capture_frame	linked_concommand developmentonly defensive	Triggers a RenderDoc capture
+rendersystemvulkan.dll	r_renderdoc_capture_window_vulkan	developmentonly	Triggers a RenderDoc capture of a specific Window
+resourcecompiler.dll	ik_debug_fabrik_backwards_iteration_toggle	linked_concommand developmentonly defensive	
+resourcecompiler.dll	ik_debug_fabrik_forwards_iteration_toggle	linked_concommand developmentonly defensive	
+resourcecompiler.dll	model_dump_convert_info	linked_concommand developmentonly defensive	Print model load-time conversion info
+resourcecompiler.dll	cl_particles_dumplist	linked_concommand developmentonly defensive	Dump all new particles, optional name substring.
+resourcecompiler.dll	cl_particles_dumpsimlist	linked_concommand developmentonly defensive	Dump all simulating particles, optional name substring.
+resourcesystem.dll	rs_dump_stats	developmentonly	rs_dump_stats - Dump resourcesystem stats.
+resourcesystem.dll	resource_repeated_reload	developmentonly defensive	resource_repeated_reload <count> <resource_name> (<resource name> ...): Load and unload the specified resource(s)
+resourcesystem.dll	resource_manifest_validate_modules	developmentonly defensive	Scan all of the loaded modules and validate any resource manifests found
+resourcesystem.dll	resource_list	developmentonly defensive	List loaded resources matching a substring
+resourcesystem.dll	resource_log_allocate_timing	developmentonly defensive	Log time spent in Allocate for all resource types
+resourcesystem.dll	resource_reset_allocate_timing	developmentonly defensive	Reset tracked time spent in Allocate (see resource_log_allocate_timing)
+resourcesystem.dll	resource_leaks	developmentonly defensive	resource_leaks <resource_name>: Show resource leaks for the named resource
+scenesystem.dll	pixelvis_debug	cheat	Dump debug info
+scenesystem.dll	sc_showclasses	cheat	List the object class names known by scenesystem\n
+scenesystem.dll	sc_setclassflags	cheat	Low level command to set the flags byte associated with an object class. sc_SetClassFlags <classname> <value>\n
+scenesystem.dll	sc_cycleclassdebuglevel	cheat	Increment the debug level associated with an object class. sc_CycleClassDebugLevel <classname> <optional: max level>\n
+scenesystem.dll	sc_list_extradata_allocations	developmentonly defensive	Prints out the overall extra data allocation counts
+scenesystem.dll	sc_listworlds	cheat	List all the active sceneworlds
+scenesystem.dll	sc_dumpworld	cheat	Dump a list of the objects in a sceneworld (Usage: sc_dumpworld <world_index>)
+scenesystem.dll	sc_dumpworld3d	cheat	Dump the objects in a sceneworld into a 3d geoview buffer (Usage: sc_dumpworld3d <world_index>)
+scenesystem.dll	imgui_cycle_undocked_window_focus	developmentonly defensive	Cycles focus between the game window and undocked imgui windows
+scenesystem.dll	lightbinner_test_computesumsilhouette	developmentonly defensive	\N
+scenesystem.dll	lightbinner_test_computespheresilhouette	developmentonly defensive	\N
+scenesystem.dll	lightbinner_precompute	developmentonly defensive	\N
+schemasystem.dll	schema_list_bindings	developmentonly	schema_list_bindings <substring> - List registered global-scope schema bindings (classes & enums). If no substring, list them all.
+schemasystem.dll	schema_all_list_bindings	developmentonly	schema_all_list_bindings <substring> - List all scopes registered schema bindings (classes & enums). If no substring, list them all.
+schemasystem.dll	schema_dump_binding	developmentonly	schema_dump_binding <class_or_enum_name> - Print information about the named class or enum.
+schemasystem.dll	schema_detailed_class_layout	developmentonly	schema_detailed_class_layout <class_name> - Print a detailed memory layout of the class (including inline structs).
+schemasystem.dll	schema_stats	developmentonly	schema_stats - Print a summary of various schemasystem statistics.
+schemasystem.dll	schema_meta_stats	developmentonly	schema_meta_stats [<options>]- Print a summary of schemasystem metadata statistics.
+server.dll	healme	cheat client_can_execute	Heals the player.\n\tArguments: <health to gain>
+server.dll	hurtthem	cheat client_can_execute	Hurts the enemy in front of you.\n\tArguments: <health to lose>
+server.dll	groundlist	developmentonly cheat	Display ground entity list <index>
+server.dll	steamvrevent_quit	developmentonly hidden defensive	steamvrevent_quit
+server.dll	commentary_cvarsnotchanging	developmentonly defensive	\N
+server.dll	commentary_finishnode	client_can_execute	
+server.dll	test_entity_blocker	cheat	Test command that drops an entity blocker out in front of the player.
+server.dll	dbghist_addline	developmentonly defensive	Add a line to the debug history. Format: <category id> <line>
+server.dll	dbghist_dump	developmentonly defensive	Dump the debug history to the console. Format: <category id>\n    Categories:\n     0: Entity I/O\n     1: AI Decisions\n     2: Scene Print\n     3: Alyx Blind\n     4: Log of damage done to player\n\t 5: Player Teleport\n\t 6: Blind Zombie Sounds\n\t 7: Player Continuous\n
+server.dll	fadeout	cheat	fadeout {time r g b}: Fades the screen to black or to the specified color over the given number of seconds.
+server.dll	fadein	cheat	fadein {time r g b}: Fades the screen in from black or from the specified color over the given number of seconds.
+server.dll	creditsdone	developmentonly defensive	\N
+server.dll	shake	cheat	Shake the screen.
+server.dll	func_mover_enable_debug_all	cheat	
+server.dll	func_mover_count	cheat	
+server.dll	func_mover_step_movement	cheat	
+server.dll	shatterglass_restore	cheat	
+server.dll	shatterglass_break	cheat	
+server.dll	create_radius_damage	cheat	Causes radius damage where you're looking, at the passed in radius.
+server.dll	create_explosion_damage	cheat	Explosion where you're looking, or at x y z, with a real explosion's physics force (unlike create_radius_damage).
+server.dll	dump_globals	developmentonly defensive	Dump all global entities/states
+server.dll	tv_msg	developmentonly defensive	Send a screen message to all clients.
+server.dll	global_set	cheat	global_set <globalname> <state>: Sets the state of the given env_global (0 = OFF, 1 = ON, 2 = DEAD).
+server.dll	markup_group_spew	cheat	Spew all current markup groups and their members
+server.dll	markup_group_ent_text	cheat	markup_group_ent_text <markup_group name> -> toggle ent_text for all members of the named markup group
+server.dll	markup_group_ent_bbox	cheat	markup_group_ent_bbox <markup_group name> -> toggle ent_bbox for all members of the named markup group
+server.dll	surfaceprop	cheat	Reports the surface properties at the cursor
+server.dll	physics_debug_entity	developmentonly defensive	Dumps debug info for an entity
+server.dll	phys_shoot	cheat	Shoots a phys object.
+server.dll	prop_physics_create	cheat	Creates a physics prop with a specific .vmdl aimed away from where the player is looking.\n\tArguments: {.vmdl name}
+server.dll	collect_entity_model_name	cheat	Collect model names of the entities you're pointing at
+server.dll	prop_dynamic_create	cheat	Creates a dynamic prop with a specific .vmdl aimed away from where the player is looking.\n\tArguments: {.vmdl name}
+server.dll	ent_rotate	cheat	Rotates an entity by a specified # of degrees
+server.dll	pulse_debug_entity	cheat vconsole_fuzzy_matching	Opens a graph referencing the selected entity. If it is referenced by more than 1 graph, list all the active pulse graph instances referring to that entity so you can pick which one you want.
+server.dll	ent_characterize	developmentonly defensive	Spew PVS debug info for entity
+server.dll	sv_querycache_stats	developmentonly defensive	Display status of the query cache (client only)
+server.dll	ragdoll_cleanup_all	linked_concommand cheat	Cleans up all ragdolls.
+server.dll	scene_playvcd	cheat	Play the given VCD as an instanced scripted scene.
+server.dll	listRecentNPCSpeech	developmentonly gamedll dontrecord defensive	Displays a list of the last 5 lines of speech from NPCs.
+server.dll	report_soundpatch	developmentonly defensive	reports sound patch count
+server.dll	Test_EHandle	cheat	\N
+server.dll	Test_CreateEntity	cheat	\N
+server.dll	Test_RandomPlayerPosition	cheat	\N
+server.dll	adjacent_levels	developmentonly	List adjacent levels
+server.dll	adjacent_preload	developmentonly	Preload adjacennt level data - will override regular changelevel code -- PROTOTYPE/WIP
+server.dll	showtriggers_toggle	cheat	Displays the movement bounding box for the triggers in orange.  Some entites will also display entity specific overlays.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	showtriggers	cheat	Enable or Disable showing trigger entities
+server.dll	server_game_time	developmentonly defensive	Gives the game time in seconds (server's curtime)
+server.dll	load_master_item_schema	developmentonly gamedll hidden cheat	Reloads the item master schema.
+server.dll	dev_send_gc_message_server	developmentonly defensive	<msgid> Send a blank body message with a given ID to gc for routing tests
+server.dll	sv_dev_simulate_gcdown	developmentonly defensive	<state> Turn on/off simulated GC communications failure (GC is down in a way that we know it is down)
+server.dll	nav_create_indirect_connection	cheat	Create a connection between the selected area and the area pointed at by the crosshair.
+server.dll	nav_create_indirect_connection_from_to	cheat	Create a connection between the current 'from' and 'to' locations.
+server.dll	nav_create_indirect_connection_set_from_using_editpos	cheat	Set the 'from' location of an indirect connection to be the current edit pos of nav_edit.
+server.dll	nav_create_indirect_connection_set_to_using_editpos	cheat	Set the 'to' location of an indirect connection to be the current edit pos of nav_edit.
+server.dll	nav_delete	cheat	Deletes the currently highlighted Area.
+server.dll	nav_select_radius	cheat	Adds all areas in a radius to the selection set
+server.dll	nav_toggle_selected_set	cheat	Toggles all areas into/out of the selected set.
+server.dll	nav_store_selected_set	cheat	Stores the current selected set for later retrieval.
+server.dll	nav_recall_selected_set	cheat	Re-selects the stored selected set.
+server.dll	nav_add_to_selected_set	cheat	Add current area to the selected set.
+server.dll	nav_add_to_selected_set_by_id	cheat	Add specified area id to the selected set.
+server.dll	nav_remove_from_selected_set	cheat	Remove current area from the selected set.
+server.dll	nav_toggle_in_selected_set	cheat	Remove current area from the selected set.
+server.dll	nav_clear_selected_set	cheat	Clear the selected set.
+server.dll	nav_begin_selecting	cheat	Start continuously adding to the selected set.
+server.dll	nav_end_selecting	cheat	Stop continuously adding to the selected set.
+server.dll	nav_begin_drag_selecting	cheat	Start dragging a selection area.
+server.dll	nav_end_drag_selecting	cheat	Stop dragging a selection area.
+server.dll	nav_begin_drag_deselecting	cheat	Start dragging a selection area.
+server.dll	nav_end_drag_deselecting	cheat	Stop dragging a selection area.
+server.dll	nav_raise_drag_volume_max	cheat	Raise the top of the drag select volume.
+server.dll	nav_lower_drag_volume_max	cheat	Lower the top of the drag select volume.
+server.dll	nav_raise_drag_volume_min	cheat	Raise the bottom of the drag select volume.
+server.dll	nav_lower_drag_volume_min	cheat	Lower the bottom of the drag select volume.
+server.dll	nav_toggle_selecting	cheat	Start or stop continuously adding to the selected set.
+server.dll	nav_begin_deselecting	cheat	Start continuously removing from the selected set.
+server.dll	nav_end_deselecting	cheat	Stop continuously removing from the selected set.
+server.dll	nav_toggle_deselecting	cheat	Start or stop continuously removing from the selected set.
+server.dll	nav_split	cheat	To split an Area into two, align the split line using your cursor and invoke the split command.
+server.dll	nav_mark	cheat	Marks the Area or Ladder under the cursor for manipulation by subsequent editing commands.
+server.dll	nav_unmark	cheat	Clears the marked Area or Ladder.
+server.dll	nav_test_level_hull	cheat	Find entities that intrude into the nav mesh.  List those entities in console output, and display bounding boxes around them for a while.
+server.dll	nav_clear_attributes	cheat	Clear all nav attributes of selected area.
+server.dll	nav_clear_attribute	cheat	Remove given nav attribute from all areas in the selected set.
+server.dll	nav_mark_attribute	cheat	Set nav attribute for all areas in the selected set.
+server.dll	nav_select_with_attribute	cheat	Selects areas with the given attribute.
+server.dll	nav_list_movable_meshes	cheat	List the movable meshes registered with the movable meshes manager.
+server.dll	nav_set_movable_mesh_dormant_flag	cheat	Set the movable mesh dormant flag (0=active, 1=dormant)
+server.dll	nav_switch	developmentonly defensive	Switches to navmesh for the specified spawngroup
+server.dll	citadel_tracked_stats_dump	developmentonly	[all|player|team|match] Dump currently tracked stats.
+server.dll	citadel_dump_bullets	developmentonly client_can_execute	dump all bullet info to the console
+server.dll	model_dump_convert_info	linked_concommand developmentonly defensive	Print model load-time conversion info
+server.dll	modifier_spew_states	cheat	Call to have the client spew their unit states affecting them,
+server.dll	modifier_dump_list	cheat	Dumps all modifiers that exist in the game
+server.dll	pulse_list_game_blackboards	cheat	List all the active pulse graph instances
+server.dll	dump_response_symbols	developmentonly defensive	print all response symbols to the console
+server.dll	rr_dump_rules	cheat	Print all response rules
+server.dll	graphcontroller_dumpparams	developmentonly	Print all anim graph parameters for the specified entity.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	event_reload_schema	linked_concommand developmentonly defensive	
+server.dll	animevents_dump	cheat	List all the currently registered anim events.\n
+server.dll	ent_animgraph_debug	cheat	Displays debug draws about the given entity(ies) animgraph\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	mp_disable_autokick	release	Prevents a userid from being auto-kicked
+server.dll	noclip	cheat client_can_execute	Toggle. Player becomes non-solid and flies.  Optional argument of 0 or 1 to force enable/disable
+server.dll	givecurrentammo	cheat	Give a supply of ammo for current weapon..\n
+server.dll	prop_debug	cheat	Toggle prop debug mode. If on, props will show colorcoded bounding boxes. Red means ignore all damage. White means respond physically to damage but never break. Green maps health in the range of 100 down to 1.
+server.dll	debugoverlay_toggle	cheat	Toggles visibility of the debug overlay system.
+server.dll	debugoverlay_cycle_domain	cheat	Toggles visibility of the debug overlay system.
+server.dll	debugoverlay_cycle_state	cheat	Toggles visibility of the debug overlay system.
+server.dll	debugoverlay_dashboard	cheat	Makes the debug overlay dashboard visible.
+server.dll	debugoverlay_hide_imgui	cheat	Hides the overlay.
+server.dll	imgui_set_selection	cheat	Sets ImGui selection
+server.dll	imgui_debug_entity	cheat	Shows the entity browser, focused on the entity you specify.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	imgui_set_status_text	cheat	Sets ImGui header status text
+server.dll	save_set_subdirectory	developmentonly replicated defensive	
+server.dll	save_clear_subdirectory	developmentonly replicated defensive	
+server.dll	save	developmentonly dontrecord defensive	Save Game
+server.dll	autosavedangerous	developmentonly defensive	AutoSaveDangerous
+server.dll	autosave	developmentonly defensive	Autosave
+server.dll	autosavedangerousissafe	developmentonly defensive	
+server.dll	save_finish_async	developmentonly defensive	
+server.dll	save_showelapsedtime	developmentonly defensive	display up-to-date elapsed play time
+server.dll	save_watchclass	developmentonly defensive	Restrict spew to entities with matching classname
+server.dll	save_watchentity	developmentonly defensive	Restrict spew to entity index
+server.dll	report_entities	developmentonly cheat	Lists all entities
+server.dll	showents	cheat	Dump entity list to console.
+server.dll	ents	developmentonly gamedll defensive	List server entities, sorted by spawn group
+server.dll	ent_spew_derived_classes	developmentonly	Prints out all entity classes which inherit from a specified base class
+server.dll	net_reloadgameevents	developmentonly	Reload the game events
+server.dll	gameevents_dumptofile	developmentonly	write gameevents keyvalues (sorted by name) to gameevents_<modname>.txt
+server.dll	gameevents_analyze	developmentonly	compare game events across all mods
+server.dll	ent_debug_origin_changes	developmentonly	turn on, off, or toggle origin changes on server for entity by index
+server.dll	ent_reveal_in_hammer	developmentonly	Given a mapname and hammer uniqueid, reveal it in Hammer
+server.dll	particle_test_start	cheat	Dispatches the test particle system with the parameters specified in particle_test_file,\n particle_test_attach_mode and particle_test_attach_param on the entity the player is looking at.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	particle_test_stop	cheat	Stops all particle systems on the selected entities.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	particle_test_create	cheat	Creates the named particle system where the player is looking.  Can be used on an entity if pointed at the entity.  Optionally takes a particle config name.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	particle_test_destroy	cheat	Destroys all particle systems matching the specified name.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_viewentity	developmentonly	Selects the picked entity as the view entity
+server.dll	ent_viewpunch	developmentonly	Used to debug ViewPunch
+server.dll	in_forcebuttonstate	developmentonly vconsole_fuzzy_matching	Forces a button to be a particular state - WHEN PROCESSING USERCOMMANDS
+server.dll	weapon_switch	developmentonly	Use a particular weapon\t\nArguments: <weapon_name>
+server.dll	remove_weapon	cheat client_can_execute	Remove a weapon held by the player.\n\tArguments: <weapon subclass name>
+server.dll	rr_forceconcept	cheat	fire a response concept directly at a given character.\nUSAGE: rr_forceconcept <target name or index> <concept> "criteria1:value1,criteria2:value2,..."\ncriteria values are optional.\n
+server.dll	firetarget	cheat	\N
+server.dll	ent_fire	cheat vconsole_fuzzy_matching	Usage:\n   ent_fire <target> [action] [value0] [value1] ... [valueN]\n
+server.dll	ent_fire_delay	cheat vconsole_fuzzy_matching	Usage:\n   ent_fire_delay <target> [action] [value0] [value1] ... [valueN] [delay]\n
+server.dll	ent_cancelpendingentfires	developmentonly defensive	Cancels all ent_fire created outputs that are currently waiting for their delay to expire.
+server.dll	ent_fire_output	cheat vconsole_fuzzy_matching	Usage:\n   ent_fire_output <target> [output name] [value0] [value1] ... [valueN]\n
+server.dll	ent_fire_output_delay	cheat vconsole_fuzzy_matching	Usage:\n   ent_fire_output_delay <target> [output name] [value0] [value1] ... [valueN] [delay]\n
+server.dll	ent_info	cheat	Usage:\n   ent_info <class name>\n
+server.dll	ent_show_response_criteria	cheat	Print, to the console, an entity's current criteria set used to select responses.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_autoaim	cheat	Displays the entity's autoaim radius.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_create	gamedll cheat vconsole_fuzzy_matching	Creates an entity of the given designer or subclass name where the player is looking.
+server.dll	subclass_create	gamedll cheat vconsole_fuzzy_matching	Creates an entity of the given subclass where the player is looking.
+server.dll	subclass_change	gamedll cheat vconsole_fuzzy_matching	Changes the subclass of the given entity.\n\tArguments:   \t<new_subclass> {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_teleport	cheat	Teleport the specified entity to where the player is looking.\n\tFormat: ent_teleport <entity name>
+server.dll	ent_orient	cheat	Orient the specified entity to match the player's angles. By default, only orients target entity's YAW. Use the 'allangles' option to orient on all axis.\n\tFormat: ent_orient <entity name> <optional: allangles>
+server.dll	ent_bonemergeplayer	cheat	Bonemerge the player onto the entity under the crosshairs
+server.dll	respawn_player	cheat	Respawns the player from death!\n
+server.dll	replay_start	cheat client_can_execute	Start Source2 TV replay: replay_start <delay>|stash [<player name or index>]
+server.dll	replay_death	cheat	start hltv replay of last death
+server.dll	replay_stop	client_can_execute	stop hltv replay
+server.dll	telemetry_message	cheat	Place a message in the telemetry timeline
+server.dll	telemetry_toggle_timespan	cheat	Starts/stops a timespan with an ever increasing name.
+server.dll	rangefinder	cheat	Measures distance along a ray
+server.dll	rangefinder2d	cheat	Measures distance along a ray, only measuring along XY plane.
+server.dll	cast_ray	cheat	Tests ray cast
+server.dll	cast_sphere	cheat	Tests sphere cast
+server.dll	cast_aabb	cheat	Tests box collision detection
+server.dll	cast_capsule	cheat	Tests capsule collision detection
+server.dll	cast_convex	cheat	Tests convex hull collision detection
+server.dll	cast_cylinder	cheat	Tests cylinder collision detection
+server.dll	cast_obb	cheat	Tests cylinder collision detection
+server.dll	cast_physics	cheat	Tests physics shape collision detection
+server.dll	cast_intervals	cheat	Tests interval ray cast
+server.dll	kill	cheat client_can_execute	Kills the player with generic damage
+server.dll	explode	cheat client_can_execute	Kills the player with explosive damage
+server.dll	killvector	cheat client_can_execute	Kills a player applying force. Usage: killvector <player> <x value> <y value> <z value>
+server.dll	explodevector	cheat client_can_execute	Kills a player applying an explosive force. Usage: explodevector <player> <x value> <y value> <z value>
+server.dll	say	client_can_execute	Display player message
+server.dll	say_team	client_can_execute	Display player message to team
+server.dll	give	vconsole_fuzzy_matching client_can_execute	Give item to player.\n\tArguments: <item_name>
+server.dll	give_oriented	vconsole_fuzzy_matching client_can_execute	Give item oriented to player angles.\n\tArguments: <item_name>
+server.dll	setmodel	cheat	Changes's player's model
+server.dll	test_dispatcheffect	cheat	Test a clientside dispatch effect.\n\tUsage: test_dispatcheffect <effect name> <distance away> <flags> <magnitude> <scale>\n\tDefaults are: <distance 1024> <flags 0> <magnitude 0> <scale 0>\n
+server.dll	god	cheat client_can_execute	Toggle by default, or 0 to disable and 1 to enable. Player becomes invulnerable.
+server.dll	setpos	cheat client_can_execute	Move player to specified origin (must have sv_cheats).
+server.dll	setpos_player	cheat client_can_execute	Move specified player to specified origin (must have sv_cheats).
+server.dll	setang	cheat client_can_execute	Snap player eyes to specified pitch yaw <roll:optional> (must have sv_cheats).
+server.dll	setpos_exact	cheat client_can_execute	Move player to an exact specified origin (must have sv_cheats).
+server.dll	setang_exact	cheat client_can_execute	Snap player eyes and orientation to specified pitch yaw <roll:optional> (must have sv_cheats).
+server.dll	notarget	cheat client_can_execute	Toggle. Player becomes hidden to NPCs.
+server.dll	hurtme	cheat client_can_execute	Hurts the player.\n\tArguments: <health to lose>
+server.dll	breakable_force_break	developmentonly defensive	Force a breakable to break
+server.dll	animgraph_dump_update_list	developmentonly	Displays stats about which animations are updating
+server.dll	anim_eval_stats	developmentonly	Displays stats about how many EvaluatePose calls are unused
+server.dll	ent_grab	cheat	grabs the object in front of the player. Options: -loose -multiple -toggle
+server.dll	ent_ungrab	cheat	un-grabs all objects
+server.dll	ent_name	cheat	Displays the entity name
+server.dll	ent_actornames	cheat	Displays the entity name for all entities that have ShouldDisplayInActorNames true in code
+server.dll	ent_text	cheat vconsole_fuzzy_matching	Displays text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_text_radius	cheat	Displays text debugging information about the given entity(ies) [near the player] on top of the entity (See Overlay Text)\n\t2 Arguments:   \t<Radius> <{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}>
+server.dll	ent_text256	cheat	Displays text debugging information about the given entity(ies) [within 256 units of the player] on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_text_clear	cheat	Hide text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_text_sticky_add	cheat	Adds to list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_text_sticky_remove	cheat	Removes from the list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_text_sticky_clear	cheat	Clears the list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_text_sticky_dump	cheat	Spews the list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_bbox	cheat	Displays the movement bounding box for the given entity(ies) in orange.  Some entites will also display entity specific overlays.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_absbox	cheat	Displays the total bounding box for the given entity(s) in green.  Some entites will also display entity specific overlays.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_attachments	cheat	Displays the attachment points on an entity.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_joints	cheat	Displays the joint names + axes an entity.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_viewoffset	cheat	Displays the eye position for the given entity(ies) in red.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_pivot	cheat	Displays the pivot for the given entity(ies).\n\t(y=up=green, z=forward=blue, x=left=red). \n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_visibility_traces	cheat vconsole_fuzzy_matching	Displays visibility traces for the given entity\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_skeleton	cheat	Displays the skeleton for the given entity(ies).\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_hitbox	cheat	Displays the hitboxes for the given entity(ies).\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_vcollide_wireframe	cheat	Displays the interpolated vcollide wireframe pm am entity.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_select	cheat	Select or deselects the given entities(s) for later manipulation\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_messages	cheat	Toggles input/output message display for the selected entity(ies).  The name of the entity will be displayed as well as any messages that it sends or receives.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_picker	cheat	Toggles 'picker' mode.  When picker is on, the bounding box, pivot and debugging text is displayed for whatever entity the player is looking at.\n\tArguments:\tfull - enables all debug information
+server.dll	ent_show_damage	cheat	Sets damage display mode.  When on, you will see the amount of damage dealt over the target's head.
+server.dll	ent_clear_debug_overlays	cheat	Clears all debug overlays
+server.dll	ent_scale	cheat	Scales entities.\tArguments: <scale factor> <{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}>
+server.dll	ent_remove	cheat	Removes the given entity(s)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_remove_all	cheat	Removes all entities of the specified type\n\tArguments:   \t{entity_name} / {class_name} 
+server.dll	ent_kill	cheat	Kills the given entity(s)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_gib	cheat	Gibs the given entity(s)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_animgraph2_record	cheat	Starts live debugging & recording the AG2 graph for a given entity\n\tArguments: entityName\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_animgraph2_open_graph	cheat	Opens the graph and starts live debugging the AG2 graph for a given entity\n\tArguments: entityName\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	drawline	cheat	Draws line between two 3D Points.\n\tGreen if no collision\n\tRed is collides with something\n\tArguments: x1 y1 z1 x2 y2 z2
+server.dll	drawcross	cheat	Draws a cross at the given location\n\tArguments: x y z
+server.dll	cleardraw	cheat	Clears all lines drawn by drawline and drawcross
+server.dll	box	cheat	Draw a bbox\n\tArguments:  minx miny miny maxx maxy maxz <lifetime = 10.0> <r g b a>\n
+server.dll	axis	cheat	Draw an axis\n\tArguments:  x y z pitch yaw roll <lifetime = 10.0> <r g b a>\n
+server.dll	ent_hierarchy	cheat	Prints the entity hierarchy tree rooted at the specified ent(s)
+server.dll	ent_scenehierarchy	cheat	Prints the entity scenenode hierarchy tree rooted at the specified ent(s)
+server.dll	phys_dump_main_world	developmentonly	Dump physics main world to file
+server.dll	phys_dump_intersection_controller	developmentonly	Dump intersection controller status
+server.dll	phys_dump_memory	developmentonly	Dump memory usage
+server.dll	phys_list	developmentonly	List all physics component contents of every entity in the game;\n    -stream [1|0]         initiate|terminate streaming to physics debugger\n    -allents              include non-physical entities\n    -classes              print class names\n    -sdk                  Rubikon-wide memory short status\n    -sdk -struct          Rubikon-wide memory use per struct\n    -sdk -rebuildsvms     Rubikon-wide SVM force rebuild and status\n    -world                current state of the world\n    -world -touch         list body pairs (bodies in contact)\n    -world -save <name>   save world to a file\n    -world -mem           memory dump (separately per game dll)\n    -world -snapshots     Start/Stop dumping snapshots of the world into the current directory\n    -world -agg           current aggregate data registry (loaded resources)\n
+server.dll	phys_sleep	developmentonly	Put all physics in all the worlds to sleep
+server.dll	phys_wakeup	developmentonly	Wake all physics objects in the Main physics up
+server.dll	ray_bench	developmentonly defensive	Load the rays and run the benchmark
+server.dll	physics_highlight_active	developmentonly	Turns on the absbox for all active physics objects.\n  0 : un-highlight.\n
+server.dll	physics_report_active	developmentonly	Lists all active physics objects\n  -more : extra info\n
+server.dll	physics_add_test	developmentonly	add test object
+server.dll	physics_remove_test	developmentonly	remove test object
+server.dll	phys_create_test_character_proxy	developmentonly	Create test character proxy
+server.dll	test_list_entities	cheat	test-list entities
+server.dll	report_simthinklist	developmentonly	Lists all simulating/thinking entities
+server.dll	snd_sos_sv_soundevent_start	developmentonly defensive	Test
+server.dll	snd_sos_sv_soundevent_stop_last	developmentonly defensive	Test
+server.dll	snd_sos_sv_test_gender	developmentonly defensive	Test
+server.dll	snd_sos_sv_soundevent_pause_last	developmentonly defensive	Test
+server.dll	snd_sos_sv_soundevent_unpause_last	developmentonly defensive	Test
+server.dll	soundscape_flush	developmentonly defensive	Flushes the server & client side soundscapes
+server.dll	sv_soundscape_printdebuginfo	cheat	print soundscapes
+server.dll	script_reload	cheat	Reload scripts
+server.dll	script_attach_debugger	cheat	Connect the vscript VM to the script debugger
+server.dll	script_debug	cheat	Toggle the in-game script debug features
+server.dll	script_add_watch	cheat	Add a watch to the game debug overlay
+server.dll	script_remove_watch	cheat	Remove a watch from the game debug overlay
+server.dll	script_add_watch_pattern	cheat	Add a watch to the game debug overlay
+server.dll	script_remove_watch_pattern	cheat	Remove a watch from the game debug overlay
+server.dll	script_add_debug_filter	cheat	Add a filter to the game debug overlay
+server.dll	script_remove_debug_filter	cheat	Remove a filter from the game debug overlay
+server.dll	script_trace_enable	cheat	Turn on a particular trace output by file or function name
+server.dll	script_trace_disable	cheat	Turn off a particular trace output by file or function name
+server.dll	script_trace_enable_key	cheat	Turn on a particular trace output by table/instance
+server.dll	script_trace_disable_key	cheat	Turn off a particular trace output by table/instance
+server.dll	script_trace_enable_all	cheat	Turn on all trace output
+server.dll	script_trace_disable_all	cheat	Turn off all trace output
+server.dll	script_clear_watches	cheat	Clear all watches from the game debug overlay
+server.dll	script_find	cheat	Find a key in the VM 
+server.dll	script_resurrect_unreachable	cheat	Use the garbage collector to track down reference cycles
+server.dll	script_reload_code	cheat	Execute a vscript file, replacing existing functions with the functions in the run script
+server.dll	script_reload_entity_code	cheat	Execute all of this entity's VScripts, replacing existing functions with the functions in the run scripts
+server.dll	script_help	cheat	Output help for script functions
+server.dll	script_help2	developmentonly defensive	Output help for script functions suitable for auto-completion
+server.dll	script_dump_all	cheat	Dump the state of the VM to the console
+server.dll	create_test_portal	developmentonly	creates a portal
+server.dll	modifier_dump_visible	cheat	Print out non-hidden modifiers.
+server.dll	modifier_cache_report	developmentonly defensive	Print per-EModifierValue cache statistics sorted by query volume. Use modifier_cache_reset_stats to clear.
+server.dll	modifier_cache_reset_stats	developmentonly defensive	Reset modifier value cache statistics.
+server.dll	dump_modifier_message_count	developmentonly defensive	dump_modifier_message_count
+server.dll	modifier_stringtable_dump	cheat	Displays the contents of the modifier string table
+server.dll	modifier_create	cheat vconsole_fuzzy_matching	Creates a test modifier on unit: modifier_create <entityindex> <modifiername> <duration>
+server.dll	modifier_broadcast_event	developmentonly	Debug broadcasts an event will all empty fields
+server.dll	modifier_test_scripted_event	cheat	Tests firing a scripted event
+server.dll	modifier_test_scripted_event_end	cheat	Tests firing ending a scripted event
+server.dll	modifier_remove	cheat vconsole_fuzzy_matching	Removes the first modifier that matches the name from a unit: modifier_remove <entityindex> <modifiername>
+server.dll	modifier_dump	cheat	Display all modifiers for the unit: <entityindex/name>
+server.dll	citadel_rootme	developmentonly defensive	Root the local player
+server.dll	citadel_playofthegame_test_eval	developmentonly	Run evaluation and display results, but don't stop game
+server.dll	citadel_match_status	developmentonly defensive	Prints information about the current match status
+server.dll	server_gc_status	developmentonly defensive	Check status of connection to the GC
+server.dll	server_dump_lobby	developmentonly defensive	Prints server lobby object
+server.dll	server_dump_state	developmentonly defensive	Prints current server state
+server.dll	server_test_crash	developmentonly defensive	Crashes the server to test crash detection and minidumps
+server.dll	server_dump_signout	developmentonly defensive	Dumps informaiton about the current signout system
+server.dll	spawn_hero_testing_controller	release client_can_execute	Spawns an entity that activates sandbox mode controls.
+server.dll	citadel_bot_run_mantle_tests	developmentonly	Causes bots to teleport to bot test nodes and attempt mantling\nusage: <all | hero_name>
+server.dll	citadel_bot_run_shooting_test	developmentonly	Causes bots to teleport to bot test nodes and shoot at an assigned target\nusage: <hero_shooter> <hero_target>
+server.dll	citadel_bot_run_dps_test	developmentonly	Run a gun DPS test and record the results\nusage: <hero_target>
+server.dll	citadel_activate_cps_for_team	cheat	Makes the CPs for a team available to capture
+server.dll	kill_all_shrines	cheat release	Kills all shrines
+server.dll	citadel_event_state_dump	cheat release	Prints the active events and the map overrides applied at load
+server.dll	citadel_dev_test_endgame_server_cmd	cheat release client_can_execute	Set the Map to test End game content
+server.dll	citadel_enable_duplicate_heroes	cheat release client_can_execute	Enable usage of Duplicate Heroes
+server.dll	citadel_disable_duplicate_heroes	cheat release client_can_execute	Disable usage of Duplicate Heroes
+server.dll	citadel_flame_graph_request	cheat release client_can_execute	Request a flame graph dump
+server.dll	citadel_street_brawl_reset	developmentonly defensive	Resets a street brawl match
+server.dll	citadel_street_brawl_test_drafts	developmentonly defensive	Simulates and spews the results of all draft rounds in street brawl
+server.dll	citadel_street_brawl_advance_state	developmentonly defensive	Advance the state of a street brawl game
+server.dll	citadel_toggle_server_pause	developmentonly defensive	Toggle a server side pause.
+server.dll	citadel_unlock_flex_slots	cheat client_can_execute	<team number> - Unlock the flex slots for a team (or both teams if you omit the team number)
+server.dll	citadel_lock_flex_slots	cheat client_can_execute	<team number> - Lock the flex slots for a team (or both teams if you omit the team number)
+server.dll	citadel_give_gold	cheat client_can_execute	<gold> [unsecure=0|1] Give gold value to all players
+server.dll	citadel_reset_gold	cheat client_can_execute	Reset gold for all players
+server.dll	citadel_give_player_gold	cheat client_can_execute	<player name> <gold> Gives the specified player gold
+server.dll	citadel_match_end	developmentonly defensive	Ends the current match
+server.dll	citadel_match_abandoned	developmentonly defensive	Ends the current match as if players all abandoned.
+server.dll	citadel_force_playofthegame	developmentonly	Force begin play of the game
+server.dll	citadel_destroy_all_bosses	developmentonly defensive	Kills all the guardians
+server.dll	citadel_destroy_all_npcs	developmentonly defensive	Kills all bosses and troopers in the map
+server.dll	citadel_kick_disconnected_players	developmentonly defensive	Clear out all players who aren't connected, removing them from any teams
+server.dll	citadel_guide_bot_say	developmentonly defensive	<line> makes the guide bot say the specified line
+server.dll	citadel_test_cinematic_intro	developmentonly defensive	Restart the cinematic intro sequence
+server.dll	citadel_increment_killstreak	developmentonly defensive	citadel_increment_killstreak [player_slot] [first_blood]
+server.dll	citadel_clear_killstreak	developmentonly defensive	citadel_clear_killstreak [player_slot]
+server.dll	citadel_force_spawn_idol	cheat release client_can_execute	Force idol spawn
+server.dll	citadel_force_koth_spawn	cheat release client_can_execute	Force Spawning Koth Capture point with Warning
+server.dll	citadel_koth_dev_test_spawn	cheat release client_can_execute	Start the Early Warning of Koth and Teleport the active player there
+server.dll	citadel_shuffle_draft_order	developmentonly defensive	Shuffles the order in which players are drafting heroes
+server.dll	citadel_reroll_corrupted_items	cheat client_can_execute	[seed] Rerolls the random penalty and stat variance of every corrupted item.  Omit the seed or pass 0 for a random one.
+server.dll	citadel_test_abandon	developmentonly defensive	Test new abandon feature
+server.dll	citadel_dump_corrupted_penalties	developmentonly defensive	Dumps the corrupted item penalty rolled for every corruptible item this match
+server.dll	citadel_dump_corrupted_overrides	release	Dumps every corrupted item's penalty exclusions, fixed bonuses and integer-rounded bonuses
+server.dll	map_showspawnpoints	developmentonly defensive	Shows player spawn points (red=invalid)
+server.dll	citadel_dump_game_state	developmentonly defensive	Dumps current state of the game and all players
+server.dll	citadel_cancel_hero_draft	developmentonly defensive	Ends hero draft mode and goes straight to playing the game
+server.dll	citadel_create_unit	vconsole_fuzzy_matching client_can_execute	[hero_name | none] [team] - Creates an unit.  Pass 'my_hero' as hero_name to use your current hero
+server.dll	citadel_respawn_boss_t1	cheat release	
+server.dll	citadel_respawn_boss_t2	cheat release	
+server.dll	citadel_respawn_boss_barracks	cheat release	
+server.dll	citadel_respawn_boss_shrines	cheat release	
+server.dll	citadel_force_kill	cheat release	Kill every unit of one type: troopers, neutrals, breakables, healing_snacks, guardians, walkers, base_guardians, shrines
+server.dll	citadel_heal_target	cheat release	Restore the unit under your crosshair to full health
+server.dll	citadel_spawn_urn	cheat	Spawn an urn for testing
+server.dll	citadel_new_years_fireworks_test	release	Sets fireworks start time to be N seconds in the future.
+server.dll	player_test_prediction_smoothing	cheat	Teleport the player on the server, use with cl_smooth_root_infiniteteleporttolerance
+server.dll	citadel_stat_cache_report	developmentonly cheat	Print per-EStatsType cache statistics sorted by query volume. Use stat_cache_reset_stats to clear.
+server.dll	stat_cache_reset_stats	developmentonly cheat	Reset stat value cache statistics.
+server.dll	citadel_stat_cache_dump_deps	developmentonly cheat	Dump the full stat dependency graph for an entity. Usage: citadel_stat_cache_dump_deps [entindex/name]
+server.dll	citadel_catapult_respawn_pickup_trails	cheat release	Re-lays the pickup trail on every catapult that has one, clearing the old pickups first
+server.dll	citadel_enable_nearby_capture_point	cheat release	Enables the first capture point found within 20m
+server.dll	citadel_spawn_escort	cheat release	Spawns the escort with an optional delay
+server.dll	spawn_citadel_tutorial_controller	release client_can_execute	Spawns an entity that activates tutorial mode controls.
+server.dll	citadel_tutorial_test	release client_can_execute	Sets you to a specific spot in the tutorial
+server.dll	citadel_unit_query_registry_report	developmentonly cheat	Print a per-bucket classname list of the unit query registry
+server.dll	citadel_unit_query_test_randomized	developmentonly cheat	Fire randomized unit queries through the cached and physics paths and compare results
+server.dll	citadel_unit_query_benchmark	developmentonly cheat	Runs UnitQueries and physics queries and prints time spent: citadel_unit_query_benchmark [queries] [repetitions]
+server.dll	citadel_fibonacci_sphere_trace	cheat	Draws the LOS check generated by our fibonacci sphere trace algorithm
+server.dll	citadel_spawn_all_heroes_in_a_line	cheat	Spawn all of the heroes as bots in a line in front of you
+server.dll	citadel_assume_pawn_control	cheat client_can_execute	Take control of the pawn under the crosshair, or by name if specified
+server.dll	citadel_FindUnitsInRadius	developmentonly	Run UTIL_FindUnitsInRadius centered around 
+server.dll	citadel_test_portal_trace	developmentonly	Trace a sphere through portals and draw the results
+server.dll	citadel_zipline_rebuildpaths	developmentonly	Rebuilds all zipline splines
+server.dll	citadel_zipline_capture	developmentonly	Captures the closest zipline node
+server.dll	citadel_zipline_capture_all	developmentonly	sets all ziplines nodes to the specified team
+server.dll	citadel_zip_debug	developmentonly	Prints debug info about the closest zip line node
+server.dll	scale_function_dump	cheat	Print out all scale functions.
+server.dll	citadel_suggest_claim_reqs	developmentonly	Print a crude recommended required bullets to claim an orb for every hero
+server.dll	create_orb	developmentonly defensive	Create an orb on the local player's team
+server.dll	citadel_spawn_trooper_wave	cheat release	Spawns one trooper wave in every lane, even while trooper spawning is off
+server.dll	citadel_boss_tier_3_testing_reset	cheat	Respawns the boss
+server.dll	citadel_spawn_nearby_neutrals	cheat release	Spawns any neutral camps within 800 units (~20m)
+server.dll	citadel_spawn_all_neutrals	cheat release	Spawns every neutral camp on the map
+server.dll	citadel_spawn_trooper_grid	developmentonly defensive	Creates a NxN trooper grid in front of the player. Supports same trooper types as citadel_spawn_trooper
+server.dll	citadel_spawn_trooper	cheat release	Creates a new trooper NPC and spawn them in front of the player
+server.dll	citadel_spawn_trooper_zipline	developmentonly defensive	Spawn a trooper on a zipline
+server.dll	trooper_kill_all	cheat	Kills all living troopers
+server.dll	trooper_kill_non_bosses	cheat	Kills all non-boss living troopers
+server.dll	citadel_draw_trooper_path	developmentonly defensive	Draws a path between two coordinates
+server.dll	ent_text_filter	cheat	Set which ent_text filters you want: 
+server.dll	ent_setpos	cheat client_can_execute	Move entity to position
+server.dll	ent_setang	cheat client_can_execute	Set entity angles
+server.dll	ent_call	cheat	ent_call <funcname> <option:entname> calls function on current look target or filtername, checks on ent, then root, then mode, then map scope
+server.dll	ent_script_dump	cheat	Dumps the names and values of this entity's script scope to the console\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ent_setname	cheat	Sets the targetname of the given entity(s)\n\tArguments:   \t<new entity name> <{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}>
+server.dll	ent_find	cheat	Find and list all entities with classnames or targetnames that contain the specified substrings.\nFormat: find_ent <substring>\n
+server.dll	ent_find_index	cheat	Display data for entity matching specified index.\nFormat: find_ent_index <index>\n
+server.dll	warp_onto_zipline	cheat	warp onto the nearest point of the zipline lane passed in.  provides the zipline intro modifier as well
+server.dll	citadel_give_halloween_candy	cheat release	Gives you candy for the eat Halloween candy ability. Usage: citadel_give_halloween_candy <count>
+server.dll	citadel_force_on_upgrade_for_all_abilities	developmentonly defensive	Force all abilities to call OnUpgrade()
+server.dll	citadel_ability_active_report	developmentonly cheat	Print per-ability active window transition counts and dwell times. Use citadel_ability_active_reset_stats to clear.
+server.dll	citadel_ability_active_reset_stats	developmentonly cheat	Clear the counters printed by citadel_ability_active_report.
+server.dll	citadel_ability_activeness_report	developmentonly defensive	Print ability MODIFIER_VALUE contributions recorded while the ability was untrained or inactive. Use citadel_ability_activeness_reset_stats to clear.
+server.dll	citadel_ability_activeness_reset_stats	developmentonly defensive	Clear the counters printed by citadel_ability_activeness_report.
+server.dll	citadel_mvp_calculate_now	developmentonly	Run the MVP calculation right now
+server.dll	npc_start_handshake_upper_body	developmentonly vconsole_fuzzy_matching	
+server.dll	npc_start_handshake_full_body	developmentonly vconsole_fuzzy_matching	
+server.dll	npc_cancel_handshake	developmentonly vconsole_fuzzy_matching	
+server.dll	npc_select	cheat vconsole_fuzzy_matching	Select or deselects the given NPC(s) for later manipulation.  Selected NPC's are shown surrounded by a red translucent box\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_destroy	cheat vconsole_fuzzy_matching	Removes the given NPC(s) from the universe\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_kill	cheat vconsole_fuzzy_matching	Kills the given NPC(s)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_enemies	cheat vconsole_fuzzy_matching	Shows memory of NPC.  Draws an X on top of each memory.\n\tEluded entities drawn in blue (don't know where it went)\n\tUnreachable entities drawn in green (can't get to it)\n\tCurrent enemy drawn in red\n\tCurrent target entity drawn in magenta\n\tAll other entities drawn in pink\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_bodylocations	cheat vconsole_fuzzy_matching	Displays labelled body locations of NPCs.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_route	cheat vconsole_fuzzy_matching	Displays the current route of the given NPC as a line on the screen.  Waypoints along the route are drawn as small cyan rectangles.  Line is color coded in the following manner:\n\tBlue\t- path to a node\n\tCyan\t- detour around an object (triangulation)\n\tRed\t- jump\n\tMaroon - path to final target position\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_god	cheat	Tag an NPC so they don't take damage\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_buddha	cheat	Tag an NPC so they don't die or become incapacitated\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_combat	cheat	Displays text debugging information about the squad and enemy of the selected NPC  (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_squads	cheat	Obsolete.  Replaced by npc_combat
+server.dll	npc_ability_range_debug	cheat vconsole_fuzzy_matching	Draws range indicators for abilities for the given NPC(s).  Uses the NPCs enemy for range drawing.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_tasks	cheat vconsole_fuzzy_matching	Displays detailed text debugging information about the all the tasks of the selected NPC current schedule (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_task_text	cheat vconsole_fuzzy_matching	Outputs text debugging information to the console about the all the tasks + break conditions of the selected NPC current schedule\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_handshakes_text	cheat vconsole_fuzzy_matching	Outputs text debugging information to the console about the Animation handshaking in the NPC's AI\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_pathquery_text	cheat vconsole_fuzzy_matching	Outputs text debugging information to the console about the NPC's path query processing\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_conditions	cheat vconsole_fuzzy_matching	Displays all the current AI conditions that an NPC has in the overlay text.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_conditions_text	cheat vconsole_fuzzy_matching	Outputs text debugging information to the console about the all condition gathering for the selected NPC current schedule\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_viewcone	cheat vconsole_fuzzy_matching	Displays the viewcone of the NPC (where they are currently looking and what the extents of there vision is)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_relationships	cheat vconsole_fuzzy_matching	Displays the relationships between this NPC and all others.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_steering	cheat vconsole_fuzzy_matching	Displays the steering obstructions of the NPC (used to perform local avoidance)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	npc_scripted_commands	cheat vconsole_fuzzy_matching	Displays the state of scripted commands on the NPC\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+server.dll	ai_disable	cheat	Bi-passes all AI logic routines and puts all NPCs into their idle animations.  Can be used to get NPCs out of your way and to test effect of AI logic routines on frame rate
+server.dll	ai_setenabled	cheat	Like ai_disable but you manually specify the state (with a 0 or 1) instead of toggling it.
+server.dll	ai_step	cheat	NPCs will freeze after completing their current task.  To complete the next task, use 'ai_step' again.  To resume processing normally use 'ai_resume'
+server.dll	ai_resume	cheat	If NPC is stepping through tasks (see ai_step ) will resume normal processing.
+server.dll	npc_create	cheat vconsole_fuzzy_matching	Creates an NPC of the given type where the player is looking (if the given NPC can actually stand at that location).  \n\tArguments:\t[npc_class_name] [name of npc (optional) ] [addon type (optional) ] [name of addon (optional) ]
+server.dll	npc_create_aimed	cheat vconsole_fuzzy_matching	Creates an NPC aimed away from the player of the given type where the player is looking (if the given NPC can actually stand at that location).  Note that this only works for npc classes that are already in the world.  You can not create an entity that doesn't have an instance in the level.\n\tArguments:\t{npc_class_name}
+server.dll	npc_destroy_unselected	cheat	Removes all NPCs from the universe that aren't currently selected
+server.dll	npc_kill_unselected	cheat	Properly kills all NPCs from the universe that aren't currently selected
+server.dll	npc_thinknow	developmentonly defensive	Trigger NPC to think
+server.dll	npc_teleport	cheat	Selected NPC will teleport to the location that the player is looking (shown with a purple box)\n\tArguments:\t-none-
+server.dll	npc_go	cheat	Selected NPC(s) will go to the location that the player is looking (shown with a purple box)\n\tArguments: <start x y z> <goal x y z>
+server.dll	npc_go_last	cheat	Go to the last position you told an NPC to go.
+server.dll	npc_go_loop	cheat	Toggles whether the selected NPC(s) will loop between the last set of waypoints you used 'npc go' on.
+server.dll	npc_go_loop_clear_waypoints	cheat	Clear waypoints for npc_go_loop.
+server.dll	npc_go_random	cheat	Sends all selected NPC(s) to a random node.\n\tArguments:   \t-none-
+server.dll	npc_go_update_path	cheat	Selected NPC(s) will go to the location that the player is looking (shown with a purple box), WITHOUT CHANGING SCHEDULE!\n\tArguments: [dest_fly]
+server.dll	npc_stop_moving	cheat	Selected NPC(s) will stop moving.\n\tArguments: [asap]
+server.dll	npc_reset	cheat	Reloads schedules for all NPC's from their script files\n\tArguments:\t-none-
+server.dll	npc_steering_all	cheat	Displays the steering obstructions of all NPCs (used to perform local avoidance)\n
+server.dll	npc_heal	developmentonly defensive	Heals the target back to full health
+server.dll	npc_sethealth	developmentonly defensive	Sets the target's health, even above max. Optionally matches based on npc name to set multiple npc's health.\n\tArgs: [npc] <amount>
+server.dll	npc_damage	cheat	Deals the target damage by the given amount
+server.dll	npc_reportstate	cheat	Outputs the current state of the NPC
+server.dll	ai_test_los_from_player_pov	developmentonly defensive	Test AI LOS from the player's POV
+server.dll	ainet_generate_report	developmentonly defensive	Generate a report to the console.
+server.dll	ainet_generate_report_only	developmentonly defensive	Generate a report to the console.
+server.dll	npc_hist_dump	developmentonly defensive	Dump the NPC history to the console.\n
+server.dll	ai_dump_hints	developmentonly defensive	
+server.dll	ai_drop_hint	cheat	Drop an ai_hint at the player's current eye position.
+server.dll	ai_set_move_height_epsilon	developmentonly defensive	Set how high AI bumps up ground walkers when checking steps
+server.dll	ai_show_hints	cheat	Displays all hints as small boxes\n\tBlue\t\t- hint is available for use\n\tRed\t\t- hint is currently being used by an NPC\n\tOrange\t\t- hint not being used by timed out\n\tGrey\t\t- hint has been disabled
+server.dll	citadel_respawn_nearby_breakables	cheat release	Force Spawns any nearby breakables
+server.dll	citadel_respawn_all_breakables	cheat release	Force Spawns every breakable on the map
+server.dll	citadel_spawn_midboss_breakables	cheat release	Force spawns the breakables above the mid boss that normally first appear at 10 minutes
+server.dll	citadel_combatlog_update	client_can_execute	Send combat log to a client
+server.dll	citadel_combatlog_size_server	developmentonly defensive	\N
+server.dll	hideout_toggle_camera	developmentonly	
+server.dll	citadel_start_local_bot_match	release client_can_execute	<hex setup> Hosts a client provided bot match on this listen server
+server.dll	citadel_spawn_pickup_item	developmentonly defensive	Spawns an item pickup for a specific item. You can specify the item, or else you'll get a random one
+server.dll	citadel_give_permanent_buffs	cheat release	Gives you N random breakable permanent buffs at once, the same way a Sinner's Sacrifice jackpot does. Usage: citadel_give_permanent_buffs <count>
+server.dll	citadel_spawn_pickup	developmentonly defensive	Spawns a pickup using a pickup subclass
+server.dll	citadel_spawn_all_pickup_spawners	cheat release	Spawns the pickup of every citadel_pickup_spawner (healing snacks) now
+server.dll	dump_play_stats	cheat	
+server.dll	test_play_stats_send	cheat	
+server.dll	citadel_bot_playrecording	cheat client_can_execute	Play back commands recorded via 'citadel_bot_record'
+server.dll	citadel_bot_recordstop	cheat client_can_execute	Stop bot recording and any bot recording playback
+server.dll	citadel_bot_copyrecording	cheat client_can_execute	Copy a bot's recorded commands to the clipboard as a share code (aim at the bot, or the first bot with a recording)
+server.dll	citadel_bot_pasterecording	cheat client_can_execute	Load a bot recording share code from the clipboard. Aim at a bot to load it into that bot as the recorded hero, otherwise a new bot of that hero is spawned
+server.dll	bot_mimic_target	cheat client_can_execute	Selects the targeted bot for mimicking
+server.dll	bot_puppet_target	cheat client_can_execute	Selects the targeted bot for puppeteering
+server.dll	bot_record_target	cheat client_can_execute	Selects the targeted bot for puppeteering
+server.dll	bot_kick_all	cheat client_can_execute	Kick all the bots
+server.dll	bot_force_zipline	developmentonly defensive	Make all the bots get on nearby ziplines
+server.dll	bot_command	developmentonly defensive	<bot name> <command string...>. Sends specified command to one or more player bots: [all], [east/west], [bot name]
+server.dll	bot_command_target	cheat release	Sends specified command to target bot under reticle
+server.dll	citadel_bot_kick	developmentonly defensive	Kick bot <name>
+server.dll	citadel_bot_force_abandon	developmentonly defensive	Force bot into the abandon state
+server.dll	citadel_bot_give_all_abilities	cheat release	Gives all bots all abilities.  Use with citadel_bot_use_ability 1-4
+server.dll	citadel_bot_give_all_abilities_base	developmentonly defensive	Gives all bots all abilities without perks.  Use with citadel_bot_use_ability 1-4
+server.dll	citadel_bot_purchase_random_draft_option	developmentonly defensive	Makes the bots purchase a random draft option
+server.dll	citadel_bot_give_all_bots_all_items	developmentonly defensive	Gives all bots all items. Not limited by slot count (last I checked, this resulted in ~200 items being added to every bot)
+server.dll	citadel_bot_list_objectives_ent	cheat	List all entities that are associated with a Citadel Game Objective
+server.dll	citadel_bot_list_ents	cheat	List ent id of all players that are bots in this game
+server.dll	citadel_bot_give_team_gold	cheat	Give all bots on a particular team gold
+server.dll	spew_gold_sources	developmentonly defensive	
+server.dll	citadel_stunme	developmentonly defensive	Stun the local player
+server.dll	citadel_silenceme	developmentonly defensive	Silence the local player
+server.dll	citadel_sleepme	developmentonly defensive	Sleep the local player
+soundsystem.dll	snd_front_headphone_position	developmentonly defensive	Specifies the position (in degrees) of the virtual front left/right headphones.
+soundsystem.dll	snd_rear_headphone_position	developmentonly defensive	Specifies the position  (in degrees) of the virtual rear left/right headphones.
+soundsystem.dll	snd_front_stereo_speaker_position	developmentonly defensive	Specifies the position (in degrees) of the virtual front left/right speakers.
+soundsystem.dll	snd_rear_stereo_speaker_position	developmentonly defensive	Specifies the position (in degrees) of the virtual rear left/right speakers.
+soundsystem.dll	snd_front_surround_speaker_position	developmentonly defensive	Specifies the position (in degrees) of the virtual front left/right speakers.
+soundsystem.dll	snd_rear_surround_speaker_position	developmentonly defensive	Specifies the position (in degrees) of the virtual rear left/right speakers.
+soundsystem.dll	snd_side_surround_speaker_position	developmentonly defensive	Specifies the position (in degrees) of the virtual rear left/right speakers.
+soundsystem.dll	snd_headphone_pan_exponent	developmentonly defensive	Specifies the exponent for the pan xfade from phone to phone if the "exp" pan law is being used.
+soundsystem.dll	snd_stereo_speaker_pan_exponent	developmentonly defensive	Specifies the exponent for the pan xfade from speaker to speaker if the "exp" pan law is being used.
+soundsystem.dll	snd_surround_speaker_pan_exponent	developmentonly defensive	Specifies the exponent for the pan xfade from speaker to speaker if the "exp" pan law is being used.
+soundsystem.dll	snd_headphone_pan_radial_weight	developmentonly defensive	Apply cos(angle) * weight before pan law
+soundsystem.dll	snd_stereo_speaker_pan_radial_weight	developmentonly defensive	Apply cos(angle) * weight before pan law
+soundsystem.dll	snd_surround_speaker_pan_radial_weight	developmentonly defensive	Apply cos(angle) * weight before pan law
+soundsystem.dll	snd_setmixer	developmentonly	Set named Mixgroup of current mixer to mix vol, mute, solo.
+soundsystem.dll	snd_setmixlayer	developmentonly	Set named Mixgroup of named mix layer to mix vol, mute, solo.
+soundsystem.dll	snd_soundmixer_setmixlayer_amount	developmentonly	Set named mix layer mix amount.
+soundsystem.dll	snd_soundmixer_set_trigger_factor	developmentonly	Set named mix layer / mix group, trigger amount.
+soundsystem.dll	snd_soundmixer_flush	developmentonly defensive	Reload soundmixers.txt file.
+soundsystem.dll	snd_soundmixer_list_mixers	developmentonly defensive	List all mixers to dev console.
+soundsystem.dll	snd_soundmixer_list_mix_layers	developmentonly defensive	List all mix layers to dev console.
+soundsystem.dll	snd_soundmixer_list_mix_groups	developmentonly defensive	List all mix groups to dev console.
+soundsystem.dll	snd_print_current_mixer_mixgroup	developmentonly defensive	Get data related to mix group matching string
+soundsystem.dll	snd_async_flush	developmentonly defensive	Flush all unlocked async audio data
+soundsystem.dll	snd_async_showmem	developmentonly defensive	Show async memory stats
+soundsystem.dll	snd_async_showmem_summary	developmentonly defensive	Show brief async memory stats
+soundsystem.dll	snd_async_showmem_music	developmentonly defensive	Show async memory stats for just non-streamed music
+soundsystem.dll	movie_fixwave	developmentonly defensive	Fixup corrupted .wav file if engine crashed during startmovie/endmovie, etc.
+soundsystem.dll	snd_compare_soundevents	developmentonly cheat	Compare the compiled and loaded contents of 2 soundevents.
+soundsystem.dll	snd_print_soundevent	developmentonly vconsole_fuzzy_matching vconsole_set_focus	Print the data associated with the specified soundevent.
+soundsystem.dll	snd_print_soundevent_default_public_properties	developmentonly vconsole_fuzzy_matching vconsole_set_focus	Print the default public properties of a specified soundevent. Values do not reflect values set on the soundevent. For that see "snd_print_soundevent"
+soundsystem.dll	snd_list_soundevents	developmentonly cheat	List all available soundevents
+soundsystem.dll	snd_list_deferred_soundevents	developmentonly cheat	List all current deferred load soundevents
+soundsystem.dll	snd_list_soundevents_by_stack	developmentonly cheat	List all available soundevents using specified stack name
+soundsystem.dll	snd_remove_soundevent	developmentonly cheat	Remove the specified soundevent
+soundsystem.dll	snd_remove_all_soundevents	developmentonly cheat	Remove all soundevents
+soundsystem.dll	snd_soundevent_clear_deferred	developmentonly cheat	Clear the list of deferred soundevents for loading.
+soundsystem.dll	snd_steamaudio_display_probes	developmentonly defensive	Load all the probes from a file and display probes based on the passed on arguments.
+soundsystem.dll	snd_get_physics_surface_properties	cheat	Get physics surface properties for all the materials.
+soundsystem.dll	snd_set_physics_surface_properties	cheat	Set physics surface properties for materials. Usage: <heuristic #> <commit>
+soundsystem.dll	vmix_debug_list	developmentonly defensive	Debug dump the list of available vmix graphs
+soundsystem.dll	vmix_input	cheat	Set an input mix value
+soundsystem.dll	vmix_output	cheat	Dump main graph control output values
+soundsystem.dll	test_voice_containers	linked_concommand developmentonly defensive	Quick example for how we'd derive traits from voice containers.
+soundsystem.dll	generate_trash_synth	linked_concommand developmentonly defensive	Args: [Asset directory Path]
+soundsystem.dll	voice_containers_get_instance_params	linked_concommand developmentonly defensive	Args: [Voice Container Path]
+soundsystem.dll	voice_containers_get_instance_args	linked_concommand developmentonly defensive	Args: [Voice Container Path]
+soundsystem.dll	generate_null_container	linked_concommand developmentonly defensive	Generated a nulled out container.
+soundsystem.dll	test_voice_container_nesting	linked_concommand developmentonly defensive	Test nesting voice containers.
+soundsystem.dll	start_rec_mic	linked_concommand developmentonly defensive	Start recording to a desired wav.
+soundsystem.dll	stop_rec_mic	linked_concommand developmentonly defensive	Stop recording to a desired wav.
+soundsystem.dll	stop_rec_mic_all	linked_concommand developmentonly defensive	Stop recording all mic streams.
+soundsystem.dll	snd_purge_vsnd_table	developmentonly	Purges the VSnd table
+soundsystem.dll	soundlist	developmentonly defensive	List all known sounds.
+soundsystem.dll	snd_beatpattern_print_patterns	cheat	List all available beat patterns
+soundsystem.dll	snd__beatpattern_stop_track	cheat	Stops the specified track
+soundsystem.dll	snd_beatpattern_stop_all_tracks	cheat	Stops all currently playing patterns
+soundsystem.dll	snd_beatpattern_set_track_bpm	cheat	Sets the tempo of the specified track
+soundsystem.dll	snd_beatpattern_set_track_transpose	cheat	Sets the transposition of the specified track
+soundsystem.dll	snd_beatpattern_print_activetracks	cheat	List all active tracks
+soundsystem.dll	snd_beatpattern_flush	cheat	Purge and reload all beat pattern data and files.
+soundsystem.dll	snd_cast	cheat	Casts a ray and starts a sound event where the ray hits. The sound event will retrigger periodically if cl_snd_cast_retrigger is set. The sound event will clear previous snd_cast events if cl_snd_cast_clear is set. Usage: snd_cast <eventname> [<retrigger time>] [<max distance>]. Arguments that are specified will become defaults for the remainder of the session.
+soundsystem.dll	snd_sos_test_soundmessage	cheat	test
+soundsystem.dll	snd_sos_pause_soundevent	cheat	Pause the specified soundevent in the list
+soundsystem.dll	snd_sos_unpause_soundevent	cheat	UnPause the first soundevent in the list
+soundsystem.dll	snd_sos_set_operator_field	cheat	Currently sets a single float operator field
+soundsystem.dll	snd_sos_set_operator_field_by_guid	cheat	Currently sets a single float operator field
+soundsystem.dll	snd_sos_get_operator_field_info	cheat	Currently gets info for a single operator field
+soundsystem.dll	snd_sos_soundevent_profile	cheat	Dump a record of current soundevents and profile data
+soundsystem.dll	snd_sos_flush_operators	cheat	Flush and re-parse the sound operator system
+soundsystem.dll	snd_sos_print_tool_properties	cheat	Prints the current state of tool properties.
+soundsystem.dll	snd_sos_resolve_execute_operator	cheat	Resolve the inputs and execute one specified operator from a specified stack
+soundsystem.dll	snd_sos_print_operator_stacks	cheat	Prints a list of currently available stacks
+soundsystem.dll	snd_sos_print_strings	cheat	Prints a list of currently cached strings
+soundsystem.dll	snd_sos_print_field_name_strings	cheat	Prints a list of currently cached field name strings
+soundsystem.dll	snd_sos_print_groups	cheat	Prints the current state of the groups system
+soundsystem.dll	snd_sos_print_operators	cheat	Prints a list of currently available operators
+soundsystem.dll	snd_sos_compare_operator_stacks	cheat	Compares 2 operator stacks and spews any errors
+soundsystem.dll	snd_sos_print_operator_stack	cheat	Prints a master list of currently exposed variables
+soundsystem.dll	snd_sos_print_operator_stack_operator	cheat	Prints an operator from a stack
+soundsystem.dll	snd_sos_print_stack_exec_list	cheat	Prints the current stack execution list
+soundsystem.dll	snd_sos_start_soundevent	cheat	Starts a specified soundevent
+soundsystem.dll	snd_sos_start_stack	cheat	Starts a specified stack via an empty soundevent
+soundsystem.dll	snd_sos_start_soundevent_at_pos	cheat	Starts a specified soundevent at the given position
+soundsystem.dll	snd_sos_stop_soundevent_guid	cheat	Stops a specified soundevent
+soundsystem.dll	snd_sos_stop_soundevent_index	cheat	Stops a specified soundevent
+soundsystem.dll	snd_sos_stop_all_soundevents	cheat	Stops all soundevents currently on the execution list
+soundsystem.dll	snd_sos_print_class_sizes	cheat	Prints the sizes of relevant sos classes.
+soundsystem.dll	snd_sos_stop_track	cheat	Stop the specified track and it's queue.
+soundsystem.dll	snd_print_samplers	cheat	List all available samplers
+soundsystem.dll	snd_samplers_play_note	cheat	Play a note from a specified sampler
+soundsystem.dll	snd_samplers_stop_note	cheat	Stop a note from a specified sampler
+soundsystem.dll	soundsysteminfo	developmentonly defensive	Describe the current sound device without an active voice list.
+soundsystem.dll	play	server_can_execute	Play a sound.
+soundsystem.dll	playvol	developmentonly defensive	Play a sound at a specified volume.
+soundsystem.dll	stopsound	cheat	\N
+soundsystem.dll	soundinfo	release	Describe the current sound device with an active voice list.
+soundsystem.dll	sndplaydelay	developmentonly defensive	\N
+steamaudio.dll	snd_steamaudio_halton_sequence	cheat	Generate Halton Sequence for a given order and number of samples.
+steamaudio.dll	snd_steamaudio_enable_spatial_blend_fix	cheat	Toggles the speculative fix for low-frequency issues when using spatial blend.
+steamaudio.dll	snd_steamaudio_baked_data_stats	cheat	Display baked data stats for the current mod.
+tier0.dll	check_nofilefd	developmentonly defensive	Print the current number of FDs reported by getrlimit
+tier0.dll	find	release	Find concommands with the specified string in their name/help text.
+tier0.dll	log_dumpchannels	dontrecord release	Dumps information about all logging channels.
+tier0.dll	log_level	dontrecord release	Set the spew level of a logging channel.
+tier0.dll	log_verbosity	dontrecord release	Set the verbosity of a logging channel.
+tier0.dll	log_color	dontrecord release	Set the color of a logging channel.
+tier0.dll	log_flags	dontrecord release	Set the flags on a logging channel.
+tier0.dll	differences	release	Show all convars which are not at their default values (optional restricted to specific flags).
+tier0.dll	cvarlist	release	Show the list of convars/concommands.
+tier0.dll	help	release	Find help about a convar/concommand.
+tier0.dll	findflags	release	Find concommands by flags.
+tier0.dll	Test_ExitProcess	cheat	Test_ExitProcess <exit code> - immediately kill the process.
+tier0.dll	Test_StartLoop	developmentonly defensive	Test_StartLoop <loop name> - Denote the start of a loop. Really just defines a named point you can jump to.
+tier0.dll	Test_LoopCount	developmentonly defensive	Test_LoopCount <loop name> <count> - loop back to the specified loop start point the specified # of times.
+tier0.dll	Test_Loop	developmentonly defensive	Test_Loop <loop name> - loop back to the specified loop start point unconditionally.
+tier0.dll	Test_LoopForNumSeconds	developmentonly defensive	Test_LoopForNumSeconds <loop name> <time> - loop back to the specified start point for the specified # of seconds.
+tier0.dll	Test_RandomChance	developmentonly defensive	Test_RandomChance <percent chance, 0-100> <token1> <token2...> - Roll the dice and maybe run the command following the percentage chance.
+tier0.dll	Test_StartScript	developmentonly defensive	Start a test script running..
+tier0.dll	Test_Checkpoint	developmentonly defensive	Indicate to a test script that a checkpoint has been reached
+tier0.dll	lrucache_stats	developmentonly defensive	Spews information about all CUtlLRUCaches
+tier0.dll	lrucache_reset_stats	developmentonly defensive	Resets stats for the specified CUtlLRUCaches (or all if none specified)
+tier0.dll	lrucache_set_size	developmentonly defensive	Sets the specified cache to the specified size
+tier0.dll	lrucache_flush	developmentonly defensive	Flushes the specified cache
+tier0.dll	scrubber	developmentonly defensive	Scrub system off - not a dev build
+v8system.dll	v8_dump_heap_snapshot	developmentonly	
+v8system.dll	v8_write_heap_stats	developmentonly	Dump output of v8::Isolate::GetHeapStatistics.
+vconcomm.dll	vcon_clients	developmentonly dontrecord defensive	List connections
+vconcomm.dll	vcon_clear_buffered_log	developmentonly dontrecord defensive	Clear buffered logging
+vphysics2.dll	phys_debug_draw	developmentonly defensive	Set up debug-draw of physics internal state
+vscript.dll	lua_report_memory	developmentonly defensive	\N
+worldrenderer.dll	model_dump_convert_info	linked_concommand developmentonly defensive	Print model load-time conversion info
+worldrenderer.dll	entity_lump_list	developmentonly defensive	List all known entity lumps
+worldrenderer.dll	entity_lump_spew	developmentonly defensive	Dump the contents of an entity lump
+worldrenderer.dll	world_layer_list	developmentonly defensive	List all world layers
+worldrenderer.dll	world_layer_set_visible	developmentonly defensive	Show or hide the specified world layer
+worldrenderer.dll	world_dump_loaded_worlds	developmentonly defensive	Dump all of the worlds that we know about

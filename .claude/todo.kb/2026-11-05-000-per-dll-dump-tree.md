@@ -168,11 +168,10 @@ on another prototype.
         the real install: time `find_queues` on `server.dll` and settle the
         `reglists` question below; re-run 6860 `server`/`client` queue counts
         against the 6854 ones
-- [ ] Settle the `rendersystemdx11` owner-check exception (6 of 7 entries pass,
-      6851; `queue-shape-scan.md` `[!QUESTION]`): read the odd entry, decide
-      whether a null or out-of-image ref is legal, then make the check strict
-  - [x] Evidence (6860): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-007-rendersystemdx11-owner-check-evidence.md>.
-        Recommended: per-kind ref test (commands: ref reads u16 `0xFFFF`; convars: owner check). Awaiting the user.
+- [x] Settle the `rendersystemdx11` owner-check exception: a per-kind ref
+      check (commands: the ref reads u16 `0xFFFF`; convars: the owner check)
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-013-reglist-per-kind-ref-check.md>)
+  - [x] Evidence (6860): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-007-rendersystemdx11-owner-check-evidence.md>
 - [ ] Decode the value fields against the engine (`dllscan.values`, `dllscan.entries`)
   - [ ] Find `ConVarValueInfo_t`'s offsets inside the 160-byte entry (s2sdk
         `convar.h:630-730`: version, has-default/min/max, three `CVValue_t`,
@@ -188,22 +187,34 @@ on another prototype.
   - [ ] Pass: every once-declared `server` and `client` convar's type, default,
         min, max equal the registry's; record the layout in
         `registration-flow.md` with the build
-- [ ] `dllscan.__main__ strides`; all `validation.md` shape checks raise
+- [x] `dllscan.__main__ strides`; all `validation.md` shape checks raise
 - [x] `deadlock.paths.bin_dirs`, `deadlock.dll_inventory`, `data/dlls.list.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-009-dll-inventory-and-dlls-list.md>)
 - [x] `deadlock.dll_file`, `data/dlls/file/default.json.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-010-dll-file-facet.md>)
-- [~] `deadlock.dll_load`, `data/dlls/load/default.json.do`; load all 97, add
+- [x] `deadlock.dll_load`, `data/dlls/load/default.json.do`; load all 97, add
       any new hang to `EXCLUDED` with its reason; and
       `data/dlls/concommands/default.json.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-011-dll-load-and-concommands-atoms.md>, after 010)
-- [ ] `data/dlls/convars/default.json.do` (after the value decode)
-- [~] `deadlock.dlls_{file,load,convars,concommands}`, `data/dlls/default.tsv.do`
+- [ ] `data/dlls/convars/default.json.do` (after the value decode), with its
+      check: the convar anchor (`citadel_lane_swap_available_duration_prematch`
+      ⊇ `replicated cheat`) and convar coverage (`engine2`, `client`,
+      `server` each yield a convar queue), as `data/dlls.check/concommands` does
+- [ ] Load-time atoms depend on the DLL's import closure, not only its file:
+      after the load, `redo-ifchange` the `modules` that are in `dlls.list`
+- [x] `deadlock.dlls_{file,load,convars,concommands}`, `data/dlls/default.tsv.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-012-dlls-facet-aggregates.md>: all but `convars`)
-- [ ] `data/dlls.check/strides.do`; checks `validation.md` lists but no target
+- [x] A document's `module` is the listed basename, case kept
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-014-module-is-the-listed-basename.md>)
+- [ ] `reglist.find_queues(mem, image, kind)` instead of a stride, and
+      `reglist_test.py` under 300 lines (move `Fake` to `reglist_fake.py`):
+      both edit `facets*`, so after 014 (013's Open Questions)
+- [x] Commit the tree's prior uncommitted work
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-015-commit-prior-uncommitted-work.md>)
+- [x] `data/dlls.check/strides.do`; checks `validation.md` lists but no target
       owns yet: the anchors (they also label the strides) and coverage
       (`engine2`, `client`, `server` each yield both queues)
-- [ ] Wire up: `.gitignore` (ignore `data/dlls/*/`, keep `data/dlls/*.tsv`
+- [x] Wire up (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-016-wire-the-store-into-the-build.md>, with the strides step above): `.gitignore` (ignore `data/dlls/*/`, keep `data/dlls/*.tsv`
       and every `*.do`); add the committed aggregates to `all.do`'s
       `committed` list (`redo-adopt`) and the strides check to its deps;
       README views table
@@ -221,8 +232,6 @@ on another prototype.
 - `convars` and `concommands` as two facets, or one `reglists` facet: two
   atoms scan the same writable sections twice. Merge if `find_heads` on
   `server.dll` turns out slow.
-- Which aggregates are committed: `convars` and `concommands` yes; `file` and
-  `load` likely; `pe` per `decisions.kb/commit-diffable-data-let-git-diff.md`.
 - The engine's merged view (later, separate): the merge rule, the 5
   unexplained flag changes, the 11 zero defaults, whether tier0's own queue
   (`find`, `cvarlist`) registers only in tier0's `Init`, its scope (all DLLs

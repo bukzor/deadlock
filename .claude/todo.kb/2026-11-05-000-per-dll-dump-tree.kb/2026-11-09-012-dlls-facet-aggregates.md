@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/CLAUDE.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-000-dllscan-document-types.md
@@ -57,70 +57,61 @@ TSV/document-loading helper if one pays for itself, and `data/dlls/default.tsv.d
 
 ## Steps
 
-- [x] Read conventions: `gamedata.*.tsv` never escapes (no cell holds a tab
-      or newline), renders absent as an empty cell, and joins lists with `,`
-      (`components`) or a space (`cooldown`)
-- [x] Census of the 6860 help strings (`trash/help-census/out/`): 168 command
-      helps contain `\n`, 129 contain `\t`, 11 convar helps contain `\n`, and 1
-      contains `\`. Escaping is required
-- [x] `deadlock.dlls_tsv` + test: 14 red against a stub, then green
-- [x] `deadlock.dlls_{file,load,concommands}` + tests: 40 red, then green.
-      42 hand mutants (`trash/dlls-aggregates-mutants/run.py`, `-B`): one
-      survived (the `failed` key-set check), so I added a test; all killed
-- [x] `data/dlls/default.tsv.do`. Real `file.tsv`; `load`/`concommands`
-      through a fake tree (`trash/dlls-aggregates-fake/`: 3 DLLs, one
-      `failed`, real server document → 493 rows); `convars` fails loudly
-- [x] `pytest src/deadlock` and `pyright` on the touched files: clean
-- [~] Real `load`/`concommands` run: waiting for 011
+- [x] Modules + tests, red first; 48 mutants killed (`trash/dlls-aggregates-mutants/`)
+- [x] `data/dlls/default.tsv.do`; real run (Final report)
 
 ## Decisions
 
-- **Cells: PostgreSQL `COPY` text format** (`dlls_tsv.cell`): `\` `\t` `\n`
-  `\r` escaped, `null` is `\N`, `""` an empty cell. Escaping is required
-  (census above), and `cstr_in` admits only printables plus `\t\r\n`, so
-  these four are complete. One known convention covers escaping and null
-  together, and a reader can undo it mechanically. A literal `\N` help would
-  render `\\N`, so the two never collide.
-- **Null help and `""` stay distinct.** The aggregate is meant to be lossless,
-  and 006's census shows the distinction carries information. Diff stability
-  doesn't argue for merging them: a rendering is stable either way, and a
-  null↔`""` flip is one changed cell. Merged, that flip would be invisible,
-  and `output-views.md` allows "over-sensitive, never blind". The cost is 2
-  bytes on the null rows (24 commands; 3248 convars later).
-- **Why `\N` for null, not a marker for `""`.** gamedata renders absent as
-  empty, but there empty can't be a real value. Here it can (`""`), so one
-  side needs a marker. A marker for null is the standard one; inventing a
-  marker for `""` would be ours alone.
-- **Lists: space-separated** (`list_cell`), as gamedata's `cooldown` is.
-  Every item is asserted non-empty and free of anything that needs escaping.
-  With `git diff --word-diff`, an added flag or module is one added word; a
-  `,`-joined cell is a single word.
-- **`load.tsv`: `dll outcome detail`**, one row per DLL as the brief says.
-  `detail` means modules, error or reason, as the outcome says. A module
-  added to one DLL's load changes one line by one word. Considered: long form
-  (one row per module). One added line is a smaller diff, but it is not
-  "one row per DLL", and it would need a blank row per DLL that added no
-  modules.
-- **Keys:** `file`/`load` key on the `dlls.list` basename (from the document's
-  filename, mixed case). `concommands.module` is the document's own value
-  (lowercased by `facets`), asserted equal to the basename ignoring case.
-  Sorting by `module` and by basename agree except on case.
-- **Shared helper `dlls_tsv`:** cells, `load_documents` (filename → basename,
-  shape asserted by each facet's `TypeGuard`), `is_str_sequence`. Rendering
-  reuses `sparse.render`/`Table`.
-- **`.do`:** the shape follows 010 (write `$3`, then `redo-stamp <"$3"`). The
-  `concommands` DLLs come from `python -m deadlock.dlls_load --ok`, run after
-  one `redo-ifchange` over every `load` document. A failing `--ok` stops the
-  build under `set -e`, since its output is captured with `$(...)`, not
-  `< <(...)`.
+Lossless is tested by reading back: each view's test parses its own table,
+rebuilds the documents, and compares. Departures from gamedata (which has no
+escaping, renders absent as an empty cell, and joins lists by `,` or space):
+
+- **Cells in PostgreSQL `COPY` text format:** `\` `\t` `\n` `\r` are
+  escaped. 6860 helps hold raw ones (168 commands `\n`, 129 `\t`), and
+  `cstr_in` admits no other controls.
+  `null` is `\N` and `""` is an empty cell: unlike in gamedata, empty is a
+  real value here, and `\N` is the standard marker (a literal `\N` help
+  renders `\\N`). A null↔`""` flip shows as one changed cell.
+- **Lists are space-joined** (as `cooldown` is), with items asserted to need
+  no escaping. Under `--word-diff`, an added flag or module is one word.
+- **`load.tsv`: `dll outcome detail`** (the modules, the error or the
+  reason). Long form would need a filler row for a DLL that added none.
+- **Keys:** `file`/`load`: the `dlls.list` basename; `concommands.module`:
+  the document's own, asserted equal to it once both are lowercased.
+- **`.do`:** 010's shape. The `concommands` DLLs come from `dlls_load --ok`,
+  run after one `redo-ifchange` over every `load` document, and captured with
+  `$(...)`, so a failure stops the build.
 
 ## Open Questions
 
-- [ ] `document.py` says `module` "is the DLL's basename as listed in
-      `data/dlls.list`", but `facets` lowercases it (`Qt5Core.dll` →
-      `qt5core.dll`; 000's open question). For now `concommands.tsv` shows
-      the lowercase form and `file`/`load.tsv` the listed one. One of the
-      two should change upstream, and then the case-insensitive assert here
-      can become `==`.
+- [ ] `document.py` says `module` is the `dlls.list` basename, but `facets`
+      lowercases it. Settle that upstream; then the assert becomes `==`.
+- [ ] `/data/*` in `.gitignore` also hides every `data/dlls/**/*.do`. The
+      wiring unit must re-include them, along with the committed TSVs.
 
 ## Final report
+
+Files (new): `src/deadlock/dlls_{tsv,file,load,concommands}{,_test}.py`,
+`data/dlls/default.tsv.do`.
+
+API:
+- `dlls_tsv`: `NULL = "\\N"`; `cell(str | None) -> str`; `uncell(str) -> str | None`;
+  `list_cell(Sequence[str]) -> str`; `unlist_cell(str) -> list[str]`;
+  `load_documents(paths, is_document) -> Mapping[basename, D]`; `is_str_sequence`.
+- `dlls_<facet>`: `is_<facet>_document(object) -> TypeGuard[…]`,
+  `table(Mapping[basename, Doc]) -> sparse.Table`, `main()`; CLI
+  `python -m deadlock.dlls_<facet> DOC.json… > <facet>.tsv`. Columns:
+  `dll size sha256`; `dll outcome detail`; `module name flags help`.
+- `dlls_load.ok(docs) -> list[str]`; `python -m deadlock.dlls_load --ok DOC…`.
+
+Real run, 6860: `file.tsv` and `load.tsv` have 97 rows each; `concommands.tsv`
+has 1411 (= 011's total). Its read-back equals all 29 non-empty documents,
+helps 24 null / 53 `""` / 1334 text (= 006's census). A forced rebuild is
+byte-identical and a second `redo-ifchange` is a no-op; `convars.tsv` fails
+loudly. First rows:
+
+    Qt5Concurrent.dll	131432	d4a01961…6db29f
+    phonon4.dll	failed	LoadLibraryExW: 126
+    client.dll	camerazoomin	developmentonly defensive	\N
+
+Checks: pytest 78 passed (`src` 461); pyright 0 errors. Deviations: none.

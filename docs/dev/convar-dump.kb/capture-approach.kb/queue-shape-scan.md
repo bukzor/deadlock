@@ -17,9 +17,10 @@ Two passes:
    pointers and admitted dozens of false positives — so this pass needs a DLL
    with multi-block queues.
 2. **Scan every DLL that loads (`../dll-coverage.md`) at those two strides**, any
-   length, keeping a head only if every entry's last qword (the `ConVar` /
-   command ref the static initializer queued) points into that DLL's own
-   writable sections.
+   length, keeping a head only if every entry's last qword (the ref the static
+   initializer queued) passes its kind's ref test. For convar entries it must
+   point into that DLL's own writable sections (the owner check); command
+   entries have their own test, below.
 
 > [!TODO] Pin the strides (160/64) in the scanner, so each DLL's dump depends
 > on nothing but that DLL (`../output-views.md`); pass 1 becomes a separate
@@ -52,6 +53,17 @@ discriminating: without it, `inputsystem`, `panoramauiclient`, `vphysics2` and
 one-entry command queue read at the convar stride, where nothing past entry 0
 gets checked. With it, every DLL has at most one queue of each kind.
 
+A command entry's ref is the `ConCommand` that queued it, which need not be a
+global: `rendersystemdx11`'s `r_textures_evict_all` is a
+`CConCommandMemberAccessor` inside a heap object (6851, 6860). So a command ref
+must read as an unregistered `ConCommandRef` (u16 `0xFFFF`, s2sdk
+`convar.h:536`), wherever it points, which holds for all 1418 command entries on
+6860. Convar refs keep the owner check (6223 of 6223 entries); that is what
+rejects the four one-entry command queues read at the convar stride. Pass 1 runs
+before any kind is known, so it owner-checks every entry at every stride: the
+one heap-owned ref on 6860 sits in a single-block queue, which pass 1 skips
+anyway.
+
 For: no code signatures, no vtable slots, no `Connect`; the version-specific
 knowledge is the reg-list shape (`m_nSize`, 100, `m_pPrev`) and the name/help/flags
 prefix of the creation struct, and the scan fails rather than misreads if those
@@ -62,7 +74,3 @@ Against: the value fields past `+16` (type, default, min, max) still follow the
 SDK layout. Pass 2 assumes every DLL was built against the same SDK as
 `server.dll`; a DLL whose queue used another stride would scan as having none,
 which only the oracle (`runtime-cvarlist.md`) would notice.
-
-> [!QUESTION] `rendersystemdx11`'s command queue passes the owner check on 6 of
-> 7 entries (6851). Find out whether a null or out-of-image ref is legal before
-> making the check strict per entry.

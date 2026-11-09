@@ -1,10 +1,12 @@
 # Generated output under data/ is ignored by default: bulk/binary assets, the
 # vendored VRF tool, intermediate dirs (data/gamedata/, the dense views in
-# gamedata.dense.tsv/), and the near-verbatim Valve extracts (gamedata.json/,
-# manifest.jsonl).
+# gamedata.dense.tsv/), the near-verbatim Valve extracts (gamedata.json/,
+# manifest.jsonl), and the per-DLL documents (dlls/<facet>/, dlls.list) and
+# check outputs (dlls.check/).
 # Exceptions — committed so `git diff` shows patch changes — are the
-# transformative TSV views, the build stamp naming the game version that
-# produced them, the latest-VRF-release record, and the redo .do scripts (source).
+# transformative TSV views (gamedata.tsv/, dlls/<facet>.tsv), the build stamp
+# naming the game version that produced them, the latest-VRF-release record,
+# and the redo .do scripts (source).
 # See docs/dev/decisions.kb/commit-diffable-data-let-git-diff.md
 /data/*
 !/data/*.do
@@ -23,6 +25,16 @@
 /data/gamedata.tsv/*
 !/data/gamedata.tsv/*.do
 !/data/gamedata.tsv/*.tsv
+!/data/dlls/
+/data/dlls/*
+!/data/dlls/*.do
+!/data/dlls/*.tsv
+!/data/dlls/*/
+/data/dlls/*/*
+!/data/dlls/*/*.do
+!/data/dlls.check/
+/data/dlls.check/*
+!/data/dlls.check/*.do
 
 # redo's markers for the phony aggregator targets (all.do, clean.do)
 /all

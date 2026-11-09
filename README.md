@@ -31,6 +31,21 @@ rejoins them, and the local `data/gamedata.dense.tsv/` has the full views:
 | `item_bonuses.tsv` | the passive stat bonuses each shop item grants |
 | `ability_upgrades.tsv` | what each signature ability's three upgrades do |
 
+`data/dlls/` holds the same kind of committed views over the game's DLLs (every
+`*.dll` under `game/`), aggregated from per-DLL documents that stay local:
+
+| view | what it shows |
+| --- | --- |
+| `file.tsv` | each DLL's size and sha256 |
+| `load.tsv` | each DLL's load in a fresh Windows process: the modules it pulled in, the error, or why it is never loaded |
+| `concommands.tsv` | every console-command declaration, per DLL in registration order, duplicates kept: name, flags, help |
+
+Every `redo` also runs the checks in `data/dlls.check/`, which fail the build if
+the scan may be reading garbage: `strides` re-learns `server.dll`'s
+registration-queue layout and fails if it moved; `concommands` fails if a
+known anchor command or the `engine2`/`client`/`server` command queue is
+missing.
+
 `data/deadlock-version.json` stamps which game build produced them
 (`ClientVersion`, `SourceRevision`, date). To inspect a patch: update the game,
 `redo`, then `git diff`.
@@ -56,6 +71,9 @@ echo 'DEADLOCK_HOME="/mnt/c/Program Files (x86)/Steam/steamapps/common/Deadlock"
 ```
 
 See `docs/dev/environment.kb/game-install-paths.md`.
+
+The DLL views load the game's DLLs into Windows Python, so `redo` needs
+`python.exe` on `PATH` (WSL); without it, the build fails rather than skipping them.
 
 ## CLI entry points
 
