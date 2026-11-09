@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 required-reading:
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.kb/CLAUDE.md
   - .claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md
@@ -64,8 +64,60 @@ import fails mid-edit. Never load the hang-listed DLLs
 
 ## Steps
 
+- [x] `trash/valuefit/`: `driver.py` (`queue` | `hook`: Init + readback; Init changed 0 entries),
+      `fit.py`, `typetable.py`, `check.py`, `census.py` (all 91 loadable DLLs)
+- [x] `registration-flow.md`: layout, type table, command entry (6860)
+
 ## Decisions
+
+- Absent value → `null`; that is what has-byte 0 means, and its bytes are all zero.
+- Null `CUtlString` → `""`: `CUtlString::Get` returns `""` for null, and no
+  queue holds a non-null `""` (219 null, 55 text), so nothing is lost.
+- float32 → the shortest decimal that round-trips to the same float32 (`0.02`,
+  not `0.019999999552965164`).
 
 ## Open Questions
 
+- [ ] `version` (int32 at +24) is engine data (registry +42 agrees) and nonzero
+      on 10 `archive` convars; a lossless `ConVar` document needs a `version`
+      field. `document` is outside this unit.
+- [ ] The doc cites the run by build only; the drivers live in `trash/`.
+      Archive `driver.py`/`check.py` into `docs/dev/probes/` if a citation is wanted.
+- [ ] `icvar-hook.md`'s `[!QUESTION]` on the 11 zero defaults is answered by
+      this: they are `server`'s `reference` declarations (has-default 0).
+
 ## Final report
+
+Build 6860; layout in `registration-flow.md` ("The convar entry's layout (6860)"): type
+int16 +120; has-default/min/max bytes 28/29/30; values 16 bytes each at 31/47/63 (unaligned);
+version int32 +24. Type code = row of tier0's traits table (RVA `0x398610`), 0-17 as listed.
+
+**Decoding rules** (`values`): bool → JSON bool (byte must be 0/1); ints → int; floats →
+float (float32 shortest round-trip); string → `str` (pointer to heap, null → `""`);
+color → `[r,g,b,a]` ints; vector2/3/4, qangle, vectorws → list of float32. Every type is
+decodable. Shape errors: type outside 0-17, a has-byte not 0/1, a non-null string pointer
+that doesn't read as a cstr. Suggested checks (they hold on every 6860 entry): an absent
+value is all zero; a present value's bytes past its size are zero. No NaN/inf in any queue.
+Untested against the registry because unused on 6860: int8, int16, int64, float64, qangle,
+vectorws.
+
+**Pass check** (once-declared names, all in the registry once):
+
+| dll | queue | once | type | min | max | default | version |
+|---|---|---|---|---|---|---|---|
+| server | 2008 | 1999 | 1999 | 1999 (24 present) | 1999 (14) | 1980 | 1980 |
+| client | 2289 | 2226 | 2226 | 2226 (92) | 2226 (86) | 2158 | 2157 |
+
+Every mismatch (server 19, client 68 default; 19/69 version) is a `reference`
+declaration with has-default 0: tier0 fills in the type's zero value (version -1).
+The decode's `null` is right; the 69th, `snd_soundmixer`, is a null-`CUtlString` string.
+
+**Has-X = 0:** across 30 queues and 6223 entries: 181 absent defaults, 6017 mins and
+6043 maxes, all 16 zero bytes. They carry no information. has-default is 0 on exactly
+the 181 `reference` entries.
+
+**Command entry:** past the base, only pointers, their kind bytes (partly stale) and the
+ref: nothing to dump. Likewise the convar's pointers and pads (79, 122-127, 137-143).
+
+Files: `registration-flow.md` (new section, replaces the `EConVarType` paragraph),
+`trash/valuefit/`. No `src/`, no index. Deviation: doc cites no script (Open Questions).
