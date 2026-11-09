@@ -25,3 +25,11 @@ status: open
   - [ ] Inventory every assertion and special case in `src/deadlock/` and sort it: our own parser is wrong (stays in creation) / quiet-wrongness canary (becomes a finding) / over-specific (handled)
   - [ ] Known gaps to cover: signature slot-prefix rename gives an empty table silently; `m_bDisabled` can serialize as bool/`"true"`/`1` (`items._truthy` normalizes, heroes/weapons do not); renamed `m_strValue`/`AbilityCooldown` gives all-blank cooldowns; renamed `EAbilityPoints` gives an all-zero AP column; a blank hero stat is ambiguous (hero-unique vs dropped) but decidable via `_base`: assert a hero's stats are a superset of its `_base`'s (check what `_base` holds, and whether chains exist)
   - [ ] Pre-commit gap: building a single view directly skips the gate; decide whether a pre-commit step runs it
+- [ ] Reading views over `data/dlls/`: `load.tree.txt` and `concommands.md` (local-only outputs of `deadlock.dlls_{load_tree,concommands_md}`)
+  - [ ] Once 020 lands `convars.tsv`: one `console.md` help page over convars and concommands together, a convar item adding its type, default and min/max (supersedes `concommands.md`)
+  - [ ] `all.do` builds neither view, so they go stale; add them to its `redo-ifchange`
+
+## Later
+
+- [ ] `data/dlls/load.edges.tsv` (`loader<TAB>loaded`, one inferred edge per line) as the diffable form of the load graph: one changed dependency is one changed line, where `load.tsv`'s closure cells change on every DLL above it; `load.tree.txt` and an inverted (`what loads X`) tree render from it
+  - [ ] Hoist each shared subtree (loaded by ≥2, loads something) to its own root, so every `(*)` points at a root rather than wherever the sort first drew it
