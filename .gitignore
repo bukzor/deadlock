@@ -3,7 +3,7 @@
 # Valve extracts (gamedata.json/, manifest.jsonl).
 # Exceptions — committed so `git diff` shows patch changes — are the
 # transformative TSV views, the build stamp naming the game version that
-# produced them, and the redo .do scripts (source).
+# produced them, the latest-VRF-release record, and the redo .do scripts (source).
 # See docs/dev/decisions.kb/commit-diffable-data-let-git-diff.md
 /data/*
 !/data/*.do
@@ -11,6 +11,7 @@
 !/data/tools/
 /data/tools/*
 !/data/tools/*.do
+!/data/tools/vrf-release.json
 !/data/gamedata.json/
 /data/gamedata.json/*
 !/data/gamedata.json/*.do

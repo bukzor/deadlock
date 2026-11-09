@@ -39,7 +39,7 @@ uv sync    # managed CPython + deps
 redo       # regenerate everything from the local game install
 ```
 
-`redo` provisions the pinned Source2Viewer-CLI itself, so there's no separate
+`redo` provisions the latest Source2Viewer-CLI release itself, so there's no separate
 bootstrap step.
 
 Run tooling through the env wrapper: `./bin/shell pytest`, `./bin/shell pyright`.

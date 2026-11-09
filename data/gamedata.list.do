@@ -23,7 +23,7 @@ redo-ifchange "$vpk"
 # rebuild cleanly so removed assets don't linger, in gamedata/ and in its
 # JSON mirror (every JSON file rebuilds after extraction anyway)
 if [[ -d "$out" ]]; then rm -r "$out"; fi
-find gamedata.json -name '*.json' -delete
+find gamedata.json -type f -name '*.json' -delete
 "$py" -m deadlock.extract "$out" vdata_c
 
 ( cd "$out" && find . -type f | sort )

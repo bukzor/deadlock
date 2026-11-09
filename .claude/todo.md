@@ -1,9 +1,16 @@
 ---
 managed-by: Skill(llm-subtask)
-status: active
+status: open
 ---
 
 - [ ] <https:todo.kb/2026-11-05-000-per-dll-dump-tree.md> — per-DLL data store, first purpose the convar/concommand dump: `dlls.list` → `dlls/<facet>/<dll>.json` → `dlls/<facet>.tsv` (design: `docs/dev/convar-dump.kb/output-views.md`)
+- [x] Have redo handle VRF updates, the way `data/deadlock-version.json` tracks game patches: today the pin (`VERSION`/`SHA256`) is hardcoded in `bin/fetch-vrf`, and only a hand edit re-provisions `data/tools/Source2Viewer-CLI.d`
+  - [x] Why now: pinned 19.2 can't read build 6851 (`UnexpectedMagicException: Unknown KVType for variable 'datatype': 26 (0x1A)` on `scripts/heroes.vdata_c` and `.vcss_c`), so gamedata is stuck at 6731 (Oct 1); latest is 20.1 (2026-10-15)
+  - [x] New committed target `data/tools/vrf-release.json`, rechecked daily via `data/date.txt` (`redo-always` + `redo-stamp`), over `gh api repos/ValveResourceFormat/ValveResourceFormat/releases/latest`, recording the tag and `cli-linux-x64.zip`'s `digest` (sha256) — the stamp keeps it from invalidating anything until the release actually changes
+  - [x] `bin/fetch-vrf` reads version + sha from that file instead of hardcoding; `Source2Viewer-CLI.d.do` `redo-ifchange`s it, so a new release re-provisions, and the bump shows up in `git diff` beside the gamedata it changes
+  - [x] Decided: `all.do` follows latest -- it reaches `vrf-release.json` via `gamedata.list` → CLI, and adopts it as committed. Risk: VRF doesn't promise CLI flag stability (`s2v.py` docstring), so a bump can break extraction
+  - [x] Update `docs/dev/environment.kb/toolchain.md`; provisioned 20.1
+  - [x] Run `redo` to re-extract with 20.1 (landed on 6854, Nov 05); flags held. `weapons.py` profile check narrowed to live primaries (`ability_nurse_fear`, `ability_ratking_scrap_grenade` carry extra profiles)
 - [x] Convert the remaining flat-path regex modules to `flatten.tree` (nested dicts), following `weapons.py`; fix each module's stale "committed, flattened" docstring (flats are local-only) as it's touched
   - [x] `items.py` (`_PRICE`, `_ENTITY`, `_COMPONENT`)
   - [x] `levels.py` (`_PATH`)

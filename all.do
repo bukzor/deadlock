@@ -1,6 +1,7 @@
 #!/bin/bash
 # Build all generated data: the committed, transformative TSV views
-# (gamedata.tsv/) and the build stamp (deadlock-version.json), plus the local
+# (gamedata.tsv/), the build stamp (deadlock-version.json), and the VRF release
+# record (tools/vrf-release.json, rechecked daily), plus the local
 # intermediates they derive from (extraction, gamedata.json/, manifest.jsonl —
 # gitignored, near-verbatim Valve data). `redo` from the repo root regenerates
 # everything against the current install; then read `git diff`.
@@ -9,6 +10,7 @@ set -euo pipefail
 
 committed=(
   data/deadlock-version.json
+  data/tools/vrf-release.json
   data/gamedata.tsv/levels.tsv
   data/gamedata.tsv/heroes.tsv
   data/gamedata.tsv/items.tsv

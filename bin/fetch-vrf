@@ -1,12 +1,13 @@
 #!/bin/bash
-# Download, verify, and unpack the pinned ValveResourceFormat /
-# Source2Viewer-CLI into a destination directory.
+# Download, verify, and unpack the ValveResourceFormat / Source2Viewer-CLI
+# release named in a release record (data/tools/vrf-release.json: version,
+# sha256) into a destination directory.
 #
 # Unconditional and dependency-naive: it always fetches. Deciding *whether* a
 # fetch is needed belongs to the build — the sibling
 # data/tools/Source2Viewer-CLI.d.do calls this to populate its target.
 #
-# Usage: bin/fetch-vrf <dest-dir>
+# Usage: bin/fetch-vrf <release.json> <dest-dir>
 set -euo pipefail
 export DEBUG="${DEBUG:-0}"
 
@@ -17,11 +18,11 @@ onerror() {
 }
 trap onerror ERR
 
-VERSION=19.2
-SHA256=30d86dfd72bf35c8a38015c81bd92f0b04b1f49304e73a5d734c875803b2685b
-URL="https://github.com/ValveResourceFormat/ValveResourceFormat/releases/download/${VERSION}/cli-linux-x64.zip"
-
-dest="${1:?usage: bin/fetch-vrf <dest-dir>}"
+release="${1:?usage: bin/fetch-vrf <release.json> <dest-dir>}"
+dest="${2:?usage: bin/fetch-vrf <release.json> <dest-dir>}"
+version=$(jq -er .version "$release")
+sha256=$(jq -er .sha256 "$release")
+url="https://github.com/ValveResourceFormat/ValveResourceFormat/releases/download/${version}/cli-linux-x64.zip"
 zip="$dest/cli-linux-x64.zip"
 
 if (( DEBUG > 0 )); then
@@ -29,8 +30,8 @@ if (( DEBUG > 0 )); then
 fi
 
 mkdir -p "$dest"
-wget -q -O "$zip" "$URL"
-sha256sum -c - <<<"$SHA256  $zip"
+wget -q -O "$zip" "$url"
+sha256sum -c - <<<"$sha256  $zip"
 unzip -q "$zip" -d "$dest"
 rm "$zip"
 chmod +x "$dest/Source2Viewer-CLI"
