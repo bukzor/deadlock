@@ -81,7 +81,7 @@ facets) is a later view, built when a question needs it.
 | `concommands` | Windows | the same for the command queue |
 | `pe` (later) | WSL | static PE metadata: headers, sections (+ sha256 each), imports, exports, debug/CodeView, rich header, version and other resources, load config, TLS; relocations and `.pdata` as count + hash |
 | `interfaces` (later) | Windows | the `InterfaceReg` list, filled at static init like the queues |
-| `registry` (later, on demand) | Windows | `Init`-time registry readback via the `ICvar` hook; a check, never a source |
+| `registry` (on demand) | Windows | `Init`-time registry readback via the `ICvar` hook; a check, never a source |
 
 Every load-time facet runs on every DLL whose load is `ok`, not only tier0
 importers: "only tier0 importers carry queues" becomes a fact checked against
@@ -105,7 +105,7 @@ WSL pytest drives it with a fake. It must be 3.12-compatible (WSL pins 3.12).
 | `document` | the `TypedDict`s of every facet's document; `deadlock` imports them, so pyright checks both sides of the process boundary |
 | `win32` | the only Windows-only module (ctypes): `add_dll_directory` both bin dirs and the DLL's own, `LoadLibraryExW` → base, loaded-module list, `ReadProcessMemory` as the `read` callable, `hard_exit(code)`: flush stdout, then `TerminateProcess` (skips DLL detach / static destructors) |
 | `__main__` | CLI, one subcommand per load-time facet: `load DLL`, `convars DLL`, `concommands DLL` print that facet's document; `strides DLL` learns and compares to the pinned values. Any exception → message on stderr, `hard_exit(1)` |
-| `registry` (later) | from `hook_probe3.py`: ICvar hook, placeholder factory, registry readback |
+| `registry` | ICvar hook, placeholder factory, registry readback (from `hook_probe3.py`) |
 
 There is also `stdlib_only_test.py`, which parses every module with `ast` and
 fails on any import outside `sys.stdlib_module_names` and `dllscan`.
@@ -132,7 +132,7 @@ the DLL facets, never skips them.
 | `dll_file` | the `file` facet |
 | `dll_load` | `EXCLUDED: dict[basename, reason]`, the `excluded` record; `helpsystem`, `assetpreview`, `propertyeditor`, `toolframework2` hang in `LoadLibrary` (unkillable process, 6851) |
 | `dlls_<facet>` | one aggregator per facet: that facet's documents → `<facet>.tsv`, sorted, cells escaped; `convars`/`concommands` keep queue order within a module (test: row ordinal = list position) |
-| `registry_check` (later) | `registry` vs `convars`: every once-declared name's type, flags minus the per-DLL flag, and default |
+| `registry_check` | `registry` vs `convars`: every once-declared name's type, flags minus the per-DLL flag, and default |
 
 ## Implementation Steps
 
@@ -215,9 +215,10 @@ on another prototype.
       README views table
 - [x] Rename `docs/dev/convar-dump.kb/` to `cvar-dump.kb/`: it covers both
       kinds (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-022-rename-convar-dump-kb-to-cvar-dump-kb.md>)
-- [ ] On-demand checks: `dllscan.registry` + `deadlock.registry_check` for
-      `server`/`client` (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-026-registry-readback-check.md>);
-      the `cvarlist` oracle (`capture-approach.kb/runtime-cvarlist.md`)
+- [x] On-demand check `data/dlls.check/registry`: `dllscan.registry` +
+      `deadlock.registry_check` for `server`/`client`
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-026-registry-readback-check.md>)
+- [ ] On-demand check: the `cvarlist` oracle (`capture-approach.kb/runtime-cvarlist.md`)
 - [ ] Docs: drop each `[!TODO]` callout as it lands; record the tool choice in
       `docs/dev/decisions.kb/` (it departs from `reuse-existing-parsers.md`,
       `cvar-dump.kb/CLAUDE.md` says why that matters), and the lossless
@@ -245,7 +246,7 @@ on another prototype.
 - [ ] Row counts equal the queue counts, duplicates kept (6854 `server`: 2008
       convars, 493 commands)
 - [ ] Two consecutive builds are byte-identical
-- [ ] Registry readback check passes for `server` and `client`
+- [x] Registry readback check passes for `server` and `client`
 - [ ] `./bin/shell pytest`, `./bin/shell pyright` clean
 
 ## Notes

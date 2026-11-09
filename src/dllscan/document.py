@@ -110,3 +110,20 @@ class ConCommandsDocument(TypedDict):
 
     module: str
     concommands: Sequence[ConCommand]
+
+
+class RegistryDocument(TypedDict):
+    """Not a facet: tier0's cvar registry, read back after one DLL's ``Init``
+    replayed its queues into it (``dllscan.registry``), for an on-demand check
+    against that DLL's ``convars`` and ``concommands`` documents.
+
+    Records are in access-index order, one per name (tier0 merges a name
+    declared twice), tier0's own included, in a queue entry's shape. ``flags``
+    are the registry's: what registration added included. ``stopped_by``: the
+    placeholder interface whose first use stopped ``Init``, or ``null``.
+    """
+
+    module: str
+    stopped_by: str | None
+    convars: Sequence[ConVar]
+    concommands: Sequence[ConCommand]

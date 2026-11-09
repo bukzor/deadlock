@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-09-024-load-time-atoms-depend-on-import-closure.md
 required-reading:
@@ -64,8 +64,67 @@ empty.
 
 ## Steps
 
+- [x] Flag rule measured on the real readback (`trash/026/measure.py`)
+- [x] `win32` native-call primitives; `dllscan.registry`; `document`, `__main__`
+- [x] Real run (6860) of `dllscan registry` on `server`, `client` (`trash/026/run1/`)
+- [x] Tests: `registry_check` 35 red on a stub, then green; `registry` 23 of 24 red on a
+      stub; 33 hand mutants (`trash/026/mutants.py`, `-B`, pyc deleted) all killed
+- [x] `data/dlls.check/registry.do`; acceptance run (logs `trash/026/redo-*.log`); docs
+
 ## Decisions
+
+- **Flag rule, measured (6860):** non-`reference`: registry = queue + per-DLL flag (`gamedll`
+  1975+4 already set, `clientdll` 2080+76). `reference`: queue minus `developmentonly defensive`
+  (the sanitiser's), no per-DLL flag. One convar per DLL also carries `initial_setvalue
+  performing_callbacks`: ignored as tier0 state, counted in the summary. Stricter than "flags
+  minus the per-DLL flag": it asserts the flag was added.
+- **Help compared too:** registry help = queue help, null as `""`; zero exceptions, one field.
+- **Readback stops** at null (convars) or at what the invalid index 0xFFFF returns (commands:
+  a shared tier0 `<unknown>` record). 018/hook_probe3's "494 vs 493" commands was that record.
+- **No `ICvar` vtable hook:** the readback needs none. One placeholder stub for all slots
+  (mode cell, `this` of the trap); `tier0` comes from the DLL's own load (`GetModuleHandleW`).
+- **App systems hardcoded** (`APP_SYSTEMS`): `Source2ServerConfig001`, `Source2ClientConfig001`.
+- **`.do` pipes** the readback into the check (no temp files); sources `winpy-facet.bash`
+  (`lookup`, `require_loaded`, `closure`, `dllscan`) unchanged.
 
 ## Open Questions
 
+- [ ] Out of scope, now stale: `icvar-hook.md` (6854 "494 against the queue's 493"; "5 others
+      unexplained" flags) and the parent plan's `registry (later)` rows.
+- [ ] Why one convar per DLL carries `initial_setvalue performing_callbacks` (`citadel_hero_release_vote_
+      august_2025_debug_votes_cast_total`, `r_citadel_shadow_quality`): unproven why.
+
 ## Final report
+
+Files: new `src/dllscan/registry{,_test}.py`, `src/deadlock/registry_check{,_test}.py`,
+`data/dlls.check/registry.do`; edited `src/dllscan/{win32,document,__main__}.py`,
+`docs/dev/cvar-dump.kb/validation.md` (registry readback as fact; Oracle stays `[!TODO]`).
+
+API:
+- `win32`: `module_handle(name) -> int`, `proc_address(module, name) -> int`,
+  `alloc_executable(size) -> int`, `write(addr, data)`, `call(fn, *args: int | bytes) -> int`
+  (SEH → `OSError`), `callback(fn: Callable[[int, int], int]) -> int`.
+- `document.RegistryDocument`: `module, stopped_by: str | None, convars: Sequence[ConVar],
+  concommands: Sequence[ConCommand]`.
+- `registry`: `read_back(dll, dirs) -> RegistryDocument`; `APP_SYSTEMS`; pure `block(base)`,
+  `Placeholders`, `convar_record(mem, addr)`, `command_record(mem, addr)`, `walk(get)`.
+  CLI `bin/winpy dllscan registry DLL [DIR ...]`.
+- `deadlock.registry_check`: `check(registry, convars, concommands) -> list[str]`,
+  `convar_mismatches`, `command_mismatches`, `PER_DLL_FLAG`, `SANITISED`, `STATE`,
+  `zero_value`, `is_registry_document`; CLI `... | python -m deadlock.registry_check CV.json CC.json`.
+
+Acceptance (6860): `redo data/dlls.check/registry` exit 0, 28 s:
+
+    server.dll convars: queue 2008, registry 2003, once 1999 (reference 19), all match
+    server.dll concommands: queue 493, registry 493, once 493, all match
+    client.dll convars: queue 2289, registry 2234, once 2226 (reference 69), all match
+    client.dll concommands: queue 428, registry 428, once 428, all match
+
+= 019's table (default/version 1980 and 2157 plain, + 19/69 by the reference rule).
+Mutants through redo: `values` int32 size 16 → fails ('default' mismatches); check's
+reference `version` → fails ('version' on reference names). Restored, check passes again.
+Plain `redo`: rebuilt every `file` atom (`lookup` depends on `document.py`) and load-time atom
+(scanner glob); second `redo` runs only `all`, `gamedata.list`, `date.txt`. All 606 data files
+byte-identical to the before snapshot; `git diff data/` empty. Readback byte-identical across runs.
+`pytest src` and `pyright` clean; 33 hand mutants killed. Deviations: help compared; stricter
+flag rule (above); `stopped_by` field.

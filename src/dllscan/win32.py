@@ -1,5 +1,6 @@
-"""The scanner's only Windows-only module: load a DLL into this process, list
-the loaded modules, read this process's memory, and exit without teardown.
+"""The scanner's only Windows-only module, and its only native code: load a DLL
+into this process, list the loaded modules, read and write this process's
+memory, call native functions and be called back, and exit without teardown.
 
 Importing it is safe anywhere: `kernel32` binds on first use. It goes through
 `ctypes.CDLL` (x64 has one calling convention) and kernel32 itself, never the
@@ -22,6 +23,9 @@ _SEARCH = 0x1000 | 0x100
 """`LoadLibraryExW` flags `LOAD_LIBRARY_SEARCH_DEFAULT_DIRS | _DLL_LOAD_DIR`:
 the DLL's own dir, then the defaults, which include every `AddDllDirectory`
 dir (what `ctypes.CDLL` passes)."""
+
+_MEM_COMMIT_RESERVE = 0x1000 | 0x2000
+_PAGE_EXECUTE_READWRITE = 0x40
 
 _ADDRESSES = 1 << 64
 _NAME_MAX = 32768
@@ -46,6 +50,9 @@ class _Kernel32(Protocol):
     def K32EnumProcessModules(self, process: int, out: ctypes.Array[ctypes.c_char], size: int, need: object, /) -> int: ...
     def K32GetModuleBaseNameW(self, process: int, module: int, out: ctypes.Array[ctypes.c_wchar], n: int, /) -> int: ...
     def TerminateProcess(self, process: int, code: int, /) -> int: ...
+    def GetModuleHandleW(self, name: str, /) -> int | None: ...
+    def GetProcAddress(self, module: int, name: bytes, /) -> int | None: ...
+    def VirtualAlloc(self, addr: None, size: int, kind: int, protect: int, /) -> int | None: ...
 
 
 @cache
@@ -60,6 +67,9 @@ def _kernel32() -> _Kernel32:
         "K32EnumProcessModules": (ok, (ptr, ptr, dword, ctypes.POINTER(dword))),
         "K32GetModuleBaseNameW": (dword, (ptr, ptr, wintypes.LPWSTR, dword)),
         "TerminateProcess": (ok, (ptr, wintypes.UINT)),
+        "GetModuleHandleW": (ptr, (wintypes.LPCWSTR,)),
+        "GetProcAddress": (ptr, (ptr, wintypes.LPCSTR)),
+        "VirtualAlloc": (ptr, (ptr, size, dword, dword)),
     }
     functions: dict[str, object] = {}
     for name, (restype, argtypes) in signatures.items():
@@ -126,6 +136,59 @@ def read(addr: int, n: int) -> bytes | None:
     if not k32.ReadProcessMemory(k32.GetCurrentProcess(), addr, out, n, ctypes.byref(got)) or got.value != n:
         return None
     return out.raw
+
+
+def module_handle(name: str) -> int:
+    """The base of the already-loaded module `name` (a basename)."""
+    base = _kernel32().GetModuleHandleW(name)
+    if not base:
+        raise Win32Error("GetModuleHandleW", _last_error(), name)
+    return base
+
+
+def proc_address(module: int, name: str) -> int:
+    """The address of the export `name` of the module at `module`."""
+    address = _kernel32().GetProcAddress(module, name.encode())
+    if not address:
+        raise Win32Error("GetProcAddress", _last_error(), name)
+    return address
+
+
+def alloc_executable(size: int) -> int:
+    """`size` fresh zero bytes, readable, writable and executable, for good."""
+    addr = _kernel32().VirtualAlloc(None, size, _MEM_COMMIT_RESERVE, _PAGE_EXECUTE_READWRITE)
+    if not addr:
+        raise Win32Error("VirtualAlloc", _last_error(), size)
+    return addr
+
+
+def write(addr: int, data: bytes) -> None:
+    """Copy `data` to this process's memory at `addr`, which must be writable."""
+    _ = ctypes.memmove(addr, data, len(data))
+
+
+def call(fn: int, *args: int | bytes) -> int:
+    """Call the native function at `fn` with integer or pointer arguments
+    (bytes pass as a pointer to a copy); its `rax`. A CPU exception inside it
+    (access violation, `ud2`) raises `OSError`, and the process lives on.
+
+    >>> call(callback(lambda a, b: a * 10 + b), 4, 2)
+    42
+    """
+    function = ctypes.CFUNCTYPE(ctypes.c_uint64, *(ctypes.c_void_p for _ in args))(fn)
+    return cast(int, function(*args))
+
+
+_CALLBACKS: list[object] = []
+"""Every `callback`'s ctypes object: freeing one would free its native thunk."""
+
+
+def callback(fn: Callable[[int, int], int]) -> int:
+    """A native function of two integer or pointer arguments that calls `fn`,
+    kept for the process's life; its address."""
+    native = ctypes.CFUNCTYPE(ctypes.c_uint64, ctypes.c_uint64, ctypes.c_uint64)(fn)
+    _CALLBACKS.append(native)
+    return cast(int, ctypes.cast(native, ctypes.c_void_p).value)
 
 
 def hard_exit(code: int) -> NoReturn:

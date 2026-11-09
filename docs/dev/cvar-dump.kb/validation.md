@@ -29,15 +29,20 @@ These fail the build on every run (non-zero exit, no output written):
 The targets under `data/dlls.check/` check the strides, the anchors, and which
 DLLs yield queues; every other check is an atom or an aggregate failing.
 
-> [!TODO] Run on demand, not on every build:
+Run on demand, and on each new build, not as part of `all.do`:
+
+- **Registry readback** (`redo data/dlls.check/registry`): for `server` and
+  `client`, tier0's own registry after the DLL's `Init` replayed its queues
+  (`capture-approach.kb/icvar-hook.md`; `dllscan registry`) holds every queue
+  entry's name, and each name declared once as the queue declares it: type,
+  default, min, max, version, help, and flags plus the per-DLL flag
+  registration adds (`deadlock.registry_check` states the rule, `reference`
+  declarations included). Checks the value decoding against the engine, not
+  against our reading of the SDK.
+
+> [!TODO] Also on demand:
 >
 > - **Oracle:** the non-`developmentonly` entries equal the engine's own
 >   `cvarlist` (`capture-approach.kb/runtime-cvarlist.md`) for the same build,
 >   on name, flags, and default. The only check that catches a DLL whose queue
 >   the scan missed outright. Too slow for every build, run on demand.
-> - **Registry readback:** for `server` and `client`, every queue entry is a
->   registration call, and each name declared once decodes, from the queue, to
->   the type, flags (minus the per-DLL flag) and default tier0's own registry
->   holds (`capture-approach.kb/icvar-hook.md`; `../probes/hook_probe3.py` does
->   the readback). Checks the value decoding against the engine, not against
->   our reading of the SDK. Run on demand, and on each new build.
