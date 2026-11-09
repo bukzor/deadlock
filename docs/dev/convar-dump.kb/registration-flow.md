@@ -39,48 +39,31 @@ Entry sizes on 6848 and 6851, measured from the queues: `ConVarRegList::Entry_t`
 
 ## The convar entry's layout (6860)
 
-s2sdk's `ConVarCreation_t` (`convar.h:630-733`) in `Entry_t`, values packed:
-each `CVValue_t` is a `uint8[16]`, so they sit unaligned. Fitted against tier0's registry
+Both entries, as s2sdk's `convar.h` declares them, are `src/dllscan/convar_h.py`:
+`ConVarRegList::Entry_t` is `ConVarCreation_t` (`CVarCreationBase_t`, then
+`ConVarValueInfo_t`) and the two refs; its three `CVValue_t` are `uint8[16]`,
+so they sit unaligned. That layout fits tier0's registry
 (`capture-approach.kb/icvar-hook.md`): for every convar `server` or `client`
 declares once (1999 and 2226), the entry's type, min, max and version equal the
-registry's, and so does its default unless it has none.
+registry's, and so does its default unless it has none. `m_Version` is the
+registry's int16 at `ConVarData+42`: 0 except on 10 `archive` convars (1 to 3).
 
-| offset | size | field |
-|---|---|---|
-| 0 | 24 | `CVarCreationBase_t`: name, help, flags |
-| 24 | 4 | `m_Version`, int32: 0 except on 10 `archive` convars (1 to 3); the registry's int16 at `ConVarData+42` |
-| 28, 29, 30 | 1 each | has-default, has-min, has-max: 0 or 1 |
-| 31, 47, 63 | 16 each | default, min, max `CVValue_t` |
-| 80 | 40 | change-callback provider and callback, filter provider and filter, enum-info getter: code pointers |
-| 120 | 2 | `m_eVarType`, int16 |
-| 128 | 16 | `CompletionCallbackInfo_t`: pointer, `m_bIsInterface` at 136 |
-| 144, 152 | 8 each | `m_pConVar`, `m_pConVarData` (the ref `reglist` owner-checks) |
+The padding holds stale stack bytes (pointer fragments too). In all 30 convar
+queues (6223 entries), a present value's bytes past its type's size are zero,
+and an absent one (has-byte 0) is 16 zero bytes. has-default is 0 on exactly the
+`reference` declarations (181); for those tier0's registry holds the type's
+zero value and version -1.
 
-Bytes 79, 122-127 and 137-143 are padding holding stale stack bytes (pointer
-fragments too). In all 30 convar queues (6223 entries), a present value's bytes
-past its type's size are zero, and an absent one (has-byte 0) is 16 zero bytes.
-has-default is 0 on exactly the `reference` declarations (181); for those tier0's
-registry holds the type's zero value and version -1.
-
-`EConVarType` is the row index of tier0's type-traits table (`.data`, RVA
+`m_eVarType` is the row index of tier0's type-traits table (`.data`, RVA
 `0x398610`, 88-byte rows: name pointer, byte size, …), not s2sdk's enum, which
-lacks `int8` and `uint8`:
-
-| code | type | size | `CVValue_t` holds |
-|---|---|---|---|
-| 0 | bool | 1 | byte 0 or 1 |
-| 1-8 | int8 uint8 int16 uint16 int32 uint32 int64 uint64 | 1 1 2 2 4 4 8 8 | little-endian integer |
-| 9, 10 | float32 float64 | 4, 8 | IEEE float |
-| 11 | string | 8 | `CUtlString`: a heap `char*`; null reads as `""` (`utlstring.h:303`) |
-| 12 | color | 4 | r, g, b, a bytes |
-| 13-17 | vector2 vector3 vector4 qangle vectorws | 8 12 16 12 12 | 2, 3, 4, 3, 3 float32 |
-
-The queues of 6860 use bool, uint8, uint16, int32, uint32, uint64, float32,
+lacks `int8` and `uint8`. The rows' names and sizes, and how each type's
+`CVValue_t` decodes, are `src/dllscan/values.py`; a `string` holds a
+`CUtlString`, a heap `char*` whose null reads as `""` (`utlstring.h:303`). The
+queues of 6860 use bool, uint8, uint16, int32, uint32, uint64, float32,
 string, color and vector2-4; no queue declares int8, int16, int64, float64,
 qangle or vectorws.
 
-The 64-byte command entry holds, past its base: the callback pointer (code, or
-an interface object in writable data) at 24, kind bytes at 32 that are partly
-stale stack bytes, the completion pointer at 40 and its `m_bIsInterface` at 48,
-and the `m_Command` ref at 56. Only pointers and their kinds, so the base is the
-whole record.
+Past its base, the 64-byte command entry holds only pointers (the callback, code
+or an interface object in writable data; the completion callback; the
+`m_Command` ref) and their kind bits, which are partly stale stack bytes: the
+base is the whole record.

@@ -35,6 +35,9 @@ plan-level design (the parent plan), or work spanning waves (split it).
 - <Project rules: language/runtime limits, test layout, size limits.>
 - Finish with <the project's checks> on the files you touched, clean.
 - <Environment workarounds, added as agents discover them.>
+- Run builds and checks in the foreground. Never end your turn waiting on a
+  background job or monitor: if a sibling must land first, say so in your
+  report and stop; the coordinator resumes you.
 - Scratch goes in <the repo's scratch dir>.
 - The brief (frontmatter inputs, Problem Statement) is the coordinator's;
   edit only your own sections, in place, ≤60 lines.

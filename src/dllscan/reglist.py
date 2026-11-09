@@ -23,12 +23,18 @@ import struct
 from collections.abc import Callable, Iterable, Iterator, Mapping
 from dataclasses import dataclass
 
+from .convar_h import CVarCreationBase_t, offset_of
 from .image import Image
 from .memory import Memory
 from .shape import ShapeError
 
 BLOCK = 100
 """Entries per block (`m_Entries[100]`)."""
+
+_ENTRIES = 8
+"""`m_Entries`' offset in a block: `u32 m_nSize`, padded to the entries' 8-byte alignment."""
+_NAME, _HELP = (offset_of(CVarCreationBase_t, f) for f in ("m_pszName", "m_pszHelpString"))
+"""Where an entry of either kind holds its name and help pointers."""
 
 STRIDES = {"convars": 160, "concommands": 64}
 """`sizeof(Entry_t)` per queue kind, pinned (6848, 6851); `learn_strides` re-derives them."""
@@ -95,11 +101,11 @@ def walk(mem: Memory, root: int, stride: int, image: Image, ref_test: RefTest) -
         if block in seen or size is None or not 0 < size <= BLOCK or (seen and size != BLOCK):
             return None
         seen.add(block)
-        for entry in range(block + 8, block + 8 + size * stride, stride):
+        for entry in range(block + _ENTRIES, block + _ENTRIES + size * stride, stride):
             if not _fits(mem, entry, stride, image, ref_test):
                 return None
             entries.append(entry)
-        prev = mem.u64(block + 8 + BLOCK * stride)
+        prev = mem.u64(block + _ENTRIES + BLOCK * stride)
         if prev is None:
             return None
         block = prev
@@ -107,7 +113,7 @@ def walk(mem: Memory, root: int, stride: int, image: Image, ref_test: RefTest) -
 
 
 def _fits(mem: Memory, entry: int, stride: int, image: Image, ref_test: RefTest) -> bool:
-    name, help, ref = mem.u64(entry), mem.u64(entry + 8), mem.u64(entry + stride - 8)
+    name, help, ref = mem.u64(entry + _NAME), mem.u64(entry + _HELP), mem.u64(entry + stride - 8)
     return (
         name is not None
         and name_at(mem, name, image) is not None
@@ -154,6 +160,6 @@ def _candidates(mem: Memory, image: Image) -> Iterator[tuple[int, int]]:
         for i, (root,) in enumerate(struct.iter_unpack("<Q", data[: len(data) // 8 * 8])):
             if root < _MIN_HEAP or root % 8 or root in image.span:
                 continue
-            name = mem.u64(root + 8)
+            name = mem.u64(root + _ENTRIES + _NAME)
             if name is not None and name_at(mem, name, image) is not None:
                 yield section.span.start + 8 * i, root

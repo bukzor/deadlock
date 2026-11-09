@@ -175,8 +175,8 @@ on another prototype.
 - [ ] Decode the value fields against the engine (`dllscan.values`, `dllscan.entries`)
   - [x] Fit the layout (research): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-018-convar-value-layout-fit.md>
   - [x] The decoder and `dllscan convars`: <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-019-dllscan-convar-decode.md>
-  - [ ] The entry layout as packed `ctypes` structs, the one source for its
-        offsets (after 020): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-021-entry-layout-as-ctypes-structs.md>
+  - [x] The entry layout as `ctypes` structs (`dllscan.convar_h`), the one
+        source for its offsets: <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-021-entry-layout-as-ctypes-structs.md>
   - [ ] Find `ConVarValueInfo_t`'s offsets inside the 160-byte entry (s2sdk
         `convar.h:630-730`: version, has-default/min/max, three `CVValue_t`,
         callbacks, `m_eVarType`; s2sdk's copy is stale on the type enum, so
@@ -205,8 +205,11 @@ on another prototype.
       check: the convar anchor (`citadel_lane_swap_available_duration_prematch`
       ⊇ `replicated cheat`) and convar coverage (`engine2`, `client`,
       `server` each yield a convar queue), as `data/dlls.check/concommands` does
-- [ ] Load-time atoms depend on the DLL's import closure, not only its file:
-      after the load, `redo-ifchange` the `modules` that are in `dlls.list`
+- [ ] Load-time atoms (`load`, `concommands`, `convars`) depend on the DLL's
+      import closure, not only its file: after the load, `redo-ifchange` the
+      `modules` that are in `dlls.list`
+- [ ] One helper for the `bin/winpy dllscan <facet>` invocation, now copied
+      into three `.do` files (after 021: it rebuilds every atom)
 - [x] `deadlock.dlls_{file,load,convars,concommands}`, `data/dlls/default.tsv.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-012-dlls-facet-aggregates.md>: all but `convars`)
 - [x] A document's `module` is the listed basename, case kept

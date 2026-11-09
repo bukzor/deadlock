@@ -117,9 +117,8 @@ ABSENT = (bytes(16),) * 3
 
 
 def info(type: int, version: int = 0, has: tuple[int, int, int] = (0, 0, 0), values: Sequence[bytes] = ABSENT) -> bytes:
-    """A convar entry past its base (`registration-flow.md`'s layout, less 24):
-    version, has-bytes, three `CVValue_t`, then pointers and padding (stale
-    `0xcc` here) around the type."""
+    """A convar entry past its base, packed by hand: version, has-bytes, three
+    `CVValue_t`, then pointers and padding (stale `0xcc` here) around the type."""
     raw = bytearray(b"\xcc" * 136)
     struct.pack_into("<i3B", raw, 0, version, *has)
     raw[7:55] = b"".join(values)

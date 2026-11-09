@@ -44,6 +44,9 @@ files. Does not belong: plan-level design (the parent plan, or
   the repo's `bin/shell` reports "command not found", inherited direnv state is
   hiding `.venv/bin`: prefix
   `env -u DIRENV_DIR -u DIRENV_DIFF -u DIRENV_WATCHES -u DIRENV_FILE`.
+- Run builds and checks in the foreground. Never end your turn waiting on a
+  background job or monitor: if a sibling must land first, say so in your
+  report and stop; the coordinator resumes you.
 - Scratch goes in the repo's `trash/` (gitignored), never `/tmp`.
 - Mutation runs that rewrite a module in place: run with `python -B` and
   delete that module's `__pycache__` entry, or a mutant written within the

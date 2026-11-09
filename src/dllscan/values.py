@@ -2,7 +2,7 @@
 value (`docs/dev/convar-dump.kb/registration-flow.md`, "The convar entry's
 layout", fitted on 6860).
 
-A `CVValue_t` is 16 bytes; a type uses the first `TYPES[type]` of them. Every
+A `CVValue_t` is `SIZE` bytes; a type uses the first `TYPES[type]` of them. Every
 type decodes, so bytes that don't fit their type raise `ShapeError(what, ...)`:
 the queue already fit, so a misfit is a bug or a layout change. The caller adds
 the entry address.
@@ -11,16 +11,17 @@ the entry address.
 [255, 128, 0, 7]
 """
 
+import ctypes
 import math
 import struct
 from collections.abc import Mapping
 
+from .convar_h import CVValue_t
 from .document import ConVarValue
 from .memory import Memory
 from .shape import ShapeError
 
-SIZE = 16
-"""`sizeof(CVValue_t)`."""
+SIZE = ctypes.sizeof(CVValue_t)
 
 TYPES: Mapping[str, int] = {
     "bool": 1,

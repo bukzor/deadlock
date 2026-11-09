@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-09-020-convars-atom-aggregate-check.md
 required-reading:
@@ -57,8 +57,55 @@ real build runs the scanner from those files.
 
 ## Steps
 
+- [x] Snapshot: 182 atoms + 3 check outputs, `trash/021/before.sha256`
+- [x] `convar_h`: 30 sizes/offsets tests red against a stub, then green
+- [x] `entries`, `values` decode through the structs; offset constants gone
+- [x] DRY sweep (`reglist`); `registration-flow.md` layout section shrinks
+- [x] `pytest src`, `pyright`; `redo` rebuild, atoms byte-identical
+- [x] Mutants (`trash/021/mutants.py`, `-B`, pyc deleted): 30 of 30 killed
+
 ## Decisions
+
+- **Module `convar_h`:** it transcribes one header, so the name says where to diff
+  it. Class names are s2sdk's; `ConVarRegList::Entry_t` → `ConVarRegList_Entry_t`.
+- **Natural alignment, no `_pack_`, no pad fields** (deviates from the brief): the
+  header declares the values `uint8[16]` ("to prevent align issues"), alignment 1,
+  so the compiler's own padding puts them at 31/47/63 and the pointers at 80; ctypes
+  pads alike, and the field list is the header's, line for line.
+- **Derived structs list `*CVarCreationBase_t._fields_` first**, not subclass: same
+  layout, and every struct can be `@final`, which basedpyright needs to accept an
+  unannotated `_fields_`. Fields code reads are annotated with a placeholder (`= 0`)
+  that ctypes replaces (probed on 3.12 and 3.14).
+- **`CVValue_t` is `uint8[16]`, not a union:** its members would restate
+  `values.TYPES`; a test ties `sizeof` to `max(TYPES.values())`.
+- **`decode_convar` reads the entry once:** identical output; a partly readable
+  entry with a bad name now reports "entry unreadable" before "entry name".
+- **Test fakes keep their hand-packed layouts** (`entries_test.info`, `reglist_fake`,
+  `image_fake`): the independent second statement the code is checked against.
 
 ## Open Questions
 
+- [ ] `image`'s PE headers as ctypes structs would replace its inline offsets (0x3C,
+      +4, +6, +0x14, +56) but change its per-field "X unreadable" errors. Not cheap.
+- [ ] `deadlock.dlls_convars.TYPES` restates `values.TYPES`' names in code order
+      (`src/deadlock`, out of scope).
+- [ ] `reglist`'s block (`u32 m_nSize; Entry_t[100]; prev`) stays constants
+      (`BLOCK`, `_ENTRIES`): a struct per stride is the framework the brief rules out.
+
 ## Final report
+
+Files: new `src/dllscan/convar_h{,_test}.py`; edited `entries{,_test}.py`, `values.py`,
+`reglist.py`, `registration-flow.md` (tables gone; evidence kept, points to `convar_h.py`, `values.py`).
+
+API (`dllscan.convar_h`): `CVValue_t = c_uint8 * 16`; `@final` `LittleEndianStructure`s
+`CVarCreationBase_t`, `CompletionCallbackInfo_t`, `ConVarValueInfo_t`, `ConVarCreation_t`,
+`ConVarRegList_Entry_t` (160), `ConCommandCallbackInfo_t`, `ConCommandCreation_t`,
+`ConCommandRegList_Entry_t` (64), s2sdk's field names; `offset_of(struct: type[ctypes.Structure],
+path: str) -> int` (dotted path). `values.SIZE = ctypes.sizeof(CVValue_t)`; `entries`' API unchanged.
+
+Checks (6860): `pytest src` 730 passed; `pyright` (repo) 0 errors. `redo` of the three targets,
+forced by touching a scanner module, rebuilt all 182 atoms and `strides`: all 185 files of
+`trash/021/before.sha256` identical, `git diff data/` empty. Mutants: 30 of 30 killed, and each of
+the 30 new test ids observed red (`trash/021/{mutants.log,red-ids.txt}`).
+
+Deviations: no `_pack_` or pad fields (Decisions).
