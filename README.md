@@ -47,6 +47,11 @@ registration-queue layout and fails if it moved; `concommands` and `convars`
 fail if a known anchor or the `engine2`/`client`/`server` queue of that kind is
 missing.
 
+For reading rather than diffing, `redo data/convars.md data/concommands.md
+data/dlls/load.tree.txt` renders local-only views: Markdown help pages for every
+convar and console command, and `load.tsv` as a `tree(1)`-style forest of who
+loads whom (a shared subtree drawn once, then marked `(*)`).
+
 `data/deadlock-version.json` stamps which game build produced them
 (`ClientVersion`, `SourceRevision`, date). To inspect a patch: update the game,
 `redo`, then `git diff`.
