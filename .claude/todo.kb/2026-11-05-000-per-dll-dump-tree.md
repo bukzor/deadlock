@@ -219,13 +219,14 @@ on another prototype.
       `deadlock.registry_check` for `server`/`client`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-026-registry-readback-check.md>)
 - [ ] On-demand check: the `cvarlist` oracle (`capture-approach.kb/runtime-cvarlist.md`)
-- [ ] Docs: drop each `[!TODO]` callout as it lands; record the tool choice in
+- [x] Docs: drop each `[!TODO]` callout as it lands; record the tool choice in
       `docs/dev/decisions.kb/` (it departs from `reuse-existing-parsers.md`,
       `cvar-dump.kb/CLAUDE.md` says why that matters), and the lossless
       store + atomic facets as a decision of its own; rewrite
       `capture-approach.md` as the answer once its `[!QUESTION]` closes
-      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-025-docs-state-the-built-store-as-fact.md>)
-- [ ] Commit (`Command(commit)`)
+      (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-025-docs-state-the-built-store-as-fact.md>,
+      <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-027-docs-registry-findings.md>)
+- [x] Commit (`Command(commit)`)
 
 ## Open Questions
 
@@ -239,15 +240,17 @@ on another prototype.
 
 ## Success Criteria
 
-- [ ] From clean, `redo -j8 data/dlls/convars.tsv data/dlls/concommands.tsv`
+All pass on 6860: <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-028-success-criteria-from-clean.md>.
+
+- [x] From clean, `redo -j8 data/dlls/convars.tsv data/dlls/concommands.tsv`
       builds every atom in parallel and exits 0
-- [ ] Every DLL in `dlls.list` has a `load` record; every `ok` one has a
+- [x] Every DLL in `dlls.list` has a `load` record; every `ok` one has a
       `convars` and a `concommands` document
-- [ ] Row counts equal the queue counts, duplicates kept (6854 `server`: 2008
-      convars, 493 commands)
-- [ ] Two consecutive builds are byte-identical
+- [x] Row counts equal the queue counts, duplicates kept (6854 and 6860 `server`:
+      2008 convars, 493 commands)
+- [x] Two consecutive builds are byte-identical
 - [x] Registry readback check passes for `server` and `client`
-- [ ] `./bin/shell pytest`, `./bin/shell pyright` clean
+- [x] `./bin/shell pytest`, `./bin/shell pyright` clean
 
 ## Notes
 
