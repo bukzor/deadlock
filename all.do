@@ -4,9 +4,10 @@
 # and the VRF release record (tools/vrf-release.json, rechecked daily), plus the
 # local intermediates they derive from (extraction, gamedata.json/,
 # manifest.jsonl, the per-DLL documents — gitignored, near-verbatim Valve data),
-# and the checks that fail the build if the DLL scan reads garbage
-# (dlls.check/). `redo` from the repo root regenerates everything against the
-# current install; then read `git diff`.
+# the checks that fail the build if the DLL scan reads garbage (dlls.check/),
+# and the reading views over the DLL aggregates (convars.md, concommands.md,
+# dlls/load.tree.txt; local). `redo` from the repo root regenerates everything
+# against the current install; then read `git diff`.
 # redo runs this with cwd = repo root.
 set -euo pipefail
 
@@ -35,5 +36,8 @@ sed 's#^\./#data/gamedata.json/#; s#\.vdata$#.json#' data/gamedata.list |
     data/dlls.check/strides \
     data/dlls.check/concommands \
     data/dlls.check/convars \
+    data/convars.md \
+    data/concommands.md \
+    data/dlls/load.tree.txt \
     "${committed[@]}" \
 ;

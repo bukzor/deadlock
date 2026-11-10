@@ -1,8 +1,8 @@
 #!/bin/bash
-# One DLL's `file` facet: its size and sha256 on disk, as a FileDocument. Local
-# only, never committed (a hash of Valve's bytes; docs/dev/cvar-dump.kb/
-# output-views.md). The other facets' atoms share this shape: look the DLL up
-# in dlls.list (the guard), depend on it, write one document to $3.
+# One DLL's `file` facet: its size and sha256 on disk, as a FileDocument. The
+# document is local; its aggregate, ../file.tsv, is committed (docs/dev/
+# cvar-dump.kb/output-views.md). The other facets' atoms share this shape: look
+# the DLL up in dlls.list (the guard), depend on it, write one document to $3.
 # Guard: $2 must be a basename in dlls.list; anything else fails loudly.
 # redo runs this with cwd = data/dlls/file/; $2 = target minus ".json".
 set -euo pipefail

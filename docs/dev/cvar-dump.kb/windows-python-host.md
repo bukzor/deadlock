@@ -10,8 +10,9 @@ instead of crashing), so no compiler is needed.
 On an access violation, Windows Python writes `python_<date>_accessviolation.mdmp`
 into its cwd — run it from a scratch directory, not the repo root.
 
-DLL search: add `game/bin/win64` and `game/citadel/bin/win64` with
-`os.add_dll_directory`; the install is only read, never written.
+DLL search: add `game/bin/win64` and `game/citadel/bin/win64` with kernel32's
+`AddDllDirectory` (through `ctypes.CDLL`, not `os.add_dll_directory`, so pyright
+checks `dllscan.win32` off Windows); the install is only read, never written.
 
 `python -m dllscan` prints one document to stdout; the WSL side owns
 everything after that (`output-views.md`). It is stdlib-only, so the Windows
