@@ -40,10 +40,7 @@ files. Does not belong: plan-level design (the parent plan, or
 - `src/dllscan/`: stdlib only (`stdlib_only_test.py` enforces it, test files
   exempt), 3.12-compatible, modules ≤300 lines, tests beside as
   `*_test.py`, Describe/it. Observe every assertion fail before trusting it.
-- Finish with `pytest` and `pyright` on the files you touched, clean. If
-  the repo's `bin/shell` reports "command not found", inherited direnv state is
-  hiding `.venv/bin`: prefix
-  `env -u DIRENV_DIR -u DIRENV_DIFF -u DIRENV_WATCHES -u DIRENV_FILE`.
+- Finish with `pytest` and `pyright` on the files you touched, clean.
 - Run builds and checks in the foreground. Never end your turn waiting on a
   background job or monitor: if a sibling must land first, say so in your
   report and stop; the coordinator resumes you.

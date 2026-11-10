@@ -1,11 +1,13 @@
 #!/bin/bash
+# usage: bin/shell CMD ARGS...
+# Run CMD in the repo's direnv environment (.envrc: .venv + bin/ on PATH).
+# `direnv exec` loads .envrc afresh, whatever direnv state the caller's
+# environment claims: an inherited DIRENV_DIFF without its PATH no longer
+# leaves CMD unfound.
 set -euo pipefail
 DEBUG="${DEBUG:-0}"
 if (( DEBUG > 0 )); then
   set -x
 fi
 
-# load bearing: set variable before eval to avoid clobbering exit codes
-env="$(direnv export bash)"
-eval "$env"
-"$@"
+exec direnv exec "$(dirname "$(dirname "$(readlink -f "$0")")")" "$@"
