@@ -219,6 +219,9 @@ on another prototype.
       `deadlock.registry_check` for `server`/`client`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-026-registry-readback-check.md>)
 - [ ] On-demand check: the `cvarlist` oracle (`capture-approach.kb/runtime-cvarlist.md`)
+  - [x] Capture, server and client, from the CLI (`bin/cvarlist-capture`):
+        <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-10-000-cvarlist-capture.md>
+  - [ ] The check: <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-10-001-cvarlist-oracle-check.md>
 - [x] Docs: drop each `[!TODO]` callout as it lands; record the tool choice in
       `docs/dev/decisions.kb/` (it departs from `reuse-existing-parsers.md`,
       `cvar-dump.kb/CLAUDE.md` says why that matters), and the lossless

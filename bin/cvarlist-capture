@@ -1,0 +1,50 @@
+#!/bin/bash
+# usage: bin/cvarlist-capture server|client DIR
+# Run the engine's `cvarlist` and `differences` in a dedicated server or a
+# client (needs Steam running), quit, and keep the log as DIR/<build>-<side>.log
+# beside its command (.cmd). Refuses if deadlock.exe runs; past CVARLIST_TIMEOUT
+# (180 s) kills only its own launch. docs/dev/game-runtime.kb/cvarlist-capture.md
+set -euo pipefail
+shopt -s failglob
+export DEBUG="${DEBUG:-0}"
+
+onerror() {
+  error="$?"
+  echo >&2 "ERROR($error)"
+  exit "$error"
+}
+trap onerror ERR
+
+# Windows PIDs of the deadlock.exe processes whose command line contains $1.
+pids() {
+  powershell.exe -NoProfile -Command "Get-CimInstance Win32_Process -Filter \
+\"Name='deadlock.exe'\" | Where CommandLine -like '*$1*' | % ProcessId" |
+    tr -d '\r'
+}
+
+if (( DEBUG > 0 )); then
+  set -x
+fi
+
+if ! [[ $# == 2 && ${1:-} =~ ^(server|client)$ ]]; then
+  echo >&2 "usage: bin/cvarlist-capture server|client DIR"; exit 2
+fi
+game="${DEADLOCK_HOME:?}/game" dir=$(mkdir -p "$2" && readlink -f "$2") mode=()
+if [[ $1 == server ]]; then mode=(-dedicated); fi
+if tasklist.exe /FI "IMAGENAME eq deadlock.exe" /NH | grep -q -i deadlock.exe; then
+  echo >&2 "cvarlist-capture: deadlock.exe is already running; not launching"
+  exit 1
+fi
+build=$(sed -n 's/^ClientVersion=\([0-9]*\).*/\1/p' "$game/citadel/steam.inf")
+log="cvarlist-$1-$build-$(date +%Y%m%dT%H%M%S).log" out="$dir/$build-$1"
+cmd=(./deadlock.exe "${mode[@]}" -novid -condebug -con_logfile "$log"
+  "+log_flags Console -consoleonly" +cvarlist +differences +quit)
+{ printf '%q ' cd "$game/bin/win64"; printf '&& '; printf '%q ' "${cmd[@]}"; } |
+  sed 's/ $/\n/' >"$out.cmd"
+cd "$game/bin/win64"
+status=0
+timeout "${CVARLIST_TIMEOUT:-180}" "${cmd[@]}" </dev/null >/dev/null || status=$?
+pids "$log" | xargs -r -I{} taskkill.exe /T /F /PID {}
+mv "$game/citadel/$log" "$out.log"
+grep -q -a 'total convars/concommands' "$out.log"
+exit "$status"
