@@ -1,5 +1,7 @@
 import struct
 
+import pytest
+
 from .memory import MAX_CSTR, PAGE, Memory, Segments
 
 
@@ -66,6 +68,17 @@ class DescribeMemory:
 
         def it_refuses_a_nonprintable_byte(self):
             assert mem({0x1000: b"ab\x01c\0"}).cstr_in(0x1000, 0x1000, 0x1100) is None
+
+        @pytest.mark.parametrize("char", ["\x7f", "\x85", "\x9f"])
+        def it_refuses_del_and_c1_controls(self, char: str):
+            assert mem({0x1000: f"a{char}b\0".encode()}).cstr_in(0x1000, 0x1000, 0x1100) is None
+
+        @pytest.mark.parametrize("char", ["\xa0", "​", " ", "", "͸"])
+        def it_accepts_any_other_character_whatever_the_unicode_version(self, char: str):
+            """No-break space, zero-width space, line separator, private use,
+            unassigned: `str.isprintable` refuses each, and which code points
+            are unassigned changes with Python's Unicode database."""
+            assert mem({0x1000: f"a{char}b\0".encode()}).cstr_in(0x1000, 0x1000, 0x1100) == f"a{char}b"
 
         def it_refuses_invalid_utf8(self):
             assert mem({0x1000: b"ab\xffc\0"}).cstr_in(0x1000, 0x1000, 0x1100) is None

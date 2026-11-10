@@ -21,6 +21,12 @@ MAX_CSTR = 4096
 """Longest string `cstr_in` accepts, in bytes before the NUL. Help text runs to
 hundreds of bytes; a run past this is not a string we want, so it reads as None."""
 
+CONTROLS = frozenset(map(chr, (*range(0x20), *range(0x7F, 0xA0)))) - set("\t\r\n")
+"""The characters a string may not hold: C0 controls but tab, CR and LF, then
+DEL and the C1 controls. A fixed set, unlike `str.isprintable`, which follows
+the host Python's Unicode database (a newly assigned code point turns
+printable), so a string reads the same under any `python.exe`."""
+
 PAGE = 4096
 """Readability granule of real memory: `cstr_in` reads at most up to the next
 multiple of this per call, so one read never spans a readable and an unreadable page."""
@@ -63,9 +69,9 @@ class Memory:
         """The NUL-terminated printable string at `addr`, else None.
 
         None unless `lo <= addr < hi` and the string and its NUL lie inside
-        `[lo, hi)`, readable, within `MAX_CSTR` bytes. Printable: strict UTF-8,
-        every char `isprintable()` or one of `\\t\\r\\n`; empty is allowed. A
-        name's stricter shape (non-empty, no spaces) is the caller's to check.
+        `[lo, hi)`, readable, within `MAX_CSTR` bytes. Printable: strict UTF-8
+        with no control character (`CONTROLS`); empty is allowed. A name's
+        stricter shape (non-empty, no spaces) is the caller's to check.
         """
         if not lo <= addr < hi:
             return None
@@ -76,7 +82,7 @@ class Memory:
             text = raw.decode()
         except UnicodeDecodeError:
             return None
-        return text if all(c.isprintable() or c in "\t\r\n" for c in text) else None
+        return None if CONTROLS.intersection(text) else text
 
     def _until_nul(self, addr: int, end: int) -> bytes | None:
         """The bytes from `addr` up to a NUL before `end`, or None."""
