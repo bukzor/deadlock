@@ -29,6 +29,6 @@ can't tell that from a missed queue, so the oracle in `validation.md` is the
 backstop. On 6860 the allocator log settles it: none of the 8 allocates a
 queue block while loading (`capture-approach.kb/allocator-hook.md`).
 
-> [!QUESTION] Loading a DLL also loads its imports, so a DLL that imports an
-> excluded one hangs anyway. The `load` record's module list shows the actual
-> closure; whether any `ok`-candidate imports an excluded DLL is unchecked.
+Loading a DLL also loads its imports, so a DLL importing an excluded one
+would hang too. None does: on 6860, the static plus delay-import closure of
+every other DLL reaches no excluded one (`deadlock.dll_load.EXCLUDED`).
