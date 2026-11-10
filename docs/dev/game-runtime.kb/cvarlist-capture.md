@@ -10,10 +10,10 @@ Per build, both sides, no clicks:
 
     ./bin/shell redo data/dlls.check/cvarlist
 
-It captures each side afresh into `data/cvarlist/{server,client}.log`
-(gitignored, `redo-always`: a capture reads the install, the Steam session and
-the user's settings, which no tracked input records) and checks both against
-the store (`../cvar-dump.kb/validation.md`, Oracle). By hand, one side:
+It captures each side into `data/cvarlist/{server,client}.log` (gitignored)
+and checks both against the store (`../cvar-dump.kb/validation.md`, Oracle).
+A side relaunches only when one of its inputs changes (below, What a capture
+reads), so a second run launches nothing. By hand, one side:
 
     ./bin/shell bin/cvarlist-capture server|client DIR
 
@@ -36,6 +36,45 @@ runs, and it fails unless the listing's closing total line is in the log.
   process keeps running. The script then finds the `deadlock.exe` whose
   command line carries its unique log name and runs `taskkill.exe /T /F` on
   that PID, never on any other `deadlock.exe`.
+
+## What a capture reads
+
+Measured on the 6860 captures, matching each of the client's 58
+`differences` values to the files that hold it, and hashing every candidate
+file before and after one launch per side.
+
+- **Both sides:** the DLLs and `game/citadel/gameinfo.gi`.
+- **Server:** no settings file. No listed value comes from one: `server.cfg`'s
+  `sv_cheats 1` lists as `false`, and `rate` keeps gameinfo.gi's 786432, not
+  the 196608 in `cfg/machine_convars.vcfg`. It has no `USRLOCAL` path and fails
+  to write its user config at quit.
+- **Client:** the Steam account's settings under
+  `<Steam>/userdata/<account>/1422450/` (its `USRLOCAL` path), not the
+  install's `cfg/`. Of the 58 values, 36 are in
+  `local/cfg/machine_convars.vcfg` (keys sometimes suffixed `$N`). 21 `per_user` values are in
+  `remote/user_convars.vcfg` (logged `Loaded 'user_convars.vcfg' from
+  SteamRemoteStorage`) and its local copies, `local/cfg/
+  user_convars_0_slot0.vcfg{,_lastclouded}`. One value,
+  `citadel_bot_match_host_locally`, is not archived and is set in the install's
+  `cfg/autoexec.cfg` (logged `execing autoexec.cfg`). It also loads
+  `local/cfg/video.txt`, which holds two listed names (`r_fullscreen_gamma`,
+  `r_light_sensitivity_mode`). The install's own `cfg/machine_convars.vcfg`,
+  `user_convars_0_slot0.vcfg` and `video.txt` are stale copies: they hold
+  only 25 of the 58 at the listed value, 24 differ (`citadel_hideout_hero_id`
+  66, listed 86) and 9 are absent.
+- **A launch rewrites its inputs.** The client rewrites 12 settings files,
+  three of the inputs among them (`machine_convars.vcfg` and both
+  `user_convars`), and the server rewrites the install's `cfg/boot.vcfg`, all with the same
+  bytes and a new mtime. Only Steam's `remotecache.vdf` changes content, and it
+  is not an input.
+
+So `data/cvarlist/<side>.log` depends on `data/dlls/file.tsv` (each DLL's
+sha256), `bin/cvarlist-capture`, and `<side>.inputs`. That target is
+`redo-always` and `redo-stamp`s the sha256 of each file listed above, so a
+rewrite with the same bytes relaunches nothing. Assumed, not tracked: the
+Steam session (login, GC state), the files `autoexec.cfg` execs, and the
+Steam root lying three directories above the install, with one account
+under `userdata/` that has a `1422450/`.
 
 ## The log needs `log_flags`
 
