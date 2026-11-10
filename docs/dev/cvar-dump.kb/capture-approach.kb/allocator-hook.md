@@ -48,7 +48,11 @@ The gap is tier0 itself. tier0 allocates its own queues (3 convars, 24
 commands) in its own static initializers, before `LoadLibrary` returns. Even
 from a loader notification, which runs once tier0 is mapped and before its
 initializers, `g_pMemAlloc` is still null (`../../probes/tier0_alloc.py`, two
-runs), so no hook can be in place in time.
+runs), so no hook can be in place in time. Nor does the layout give the
+head away: the two heads sit at no fixed offset from the DLL's placeholder
+`ConVarData` array (`../registration-flow.md`). Across 7 DLLs the offset
+runs from 10,728 bytes (`inputsystem`) to 13.6 MB (`server`), and the two
+kinds' heads aren't in a fixed order (`../../probes/head_rva.py`).
 
 For, over the shape scan's search: the head is an equality on a pointer the
 allocator returned, not a search, so nothing depends on which heap garbage
