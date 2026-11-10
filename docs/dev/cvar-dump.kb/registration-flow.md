@@ -13,7 +13,9 @@ consistent with DumpSource2's comments; build 6848.
    linked list of 100-entry blocks headed by the unexported `s_pRoot`. Each DLL
    statically links its own copy of this code ("tier0_perproject"), so each has
    its own queue — tier0 too (24 commands and 3 convars on 6851). Loading the
-   DLL is enough to fill it.
+   DLL is enough to fill it. Each block is one `new`, which goes to tier0's
+   allocator (`g_pMemAlloc` slot 1) for `16 + 100·sizeof(Entry_t)` bytes
+   (6860, `capture-approach.kb/allocator-hook.md`).
 3. **`ConVar_Register` replays it into `g_pCVar`** (`convar.cpp:256`): commands
    first, then convars, block by block from `s_pRoot` (newest, the only partial
    one) back, entries in order, each as
@@ -64,6 +66,23 @@ lacks `int8` and `uint8`. The rows' names and sizes, and how each type's
 queues of 6860 use bool, uint8, uint16, int32, uint32, uint64, float32,
 string, color and vector2-4; no queue declares int8, int16, int64, float64,
 qangle or vectorws.
+
+Each DLL links its own copy of that table (`tier0_perproject`): 18 rows,
+the same names and sizes as tier0's, followed directly by an array of 18
+placeholder `ConVarData`, one per type, 0x70 bytes apart. Each is named
+`<undefined>`, is flagged `reference`, and has `m_eVarType` equal to its
+index; an element of type -1 ends the array. Before registration, every
+convar entry's `*m_pConVarData` is its type's placeholder (6860, `server`,
+`client`, `engine2`, tier0: `../probes/sentinel.py`). So each DLL states its
+own type count, 18.
+
+The refs have a fixed shape before registration (6860, 4774 convar and 1172
+command entries in `server`, `client`, `engine2`, `rendersystemdx11` and
+tier0, none failing: `../probes/refpair.py`). For a convar,
+`m_pConVarData == m_pConVar + 8` (s2sdk's `ConVarRefAbstract` is an 8-byte
+`ConVarRef`, then `m_ConVarData`, `convar.h:1079-1237`), the `ConVarRef` holds
+access index 0xFFFF and registered index 0, and no two entries share a ref.
+For a command, the ref's first qword is exactly 0xFFFF.
 
 Past its base, the 64-byte command entry holds only pointers (the callback, code
 or an interface object in writable data; the completion callback; the

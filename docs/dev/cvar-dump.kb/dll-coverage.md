@@ -26,7 +26,8 @@ queue is accepted: on 6860, 8 of the 43 `ok` DLLs whose load includes tier0
 (`bugreporter_filequeue`, `netgraph_subtool`, `p4lib`, `panorama_text_pango`,
 `soundviewer_subtool`, `valve_avi`, `valve_webm`, `valve_wmf`). Shape alone
 can't tell that from a missed queue, so the oracle in `validation.md` is the
-backstop.
+backstop. On 6860 the allocator log settles it: none of the 8 allocates a
+queue block while loading (`capture-approach.kb/allocator-hook.md`).
 
 > [!QUESTION] Loading a DLL also loads its imports, so a DLL that imports an
 > excluded one hangs anyway. The `load` record's module list shows the actual
