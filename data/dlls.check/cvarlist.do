@@ -1,10 +1,10 @@
 #!/bin/bash
 # On-demand check, not part of all.do: the engine's own `cvarlist`, captured
-# on a dedicated server and on a client (../cvarlist/<side>.log, each a fresh
-# launch of the game), against the store's declarations (../dlls/convars.tsv,
-# ../dlls/concommands.tsv) and the install's gameinfo.gi overrides
-# (deadlock.cvarlist_check). The target is the summary of counts, also printed
-# on stderr; any mismatch fails it, naming each name.
+# on a dedicated server and on a client (../cvarlist/<side>.log, each a launch
+# of the game, rerun only when its inputs change), against the store's
+# declarations (../dlls/convars.tsv, ../dlls/concommands.tsv) and the install's
+# gameinfo.gi overrides (deadlock.cvarlist_check). The target is the summary of
+# counts, also printed on stderr; any mismatch fails it, naming each name.
 # docs/dev/cvar-dump.kb/validation.md
 # redo runs this with cwd = data/dlls.check/; the repo root is two up.
 set -euo pipefail

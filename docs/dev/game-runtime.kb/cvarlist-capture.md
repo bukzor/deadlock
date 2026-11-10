@@ -19,8 +19,9 @@ reads), so a second run launches nothing. By hand, one side:
 
 It writes `DIR/<build>-<side>.log` (the console log) and `.cmd` (the exact
 command line), in about 5 s (server) or 8 s (client). The
-script launches `game/bin/win64/deadlock.exe` directly from WSL (with
-`-dedicated` for the server), with `-novid -condebug -con_logfile <marker>.log
+script launches `game/bin/win64/deadlock.exe` from WSL on a hidden desktop
+(`bin/on-hidden-desktop.ps1`, below, Focus), with `-dedicated` for the server,
+and `-novid -condebug -con_logfile <marker>.log
 "+log_flags Console -consoleonly" +cvarlist +differences +quit`, then moves
 the log out of `game/citadel/`. It won't launch while any `deadlock.exe`
 runs, and it fails unless the listing's closing total line is in the log.
@@ -36,6 +37,27 @@ runs, and it fails unless the listing's closing total line is in the log.
   process keeps running. The script then finds the `deadlock.exe` whose
   command line carries its unique log name and runs `taskkill.exe /T /F` on
   that PID, never on any other `deadlock.exe`.
+
+## Focus
+
+Launched directly, either side can take the keyboard focus, intermittently:
+the server's console window took the foreground in 1 of 1 launch, the client's
+window in 1 of 2. Started minimized without activation (`cmd /c start /min`),
+the server's console stayed back (0 of 1), but the client still took the
+foreground once in 2, its window minimized: Source 2 activates its own window.
+`ForegroundLockTimeout` is the default 200000 ms, and the user was active
+(idle under 4 s) at every launch, so the idle rule doesn't explain it.
+
+A window on a desktop other than the input desktop can't take the foreground,
+so the script creates an unshown desktop (`CreateDesktop`) and starts the game
+there (`STARTUPINFO.lpDesktop`), through `bin/on-hidden-desktop.ps1`. DX11
+starts there (`Successfully created dx11 swap chain`), and each side's listing
+is identical to a direct launch's. Over 4 launches, 2 per side, the foreground
+never left the user's window. No flash either, by inference: nothing switches
+to that desktop, and its windows are on no taskbar of the input one. Readings:
+`../probes/foreground_watch.ps1`, run beside each launch. The foreground app
+was always the terminal running the capture; a launch with another app in
+front is untested.
 
 ## What a capture reads
 
