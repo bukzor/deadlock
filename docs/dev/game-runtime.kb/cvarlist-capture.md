@@ -33,10 +33,13 @@ runs, and it fails unless the listing's closing total line is in the log.
   on = 1`). It logs on to the GC and quits at `Host activate: Idle
   (levelload)`, before the hideout loads. Steam's launch options don't apply.
   Untested without Steam.
-- **Stuck launch:** `timeout` ends only the WSL interop shim. The Windows
-  process keeps running. The script then finds the `deadlock.exe` whose
-  command line carries its unique log name and runs `taskkill.exe /T /F` on
-  that PID, never on any other `deadlock.exe`.
+- **Stuck or interrupted launch:** `timeout`, and so Ctrl-C, ends only the
+  WSL interop shim. The Windows processes keep running, out of sight on the
+  hidden desktop. So on every exit (success, error, timeout, `INT`, `TERM`)
+  the script finds the processes whose command line carries its unique log
+  name and runs `taskkill.exe /T /F` on each root among them (the helper, or
+  the game once the helper is gone), never on any other process. An
+  interrupted launch leaves its partial log in `game/citadel/`.
 
 ## Focus
 

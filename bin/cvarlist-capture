@@ -3,7 +3,7 @@
 # Run the engine's `cvarlist` and `differences` in a dedicated server or a
 # client (needs Steam running) on a hidden desktop, quit, and keep the log as
 # DIR/<build>-<side>.log beside its command (.cmd). Refuses if deadlock.exe
-# runs; past CVARLIST_TIMEOUT (180 s) kills only its own launch.
+# runs. Fails past CVARLIST_TIMEOUT (180 s); on any exit kills its own launch.
 # docs/dev/game-runtime.kb/cvarlist-capture.md
 set -euo pipefail
 shopt -s failglob
@@ -14,13 +14,14 @@ onerror() {
   echo >&2 "ERROR($error)"
   exit "$error"
 }
-trap onerror ERR
+trap onerror ERR; trap 'exit 130' INT; trap 'exit 143' TERM
 
-# Windows PIDs of the deadlock.exe processes whose command line contains $1.
-pids() {
-  powershell.exe -NoProfile -Command "Get-CimInstance Win32_Process -Filter \
-\"Name='deadlock.exe'\" | Where CommandLine -like '*$1*' | % ProcessId" |
-    tr -d '\r'
+# Kill each process tree whose root's command line carries this launch's $log.
+reap() {
+  powershell.exe -NoProfile -Command "\$m = Get-CimInstance Win32_Process |" \
+    "Where { \$_.ProcessId -ne \$PID -and \$_.CommandLine -like '*$log*' };" \
+    "\$m | Where ParentProcessId -notin \$m.ProcessId | % ProcessId" |
+    tr -d '\r' | xargs -r -I{} taskkill.exe /T /F /PID {}
 }
 
 if (( DEBUG > 0 )); then set -x; fi
@@ -31,8 +32,7 @@ game="${DEADLOCK_HOME:?}/game" dir=$(mkdir -p "$2" && readlink -f "$2") mode=()
 hide=$(wslpath -w "$(dirname "$(readlink -f "$0")")/on-hidden-desktop.ps1")
 if [[ $1 == server ]]; then mode=(-dedicated); fi
 if tasklist.exe /FI "IMAGENAME eq deadlock.exe" /NH | grep -q -i deadlock.exe; then
-  echo >&2 "cvarlist-capture: deadlock.exe is already running; not launching"
-  exit 1
+  echo >&2 "cvarlist-capture: deadlock.exe is already running; not launching"; exit 1
 fi
 build=$(sed -n 's/^ClientVersion=\([0-9]*\).*/\1/p' "$game/citadel/steam.inf")
 log="cvarlist-$1-$build-$(date +%Y%m%dT%H%M%S).log" out="$dir/$build-$1"
@@ -41,10 +41,10 @@ cmd=(./deadlock.exe "${mode[@]}" -novid -condebug -con_logfile "$log"
 { printf '%q ' cd "$game/bin/win64"; printf '&& '; printf '%q ' "${cmd[@]}"; } |
   sed 's/ $/\n/' >"$out.cmd"
 cd "$game/bin/win64"
-status=0
+trap reap EXIT; status=0
 timeout "${CVARLIST_TIMEOUT:-180}" powershell.exe -NoProfile -ExecutionPolicy \
-  Bypass -File "$hide" "${cmd[@]}" </dev/null >/dev/null || status=$?
-pids "$log" | xargs -r -I{} taskkill.exe /T /F /PID {}
+  Bypass -File "$hide" "${cmd[@]}" </dev/null >/dev/null & wait $! || status=$?
+reap; trap - EXIT
 mv "$game/citadel/$log" "$out.log"
 grep -q -a 'total convars/concommands' "$out.log"
 exit "$status"
