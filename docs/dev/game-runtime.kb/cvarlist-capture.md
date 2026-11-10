@@ -8,11 +8,17 @@ strings in `tier0.dll`, and `../probes/cvarlist_vs_store.py` run on each.
 
 Per build, both sides, no clicks:
 
-    ./bin/shell bin/cvarlist-capture server trash/cvarlist
-    ./bin/shell bin/cvarlist-capture client trash/cvarlist
+    ./bin/shell redo data/dlls.check/cvarlist
 
-Each writes `trash/cvarlist/<build>-<side>.log` (the console log) and
-`.cmd` (the exact command line), in about 5 s (server) or 8 s (client). The
+It captures each side afresh into `data/cvarlist/{server,client}.log`
+(gitignored, `redo-always`: a capture reads the install, the Steam session and
+the user's settings, which no tracked input records) and checks both against
+the store (`../cvar-dump.kb/validation.md`, Oracle). By hand, one side:
+
+    ./bin/shell bin/cvarlist-capture server|client DIR
+
+It writes `DIR/<build>-<side>.log` (the console log) and `.cmd` (the exact
+command line), in about 5 s (server) or 8 s (client). The
 script launches `game/bin/win64/deadlock.exe` directly from WSL (with
 `-dedicated` for the server), with `-novid -condebug -con_logfile <marker>.log
 "+log_flags Console -consoleonly" +cvarlist +differences +quit`, then moves
@@ -106,8 +112,11 @@ cvars are registered by then.
   `rate` 786432 vs 80000, `fps_max` 400 vs 120). `differences` measures from
   the overridden default: on the server it prints `no results`.
 - The client also loads the user's archived settings. `differences` lists
-  them (about 70 here, `citadel_hideout_hero_id 86`), as a `name value`
-  table after the listing.
+  them (58 here, `citadel_hideout_hero_id 86`) after the listing, as a
+  fixed-width table under a `name` header and a rule of `_`: five columns,
+  name, value, default, flags as full words (`client archive per_user`, not
+  `cl, a`), help.
 
-So an oracle comparing defaults must apply `gameinfo.gi` overrides or take
-the server's values, and skip the client's `differences` names.
+So an oracle comparing values must apply `gameinfo.gi` overrides and take a
+`differences` name's value against its `default` column, as
+`deadlock.cvarlist_check` does.
