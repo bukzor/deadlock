@@ -22,11 +22,11 @@ Two passes:
    point into that DLL's own writable sections (the owner check); command
    entries have their own test, below.
 
-The scanner pins the strides (160/64, `dllscan.reglist.STRIDES`), so each
-DLL's dump depends on nothing but that DLL (`../output-views.md`). Pass 1 is a
-check target of its own, `data/dlls.check/strides`: it re-learns the strides
-from `server.dll` every build and fails the build if they moved
-(`../validation.md`).
+The scanner takes the strides from the s2sdk layout (`dllscan.reglist.STRIDES`
+is `sizeof` of `convar_h`'s entry structs, 160/64), so each DLL's dump depends
+on nothing but that DLL (`../output-views.md`). Pass 1 is a check target of
+its own, `data/dlls.check/strides`: it re-learns the strides from
+`server.dll` every build and fails the build if they moved (`../validation.md`).
 
 Evidence, pass 1, build 6848 (`../../probes/convar_scan.py`, 2026-11-05):
 

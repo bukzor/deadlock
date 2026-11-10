@@ -3,14 +3,15 @@ import ctypes
 import pytest
 
 from .convar_h import ConCommandRegList_Entry_t, ConVarRegList_Entry_t, CVarCreationBase_t, CVValue_t, offset_of
-from .reglist import STRIDES
 from .values import TYPES
 
 
 class DescribeSizes:
-    @pytest.mark.parametrize(("kind", "entry"), [("convars", ConVarRegList_Entry_t), ("concommands", ConCommandRegList_Entry_t)])
-    def it_sizes_each_entry_as_its_queue_strides(self, kind: str, entry: type[ctypes.Structure]):
-        assert ctypes.sizeof(entry) == STRIDES[kind]
+    @pytest.mark.parametrize(("entry", "size"), [(ConVarRegList_Entry_t, 160), (ConCommandRegList_Entry_t, 64)])
+    def it_sizes_each_entry_as_its_queues_measure_it(self, entry: type[ctypes.Structure], size: int):
+        """The queues' strides (6848, 6851) and their blocks' allocation sizes,
+        `16 + 100 * size` bytes (6860)."""
+        assert ctypes.sizeof(entry) == size
 
     def it_sizes_the_creation_base_as_three_qwords(self):
         assert ctypes.sizeof(CVarCreationBase_t) == 24

@@ -21,9 +21,10 @@ Two kinds of misfit, kept apart:
 import re
 import struct
 from collections.abc import Callable, Iterable, Iterator, Mapping
+from ctypes import sizeof
 from dataclasses import dataclass
 
-from .convar_h import CVarCreationBase_t, offset_of
+from .convar_h import ConCommandRegList_Entry_t, ConVarRegList_Entry_t, CVarCreationBase_t, offset_of
 from .image import Image
 from .memory import Memory
 from .shape import ShapeError
@@ -36,8 +37,8 @@ _ENTRIES = 8
 _NAME, _HELP = (offset_of(CVarCreationBase_t, f) for f in ("m_pszName", "m_pszHelpString"))
 """Where an entry of either kind holds its name and help pointers."""
 
-STRIDES = {"convars": 160, "concommands": 64}
-"""`sizeof(Entry_t)` per queue kind, pinned (6848, 6851); `learn_strides` re-derives them."""
+STRIDES = {"convars": sizeof(ConVarRegList_Entry_t), "concommands": sizeof(ConCommandRegList_Entry_t)}
+"""`sizeof(Entry_t)` per queue kind, from `convar_h`; `learn_strides` re-derives them from `server.dll`."""
 
 CANDIDATE_STRIDES = range(16, 1024, 8)
 """The strides `learn_strides` tries."""

@@ -12,8 +12,9 @@ lays them out. The fields `entries` reads are also annotated, for pyright, which
 can't see `_fields_`; ctypes replaces each placeholder value with the field.
 
 Sizes and offsets agree with the queues: `convar_h_test` checks each entry's
-size against `reglist.STRIDES` and each field's offset against
-`docs/dev/cvar-dump.kb/registration-flow.md`'s registry fit (6860).
+size against the queues' measured stride (`reglist.STRIDES` is that size) and
+each field's offset against `docs/dev/cvar-dump.kb/registration-flow.md`'s
+registry fit (6860).
 
 >>> entry = ConVarRegList_Entry_t.from_buffer_copy(bytes(range(160)))
 >>> info = entry.m_Info.m_valueInfo
