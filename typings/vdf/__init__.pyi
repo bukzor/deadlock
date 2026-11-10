@@ -1,0 +1,3 @@
+"""Minimal type stub for the parts of `vdf` we use."""
+
+def loads(s: str) -> object: ...

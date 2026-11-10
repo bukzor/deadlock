@@ -39,10 +39,13 @@ Run on demand, and on each new build, not as part of `all.do`:
   registration adds (`deadlock.registry_check` states the rule, `reference`
   declarations included). Checks the value decoding against the engine, not
   against our reading of the SDK.
-
-> [!TODO] Also on demand:
->
-> - **Oracle:** the non-`developmentonly` entries equal the engine's own
->   `cvarlist` (`capture-approach.kb/runtime-cvarlist.md`) for the same build,
->   on name, flags, and default. The only check that catches a DLL whose queue
->   the scan missed outright. Too slow for every build, run on demand.
+- **Oracle** (`redo data/dlls.check/cvarlist`): the engine's own `cvarlist`
+  (`capture-approach.kb/runtime-cvarlist.md`), captured fresh on a dedicated
+  server and on a client (`../game-runtime.kb/cvarlist-capture.md`), against
+  the store. Every listed name is declared; every listable declaration
+  (not `developmentonly` or `hidden`, not a `-` command) of a DLL the listing
+  proves loaded is listed; and each listed name's flags, help and value are
+  its declarations', through the listing's print rules, the value overridden
+  by `gameinfo.gi` or the user (`differences`). `deadlock.cvarlist_check`
+  states each rule. The only check that catches a DLL whose queue the scan
+  missed outright.

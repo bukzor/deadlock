@@ -1,8 +1,8 @@
 # Generated output under data/ is ignored by default: bulk/binary assets, the
 # vendored VRF tool, intermediate dirs (data/gamedata/, the dense views in
 # gamedata.dense.tsv/), the near-verbatim Valve extracts (gamedata.json/,
-# manifest.jsonl), and the per-DLL documents (dlls/<facet>/, dlls.list) and
-# check outputs (dlls.check/).
+# manifest.jsonl), the per-DLL documents (dlls/<facet>/, dlls.list), the
+# check outputs (dlls.check/), and the engine's own cvarlist captures (cvarlist/).
 # Exceptions — committed so `git diff` shows patch changes — are the
 # transformative TSV views (gamedata.tsv/, dlls/<facet>.tsv), the build stamp
 # naming the game version that produced them, the latest-VRF-release record,
@@ -35,6 +35,9 @@
 !/data/dlls.check/
 /data/dlls.check/*
 !/data/dlls.check/*.do
+!/data/cvarlist/
+/data/cvarlist/*
+!/data/cvarlist/*.do
 
 # redo's markers for the phony aggregator targets (all.do, clean.do)
 /all
