@@ -1,7 +1,7 @@
 from .dlls_convars_md import page
 
 TSV = """\
-module	name	type	version	default	min	max	flags	help
+dll	name	type	version	default	min	max	flags	help
 client.dll	sv_slack	float32	0	0.026	0.0	1.0	replicated cheat	Slack <mult>.\\n
 client.dll	citadel_tab	int32	3	-1	\\N	\\N	archive	\\N
 client.dll	fog_color	vector3	0	-1.0 -1.0 -1.0	\\N	\\N		\\N
@@ -15,7 +15,7 @@ class DescribePage:
         assert page(TSV) == """\
 # Console variables
 
-5 declarations in 2 modules, from `data/dlls/convars.tsv`.
+5 declarations in 2 DLLs, from `data/dlls/convars.tsv`.
 
 - [client.dll](#clientdll) (3)
 - [server.dll](#serverdll) (2)

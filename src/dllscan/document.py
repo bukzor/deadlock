@@ -16,7 +16,7 @@ Rules shared by every document (``docs/dev/cvar-dump.kb/output-views.md``):
   a value that appears shows as one changed line, not an inserted one, and the
   TSV aggregates get a fixed column set.
 
-``module`` is the DLL's basename as listed in ``data/dlls.list``.
+``dll`` is the DLL's basename as listed in ``data/dlls.list``.
 """
 
 from collections.abc import Sequence
@@ -92,7 +92,7 @@ class ConVarsDocument(TypedDict):
     """The ``convars`` facet: one DLL's convar queue, in queue order,
     duplicates kept."""
 
-    module: str
+    dll: str
     convars: Sequence[ConVar]
 
 
@@ -108,7 +108,7 @@ class ConCommandsDocument(TypedDict):
     """The ``concommands`` facet: one DLL's command queue, in queue order,
     duplicates kept."""
 
-    module: str
+    dll: str
     concommands: Sequence[ConCommand]
 
 
@@ -123,7 +123,7 @@ class RegistryDocument(TypedDict):
     placeholder interface whose first use stopped ``Init``, or ``null``.
     """
 
-    module: str
+    dll: str
     stopped_by: str | None
     convars: Sequence[ConVar]
     concommands: Sequence[ConCommand]

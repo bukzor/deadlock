@@ -2,11 +2,11 @@
 
     python -m deadlock.dlls_convars data/dlls/convars/<dll>.json ... > data/dlls/convars.tsv
 
-One row per convar declaration, duplicates kept: ``module`` (the document's
+One row per convar declaration, duplicates kept: ``dll`` (the document's
 own), ``name``, ``type`` (the binary's ``EConVarType`` name), ``version``,
 ``default``, ``min``, ``max``, ``flags`` (space-separated names), ``help``.
 Cells as ``deadlock.dlls_tsv``; rows sorted and ordered as
-``deadlock.dlls_concommands`` (a row's ordinal among its module's rows is its
+``deadlock.dlls_concommands`` (a row's ordinal among its dll's rows is its
 queue index).
 
 A value cell is read by its row's ``type`` (``TYPES``): ``\\N`` is an absent
@@ -40,7 +40,7 @@ TYPES: Mapping[str, _Kind] = {
 """Each ``EConVarType`` name, in code order (``registration-flow.md``), → the
 JSON kind of its values."""
 
-_HEADER = ["module", "name", "type", "version", "default", "min", "max", "flags", "help"]
+_HEADER = ["dll", "name", "type", "version", "default", "min", "max", "flags", "help"]
 _KEYS = {"name", "help", "flags", "type", "version", "default", "min", "max"}
 
 
@@ -112,17 +112,17 @@ def _is_convar(value: object) -> TypeGuard[ConVar]:
 def is_convars_document(value: object) -> TypeGuard[ConVarsDocument]:
     return (
         is_str_mapping(value)
-        and set(value) == {"module", "convars"}
-        and isinstance(value["module"], str)
+        and set(value) == {"dll", "convars"}
+        and isinstance(value["dll"], str)
         and is_sequence(convars := value["convars"])
         and all(map(_is_convar, convars))
     )
 
 
-def _row(module: str, c: ConVar) -> list[str]:
+def _row(dll: str, c: ConVar) -> list[str]:
     values = [value_cell(c["type"], c[key]) for key in ("default", "min", "max")]
     return [
-        module,
+        dll,
         dlls_tsv.cell(c["name"]),
         c["type"],
         str(c["version"]),
@@ -134,11 +134,11 @@ def _row(module: str, c: ConVar) -> list[str]:
 
 def table(documents: Mapping[str, ConVarsDocument]) -> Table:
     """``documents`` keyed by the basename in ``data/dlls.list``, which is each
-    one's ``module``."""
+    one's ``dll``."""
     for dll, d in documents.items():
-        assert d["module"] == dll, (dll, d["module"])
+        assert d["dll"] == dll, (dll, d["dll"])
     rows = [
-        _row(d["module"], c) for d in sorted(documents.values(), key=lambda d: d["module"]) for c in d["convars"]
+        _row(d["dll"], c) for d in sorted(documents.values(), key=lambda d: d["dll"]) for c in d["convars"]
     ]
     return _HEADER, rows
 

@@ -52,16 +52,16 @@ def load_failed(error: Win32Error) -> LoadFailed:
 
 def concommands(mem: Memory, image: Image, dll: str) -> ConCommandsDocument:
     """The command queue of the image loaded from `dll` (a Windows path),
-    decoded; empty if it has none, `ShapeError` if it has two. `module` is
-    `dll`'s basename as given, case kept: the key into `data/dlls.list`."""
+    decoded; empty if it has none, `ShapeError` if it has two. The document's
+    `dll` is the path's basename as given, case kept: the key into `data/dlls.list`."""
     entries = [decode_concommand(mem, entry, image) for entry in _queue(mem, image, "concommands")]
-    return ConCommandsDocument(module=ntpath.basename(dll), concommands=entries)
+    return ConCommandsDocument(dll=ntpath.basename(dll), concommands=entries)
 
 
 def convars(mem: Memory, image: Image, dll: str) -> ConVarsDocument:
     """The convar queue, as `concommands` decodes the command queue."""
     entries = [decode_convar(mem, entry, image) for entry in _queue(mem, image, "convars")]
-    return ConVarsDocument(module=ntpath.basename(dll), convars=entries)
+    return ConVarsDocument(dll=ntpath.basename(dll), convars=entries)
 
 
 def _queue(mem: Memory, image: Image, kind: str) -> tuple[int, ...]:

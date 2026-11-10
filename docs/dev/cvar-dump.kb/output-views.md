@@ -61,13 +61,13 @@ as hex.
 
 The `convars` and `concommands` aggregates have one row per declaration,
 lossless and diffable; a DLL's patch shows as its rows. Columns, convars:
-module, name, type, version, default, min, max, flags, help; commands: module,
+dll, name, type, version, default, min, max, flags, help; commands: dll,
 name, flags, help. An absent value is `\N`. Rows the engine never shows make a
 diff slightly over-sensitive, never blind.
 
 Queue position is never stored as a value, in the JSON or the TSV: it is
 position. A document's list is in queue order, and an aggregate's rows are
-sorted by module, then in queue order, so a row's ordinal among its module's
+sorted by dll, then in queue order, so a row's ordinal among its dll's
 rows is its queue index, and a test checks the two match. Queue order follows
 link order, so a stored index would make one declaration added early in a DLL
 renumber every later row (~1000 in `server.dll`); as position, it is one

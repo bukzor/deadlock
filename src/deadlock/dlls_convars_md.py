@@ -38,7 +38,7 @@ def _item(row: dlls_md.Row) -> str:
 
 def page(tsv: str) -> str:
     header, rows = parse(tsv)
-    assert header == ["module", "name", "type", "version", "default", "min", "max", "flags", "help"], header
+    assert header == ["dll", "name", "type", "version", "default", "min", "max", "flags", "help"], header
     return dlls_md.page("Console variables", "data/dlls/convars.tsv", rows, _item)
 
 

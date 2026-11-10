@@ -32,7 +32,7 @@ COMMAND_ANCHORS: Mapping[tuple[str, str], frozenset[str]] = {
     ("server.dll", "citadel_bot_kick"): frozenset({"developmentonly"}),
     ("tier0.dll", "find"): frozenset(),
 }
-"""(module, name) → the flags every copy must have. Anchors and flags as
+"""(dll, name) → the flags every copy must have. Anchors and flags as
 ``validation.md`` states them; ``bot_kick_all`` has no stated flags."""
 
 CONVAR_ANCHORS: Mapping[tuple[str, str], frozenset[str]] = {
@@ -44,8 +44,8 @@ QUEUE_DLLS = ("client.dll", "engine2.dll", "server.dll")
 """The DLLs that must each yield a queue of each kind (``validation.md``, Coverage)."""
 
 _HEADERS = {
-    "concommands": ["module", "name", "flags", "help"],
-    "convars": ["module", "name", "type", "version", "default", "min", "max", "flags", "help"],
+    "concommands": ["dll", "name", "flags", "help"],
+    "convars": ["dll", "name", "type", "version", "default", "min", "max", "flags", "help"],
 }
 
 
@@ -60,7 +60,7 @@ def check_strides(learned: object) -> None:
 
 
 def check_concommands(table: Table) -> Table:
-    """The anchor rows of ``concommands.tsv``, in its order, as ``module name
+    """The anchor rows of ``concommands.tsv``, in its order, as ``dll name
     flags``; asserts the anchors and the coverage."""
     return _check_queue(table, _HEADERS["concommands"], COMMAND_ANCHORS)
 
@@ -78,10 +78,10 @@ def _check_queue(table: Table, expected: list[str], anchors: Mapping[tuple[str, 
     flags = header.index("flags")
     found = [[row[0], row[1], row[flags]] for row in rows if (row[0], row[1]) in anchors]
     assert {(row[0], row[1]) for row in found} == set(anchors), ("anchors missing", found)
-    for module, name, names in found:
-        required = anchors[module, name]
-        assert required <= set(unlist_cell(names)), (module, name, "lacks", sorted(required), names)
-    return ["module", "name", "flags"], found
+    for dll, name, names in found:
+        required = anchors[dll, name]
+        assert required <= set(unlist_cell(names)), (dll, name, "lacks", sorted(required), names)
+    return ["dll", "name", "flags"], found
 
 
 def main() -> None:

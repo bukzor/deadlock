@@ -2,12 +2,12 @@
 
     python -m deadlock.dlls_concommands data/dlls/concommands/<dll>.json ... > data/dlls/concommands.tsv
 
-One row per command declaration, duplicates kept: ``module`` (the document's
+One row per command declaration, duplicates kept: ``dll`` (the document's
 own), ``name``, ``flags`` (space-separated names), ``help`` (``\\N`` for a null
 help pointer, an empty cell for ``""``). Cells as ``deadlock.dlls_tsv``.
 
-Rows are sorted by module, then kept in queue order, so a row's ordinal among
-its module's rows is its queue index (``docs/dev/cvar-dump.kb/output-views.md``):
+Rows are sorted by `dll`, then kept in queue order, so a row's ordinal among
+its dll's rows is its queue index (``docs/dev/cvar-dump.kb/output-views.md``):
 one declaration added early in a DLL is one added row, not a renumbering.
 """
 
@@ -35,8 +35,8 @@ def _is_concommand(value: object) -> TypeGuard[ConCommand]:
 def is_concommands_document(value: object) -> TypeGuard[ConCommandsDocument]:
     return (
         is_str_mapping(value)
-        and set(value) == {"module", "concommands"}
-        and isinstance(value["module"], str)
+        and set(value) == {"dll", "concommands"}
+        and isinstance(value["dll"], str)
         and is_sequence(commands := value["concommands"])
         and all(_is_concommand(c) for c in commands)
     )
@@ -44,15 +44,15 @@ def is_concommands_document(value: object) -> TypeGuard[ConCommandsDocument]:
 
 def table(documents: Mapping[str, ConCommandsDocument]) -> Table:
     """``documents`` keyed by the basename in ``data/dlls.list``, which is each
-    one's ``module``."""
+    one's ``dll``."""
     for dll, d in documents.items():
-        assert d["module"] == dll, (dll, d["module"])
+        assert d["dll"] == dll, (dll, d["dll"])
     rows = [
-        [d["module"], dlls_tsv.cell(c["name"]), dlls_tsv.list_cell(c["flags"]), dlls_tsv.cell(c["help"])]
-        for d in sorted(documents.values(), key=lambda d: d["module"])
+        [d["dll"], dlls_tsv.cell(c["name"]), dlls_tsv.list_cell(c["flags"]), dlls_tsv.cell(c["help"])]
+        for d in sorted(documents.values(), key=lambda d: d["dll"])
         for c in d["concommands"]
     ]
-    return ["module", "name", "flags", "help"], rows
+    return ["dll", "name", "flags", "help"], rows
 
 
 def main() -> None:

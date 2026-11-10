@@ -42,7 +42,7 @@ class DescribeConcommands:
         _ = fake.queue(COMMAND, [fake.entry(b"b"), fake.entry(b"a", b"some help"), fake.entry(b"c")])
         mem, image = fake.load()
         assert concommands(mem, image, DLL) == {
-            "module": "Server.DLL",
+            "dll": "Server.DLL",
             "concommands": [
                 {"name": "b", "help": None, "flags": ()},
                 {"name": "a", "help": "some help", "flags": ()},
@@ -54,7 +54,7 @@ class DescribeConcommands:
         fake = Fake()
         _ = fake.queue(CONVAR, names(fake, b"cv", 3))
         mem, image = fake.load()
-        assert concommands(mem, image, "x.dll") == {"module": "x.dll", "concommands": []}
+        assert concommands(mem, image, "x.dll") == {"dll": "x.dll", "concommands": []}
 
     def it_raises_on_a_second_command_queue(self):
         fake = Fake()
@@ -81,7 +81,7 @@ class DescribeConvars:
         fake.poke(second + 120, "<h", 9)
         mem, image = fake.load()
         assert convars(mem, image, DLL) == {
-            "module": "Server.DLL",
+            "dll": "Server.DLL",
             "convars": [
                 {"name": "b", "help": None, "flags": (), **ABSENT},
                 {"name": "a", "help": "some help", "flags": (), **ABSENT, "type": "float32", "version": 3, "default": 0.25},
@@ -93,7 +93,7 @@ class DescribeConvars:
         fake = Fake()
         _ = fake.queue(COMMAND, names(fake, b"cc", 2))
         mem, image = fake.load()
-        assert convars(mem, image, "x.dll") == {"module": "x.dll", "convars": []}
+        assert convars(mem, image, "x.dll") == {"dll": "x.dll", "convars": []}
 
     def it_raises_on_a_second_convar_queue(self):
         fake = Fake()
@@ -164,9 +164,9 @@ class DescribeStrides:
 
 class DescribeDumps:
     def it_keeps_key_order_and_unicode_one_value_per_line(self):
-        text = dumps({"module": "x.dll", "concommands": [{"name": "a", "help": "café", "flags": ("cheat",)}]})
+        text = dumps({"dll": "x.dll", "concommands": [{"name": "a", "help": "café", "flags": ("cheat",)}]})
         assert text == (
-            '{\n  "module": "x.dll",\n  "concommands": [\n    {\n      "name": "a",\n'
+            '{\n  "dll": "x.dll",\n  "concommands": [\n    {\n      "name": "a",\n'
             '      "help": "café",\n      "flags": [\n        "cheat"\n      ]\n    }\n  ]\n}\n'
         )
         assert json.loads(text)["concommands"][0]["help"] == "café"

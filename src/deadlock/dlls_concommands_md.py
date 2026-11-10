@@ -19,7 +19,7 @@ def _item(row: dlls_md.Row) -> str:
 
 def page(tsv: str) -> str:
     header, rows = parse(tsv)
-    assert header == ["module", "name", "flags", "help"], header
+    assert header == ["dll", "name", "flags", "help"], header
     return dlls_md.page("Console commands", "data/dlls/concommands.tsv", rows, _item)
 
 

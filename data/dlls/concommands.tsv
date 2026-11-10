@@ -1,4 +1,4 @@
-module	name	flags	help
+dll	name	flags	help
 animationsystem.dll	ik_debug_fabrik_backwards_iteration_toggle	linked_concommand developmentonly defensive	
 animationsystem.dll	ik_debug_fabrik_forwards_iteration_toggle	linked_concommand developmentonly defensive	
 animationsystem.dll	cl_particles_dumplist	linked_concommand developmentonly defensive	Dump all new particles, optional name substring.

@@ -1,4 +1,4 @@
-module	name	type	version	default	min	max	flags	help
+dll	name	type	version	default	min	max	flags	help
 animationsystem.dll	animgraph_debug_max_poseop_count	bool	0	\N	\N	\N	developmentonly reference defensive	\N
 animationsystem.dll	animgraph_force_full_network_updates	bool	0	false	\N	\N	developmentonly replicated defensive	\N
 animationsystem.dll	animgraph_enable_dirty_netvar_optimization	bool	0	true	\N	\N	developmentonly replicated defensive	\N

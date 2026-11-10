@@ -100,10 +100,10 @@ def _compare[R: (ConVar, ConCommand)](
 
 def check(registry: RegistryDocument, convars: ConVarsDocument, concommands: ConCommandsDocument) -> list[str]:
     """The summary lines of one DLL's check; ``AssertionError`` on any mismatch."""
-    module = registry["module"]
-    assert convars["module"] == concommands["module"] == module, (module, convars["module"], concommands["module"])
-    assert module in PER_DLL_FLAG, ("no per-DLL flag known", module)
-    per_dll = PER_DLL_FLAG[module]
+    dll = registry["dll"]
+    assert convars["dll"] == concommands["dll"] == dll, (dll, convars["dll"], concommands["dll"])
+    assert dll in PER_DLL_FLAG, ("no per-DLL flag known", dll)
+    per_dll = PER_DLL_FLAG[dll]
     once_convars, bad_convars = _compare(
         "convars", convars["convars"], registry["convars"], lambda e, r: convar_mismatches(e, r, per_dll)
     )
@@ -121,9 +121,9 @@ def check(registry: RegistryDocument, convars: ConVarsDocument, concommands: Con
         )
     ]
     return [
-        f"{module} registry: Init stopped by {registry['stopped_by']}; tier0 state flags on {stateful} convar",
+        f"{dll} registry: Init stopped by {registry['stopped_by']}; tier0 state flags on {stateful} convar",
         *(
-            f"{module} {kind}: queue {q}, registry {r}, once {o}{f' (reference {references})' if kind == 'convars' else ''}, all match"
+            f"{dll} {kind}: queue {q}, registry {r}, once {o}{f' (reference {references})' if kind == 'convars' else ''}, all match"
             for kind, q, r, o in counts
         ),
     ]
@@ -132,10 +132,10 @@ def check(registry: RegistryDocument, convars: ConVarsDocument, concommands: Con
 def is_registry_document(value: object) -> TypeGuard[RegistryDocument]:
     return (
         is_str_mapping(value)
-        and set(value) == {"module", "stopped_by", "convars", "concommands"}
+        and set(value) == {"dll", "stopped_by", "convars", "concommands"}
         and (value["stopped_by"] is None or isinstance(value["stopped_by"], str))
-        and is_convars_document({"module": value["module"], "convars": value["convars"]})
-        and is_concommands_document({"module": value["module"], "concommands": value["concommands"]})
+        and is_convars_document({"dll": value["dll"], "convars": value["convars"]})
+        and is_concommands_document({"dll": value["dll"], "concommands": value["concommands"]})
     )
 
 

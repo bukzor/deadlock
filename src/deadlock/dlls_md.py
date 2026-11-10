@@ -1,6 +1,6 @@
 """Markdown help pages over the ``data/dlls/<facet>.tsv`` declaration tables.
 
-A page is a contents list, then one section per module: each declaration as a
+A page is a contents list, then one section per DLL: each declaration as a
 list item, its head line, then its help, one source line per rendered line
 (blank lines and leading/trailing whitespace dropped). Items sort by name; a
 name declared more than once keeps one item per declaration, in queue order.
@@ -55,15 +55,15 @@ type Row = Sequence[str]
 
 
 def page(title: str, source: str, rows: Sequence[Row], render: Callable[[Row], str]) -> str:
-    """The page over ``rows`` (module first, name second, grouped by module), each item by ``render``."""
-    modules = [(module, list(group)) for module, group in groupby(rows, key=lambda row: row[0])]
-    assert len({module for module, _ in modules}) == len(modules), "rows not grouped by module"
+    """The page over ``rows`` (dll first, name second, grouped by dll), each item by ``render``."""
+    groups = [(dll, list(group)) for dll, group in groupby(rows, key=lambda row: row[0])]
+    assert len({dll for dll, _ in groups}) == len(groups), "rows not grouped by dll"
     out = [
         f"# {title}\n",
-        f"{len(rows)} declarations in {len(modules)} modules, from `{source}`.\n",
-        *(f"- [{module}](#{_anchor(module)}) ({len(group)})" for module, group in modules),
+        f"{len(rows)} declarations in {len(groups)} DLLs, from `{source}`.\n",
+        *(f"- [{dll}](#{_anchor(dll)}) ({len(group)})" for dll, group in groups),
     ]
-    for module, group in modules:
-        out += ["", f"## {module}\n"]
+    for dll, group in groups:
+        out += ["", f"## {dll}\n"]
         out += [render(row) for row in sorted(group, key=lambda row: row[1])]
     return "".join(f"{line}\n" for line in out)

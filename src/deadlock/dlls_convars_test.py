@@ -7,7 +7,7 @@ from .dlls_convars import TYPES, is_convars_document, table, uncell_value, value
 from .dlls_tsv import uncell, unlist_cell
 from .sparse import parse, render
 
-HEADER = ["module", "name", "type", "version", "default", "min", "max", "flags", "help"]
+HEADER = ["dll", "name", "type", "version", "default", "min", "max", "flags", "help"]
 
 
 def _convar(
@@ -27,7 +27,7 @@ def _convar(
 
 
 SERVER = ConVarsDocument(
-    module="server.dll",
+    dll="server.dll",
     convars=[
         _convar("zeta", "float32", 0.02, 0.0, 1.0, help="Seconds.\n\tSee also: x", flags=["replicated", "cheat"]),
         _convar("alpha", "string", "", version=3, help=None),
@@ -36,14 +36,14 @@ SERVER = ConVarsDocument(
     ],
 )
 CLIENT = ConVarsDocument(
-    module="client.dll",
+    dll="client.dll",
     convars=[
         _convar("cl_vec", "vector3", [0.5, -0.0, 1e-07], flags=["flag_40"]),
         _convar("cl_name", "string", "tab\there\\N"),
         _convar("cl_on", "bool", True),
     ],
 )
-QT = ConVarsDocument(module="Qt5Core.dll", convars=[])
+QT = ConVarsDocument(dll="Qt5Core.dll", convars=[])
 
 VALUES: list[tuple[str, ConVarValue | None]] = [
     ("bool", True),
@@ -154,13 +154,13 @@ class DescribeTable:
         documents = {"server.dll": SERVER, "client.dll": CLIENT}
         _, rows = table(documents)
         for dll, document in documents.items():
-            ordinal = [row[1] for row in rows if row[0] == document["module"]]
+            ordinal = [row[1] for row in rows if row[0] == document["dll"]]
             assert ordinal == [c["name"] for c in document["convars"]], dll
 
     def it_reads_back_to_the_documents_of_every_dll_with_a_queue(self):
         documents = {"server.dll": SERVER, "Qt5Core.dll": QT, "client.dll": CLIENT}
         read: dict[str, list[ConVar]] = {}
-        for module, name, type, version, default, min, max, flags, help in parse(render(table(documents)))[1]:
+        for dll, name, type, version, default, min, max, flags, help in parse(render(table(documents)))[1]:
             convar = ConVar(
                 name=str(uncell(name)),
                 help=uncell(help),
@@ -171,7 +171,7 @@ class DescribeTable:
                 min=uncell_value(type, min),
                 max=uncell_value(type, max),
             )
-            read.setdefault(module, []).append(convar)
+            read.setdefault(dll, []).append(convar)
         assert read == {"client.dll": CLIENT["convars"], "server.dll": SERVER["convars"]}
 
     def it_rejects_a_document_for_another_dll(self):
@@ -180,11 +180,11 @@ class DescribeTable:
 
 
 def _plain(document: ConVarsDocument) -> dict[str, object]:
-    return {"module": document["module"], "convars": [dict(c) for c in document["convars"]]}
+    return {"dll": document["dll"], "convars": [dict(c) for c in document["convars"]]}
 
 
 def _with(**fields: object) -> dict[str, object]:
-    return {"module": "a.dll", "convars": [{**_convar("x"), **fields}]}
+    return {"dll": "a.dll", "convars": [{**_convar("x"), **fields}]}
 
 
 class DescribeIsConvarsDocument:
@@ -196,11 +196,11 @@ class DescribeIsConvarsDocument:
         "value",
         [
             [],
-            {"module": "a.dll"},
-            {"module": 1, "convars": []},
-            {"module": "a.dll", "convars": {}},
-            {"module": "a.dll", "convars": [], "extra": 0},
-            {"module": "a.dll", "convars": [{k: v for k, v in _convar("x").items() if k != "version"}]},
+            {"dll": "a.dll"},
+            {"dll": 1, "convars": []},
+            {"dll": "a.dll", "convars": {}},
+            {"dll": "a.dll", "convars": [], "extra": 0},
+            {"dll": "a.dll", "convars": [{k: v for k, v in _convar("x").items() if k != "version"}]},
             _with(extra=0),
             _with(name=1),
             _with(help=1),

@@ -8,7 +8,7 @@ from .registry_check import check, command_mismatches, convar_mismatches
 
 def _with(entry: ConVar, **fields: object) -> ConVar:
     """`entry` with `fields` replaced, checked to still be a `ConVar`."""
-    document = {"module": "", "convars": [{**entry, **fields}]}
+    document = {"dll": "", "convars": [{**entry, **fields}]}
     assert is_convars_document(document), fields
     return document["convars"][0]
 
@@ -36,12 +36,12 @@ def _documents(
     records: list[ConVar],
     commands: list[ConCommand],
     command_records: list[ConCommand],
-    module: str = "server.dll",
+    dll: str = "server.dll",
 ) -> tuple[RegistryDocument, ConVarsDocument, ConCommandsDocument]:
     return (
-        RegistryDocument(module=module, stopped_by="IPulseSystem_001", convars=records, concommands=command_records),
-        ConVarsDocument(module=module, convars=convars),
-        ConCommandsDocument(module=module, concommands=commands),
+        RegistryDocument(dll=dll, stopped_by="IPulseSystem_001", convars=records, concommands=command_records),
+        ConVarsDocument(dll=dll, convars=convars),
+        ConCommandsDocument(dll=dll, concommands=commands),
     )
 
 
@@ -173,8 +173,8 @@ class DescribeCheck:
     def it_rejects_documents_of_different_modules(self):
         registry, _, concommands = _documents([], [], [], [])
         with pytest.raises(AssertionError):
-            _ = check(registry, ConVarsDocument(module="client.dll", convars=[]), concommands)
+            _ = check(registry, ConVarsDocument(dll="client.dll", convars=[]), concommands)
 
     def it_rejects_a_dll_without_a_per_dll_flag(self):
         with pytest.raises(AssertionError, match="engine2"):
-            _ = check(*_documents([], [], [], [], module="engine2.dll"))
+            _ = check(*_documents([], [], [], [], dll="engine2.dll"))

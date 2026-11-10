@@ -3,8 +3,8 @@ import pytest
 from .dlls_check import COMMAND_ANCHORS, CONVAR_ANCHORS, QUEUE_DLLS, check_concommands, check_convars, check_strides
 from .sparse import Table
 
-HEADER = ["module", "name", "flags", "help"]
-CONVARS_HEADER = ["module", "name", "type", "version", "default", "min", "max", "flags", "help"]
+HEADER = ["dll", "name", "flags", "help"]
+CONVARS_HEADER = ["dll", "name", "type", "version", "default", "min", "max", "flags", "help"]
 
 
 def _learned(*kinds: str | None) -> list[object]:
@@ -28,8 +28,8 @@ def _convar_rows(*extra: list[str]) -> list[list[str]]:
     return rows + list(extra)
 
 
-def _convar(module: str, name: str, flags: str) -> list[str]:
-    return [module, name, "float32", "0", "1.0", "\\N", "\\N", flags, ""]
+def _convar(dll: str, name: str, flags: str) -> list[str]:
+    return [dll, name, "float32", "0", "1.0", "\\N", "\\N", flags, ""]
 
 
 class DescribeCheckStrides:
@@ -100,7 +100,7 @@ class DescribeCheckConcommands:
 
     def it_rejects_another_header(self):
         with pytest.raises(AssertionError):
-            _ = check_concommands((["dll", "name", "flags", "help"], _rows()))
+            _ = check_concommands((["module", "name", "flags", "help"], _rows()))
 
 
 LANE_SWAP = "citadel_lane_swap_available_duration_prematch"

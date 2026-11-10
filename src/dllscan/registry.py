@@ -262,7 +262,7 @@ def read_back(dll: str, dirs: Sequence[str]) -> RegistryDocument:
 
     get_convar, get_command = (_method(mem, cvar, slot) for slot in (GET_CONVAR_DATA, GET_CONCOMMAND_DATA))
     return RegistryDocument(
-        module=ntpath.basename(dll),
+        dll=ntpath.basename(dll),
         stopped_by=placeholders.tripped(mem),
         convars=[convar_record(mem, d) for d in walk(lambda i: win32.call(get_convar, cvar, i))],
         concommands=[command_record(mem, d) for d in walk(lambda i: win32.call(get_command, cvar, i))],
