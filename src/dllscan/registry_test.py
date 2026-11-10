@@ -3,7 +3,7 @@ import struct
 import pytest
 
 from .memory import Memory, Segments
-from .registry import BLOCK, OBJECT, OBJECTS, SLOTS, MAX_INDEX, Placeholders, block, command_record, convar_record, walk
+from .registry import BLOCK, OBJECT, OBJECTS, SLOTS, MAX_INDEX, Placeholders, block, command_record, convar_record, stopped_by, walk
 from .shape import ShapeError
 
 BASE = 0x7000_0000
@@ -147,3 +147,19 @@ class DescribeWalk:
     def it_fails_without_an_end(self):
         with pytest.raises(AssertionError):
             _ = walk(lambda i: 0 if i == MAX_INDEX else i + 1)
+
+
+class DescribeStoppedBy:
+    def it_names_the_placeholder_whose_trap_stopped_init(self):
+        assert stopped_by(OSError("exception: illegal instruction"), "B001") == "B001"
+
+    def it_reads_a_return_as_no_stop(self):
+        assert stopped_by(None, None) is None
+
+    def it_rejects_a_fault_no_placeholder_explains(self):
+        with pytest.raises(AssertionError, match="outside every placeholder"):
+            _ = stopped_by(OSError("exception: access violation reading 0x0"), None)
+
+    def it_rejects_a_trap_init_returned_from(self):
+        with pytest.raises(AssertionError, match="returned after a trap"):
+            _ = stopped_by(None, "B001")

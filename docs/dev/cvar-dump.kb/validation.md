@@ -38,7 +38,10 @@ Run on demand, and on each new build, not as part of `all.do`:
   default, min, max, version, help, and flags plus the per-DLL flag
   registration adds (`deadlock.registry_check` states the rule, `reference`
   declarations included). Checks the value decoding against the engine, not
-  against our reading of the SDK.
+  against our reading of the SDK. `Init` must stop at a placeholder's trap or
+  return; a fault no placeholder explains fails the readback
+  (`dllscan.registry.stopped_by`), since the registry could then hold a
+  partial replay.
 - **Oracle** (`redo data/dlls.check/cvarlist`): the engine's own `cvarlist`
   (`capture-approach.kb/runtime-cvarlist.md`), captured fresh on a dedicated
   server and on a client (`../game-runtime.kb/cvarlist-capture.md`), against

@@ -223,12 +223,25 @@ def _method(mem: Memory, obj: int, slot: int) -> int:
     return fn
 
 
-def _call_until_stopped(fn: int, *args: int) -> None:
-    """Call `fn`; a CPU exception stops it, and that is expected."""
+def _call_until_stopped(fn: int, *args: int) -> OSError | None:
+    """Call `fn`; the CPU exception that stopped it, or None if it returned."""
     try:
         _ = win32.call(fn, *args)
-    except OSError:
-        pass
+    except OSError as fault:
+        return fault
+    return None
+
+
+def stopped_by(fault: OSError | None, tripped: str | None) -> str | None:
+    """The placeholder whose trap stopped `Init` (`tripped`), or None if `Init`
+    returned. A fault no placeholder explains, or a trap `Init` returned from,
+    stopped it somewhere this readback can't account for, so the registry
+    could hold a partial replay: an `AssertionError`, not a document."""
+    if fault is None:
+        assert tripped is None, ("Init returned after a trap", tripped)
+        return None
+    assert tripped is not None, ("Init faulted outside every placeholder", str(fault))
+    return tripped
 
 
 def read_back(dll: str, dirs: Sequence[str]) -> RegistryDocument:
@@ -256,14 +269,14 @@ def read_back(dll: str, dirs: Sequence[str]) -> RegistryDocument:
 
     app = win32.call(win32.proc_address(module, "CreateInterface"), interface.encode(), 0)
     assert app, interface
-    _call_until_stopped(_method(mem, app, CONNECT), app, win32.callback(serve))
+    _ = _call_until_stopped(_method(mem, app, CONNECT), app, win32.callback(serve))  # client's faults on a placeholder's 0
     win32.write(placeholders.mode, b"\1")
-    _call_until_stopped(_method(mem, app, INIT), app)
+    stopped = stopped_by(_call_until_stopped(_method(mem, app, INIT), app), placeholders.tripped(mem))
 
     get_convar, get_command = (_method(mem, cvar, slot) for slot in (GET_CONVAR_DATA, GET_CONCOMMAND_DATA))
     return RegistryDocument(
         dll=ntpath.basename(dll),
-        stopped_by=placeholders.tripped(mem),
+        stopped_by=stopped,
         convars=[convar_record(mem, d) for d in walk(lambda i: win32.call(get_convar, cvar, i))],
         concommands=[command_record(mem, d) for d in walk(lambda i: win32.call(get_command, cvar, i))],
     )
