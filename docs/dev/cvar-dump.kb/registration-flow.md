@@ -37,6 +37,20 @@ like any other (DumpSource2 dumps 3055 such convar lines for 6848), and
 `gamedll` (0x4, server) or `clientdll` (client) to every registration but a
 `reference` declaration's (6860, `validation.md`, "Registry readback").
 
+Much of `developmentonly` is added at declaration time, and depends on the
+process's command line. Each static initializer passes its flags through
+`SanitiseConVarFlags` (s2sdk `convar.cpp:234`). Unless the command line has
+`-tools`, it adds `developmentonly defensive` to any declaration carrying
+none of `developmentonly archive userinfo cheat release server_can_execute
+client_can_execute clientcmd_can_execute`. s2sdk compiles this out, but the
+retail binary does it. On 6860, adding `-tools` to the scanning process's
+command line drops `engine2`'s `developmentonly` declarations from 187 to 58
+convars and from 105 to 14 commands; without it the documents match the
+store byte for byte (`../probes/flags_cmdline.py`). So the queues hold flags
+as a launch without `-tools` declares them, the view the game's own
+`cvarlist` shows. The scanner's command line can't carry the token: its
+arguments are a subcommand and Windows paths, and argparse rejects options.
+
 Entry sizes on 6848 and 6851, measured from the queues: `ConVarRegList::Entry_t`
 160 bytes, `ConCommandRegList::Entry_t` 64 (`capture-approach.kb/queue-shape-scan.md`).
 
