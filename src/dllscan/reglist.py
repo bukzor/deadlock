@@ -9,18 +9,16 @@ walk from it back is the replay order. An entry fits if it starts with a name
 pointer and a help pointer into the image and ends with a ref (the `ConVar` or
 `ConCommand` that queued it) that passes its kind's `RefTest`.
 
-Two kinds of misfit, kept apart:
-
-- `None`: this candidate is not a queue. The search tries every pointer in the
-  writable sections and expects nearly all of them to misfit.
-- `ShapeError`: the DLL breaks what the scan relies on, so its result would be
-  wrong rather than empty: a writable section unreadable, or a head that more
-  than one stride fits.
+`walk` returns None for a block chain that misfits. `alloclog.locate` walks
+the one chain the allocator log names, and fails on a misfit. `find_queues`,
+the shape scan that only tier0 needs, searches every pointer in the writable
+sections and expects nearly all of them to misfit; an unreadable writable
+section is a `ShapeError`.
 """
 
 import re
 import struct
-from collections.abc import Callable, Iterable, Iterator, Mapping
+from collections.abc import Callable, Iterator, Mapping
 from ctypes import sizeof
 from dataclasses import dataclass
 
@@ -32,16 +30,13 @@ from .shape import ShapeError
 BLOCK = 100
 """Entries per block (`m_Entries[100]`)."""
 
-_ENTRIES = 8
+ENTRIES = 8
 """`m_Entries`' offset in a block: `u32 m_nSize`, padded to the entries' 8-byte alignment."""
 _NAME, _HELP = (offset_of(CVarCreationBase_t, f) for f in ("m_pszName", "m_pszHelpString"))
 """Where an entry of either kind holds its name and help pointers."""
 
 STRIDES = {"convars": sizeof(ConVarRegList_Entry_t), "concommands": sizeof(ConCommandRegList_Entry_t)}
-"""`sizeof(Entry_t)` per queue kind, from `convar_h`; `learn_strides` re-derives them from `server.dll`."""
-
-CANDIDATE_STRIDES = range(16, 1024, 8)
-"""The strides `learn_strides` tries."""
+"""`sizeof(Entry_t)` per queue kind, from `convar_h`."""
 
 NAME = re.compile(r"[\x21-\x7e]{1,127}")
 """A convar or command name: printable ASCII, no spaces, 1 to 127 bytes."""
@@ -102,11 +97,11 @@ def walk(mem: Memory, root: int, stride: int, image: Image, ref_test: RefTest) -
         if block in seen or size is None or not 0 < size <= BLOCK or (seen and size != BLOCK):
             return None
         seen.add(block)
-        for entry in range(block + _ENTRIES, block + _ENTRIES + size * stride, stride):
+        for entry in range(block + ENTRIES, block + ENTRIES + size * stride, stride):
             if not _fits(mem, entry, stride, image, ref_test):
                 return None
             entries.append(entry)
-        prev = mem.u64(block + _ENTRIES + BLOCK * stride)
+        prev = mem.u64(block + ENTRIES + BLOCK * stride)
         if prev is None:
             return None
         block = prev
@@ -134,23 +129,6 @@ def find_queues(mem: Memory, image: Image, kind: str) -> list[Queue]:
     return [Queue(head, stride, e) for head, root in _candidates(mem, image) if (e := walk(mem, root, stride, image, ref_test))]
 
 
-def learn_strides(mem: Memory, image: Image, strides: Iterable[int] = CANDIDATE_STRIDES) -> list[Queue]:
-    """Each head that exactly one stride fits over more than one block, with that
-    stride (pass 1 of `queue-shape-scan.md`). A single block can't fix a stride,
-    so single-block queues are left out; a head two strides fit is a `ShapeError`.
-    No kind is known yet, so every stride gets `owned_ref`, which every entry of
-    both kinds' multi-block queues passes (6860). A heap-owned command in such a
-    queue would hide it, and the strides check then fails rather than misleads."""
-    tried = tuple(strides)
-    found: list[Queue] = []
-    for head, root in _candidates(mem, image):
-        fits = [Queue(head, s, e) for s in tried if (e := walk(mem, root, s, image, owned_ref)) and len(e) > BLOCK]
-        if len(fits) > 1:
-            raise ShapeError("head fits more than one stride", hex(head), [q.stride for q in fits])
-        found += fits
-    return found
-
-
 def _candidates(mem: Memory, image: Image) -> Iterator[tuple[int, int]]:
     """(slot, root) for each aligned qword in a writable section that points
     outside the image at something whose first entry has a name."""
@@ -161,6 +139,6 @@ def _candidates(mem: Memory, image: Image) -> Iterator[tuple[int, int]]:
         for i, (root,) in enumerate(struct.iter_unpack("<Q", data[: len(data) // 8 * 8])):
             if root < _MIN_HEAP or root % 8 or root in image.span:
                 continue
-            name = mem.u64(root + _ENTRIES + _NAME)
+            name = mem.u64(root + ENTRIES + _NAME)
             if name is not None and name_at(mem, name, image) is not None:
                 yield section.span.start + 8 * i, root

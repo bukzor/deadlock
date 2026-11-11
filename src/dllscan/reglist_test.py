@@ -3,7 +3,7 @@ import struct
 import pytest
 
 from .memory import Memory
-from .reglist import BLOCK, REF_TESTS, STRIDES, UNREGISTERED, Queue, RefTest, find_queues, learn_strides, name_at, owned_ref
+from .reglist import BLOCK, REF_TESTS, STRIDES, UNREGISTERED, Queue, RefTest, find_queues, name_at, owned_ref
 from .reglist import unregistered_command_ref, walk
 from .reglist_fake import DATA, HEAP, RDATA, Fake
 from .shape import ShapeError
@@ -219,43 +219,3 @@ class DescribeFindQueues:
         read = mem.read
         with pytest.raises(ShapeError):
             _ = find_queues(Memory(lambda addr, n: None if addr == DATA else read(addr, n)), image, "concommands")
-
-
-class DescribeLearnStrides:
-    def it_learns_a_stride_that_differs_from_the_pin(self):
-        fake = Fake()
-        head, blocks = fake.queue(168, [fake.entry() for _ in range(BLOCK + 1)])
-        mem, image = fake.load()
-        assert learn_strides(mem, image) == [Queue(head, 168, addresses(blocks, [1, 100], 168))]
-        assert 168 not in STRIDES.values()
-
-    def it_owner_checks_whatever_the_stride(self):
-        fake = Fake()
-        entries = [fake.entry() for _ in range(BLOCK + 1)]
-        entries[3] = fake.entry(ref=fake.heap_ref())
-        _ = fake.queue(COMMAND, entries)
-        mem, image = fake.load()
-        assert learn_strides(mem, image) == []
-
-    def it_ignores_a_single_block_queue(self):
-        fake = Fake()
-        _ = fake.queue(CONVAR, [fake.entry() for _ in range(BLOCK)])
-        mem, image = fake.load()
-        assert learn_strides(mem, image) == []
-
-    def it_raises_on_a_head_that_two_strides_fit(self):
-        """Every qword of the blocks points at a name in `.data`, so any offset
-        passes as name, help or ref; only the `m_pPrev` slots tell strides apart.
-        Stride 40's `m_pPrev` lands at +16 of a stride-48 entry, which is unchecked."""
-        fake = Fake()
-        name = fake.qword(int.from_bytes(b"x\0", "little"))
-        blocks = [HEAP, HEAP + 0x100000]
-        for block, prev in zip(blocks, [blocks[1], 0]):
-            raw = bytearray(struct.pack("<Q", BLOCK) + struct.pack("<Q", name) * (BLOCK * 48 // 8) + bytes(8))
-            for stride in (40, 48):
-                struct.pack_into("<Q", raw, 8 + BLOCK * stride, prev)
-            fake.heap[block] = raw
-        _ = fake.qword(blocks[0])
-        mem, image = fake.load()
-        with pytest.raises(ShapeError):
-            _ = learn_strides(mem, image)

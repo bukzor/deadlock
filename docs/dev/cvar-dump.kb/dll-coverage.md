@@ -25,9 +25,8 @@ loaded, since a hung load leaves an unkillable process behind. A timeout fails
 the build, and the fix is a new exclusion. A DLL that loads and yields no
 queue is accepted: on 6860, 8 of the 43 `ok` DLLs whose load includes tier0
 (`bugreporter_filequeue`, `netgraph_subtool`, `p4lib`, `panorama_text_pango`,
-`soundviewer_subtool`, `valve_avi`, `valve_webm`, `valve_wmf`). Shape alone
-can't tell that from a missed queue, so the oracle in `validation.md` is the
-backstop. On 6860 the allocator log settles it: none of the 8 allocates a
+`soundviewer_subtool`, `valve_avi`, `valve_webm`, `valve_wmf`). Each scan
+observes that, rather than failing to find a queue: none of the 8 allocates a
 queue block while loading (`capture-approach.kb/allocator-hook.md`).
 
 Loading a DLL also loads its imports, so a DLL importing an excluded one

@@ -2,14 +2,9 @@
 run by ``data/dlls.check/*.do``. Each fails with an ``AssertionError`` naming
 what is wrong, which fails the build.
 
-    python -m deadlock.dlls_check strides STRIDES.json         # no output
     python -m deadlock.dlls_check concommands concommands.tsv  # the anchor rows
     python -m deadlock.dlls_check convars convars.tsv          # the anchor rows
 
-- ``strides``: ``server.dll``'s ``dllscan strides`` output labels each pinned
-  kind on exactly one queue. ``dllscan`` already fails if the strides moved or
-  an anchor sits in the other kind's queue; this adds that the anchors are
-  there at all, since they decide which stride is which.
 - ``concommands``, ``convars``: each anchor of that kind is in its DLL's
   queue, every copy with the flags it must have, and each of ``QUEUE_DLLS``
   has a queue of that kind.
@@ -19,13 +14,8 @@ import sys
 from collections.abc import Mapping
 from pathlib import Path
 
-import typed_json
-
-from dllscan.reglist import STRIDES
-
 from .dlls_tsv import unlist_cell
 from .sparse import Table, parse, render
-from .types import is_sequence, is_str_mapping
 
 COMMAND_ANCHORS: Mapping[tuple[str, str], frozenset[str]] = {
     ("server.dll", "bot_kick_all"): frozenset(),
@@ -47,16 +37,6 @@ _HEADERS = {
     "concommands": ["dll", "name", "flags", "help"],
     "convars": ["dll", "name", "type", "version", "default", "min", "max", "flags", "help"],
 }
-
-
-def check_strides(learned: object) -> None:
-    """``learned`` (``dllscan strides`` output) labels each ``STRIDES`` kind once."""
-    assert is_sequence(learned), learned
-    kinds: list[object] = []
-    for queue in learned:
-        assert is_str_mapping(queue), queue
-        kinds.append(queue["kind"])
-    assert sorted(map(str, kinds)) == sorted(STRIDES), ("each kind's anchors label one queue", kinds, STRIDES)
 
 
 def check_concommands(table: Table) -> Table:
@@ -86,14 +66,12 @@ def _check_queue(table: Table, expected: list[str], anchors: Mapping[tuple[str, 
 
 def main() -> None:
     match sys.argv[1:]:
-        case ["strides", path]:
-            check_strides(typed_json.loads(Path(path).read_text()))
         case ["concommands", path]:
             _ = sys.stdout.write(render(check_concommands(parse(Path(path).read_text()))))
         case ["convars", path]:
             _ = sys.stdout.write(render(check_convars(parse(Path(path).read_text()))))
         case argv:
-            raise AssertionError("usage: dlls_check {strides|concommands|convars} PATH", argv)
+            raise AssertionError("usage: dlls_check {concommands|convars} PATH", argv)
 
 
 if __name__ == "__main__":

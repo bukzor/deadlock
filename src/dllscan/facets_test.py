@@ -3,23 +3,19 @@ import struct
 
 import pytest
 
-from .facets import ANCHORS, concommands, convars, dumps, load_failed, load_ok, strides
-from .reglist import BLOCK, STRIDES
-from .reglist_fake import Fake
+from .facets import concommands, convars, dumps, load_failed, load_ok
+from .reglist import STRIDES
+from .reglist_fake import Fake, logged
 from .shape import ShapeError
 from .win32 import Win32Error
 
 CONVAR, COMMAND = STRIDES["convars"], STRIDES["concommands"]
 DLL = "C:\\Steam\\Game\\Citadel\\BIN\\Server.DLL"
-LANE_SWAP = b"citadel_lane_swap_available_duration_prematch"
 
 
-def names(fake: Fake, prefix: bytes, n: int, anchor: bytes | None = None):
-    """`n` entries named `<prefix><i>`, the last one named `anchor` if given."""
-    entries = [fake.entry(b"%s%d" % (prefix, i)) for i in range(n)]
-    if anchor is not None:
-        entries[-1] = fake.entry(anchor)
-    return entries
+def names(fake: Fake, prefix: bytes, n: int):
+    """`n` entries named `<prefix><i>`."""
+    return [fake.entry(b"%s%d" % (prefix, i)) for i in range(n)]
 
 
 class DescribeLoadOk:
@@ -38,10 +34,10 @@ class DescribeLoadFailed:
 class DescribeConcommands:
     def it_decodes_the_command_queue_in_order(self):
         fake = Fake()
-        _ = fake.queue(CONVAR, names(fake, b"cv", 3))
-        _ = fake.queue(COMMAND, [fake.entry(b"b"), fake.entry(b"a", b"some help"), fake.entry(b"c")])
+        _, convar_blocks = fake.queue(CONVAR, names(fake, b"cv", 3))
+        _, blocks = fake.queue(COMMAND, [fake.entry(b"b"), fake.entry(b"a", b"some help"), fake.entry(b"c")])
         mem, image = fake.load()
-        assert concommands(mem, image, DLL) == {
+        assert concommands(mem, image, DLL, logged("convars", convar_blocks) + logged("concommands", blocks)) == {
             "dll": "Server.DLL",
             "concommands": [
                 {"name": "b", "help": None, "flags": ()},
@@ -52,17 +48,32 @@ class DescribeConcommands:
 
     def it_is_empty_without_a_command_queue(self):
         fake = Fake()
-        _ = fake.queue(CONVAR, names(fake, b"cv", 3))
+        _, blocks = fake.queue(CONVAR, names(fake, b"cv", 3))
         mem, image = fake.load()
-        assert concommands(mem, image, "x.dll") == {"dll": "x.dll", "concommands": []}
+        assert concommands(mem, image, "x.dll", logged("convars", blocks)) == {"dll": "x.dll", "concommands": []}
 
-    def it_raises_on_a_second_command_queue(self):
+    def it_raises_when_the_log_and_the_queue_disagree(self):
         fake = Fake()
-        _ = fake.queue(COMMAND, names(fake, b"a", 1))
-        _ = fake.queue(COMMAND, names(fake, b"b", 2))
+        _, blocks = fake.queue(COMMAND, names(fake, b"a", 1))
+        fake.data[-8:] = bytes(8)  # the head slot
         mem, image = fake.load()
-        with pytest.raises(ShapeError, match="concommands"):
-            _ = concommands(mem, image, DLL)
+        with pytest.raises(ShapeError, match="concommands head slots"):
+            _ = concommands(mem, image, DLL, logged("concommands", blocks))
+
+    class WhenTier0:
+        def it_scans_for_the_queue_without_a_log(self):
+            fake = Fake()
+            _ = fake.queue(COMMAND, [fake.entry(b"find")])
+            mem, image = fake.load()
+            assert concommands(mem, image, DLL, None)["concommands"] == [{"name": "find", "help": None, "flags": ()}]
+
+        def it_raises_on_a_second_command_queue(self):
+            fake = Fake()
+            _ = fake.queue(COMMAND, names(fake, b"a", 1))
+            _ = fake.queue(COMMAND, names(fake, b"b", 2))
+            mem, image = fake.load()
+            with pytest.raises(ShapeError, match="more than one concommands queue"):
+                _ = concommands(mem, image, DLL, None)
 
 
 ABSENT = {"type": "bool", "version": 0, "default": None, "min": None, "max": None}
@@ -80,7 +91,7 @@ class DescribeConvars:
         fake.poke(second + 31, "<I", int.from_bytes(struct.pack("<f", 0.25), "little"))
         fake.poke(second + 120, "<h", 9)
         mem, image = fake.load()
-        assert convars(mem, image, DLL) == {
+        assert convars(mem, image, DLL, logged("convars", [block])) == {
             "dll": "Server.DLL",
             "convars": [
                 {"name": "b", "help": None, "flags": (), **ABSENT},
@@ -91,75 +102,17 @@ class DescribeConvars:
 
     def it_is_empty_without_a_convar_queue(self):
         fake = Fake()
-        _ = fake.queue(COMMAND, names(fake, b"cc", 2))
+        _, blocks = fake.queue(COMMAND, names(fake, b"cc", 2))
         mem, image = fake.load()
-        assert convars(mem, image, "x.dll") == {"dll": "x.dll", "convars": []}
+        assert convars(mem, image, "x.dll", logged("concommands", blocks)) == {"dll": "x.dll", "convars": []}
 
-    def it_raises_on_a_second_convar_queue(self):
+    def it_raises_on_a_second_convar_queue_without_a_log(self):
         fake = Fake()
         _ = fake.queue(CONVAR, names(fake, b"a", 1))
         _ = fake.queue(CONVAR, names(fake, b"b", 2))
         mem, image = fake.load()
         with pytest.raises(ShapeError, match="more than one convars queue"):
-            _ = convars(mem, image, DLL)
-
-
-class DescribeStrides:
-    def it_labels_the_pinned_strides_by_their_anchors(self):
-        fake = Fake()
-        _ = fake.queue(CONVAR, names(fake, b"cv", BLOCK + 2, LANE_SWAP))
-        _ = fake.queue(COMMAND, names(fake, b"cc", BLOCK + 1, b"bot_kick_all"))
-        mem, image = fake.load()
-        assert strides(mem, image) == [
-            {"stride": CONVAR, "kind": "convars", "entries": BLOCK + 2},
-            {"stride": COMMAND, "kind": "concommands", "entries": BLOCK + 1},
-        ]
-
-    def it_leaves_a_queue_without_anchors_unlabelled(self):
-        fake = Fake()
-        _ = fake.queue(COMMAND, names(fake, b"cc", BLOCK + 1, b"citadel_bot_kick"))
-        _ = fake.queue(CONVAR, names(fake, b"cv", BLOCK + 1))
-        mem, image = fake.load()
-        assert [learned["kind"] for learned in strides(mem, image)] == ["concommands", None]
-
-    def it_raises_when_a_stride_moved(self):
-        fake = Fake()
-        _ = fake.queue(CONVAR + 8, names(fake, b"cv", BLOCK + 1))
-        _ = fake.queue(COMMAND, names(fake, b"cc", BLOCK + 1))
-        mem, image = fake.load()
-        with pytest.raises(ShapeError, match="strides moved"):
-            _ = strides(mem, image)
-
-    def it_raises_when_a_queue_is_missing(self):
-        fake = Fake()
-        _ = fake.queue(CONVAR, names(fake, b"cv", BLOCK + 1))
-        mem, image = fake.load()
-        with pytest.raises(ShapeError, match="strides moved"):
-            _ = strides(mem, image)
-
-    def it_raises_on_an_anchor_in_the_wrong_queue(self):
-        fake = Fake()
-        _ = fake.queue(CONVAR, names(fake, b"cv", BLOCK + 1, b"bot_kick_all"))
-        _ = fake.queue(COMMAND, names(fake, b"cc", BLOCK + 1))
-        mem, image = fake.load()
-        with pytest.raises(ShapeError, match="anchor"):
-            _ = strides(mem, image)
-
-    def it_raises_on_a_queue_with_anchors_of_both_kinds(self):
-        fake = Fake()
-        _ = fake.queue(CONVAR, [*names(fake, b"cv", BLOCK, LANE_SWAP), fake.entry(b"find")])
-        _ = fake.queue(COMMAND, names(fake, b"cc", BLOCK + 1))
-        mem, image = fake.load()
-        with pytest.raises(ShapeError, match="anchors of both kinds"):
-            _ = strides(mem, image)
-
-    def it_anchors_the_names_validation_lists(self):
-        assert ANCHORS == {
-            "bot_kick_all": "concommands",
-            "citadel_bot_kick": "concommands",
-            "find": "concommands",
-            "citadel_lane_swap_available_duration_prematch": "convars",
-        }
+            _ = convars(mem, image, DLL, None)
 
 
 class DescribeDumps:

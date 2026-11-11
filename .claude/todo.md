@@ -5,7 +5,7 @@ status: open
 
 - [ ] <https:todo.kb/2026-11-05-000-per-dll-dump-tree.md> — per-DLL data store, first purpose the convar/concommand dump: `dlls.list` → `dlls/<facet>/<dll>.json` → `dlls/<facet>.tsv` (design: `docs/dev/cvar-dump.kb/output-views.md`)
 - [ ] Deterministic, fail-loud DLL scan: decisions made 2026-11-11 on the agent's recommendation, open to review; each is a `[!TODO]` with its "what would change this" in its doc
-  - [ ] Allocator hook locates every DLL's queues but tier0's; then drop `learn_strides` and `data/dlls.check/strides` (`docs/dev/cvar-dump.kb/capture-approach.kb/allocator-hook.md`)
+  - [x] Allocator hook locates every DLL's queues but tier0's; then drop `learn_strides` and `data/dlls.check/strides` (`docs/dev/cvar-dump.kb/capture-approach.kb/allocator-hook.md`)
   - [ ] Pin the Windows interpreter: uv-managed CPython, exact version, in `bin/winpy` (`docs/dev/cvar-dump.kb/windows-python-host.md`)
   - [ ] `load` lists only added modules whose files are in the install (`docs/dev/cvar-dump.kb/dll-coverage.md`)
 - [x] Have redo handle VRF updates, the way `data/deadlock-version.json` tracks game patches: today the pin (`VERSION`/`SHA256`) is hardcoded in `bin/fetch-vrf`, and only a hand edit re-provisions `data/tools/Source2Viewer-CLI.d`

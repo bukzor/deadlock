@@ -12,6 +12,7 @@ holds head slots and refs, plus heap blocks outside it.
 
 import struct
 
+from .alloclog import SIZES, Alloc
 from .image import Image, read_image
 from .image_fake import FakeSection, loaded
 from .memory import Memory
@@ -22,6 +23,8 @@ RDATA = BASE + 0x1000
 DATA = BASE + 0x10000
 SECTION_SIZE = 0x8000
 HEAP = 0x10000000
+CALLER = BASE + 0x100
+"""A return address inside the image: an allocation the DLL made."""
 
 type Entry = tuple[int, int, int]
 """(name pointer, help pointer, trailing ref): the fields `walk` checks."""
@@ -88,3 +91,9 @@ class Fake:
         segments.update((base, bytes(raw)) for base, raw in self.heap.items())
         mem = Memory(segments)
         return mem, read_image(mem, BASE)
+
+
+def logged(kind: str, blocks: list[int], caller: int = CALLER) -> list[Alloc]:
+    """The allocator log a queue's blocks leave (`alloclog`): oldest first,
+    where `Fake.queue` lists them newest first."""
+    return [Alloc(SIZES[kind], caller, b) for b in reversed(blocks)]

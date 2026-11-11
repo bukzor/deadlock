@@ -68,17 +68,15 @@ is Alloc), which is read from `MemAlloc_AllocFunc`'s code. tier0 still needs
 the shape scan.
 
 Verdict: chosen as the queue locator for every DLL but tier0, which keeps
-the shape scan (`./queue-shape-scan.md`). Equality on a returned pointer
+the shape scan (`./queue-shape-scan.md`); built as `dllscan.alloclog`, whose
+stub logs only allocations of a block's size. Equality on a returned pointer
 beats a search on every criterion `../capture-approach.md` names, and the
-stub is the same kind of native code the readback already carries. With
-the stride confirmed by each load's own block size, the strides check
-(`../validation.md`) has nothing left to catch that Coverage doesn't: a
-moved stride logs no block of the expected size, so `server`, `client` and
-`engine2` yield no queues and Coverage fails.
-
-> [!TODO] Build it in `src/dllscan`, then drop `learn_strides`, its
-> candidate strides, the `strides` subcommand and `data/dlls.check/strides`.
+stub is the same kind of native code the readback already carries. Since
+each load confirms the stride by its own block size, no separate strides
+check runs: a moved stride logs no block of the expected size, so `server`,
+`client` and `engine2` yield no queues and Coverage (`../validation.md`)
+fails.
 
 What would change this: a build where a non-block allocation has a block's
-size from inside a DLL (the chain-closes check fails it loudly), or a
-tier0 change that makes its allocator reachable before its initializers.
+size from inside a DLL (the chain check fails it loudly), or a tier0 change
+that makes its allocator reachable before its initializers.

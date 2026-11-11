@@ -26,8 +26,8 @@ upstream dump.
   values are built by code, so no static table holds them.
 - **The knowledge is small and fails loudly.** The scanner depends on the
   reg-list shape and s2sdk's entry layout, transcribed once as `ctypes`
-  structs (`dllscan.convar_h`). Pinned strides, anchors, and a typed decode
-  break the build when a patch moves them (`../cvar-dump.kb/validation.md`).
+  structs (`dllscan.convar_h`). The queues' block sizes, anchors, and a typed
+  decode break the build when a patch moves them (`../cvar-dump.kb/validation.md`).
 
 The scanner is stdlib-only: it runs in a bare `python.exe` with `src/` on its
 path (`bin/winpy`), so the Windows side has no environment to provision. That
@@ -45,5 +45,5 @@ trust, loss, coverage of `developmentonly`, or brittleness.
 
 A maintained tool that the user trusts and that dumps every declaration per DLL,
 offline and losslessly (duplicates, `developmentonly`, typed values). Or a
-patch cadence that breaks the shape scan more often than an upstream tool's
+patch cadence that breaks the scan more often than an upstream tool's
 signatures break.

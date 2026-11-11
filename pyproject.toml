@@ -17,6 +17,7 @@ dev = [
     "pyright>=1.1.380",
     "basedpyright-as-pyright",
     "bukzor-redotools",
+    "capstone>=5.0.9",
 ]
 
 [build-system]

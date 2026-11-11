@@ -33,7 +33,6 @@ redo-ifchange data/gamedata.list
 sed 's#^\./#data/gamedata.json/#; s#\.vdata$#.json#' data/gamedata.list |
   xargs redo-ifchange \
     data/manifest.jsonl \
-    data/dlls.check/strides \
     data/dlls.check/concommands \
     data/dlls.check/convars \
     data/convars.md \

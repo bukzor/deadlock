@@ -5,29 +5,35 @@ from checks that fail loudly, not from the dumper's author.
 
 These fail the build on every run (non-zero exit, no output written):
 
-- **Shape:** `server.dll` yields exactly two multi-block strides, equal to the
-  pinned ones (a check target of its own, `data/dlls.check/strides`,
-  `capture-approach.kb/queue-shape-scan.md`); every DLL has at most one queue
-  of each kind at those strides. A head is a queue only if every entry fits:
-  its name pointer lands inside the DLL on a NUL-terminated printable string,
-  its help pointer is null or inside the DLL, and its trailing ref passes its
-  kind's test (a convar's lands in the DLL's writable sections; a command's
-  reads as an unregistered `ConCommandRef`). Decoding a queue that fit raises
-  on any misfit: a type outside the binary's type table, a has-default / min /
-  max byte other than 0 or 1, nonzero bytes past a value's size or in an
-  absent value, a non-finite float, an unreadable string. An entry that
-  misfits hides its queue instead of failing it; Coverage and the Oracle are
-  the backstop.
+- **Shape:** every DLL but tier0 has its queues located from its load's
+  allocator log (`capture-approach.kb/allocator-hook.md`): exactly one of
+  its writable qwords holds the newest block it allocated of a kind's size,
+  the chain from there runs back over exactly the blocks it allocated,
+  newest first, and every entry fits. The allocator's slot is read from
+  `MemAlloc_AllocFunc`'s code, and a log that fills fails rather than
+  truncates. tier0, whose queues predate any hook, has at most one queue
+  of each kind by shape scan (`capture-approach.kb/queue-shape-scan.md`). An
+  entry fits if its name pointer lands inside the DLL on a NUL-terminated
+  printable string, its help pointer is null or inside the DLL, and its
+  trailing ref passes its kind's test (a convar's lands in the DLL's
+  writable sections; a command's reads as an unregistered `ConCommandRef`).
+  Decoding a queue raises on any misfit: a type outside the binary's type
+  table, a has-default / min / max byte other than 0 or 1, nonzero bytes
+  past a value's size or in an absent value, a non-finite float, an
+  unreadable string. In tier0's shape scan alone, an entry that misfits
+  hides its queue instead of failing it; Coverage and the Oracle are the
+  backstop.
 - **Anchors:** names known by other means arrive in the right queue, with the
   right flags — `bot_kick_all` a command (run in-game), `citadel_bot_kick` a
   `developmentonly` command, `citadel_lane_swap_available_duration_prematch` a
-  `replicated cheat` convar, `find` a tier0 command. These also decide which
-  stride is which.
+  `replicated cheat` convar, `find` a tier0 command.
 - **Coverage:** every DLL (`dll-coverage.md`) has a `load` record, and every
   `ok` one is scanned; `engine2`, `client` and `server` each yield both queues.
+  This is also what fails if an entry's size moves: no block of the expected
+  size is allocated, so those three yield none.
 
-The targets under `data/dlls.check/` check the strides, the anchors, and which
-DLLs yield queues; every other check is an atom or an aggregate failing.
+The targets under `data/dlls.check/` check the anchors and which DLLs yield
+queues; every other check is an atom or an aggregate failing.
 
 Run on demand, and on each new build, not as part of `all.do`:
 

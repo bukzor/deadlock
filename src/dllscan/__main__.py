@@ -10,8 +10,6 @@ document (`facets.dumps`, UTF-8, `\\n` line endings) to stdout:
   load is data (exit 0), not an error.
 - `convars`: the convar queue, `ConVarsDocument`.
 - `concommands`: the command queue, `ConCommandsDocument`.
-- `strides`: the multi-block queues' strides re-learned and labelled; an error
-  if they moved from `reglist.STRIDES`.
 - `registry`: tier0's registry after the DLL's `Init`, `RegistryDocument`
   (`server` and `client` only: `registry.APP_SYSTEMS`).
 
@@ -25,10 +23,8 @@ import sys
 import traceback
 from collections.abc import Sequence
 
-from . import facets, registry, win32
+from . import alloclog, facets, registry, win32
 from .document import LoadFailed, LoadOk
-from .image import Image, read_image
-from .memory import Memory
 
 
 class _Args(argparse.Namespace):
@@ -39,7 +35,7 @@ class _Args(argparse.Namespace):
 
 def _parse(argv: Sequence[str]) -> _Args:
     parser = argparse.ArgumentParser(prog="dllscan", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    _ = parser.add_argument("subcommand", choices=("load", "convars", "concommands", "strides", "registry"))
+    _ = parser.add_argument("subcommand", choices=("load", "convars", "concommands", "registry"))
     _ = parser.add_argument("dll", help="the DLL's Windows path")
     _ = parser.add_argument("dirs", nargs="*", metavar="dir", help="a DLL search dir, Windows form")
     return parser.parse_args(argv, namespace=_Args())
@@ -56,24 +52,17 @@ def load(dll: str, dirs: Sequence[str]) -> LoadOk | LoadFailed:
     return facets.load_ok(before, win32.module_names())
 
 
-def load_image(dll: str, dirs: Sequence[str]) -> tuple[Memory, Image]:
-    """Load `dll` into this process; its memory and layout."""
-    win32.add_dll_directories(dirs)
-    mem = Memory(win32.read)
-    return mem, read_image(mem, win32.load_library(dll))
-
-
 def proc_subcommand(subcommand: str, dll: str, dirs: Sequence[str]) -> object:
     """The document `subcommand` makes of `dll`."""
     match subcommand:
         case "load":
             return load(dll, dirs)
         case "convars":
-            return facets.convars(*load_image(dll, dirs), dll)
+            mem, image, log = alloclog.load(dll, dirs)
+            return facets.convars(mem, image, dll, log)
         case "concommands":
-            return facets.concommands(*load_image(dll, dirs), dll)
-        case "strides":
-            return facets.strides(*load_image(dll, dirs))
+            mem, image, log = alloclog.load(dll, dirs)
+            return facets.concommands(mem, image, dll, log)
         case "registry":
             return registry.read_back(dll, dirs)
         case _:

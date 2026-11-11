@@ -1,14 +1,10 @@
 import pytest
 
-from .dlls_check import COMMAND_ANCHORS, CONVAR_ANCHORS, QUEUE_DLLS, check_concommands, check_convars, check_strides
+from .dlls_check import COMMAND_ANCHORS, CONVAR_ANCHORS, QUEUE_DLLS, check_concommands, check_convars
 from .sparse import Table
 
 HEADER = ["dll", "name", "flags", "help"]
 CONVARS_HEADER = ["dll", "name", "type", "version", "default", "min", "max", "flags", "help"]
-
-
-def _learned(*kinds: str | None) -> list[object]:
-    return [{"stride": 64, "kind": kind, "entries": 2} for kind in kinds]
 
 
 def _rows(**overrides: str) -> list[list[str]]:
@@ -30,30 +26,6 @@ def _convar_rows(*extra: list[str]) -> list[list[str]]:
 
 def _convar(dll: str, name: str, flags: str) -> list[str]:
     return [dll, name, "float32", "0", "1.0", "\\N", "\\N", flags, ""]
-
-
-class DescribeCheckStrides:
-    def it_passes_when_each_kind_labels_one_queue(self):
-        check_strides(_learned("concommands", "convars"))
-
-    @pytest.mark.parametrize(
-        "kinds",
-        [
-            ("concommands", None),
-            (None, None),
-            ("concommands", "concommands"),
-            ("concommands", "convars", "convars"),
-            ("concommands", "convars", None),
-        ],
-    )
-    def it_fails_unless_each_kind_labels_exactly_one(self, kinds: tuple[str | None, ...]):
-        with pytest.raises(AssertionError):
-            check_strides(_learned(*kinds))
-
-    @pytest.mark.parametrize("learned", [{}, [["concommands"]]])
-    def it_rejects_another_shape(self, learned: object):
-        with pytest.raises(AssertionError):
-            check_strides(learned)
 
 
 class DescribeCheckConcommands:
