@@ -6,8 +6,9 @@
 is added to the DLL search path before the load. Each subcommand prints one
 document (`facets.dumps`, UTF-8, `\\n` line endings) to stdout:
 
-- `load`: `LoadOk` with the modules the load added, or `LoadFailed`; a refused
-  load is data (exit 0), not an error.
+- `load`: `LoadOk` with the install's modules the load added, or
+  `LoadFailed`; a refused load is data (exit 0), not an error. The install is
+  the deepest dir holding `DLL` and every `DIR`.
 - `convars`: the convar queue, `ConVarsDocument`.
 - `concommands`: the command queue, `ConCommandsDocument`.
 - `registry`: tier0's registry after the DLL's `Init`, `RegistryDocument`
@@ -19,6 +20,7 @@ Every exit goes through `win32.hard_exit`: a loaded DLL's teardown can hang.
 
 import argparse
 import io
+import ntpath
 import sys
 import traceback
 from collections.abc import Sequence
@@ -44,12 +46,12 @@ def _parse(argv: Sequence[str]) -> _Args:
 def load(dll: str, dirs: Sequence[str]) -> LoadOk | LoadFailed:
     """The `load` document: what loading `dll` added, or why it was refused."""
     win32.add_dll_directories(dirs)
-    before = win32.module_names()
+    before = win32.modules()
     try:
         _ = win32.load_library(dll)
     except win32.Win32Error as error:
         return facets.load_failed(error)
-    return facets.load_ok(before, win32.module_names())
+    return facets.load_ok(before, win32.modules(), ntpath.commonpath([ntpath.dirname(dll), *dirs]))
 
 
 def proc_subcommand(subcommand: str, dll: str, dirs: Sequence[str]) -> object:

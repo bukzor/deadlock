@@ -6,10 +6,10 @@ own DLL's file.
 A load-time atom (``data/dlls/{load,concommands,convars}``) loads its DLL in a
 Windows process, and the load loads the DLL's import closure too, so the
 document depends on every DLL in it. An ``ok`` load document's ``modules``
-names that closure. This prints the paths of the ones in ``data/dlls.list``,
-one per line, for the atom to ``redo-ifchange``. The others (system DLLs) stay
-untracked. ``modules`` holds Windows' lowercased names and ``dlls.list`` the
-files' case, so a basename matches ignoring case.
+names the part of that closure in the install, so each is in
+``data/dlls.list``; this prints their paths, one per line, for the atom to
+``redo-ifchange``. ``modules`` holds Windows' lowercased names and
+``dlls.list`` the files' case, so a basename matches ignoring case.
 """
 
 import sys
@@ -24,8 +24,9 @@ from .types import is_sequence, is_str_mapping
 
 def closure(listing: Iterable[str], document: object) -> list[str]:
     """The ``dlls.list`` entries of the modules a ``load`` document's load
-    added, in listing order. None for a ``failed`` load: it stopped before
-    reporting what it added."""
+    added, in listing order; an ``AssertionError`` for a module the listing
+    doesn't name. None for a ``failed`` load: it stopped before reporting
+    what it added."""
     assert is_str_mapping(document), document
     match document.get("outcome"):
         case "ok":
@@ -37,8 +38,10 @@ def closure(listing: Iterable[str], document: object) -> list[str]:
             return []
         case outcome:
             raise AssertionError("load outcome", outcome)
-    entries = (line.rstrip("\n") for line in listing)
-    return [entry for entry in entries if PurePosixPath(entry).name.lower() in names]
+    entries = [entry for line in listing if PurePosixPath(entry := line.rstrip("\n")).name.lower() in names]
+    missing = names - {PurePosixPath(entry).name.lower() for entry in entries}
+    assert not missing, ("modules not in dlls.list", sorted(missing))
+    return entries
 
 
 def main(argv: list[str] | None = None) -> None:

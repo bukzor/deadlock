@@ -2,11 +2,10 @@
 
     python -m deadlock.dlls_load_tree < data/dlls/load.tsv > data/dlls/load.tree.txt
 
-An ``ok`` row lists every module its DLL's load added: a closure, not the
-direct imports. The edges are inferred from those closures (their transitive
-reduction): X sits under Y when X is in Y's closure and in the closure of no
-other module there. Only listed DLLs have a known closure, so a system DLL is
-a leaf, and whatever it pulls in shows beside it rather than under it.
+An ``ok`` row lists every module from the install its DLL's load added: a
+closure, not the direct imports. The edges are inferred from those closures
+(their transitive reduction): X sits under Y when X is in Y's closure and in
+the closure of no other module there.
 
 The roots are the listed DLLs no other listed DLL loads; a DLL whose load is
 not ``ok`` is a root annotated with its outcome and detail. A shared subtree

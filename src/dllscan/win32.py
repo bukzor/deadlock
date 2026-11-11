@@ -12,6 +12,7 @@ any platform. `_Kernel32` states each function's signature for pyright;
 
 import array
 import ctypes
+import ntpath
 import sys
 from collections.abc import Callable, Iterable
 from ctypes import wintypes
@@ -29,7 +30,7 @@ _PAGE_EXECUTE_READWRITE = 0x40
 
 _ADDRESSES = 1 << 64
 _NAME_MAX = 32768
-"""Longest Windows path, in UTF-16 units: a base name can't exceed it."""
+"""Longest Windows path, in UTF-16 units."""
 
 
 class Win32Error(Exception):
@@ -48,7 +49,7 @@ class _Kernel32(Protocol):
     def GetCurrentProcess(self) -> int: ...
     def ReadProcessMemory(self, process: int, addr: int, buf: ctypes.Array[ctypes.c_char], n: int, got: object, /) -> int: ...
     def K32EnumProcessModules(self, process: int, out: ctypes.Array[ctypes.c_char], size: int, need: object, /) -> int: ...
-    def K32GetModuleBaseNameW(self, process: int, module: int, out: ctypes.Array[ctypes.c_wchar], n: int, /) -> int: ...
+    def K32GetModuleFileNameExW(self, process: int, module: int, out: ctypes.Array[ctypes.c_wchar], n: int, /) -> int: ...
     def TerminateProcess(self, process: int, code: int, /) -> int: ...
     def GetModuleHandleW(self, name: str, /) -> int | None: ...
     def GetProcAddress(self, module: int, name: bytes, /) -> int | None: ...
@@ -65,7 +66,7 @@ def _kernel32() -> _Kernel32:
         "GetCurrentProcess": (ptr, ()),
         "ReadProcessMemory": (ok, (ptr, ptr, ptr, size, ctypes.POINTER(size))),
         "K32EnumProcessModules": (ok, (ptr, ptr, dword, ctypes.POINTER(dword))),
-        "K32GetModuleBaseNameW": (dword, (ptr, ptr, wintypes.LPWSTR, dword)),
+        "K32GetModuleFileNameExW": (dword, (ptr, ptr, wintypes.LPWSTR, dword)),
         "TerminateProcess": (ok, (ptr, wintypes.UINT)),
         "GetModuleHandleW": (ptr, (wintypes.LPCWSTR,)),
         "GetProcAddress": (ptr, (ptr, wintypes.LPCSTR)),
@@ -99,8 +100,8 @@ def load_library(path: str) -> int:
     return base
 
 
-def module_names() -> list[str]:
-    """Every module this process holds, as lowercased basenames, sorted."""
+def modules() -> dict[str, str]:
+    """Every module this process holds: its lowercased basename → its file's path."""
     k32 = _kernel32()
     process = k32.GetCurrentProcess()
     out = ctypes.create_string_buffer(0)
@@ -110,14 +111,15 @@ def module_names() -> list[str]:
         if not k32.K32EnumProcessModules(process, out, len(out), ctypes.byref(need)):
             raise Win32Error("K32EnumProcessModules", _last_error())
     handles = array.array("Q", out.raw[: need.value])
-    return sorted(_base_name(process, handle).lower() for handle in handles)
+    paths = [_file_name(process, handle) for handle in handles]
+    return {ntpath.basename(path).lower(): path for path in paths}
 
 
-def _base_name(process: int, module: int) -> str:
+def _file_name(process: int, module: int) -> str:
     out = ctypes.create_unicode_buffer(_NAME_MAX)
-    n = _kernel32().K32GetModuleBaseNameW(process, module, out, len(out))
-    if not n:
-        raise Win32Error("K32GetModuleBaseNameW", _last_error(), module)
+    n = _kernel32().K32GetModuleFileNameExW(process, module, out, len(out))
+    if not n or n >= len(out):
+        raise Win32Error("K32GetModuleFileNameExW", _last_error(), module)
     return ctypes.wstring_at(out, n)
 
 

@@ -13,12 +13,12 @@ LISTING = [
 ]
 SERVER = {
     "outcome": "ok",
-    "modules": ["server.dll", "shell32.dll", "tier0.dll", "winmm.dll"],
+    "modules": ["server.dll", "tier0.dll"],
 }
 
 
 class DescribeClosure:
-    def it_lists_the_entries_of_the_listed_modules_the_load_added(self):
+    def it_lists_the_entries_of_the_modules_the_load_added(self):
         assert dll_closure.closure(LISTING, SERVER) == [
             "bin/win64/tier0.dll",
             "citadel/bin/win64/server.dll",
@@ -28,9 +28,11 @@ class DescribeClosure:
         document = {"outcome": "ok", "modules": ["QT5core.DLL"]}
         assert dll_closure.closure(LISTING, document) == ["bin/win64/Qt5Core.dll"]
 
-    def it_matches_the_whole_basename(self):
-        document = {"outcome": "ok", "modules": ["ier0.dll", "win64/tier0.dll"]}
-        assert dll_closure.closure(LISTING, document) == []
+    @pytest.mark.parametrize("module", ["ier0.dll", "win64/tier0.dll", "shell32.dll"])
+    def it_rejects_a_module_the_listing_does_not_name(self, module: str):
+        document = {"outcome": "ok", "modules": ["tier0.dll", module]}
+        with pytest.raises(AssertionError, match="not in dlls.list"):
+            _ = dll_closure.closure(LISTING, document)
 
     def it_is_empty_for_a_failed_load(self):
         document = {"outcome": "failed", "error": "LoadLibraryExW: 126"}

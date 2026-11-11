@@ -8,7 +8,7 @@ sorted, and nothing machine-specific (addresses, the install path) goes in.
 
 import json
 import ntpath
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 
 from .document import ConCommandsDocument, ConVarsDocument, LoadFailed, LoadOk
 from .alloclog import Alloc, locate
@@ -19,10 +19,14 @@ from .reglist import find_queues
 from .shape import ShapeError
 from .win32 import Win32Error
 
-def load_ok(before: Iterable[str], after: Iterable[str]) -> LoadOk:
-    """The modules a load added: `after - before`, sorted. Leaves out what
-    Python itself holds, which changes with every Python upgrade."""
-    return LoadOk(outcome="ok", modules=sorted(set(after) - set(before)))
+def load_ok(before: Iterable[str], after: Mapping[str, str], install: str) -> LoadOk:
+    """The modules a load added whose files are under the `install` dir:
+    names in `after` (basename → path) but not `before`, sorted. Leaves out
+    what Python held already and every module from outside the install (the
+    OS's, the interpreter's), which vary with the host."""
+    root = ntpath.normcase(install)
+    added = (name for name in after if name not in before)
+    return LoadOk(outcome="ok", modules=sorted(n for n in added if ntpath.commonpath([ntpath.normcase(after[n]), root]) == root))
 
 
 def load_failed(error: Win32Error) -> LoadFailed:

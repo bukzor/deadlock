@@ -17,8 +17,7 @@ Each DLL is loaded in its own process, with a timeout. Four tools DLLs
 survives `taskkill /F` and `Stop-Process -Force`.
 
 The `load` facet (`output-views.md`) records every DLL's outcome: `ok`, with
-the modules the load added (system DLLs included, so the list varies with
-the Windows build); `failed`, with the error (`vfx_dx11` and `phonon4`
+the modules the load added whose files are in the install (under `game/`); `failed`, with the error (`vfx_dx11` and `phonon4`
 on 6860, `LoadLibraryExW: 126`, a dependency not found); or `excluded`, with
 its reason. Excluded DLLs (`deadlock.dll_load.EXCLUDED`, WSL-side) are never
 loaded, since a hung load leaves an unkillable process behind. A timeout fails
@@ -33,9 +32,9 @@ Loading a DLL also loads its imports, so a DLL importing an excluded one
 would hang too. None does: on 6860, the static plus delay-import closure of
 every other DLL reaches no excluded one (`deadlock.dll_load.EXCLUDED`).
 
-> [!TODO] Record only the added modules whose files are in the install.
-> The rest are the host's (the OS's closure of system DLLs, or the
-> interpreter's), and a DLL's direct system imports are the PE import
-> table's to record, deterministically, in the planned `pe` facet
-> (`output-views.md`). What would change this: a question about the
-> runtime system closure that the import table can't answer.
+The rest of a load's closure is the host's (the OS's system DLLs, or the
+interpreter's) and varies with the Windows build, so the `load` facet leaves
+it out. A DLL's direct system imports are the PE import table's to record,
+deterministically, in the planned `pe` facet (`output-views.md`). What would
+change this: a question about the runtime system closure that the import
+table can't answer.

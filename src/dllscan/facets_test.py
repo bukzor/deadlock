@@ -19,10 +19,30 @@ def names(fake: Fake, prefix: bytes, n: int):
 
 
 class DescribeLoadOk:
+    GAME: str = "C:\\Steam\\Deadlock\\game"
+    BEFORE: dict[str, str] = {"python314.dll": "C:\\Python\\python314.dll", "kernel32.dll": "C:\\Windows\\System32\\KERNEL32.DLL"}
+
     def it_records_only_the_modules_the_load_added_sorted(self):
-        before = ["python312.dll", "kernel32.dll", "_ctypes.pyd"]
-        after = [*before, "tier0.dll", "server.dll", "steam_api64.dll"]
-        assert load_ok(before, after) == {"outcome": "ok", "modules": ["server.dll", "steam_api64.dll", "tier0.dll"]}
+        after = {**self.BEFORE, **{n: f"{self.GAME}\\bin\\win64\\{n}" for n in ("tier0.dll", "server.dll", "steam_api64.dll")}}
+        assert load_ok(self.BEFORE, after, self.GAME) == {"outcome": "ok", "modules": ["server.dll", "steam_api64.dll", "tier0.dll"]}
+
+    def it_leaves_out_modules_from_outside_the_install(self):
+        after = {
+            **self.BEFORE,
+            "server.dll": f"{self.GAME}\\citadel\\bin\\win64\\server.dll",
+            "d3d11.dll": "C:\\Windows\\System32\\d3d11.dll",
+            "gamex.dll": "C:\\Steam\\Deadlock\\gamex\\gamex.dll",
+        }
+        assert load_ok(self.BEFORE, after, self.GAME)["modules"] == ["server.dll"]
+
+    def it_leaves_out_install_modules_loaded_before(self):
+        before = {"tier0.dll": f"{self.GAME}\\bin\\win64\\tier0.dll"}
+        after = {**before, "server.dll": f"{self.GAME}\\bin\\win64\\server.dll"}
+        assert load_ok(before, after, self.GAME)["modules"] == ["server.dll"]
+
+    def it_matches_the_install_whatever_the_case(self):
+        after = {"qwindows.dll": "c:\\steam\\DEADLOCK\\Game\\bin\\win64\\qt5_plugins\\platforms\\qwindows.dll"}
+        assert load_ok({}, after, self.GAME)["modules"] == ["qwindows.dll"]
 
 
 class DescribeLoadFailed:
