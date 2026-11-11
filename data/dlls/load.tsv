@@ -64,7 +64,7 @@ qwindows.dll	ok	crypt32.dll cryptbase.dll d3d11.dll dwmapi.dll dxgi.dll mpr.dll 
 qwindowsvistastyle.dll	ok	cryptbase.dll d3d11.dll dwmapi.dll dxgi.dll mpr.dll netapi32.dll netutils.dll powrprof.dll qt5core.dll qt5gui.dll qt5widgets.dll qwindowsvistastyle.dll shell32.dll srvcli.dll umpdc.dll userenv.dll uxtheme.dll winmm.dll
 rendersystemdx11.dll	ok	amd_ags_x64.dll cfgmgr32.dll crypt32.dll d3d11.dll d3d9.dll d3dcompiler_47.dll dwmapi.dll dxcore.dll dxgi.dll powrprof.dll rendersystemdx11.dll setupapi.dll shlwapi.dll tier0.dll umpdc.dll winmm.dll
 rendersystemempty.dll	ok	rendersystemempty.dll tier0.dll winmm.dll
-rendersystemvulkan.dll	ok	amd_ags_x64.dll cfgmgr32.dll crypt32.dll d3d11.dll d3d9.dll d3dcompiler_47.dll dwmapi.dll dxcore.dll dxgi.dll gfsdk_aftermath_lib.x64.dll powrprof.dll rendersystemdx11.dll rendersystemvulkan.dll setupapi.dll shlwapi.dll tier0.dll umpdc.dll winmm.dll
+rendersystemvulkan.dll	ok	gfsdk_aftermath_lib.x64.dll rendersystemvulkan.dll tier0.dll winmm.dll
 resourcecompiler.dll	ok	dbghelp.dll embree3.dll libfbxsdk_2020_3_1.dll msvcp140.dll resourcecompiler.dll shell32.dll steam_api64.dll tier0.dll v8.dll v8_icui18n.dll v8_icuuc.dll v8_libbase.dll v8_zlib.dll vcruntime140_1.dll winmm.dll
 resourcesystem.dll	ok	resourcesystem.dll tier0.dll winmm.dll
 scenefilecache.dll	ok	scenefilecache.dll tier0.dll winmm.dll
