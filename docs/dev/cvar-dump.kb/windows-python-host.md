@@ -23,3 +23,16 @@ from `/dev/null` (`python.exe` reads its inherited stdin, so under redo it would
 eat the caller's), cwd the scratch dir `trash/winpy/`, a timeout (exit 124). A
 host without `python.exe` fails the build loudly: `all.do` never skips the DLL
 facets.
+
+The interpreter is part of the scan's input: Python preloads 27 modules,
+`vcruntime140.dll` among them, which the game DLLs then bind to instead of
+the install's (so `load.tsv` never lists it), and its directory comes first
+in the DLL search. The `python.exe` above is the Python install manager's
+3.14, which updates in place.
+
+> [!TODO] Pin it: `bin/winpy` runs a uv-managed CPython of one exact
+> version, installed by Windows `uv` on first use, and the pin lives in
+> `bin/winpy`, so bumping it rebuilds every facet. A uv-managed build
+> reproduces on any host with `uv`; asserting the version of whatever
+> `python.exe` is on `PATH` would only detect drift. What would change
+> this: a scan whose output no longer depends on the interpreter.
