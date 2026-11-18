@@ -1,3 +1,6 @@
+from dataclasses import replace
+from itertools import islice
+
 from pytest import approx
 
 from .timeline import Cycle, Gun, Hit, gun_cycle, repeat
@@ -35,8 +38,8 @@ class DescribeGunCycle:
         assert (len(cycle.hits), cycle.period, cycle.reload) == (10, approx(7.0), 2.0)
 
     def it_lands_after_the_travel_time(self):
-        hit = gun_cycle(Gun(**{**vars(PAIGE), "travel": 0.25})).hits[1]
-        assert (hit.trigger, hit.land) == approx((0.5, 0.75))
+        hit = gun_cycle(replace(PAIGE, travel=0.25)).hits[1]
+        assert hit == Hit(trigger=0.5, land=0.75, damage=32, label="shot 2")
 
 
 class DescribeRepeat:
@@ -55,8 +58,13 @@ class DescribeRepeat:
 
     def it_fires_once_without_a_period(self):
         cycle = Cycle(hits=(Hit(0, 0.5, 10, "nuke"), Hit(0, 1.5, 5, "tick")), period=None)
-        assert len(list(repeat(cycle, horizon=60))) == 2
+        hits = list(islice(repeat(cycle, horizon=60), 3))  # bounded, so a wrongful repeat fails rather than hangs
+        assert [(h.trigger, h.land, h.label) for h in hits] == [(0, 0.5, "nuke"), (0, 1.5, "tick")]
 
     def it_stops_at_triggers_past_the_horizon(self):
         cycle = Cycle(hits=(Hit(0, 0, 1, "a"), Hit(0.9, 0.9, 1, "b")), period=1.0)
         assert [h.trigger for h in repeat(cycle, horizon=1.5)] == [0, 0.9, 1]
+
+    def it_keeps_a_hit_triggered_within_the_horizon_that_lands_past_it(self):
+        cycle = Cycle(hits=(Hit(0, 0.5, 1, "shot"),), period=1.0)
+        assert [(h.trigger, h.land) for h in repeat(cycle, horizon=1.2)] == [(0, 0.5), (1, 1.5)]
