@@ -118,23 +118,31 @@ not modeled.
 
 `measures.py` computes the measures from a cycle and its unrolled hits:
 
+- **`time_to_kill`**, when `hp` is given, comes first: the land time of the hit
+  that brings cumulative damage to `hp` or more. It can be checked against a
+  training-dummy health bar. When `hp` is given and `horizon` is not, the
+  default horizon stretches to cover it (up to 120 s).
 - **`uptime_dps`**: damage per cycle ÷ (period − downtime), the DPS while the
-  source is active. For a gun it equals the in-game UI's DPS. For a cast it is
-  the damage over the ability's active time. Every source gets the same `check`
-  wording, with no special case for guns.
+  source is active. For a gun it equals the weapon panel's DPS. It is omitted
+  where it equals `steady_dps` (no downtime) or means nothing (one hit).
+- **`card_dps`**, for a cast whose card shows a DPS: that value, at the given
+  spirit and level, so the player can compare it with `uptime_dps`.
 - **`steady_dps`**: damage per cycle ÷ period. It equals the sustained DPS
   (`sdps`).
-- Over the horizon: total damage, average DPS, and first land.
-- **`time_to_kill`**, when `hp` is given: the land time of the hit that brings
-  cumulative damage to `hp` or more. It can be checked against a training-dummy
-  health bar.
+- **`cycle_damage`**, **`total_damage`** over the horizon, and **`first_land`**.
+  There is no average DPS over the horizon: the horizon is whole cycles, so it
+  would repeat `steady_dps`.
+
+Labels and `check` text use the player's words for the source's kind: a clip
+and its reload for a gun, a cast and its cooldown for a cast, a swing for melee.
+No label names another kind.
 
 ## Client view
 
 The view has a hero picker, then an ability picker, then only the parameters
 that apply to the ability's `kind`. The horizon has two inputs that update
-each other: seconds, and a multiple of the period (default 2, so two full
-cycles show). The period comes from the `cycle` line. The selection lives in the URL, so a page
+each other: seconds, and "cycles shown", a multiple of the period (default 2,
+so two full cycles show). The period comes from the `cycle` line. The selection lives in the URL, so a page
 can be reloaded or shared.
 
 The chart is titled "Damage timeline", because in Deadlock "damage over time"
@@ -144,7 +152,9 @@ means DoT.
   the width means: bullet travel, assumed wind-up, or time since the previous
   tick.
 - **Cumulative damage:** a step line on a right-hand axis. Its slope is the DPS,
-  and a dashed line at `hp` shows time-to-kill. This is the main read for
+  a dashed line at `hp`, and a mark where the line crosses it, show
+  time-to-kill. The bars keep to the lower half of the plot so the line reads
+  as a separate layer, and the gridlines follow one axis. This is the main read for
   comparing sources, because a bar's height is the size of one hit, not how
   much damage the source deals.
 - **Hover:** the tooltip comes from the pointer anywhere on a bar, not only from
