@@ -38,6 +38,11 @@ as DPS numbers a player can check in-game.
   becomes a 400 with one `{"error": message}` line. Anything else is a bug and
   fails loudly (500).
 
+The query registry `queries.QUERIES` maps a name to a `Query`. A `Query`
+carries its `params` as `{name: description}` and a `run(params: Params) ->
+Sequence[JsonObj]`. The HTTP app and the CLI both read the registry and write
+`run`'s lines unchanged, so they cannot drift apart.
+
 Queries:
 
 | query | params | lines |
@@ -63,10 +68,15 @@ Melee appears in `abilities` as two pseudo-abilities, `melee_light` and
 `server/src/vis_server/timeline.py` defines `Hit` and `Cycle`, and `repeat`
 unrolls a cycle up to the horizon. A hit's **trigger** is the input (trigger
 pull, swing, cast) and its **land** is when the damage applies. The gap between
-them is the wind-up, which is the bar's width in the chart.
+them is the wind-up, which is the bar's width in the chart. The trigger is
+always the player's input, never a derived time. A damage-over-time tick
+therefore triggers at the cast, so its bar spans the whole time from the cast
+to that tick.
 
-Each source module turns one hero's ability into `(Cycle, notes)`, or `None`
-when the ability is not its kind:
+Each source module exposes `cycle(heroes, abilities, hero, ability, …)`. The
+trailing arguments are the parameters that source uses. It turns one hero's
+ability into `(Cycle, notes)`, or returns `None` when the ability is not its
+kind. Every timeline also gets a note that stats are level 0 with no items.
 
 - **Gun** (`guns.py`): one clip fired at the gun's rate, then its reload. The
   formulas are in `docs/dev/mechanics.kb/gun-*.md`. Travel time is `distance /
