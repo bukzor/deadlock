@@ -1,8 +1,10 @@
 # docs/dev (deadlock-evaluator)
 
-One knowledge base lives here: the design ledger, `claims.md` beside
-`claims.kb/`, kept per `Skill(llm-claims-kb)`. Read `claims.md` first; it
-carries the theory poset and the scan commands.
+The design ledger, `claims.md` beside `claims.kb/`, kept per
+`Skill(llm-claims-kb)`. Read `claims.md` first; it carries the theory poset
+and the scan commands. `close-open-claims.md` beside `close-open-claims.kb/`
+is the sub-agent plan that measures the ledger's open claims
+(`Skill(subagent-handoffs)`).
 
 ## Telling settled from suggested
 
