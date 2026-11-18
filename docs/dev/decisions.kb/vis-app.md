@@ -49,13 +49,14 @@ Queries:
 |---|---|---|
 | `heroes` | | `{"hero": key, "name": display}` |
 | `abilities` | `hero` | `{"ability": key, "name", "kind": "gun"\|"melee"\|"cast"\|null}` |
-| `timeline` | `hero`, `ability`, `horizon`=10, `distance`=0 (m), `spirit`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
+| `timeline` | `hero`, `ability`, `horizon` (default: 2 periods of the cycle, at least 10 s), `distance`=0 (m), `spirit`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
 
 `timeline` lines:
 
 - `{"kind": "hit", "trigger", "land", "damage", "label", "cycle"}`: one damage
   instance (`timeline.Hit`). `kind` is `hit` and nothing else.
-- `{"kind": "measure", "name", "value", "unit", "check"}`: `check` says how to
+- `{"kind": "measure", "name", "label", "value", "unit", "check"}`: `name` is a
+  stable identifier for `jq`, and `label` is the player-facing wording. `check` says how to
   verify the value in-game.
 - `{"kind": "note", "text"}`: a caveat on the model, such as "wind-up is not in
   the data", "charges not modeled" or "unverified heuristic".
@@ -66,7 +67,8 @@ Melee appears in `abilities` as two pseudo-abilities, `melee_light` and
 ## Model: every damage source is a repeating `Cycle`
 
 `server/src/vis_server/timeline.py` defines `Hit` and `Cycle`, and `repeat`
-unrolls a cycle up to the horizon. A hit's **trigger** is the input (trigger
+unrolls a cycle up to the horizon. Only hits that land within the horizon are
+sent, so the chart draws exactly what the totals count. A hit's **trigger** is the input (trigger
 pull, swing, cast) and its **land** is when the damage applies. The gap between
 them is the wind-up, which is the bar's width in the chart.
 - For a discrete hit, the trigger is the player's input.
@@ -121,11 +123,27 @@ kind. Every timeline also gets a note that stats are level 0 with no items.
 
 ## Client view
 
-The view has a hero picker, then an ability picker, then a params form. The
-chart has one bar per hit, drawn as a Plot `rect` from x1 = trigger to x2 =
-land, with height y = damage. A `ruleX` at land keeps zero-width hits visible.
-Below the chart are a measures table that shows each `check` and the notes
-list.
+The view has a hero picker, then an ability picker, then only the parameters
+that apply to the ability's `kind`. The selection lives in the URL, so a page
+can be reloaded or shared.
+
+The chart is titled "Damage timeline", because in Deadlock "damage over time"
+means DoT.
+- **Bars:** one per hit, a Plot `rect` from x1 = trigger to x2 = land, with
+  height y = damage per hit (the user's spec). A caption per `kind` says what
+  the width means: bullet travel, assumed wind-up, or time since the previous
+  tick.
+- **Cumulative damage:** a step line on a right-hand axis. Its slope is the DPS,
+  and a dashed line at `hp` shows time-to-kill. This is the main read for
+  comparing sources, because a bar's height is the size of one hit, not how
+  much damage the source deals.
+- **Hover:** the tooltip comes from the pointer anywhere on a bar, not only from
+  the thin line at land.
+
+Below the chart is the measures table: each measure's `label`, value and
+`check`, with the DPS a player can compare to the card first. The notes list
+follows, written for players and ordered by how much each caveat moves the
+numbers.
 
 ## What would change this
 
