@@ -2,7 +2,7 @@
 import * as Plot from "@observablehq/plot";
 import { describe, expect, it } from "vitest";
 
-import { cumulative, hitChart, hitMarks, hitTitle, niceTicks, widthCaption, xDomain } from "./chart";
+import { TEXT, cumulative, hitChart, hitMarks, hitTitle, niceTicks, widthCaption, xDomain } from "./chart";
 import type { HitLine } from "./protocol";
 
 function hit(trigger: number, land: number, damage: number, label = "bullet"): HitLine {
@@ -149,5 +149,21 @@ describe("hitChart", () => {
 
   it("follows the pointer with a tip", () => {
     expect(hitChart(hits, { horizon: 3 }).querySelector(`[aria-label="tip"]`)).not.toBeNull();
+  });
+});
+
+describe("hitChart text", () => {
+  const hits = [hit(0, 1, 50), hit(1, 2, 100)];
+
+  it("is 12 px, not Plot's 10", () => {
+    expect(hitChart(hits, { horizon: 3 }).style.fontSize).toBe("12px");
+  });
+
+  it("colors the axis labels per color scheme", () => {
+    const fills = (dark: boolean) =>
+      new Set([...hitChart(hits, { horizon: 3, dark }).querySelectorAll("[fill]")].map((t) => t.getAttribute("fill")));
+    expect(fills(true).has(TEXT.dark.bar)).toBe(true);
+    expect(fills(false).has(TEXT.light.bar)).toBe(true);
+    expect(fills(false).has(TEXT.dark.bar)).toBe(false);
   });
 });

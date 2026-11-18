@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - ./CLAUDE.md
@@ -45,3 +45,20 @@ apps/vis/bin/serve`. When you stop it, kill only the pids you started: a
 `pkill -f` pattern also kills the user's serve on 5173/8788.
 
 **Scope:** `apps/vis/client/src/{chart,App}.tsx?`, `index.css`, and their tests.
+
+## Steps
+
+- [x] ResizeObserver redraw in `App.tsx` `Chart` (from fetched hits, no refetch; also redraws on colour-scheme change)
+- [x] `chart.ts`: 12 px text, per-scheme label colours (`TEXT`), `dark` option
+- [x] Tests (`chart.test.ts`) and screenshots
+
+## Decisions
+
+- Label colours are passed by JS (`matchMedia` at draw time) because Plot writes colours as SVG attributes, where CSS variables do not apply. Bars and line keep their Tableau colours; only text colours change per scheme.
+- Plot's default tick thinning already gives sensible ticks at the true width; no change.
+
+## Final report
+
+- `tsc --noEmit` and vitest (52) clean. `pnpm` absent; used `node_modules/.bin/{tsc,vitest}`.
+- Proof in `trash/022/`: `{dark,light}-{460,1280}.png` and `dark-1280-to-460.png` (svg width 381 = container after resize, no reload). Driver `drive.mjs`, runner `run.sh`; own serve on 5192/8792 and Chrome stopped by pid, user's 5173/8788 untouched.
+- Doubt: 12 px is Plot's `fontSize` on the svg; the user's "strokes under a pixel" is a rendering-weight impression, judged by screenshot only.

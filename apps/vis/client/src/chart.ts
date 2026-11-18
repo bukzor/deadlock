@@ -12,6 +12,19 @@ const BAR = "#4e79a7";
 const LINE = "#f28e2b";
 
 /**
+ * Axis and label text colors, per color scheme: the bar and line colors, darkened
+ * on a light page and lightened on a dark one until the 12 px text reads (both
+ * are at least 4.5:1 against white and against #242424).
+ */
+export const TEXT = {
+  light: { bar: "#2f5d8a", line: "#a85400" },
+  dark: { bar: "#8fb4dc", line: "#f5a65b" },
+} as const;
+
+/** Chart text size in px: the page's 0.85rem labels are 13.6 px; Plot's own is 10. */
+const FONT_PX = 12;
+
+/**
  * Each hit as a bar from x1 = trigger to x2 = land, damage tall, plus a rule at
  * land so a hit with zero width stays visible and adjacent bars stay apart.
  *
@@ -91,9 +104,10 @@ export function xDomain(hits: readonly HitLine[], horizon: number): [number, num
  */
 export function hitChart(
   hits: readonly HitLine[],
-  options: { width?: number; horizon?: number; hp?: number; kind?: AbilityKind } = {},
+  options: { width?: number; horizon?: number; hp?: number; kind?: AbilityKind; dark?: boolean } = {},
 ): ReturnType<typeof Plot.plot> {
   const { hp } = options;
+  const text = TEXT[options.dark === true ? "dark" : "light"];
   const [, end] = xDomain(hits, options.horizon ?? 0);
   const steps = cumulative(hits, end);
   const barTicks = niceTicks(Math.max(0, ...hits.map((h) => h.damage)));
@@ -102,15 +116,16 @@ export function hitChart(
   return Plot.plot({
     ...(options.width === undefined ? {} : { width: options.width }),
     ...(options.kind === undefined ? {} : { caption: widthCaption(options.kind) }),
-    marginRight: 60,
+    style: { fontSize: `${FONT_PX}px` },
+    marginRight: 64,
     x: { label: "time (s)", domain: [0, end], insetLeft: 4 }, // the inset keeps a hit at t=0 off the frame
     y: { domain: [0, barTicks[barTicks.length - 1]!] },
     marks: [
       Plot.gridY(lineTicks.map((v) => v * k)),
-      Plot.axisY(barTicks, { anchor: "left", label: "↑ damage per hit", color: BAR }),
+      Plot.axisY(barTicks, { anchor: "left", label: "↑ damage per hit", color: text.bar }),
       Plot.axisY(
         lineTicks.map((v) => v * k),
-        { anchor: "right", label: "cumulative damage ↑", color: LINE, tickFormat: (v: number) => num(v / k) },
+        { anchor: "right", label: "cumulative damage ↑", color: text.line, tickFormat: (v: number) => num(v / k) },
       ),
       ...hitMarks(hits),
       Plot.line(steps, { x: "t", y: (s: Step) => s.total * k, curve: "step-after", stroke: LINE, strokeWidth: 2 }),
@@ -125,7 +140,7 @@ export function hitChart(
               dx: -4,
               dy: -7,
               text: () => `target hp ${num(hp)}`,
-              fill: LINE,
+              fill: text.line,
             }),
           ]),
       Plot.ruleY([0]),

@@ -157,11 +157,28 @@ function baseOf(key: string): string {
 function Chart(props: { hits: readonly HitLine[]; kind: AbilityKind; horizon: number; hp?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const { hits, kind, horizon, hp } = props;
+  // Redrawn from `hits` at the container's own width whenever that changes, and
+  // when the color scheme flips: a scaled SVG shrinks its text with it.
   useEffect(() => {
     const el = ref.current;
     if (el === null) return;
-    const width = el.clientWidth || 640;
-    el.replaceChildren(hitChart(hits, { width, kind, horizon, ...(hp === undefined ? {} : { hp }) }));
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
+    const draw = () => {
+      const width = el.clientWidth || 640;
+      el.replaceChildren(hitChart(hits, { width, kind, horizon, dark: scheme.matches, ...(hp === undefined ? {} : { hp }) }));
+    };
+    let last = -1;
+    const observer = new ResizeObserver(() => {
+      if (el.clientWidth === last) return;
+      last = el.clientWidth;
+      draw();
+    });
+    observer.observe(el);
+    scheme.addEventListener("change", draw);
+    return () => {
+      observer.disconnect();
+      scheme.removeEventListener("change", draw);
+    };
   }, [hits, kind, horizon, hp]);
   return <div ref={ref} className="chart" />;
 }
