@@ -50,7 +50,7 @@ Queries:
 | query | params | lines |
 |---|---|---|
 | `heroes` | | `{"hero": key, "name": display}` |
-| `abilities` | `hero` | `{"ability": key, "name", "kind": "gun"\|"melee"\|"cast"\|null}` |
+| `abilities` | `hero` | `{"ability": key, "name": in-game name (`names.py`), "kind": "gun"\|"melee"\|"cast"\|null}` |
 | `timeline` | `hero`, `ability`, `horizon` (s; default 2 periods of the cycle, or 10 s for a one-shot; with `hp`, zoomed out to the kill, up to 120 s), `distance`=0 (m), `spirit`=0, `level`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
 
 `timeline` lines:
