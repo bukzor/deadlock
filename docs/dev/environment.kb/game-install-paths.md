@@ -35,3 +35,19 @@ Layout below `$DEADLOCK_HOME`:
 Other Steam paths possibly worth parsing later:
 `Steam/userdata/<id>/1422450` (user data) and `Steam/appcache` (cached
 match/app data).
+
+## Local demos (inventory 2026-11-18)
+
+Read in place; never write under the install. Sizes are on-disk MiB.
+
+- `game/citadel/botmatch{1,3..8}.dem` -- seven local bot matches, Oct 3-7
+  2026, 70-88 MiB each. Client-side recordings: no roster, 32 ticks/s.
+- `game/citadel/replays/` (a symlink; `find -L`):
+  - Watch-tab downloads of public matches, server-side, 64 ticks/s:
+    `78292581` (Apr 26, 547 MiB), `81863306` (May 12, 573 MiB), `87052930`
+    (Jun 6, 469 MiB), `107527112` (Sep 25, 630 MiB). Older patches.
+  - `auto-YYYYMMDD-HHMM-dl_midtown-Deadlock.dem` -- ~40 automatic recordings
+    of the owner's own games, Oct 7 to Nov 17 2026, 0.3-116 MiB.
+- A current-patch public match lives in the repo at `data/replays/<id>.dem`
+  (`redo data/replays/<match_id>.dem` fetches one; see
+  `packages/deadlock-evaluator/docs/dev/claims.kb/tooling.kb/public-match-demos-source.md`).

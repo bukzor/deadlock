@@ -26,6 +26,11 @@ it exposes:
 - ability casts: `ability_ticks` cooldown changes (2.3k); `abilities` is empty here
 - souls: `player_ticks.souls`, `gold_net_worth`
 
+It also parses the current-patch public demo `data/replays/139163969.dem`
+(build 10932) and an Apr 2026 Watch-tab demo (build 10725); there
+`abilities` is populated (1.8k and 2.1k rows), so its emptiness above is
+the bot demo's, not the parser's (`event-volume-per-demo.md`).
+
 Declined: haste (unpublished, low-level, needs protoc), source2-demo
 (observer boilerplate per query), demofile-net and clarity (dotnet and
 Java runtimes), manta (Dota 2 only).
