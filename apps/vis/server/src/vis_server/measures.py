@@ -25,8 +25,9 @@ class Measure:
 def measures(cycle: Cycle, horizon: float, hp: float | None = None) -> list[Measure]:
     """Per-cycle rates, then totals over ``[0, horizon]`` seconds.
 
-    - ``uptime_dps``: a cycle's damage over the time not spent reloading; for a
-      gun, the stat panel's DPS. Needs a period longer than its reload.
+    - ``uptime_dps``: a cycle's damage over its period less its downtime: the
+      DPS while the source is dealing damage. For a gun, the stat panel's DPS.
+      Needs a period longer than its downtime.
     - ``steady_dps``: a cycle's damage over its whole period. Needs a period.
     - ``total_damage``, ``average_dps``: damage landed by ``horizon``.
     - ``first_land``: when the first damage lands. Needs a hit by ``horizon``.
@@ -44,26 +45,26 @@ def measures(cycle: Cycle, horizon: float, hp: float | None = None) -> list[Meas
 def _rates(cycle: Cycle) -> list[Measure]:
     if cycle.period is None:
         return []
-    assert cycle.reload <= cycle.period, (cycle.reload, cycle.period)
+    assert cycle.downtime <= cycle.period, (cycle.downtime, cycle.period)
     damage = sum(h.damage for h in cycle.hits)
     steady = Measure(
         "steady_dps",
         damage / cycle.period,
         DPS,
-        "Not shown in-game. In the sandbox, attack the training dummy nonstop, reloads included, "
+        "Not shown in-game. In the sandbox, attack the training dummy nonstop, every reload and cooldown included, "
         + "for several cycles; divide the damage dealt by the stopwatch time from the first trigger.",
     )
-    if cycle.period > cycle.reload:
+    if cycle.period > cycle.downtime:
         uptime = Measure(
             "uptime_dps",
-            damage / (cycle.period - cycle.reload),
+            damage / (cycle.period - cycle.downtime),
             DPS,
-            "For a gun, the DPS on the hero's stat panel (weapon). Otherwise, empty one clip or "
-            + "cycle into the sandbox training dummy; divide its damage by the stopwatch time spent firing.",
+            "In the sandbox, deal one cycle (a clip, a swing, a cast) to the training dummy; "
+            + "divide its damage by the stopwatch time from the first trigger until its downtime starts.",
         )
         return [uptime, steady]
     else:
-        return [steady]  # all reload: no firing time to divide by
+        return [steady]  # all downtime: no active time to divide by
 
 
 def _totals(landed: Sequence[Hit], horizon: float) -> list[Measure]:

@@ -27,7 +27,7 @@ class Hit:
 class Cycle:
     hits: Sequence[Hit]  # sorted by trigger, relative to the cycle start
     period: float | None  # None: happens once
-    reload: float = 0.0  # seconds of each period spent unable to fire
+    downtime: float = 0.0  # seconds of each period spent dealing no damage
 
     def __post_init__(self) -> None:
         unsorted = [(a, b) for a, b in pairwise(self.hits) if a.trigger > b.trigger]
@@ -58,7 +58,7 @@ def gun_cycle(gun: Gun) -> Cycle:
         t = (shot // gun.burst) * period + (shot % gun.burst) * intra
         hits.append(Hit(t, t + gun.travel, per_shot, f"shot {shot + 1}"))
     firing = gun.shots * period / gun.burst
-    return Cycle(hits=tuple(hits), period=firing + gun.reload, reload=gun.reload)
+    return Cycle(hits=tuple(hits), period=firing + gun.reload, downtime=gun.reload)
 
 
 def repeat(cycle: Cycle, horizon: float) -> Iterator[Hit]:

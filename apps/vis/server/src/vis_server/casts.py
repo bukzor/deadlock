@@ -2,8 +2,10 @@
 
 The model, an unverified heuristic: a cast at t=0 lands its ``Damage`` after
 ``AbilityCastDelay``; its ``DPS`` then ticks every tick interval across its
-duration, every tick triggered by the cast; the whole repeats every
-``AbilityCooldown`` (once, if that is 0).
+duration, each tick triggered at the previous tick's land (the first at the
+cast), so the ticks tile the duration; the whole repeats every
+``AbilityCooldown`` (once, if that is 0). The cycle's downtime is the cooldown
+left after the last land, 0 when the damage outlasts the cooldown.
 Damage and DPS that scale with ``ETechPower`` add ``m_flStatScale × spirit``.
 Each property is ``m_mapAbilityProperties.X.m_strValue``.
 
@@ -87,7 +89,19 @@ def cycle(
     if cooldown <= 0:
         notes.append("AbilityCooldown is 0: shown as a single cast")
     notes.extend(_unmodeled(abilities, ability, props))
-    return Cycle(hits=tuple(hits), period=cooldown if cooldown > 0 else None), tuple(notes)
+    return Cycle(hits=tuple(hits), period=cooldown if cooldown > 0 else None, downtime=_downtime(hits, cooldown, notes)), tuple(notes)
+
+
+def _downtime(hits: list[Hit], cooldown: float, notes: list[str]) -> float:
+    """The cooldown left after the last land; 0, with a note, when the damage outlasts it."""
+    if cooldown <= 0:
+        return 0.0
+    last = max((h.land for h in hits), default=0.0)
+    if last > cooldown:
+        notes.append(f"damage outlasts the cooldown ({last:g}s > {cooldown:g}s): casts on cooldown overlap, no downtime")
+        return 0.0
+    else:
+        return cooldown - last
 
 
 def _scaled(props: Props, ability: str, name: str, spirit: float, notes: list[str]) -> float:
@@ -106,7 +120,7 @@ def _scaled(props: Props, ability: str, name: str, spirit: float, notes: list[st
 
 
 def _ticks(props: Props, ability: str, delay: float, dps: float, notes: list[str]) -> list[Hit]:
-    """``dps`` as ticks landing every interval from ``delay``, each triggered by the cast at 0.
+    """``dps`` as ticks landing every interval from ``delay``, each triggered at the previous land.
 
     Ticks are whole intervals that fit the duration; a remainder is dropped.
     """
@@ -130,7 +144,7 @@ def _ticks(props: Props, ability: str, delay: float, dps: float, notes: list[str
     if not dps:
         return []
     return [
-        Hit(0.0, delay + (i + 1) * interval, dps * interval, f"DPS tick {i + 1}")
+        Hit(delay + i * interval if i else 0.0, delay + (i + 1) * interval, dps * interval, f"DPS tick {i + 1}")
         for i in range(count)
     ]
 

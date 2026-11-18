@@ -45,12 +45,22 @@ class DescribeCycle:
 
     def it_repeats_every_cooldown(self):
         cycle, _ = cast({"Damage": "100", "AbilityCooldown": 12.5})
-        assert (cycle.period, cycle.reload) == (12.5, 0)
+        assert cycle.period == 12.5
+
+    def it_idles_for_the_cooldown_left_after_the_last_land(self):
+        cycle, _ = cast({"Damage": "100", "DPS": "10", "AbilityDuration": "2", "TickRate": "1", "AbilityCastDelay": "0.5"})
+        assert cycle.downtime == approx(10 - 2.5)
 
     def it_happens_once_without_a_cooldown(self):
         cycle, notes = cast({"Damage": "100", "AbilityCooldown": "0"})
-        assert cycle.period is None
+        assert (cycle.period, cycle.downtime) == (None, 0)
         assert any("AbilityCooldown is 0" in n for n in notes), notes
+
+    class WhenTheDamageOutlastsTheCooldown:
+        def it_has_no_downtime_and_says_casts_overlap(self):
+            cycle, notes = cast({"DPS": "10", "AbilityDuration": "12", "TickRate": "1"})
+            assert cycle.downtime == 0
+            assert any("outlast" in n and "12" in n and "10" in n for n in notes), notes
 
     def it_drops_a_zero_damage_hit(self):
         cycle, _ = cast({"Damage": "0", "DPS": "10", "AbilityDuration": "1", "TickRate": "1"})
@@ -74,7 +84,11 @@ class DescribeCycle:
         def it_ticks_dps_every_tick_rate_across_the_duration(self):
             cycle, _ = cast({"DPS": "40", "AbilityDuration": "1", "TickRate": "0.5", "AbilityCastDelay": "0.1"})
             assert [h.label for h in cycle.hits] == ["DPS tick 1", "DPS tick 2"]
-            assert [(h.trigger, h.land, h.damage) for h in cycle.hits] == [approx((0, 0.6, 20)), approx((0, 1.1, 20))]
+            assert [(h.land, h.damage) for h in cycle.hits] == [approx((0.6, 20)), approx((1.1, 20))]
+
+        def it_triggers_each_tick_at_the_previous_land_and_the_first_at_the_cast(self):
+            cycle, _ = cast({"DPS": "40", "AbilityDuration": "1.5", "TickRate": "0.5", "AbilityCastDelay": "0.1"})
+            assert [(h.trigger, h.land) for h in cycle.hits] == [approx((0, 0.6)), approx((0.6, 1.1)), approx((1.1, 1.6))]
 
         def it_falls_back_to_the_channel_time(self):
             cycle, notes = cast({"DPS": "40", "AbilityDuration": "0", "AbilityChannelTime": "2", "TickRate": "1"})

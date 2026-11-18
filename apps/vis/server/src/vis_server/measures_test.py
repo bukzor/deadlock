@@ -43,6 +43,14 @@ class DescribeMeasures:
         }
         assert all(m.unit and m.check for m in found), found
 
+    def it_checks_uptime_dps_the_same_way_for_every_source(self):
+        gun = by_name(measures(gun_cycle(PAIGE), horizon=10))["uptime_dps"].check
+        assert (by_name(measures(SWING, horizon=10))["uptime_dps"].check, "gun" in gun) == (gun, False)
+
+    def it_divides_uptime_dps_by_the_period_less_its_downtime(self):
+        cast = Cycle(hits=(Hit(0, 0.5, 30, "a"), Hit(0.5, 2.0, 30, "b")), period=10.0, downtime=8.0)
+        assert (values(cast)["uptime_dps"], values(cast)["steady_dps"]) == approx((30, 6))
+
     def it_states_the_horizon_and_hp_in_the_checks(self):
         found = by_name(measures(SWING, horizon=7.5, hp=40))
         assert "7.5 s" in found["total_damage"].check
@@ -52,9 +60,9 @@ class DescribeMeasures:
         def it_omits_uptime_and_steady_dps(self):
             assert values(NUKE).keys() == {"total_damage", "average_dps", "first_land"}
 
-    class WhenThePeriodIsAllReload:
+    class WhenThePeriodIsAllDowntime:
         def it_omits_uptime_dps_but_keeps_steady_dps(self):
-            found = values(Cycle(hits=(Hit(0, 0, 50, "a"),), period=2.0, reload=2.0))
+            found = values(Cycle(hits=(Hit(0, 0, 50, "a"),), period=2.0, downtime=2.0))
             assert ("uptime_dps" in found, found["steady_dps"]) == (False, 25)
 
     class WhenSummingOverTheHorizon:

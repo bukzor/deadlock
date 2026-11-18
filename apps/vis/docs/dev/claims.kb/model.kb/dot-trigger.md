@@ -1,6 +1,7 @@
 ---
 label: DOT_TRIGGER
 standing: agent
+verdict: superseded
 why:
 - ../original-request.md
 - ../judge-on-own-authority.md
@@ -8,6 +9,10 @@ why:
 ---
 
 # A damage-over-time tick's trigger is the cast
+
+Superseded by `DOT_TILING` ([`dot-tiling.md`](dot-tiling.md)): every
+tick bar started at the cast, so the bars overlapped from t=0 and the
+owner could not read the chart.
 
 Each tick of a cast's damage over time has the cast as its trigger, so
 its bar spans from the cast to that tick. The request puts the

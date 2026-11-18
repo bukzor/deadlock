@@ -2,7 +2,7 @@
 import * as Plot from "@observablehq/plot";
 import { describe, expect, it } from "vitest";
 
-import { hitMarks } from "./chart";
+import { hitMarks, hitTitle, xDomain } from "./chart";
 import type { HitLine } from "./protocol";
 
 function hit(trigger: number, land: number, damage: number, label = "bullet"): HitLine {
@@ -52,5 +52,29 @@ describe("hitMarks", () => {
     const svg = render([hit(0, 1, 50, "shot 1"), hit(0, 2, 50, "shot 2"), hit(0, 3, 50, "DPS tick 1")]);
     expect(colors(svg, `[aria-label="rect"] rect`, "fill")).toHaveLength(1);
     expect(colors(svg, `[aria-label="rule"] line`, "stroke")).toHaveLength(1);
+  });
+
+  it("fills each bar enough to read on its own", () => {
+    const svg = render([hit(0, 1, 50)]);
+    const opacity = svg.querySelector(`[aria-label="rect"]`)?.getAttribute("fill-opacity");
+    expect(Number(opacity ?? 1)).toBeGreaterThanOrEqual(0.4);
+  });
+});
+
+describe("hitTitle", () => {
+  it("names the hit, its times, its wind-up and its damage, one per line", () => {
+    expect(hitTitle(hit(0.48, 0.86, 8.74, "DPS tick 2"))).toBe(
+      "DPS tick 2\ntrigger 0.48 s\nland 0.86 s\nwind-up 0.38 s\ndamage 8.74",
+    );
+  });
+});
+
+describe("xDomain", () => {
+  it("spans the horizon when every bar ends inside it", () => {
+    expect(xDomain([hit(0, 1, 5)], 10)).toEqual([0, 10]);
+  });
+
+  it("stretches to the last land when a bar ends past the horizon", () => {
+    expect(xDomain([hit(30, 30.48, 5), hit(30.48, 35.04, 5)], 30)).toEqual([0, 35.04]);
   });
 });

@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - ./CLAUDE.md
@@ -75,8 +75,58 @@ vitest.
 
 ## Steps
 
+- [x] 1: ticks tile (`casts._ticks`)
+- [x] 2: `Cycle.reload` → `downtime`; cast downtime; one `uptime_dps` check
+- [x] 3: chart: fill 0.45, plain `title` tooltip, `xDomain`
+- [x] 4: ledger: `DOT_TRIGGER` superseded; `DOT_TILING`, `UPTIME_ANY_SOURCE`, `CAST_DOWNTIME`
+- [x] 5: screenshots
+- [x] checks, commit
+
 ## Decisions
+
+- **Damage outlasting the cooldown:** downtime 0, plus a note that casts on
+  cooldown overlap; the period is then all uptime. Filed as `CAST_DOWNTIME`
+  (`model.kb/cast-downtime.md`), which also covers the per-source table.
+- **One `uptime_dps` check:** "deal one cycle (a clip, a swing, a cast) to the
+  training dummy; divide its damage by the stopwatch time from the first
+  trigger until its downtime starts." The stat-panel hint is gone from the
+  check; the docstring and tests keep the gun/UI equivalence.
+- **Tooltip** is Plot's `title` channel from a pure `hitTitle`, so it is
+  unit-tested and shows exactly label/trigger/land/wind-up/damage.
+- **`Gun.reload`** stays: it is the gun's stat; only `Cycle`'s field renamed.
+- **`L1273`** added to `claims.md`'s `non-claim-tokens:` beside `L5`/`L1002`
+  (outside the brief's scope, one line), so the mentions scan stays clean.
+- The user's words are `14fac9c8#L1273`; `UPTIME_ANY_SOURCE` quotes both
+  bullets, `DOT_TILING` quotes "What's with the shading?".
 
 ## Open Questions
 
+- **Impact-only casts:** `uptime_dps` = damage ÷ cast delay, so a 100-damage
+  impact at 0.25 s reads 400/s, and one at delay 0 has no `uptime_dps` at
+  all (all downtime). Correct by the definition, but a player may find it odd.
+- **The second cast at the horizon:** `repeat` keeps a hit by its trigger, so
+  with tiled ticks only the first tick of a cast at t=horizon is sent (one
+  bar to 30.48, not 13 to 35.04). Nothing is clipped; it is just less shown.
+
 ## Final report
+
+Checks: pytest 144 passed; basedpyright `all` 0 errors; `tsc --noEmit`
+clean; vitest 19/19. New tests were each seen red (the downtime-divisor one
+by mutating `measures.py`). Ledger: `llm.kb-validate` 22 files 0 errors;
+links 30/0 broken; mentions 0; graph 27 nodes, 1 component, acyclic;
+grounding shows `DOT_TRIGGER` struck, the new claims grounded on 2 users.
+
+Numbers: leech (horizon 30) `uptime_dps` 22.54, `steady_dps` 3.79. Guns
+unchanged: the real-data oracle test still matches `ability_profiles`
+dps/sdps for every live gun; Infernus 52.38 / 29.2.
+
+Screenshots (`trash/013/`): `hero_nurse.ability_nurse_leech_therapy.horizon-30.png`,
+`hero_nurse.ability_nurse_leech_therapy.tip.png`,
+`hero_inferno.citadel_weapon_inferno_set.png`,
+`hero_inferno.citadel_weapon_inferno_set.tip.png`. Driven by
+`trash/012/driver/drive.mjs` against my own server on :8788 and a
+throwaway headless Chrome profile, both stopped after.
+
+Deviations: the `claims.md` token line (Decisions). Results:
+`apps/vis/server/src/vis_server/{timeline,casts,measures}.py` and tests,
+`apps/vis/client/src/chart{,.test}.ts`, `apps/vis/docs/dev/claims.kb/model.kb/`.

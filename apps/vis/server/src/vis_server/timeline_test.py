@@ -13,7 +13,7 @@ ABRAMS = Gun(damage=3.78, pellets=9, burst=1, cycle=0.63, intra=0.0, shots=9, re
 
 def uptime_dps(cycle: Cycle) -> float:
     assert cycle.period is not None
-    return sum(h.damage for h in cycle.hits) / (cycle.period - cycle.reload)
+    return sum(h.damage for h in cycle.hits) / (cycle.period - cycle.downtime)
 
 
 class DescribeGunCycle:
@@ -35,7 +35,7 @@ class DescribeGunCycle:
 
     def it_reloads_after_the_clip(self):
         cycle = gun_cycle(PAIGE)
-        assert (len(cycle.hits), cycle.period, cycle.reload) == (10, approx(7.0), 2.0)
+        assert (len(cycle.hits), cycle.period, cycle.downtime) == (10, approx(7.0), 2.0)
 
     def it_lands_after_the_travel_time(self):
         hit = gun_cycle(replace(PAIGE, travel=0.25)).hits[1]

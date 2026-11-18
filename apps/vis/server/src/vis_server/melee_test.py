@@ -56,8 +56,8 @@ class DescribeCycle:
         assert _cycle("hero_b", LIGHT)[0].period == approx(0.65)
         assert _cycle("hero_b", HEAVY)[0].period == approx(1.1)
 
-    def it_never_reloads(self):
-        assert _cycle("hero_a", LIGHT)[0].reload == 0
+    def it_has_no_downtime(self):
+        assert _cycle("hero_a", LIGHT)[0].downtime == 0
 
     def it_lands_after_the_windup(self):
         hit = _cycle("hero_a", LIGHT, windup=0.3)[0].hits[0]

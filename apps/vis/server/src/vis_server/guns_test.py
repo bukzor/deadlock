@@ -74,7 +74,7 @@ class DescribeCycle:
 
     def it_reloads_single_bullets_from_empty_and_says_that_is_unverified(self):
         cycle, notes = _gun(m_bReloadSingleBullets=True, m_flReloadSingleBulletsInitialDelay=0.5, m_reloadDuration=0.25)
-        assert cycle.reload == approx(0.5 + 9 * 0.25)
+        assert cycle.downtime == approx(0.5 + 9 * 0.25)
         assert [n for n in notes if "unverified" in n and "reload" in n], notes
 
     class WhenTheBulletTravels:
@@ -128,5 +128,5 @@ class DescribeRealData:
             damage = sum(h.damage for h in cycle.hits)
             profile = oracle[hero, ability]
             # the profile rounds to 0.1
-            assert damage / (cycle.period - cycle.reload) == approx(profile.dps, abs=0.051), (hero, ability)
+            assert damage / (cycle.period - cycle.downtime) == approx(profile.dps, abs=0.051), (hero, ability)
             assert damage / cycle.period == approx(profile.sdps, abs=0.051), (hero, ability)
