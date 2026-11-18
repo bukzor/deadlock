@@ -85,6 +85,3 @@ copies them.
   `/tmp`.
 - **Ownership.** The brief (frontmatter inputs, Problem Statement) belongs to
   the coordinator. Edit only your own sections, in place, in ≤60 lines.
-- `reportMissingTypeStubs` on a `deadlock` import: the package lacks
-  `py.typed`, and unit 007 adds it. Don't work around it (no `# pyright:
-  ignore`, no stubs). Report it as pending if 007 hasn't landed yet.
