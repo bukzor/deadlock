@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - ./CLAUDE.md
@@ -76,8 +76,44 @@ Run the ledger tools the skill names (graph, mentions, grounding) and
 
 ## Steps
 
+- [x] read the precedent, the design, the session's two user messages (L5, L1002)
+- [x] write the ledger under `apps/vis/docs/dev/`
+- [x] run graph, mentions, grounding, `llm.kb-validate`; clean
+- [x] self-audits; commit
+
 ## Decisions
+
+- **Three `user` grounds, not one.** L1002 holds two rulings, the delegation
+  (`OWN_AUTHORITY`) and the acceptance bar (`ACCEPTANCE`), and the original
+  request (`VIS_REQUEST`, L5) is a ruling too. The grounding tool counts only
+  `standing: user` claims as ground, so a request quoted in prose alone would
+  leave every claim citing it ungrounded.
+- **One sub-theory, `model`**, coining `Cycle`, `Hit`, `trigger`, `land`,
+  `wind-up`, `horizon`; its claims share one overturner (an in-game
+  measurement) and its own `stale-when:`. Stack and protocol calls coin
+  nothing of their own, so they stay at the top (`VIS_APP`).
+- **`todo: true`** on the calls not built yet: `MELEE_LISTING` (unit 008),
+  `RESPONSE_BUFFERING` (009), `SERVE_COMMAND` (wave 3).
+- **Added `MELEE_DAMAGE`, `standing: open`**: brief item 9's "unexplained and
+  recorded" is an open question, so it is filed as one, apart from `STAT_LEVEL`.
+- **"jdugements" emended to "judgements"** in the quote (a typo, per VOICE).
+- `why:` cites the design doc by file; the section is named in the body.
+  The graph tool reports those and the handoff citations as "reference into
+  another ledger" on stderr; that is informational, not a dangling link.
 
 ## Open Questions
 
+- Brief item 11 said ten abilities keep their duration in a nonstandard
+  property. The survey in `casts.py` says nine do, and one has no tick
+  interval. `UNTICKED_DOTS` states the survey's split.
+
 ## Final report
+
+- `apps/vis/docs/dev/`: `claims.md` (VIS_APP) beside `claims.kb/`, with
+  `model.md` beside `model.kb/`; 3 user, 15 agent, 1 open claims.
+- `llm.kb-validate`: 19 files, 0 errors. `llm-claims-kb-mentions`: 0 tokens.
+  `llm.kb-validate-links`: 25 links, 0 broken. Graph: 24 nodes, 1 component,
+  acyclic. Grounding: every agent claim reaches a user ground; OWN_AUTHORITY
+  carries 14.
+- Deviations: the extra user grounds and `MELEE_DAMAGE` (Decisions); the
+  nine-plus-one split (Open Questions).
