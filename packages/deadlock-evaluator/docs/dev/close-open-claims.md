@@ -1,8 +1,8 @@
 # Close the ledger's open claims
 
-The design ledger (`claims.md`) holds four `standing: open` claims. Two are
-empirical and are closed by measurement; two are rulings only the owner
-can make. This plan runs the measurements as sub-agent units
+The design ledger (`claims.md`) held four `standing: open` claims, then a
+fifth filed by the owner mid-plan. Three are empirical and are closed by
+measurement; two are rulings only the owner can make. This plan runs the measurements as sub-agent units
 (`Skill(subagent-handoffs)`), one handoff file per unit in
 `close-open-claims.kb/`.
 
@@ -12,6 +12,7 @@ can make. This plan runs the measurements as sub-agent units
 | `SEGMENTATION` | `claims.kb/representation.kb/segmentation-from-events.md` | unit 004 |
 | `OUTCOME_TRACE` | `claims.kb/architecture.kb/outcome-trace-or-summary.md` | owner's ruling, not a unit |
 | `MICRO_POLICY` | `claims.kb/architecture.kb/micro-policy-is-the-open-input.md` | owner narrows it now; calibration closes it later |
+| `LOCAL_DEMO_TRIGGERS` | `claims.kb/tooling.kb/local-demo-corpus-triggers.md` | unit 005 from disk evidence; one owner observation if it stays open |
 
 Also settled along the way, though never filed as open: which demo parser
 `observe` wraps and whether it exposes positions
@@ -29,6 +30,9 @@ Wave 2:
 
 Wave 3:
 - [x] [004 segmentation](close-open-claims.kb/2026-11-18-004-segmentation.md): cut one demo into episodes from damage events; close `SEGMENTATION`
+
+Wave 4:
+- [ ] [005 demo triggers](close-open-claims.kb/2026-11-18-005-demo-triggers.md): what writes each kind of file under the install's `replays/`; close or narrow `LOCAL_DEMO_TRIGGERS`
 
 ## Success criteria
 
