@@ -4,7 +4,7 @@ import pytest
 from deadlock import paths
 from pytest import approx
 
-from .queries import QUERIES, GameData, load_data, registry
+from .queries import QUERIES, GameData, listed, load_data, registry
 from .types import BadRequest, JsonObj, Params
 
 TECH = {"_class": "scale_function_tech_damage", "m_flStatScale": 0.5, "m_eSpecificStatScaleType": "ETechPower"}
@@ -49,6 +49,7 @@ DATA = GameData(
         "hero_c": _hero({"Weapon_Melee": "melee_a"}),
         "hero_a": _hero(KIT),
         "hero_off": _hero(KIT, disabled=True),
+        "hero_dev": _hero(KIT),  # live, but not listed
     },
     abilities={
         "gun_a": {"m_mapWeaponInfos": {"primary": GUN}},
@@ -57,7 +58,7 @@ DATA = GameData(
                                                    AbilityCooldown="10", AbilityCastDelay="0.5")},
         "buff": {"m_mapAbilityProperties": _props(AbilityCooldown="20")},
     },  # fmt: skip
-    names={"hero_a": "Alpha", "hero_c": "Charlie", "hero_off": "Off"},
+    listed={"hero_a": "Bravo", "hero_c": "Alpha", "hero_off": "Off"},
 )
 SYNTHETIC = registry(lambda: DATA)
 
@@ -100,8 +101,14 @@ class DescribeRegistry:
 
 
 class DescribeHeroes:
-    def it_lists_each_live_hero_by_key_with_its_display_name(self):
-        assert run("heroes") == [{"hero": "hero_a", "name": "Alpha"}, {"hero": "hero_c", "name": "Charlie"}]
+    def it_lists_each_live_listed_hero_by_display_name(self):
+        assert run("heroes") == [{"hero": "hero_c", "name": "Alpha"}, {"hero": "hero_a", "name": "Bravo"}]
+
+
+class DescribeListed:
+    def it_names_each_hero_but_those_in_development_and_the_training_dummy(self):
+        rows = [("hero_astro", "Holliday", "false"), ("hero_genericperson", "Generic Person", "true"), ("hero_targetdummy", "TargetDummy", "false")]
+        assert listed({"hero": h, "name": n, "in_development": d} for h, n, d in rows) == {"hero_astro": "Holliday"}
 
 
 class DescribeAbilities:
@@ -132,6 +139,12 @@ def timeline(ability: str = "melee_light", hero: str = "hero_a", **params: str) 
     return run("timeline", hero=hero, ability=ability, **params)
 
 
+def blast_timeline(props: Mapping[str, object], **params: str) -> Sequence[JsonObj]:
+    """The timeline of ``hero_a``'s ``blast``, its properties replaced by ``props``."""
+    data = GameData(DATA.heroes, {**DATA.abilities, "blast": {"m_mapAbilityProperties": _props(**props)}}, DATA.listed)
+    return registry(lambda: data)["timeline"].run({"hero": "hero_a", "ability": "blast", **params})
+
+
 class DescribeTimeline:
     def it_emits_hits_then_measures_then_notes(self):
         found = [str(line["kind"]) for line in timeline()]
@@ -149,8 +162,7 @@ class DescribeTimeline:
         assert kinds(timeline("blast"), "cycle") == [{"kind": "cycle", "period": 10.0, "downtime": 9.5, "horizon": 20.0}]
 
     def it_unrolls_10_seconds_for_a_one_shot(self):
-        data = GameData(DATA.heroes, {**DATA.abilities, "blast": {"m_mapAbilityProperties": _props(Damage="5", AbilityCooldown="0", AbilityCastDelay="0")}}, DATA.names)
-        [line] = kinds(registry(lambda: data)["timeline"].run({"hero": "hero_a", "ability": "blast"}), "cycle")
+        [line] = kinds(blast_timeline({"Damage": "5", "AbilityCooldown": "0", "AbilityCastDelay": "0"}), "cycle")
         assert (line["period"], line["horizon"]) == (None, 10.0)
 
     def it_sends_only_hits_that_land_within_the_horizon(self):
@@ -159,14 +171,22 @@ class DescribeTimeline:
 
     def it_emits_each_measure(self):
         measures = kinds(timeline(horizon="1"), "measure")
-        names = ["steady_dps", "cycle_damage", "total_damage", "average_dps", "first_land"]
-        assert [m["name"] for m in measures] == names  # one hit per swing: no uptime_dps
+        names = ["steady_dps", "cycle_damage", "total_damage", "first_land"]
+        assert [m["name"] for m in measures] == names  # a swing has no downtime: no uptime_dps
         assert measures[0] == {
-            "kind": "measure", "name": "steady_dps", "label": "DPS incl. reload/cooldown", "value": approx(50 / 0.75),
+            "kind": "measure", "name": "steady_dps", "label": "DPS", "value": approx(50 / 0.75),
             "unit": "damage/s", "check": measures[0]["check"],
         }  # fmt: skip
-        assert measures[3]["label"] == "DPS over the first 1 s"
         assert all(set(m) == {"kind", "name", "label", "value", "unit", "check"} and m["check"] for m in measures)
+
+    def it_shows_a_casts_card_dps_at_the_given_spirit_and_level(self):
+        dot = {"DPS": {"m_strValue": "20", "m_subclassScaleFunction": TECH}, "AbilityDuration": "2", "TickRate": "1",
+               "AbilityCooldown": "10", "AbilityCastDelay": "0"}  # fmt: skip
+        [card] = [m for m in kinds(blast_timeline(dot, spirit="7", level="2"), "measure") if m["name"] == "card_dps"]
+        assert card["value"] == approx(20 + 0.5 * (7 + 3))
+
+    def it_shows_no_card_dps_for_a_cast_without_one(self):
+        assert "card_dps" not in [m["name"] for m in kinds(timeline("blast"), "measure")]
 
     def it_notes_the_sources_caveats_and_level_zero(self):
         found = notes(timeline(windup="0.3"))
@@ -200,9 +220,17 @@ class DescribeTimeline:
         assert kinds(timeline(ability, **{param: value}), "hit")[0][field] == approx(expected)
 
     class WhenGivenHp:
-        def it_measures_time_to_kill(self):
-            measures = {m["name"]: m["value"] for m in kinds(timeline(hp="100", windup="0.25"), "measure")}
-            assert measures["time_to_kill"] == 1.0
+        def it_measures_time_to_kill_first(self):
+            [first, *_] = kinds(timeline(hp="100", windup="0.25"), "measure")
+            assert (first["name"], first["value"]) == ("time_to_kill", 1.0)
+
+        def it_stretches_the_default_horizon_to_the_time_to_kill(self):
+            lines = timeline(hp="300", windup="0.25")  # the 6th swing lands at 4 s, in the 6th period of 0.75 s
+            assert (kinds(lines, "cycle")[0]["horizon"], kinds(lines, "hit")[-1]["land"]) == (approx(4.5), approx(4.0))
+
+        def it_notes_hp_not_reached_within_120_s(self):
+            lines = timeline(hp="1e9")
+            assert kinds(lines, "cycle")[0]["horizon"] == 120 and "within 120 s" in notes(lines)[-1], notes(lines)
 
         def it_notes_hp_not_reached_within_the_horizon(self):
             lines = timeline(hp="101", horizon="1", windup="0.3")

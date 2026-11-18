@@ -97,6 +97,16 @@ def cycle(
     return cycle, tuple(text for _, text in sorted(notes, key=lambda note: note[0]))
 
 
+
+def card_dps(abilities: Mapping[str, object], ability: str, spirit: float) -> float | None:
+    """``ability``'s ``DPS`` property with ``spirit`` spirit power: the DPS its card shows; ``None`` without one.
+
+    Scaling by a stat other than spirit is left out, as in ``cycle``, which notes it.
+    """
+    props = dig(abilities, ability, "m_mapAbilityProperties")
+    assert is_str_mapping(props), ability
+    return _scaled(props, ability, "DPS", spirit, []) if "DPS" in props else None
+
 def _downtime(hits: list[Hit], cooldown: float, notes: Notes) -> float:
     """The cooldown left after the last land; 0, with a note, when the damage outlasts it."""
     if cooldown <= 0:

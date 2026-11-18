@@ -11,7 +11,7 @@ Abilities are named by their key: the trees carry no ability display names.
 
 import csv
 import math
-from collections.abc import Callable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import cache
 
@@ -20,35 +20,34 @@ from deadlock.abilities import SIGNATURE, bindings
 
 from . import boons, casts, guns, melee
 from .boons import NONE, Boons
-from .measures import Measure, measures
+from .measures import Measure, default_horizon, measures
 from .timeline import Cycle, Hit, landed_by
-from .types import BadRequest, JsonObj, Params, Query
+from .types import BadRequest, JsonObj, Kind, Params, Query
 
-ONE_SHOT_HORIZON = 10.0  # seconds, for a cycle that happens once
-DEFAULT_PERIODS = 2  # cycles shown when horizon is absent
+TRAINING_DUMMY = "hero_targetdummy"
 
 HERO = "hero key, from the heroes query (required)"
 TIMELINE = {
     "hero": HERO,
     "ability": "ability key, from the abilities query (required)",
-    "horizon": "seconds to unroll, > 0 (default 2 periods of the cycle, or 10 for a one-shot)",
+    "horizon": "seconds to unroll, > 0 (default 2 periods of the cycle, or 10 for a one-shot; with hp, stretched to the time to kill, up to 120)",
     "level": "hero level, a whole number from 0 (default) to the data's last: one boon per level",
     "distance": "meters to the target, >= 0 (default 0): a gun's bullet travel",
     "spirit": "spirit power on top of the level's, >= 0 (default 0): scales a cast's damage",
     "windup": "seconds from a melee swing to its hit, >= 0 (default 0)",
-    "hp": "target health, > 0 (optional): adds time_to_kill",
+    "hp": "target health, > 0 (optional): adds time_to_kill, first",
 }
 
-type Source = tuple[str, Cycle, Sequence[str]]  # (kind, cycle, notes)
+type Source = tuple[Kind, Cycle, Sequence[str]]  # (kind, cycle, notes)
 
 
 @dataclass(frozen=True)
 class GameData:
-    """The ``heroes.vdata`` and ``abilities.vdata`` trees (see ``deadlock.gamedata``), and hero display names."""
+    """The ``heroes.vdata`` and ``abilities.vdata`` trees (see ``deadlock.gamedata``), and the heroes to list."""
 
     heroes: Mapping[str, object]
     abilities: Mapping[str, object]
-    names: Mapping[str, str]  # hero key: display name
+    listed: Mapping[str, str]  # hero key: display name, for each hero the heroes query may list
 
 
 def registry(data: Callable[[], GameData]) -> Mapping[str, Query]:
@@ -74,8 +73,9 @@ def _query(params: Mapping[str, str], run: Callable[[Params], Sequence[JsonObj]]
 
 
 def heroes(data: GameData) -> list[JsonObj]:
-    """``{"hero", "name"}`` for each live hero, by key."""
-    return [{"hero": hero, "name": data.names[hero]} for hero in sorted({h for h, _, _ in bindings(data.heroes)})]
+    """``{"hero", "name"}`` for each live hero in ``data.listed``, by display name."""
+    live = {h for h, _, _ in bindings(data.heroes)} & set(data.listed)
+    return [{"hero": hero, "name": data.listed[hero]} for hero in sorted(live, key=lambda h: (data.listed[h], h))]
 
 
 def abilities(data: GameData, hero: str) -> list[JsonObj]:
@@ -94,10 +94,11 @@ def abilities(data: GameData, hero: str) -> list[JsonObj]:
 def timeline(data: GameData, params: Params) -> list[JsonObj]:
     """The ``cycle`` line, every hit that lands by the horizon, every measure, then every note, for ``TIMELINE``'s parameters.
 
-    The horizon defaults to ``DEFAULT_PERIODS`` periods of the cycle. The
-    notes are the level's (see ``_level_notes``), the source's (by how much
-    each moves the numbers), then a note when ``hp`` is given but not reached. An ability ``abilities`` lists that no source
-    models gets only notes, one saying so.
+    The horizon defaults to ``measures.default_horizon``. A cast's measures
+    include its card's DPS, when it has one. The notes are the level's (see
+    ``_level_notes``), the source's (by how much each moves the numbers), then
+    a note when ``hp`` is given but not reached. An ability ``abilities`` lists
+    that no source models gets only notes, one saying so.
     """
     hero, ability = _required(params, "hero"), _required(params, "ability")
     given_horizon = _optional_number(params, "horizon", positive=True)
@@ -112,9 +113,10 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
     if found is None:
         unmodeled = f"{ability} has no damage model: only guns, melee and damaging signature abilities are modeled"
         return [*(_note(text) for text in level_notes), _note(unmodeled)]
-    _, cycle, notes = found
-    horizon = given_horizon or (ONE_SHOT_HORIZON if cycle.period is None else DEFAULT_PERIODS * cycle.period)
-    measured = measures(cycle, horizon, hp)
+    kind, cycle, notes = found
+    horizon = given_horizon or default_horizon(cycle, hp)
+    card = casts.card_dps(data.abilities, ability, spirit + gained.spirit) if kind == "cast" else None
+    measured = measures(cycle, horizon, hp, kind=kind, card_dps=card)
     if hp is not None and "time_to_kill" not in {m.name for m in measured}:
         notes = [*notes, f"The target's {hp:g} HP is not reached within {horizon:g} s: no time to kill is shown."]
     return [
@@ -127,15 +129,20 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
 
 @cache
 def load_data() -> GameData:
-    """``data/``'s hero and ability trees and ``gamedata.tsv/heroes.tsv``'s names, read once per process."""
+    """``data/``'s hero and ability trees and ``gamedata.tsv/heroes.tsv``'s ``listed`` heroes, read once per process."""
     root = paths.data_dir()
     with (root / "gamedata.json/scripts/heroes.json").open() as file:
         hero_tree = gamedata.load(file)
     with (root / "gamedata.json/scripts/abilities.json").open() as file:
         ability_tree = gamedata.load(file)
     with (root / "gamedata.tsv/heroes.tsv").open(newline="") as file:
-        names = {row["hero"]: row["name"] for row in csv.DictReader(file, delimiter="\t", quoting=csv.QUOTE_NONE)}
+        names = listed(csv.DictReader(file, delimiter="\t", quoting=csv.QUOTE_NONE))
     return GameData(hero_tree, ability_tree, names)
+
+
+def listed(rows: Iterable[Mapping[str, str]]) -> dict[str, str]:
+    """``{hero: name}`` from ``heroes.tsv`` rows, leaving out heroes in development and the training dummy."""
+    return {row["hero"]: row["name"] for row in rows if row["in_development"] == "false" and row["hero"] != TRAINING_DUMMY}
 
 
 QUERIES: Mapping[str, Query] = registry(load_data)
@@ -161,7 +168,7 @@ def _source(
 ) -> Source | None:
     """The first source that models ``ability``, as ``(kind, cycle, notes)``; ``spirit`` is the total."""
     trees = (data.heroes, data.abilities, hero, ability)
-    sources: Mapping[str, Callable[[], tuple[Cycle, Sequence[str]] | None]] = {
+    sources: Mapping[Kind, Callable[[], tuple[Cycle, Sequence[str]] | None]] = {
         "gun": lambda: guns.cycle(*trees, distance, boons),
         "melee": lambda: melee.cycle(*trees, windup, boons),
         "cast": lambda: casts.cycle(*trees, spirit),

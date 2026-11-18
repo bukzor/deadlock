@@ -1,6 +1,7 @@
 ---
 label: AVERAGE_DPS_KEPT
 standing: agent
+verdict: superseded
 why:
 - original-request.md
 - judge-on-own-authority.md
@@ -22,3 +23,7 @@ ponder the intelligibility and overall UX of this UI", quoted in unit 015's
 brief); the finding is in
 [unit 015's report](../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-015-ux-review.md). Design:
 [`vis-app.md`](../../../../../docs/dev/decisions.kb/vis-app.md).
+
+Out of force: the design's *Measures* section now has no average DPS,
+because the horizon is whole cycles and the average would repeat
+`steady_dps` (UX review round 2, finding 3; built by unit 023).

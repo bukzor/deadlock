@@ -175,6 +175,17 @@ class DescribeCycle:
 SCRIPTS = paths.data_dir() / "gamedata.json/scripts"
 
 
+
+class DescribeCardDps:
+    def it_is_the_dps_property_at_the_given_spirit(self):
+        _, abilities = tree({"DPS": {"m_strValue": "20", "m_subclassScaleFunction": TECH}})
+        assert casts.card_dps(abilities, ABILITY, spirit=10) == 25
+
+    def it_is_none_without_a_dps_property(self):
+        _, abilities = tree({"Damage": "100"})
+        assert casts.card_dps(abilities, ABILITY, spirit=10) is None
+
+
 def load(name: str) -> Mapping[str, object]:
     with Path(SCRIPTS / name).open() as file:
         return gamedata.load(file)
