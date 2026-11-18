@@ -28,7 +28,7 @@ Wave 2:
 - [x] [002 event volume](close-open-claims.kb/2026-11-18-002-event-volume.md): count rows by event type on a bot and a public demo; close `EVENT_VOLUME`
 
 Wave 3:
-- [ ] [004 segmentation](close-open-claims.kb/2026-11-18-004-segmentation.md): cut one demo into episodes from damage events; close `SEGMENTATION`
+- [x] [004 segmentation](close-open-claims.kb/2026-11-18-004-segmentation.md): cut one demo into episodes from damage events; close `SEGMENTATION`
 
 ## Success criteria
 
@@ -37,4 +37,5 @@ Wave 3:
 - `reuse-a-demo-parser.md` names the parser and what it exposes.
 - `grep -rl 'standing: open' claims.kb/` lists only owner-ruling claims.
 
-Commit range: (filled at close)
+Commit range: 2041c59..HEAD (plan, four units, routing). Review pending;
+the handoff files are removed once the owner is satisfied.
