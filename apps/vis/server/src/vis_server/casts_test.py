@@ -52,11 +52,6 @@ class DescribeCycle:
         assert cycle.period is None
         assert any("AbilityCooldown is 0" in n for n in notes), notes
 
-    def it_orders_hits_by_trigger(self):
-        cycle, _ = cast({"Damage": "1", "DPS": "1", "AbilityDuration": "1", "TickRate": "0.5", "AbilityCastDelay": "0.5"})
-        triggers = [h.trigger for h in cycle.hits]
-        assert triggers == sorted(triggers), triggers
-
     def it_drops_a_zero_damage_hit(self):
         cycle, _ = cast({"Damage": "0", "DPS": "10", "AbilityDuration": "1", "TickRate": "1"})
         assert [h.label for h in cycle.hits] == ["DPS tick 1"]
@@ -79,7 +74,7 @@ class DescribeCycle:
         def it_ticks_dps_every_tick_rate_across_the_duration(self):
             cycle, _ = cast({"DPS": "40", "AbilityDuration": "1", "TickRate": "0.5", "AbilityCastDelay": "0.1"})
             assert [h.label for h in cycle.hits] == ["DPS tick 1", "DPS tick 2"]
-            assert [(h.trigger, h.land, h.damage) for h in cycle.hits] == [approx((0.1, 0.6, 20)), approx((0.6, 1.1, 20))]
+            assert [(h.trigger, h.land, h.damage) for h in cycle.hits] == [approx((0, 0.6, 20)), approx((0, 1.1, 20))]
 
         def it_falls_back_to_the_channel_time(self):
             cycle, notes = cast({"DPS": "40", "AbilityDuration": "0", "AbilityChannelTime": "2", "TickRate": "1"})

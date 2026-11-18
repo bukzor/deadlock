@@ -2,7 +2,8 @@
 
 The model, an unverified heuristic: a cast at t=0 lands its ``Damage`` after
 ``AbilityCastDelay``; its ``DPS`` then ticks every tick interval across its
-duration; the whole repeats every ``AbilityCooldown`` (once, if that is 0).
+duration, every tick triggered by the cast; the whole repeats every
+``AbilityCooldown`` (once, if that is 0).
 Damage and DPS that scale with ``ETechPower`` add ``m_flStatScale × spirit``.
 Each property is ``m_mapAbilityProperties.X.m_strValue``.
 
@@ -86,7 +87,7 @@ def cycle(
     if cooldown <= 0:
         notes.append("AbilityCooldown is 0: shown as a single cast")
     notes.extend(_unmodeled(abilities, ability, props))
-    return Cycle(hits=tuple(sorted(hits, key=lambda h: h.trigger)), period=cooldown if cooldown > 0 else None), tuple(notes)
+    return Cycle(hits=tuple(hits), period=cooldown if cooldown > 0 else None), tuple(notes)
 
 
 def _scaled(props: Props, ability: str, name: str, spirit: float, notes: list[str]) -> float:
@@ -105,7 +106,7 @@ def _scaled(props: Props, ability: str, name: str, spirit: float, notes: list[st
 
 
 def _ticks(props: Props, ability: str, delay: float, dps: float, notes: list[str]) -> list[Hit]:
-    """``dps`` as ticks from ``delay``; each tick's bar spans the interval it accrued over.
+    """``dps`` as ticks landing every interval from ``delay``, each triggered by the cast at 0.
 
     Ticks are whole intervals that fit the duration; a remainder is dropped.
     """
@@ -129,7 +130,7 @@ def _ticks(props: Props, ability: str, delay: float, dps: float, notes: list[str
     if not dps:
         return []
     return [
-        Hit(delay + i * interval, delay + (i + 1) * interval, dps * interval, f"DPS tick {i + 1}")
+        Hit(0.0, delay + (i + 1) * interval, dps * interval, f"DPS tick {i + 1}")
         for i in range(count)
     ]
 

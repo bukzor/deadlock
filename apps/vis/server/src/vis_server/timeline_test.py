@@ -1,7 +1,7 @@
 from dataclasses import replace
 from itertools import islice
 
-from pytest import approx
+from pytest import approx, raises
 
 from .timeline import Cycle, Gun, Hit, gun_cycle, repeat
 
@@ -40,6 +40,15 @@ class DescribeGunCycle:
     def it_lands_after_the_travel_time(self):
         hit = gun_cycle(replace(PAIGE, travel=0.25)).hits[1]
         assert hit == Hit(trigger=0.5, land=0.75, damage=32, label="shot 2")
+
+
+class DescribeCycle:
+    def it_rejects_hits_out_of_trigger_order(self):
+        with raises(AssertionError, match=r"trigger=1\.0.*trigger=0\.5"):
+            _ = Cycle(hits=(Hit(0.0, 0.0, 1, "a"), Hit(1.0, 1.0, 1, "b"), Hit(0.5, 0.5, 1, "c")), period=2.0)
+
+    def it_accepts_hits_sharing_a_trigger(self):
+        _ = Cycle(hits=(Hit(0, 0.5, 1, "a"), Hit(0, 0.25, 1, "b")), period=None)
 
 
 class DescribeRepeat:

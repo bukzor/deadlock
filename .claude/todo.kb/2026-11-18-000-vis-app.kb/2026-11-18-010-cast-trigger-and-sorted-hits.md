@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - ./CLAUDE.md
@@ -38,8 +38,30 @@ which now states them.
 
 ## Steps
 
+- [x] Ticks trigger at the cast: red test, `casts.py`, docstrings
+- [x] `Cycle` asserts sorted hits: red test, `timeline.py`
+- [x] Whole server suite and basedpyright clean
+- [x] Commit
+
 ## Decisions
+
+- `Cycle.__post_init__` asserts on the offending adjacent pairs, not the whole
+  list, so the message shows exactly which hits are out of order. Equal
+  triggers are allowed: every cast hit now triggers at 0.
+- `casts.cycle` no longer sorts its hits, and `it_orders_hits_by_trigger` is
+  gone. All of its triggers are 0, so the sort did nothing, and `Cycle` now
+  enforces the order for every source.
 
 ## Open Questions
 
+None.
+
 ## Final report
+
+- Checks: `uv run pytest` 81 passed, 0 skipped (this includes the roster-wide
+  real-data tests for guns, melee and casts, so no source's hits break the
+  assert); `uv run basedpyright` 0 errors on the whole server.
+- Red observed for both new `DescribeCycle` tests: with the assert removed
+  (`DID NOT RAISE`), and with `>` mutated to `>=` (rejects shared triggers).
+- No deviations from the brief. Results are in `casts.py` (tick trigger,
+  docstrings), `timeline.py` (`Cycle.__post_init__`) and their tests.

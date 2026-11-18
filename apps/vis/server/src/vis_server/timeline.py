@@ -11,6 +11,7 @@ cooldown, a cast's cooldown). ``repeat`` unrolls a cycle onto a time axis.
 
 from collections.abc import Iterator, Sequence
 from dataclasses import dataclass, replace
+from itertools import pairwise
 
 
 @dataclass(frozen=True)
@@ -27,6 +28,10 @@ class Cycle:
     hits: Sequence[Hit]  # sorted by trigger, relative to the cycle start
     period: float | None  # None: happens once
     reload: float = 0.0  # seconds of each period spent unable to fire
+
+    def __post_init__(self) -> None:
+        unsorted = [(a, b) for a, b in pairwise(self.hits) if a.trigger > b.trigger]
+        assert not unsorted, unsorted
 
 
 @dataclass(frozen=True)
