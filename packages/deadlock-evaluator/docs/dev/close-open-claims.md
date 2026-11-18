@@ -22,7 +22,7 @@ demo differs materially from a public match.
 
 Wave 1 (parallel):
 - [ ] [001 demo parser](close-open-claims.kb/2026-11-18-001-demo-parser.md): pick and vendor a Deadlock demo parser, prove it on a local bot-match demo
-- [ ] [003 public demo](close-open-claims.kb/2026-11-18-003-public-demo.md): obtain one real public match demo
+- [x] [003 public demo](close-open-claims.kb/2026-11-18-003-public-demo.md): obtain one real public match demo
 
 Wave 2:
 - [ ] [002 event volume](close-open-claims.kb/2026-11-18-002-event-volume.md): count rows by event type on a bot and a public demo; close `EVENT_VOLUME`

@@ -60,9 +60,14 @@ copies them.
   `data/tools/Source2Viewer-CLI.d.do`) and are gitignored except their
   `.do` files; nothing under `data/` is committed except `.do` files.
 - The game install is at `/mnt/c/Program Files (x86)/Steam/steamapps/common/Deadlock`
-  (`docs/dev/environment.kb/game-install-paths.md` at the repo root). Seven
-  local bot-match recordings sit at `game/citadel/botmatch*.dem` under it,
-  74 to 92 MB each. Read them in place; never write there.
+  (`docs/dev/environment.kb/game-install-paths.md` at the repo root). Local
+  demos under `game/citadel/`: seven bot matches `botmatch*.dem` (74 to
+  92 MB), and under `replays/` (a symlink; `find -L`) four Watch-tab
+  downloads of public matches from Apr to Sep 2026 (490 to 660 MB, older
+  patches) plus ~40 `auto-*.dem` recordings of the owner's own games. Read
+  them in place; never write there. A current-patch public match is at
+  `data/replays/139163969.dem` (`redo data/replays/<match_id>.dem` fetches
+  another; the CDN serves a match for about ten days).
 - Downloaded archives and demos are untrusted data: each in its own empty
   directory, scripts elsewhere, Python that reads them run with `-I`.
 - Run builds and checks in the foreground. Never end your turn waiting on a
