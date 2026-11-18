@@ -1,25 +1,26 @@
 ---
 label: LOCAL_DEMO_TRIGGERS
-standing: open
+standing: bare
+verify: >-
+  ./bin/shell sh -c 'g=$(python -c "from deadlock.paths import game_dir; print(game_dir())"); c="$g/citadel"; cat "$c/cfg/server.cfg";
+  strings -n 6 "$g/bin/win64/engine2.dll" | grep -F "auto-%04i";
+  strings -n 6 "$c/bin/win64/server.dll" | grep -E "^replays/|Discarding replay";
+  strings -n 6 "$c/bin/win64/client.dll" | grep -F "replays/%llu.dem";
+  grep -E "Auto-Recording|skipped due|Renamed replay" "$c/citadel_local_server.log"'
 why:
 - public-match-demos-source.md
 ---
 
-# What writes each kind of file in the install's replays directory?
+# Only local bot matches write `auto-*.dem`; the Watch tab writes `<match_id>.dem`
 
-`game/citadel/replays/` (a symlink to `addons/replays/`) holds three
-kinds of file and three subdirectories, and the trigger for each is
-unknown: `<match_id>.dem` (four, Apr to Sep 2026, 490 to 660 MB;
-presumably the Watch tab), `auto-<date>-<time>-<map>-Deadlock.dem`
-(39, from 2026-10-07 on; presumably every own game, but what turned it
-on that day, and does it cover bot matches), and the `recent/`,
-`pending_upload/`, `discarded/` subdirectories (created Oct 6 to 8;
-empty now). The owner asked:
-
-> [!@bukzor] cd601ea7 (2026-11-18)
-> what exactly are the triggers for creating these various "local corpus" files
-
-Settled by: the `citadel_*replay*` and `demo*` rows in `data/dlls/convars.tsv`
-and `concommands.tsv` (the first grep finds death-replay and spectator
-cvars, no obvious auto-record switch), the client's settings menu, and
-watching the directory's mtimes across one played and one watched match.
+`auto-<date>-<time>-<map>-Deadlock.dem` is the engine's `tv_autorecord` name
+(`engine2.dll`, under `sv_replaysdir` = `replays`). The owner's non-shipped
+`cfg/server.cfg` turns it on (`tv_enable 1`, `tv_autorecord 1`), and only a
+local bot match's dedicated child execs that file, so matchmade games leave
+nothing here. At post-game `CCitadelHLTVDirector` (`server.dll`) closes the
+demo; `citadel_upload_replay_enabled 0`, set by `citadel_local_botmatch.cfg`,
+makes it discard the file to `discarded/replays/`. A file still in `replays/`
+has a zero file-info offset: its match never reached post-game.
+`pending_upload/` (where an upload renames the file to `<match_id>.dem`) and
+`recent/` are that director's upload paths, empty here. `<match_id>.dem` is a
+client `CCitadelReplayManager` download (`replays/%llu.dem`).

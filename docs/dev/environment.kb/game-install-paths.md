@@ -43,11 +43,23 @@ Read in place; never write under the install. Sizes are on-disk MiB.
 - `game/citadel/botmatch{1,3..8}.dem` -- seven local bot matches, Oct 3-7
   2026, 70-88 MiB each. Client-side recordings: no roster, 32 ticks/s.
 - `game/citadel/replays/` (a symlink; `find -L`):
-  - Watch-tab downloads of public matches, server-side, 64 ticks/s:
+  - `<match_id>.dem` -- Watch-tab downloads of public matches (the client's
+    replay manager), server-side, 64 ticks/s:
     `78292581` (Apr 26, 547 MiB), `81863306` (May 12, 573 MiB), `87052930`
     (Jun 6, 469 MiB), `107527112` (Sep 25, 630 MiB). Older patches.
-  - `auto-YYYYMMDD-HHMM-dl_midtown-Deadlock.dem` -- ~40 automatic recordings
-    of the owner's own games, Oct 7 to Nov 17 2026, 0.3-116 MiB.
+  - `auto-YYYYMMDD-HHMM-dl_midtown-Deadlock.dem` (local start time) --
+    SourceTV demos of local bot matches, written by the dedicated child
+    because `cfg/server.cfg` sets `tv_enable 1` and `tv_autorecord 1`;
+    server-side, 32 ticks/s, no match id. The 39 here (Oct 7 to Nov 17,
+    0.3-116 MiB) are unfinished: the match never reached post-game, and the
+    header's file-info offset is zero, so boon refuses them. Matchmade games
+    write nothing here.
+  - `discarded/replays/auto-*.dem` -- the 33 finished ones (Oct 7 to Nov 17,
+    31-201 MiB): at post-game the server's replay uploader, disabled by
+    `citadel_local_botmatch.cfg`, moves the demo here.
+  - `pending_upload/`, `recent/` -- empty; the uploader's other paths
+    (an upload renames the demo to `pending_upload/<match_id>.dem`), used
+    only where upload is enabled.
 - A current-patch public match lives in the repo at `data/replays/<id>.dem`
   (`redo data/replays/<match_id>.dem` fetches one; see
   `packages/deadlock-evaluator/docs/dev/claims.kb/tooling.kb/public-match-demos-source.md`).

@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - CLAUDE.md
@@ -52,15 +52,61 @@ section only), `trash/unit-005/**`, this file.
 
 ## Steps
 
-- [ ] Grep the DLL TSVs; tabulate the replay/demo/record/upload rows.
-- [ ] Read the client cfg files; note set values and mtimes.
-- [ ] Collect timestamps (subdirectories, first `auto-*`, patch dates).
-- [ ] Read headers of three `auto-*.dem`; compare with a `botmatch*.dem`.
-- [ ] Grep DLL strings around the subdirectory names.
-- [ ] Amend the claim and the inventory; validate; commit scope + this file.
+- [x] Grep the DLL TSVs; tabulate the replay/demo/record/upload rows.
+- [x] Read the client cfg files; note set values and mtimes.
+- [x] Collect timestamps (subdirectories, first `auto-*`, patch dates).
+- [x] Read headers of three `auto-*.dem`; compare with a `botmatch*.dem`.
+- [x] Grep DLL strings around the subdirectory names.
+- [x] Amend the claim and the inventory; validate; commit scope + this file.
 
 ## Decisions
 
+- Closed the claim as `standing: bare`: the local server's own log
+  (`citadel_local_server.log`, last match Nov 17) prints every step --
+  "Auto-Recording demo", "Replay uploading was skipped due to convar
+  citadel_upload_replay_enabled", "Renamed replay ... to
+  replays/discarded/replays/..." -- and the DLL strings and `cfg/server.cfg`
+  back it. The `verify:` runs those greps; the log part reproduces only for
+  the latest local match (the log is truncated each launch).
+- The trigger is `tv_autorecord` (engine2, file pattern
+  `auto-%04i%02i%02i-%02i%02i-%s-%s.dem`), not `tv_citadel_auto_record`,
+  which `citadel_local_botmatch.cfg` sets to 0.
+- `verify:` finds the install via `deadlock.paths.game_dir()` rather than
+  the env var, which the mentions scan flags as an unresolved label.
+- Retitled the claim from its question to the answer.
+
 ## Open Questions
 
+- When `tv_enable`/`tv_autorecord` entered `cfg/server.cfg`: its mtime
+  (Nov 11) postdates the first `auto-*` (Oct 7 19:20 local), and no session
+  transcript wrote those lines (`claude-search tv_autorecord --all` finds
+  only a Nov 5 read), so presumably a hand edit about Oct 7. Not needed for
+  the trigger. No patch falls on Oct 6-7 in the build stamp's history.
+- `recent/` and `pending_upload/` were created Oct 6 22:36 UTC, during the
+  `botmatch3` match, a day before the first `auto-*`; what created them
+  then, and what `recent/` holds after a real upload, stay inferred
+  (strings only).
+- The listen-server path execs `listenserver.cfg` (absent here), so it
+  should record nothing; unobserved.
+
 ## Final report
+
+Checks: `llm.kb-validate docs/dev` 79 files 0 errors; mentions 0
+unresolved; grounding lists LOCAL_DEMO_TRIGGERS bare/certified; the
+claim's `verify:` run and output matched.
+
+Findings: all four file kinds answered (claim body). The inventory had two
+errors, now fixed: the `auto-*` files are local bot matches, not the
+owner's matchmade games, and `discarded/` is not empty -- it holds 33
+finished demos (31-201 MiB) in `discarded/replays/`. All 39 `auto-*` left
+in `replays/` have a zero file-info offset (unfinished; boon refuses
+them); none of the 33 discarded do. Headers: `auto-*` = "SourceTV Demo",
+server name "Deadlock", game dir the local install, 32 ticks/s, 1 roster
+player; `botmatch*` = client recording of `127.0.0.1:<port>`; Watch-tab =
+Valve srcds.
+
+Deviations: none from scope. Scratch listings in `trash/unit-005/`.
+
+Results live in:
+`../claims.kb/tooling.kb/local-demo-corpus-triggers.md`,
+`docs/dev/environment.kb/game-install-paths.md` (repo root, Local demos).
