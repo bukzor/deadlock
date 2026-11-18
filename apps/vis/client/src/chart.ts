@@ -107,15 +107,16 @@ export function xDomain(hits: readonly HitLine[], horizon: number): [number, num
  * bars keep to its lower half and the cumulative line spans all of it, so the
  * two read as separate layers; the right axis labels the line back in damage
  * dealt, and the gridlines follow that axis only. `killTime`, the server's
- * `time_to_kill`, marks where the line reaches `hp`.
+ * `time_to_kill`, marks where the line reaches `hp`, when that is on the chart.
  */
 export function hitChart(
   hits: readonly HitLine[],
   options: { width?: number; horizon?: number; hp?: number; killTime?: number; kind?: AbilityKind; dark?: boolean } = {},
 ): ReturnType<typeof Plot.plot> {
-  const { hp, killTime } = options;
+  const { hp } = options;
   const text = TEXT[options.dark === true ? "dark" : "light"];
   const [, end] = xDomain(hits, options.horizon ?? 0);
+  const killTime = options.killTime !== undefined && options.killTime < end ? options.killTime : undefined;
   const steps = cumulative(hits, end);
   const barTicks = niceTicks(Math.max(0, ...hits.map((h) => h.damage)));
   const lineTicks = niceTicks(Math.max(steps[steps.length - 1]!.total, 1.1 * (hp ?? 0))); // headroom for the hp label

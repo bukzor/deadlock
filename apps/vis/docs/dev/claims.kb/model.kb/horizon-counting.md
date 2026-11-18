@@ -9,9 +9,10 @@ why:
 
 # A horizon total counts a hit when it lands
 
-Total damage, average DPS, first land and time to kill count a hit
-only if it lands by the horizon; a hit triggered before the horizon and
-landing after it is left out. A stopwatch on a training dummy sees
+Total damage and first land count a hit only if it lands by the
+horizon; a hit triggered before the horizon and landing after it is
+left out. Time to kill is the land of the hit that reaches the target's
+hp, wherever it falls. A stopwatch on a training dummy sees
 damage when it lands, so this is the count the request's "checkable
 in-game" can check. Unit 002 chose this; the coordinator adopted it.
 

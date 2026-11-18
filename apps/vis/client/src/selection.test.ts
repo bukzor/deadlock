@@ -1,52 +1,46 @@
 import { describe, expect, it } from "vitest";
 
-import type { CycleLine } from "./protocol";
-import {
-  fromSearch,
-  horizonInputs,
-  knobsFor,
-  timelineParams,
-  toSearch,
-  withHorizon,
-  type Selection,
-} from "./selection";
-
-function cycle(period: number | null, horizon: number): CycleLine {
-  return { kind: "cycle", period, downtime: 0, horizon };
-}
+import { fromSearch, knobsFor, timelineParams, toSearch, type Page, type Selection } from "./selection";
 
 const base: Selection = { hero: "hero_inferno", ability: "citadel_weapon_inferno_set" };
+const page = (over: Partial<Page> = {}): Page => ({ sel: base, window: null, hp: "", ...over });
 
 describe("toSearch / fromSearch", () => {
-  it("round-trips a full selection", () => {
-    const sel: Selection = { ...base, level: "10", periods: "3", distance: "30", hp: "500" };
-    expect(fromSearch(toSearch(sel))).toEqual(sel);
+  it("round-trips a full page", () => {
+    const full = page({ sel: { ...base, level: "10", distance: "30" }, window: { by: "cycles", value: "3" }, hp: "500" });
+    expect(fromSearch(toSearch(full))).toEqual(full);
   });
 
   it("writes keys in a fixed order and leaves out blanks", () => {
-    expect(toSearch({ hp: "500", level: "3", ability: "a", hero: "h b", horizon: "" })).toBe("?hero=h+b&ability=a&level=3&hp=500");
+    const sel = { hero: "h b", ability: "a", level: "3", windup: "" };
+    expect(toSearch({ sel, window: { by: "seconds", value: "12" }, hp: "500" })).toBe("?hero=h+b&ability=a&level=3&seconds=12&hp=500");
   });
 
-  it("is empty for an empty selection", () => {
-    expect(toSearch({ hero: "", ability: "" })).toBe("");
+  it("is empty for an empty page", () => {
+    expect(toSearch({ sel: { hero: "", ability: "" }, window: null, hp: "" })).toBe("");
   });
 
   it("ignores keys it does not know", () => {
-    expect(fromSearch("?hero=h&junk=1")).toEqual({ hero: "h", ability: "" });
+    expect(fromSearch("?hero=h&junk=1&horizon=5")).toEqual({ sel: { hero: "h", ability: "" }, window: null, hp: "" });
+  });
+
+  it("reads the window in either unit, seconds first", () => {
+    expect(fromSearch("?cycles=4").window).toEqual({ by: "cycles", value: "4" });
+    expect(fromSearch("?cycles=4&seconds=9").window).toEqual({ by: "seconds", value: "9" });
   });
 });
 
 describe("knobsFor", () => {
-  it("gives a gun level, distance and hp", () => {
-    expect(knobsFor("gun")).toEqual(["level", "distance", "hp"]);
+  it("gives a gun level and distance", () => {
+    expect(knobsFor("gun")).toEqual(["level", "distance"]);
   });
 
-  it("gives melee level, wind-up and hp", () => {
-    expect(knobsFor("melee")).toEqual(["level", "windup", "hp"]);
+  it("gives melee level and wind-up", () => {
+    expect(knobsFor("melee")).toEqual(["level", "windup"]);
   });
 
-  it("gives a cast level, spirit and hp", () => {
-    expect(knobsFor("cast")).toEqual(["level", "spirit", "hp"]);
+  it("gives a cast level and spirit", () => {
+    expect(knobsFor("cast")).toEqual(["level", "spirit"]);
   });
 
   it("gives an unmodeled ability nothing", () => {
@@ -56,68 +50,17 @@ describe("knobsFor", () => {
 
 describe("timelineParams", () => {
   it("sends only the knobs that apply to the kind", () => {
-    const sel: Selection = { ...base, level: "5", distance: "30", spirit: "100", windup: "0.4", hp: "500" };
-    expect(timelineParams(sel, "gun", undefined)).toEqual({ ...base, level: "5", distance: "30", hp: "500" });
+    const sel: Selection = { ...base, level: "5", distance: "30", spirit: "100", windup: "0.4" };
+    expect(timelineParams(page({ sel }), "gun")).toEqual({ ...base, level: "5", distance: "30" });
   });
 
-  it("sends the seconds as typed", () => {
-    expect(timelineParams({ ...base, horizon: "12" }, "gun", 4)).toEqual({ ...base, horizon: "12" });
+  it("sends the window in its unit, as typed", () => {
+    expect(timelineParams(page({ window: { by: "cycles", value: "3" } }), "gun")).toEqual({ ...base, cycles: "3" });
+    expect(timelineParams(page({ window: { by: "seconds", value: "x" } }), "gun")).toEqual({ ...base, seconds: "x" });
   });
 
-  it("turns periods into seconds once the period is known", () => {
-    expect(timelineParams({ ...base, periods: "3" }, "gun", 2.5)).toEqual({ ...base, horizon: "7.5" });
-  });
-
-  it("leaves the horizon to the server while the period is unknown or absent", () => {
-    expect(timelineParams({ ...base, periods: "3" }, "gun", undefined)).toEqual(base);
-    expect(timelineParams({ ...base, periods: "3" }, "cast", null)).toEqual(base);
-  });
-
-  it("passes unparseable periods through, so the server says what is wrong", () => {
-    expect(timelineParams({ ...base, periods: "x" }, "gun", 2)).toEqual({ ...base, horizon: "x" });
-  });
-});
-
-describe("withHorizon", () => {
-  it("keeps only the input last edited", () => {
-    const sel = withHorizon({ ...base, horizon: "12" }, "periods", "3");
-    expect(sel).toEqual({ ...base, periods: "3" });
-    expect(withHorizon(sel, "horizon", "9")).toEqual({ ...base, horizon: "9" });
-  });
-
-  it("clears both on a blank", () => {
-    expect(withHorizon({ ...base, periods: "3" }, "periods", " ")).toEqual(base);
-  });
-});
-
-describe("horizonInputs", () => {
-  it("shows the server's defaults as placeholders, never as values", () => {
-    expect(horizonInputs(base, cycle(3.3, 6.6))).toEqual({
-      seconds: { value: "", placeholder: "default 6.6" },
-      periods: { value: "", placeholder: "default 2", disabled: false },
-    });
-  });
-
-  it("derives periods from typed seconds", () => {
-    expect(horizonInputs({ ...base, horizon: "10" }, cycle(4, 10)).periods.value).toBe("2.5");
-  });
-
-  it("derives seconds from typed periods", () => {
-    expect(horizonInputs({ ...base, periods: "3" }, cycle(1.5, 4.5)).seconds.value).toBe("4.5");
-  });
-
-  it("disables periods for a one-shot", () => {
-    expect(horizonInputs({ ...base, horizon: "10" }, cycle(null, 10)).periods).toEqual({
-      value: "",
-      placeholder: "one-shot",
-      disabled: true,
-    });
-  });
-
-  it("has no numbers before the first answer", () => {
-    expect(horizonInputs(base, undefined)).toEqual({
-      seconds: { value: "", placeholder: "default" },
-      periods: { value: "", placeholder: "default 2", disabled: true },
-    });
+  it("sends hp for every kind, and leaves a blank out", () => {
+    expect(timelineParams(page({ hp: " 500 " }), "cast")).toEqual({ ...base, hp: "500" });
+    expect(timelineParams(page({ hp: " " }), "cast")).toEqual(base);
   });
 });

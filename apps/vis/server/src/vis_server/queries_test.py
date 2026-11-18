@@ -26,7 +26,7 @@ class DescribeRegistry:
         assert {name: set(q.params) for name, q in SYNTHETIC.items()} == {
             "heroes": set(),
             "abilities": {"hero"},
-            "timeline": {"hero", "ability", "horizon", "level", "distance", "spirit", "windup", "hp"},
+            "timeline": {"hero", "ability", "seconds", "cycles", "level", "distance", "spirit", "windup", "hp"},
         }
         assert {name: set(q.params) for name, q in QUERIES.items()} == {
             name: set(q.params) for name, q in SYNTHETIC.items()
@@ -104,7 +104,7 @@ class DescribeTimeline:
         assert found[0] == "cycle" and set(found) == {"cycle", "hit", "measure", "note"}
 
     def it_emits_each_unrolled_hit(self):
-        assert kinds(timeline(horizon="1.1", windup="0.25"), "hit") == [
+        assert kinds(timeline(seconds="1.1", windup="0.25"), "hit") == [
             {"kind": "hit", "trigger": 0.0, "land": 0.25, "damage": 50.0, "label": "light melee", "cycle": 0},
             {"kind": "hit", "trigger": 0.75, "land": 1.0, "damage": 50.0, "label": "light melee", "cycle": 1},
         ]
@@ -117,12 +117,21 @@ class DescribeTimeline:
         [line] = kinds(blast_timeline({"Damage": "5", "AbilityCooldown": "0", "AbilityCastDelay": "0"}), "cycle")
         assert (line["period"], line["horizon"]) == (None, 10.0)
 
+    def it_unrolls_the_cycles_asked_for(self):
+        lines = timeline(cycles="3", windup="0.25")
+        assert kinds(lines, "cycle")[0]["horizon"] == approx(2.25)
+        assert [float(str(h["trigger"])) for h in kinds(lines, "hit")] == [0.0, 0.75, 1.5]
+
+    def it_shows_a_one_shot_asked_for_in_cycles_for_its_default_10_s_and_says_so(self):
+        lines = blast_timeline({"Damage": "5", "AbilityCooldown": "0", "AbilityCastDelay": "0"}, cycles="3")
+        assert kinds(lines, "cycle")[0]["horizon"] == 10 and "no cycles" in notes(lines)[-1], notes(lines)
+
     def it_sends_only_hits_that_land_within_the_horizon(self):
-        lands = [float(str(h["land"])) for h in kinds(timeline("blast", horizon="10.2"), "hit")]
+        lands = [float(str(h["land"])) for h in kinds(timeline("blast", seconds="10.2"), "hit")]
         assert lands == [0.5]  # the second cast triggers at 10, lands at 10.5
 
     def it_emits_each_measure(self):
-        measures = kinds(timeline(horizon="1"), "measure")
+        measures = kinds(timeline(seconds="1"), "measure")
         names = ["steady_dps", "cycle_damage", "total_damage", "first_land"]
         assert [m["name"] for m in measures] == names  # a swing has no downtime: no uptime_dps
         assert measures[0] == {
@@ -176,29 +185,15 @@ class DescribeTimeline:
             [first, *_] = kinds(timeline(hp="100", windup="0.25"), "measure")
             assert (first["name"], first["value"]) == ("time_to_kill", 1.0)
 
-        def it_stretches_the_default_horizon_to_the_time_to_kill(self):
-            lines = timeline(hp="300", windup="0.25")  # the 6th swing lands at 4 s, in the 6th period of 0.75 s
-            assert (kinds(lines, "cycle")[0]["horizon"], kinds(lines, "hit")[-1]["land"]) == (approx(4.5), approx(4.0))
+        def it_never_changes_the_window_and_measures_a_kill_past_it(self):
+            lines = timeline(hp="300", windup="0.25")  # the 6th swing lands at 4 s, past 2 periods of 0.75 s
+            assert kinds(lines, "cycle")[0]["horizon"] == approx(1.5)
+            assert kinds(lines, "measure")[0]["value"] == approx(4.0) and not any("zoom" in n for n in notes(lines))
 
-        def it_notes_hp_not_reached_within_120_s(self):
-            lines = timeline(hp="1e9")
-            assert kinds(lines, "cycle")[0]["horizon"] == 120 and "within 120 s" in notes(lines)[-1], notes(lines)
-
-        def it_notes_hp_not_reached_within_a_horizon_past_120_s(self):
-            lines = timeline(hp="1e9", horizon="200", windup="0.3")
+        def it_notes_hp_never_reached(self):
+            lines = blast_timeline({"Damage": "5", "AbilityCooldown": "0", "AbilityCastDelay": "0"}, hp="10")
             assert "time_to_kill" not in [m["name"] for m in kinds(lines, "measure")]
-            found = notes(lines)
-            assert "1e+09" in found[-1] and "200 s" in found[-1], found
-            assert any("wind-up" in n for n in found[:-1]), found
-
-        def it_zooms_an_asked_horizon_out_to_the_time_to_kill_and_says_so(self):
-            lines = timeline(hp="300", horizon="1", windup="0.25")
-            assert kinds(lines, "cycle")[0]["horizon"] == approx(4.5)
-            assert "from 1 s to 4.5 s" in notes(lines)[-1], notes(lines)
-
-        def it_never_zooms_in(self):
-            lines = timeline(hp="100", horizon="9", windup="0.25")
-            assert kinds(lines, "cycle")[0]["horizon"] == 9 and not any("horizon" in n for n in notes(lines)), notes(lines)
+            assert "10 HP is never reached" in notes(lines)[-1], notes(lines)
 
         def it_says_nothing_of_hp_when_reached(self):
             assert not any("HP" in n for n in notes(timeline(hp="100", windup="0.25")))
@@ -223,18 +218,31 @@ class DescribeTimeline:
             with pytest.raises(BadRequest, match=f"{hero}|{ability}"):
                 _ = timeline(ability, hero)
 
+        @pytest.mark.parametrize("param", ["seconds", "cycles"])
         @pytest.mark.parametrize("value", ["ten", "", "nan", "inf", "-inf"])
-        def it_rejects_a_value_that_isnt_a_finite_number(self, value: str):
-            with pytest.raises(BadRequest, match="horizon"):
-                _ = timeline(horizon=value)
+        def it_rejects_a_value_that_isnt_a_finite_number(self, param: str, value: str):
+            with pytest.raises(BadRequest, match=f"^{param} "):
+                _ = timeline(**{param: value})
+
+        def it_rejects_a_window_in_both_units(self):
+            with pytest.raises(BadRequest, match="seconds or in cycles, not both"):
+                _ = timeline(seconds="3", cycles="2")
+
+        def it_rejects_a_window_of_too_many_hits(self):
+            with pytest.raises(BadRequest, match="1,333,334 hits, more than the 10,000"):
+                _ = timeline(seconds="1e6")
+
+        def it_no_longer_takes_a_horizon(self):
+            with pytest.raises(BadRequest, match="unknown parameter: horizon"):
+                _ = timeline(horizon="5")
 
         @pytest.mark.parametrize(
             ("param", "value"),
-            [("horizon", "0"), ("horizon", "-1"), ("hp", "0"), ("distance", "-1"), ("spirit", "-1"), ("windup", "-0.1"),
+            [("seconds", "0"), ("seconds", "-1"), ("cycles", "0"), ("hp", "0"), ("distance", "-1"), ("spirit", "-1"), ("windup", "-0.1"),
              ("level", "-1"), ("level", "4")],
         )  # fmt: skip
         def it_rejects_an_out_of_range_value(self, param: str, value: str):
-            with pytest.raises(BadRequest, match=param):
+            with pytest.raises(BadRequest, match=f"^{param} "):
                 _ = timeline(**{param: value})
 
         @pytest.mark.parametrize("value", ["1.5", "two", ""])

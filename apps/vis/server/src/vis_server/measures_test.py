@@ -152,8 +152,25 @@ class DescribeMeasures:
             late_first = Cycle(hits=(Hit(0, 3, 50, "slow"), Hit(0.5, 1, 50, "fast")), period=None)
             assert values(late_first, hp=50)["time_to_kill"] == 1
 
-        def it_omits_time_to_kill_when_the_horizon_ends_first(self):
-            assert "time_to_kill" not in values(SWING, horizon=2.5, hp=31)
+        def it_finds_the_kill_past_the_horizon(self):
+            assert values(SWING, horizon=2.5, hp=31)["time_to_kill"] == 3.25
+
+        def it_finds_a_kill_many_cycles_out(self):
+            assert values(SWING, hp=1e6)["time_to_kill"] == approx(99_999.25)
+
+        def it_counts_hits_whose_lands_interleave_across_cycles(self):
+            slow_tail = Cycle(hits=(Hit(0, 2.5, 10, "slow"), Hit(0.1, 0.2, 1, "fast")), period=1.0)
+            assert (values(slow_tail, hp=12)["time_to_kill"], values(slow_tail, hp=14)["time_to_kill"]) == (2.5, 3.2)
+
+        def it_agrees_with_the_unrolled_land_on_a_period_boundary(self):
+            on_beat = Cycle(hits=(Hit(0, 0, 10, "beat"),), period=0.7)  # the 4th beat lands at 3 * 0.7 == 2.0999999999999996
+            assert values(on_beat, hp=40)["time_to_kill"] == 3 * 0.7
+
+        def it_omits_time_to_kill_when_a_one_shot_falls_short(self):
+            assert ("time_to_kill" not in values(NUKE, hp=106), values(NUKE, hp=105)["time_to_kill"]) == (True, 1.5)
+
+        def it_omits_time_to_kill_for_a_cycle_dealing_no_damage(self):
+            assert "time_to_kill" not in values(Cycle(hits=(Hit(0, 0, 0, "tap"),), period=1.0), hp=1)
 
     class WhenThereAreNoHits:
         def it_reports_zero_damage_and_omits_what_needs_a_hit(self):
@@ -171,41 +188,15 @@ class DescribeHorizonUsed:
     def it_is_10_s_for_a_one_shot(self):
         assert horizon_used(NUKE) == 10
 
-    class WhenHpIsGiven:
-        def it_stretches_to_whole_periods_past_the_time_to_kill(self):
-            assert horizon_used(SWING, hp=50) == 5  # the 5th swing lands at 4.25
+    def it_is_the_seconds_asked_for(self):
+        assert (horizon_used(SWING, seconds=3.3), horizon_used(NUKE, seconds=4)) == (3.3, 4)
 
-        def it_includes_a_kill_landing_on_a_period_boundary(self):
-            on_beat = Cycle(hits=(Hit(0, 0, 10, "beat"),), period=0.7)  # the 4th beat lands at 3 * 0.7 == 2.0999999999999996
-            horizon = horizon_used(on_beat, hp=40)
-            assert values(on_beat, horizon, hp=40).get("time_to_kill") == approx(2.1), horizon
+    def it_is_the_cycles_asked_for_in_periods(self):
+        assert horizon_used(Cycle(hits=SWING.hits, period=0.75), cycles=3) == 2.25
 
-        def it_never_shrinks_below_two_periods(self):
-            assert horizon_used(SWING, hp=5) == 2
+    def it_leaves_a_one_shot_asked_for_in_cycles_at_10_s(self):
+        assert horizon_used(NUKE, cycles=3) == 10
 
-        def it_stretches_a_one_shot_by_whole_seconds(self):
-            slow = Cycle(hits=(Hit(0, 12.4, 100, "late"),), period=None)
-            assert (horizon_used(slow, hp=100), horizon_used(NUKE, hp=100)) == (13, 10)
-
-        def it_stops_at_120_s(self):
-            weekly = Cycle(hits=SWING.hits, period=7.0)  # the 18th swing lands at 119.25, in the 18th period of 7 s
-            assert (horizon_used(weekly, hp=180), horizon_used(SWING, hp=10_000)) == (120, 120)
-
-        def it_keeps_two_periods_beyond_120_s(self):
-            assert horizon_used(Cycle(hits=SWING.hits, period=90.0), hp=10_000) == 180
-
-    class WhenAHorizonIsAsked:
-        def it_is_the_asked_horizon_without_hp(self):
-            assert horizon_used(SWING, asked=3.3) == 3.3
-
-        def it_zooms_out_by_whole_periods_to_the_time_to_kill(self):
-            assert (horizon_used(SWING, hp=50, asked=1.5), horizon_used(SWING, hp=5, asked=0.5)) == (5, 1)
-
-        def it_never_zooms_in(self):
-            assert horizon_used(SWING, hp=50, asked=7.5) == 7.5
-
-        def it_zooms_out_to_120_s_when_hp_is_out_of_reach(self):
-            assert (horizon_used(SWING, hp=10_000, asked=3), horizon_used(SWING, hp=10_000, asked=200)) == (120, 200)
 
 def _load(name: str) -> Mapping[str, object]:
     path = paths.data_dir() / "gamedata.json/scripts" / name

@@ -10,11 +10,10 @@ why:
 
 # The horizon defaults to two periods of the cycle
 
-When `horizon` and `hp` are absent the server uses exactly 2 periods of the
-cycle, and 10 s for a cycle that happens once; with `hp`, it zooms out from
-there (`kill-horizon.md`). The server sends a `cycle` line with the
-period and the horizon used, so the client offers the horizon in seconds and
-in periods (default 2). The owner amended finding 3 (unit 016's brief records
+When neither `seconds` nor `cycles` is given, the server uses exactly 2
+periods of the cycle, and 10 s for a cycle that happens once; `hp` never
+changes it. The server sends a `cycle` line with the period and the horizon
+used, so the client shows the window in seconds and in cycles shown. The owner amended finding 3 (unit 016's brief records
 their words): two mutually-updating inputs, so that by default the page shows
 two full cycles. Declined: a fixed 10 s (a cast shows one burst, then nothing,
 while `steady_dps` describes a cooldown never drawn), and a 10 s floor. Built

@@ -58,7 +58,7 @@ one JSON object each, so `jq` reads them. From `apps/vis/server`:
 ```bash
 uv run vis-server query heroes | jq -r .hero
 uv run vis-server query abilities hero=hero_haze | jq -c 'select(.kind)'
-uv run vis-server query timeline hero=hero_haze ability=ability_sleep_dagger horizon=20 |
+uv run vis-server query timeline hero=hero_haze ability=ability_sleep_dagger seconds=20 |
   jq -c 'select(.kind == "measure") | {name, value}'
 curl -s 'http://localhost:8787/api/timeline?hero=hero_haze&ability=citadel_weapon_haze_set' |
   jq -s 'map(select(.kind == "hit")) | length'

@@ -8,16 +8,8 @@ import { useEffect, useRef, useState } from "react";
 import { abilities, heroes, timeline } from "./api";
 import { hitChart } from "./chart";
 import type { AbilityKind, CycleLine, HitLine, MeasureLine, NoteLine, TimelineLine } from "./protocol";
-import {
-  fromSearch,
-  horizonInputs,
-  knobsFor,
-  timelineParams,
-  toSearch,
-  withHorizon,
-  type Knob,
-  type Selection,
-} from "./selection";
+import { fromSearch, knobsFor, timelineParams, toSearch, type Knob, type Selection } from "./selection";
+import { windowFields, windowFromText, zoomToKill, type Window, type WindowField, type WindowUnit } from "./window";
 
 /** Each knob's label, and its placeholder: the server's default, never a value. */
 const KNOB_TEXT: Record<Knob, { label: string; placeholder: string }> = {
@@ -25,16 +17,21 @@ const KNOB_TEXT: Record<Knob, { label: string; placeholder: string }> = {
   distance: { label: "distance (m)", placeholder: "default 0" },
   spirit: { label: "spirit power", placeholder: "default 0" },
   windup: { label: "wind-up (s)", placeholder: "default 0" },
-  hp: { label: "target hp", placeholder: "optional" },
 };
 
+const WINDOW_LABEL: Record<WindowUnit, string> = { seconds: "window (s)", cycles: "cycles shown" };
+
 export function App() {
-  const [sel, setSel] = useState<Selection>(() => fromSearch(location.search));
+  const [initial] = useState(() => fromSearch(location.search));
+  const [sel, setSel] = useState<Selection>(initial.sel);
+  const [timeWindow, setTimeWindow] = useState<Window | null>(initial.window);
+  const [hp, setHp] = useState(initial.hp);
+  // Set by a change that may move the kill (hp, hero, ability, level), and
+  // cleared by a window edit: the next answer may zoom the window out to it.
+  const [zoomPending, setZoomPending] = useState(false);
   useEffect(() => {
-    history.replaceState(null, "", toSearch(sel) || location.pathname);
-  }, [sel]);
-  // Each cycle's period, by the request minus its horizon: `periods` needs it.
-  const [periods, setPeriods] = useState<Record<string, number | null>>({});
+    history.replaceState(null, "", toSearch({ sel, window: timeWindow, hp }) || location.pathname);
+  }, [sel, timeWindow, hp]);
 
   const heroList = useLines(heroes, "heroes");
   const abilityList = useLines(sel.hero === "" ? null : () => abilities(sel.hero), sel.hero);
@@ -42,21 +39,21 @@ export function App() {
   const kind: AbilityKind | null | undefined = abilityList.loading
     ? undefined
     : abilityList.lines.find((a) => a.ability === sel.ability)?.kind;
-  const base = kind === undefined ? "" : JSON.stringify(timelineParams(withHorizon(sel, "horizon", ""), kind, undefined));
-  const params = kind === undefined ? null : timelineParams(sel, kind, periods[base]);
-  const lines = useLines(
-    params === null || sel.hero === "" || sel.ability === "" ? null : () => timeline(params),
-    JSON.stringify(params),
-  );
+  const params = kind === undefined ? null : timelineParams({ sel, window: timeWindow, hp }, kind);
+  const key = JSON.stringify(params);
+  const lines = useLines(params === null || sel.hero === "" || sel.ability === "" ? null : () => timeline(params), key);
   const { cycle, hits, measures, notes } = splitTimeline(lines.lines);
-  const current = cycle !== undefined && lines.key !== null && baseOf(lines.key) === base ? cycle : undefined;
-  useEffect(() => {
-    if (cycle !== undefined && lines.key !== null) setPeriods((m) => ({ ...m, [baseOf(lines.key!)]: cycle.period }));
-  }, [cycle, lines.key]);
-  const horizon = horizonInputs(sel, current);
-  const hp = Number(params?.hp);
   // By name: the server orders and adds measures as it likes.
   const killTime = measures.find((m) => m.name === "time_to_kill")?.value;
+  const answered = !lines.loading && lines.key === key;
+  useEffect(() => {
+    if (!zoomPending || !answered || cycle === undefined) return;
+    setZoomPending(false);
+    const zoomed = zoomToKill(cycle, killTime);
+    if (zoomed !== null) setTimeWindow(zoomed);
+  }, [zoomPending, answered, cycle, killTime]);
+  const fields = windowFields(timeWindow, cycle);
+  const hpValue = Number(params?.hp);
 
   return (
     <main>
@@ -64,7 +61,13 @@ export function App() {
       <form onSubmit={(e) => e.preventDefault()}>
         <label>
           hero
-          <select value={sel.hero} onChange={(e) => setSel({ ...sel, hero: e.target.value, ability: "" })}>
+          <select
+            value={sel.hero}
+            onChange={(e) => {
+              setSel({ ...sel, hero: e.target.value, ability: "" });
+              setZoomPending(true);
+            }}
+          >
             <option value="">pick a hero</option>
             {heroList.lines.map((h) => (
               <option key={h.hero} value={h.hero} title={h.hero}>
@@ -75,7 +78,13 @@ export function App() {
         </label>
         <label>
           ability
-          <select value={sel.ability} onChange={(e) => setSel({ ...sel, ability: e.target.value })}>
+          <select
+            value={sel.ability}
+            onChange={(e) => {
+              setSel({ ...sel, ability: e.target.value });
+              setZoomPending(true);
+            }}
+          >
             <option value="">pick an ability</option>
             {abilityList.lines.map((a) => (
               <option key={a.ability} value={a.ability} title={a.ability} disabled={a.kind === null}>
@@ -86,25 +95,17 @@ export function App() {
         </label>
         {kind != null && (
           <>
-            <label>
-              horizon (s)
-              <input
-                inputMode="decimal"
-                placeholder={horizon.seconds.placeholder}
-                value={horizon.seconds.value}
-                onChange={(e) => setSel(withHorizon(sel, "horizon", e.target.value))}
+            {(["seconds", "cycles"] as const).map((by) => (
+              <DraftInput
+                key={by}
+                label={WINDOW_LABEL[by]}
+                field={fields[by]}
+                onEdit={(text) => {
+                  setTimeWindow(windowFromText(by, text));
+                  setZoomPending(false);
+                }}
               />
-            </label>
-            <label>
-              cycles shown
-              <input
-                inputMode="decimal"
-                placeholder={horizon.periods.placeholder}
-                value={horizon.periods.value}
-                disabled={horizon.periods.disabled}
-                onChange={(e) => setSel(withHorizon(sel, "periods", e.target.value))}
-              />
-            </label>
+            ))}
             {knobsFor(kind).map((knob) => (
               <label key={knob}>
                 {KNOB_TEXT[knob].label}
@@ -115,10 +116,23 @@ export function App() {
                   onChange={(e) => {
                     const { [knob]: _, ...rest } = sel;
                     setSel(e.target.value.trim() === "" ? rest : { ...rest, [knob]: e.target.value });
+                    if (knob === "level") setZoomPending(true);
                   }}
                 />
               </label>
             ))}
+            <label>
+              target hp
+              <input
+                inputMode="decimal"
+                placeholder="optional"
+                value={hp}
+                onChange={(e) => {
+                  setHp(e.target.value);
+                  setZoomPending(true);
+                }}
+              />
+            </label>
           </>
         )}
       </form>
@@ -137,12 +151,12 @@ export function App() {
           hits={hits}
           kind={kind}
           horizon={cycle?.horizon ?? 10}
-          {...(Number.isFinite(hp) ? { hp } : {})}
+          {...(Number.isFinite(hpValue) ? { hp: hpValue } : {})}
           {...(killTime === undefined ? {} : { killTime })}
         />
       )}
       {hits.length === 0 && measures.length > 0 && (
-        <p className="chart">No damage lands within the horizon: the notes say what the model leaves out.</p>
+        <p className="chart">No damage lands within the window: the notes say what the model leaves out.</p>
       )}
       {measures.length > 0 && <Measures measures={measures} />}
       {notes.length > 0 && (
@@ -156,10 +170,30 @@ export function App() {
   );
 }
 
-/** A timeline request's key, minus its horizon: the key the period is known by. */
-function baseOf(key: string): string {
-  const { horizon: _, ...rest } = JSON.parse(key) as Record<string, unknown>;
-  return JSON.stringify(rest);
+/**
+ * An input showing `field`, except while focused: then it keeps the user's
+ * own text, so an answer arriving mid-typing never moves the cursor.
+ */
+function DraftInput(props: { label: string; field: WindowField; onEdit: (text: string) => void }) {
+  const { label, field, onEdit } = props;
+  const [draft, setDraft] = useState<string | null>(null);
+  return (
+    <label>
+      {label}
+      <input
+        inputMode="decimal"
+        placeholder={field.placeholder}
+        disabled={field.disabled}
+        value={draft ?? field.value}
+        onFocus={() => setDraft(field.value)}
+        onChange={(e) => {
+          setDraft(e.target.value);
+          onEdit(e.target.value);
+        }}
+        onBlur={() => setDraft(null)}
+      />
+    </label>
+  );
 }
 
 function Chart(props: { hits: readonly HitLine[]; kind: AbilityKind; horizon: number; hp?: number; killTime?: number }) {

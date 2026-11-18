@@ -1,6 +1,7 @@
 ---
 label: KILL_HORIZON
 standing: agent
+verdict: superseded
 why:
 - horizon-default.md
 - judge-on-own-authority.md
@@ -30,3 +31,13 @@ discard a horizon the user chose; and keeping the horizon when `hp` is out
 of reach, which would answer "not within 4 s" to a question 120 s could
 still settle. Overturned if the owner wants the chart to end at the kill.
 Built in `apps/vis/server/src/vis_server/measures.py` (`horizon_used`).
+
+Out of force: the owner ruled that the window and the target hp are two
+separate values, and that a change to hp moves the window only when the
+time to kill would not be visible. The server no longer zooms and has no
+time cap: it measures `time_to_kill` wherever the kill falls, and the
+client zooms out to the fewest whole cycles that show it. Design:
+[`vis-app.md`](../../../../../docs/dev/decisions.kb/vis-app.md), *Client
+view* and *Measures*; built by unit 030
+([brief](../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-030-window-and-target.md)).
+The limit on a window is now `window-limits.md`.

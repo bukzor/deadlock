@@ -162,6 +162,12 @@ describe("hitChart", () => {
     expect(rules(hitChart(hits, { horizon: 3, hp: 40, killTime: 1 }))).toBe(rules(hitChart(hits, { horizon: 3, hp: 40 })) + 1);
   });
 
+  it("leaves the kill unmarked when it lands past the window", () => {
+    const rules = (svg: Element) => svg.querySelectorAll(`[aria-label="rule"] line`).length;
+    expect(labels(hitChart(hits, { horizon: 3, hp: 40, killTime: 7 })).filter((t) => t === "7 s")).toEqual([]);
+    expect(rules(hitChart(hits, { horizon: 3, hp: 40, killTime: 7 }))).toBe(rules(hitChart(hits, { horizon: 3, hp: 40 })));
+  });
+
   it("follows the pointer with a tip", () => {
     expect(hitChart(hits, { horizon: 3 }).querySelector(`[aria-label="tip"]`)).not.toBeNull();
   });

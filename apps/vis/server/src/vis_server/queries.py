@@ -23,18 +23,20 @@ from .measures import Measure, horizon_used, measures
 from .timeline import Cycle, Hit, landed_by
 from .types import BadRequest, JsonObj, Kind, Params, Query
 
+MAX_HITS = 10_000  # per timeline: what a browser chart draws without stalling
 NOT_PLAYABLE = {"hero_targetdummy", "hero_genericperson"}  # the training dummy; Generic Person
 
 HERO = "hero key, from the heroes query (required)"
 TIMELINE = {
     "hero": HERO,
     "ability": "ability key, from the abilities query (required)",
-    "horizon": "seconds to unroll, > 0 (default 2 periods of the cycle, or 10 for a one-shot; with hp, zoomed out to the time to kill, up to 120)",
+    "seconds": "the window in seconds, > 0; give this or cycles (default 2 cycles, or 10 s for a one-shot)",
+    "cycles": "the window in periods of the cycle, > 0; give this or seconds",
     "level": "hero level, a whole number from 0 (default) to the data's last: one boon per level",
     "distance": "meters to the target, >= 0 (default 0): a gun's bullet travel",
     "spirit": "spirit power on top of the level's, >= 0 (default 0): scales a cast's damage",
     "windup": "seconds from a melee swing to its hit, >= 0 (default 0)",
-    "hp": "target health, > 0 (optional): adds time_to_kill, first",
+    "hp": "target health, > 0 (optional): adds time_to_kill, first, wherever the kill falls; never changes the window",
 }
 
 type Source = tuple[Kind, Cycle, Sequence[str]]  # (kind, cycle, notes)
@@ -95,15 +97,18 @@ def abilities(data: GameData, hero: str) -> list[JsonObj]:
 def timeline(data: GameData, params: Params) -> list[JsonObj]:
     """The ``cycle`` line, every hit that lands by the horizon, every measure, then every note, for ``TIMELINE``'s parameters.
 
-    The horizon is ``measures.horizon_used``. A cast's measures include its
+    The horizon is ``measures.horizon_used``; a window of more than
+    ``MAX_HITS`` hits is a ``BadRequest``. A cast's measures include its
     card's DPS, when it has one. The notes are the level's (see
     ``_level_notes``), the source's (by how much each moves the numbers), then
-    one when ``hp`` zooms the asked-for horizon out, and one when ``hp`` is not
+    one when a one-shot is asked for in cycles, and one when ``hp`` is never
     reached. An ability ``abilities`` lists that no source models gets only
     notes, one saying so.
     """
     hero, ability = _required(params, "hero"), _required(params, "ability")
-    given_horizon = _optional_number(params, "horizon", positive=True)
+    seconds, cycles = (_optional_number(params, name, positive=True) for name in ("seconds", "cycles"))
+    if seconds is not None and cycles is not None:
+        raise BadRequest("give the window in seconds or in cycles, not both")
     distance, spirit, windup = (_number(params, name, 0.0) for name in ("distance", "spirit", "windup"))
     hp = _optional_number(params, "hp", positive=True)
     if ability not in _kit(data, hero):
@@ -116,14 +121,14 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
         unmodeled = f"{ability} has no damage model: only guns, melee and damaging signature abilities are modeled"
         return [*(_note(text) for text in level_notes), _note(unmodeled)]
     kind, cycle, notes = found
-    horizon = horizon_used(cycle, hp, given_horizon)
-    if hp is not None and given_horizon is not None and horizon > given_horizon:
-        zoomed = f"The horizon is zoomed out from {given_horizon:g} s to {horizon:g} s, to look for the time to kill {hp:g} HP."
-        notes = [*notes, zoomed]
+    horizon = horizon_used(cycle, seconds, cycles)
+    _check_hits(cycle, horizon)
+    if cycles is not None and cycle.period is None:
+        notes = [*notes, f"This happens once, so it has no cycles: the window is {horizon:g} s."]
     card = casts.card_dps(data.abilities, ability, spirit + gained.spirit) if kind == "cast" else None
     measured = measures(cycle, horizon, hp, kind=kind, card_dps=card)
     if hp is not None and "time_to_kill" not in {m.name for m in measured}:
-        notes = [*notes, f"The target's {hp:g} HP is not reached within {horizon:g} s: no time to kill is shown."]
+        notes = [*notes, f"The target's {hp:g} HP is never reached: no time to kill is shown."]
     return [
         {"kind": "cycle", "period": cycle.period, "downtime": cycle.downtime, "horizon": horizon},
         *(_hit(hit) for hit in landed_by(cycle, horizon)),
@@ -184,6 +189,14 @@ def _source(
             cycle, notes = found
             return kind, cycle, notes
     return None
+
+
+def _check_hits(cycle: Cycle, horizon: float) -> None:
+    """``BadRequest`` when the cycles that start within ``horizon`` hold more than ``MAX_HITS`` hits."""
+    starts = 1 if cycle.period is None else math.ceil(horizon / cycle.period)
+    count = starts * len(cycle.hits)
+    if count > MAX_HITS:
+        raise BadRequest(f"a window of {horizon:g} s holds {count:,} hits, more than the {MAX_HITS:,} a timeline sends: ask for fewer seconds or cycles")
 
 
 def _level(params: Params, last: int) -> int:

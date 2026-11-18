@@ -46,7 +46,7 @@ export interface CycleLine {
   period: number | null;
   /** Seconds of each period spent dealing no damage (reload, cooldown). */
   downtime: number;
-  /** The horizon the server used, in seconds (its default when none was sent). */
+  /** The window the server resolved, in seconds (its default when none was sent). */
   horizon: number;
 }
 
@@ -80,8 +80,10 @@ export interface ErrorLine {
 export interface TimelineParams {
   hero: string;
   ability: string;
-  /** Seconds to unroll the cycle over. Default 2 periods, or 10 s for a one-shot. */
-  horizon?: number;
+  /** The window in seconds; give this or `cycles`. Default 2 cycles, or 10 s for a one-shot. */
+  seconds?: number;
+  /** The window in periods of the cycle; give this or `seconds`. A one-shot ignores it. */
+  cycles?: number;
   /** Hero level, a whole number from 0 to the data's last: one boon per level. Default 0. */
   level?: number;
   /** Metres to the target, for bullet travel time. Default 0. */
@@ -90,6 +92,6 @@ export interface TimelineParams {
   spirit?: number;
   /** Seconds of assumed melee wind-up. Default 0. */
   windup?: number;
-  /** Target health, for `time_to_kill`. */
+  /** Target health, for `time_to_kill`, wherever the kill falls. Never changes the window. */
   hp?: number;
 }
