@@ -24,6 +24,11 @@ until a rebuild:
 
 The built path is dropped from `bin/serve`, not hidden behind a flag:
 `pnpm run build` plus `vis-server serve` (no `--reload`) still serves
-`client/dist`, the one-process shape, for anyone who wants it. Design:
+`client/dist`, the one-process shape, for anyone who wants it. The live loop
+offers one page, so `serve --reload` never mounts `client/dist` (`GET /` is a
+404 `{"error"}` line naming the API-only server), and the output's one URL
+is Vite's: `bin/serve` filters uvicorn's "running on" banner and prints its
+"open" line once both children listen. A stale `dist` had been opened on the
+API's port. Design:
 [`vis-app.md`](../../../../../docs/dev/decisions.kb/vis-app.md), *Shape*;
 built in `apps/vis/bin/serve`.

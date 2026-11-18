@@ -5,12 +5,16 @@ answers. A bad request prints its ``{"error"}`` line to stderr and exits 2.
 """
 
 import argparse
+import copy
+import logging
 import sys
 from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import override
 
 import deadlock
 import uvicorn
+from uvicorn.config import LOGGING_CONFIG
 
 from .http import answer, app, jsonl
 from .queries import QUERIES
@@ -18,6 +22,22 @@ from .types import Query
 
 # What ``serve --reload`` watches: this package and the ``deadlock`` one it reads.
 RELOAD_DIRS = (Path(__file__).parent, Path(deadlock.__file__).parent)
+
+
+class NoBanner(logging.Filter):
+    """Drops uvicorn's "running on" line, so the one URL a live loop offers is the page's."""
+
+    @override
+    def filter(self, record: logging.LogRecord) -> bool:
+        return not str(record.msg).startswith("Uvicorn running on")
+
+
+def _quiet_banner() -> dict[str, object]:
+    """uvicorn's logging config, minus the banner; plain data, so the reload worker can unpickle it."""
+    config = copy.deepcopy(LOGGING_CONFIG)
+    config["filters"] = {"no_banner": {"()": "vis_server.__main__.NoBanner"}}
+    config["loggers"]["uvicorn.error"]["filters"] = ["no_banner"]
+    return config
 
 
 class Args(argparse.Namespace):
@@ -36,12 +56,14 @@ def main(argv: Sequence[str] | None = None, queries: Mapping[str, Query] = QUERI
         case "serve":
             if args.reload:
                 # uvicorn restarts the worker on a source change, so it needs an import string.
+                # Vite serves the page in this loop, so the factory mounts no client/dist.
                 uvicorn.run(
-                    "vis_server.http:app",
+                    "vis_server.http:live",
                     factory=True,
                     host=args.host,
                     port=args.port,
                     reload=True,
+                    log_config=_quiet_banner(),
                     reload_dirs=[str(d) for d in RELOAD_DIRS],
                 )
             else:
@@ -65,7 +87,7 @@ def _parser() -> argparse.ArgumentParser:
     serve = commands.add_parser("serve", help="serve the API (and client/dist, if built) over HTTP")
     _ = serve.add_argument("--host", default="127.0.0.1")
     _ = serve.add_argument("--port", type=int, default=8787)
-    _ = serve.add_argument("--reload", action="store_true", help="restart on a change to the server or deadlock sources")
+    _ = serve.add_argument("--reload", action="store_true", help="restart on a change to the server or deadlock sources; serves no client/dist (Vite does)")
     query = commands.add_parser("query", help="print one query's JSONL lines (see GET /api for the queries)")
     _ = query.add_argument("name")
     _ = query.add_argument("params", nargs="*", type=_pair, metavar="k=v")

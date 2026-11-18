@@ -4,7 +4,8 @@ from pathlib import Path
 import pytest
 from starlette.testclient import TestClient
 
-from .http import app
+from .http import app, live
+from .queries import QUERIES
 from .types import BadRequest, JsonObj, Params, Query
 
 
@@ -79,6 +80,16 @@ class DescribeClient:
         assert client.get("/api/echo").status_code == 200
 
     def it_serves_nothing_at_the_root_without_a_build(self, client: TestClient):
-        assert client.get("/").status_code == 404
+        response = client.get("/")
+        assert (response.status_code, response.headers["content-type"]) == (404, "application/jsonl")
+        assert response.text.startswith('{"error":"this is the API only; the page is the URL that bin/serve printed')
         assert client.get("/api").status_code == 200
+
+    def it_never_mounts_a_build_in_the_live_loop(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+        _ = (tmp_path / "index.html").write_text("<p>stale</p>")
+        monkeypatch.setattr(app, "__defaults__", (QUERIES, tmp_path))  # a dist exists where ``app()`` looks
+        assert TestClient(app()).get("/").text == "<p>stale</p>"
+        served = TestClient(live())
+        assert (served.get("/").status_code, served.get("/index.html").status_code) == (404, 404)
+        assert served.get("/api").status_code == 200
 

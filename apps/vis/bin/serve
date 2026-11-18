@@ -41,8 +41,14 @@ trap 'exit 130' INT TERM
 
 uv run --project "$vis/server" vis-server serve --reload --port "$api_port" &
 pids+=("$!")
-(cd "$client" && VIS_API="http://127.0.0.1:$api_port" exec node_modules/.bin/vite --port "$port" --strictPort) &
+(cd "$client" && VIS_API="http://127.0.0.1:$api_port" exec node_modules/.bin/vite --port "$port" --strictPort --clearScreen false) &
 pids+=("$!")
 
+# Vite prints its own "Local:" lines; the "open" line is the last word, after both children listen.
+up() { timeout 1 bash -c "exec 3<>/dev/tcp/127.0.0.1/$1" 2>/dev/null; }
+until up "$port" && up "$api_port"; do
+  for pid in "${pids[@]}"; do kill -0 "$pid" 2>/dev/null || wait "$pid" || exit 1; done
+  sleep 0.3
+done
 echo >&2 "vis: open http://localhost:$port/  (API on :$api_port; Ctrl-C stops both)"
 wait -n   # either child exiting ends the script

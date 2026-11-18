@@ -88,7 +88,7 @@ class DescribeServe:
         monkeypatch.setattr("uvicorn.run", run)
         assert main(["serve", "--reload", "--port", "9000"], FAKE) == 0
         asgi, kwargs = calls[0]
-        assert asgi == "vis_server.http:app"
+        assert asgi == "vis_server.http:live"
         assert (kwargs["factory"], kwargs["reload"], kwargs["port"]) == (True, True, 9000)
         watched = kwargs["reload_dirs"]
         assert isinstance(watched, list)

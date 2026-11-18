@@ -24,14 +24,15 @@ lockfile is newer, then runs Vite (hot reload) and `vis-server serve
 --reload` (restarts on a change to the server or `deadlock` sources), and
 prints the one URL to open: <http://localhost:5173/>, which proxies `/api` to
 the server on :8788. From WSL2, that URL opens in a Windows browser too.
-Ctrl-C stops both. It refuses a port that is already taken. The server reads
+Ctrl-C stops both. The API port serves no page (`GET /` is a 404 saying so),
+and the output names no URL but Vite's. It refuses a port that is already taken. The server reads
 `data/`, built by `redo` at the repo root; set `DEADLOCK_DATA_DIR` to read
 another checkout's.
 
 ## Develop it
 
 `bin/serve` is the development loop. To serve the built client from the one
-Python process instead (no reload):
+Python process instead (no reload; `--reload` never serves `client/dist`):
 
 ```bash
 (cd apps/vis/client && pnpm run build)
