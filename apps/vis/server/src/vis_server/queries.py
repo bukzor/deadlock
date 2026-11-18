@@ -20,16 +20,18 @@ from deadlock.abilities import SIGNATURE, bindings
 
 from . import casts, guns, melee
 from .measures import Measure, measures
-from .timeline import Cycle, Hit, repeat
+from .timeline import Cycle, Hit, landed_by
 from .types import BadRequest, JsonObj, Params, Query
 
-LEVEL_ZERO = "Stats are level 0, with no items."
+LEVEL_ZERO = "Level 0 stats, no items: a build with items or levels will differ."
+ONE_SHOT_HORIZON = 10.0  # seconds, for a cycle that happens once
+DEFAULT_PERIODS = 2  # cycles shown when horizon is absent
 
 HERO = "hero key, from the heroes query (required)"
 TIMELINE = {
     "hero": HERO,
     "ability": "ability key, from the abilities query (required)",
-    "horizon": "seconds to unroll, > 0 (default 10)",
+    "horizon": "seconds to unroll, > 0 (default 2 periods of the cycle, or 10 for a one-shot)",
     "distance": "meters to the target, >= 0 (default 0): a gun's bullet travel",
     "spirit": "spirit power, >= 0 (default 0): scales a cast's damage",
     "windup": "seconds from a melee swing to its hit, >= 0 (default 0)",
@@ -89,30 +91,33 @@ def abilities(data: GameData, hero: str) -> list[JsonObj]:
 
 
 def timeline(data: GameData, params: Params) -> list[JsonObj]:
-    """Every hit ``repeat`` unrolls, then every measure, then every note, for ``TIMELINE``'s parameters.
+    """The ``cycle`` line, every hit that lands by the horizon, every measure, then every note, for ``TIMELINE``'s parameters.
 
-    The notes are the source's, a note when ``hp`` is given but not reached,
-    and ``LEVEL_ZERO`` last. An ability ``abilities`` lists that no source
+    The horizon defaults to ``DEFAULT_PERIODS`` periods of the cycle. The
+    notes are ``LEVEL_ZERO``, the source's (by how much each moves the
+    numbers), then a note when ``hp`` is given but not reached. An ability ``abilities`` lists that no source
     models gets only notes, one saying so.
     """
     hero, ability = _required(params, "hero"), _required(params, "ability")
-    horizon = _number(params, "horizon", 10.0, positive=True)
+    given_horizon = _optional_number(params, "horizon", positive=True)
     distance, spirit, windup = (_number(params, name, 0.0) for name in ("distance", "spirit", "windup"))
     hp = _optional_number(params, "hp", positive=True)
     if ability not in _kit(data, hero):
         raise BadRequest(f"unknown ability for {hero}: {ability} (see the abilities query)")
     found = _source(data, hero, ability, distance=distance, spirit=spirit, windup=windup)
     if found is None:
-        unmodeled = f"{ability} has no damage model: it is not a gun or melee, nor a signature with Damage or DPS"
-        return [_note(unmodeled), _note(LEVEL_ZERO)]
+        unmodeled = f"{ability} has no damage model: only guns, melee and damaging signature abilities are modeled"
+        return [_note(LEVEL_ZERO), _note(unmodeled)]
     _, cycle, notes = found
+    horizon = given_horizon or (ONE_SHOT_HORIZON if cycle.period is None else DEFAULT_PERIODS * cycle.period)
     measured = measures(cycle, horizon, hp)
     if hp is not None and "time_to_kill" not in {m.name for m in measured}:
-        notes = [*notes, f"hp {hp:g} is not reached within the {horizon:g} s horizon: no time_to_kill"]
+        notes = [*notes, f"The target's {hp:g} HP is not reached within {horizon:g} s: no time to kill is shown."]
     return [
-        *(_hit(hit) for hit in repeat(cycle, horizon)),
+        {"kind": "cycle", "period": cycle.period, "downtime": cycle.downtime, "horizon": horizon},
+        *(_hit(hit) for hit in landed_by(cycle, horizon)),
         *(_measure(m) for m in measured),
-        *(_note(text) for text in [*notes, LEVEL_ZERO]),
+        *(_note(text) for text in [LEVEL_ZERO, *notes]),
     ]
 
 
@@ -191,7 +196,7 @@ def _hit(hit: Hit) -> JsonObj:
 
 
 def _measure(measure: Measure) -> JsonObj:
-    return {"kind": "measure", "name": measure.name, "value": measure.value, "unit": measure.unit, "check": measure.check}
+    return {"kind": "measure", "name": measure.name, "label": measure.label, "value": measure.value, "unit": measure.unit, "check": measure.check}
 
 
 def _note(text: str) -> JsonObj:

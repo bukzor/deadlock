@@ -33,19 +33,21 @@ class DescribeMeasures:
 
     def it_gives_every_measure_a_unit_and_a_check(self):
         found = measures(gun_cycle(PAIGE), horizon=10, hp=100)
-        assert {m.name for m in found} == {
+        assert [m.name for m in found] == [
             "uptime_dps",
             "steady_dps",
+            "cycle_damage",
             "total_damage",
             "average_dps",
             "first_land",
             "time_to_kill",
-        }
-        assert all(m.unit and m.check for m in found), found
+        ]
+        assert all(m.label and m.unit and m.check for m in found), found
 
     def it_checks_uptime_dps_the_same_way_for_every_source(self):
         gun = by_name(measures(gun_cycle(PAIGE), horizon=10))["uptime_dps"].check
-        assert (by_name(measures(SWING, horizon=10))["uptime_dps"].check, "gun" in gun) == (gun, False)
+        cast = Cycle(hits=(Hit(0, 0.5, 30, "a"), Hit(0.5, 2.0, 30, "b")), period=10.0, downtime=8.0)
+        assert (by_name(measures(cast, horizon=10))["uptime_dps"].check, "gun" in gun) == (gun, False)
 
     def it_divides_uptime_dps_by_the_period_less_its_downtime(self):
         cast = Cycle(hits=(Hit(0, 0.5, 30, "a"), Hit(0.5, 2.0, 30, "b")), period=10.0, downtime=8.0)
@@ -58,7 +60,16 @@ class DescribeMeasures:
 
     class WhenTheCycleHasNoPeriod:
         def it_omits_uptime_and_steady_dps(self):
-            assert values(NUKE).keys() == {"total_damage", "average_dps", "first_land"}
+            assert values(NUKE).keys() == {"cycle_damage", "total_damage", "average_dps", "first_land"}
+
+    class WhenTheCycleHasOneHit:
+        def it_omits_uptime_dps_but_keeps_steady_dps(self):
+            assert ("uptime_dps" in values(SWING), values(SWING)["steady_dps"]) == (False, 10)
+
+        def it_labels_each_measure_in_player_words(self):
+            found = by_name(measures(gun_cycle(PAIGE), horizon=10))
+            assert found["uptime_dps"].label == "DPS while active (≈ stat panel for guns)"
+            assert found["average_dps"].label == "DPS over the first 10 s"
 
     class WhenThePeriodIsAllDowntime:
         def it_omits_uptime_dps_but_keeps_steady_dps(self):
@@ -95,6 +106,7 @@ class DescribeMeasures:
             assert values(Cycle(hits=(), period=1.0), hp=1) == {
                 "uptime_dps": 0,
                 "steady_dps": 0,
+                "cycle_damage": 0,
                 "total_damage": 0,
                 "average_dps": 0,
             }

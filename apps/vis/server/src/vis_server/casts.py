@@ -42,12 +42,16 @@ from .timeline import Cycle, Hit
 from .types import BadRequest
 
 HEURISTIC = (
-    "unverified heuristic: Damage lands at AbilityCastDelay, DPS ticks across the ability's duration, "
-    "and the cast repeats every AbilityCooldown; not yet checked in-game"
+    "Not yet checked in-game: damage lands after the cast delay, damage over time ticks through the ability's "
+    "duration, and the cast repeats every cooldown."
 )
+# A note's rank: the lower, the more it moves the numbers. Notes are returned in rank order.
+LEFT_OUT, UPGRADES, CHARGES, OVERLAP, NO_COOLDOWN, UNVERIFIED = range(6)
+type Notes = list[tuple[int, str]]
 _DAMAGE = ("Damage", "DPS")
 _DURATIONS = ("AbilityDuration", "AbilityChannelTime")  # first positive wins
 _TICKS = ("TickRate", "DPSTickInterval", "DamageInterval", "TickInterval", "Interval")  # first positive wins
+_NAMES = {"Damage": "Damage", "DPS": "Damage over time"}  # property: player-facing name
 _SPIRIT = "ETechPower"
 _SPIRIT_CLASS = "scale_function_tech_damage"  # scales with spirit when it names no stat
 _NUMBER = re.compile(r"-?(\d+\.?\d*|\.\d+)")
@@ -77,7 +81,7 @@ def cycle(
     assert is_str_mapping(props), ability
     if not any(name in props for name in _DAMAGE):
         return None
-    notes = [HEURISTIC]
+    notes: Notes = [(UNVERIFIED, HEURISTIC)]
     delay = _number(props, ability, "AbilityCastDelay")
     hits: list[Hit] = []
     if "Damage" in props:
@@ -87,24 +91,25 @@ def cycle(
         hits.extend(_ticks(props, ability, delay, _scaled(props, ability, "DPS", spirit, notes), notes))
     cooldown = _number(props, ability, "AbilityCooldown")
     if cooldown <= 0:
-        notes.append("AbilityCooldown is 0: shown as a single cast")
+        notes.append((NO_COOLDOWN, "This ability has no cooldown: a single cast is shown."))
     notes.extend(_unmodeled(abilities, ability, props))
-    return Cycle(hits=tuple(hits), period=cooldown if cooldown > 0 else None, downtime=_downtime(hits, cooldown, notes)), tuple(notes)
+    cycle = Cycle(hits=tuple(hits), period=cooldown if cooldown > 0 else None, downtime=_downtime(hits, cooldown, notes))
+    return cycle, tuple(text for _, text in sorted(notes, key=lambda note: note[0]))
 
 
-def _downtime(hits: list[Hit], cooldown: float, notes: list[str]) -> float:
+def _downtime(hits: list[Hit], cooldown: float, notes: Notes) -> float:
     """The cooldown left after the last land; 0, with a note, when the damage outlasts it."""
     if cooldown <= 0:
         return 0.0
     last = max((h.land for h in hits), default=0.0)
     if last > cooldown:
-        notes.append(f"damage outlasts the cooldown ({last:g}s > {cooldown:g}s): casts on cooldown overlap, no downtime")
+        notes.append((OVERLAP, f"The damage outlasts the cooldown ({last:g} s > {cooldown:g} s): casts overlap, so no downtime is shown."))
         return 0.0
     else:
         return cooldown - last
 
 
-def _scaled(props: Props, ability: str, name: str, spirit: float, notes: list[str]) -> float:
+def _scaled(props: Props, ability: str, name: str, spirit: float, notes: Notes) -> float:
     """``name``'s value plus its spirit scaling; a note if it scales with another stat instead."""
     base = _number(props, ability, name)
     scale = dig(props, name, "m_subclassScaleFunction")
@@ -115,11 +120,12 @@ def _scaled(props: Props, ability: str, name: str, spirit: float, notes: list[st
     stat = dig(scale, "m_eSpecificStatScaleType")
     if stat == _SPIRIT or (stat is None and dig(scale, "_class") == _SPIRIT_CLASS):
         return base + factor * spirit
-    notes.append(f"{name} scales with {stat or dig(scale, '_class') or 'an unnamed stat'} (x{factor:g}), not modeled")
+    what = _humanize(str(stat)) if stat else "an unnamed stat"
+    notes.append((LEFT_OUT, f"{_NAMES.get(name, name)} also scales with {what} (×{factor:g}); that is not included."))
     return base
 
 
-def _ticks(props: Props, ability: str, delay: float, dps: float, notes: list[str]) -> list[Hit]:
+def _ticks(props: Props, ability: str, delay: float, dps: float, notes: Notes) -> list[Hit]:
     """``dps`` as ticks landing every interval from ``delay``, each triggered at the previous land.
 
     Ticks are whole intervals that fit the duration; a remainder is dropped.
@@ -127,19 +133,13 @@ def _ticks(props: Props, ability: str, delay: float, dps: float, notes: list[str
     duration_field = next((f for f in _DURATIONS if _number(props, ability, f, 0) > 0), None)
     tick_field = next((f for f in _TICKS if _number(props, ability, f, 0) > 0), None)
     if duration_field is None:
-        others = sorted(k for k in props if k.endswith("Duration") and k not in _DURATIONS and _positive(props[k]))
-        notes.append(
-            f"DPS {dps:g}/s not modeled: {' and '.join(_DURATIONS)} are 0"
-            + (f"; its duration may be one of {', '.join(others)}" if others else "")
-        )
+        notes.append((LEFT_OUT, f"Damage over time ({dps:g}/s) is not included: its duration is not in the data."))
         return []
     if tick_field is None:
-        notes.append(f"DPS {dps:g}/s not modeled: no tick interval (none of {', '.join(_TICKS)})")
+        notes.append((LEFT_OUT, f"Damage over time ({dps:g}/s) is not included: its tick interval is not in the data."))
         return []
     duration = _number(props, ability, duration_field)
     interval = _number(props, ability, tick_field)
-    if (duration_field, tick_field) != (_DURATIONS[0], _TICKS[0]):
-        notes.append(f"DPS ticks every {tick_field} ({interval:g}s) for {duration_field} ({duration:g}s)")
     count = int(duration / interval + 1e-9)
     if not dps:
         return []
@@ -149,20 +149,20 @@ def _ticks(props: Props, ability: str, delay: float, dps: float, notes: list[str
     ]
 
 
-def _unmodeled(abilities: Mapping[str, object], ability: str, props: Props) -> list[str]:
+def _unmodeled(abilities: Mapping[str, object], ability: str, props: Props) -> Notes:
     """One note per factor present on ``ability`` that the model ignores."""
-    notes: list[str] = []
+    notes: Notes = []
     charges = _number(props, ability, "AbilityCharges", 0)
     if charges > 0:
         between = _number(props, ability, "AbilityCooldownBetweenCharge", 0)
-        notes.append(f"charges not modeled, one cast per cooldown shown: AbilityCharges {charges:g}, recharge {between:g}s")
+        notes.append((CHARGES, f"Charges are not included: one cast per cooldown is shown (the ability has {charges:g}, one back every {between:g} s)."))
     ups = upgrades(abilities, {ability})
     if ups:
-        tiers = ", ".join(f"T{u.tier} {u.property} {u.bonus}" for u in ups)
-        notes.append(f"upgrades not modeled, base values shown: {tiers}")
+        tiers = ", ".join(f"T{u.tier} {_humanize(u.property)} {u.bonus}" for u in ups)
+        notes.append((UPGRADES, f"Upgrades not included: {tiers}."))
     for name, prop in props.items():
         if name not in _DAMAGE and dig(prop, "m_bIsAbilityDamageProperty") is True:
-            notes.append(f"{name} {dig(prop, 'm_strValue')} not read: damage this model leaves out")
+            notes.append((LEFT_OUT, f"Extra damage not included: {_humanize(name)} {dig(prop, 'm_strValue')}."))
     return notes
 
 
@@ -178,6 +178,7 @@ def _number(props: Props, ability: str, name: str, default: float | None = None)
     raise BadRequest(f"{ability}: {name} is {value!r}, not a number this model can read")
 
 
-def _positive(prop: object) -> bool:
-    value = dig(prop, "m_strValue")
-    return _NUMBER.fullmatch(str(value)) is not None and float(str(value)) > 0
+def _humanize(name: str) -> str:
+    """An engine name in words: ``AbilityCooldown`` is ``cooldown``, ``ETechPower`` is ``tech power``."""
+    bare = re.sub(r"^(E(?=[A-Z][a-z])|Ability(?=[A-Z]))", "", name)
+    return re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", bare).lower()

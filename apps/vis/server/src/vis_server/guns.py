@@ -51,7 +51,7 @@ def cycle(
         damage=_given(row.damage), pellets=_given(row.bullets), burst=_given(row.burst), cycle=_given(row.cycle),
         intra=_given(row.intra), shots=_shots(_given(row.clip), stats), reload=reload, travel=travel,
     )  # fmt: skip
-    return gun_cycle(gun), reload_notes + speed_notes + _falloff(stats, distance)
+    return gun_cycle(gun), _falloff(stats, distance) + reload_notes + speed_notes  # biggest effect first
 
 
 def _shots(clip: int, stats: Mapping[str, object]) -> int:
@@ -67,7 +67,7 @@ def _reload(row: Profile, stats: Mapping[str, object]) -> tuple[float, list[str]
         return per, []
     delay = _num(stats.get("m_flReloadSingleBulletsInitialDelay", 0))
     reload = delay + _given(row.clip) * per
-    note = f"reload loads one bullet at a time; refilling from empty takes {reload:g} s ({delay:g} + {row.clip} × {per:g}), unverified"
+    note = f"This gun reloads one bullet at a time; a full reload from empty is taken as {reload:g} s ({delay:g} s delay + {row.clip} × {per:g} s). Not checked in-game."
     return reload, [note]
 
 
@@ -78,7 +78,7 @@ def _speed(stats: Mapping[str, object]) -> tuple[float | None, list[str]]:
     spline = dig(stats, "m_BulletSpeedCurve", "m_spline")
     if spline is None:
         if flat_speed is None:
-            return None, ["bullet speed unknown: impact is drawn at the trigger, without travel time"]
+            return None, ["Bullet speed is not in the data: hits land the instant you fire, with no travel time."]
         return flat_speed, []
     assert is_sequence(spline), spline
     ys = {_num(dig(point, "y")) for point in spline}
@@ -88,7 +88,7 @@ def _speed(stats: Mapping[str, object]) -> tuple[float | None, list[str]]:
     speed = y * METERS_PER_UNIT
     if flat_speed is None or flat_speed == speed:
         return speed, []
-    note = f"bullet speed: using m_BulletSpeedCurve's {speed:g} m/s over m_flBulletSpeed's {flat_speed:g} m/s, unverified"
+    note = f"The data gives two bullet speeds, {speed:g} m/s and {flat_speed:g} m/s; the {speed:g} m/s one is used. Not checked in-game."
     return speed, [note]
 
 
@@ -96,7 +96,7 @@ def _falloff(stats: Mapping[str, object], distance: float) -> list[str]:
     start = stats.get("m_flDamageFalloffStartRange")
     if start is None or distance <= _num(start) * METERS_PER_UNIT:
         return []
-    return [f"damage falls off beyond {_num(start) * METERS_PER_UNIT:.3g} m; falloff is not modeled"]
+    return [f"Damage falls off beyond {_num(start) * METERS_PER_UNIT:.3g} m; the falloff is not included."]
 
 
 def _given[T](value: T | None) -> T:

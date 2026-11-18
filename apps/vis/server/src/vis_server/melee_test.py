@@ -65,7 +65,7 @@ class DescribeCycle:
 
     def it_notes_the_windup_is_a_parameter(self):
         notes = _cycle("hero_a", LIGHT, windup=0.3)[1]
-        assert any("windup" in n and "0.3" in n for n in notes), notes
+        assert any("wind-up" in n and "0.3" in n for n in notes), notes
 
     def it_notes_that_hits_are_modeled_when_a_miss_differs(self):
         notes = _cycle("hero_b", HEAVY)[1]

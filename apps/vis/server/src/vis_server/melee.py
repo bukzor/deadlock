@@ -61,11 +61,10 @@ def cycle(
     attack = dig(abilities, melee, "m_mapAttacks", attack_type)
     on_hit = _num(dig(attack, "m_flCooldownOnHit"), melee, attack_type)
     on_miss = _num(dig(attack, "m_flCooldownOnMiss"), melee, attack_type)
-    notes = [f"Wind-up is not in the data: the windup parameter sets it ({windup:g} s)."]
+    notes: list[str] = []
     if on_miss != on_hit:
-        notes.append(
-            f"Every swing is assumed to hit: the cooldown is {on_hit:g} s on a hit, {on_miss:g} s on a miss."
-        )
+        notes.append(f"Every swing is assumed to hit: the cooldown is {on_hit:g} s on a hit, {on_miss:g} s on a miss.")
+    notes.append(f"The swing's wind-up is not in the data: {windup:g} s is assumed (set it with the wind-up field).")
     cycle = Cycle(hits=(Hit(0.0, windup, damage, label),), period=on_hit)
     return cycle, tuple(notes)
 

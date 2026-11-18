@@ -54,7 +54,7 @@ class DescribeCycle:
     def it_happens_once_without_a_cooldown(self):
         cycle, notes = cast({"Damage": "100", "AbilityCooldown": "0"})
         assert (cycle.period, cycle.downtime) == (None, 0)
-        assert any("AbilityCooldown is 0" in n for n in notes), notes
+        assert any("no cooldown" in n for n in notes), notes
 
     class WhenTheDamageOutlastsTheCooldown:
         def it_has_no_downtime_and_says_casts_overlap(self):
@@ -93,22 +93,22 @@ class DescribeCycle:
         def it_falls_back_to_the_channel_time(self):
             cycle, notes = cast({"DPS": "40", "AbilityDuration": "0", "AbilityChannelTime": "2", "TickRate": "1"})
             assert len(cycle.hits) == 2
-            assert any("AbilityChannelTime" in n for n in notes), notes
+            assert len(notes) == 1, notes  # only the unverified caveat
 
         def it_falls_back_to_another_tick_interval(self):
             cycle, notes = cast({"DPS": "40", "AbilityDuration": "1", "DamageInterval": "0.25"})
             assert len(cycle.hits) == 4
-            assert any("DamageInterval" in n for n in notes), notes
+            assert len(notes) == 1, notes  # only the unverified caveat
 
         def it_leaves_dps_unmodeled_without_a_duration(self):
             cycle, notes = cast({"DPS": "40", "AbilityDuration": "0", "TickRate": "1", "BurnDuration": "3"})
             assert cycle.hits == ()
-            assert any("not modeled" in n and "BurnDuration" in n for n in notes), notes
+            assert any("not included" in n and "duration" in n for n in notes), notes
 
         def it_leaves_dps_unmodeled_without_a_tick_interval(self):
             cycle, notes = cast({"DPS": "40", "AbilityDuration": "1"})
             assert cycle.hits == ()
-            assert any("DPS" in n and "tick interval" in n for n in notes), notes
+            assert any("Damage over time" in n and "tick interval" in n for n in notes), notes
 
     class WhenScaling:
         def it_adds_stat_scale_times_spirit(self):
@@ -124,12 +124,20 @@ class DescribeCycle:
             scale = {"_class": "scale_function_single_stat", "m_flStatScale": 1, "m_eSpecificStatScaleType": "ELightMeleeDamage"}
             cycle, notes = cast({"Damage": {"m_strValue": "100", "m_subclassScaleFunction": scale}}, spirit=10)
             assert cycle.hits[0].damage == 100
-            assert any("ELightMeleeDamage" in n for n in notes), notes
+            assert any("light melee damage" in n for n in notes), notes
 
     class WhenNoting:
-        def it_says_first_that_the_model_is_a_heuristic(self):
-            _, notes = cast({"Damage": "1"})
-            assert "unverified heuristic" in notes[0], notes
+        def it_says_last_that_the_model_is_not_yet_checked(self):
+            _, notes = cast({"Damage": "1", "AbilityCharges": "2"})
+            assert "Not yet checked in-game" in notes[-1], notes
+
+        def it_orders_notes_by_how_much_they_move_the_numbers(self):
+            tier = {"m_vecPropertyUpgrades": [{"m_strPropertyName": "AbilityCooldown", "m_strBonus": "-10"}]}
+            flagged = {"m_strValue": "40", "m_bIsAbilityDamageProperty": True}
+            props = {"Damage": "1", "ImpactDamage": flagged, "AbilityCharges": "2", "AbilityCooldown": "0"}
+            _, notes = cast(props, m_vecAbilityUpgrades=[tier])
+            starts = [n.split(" ")[0] for n in notes]
+            assert starts == ["Extra", "Upgrades", "Charges", "This", "Not"], notes
 
         def it_notes_nothing_more_for_a_plain_cast(self):
             _, notes = cast({"Damage": "1"})
@@ -137,7 +145,7 @@ class DescribeCycle:
 
         def it_notes_charges(self):
             _, notes = cast({"Damage": "1", "AbilityCharges": "2", "AbilityCooldownBetweenCharge": "7.5"})
-            assert any("AbilityCharges 2," in n for n in notes), notes
+            assert any("has 2," in n for n in notes), notes
 
         def it_ignores_zero_charges(self):
             _, notes = cast({"Damage": "1", "AbilityCharges": "0"})
@@ -146,12 +154,12 @@ class DescribeCycle:
         def it_notes_upgrades(self):
             tier = {"m_vecPropertyUpgrades": [{"m_strPropertyName": "Damage", "m_strBonus": "+40"}]}
             _, notes = cast({"Damage": "1"}, m_vecAbilityUpgrades=[tier])
-            assert any("upgrade" in n and "Damage +40" in n for n in notes), notes
+            assert any("Upgrades not included" in n and "T1 damage +40" in n for n in notes), notes
 
         def it_notes_each_unread_damage_property(self):
             flagged = {"m_strValue": "40", "m_bIsAbilityDamageProperty": True}
             _, notes = cast({"Damage": "1", "ImpactDamage": flagged, "BonusDamage": flagged})
-            assert sum("not read" in n for n in notes) == 2, notes
+            assert sum("Extra damage" in n for n in notes) == 2, notes
 
     class WhenParsing:
         def it_reads_numbers_and_numeric_strings(self):
@@ -181,4 +189,4 @@ class DescribeRealData:
         modeled = [r for r in results if r is not None]
         assert len(bound) > 100, len(bound)
         assert len(modeled) > len(bound) / 3, len(modeled)
-        assert all(r[1][0].startswith("unverified heuristic") for r in modeled)
+        assert all(r[1][-1] == casts.HEURISTIC for r in modeled)

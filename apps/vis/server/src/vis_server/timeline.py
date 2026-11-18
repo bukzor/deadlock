@@ -76,3 +76,8 @@ def repeat(cycle: Cycle, horizon: float) -> Iterator[Hit]:
         if cycle.period is None:
             return
         n += 1
+
+
+def landed_by(cycle: Cycle, horizon: float) -> list[Hit]:
+    """Every hit ``repeat`` unrolls that also lands by ``horizon``, in trigger order: the damage totals count."""
+    return [h for h in repeat(cycle, horizon) if h.land <= horizon]

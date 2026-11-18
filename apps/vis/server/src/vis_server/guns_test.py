@@ -75,7 +75,7 @@ class DescribeCycle:
     def it_reloads_single_bullets_from_empty_and_says_that_is_unverified(self):
         cycle, notes = _gun(m_bReloadSingleBullets=True, m_flReloadSingleBulletsInitialDelay=0.5, m_reloadDuration=0.25)
         assert cycle.downtime == approx(0.5 + 9 * 0.25)
-        assert [n for n in notes if "unverified" in n and "reload" in n], notes
+        assert [n for n in notes if "Not checked in-game" in n and "reloads" in n], notes
 
     class WhenTheBulletTravels:
         def it_lands_after_distance_over_the_flat_speed(self):
@@ -88,7 +88,7 @@ class DescribeCycle:
 
         def it_notes_when_the_curve_disagrees_with_the_flat_speed(self):
             _, notes = _gun(m_BulletSpeedCurve=_curve(22500.0, 22500.0))
-            assert [n for n in notes if "m_flBulletSpeed" in n and "571.5" in n and "635" in n], notes
+            assert [n for n in notes if "571.5" in n and "635" in n], notes
 
         def it_fails_on_a_curve_that_varies(self):
             with pytest.raises(NotImplementedError, match="m_BulletSpeedCurve"):
@@ -97,7 +97,7 @@ class DescribeCycle:
         def it_lands_on_the_trigger_and_says_so_when_the_speed_is_unknown(self):
             cycle, notes = _gun(distance=30.0, m_flBulletSpeed=None)
             assert cycle.hits[0].land == cycle.hits[0].trigger
-            assert [n for n in notes if "speed" in n and "unknown" in n], notes
+            assert [n for n in notes if "speed" in n and "not in the data" in n], notes
 
         def it_notes_damage_falloff_only_beyond_its_start(self):
             start = 20 / INCH

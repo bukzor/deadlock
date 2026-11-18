@@ -120,8 +120,8 @@ def timeline(ability: str = "melee_light", hero: str = "hero_a", **params: str) 
 class DescribeTimeline:
     def it_emits_hits_then_measures_then_notes(self):
         found = [str(line["kind"]) for line in timeline()]
-        assert found == sorted(found, key=["hit", "measure", "note"].index), found
-        assert set(found) == {"hit", "measure", "note"}
+        assert found == sorted(found, key=["cycle", "hit", "measure", "note"].index), found
+        assert found[0] == "cycle" and set(found) == {"cycle", "hit", "measure", "note"}
 
     def it_emits_each_unrolled_hit(self):
         assert kinds(timeline(horizon="1", windup="0.25"), "hit") == [
@@ -129,22 +129,34 @@ class DescribeTimeline:
             {"kind": "hit", "trigger": 0.75, "land": 1.0, "damage": 50.0, "label": "light melee", "cycle": 1},
         ]
 
-    def it_unrolls_10_seconds_by_default(self):
-        assert max(float(str(h["trigger"])) for h in kinds(timeline(), "hit")) == 9.75
+    def it_unrolls_two_periods_by_default(self):
+        assert max(float(str(h["trigger"])) for h in kinds(timeline(), "hit")) == 1.5  # horizon: 2 periods of 0.75 s
+        assert kinds(timeline("blast"), "cycle") == [{"kind": "cycle", "period": 10.0, "downtime": 9.5, "horizon": 20.0}]
+
+    def it_unrolls_10_seconds_for_a_one_shot(self):
+        data = GameData(DATA.heroes, {**DATA.abilities, "blast": {"m_mapAbilityProperties": _props(Damage="5", AbilityCooldown="0", AbilityCastDelay="0")}}, DATA.names)
+        [line] = kinds(registry(lambda: data)["timeline"].run({"hero": "hero_a", "ability": "blast"}), "cycle")
+        assert (line["period"], line["horizon"]) == (None, 10.0)
+
+    def it_sends_only_hits_that_land_within_the_horizon(self):
+        lands = [float(str(h["land"])) for h in kinds(timeline("blast", horizon="10.2"), "hit")]
+        assert lands == [0.5]  # the second cast triggers at 10, lands at 10.5
 
     def it_emits_each_measure(self):
         measures = kinds(timeline(horizon="1"), "measure")
-        assert [m["name"] for m in measures] == ["uptime_dps", "steady_dps", "total_damage", "average_dps", "first_land"]
-        assert measures[1] == {
-            "kind": "measure", "name": "steady_dps", "value": approx(50 / 0.75), "unit": "damage/s",
-            "check": measures[1]["check"],
+        names = ["steady_dps", "cycle_damage", "total_damage", "average_dps", "first_land"]
+        assert [m["name"] for m in measures] == names  # one hit per swing: no uptime_dps
+        assert measures[0] == {
+            "kind": "measure", "name": "steady_dps", "label": "DPS incl. reload/cooldown", "value": approx(50 / 0.75),
+            "unit": "damage/s", "check": measures[0]["check"],
         }  # fmt: skip
-        assert all(set(m) == {"kind", "name", "value", "unit", "check"} and m["check"] for m in measures)
+        assert measures[3]["label"] == "DPS over the first 1 s"
+        assert all(set(m) == {"kind", "name", "label", "value", "unit", "check"} and m["check"] for m in measures)
 
     def it_notes_the_sources_caveats_and_level_zero(self):
         found = notes(timeline(windup="0.3"))
-        assert any("windup" in n for n in found), found
-        assert found[-1] == "Stats are level 0, with no items.", found
+        assert any("wind-up" in n for n in found), found
+        assert found[0].startswith("Level 0 stats, no items"), found
 
     @pytest.mark.parametrize(
         ("ability", "param", "value", "field", "expected"),
@@ -168,7 +180,7 @@ class DescribeTimeline:
             assert any("101" in n and "1 s" in n for n in notes(lines)), notes(lines)
 
         def it_says_nothing_of_hp_when_reached(self):
-            assert not any("hp" in n for n in notes(timeline(hp="100", windup="0.25")))
+            assert not any("HP" in n for n in notes(timeline(hp="100", windup="0.25")))
 
     class WhenTheAbilityHasNoDamageModel:
         def it_emits_only_notes_saying_so(self):

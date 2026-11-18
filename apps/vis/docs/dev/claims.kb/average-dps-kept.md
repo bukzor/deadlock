@@ -1,0 +1,24 @@
+---
+label: AVERAGE_DPS_KEPT
+standing: agent
+why:
+- original-request.md
+- judge-on-own-authority.md
+- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-015-ux-review.md
+- ../../../../../docs/dev/decisions.kb/vis-app.md
+---
+
+# average_dps stays, labelled as DPS over the first N seconds
+
+`average_dps` stays, with the label "DPS over the first {horizon} s". Finding
+1 proposed dropping it, as it measures the chosen horizon and not the ability;
+the call here keeps it because it reads burst, which neither `uptime_dps` nor
+`steady_dps` does. The measures are labelled in player words and ordered with
+`uptime_dps`, the one comparable to the card, first. Revisit if players read
+it as the ability's DPS. Built by unit 016.
+
+The owner asked for the review that produced this call ("a sub-agent to
+ponder the intelligibility and overall UX of this UI", quoted in unit 015's
+brief); the finding is in
+[unit 015's report](../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-015-ux-review.md). Design:
+[`vis-app.md`](../../../../../docs/dev/decisions.kb/vis-app.md).
