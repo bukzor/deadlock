@@ -1,12 +1,15 @@
+# pyright: basic
+# (a claim witness: polars' own signatures carry Unknown, which "all" rejects)
 """Cut one demo into fight episodes from hero-on-hero damage; sweep gap x radius.
 
-Usage: python -I segment.py DEMO
+Usage: python -I segmentation-from-events.py DEMO
 
 Clustering is boon.teamfights' sweep (stats.py) with min_players=1, kept here
 because boon does not expose per-event fight labels, which the two-sided check
 needs. Each setting's count is cross-checked against boon.teamfights itself.
 Prints one TSV row per (gap_s, radius): episodes, median duration, kills inside
-an episode, episodes with damage from both teams, kills inside those, and\nthe 90th-percentile episode spread (farthest event from its centroid, units).
+an episode, episodes with damage from both teams, kills inside those, and
+the 90th-percentile episode spread (farthest event from its centroid, units).
 """
 
 import math
@@ -57,7 +60,7 @@ def label(dmg: pl.DataFrame, gap_ticks: int, radius: float) -> list[int]:
             if d <= best_d:
                 best, best_d = f, d
         if best is None:
-            best = [t, x, y, 0, fresh]
+            best = [float(t), float(x), float(y), 0.0, float(fresh)]
             fresh += 1
             active.append(best)
         n = best[3] + 1

@@ -5,7 +5,9 @@ description = "Evaluate Deadlock builds: compile stats, simulate engagements, we
 readme = "README.md"
 license = "Apache-2.0"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "boon-deadlock==0.19.0",
+]
 
 [build-system]
 requires = ["hatchling"]

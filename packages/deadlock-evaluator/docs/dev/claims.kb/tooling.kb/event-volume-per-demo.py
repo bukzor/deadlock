@@ -1,3 +1,5 @@
+# pyright: basic
+# (a claim witness: polars' own signatures carry Unknown, which "all" rejects)
 """Measure one Deadlock demo: duration, ticks, rows per boon dataset grouped by
 event kind, the three demo-kind facts (roster size, heroes in player_ticks,
 damage rows joining a same-tick victim position), and the parsed size on disk
