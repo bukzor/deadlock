@@ -15,6 +15,7 @@ non-claim-tokens:
 - L5
 - L1002
 - L1273
+- L1546
 - MODIFIER_VALUE_BASE_MELEE_DAMAGE_FROM_LEVEL
 why:
 - claims.kb/judge-on-own-authority.md

@@ -51,7 +51,7 @@ Queries:
 |---|---|---|
 | `heroes` | | `{"hero": key, "name": display}` |
 | `abilities` | `hero` | `{"ability": key, "name", "kind": "gun"\|"melee"\|"cast"\|null}` |
-| `timeline` | `hero`, `ability`, `horizon` (s; default 2 periods of the cycle, or 10 s for a one-shot), `distance`=0 (m), `spirit`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
+| `timeline` | `hero`, `ability`, `horizon` (s; default 2 periods of the cycle, or 10 s for a one-shot), `distance`=0 (m), `spirit`=0, `level`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
 
 `timeline` lines:
 
@@ -72,8 +72,9 @@ Melee appears in `abilities` as two pseudo-abilities, `melee_light` and
 ## Model: every damage source is a repeating `Cycle`
 
 `server/src/vis_server/timeline.py` defines `Hit` and `Cycle`, and `repeat`
-unrolls a cycle up to the horizon. Only hits that land within the horizon are
-sent, so the chart draws exactly what the totals count. A hit's **trigger** is the input (trigger
+unrolls a cycle up to the horizon. The window is half-open, `[0, horizon)`: only
+hits that land before the horizon are sent, so the chart draws exactly what the
+totals count, and a horizon of N periods holds exactly N cycles. A hit's **trigger** is the input (trigger
 pull, swing, cast) and its **land** is when the damage applies. The gap between
 them is the wind-up, which is the bar's width in the chart.
 - For a discrete hit, the trigger is the player's input.
@@ -91,7 +92,9 @@ after the last tick lands. For melee it is 0.
 Each source module exposes `cycle(heroes, abilities, hero, ability, …)`. The
 trailing arguments are the parameters that source uses. It turns one hero's
 ability into `(Cycle, notes)`, or returns `None` when the ability is not its
-kind. Every timeline also gets a note that stats are level 0 with no items.
+kind. Every timeline also gets a note naming the hero's level and what it adds:
+level N is N boons (`docs/dev/mechanics.kb/boons-per-level.md`), and items are
+not modeled.
 
 - **Gun** (`guns.py`): one clip fired at the gun's rate, then its reload. The
   formulas are in `docs/dev/mechanics.kb/gun-*.md`. Travel time is `distance /
