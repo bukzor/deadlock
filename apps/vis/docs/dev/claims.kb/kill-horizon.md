@@ -5,9 +5,6 @@ verdict: superseded
 why:
 - horizon-default.md
 - judge-on-own-authority.md
-- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-020-ux-review-2.md
-- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-023-player-words-server.md
-- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-026-names-and-hp-zoom.md
 - ../../../../../docs/dev/decisions.kb/vis-app.md
 ---
 
@@ -39,5 +36,7 @@ time cap: it measures `time_to_kill` wherever the kill falls, and the
 client zooms out to the fewest whole cycles that show it. Design:
 [`vis-app.md`](../../../../../docs/dev/decisions.kb/vis-app.md), *Client
 view* and *Measures*; built by unit 030
-([brief](../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-030-window-and-target.md)).
+(brief (`git show c940883:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-030-window-and-target.md`)).
 The limit on a window is now `window-limits.md`.
+
+Provenance (the handoff files are retired): `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-020-ux-review-2.md`; `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-023-player-words-server.md`; `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-026-names-and-hp-zoom.md`.

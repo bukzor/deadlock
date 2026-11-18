@@ -4,8 +4,6 @@ standing: agent
 why:
 - judge-on-own-authority.md
 - horizon-default.md
-- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-030-window-and-target.md
-- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-031-zoom-within-guard.md
 - ../../../../../docs/dev/decisions.kb/vis-app.md
 ---
 
@@ -31,3 +29,5 @@ saying it has no cycles. Declined: a 400, which would break the page
 whenever the user switches from a gun shown in cycles to a one-shot.
 
 Overturned if the owner wants the zoom to override the hit limit, or a one-shot's cycles to mean something.
+
+Provenance (the handoff files are retired): `git show c940883:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-030-window-and-target.md`; `git show c940883:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-031-zoom-within-guard.md`.

@@ -3,7 +3,6 @@ label: BULLET_SPEED
 standing: agent
 why:
 - ../judge-on-own-authority.md
-- ../../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-003-guns.md
 - ../../../../../../docs/dev/decisions.kb/vis-app.md
 ---
 
@@ -20,3 +19,5 @@ chose this; the coordinator adopted it.
 Settled by timing a shot's travel in-game on one of the five guns.
 Design: [`vis-app.md`](../../../../../../docs/dev/decisions.kb/vis-app.md), *Model*,
 Gun.
+
+Provenance (the handoff files are retired): `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-003-guns.md`.

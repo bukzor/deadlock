@@ -4,7 +4,6 @@ standing: agent
 why:
 - melee-listing.md
 - judge-on-own-authority.md
-- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-026-names-and-hp-zoom.md
 - ../../../../../docs/dev/decisions.kb/vis-app.md
 ---
 
@@ -22,3 +21,5 @@ signatures), the note falls back to the key in lower-case words.
 Declined: the key itself as the fallback in notes, which puts an engine
 name in player text. Overturned if the owner wants one casing throughout.
 Built in `apps/vis/server/src/vis_server/names.py`.
+
+Provenance (the handoff files are retired): `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-026-names-and-hp-zoom.md`.

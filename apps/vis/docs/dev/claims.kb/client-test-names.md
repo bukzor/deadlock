@@ -3,7 +3,6 @@ label: CLIENT_TEST_NAMES
 standing: agent
 why:
 - judge-on-own-authority.md
-- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-006-client.md
 ---
 
 # Client tests are named `{module}.test.ts`
@@ -17,3 +16,5 @@ coordinator adopted it.
 
 Revisit if the house conventions gain a TypeScript rule that says
 otherwise.
+
+Provenance (the handoff files are retired): `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-006-client.md`.

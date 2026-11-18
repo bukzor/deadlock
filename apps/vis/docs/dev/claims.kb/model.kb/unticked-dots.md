@@ -3,7 +3,6 @@ label: UNTICKED_DOTS
 standing: agent
 why:
 - cast-model.md
-- ../../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-005-casts.md
 ---
 
 # Ten damage-over-time abilities are noted, not modeled
@@ -17,3 +16,5 @@ Unit 005 chose this; the coordinator adopted it.
 
 Overturned by reading each of the ten abilities, which is a later unit.
 The survey is in `apps/vis/server/src/vis_server/casts.py`'s docstring.
+
+Provenance (the handoff files are retired): `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-005-casts.md`.

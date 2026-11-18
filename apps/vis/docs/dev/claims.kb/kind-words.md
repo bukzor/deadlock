@@ -4,8 +4,6 @@ standing: agent
 why:
 - model.kb/uptime-every-source.md
 - judge-on-own-authority.md
-- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-020-ux-review-2.md
-- ../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-023-player-words-server.md
 - ../../../../../docs/dev/decisions.kb/vis-app.md
 ---
 
@@ -27,3 +25,5 @@ which the review found was the page's widest and most repetitive block.
 Overturned if the owner reads `UPTIME_ANY_SOURCE` as one check text, or if
 the stat panel's DPS turns out to differ from `uptime_dps`. Built in
 `apps/vis/server/src/vis_server/measures.py`.
+
+Provenance (the handoff files are retired): `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-020-ux-review-2.md`; `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-023-player-words-server.md`.
