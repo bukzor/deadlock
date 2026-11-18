@@ -21,6 +21,7 @@ import {
 
 /** Each knob's label, and its placeholder: the server's default, never a value. */
 const KNOB_TEXT: Record<Knob, { label: string; placeholder: string }> = {
+  level: { label: "hero level", placeholder: "default 0" },
   distance: { label: "distance (m)", placeholder: "default 0" },
   spirit: { label: "spirit power", placeholder: "default 0" },
   windup: { label: "wind-up (s)", placeholder: "default 0" },

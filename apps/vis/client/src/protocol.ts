@@ -82,9 +82,11 @@ export interface TimelineParams {
   ability: string;
   /** Seconds to unroll the cycle over. Default 2 periods, or 10 s for a one-shot. */
   horizon?: number;
+  /** Hero level, a whole number from 0 to the data's last: one boon per level. Default 0. */
+  level?: number;
   /** Metres to the target, for bullet travel time. Default 0. */
   distance?: number;
-  /** Spirit power, for spirit-scaled damage. Default 0. */
+  /** Spirit power on top of the level's, for spirit-scaled damage. Default 0. */
   spirit?: number;
   /** Seconds of assumed melee wind-up. Default 0. */
   windup?: number;

@@ -1,6 +1,7 @@
 ---
 label: STAT_LEVEL
 standing: agent
+verdict: superseded
 why:
 - ../acceptance-bar.md
 - ../judge-on-own-authority.md
@@ -8,6 +9,10 @@ why:
 ---
 
 # Stats are level 0 with no items
+
+Superseded by `HERO_LEVEL` ([`hero-level.md`](hero-level.md)), the owner's
+ask for a level input, and `LEVEL_SCALING`
+([`level-scaling.md`](level-scaling.md)), which models it.
 
 Every timeline uses the hero's level-0 stats with no items, and says so
 in a note. Level scaling and items are deferred: `ACCEPTANCE` asks to

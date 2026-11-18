@@ -23,6 +23,7 @@ from collections.abc import Mapping
 from deadlock.ability_profiles import Profile, profiles
 from deadlock.types import dig, is_sequence, is_str_mapping
 
+from .boons import NONE, Boons, spirit_note
 from .timeline import Cycle, Gun, gun_cycle
 
 SLOT = "Weapon_Primary"
@@ -31,12 +32,18 @@ METERS_PER_UNIT = 0.0254
 
 
 def cycle(
-    heroes: Mapping[str, object], abilities: Mapping[str, object], hero: str, ability: str, distance: float = 0.0
+    heroes: Mapping[str, object],
+    abilities: Mapping[str, object],
+    hero: str,
+    ability: str,
+    distance: float = 0.0,
+    boons: Boons = NONE,
 ) -> tuple[Cycle, list[str]] | None:
     """``hero``'s gun as a cycle, with notes on what the model leaves out; ``None`` unless ``ability`` is that gun.
 
     ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
     trees (see ``deadlock.gamedata``); ``distance`` is to the target, in meters.
+    ``boons`` is what the hero's level adds.
     """
     rows = [p for p in profiles(heroes, abilities) if (p.hero, p.slot, p.ability, p.profile) == (hero, SLOT, ability, PROFILE)]
     if not rows:
@@ -48,10 +55,11 @@ def cycle(
     speed, speed_notes = _speed(stats)
     travel = 0.0 if speed is None else distance / speed
     gun = Gun(
-        damage=_given(row.damage), pellets=_given(row.bullets), burst=_given(row.burst), cycle=_given(row.cycle),
+        damage=_given(row.damage) + boons.bullet, pellets=_given(row.bullets), burst=_given(row.burst), cycle=_given(row.cycle),
         intra=_given(row.intra), shots=_shots(_given(row.clip), stats), reload=reload, travel=travel,
     )  # fmt: skip
-    return gun_cycle(gun), _falloff(stats, distance) + reload_notes + speed_notes  # biggest effect first
+    spirit = spirit_note(heroes, hero, "EBulletDamage", "Bullet damage", boons.spirit)
+    return gun_cycle(gun), _falloff(stats, distance) + spirit + reload_notes + speed_notes  # biggest effect first
 
 
 def _shots(clip: int, stats: Mapping[str, object]) -> int:

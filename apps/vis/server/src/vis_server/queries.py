@@ -18,12 +18,12 @@ from functools import cache
 from deadlock import gamedata, paths
 from deadlock.abilities import SIGNATURE, bindings
 
-from . import casts, guns, melee
+from . import boons, casts, guns, melee
+from .boons import NONE, Boons
 from .measures import Measure, measures
 from .timeline import Cycle, Hit, landed_by
 from .types import BadRequest, JsonObj, Params, Query
 
-LEVEL_ZERO = "Level 0 stats, no items: a build with items or levels will differ."
 ONE_SHOT_HORIZON = 10.0  # seconds, for a cycle that happens once
 DEFAULT_PERIODS = 2  # cycles shown when horizon is absent
 
@@ -32,8 +32,9 @@ TIMELINE = {
     "hero": HERO,
     "ability": "ability key, from the abilities query (required)",
     "horizon": "seconds to unroll, > 0 (default 2 periods of the cycle, or 10 for a one-shot)",
+    "level": "hero level, a whole number from 0 (default) to the data's last: one boon per level",
     "distance": "meters to the target, >= 0 (default 0): a gun's bullet travel",
-    "spirit": "spirit power, >= 0 (default 0): scales a cast's damage",
+    "spirit": "spirit power on top of the level's, >= 0 (default 0): scales a cast's damage",
     "windup": "seconds from a melee swing to its hit, >= 0 (default 0)",
     "hp": "target health, > 0 (optional): adds time_to_kill",
 }
@@ -94,8 +95,8 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
     """The ``cycle`` line, every hit that lands by the horizon, every measure, then every note, for ``TIMELINE``'s parameters.
 
     The horizon defaults to ``DEFAULT_PERIODS`` periods of the cycle. The
-    notes are ``LEVEL_ZERO``, the source's (by how much each moves the
-    numbers), then a note when ``hp`` is given but not reached. An ability ``abilities`` lists that no source
+    notes are the level's (see ``_level_notes``), the source's (by how much
+    each moves the numbers), then a note when ``hp`` is given but not reached. An ability ``abilities`` lists that no source
     models gets only notes, one saying so.
     """
     hero, ability = _required(params, "hero"), _required(params, "ability")
@@ -104,10 +105,13 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
     hp = _optional_number(params, "hp", positive=True)
     if ability not in _kit(data, hero):
         raise BadRequest(f"unknown ability for {hero}: {ability} (see the abilities query)")
-    found = _source(data, hero, ability, distance=distance, spirit=spirit, windup=windup)
+    level = _level(params, boons.last_level(data.heroes, hero))
+    gained = boons.at_level(data.heroes, hero, level)
+    found = _source(data, hero, ability, distance=distance, spirit=spirit + gained.spirit, windup=windup, boons=gained)
+    level_notes = _level_notes(level, gained)
     if found is None:
         unmodeled = f"{ability} has no damage model: only guns, melee and damaging signature abilities are modeled"
-        return [_note(LEVEL_ZERO), _note(unmodeled)]
+        return [*(_note(text) for text in level_notes), _note(unmodeled)]
     _, cycle, notes = found
     horizon = given_horizon or (ONE_SHOT_HORIZON if cycle.period is None else DEFAULT_PERIODS * cycle.period)
     measured = measures(cycle, horizon, hp)
@@ -117,7 +121,7 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
         {"kind": "cycle", "period": cycle.period, "downtime": cycle.downtime, "horizon": horizon},
         *(_hit(hit) for hit in landed_by(cycle, horizon)),
         *(_measure(m) for m in measured),
-        *(_note(text) for text in [LEVEL_ZERO, *notes]),
+        *(_note(text) for text in [*level_notes, *notes]),
     ]
 
 
@@ -147,13 +151,19 @@ def _kit(data: GameData, hero: str) -> list[str]:
 
 
 def _source(
-    data: GameData, hero: str, ability: str, distance: float = 0.0, spirit: float = 0.0, windup: float = 0.0
+    data: GameData,
+    hero: str,
+    ability: str,
+    distance: float = 0.0,
+    spirit: float = 0.0,
+    windup: float = 0.0,
+    boons: Boons = NONE,
 ) -> Source | None:
-    """The first source that models ``ability``, as ``(kind, cycle, notes)``."""
+    """The first source that models ``ability``, as ``(kind, cycle, notes)``; ``spirit`` is the total."""
     trees = (data.heroes, data.abilities, hero, ability)
     sources: Mapping[str, Callable[[], tuple[Cycle, Sequence[str]] | None]] = {
-        "gun": lambda: guns.cycle(*trees, distance),
-        "melee": lambda: melee.cycle(*trees, windup),
+        "gun": lambda: guns.cycle(*trees, distance, boons),
+        "melee": lambda: melee.cycle(*trees, windup, boons),
         "cast": lambda: casts.cycle(*trees, spirit),
     }
     for kind, source in sources.items():
@@ -162,6 +172,30 @@ def _source(
             cycle, notes = found
             return kind, cycle, notes
     return None
+
+
+def _level(params: Params, last: int) -> int:
+    """``level`` as a whole number from 0 to ``last``; 0 if absent."""
+    text = params.get("level", "0")
+    try:
+        level = int(text)
+    except ValueError:
+        raise BadRequest(f"level is not a whole number: {text!r}") from None
+    if not 0 <= level <= last:
+        raise BadRequest(f"level must be from 0 to {last}, got {text}")
+    return level
+
+
+def _level_notes(level: int, gained: Boons) -> list[str]:
+    """The level and items the numbers assume; above level 0, what the boons add."""
+    stated = f"Hero level {level}, no items: a build with items will differ."
+    if level == 0:
+        return [stated]
+    adds = (
+        f"+{gained.bullet:.3g} bullet damage per bullet, +{gained.light_melee:.3g} light and "
+        f"+{gained.heavy_melee:.3g} heavy melee damage, +{gained.spirit:.3g} spirit power"
+    )
+    return [stated, f"Level {level} is {gained.count} boons: {adds}. Read from the data, not checked in-game."]
 
 
 def _required(params: Params, name: str) -> str:

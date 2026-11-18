@@ -14,11 +14,26 @@ def _props(**values: object) -> dict[str, object]:
     return {k: v if isinstance(v, Mapping) else {"m_strValue": v} for k, v in values.items()}
 
 
+def _level(game: int) -> dict[str, object]:
+    info: dict[str, object] = {"m_unRequiredGold": 100 * game, "m_mapBonusCurrencies": {"EAbilityPoints": 1}}
+    return info if game == 1 else {**info, "m_bUseStandardUpgrade": True}
+
+
+PER_BOON = {
+    "MODIFIER_VALUE_BASE_BULLET_DAMAGE_FROM_LEVEL": 0.25,
+    "MODIFIER_VALUE_BASE_MELEE_DAMAGE_FROM_LEVEL": 2.0,
+    "MODIFIER_VALUE_TECH_POWER": 1.5,
+}
+
+
 def _hero(slots: Mapping[str, str], disabled: bool = False) -> dict[str, object]:
+    """A hero whose last level is 3."""
     return {
         "m_bDisabled": disabled,
         "m_mapStartingStats": {"ELightMeleeDamage": 50, "EHeavyMeleeDamage": 116},
         "m_mapBoundAbilities": {f"ESlot_{slot}": ability for slot, ability in slots.items()},
+        "m_mapLevelInfo": {str(game): _level(game) for game in range(1, 5)},
+        "m_mapStandardLevelUpUpgrades": PER_BOON,
     }
 
 
@@ -64,7 +79,7 @@ class DescribeRegistry:
         assert {name: set(q.params) for name, q in SYNTHETIC.items()} == {
             "heroes": set(),
             "abilities": {"hero"},
-            "timeline": {"hero", "ability", "horizon", "distance", "spirit", "windup", "hp"},
+            "timeline": {"hero", "ability", "horizon", "level", "distance", "spirit", "windup", "hp"},
         }
         assert {name: set(q.params) for name, q in QUERIES.items()} == {
             name: set(q.params) for name, q in SYNTHETIC.items()
@@ -156,7 +171,18 @@ class DescribeTimeline:
     def it_notes_the_sources_caveats_and_level_zero(self):
         found = notes(timeline(windup="0.3"))
         assert any("wind-up" in n for n in found), found
-        assert found[0].startswith("Level 0 stats, no items"), found
+        assert found[0].startswith("Hero level 0, no items"), found
+        assert not any("boon" in n for n in found), found
+
+    def it_states_the_level_and_what_its_boons_add(self):
+        found = notes(timeline(level="2"))
+        assert found[0].startswith("Hero level 2, no items"), found
+        assert found[1].startswith("Level 2 is 2 boons:") and "+0.5 bullet damage" in found[1], found
+        assert "+4 light" in found[1] and "+9.28 heavy melee" in found[1] and "+3 spirit power" in found[1], found
+        assert "not checked in-game" in found[1], found
+
+    def it_states_the_level_for_an_ability_with_no_damage_model(self):
+        assert notes(timeline("buff", level="3"))[0].startswith("Hero level 3, no items"), notes(timeline("buff", level="3"))
 
     @pytest.mark.parametrize(
         ("ability", "param", "value", "field", "expected"),
@@ -164,6 +190,10 @@ class DescribeTimeline:
             ("gun_a", "distance", "50", "land", 0.005),
             ("melee_heavy", "windup", "0.4", "land", 0.4),
             ("blast", "spirit", "10", "damage", 105),
+            ("gun_a", "level", "2", "damage", 4.5),
+            ("melee_light", "level", "2", "damage", 54),
+            ("melee_heavy", "level", "2", "damage", 116 + 4 * 116 / 50),
+            ("blast", "level", "2", "damage", 100 + 0.5 * 3),
         ],
     )
     def it_passes_each_parameter_to_its_source(self, ability: str, param: str, value: str, field: str, expected: float):
@@ -175,9 +205,11 @@ class DescribeTimeline:
             assert measures["time_to_kill"] == 1.0
 
         def it_notes_hp_not_reached_within_the_horizon(self):
-            lines = timeline(hp="101", horizon="1")
+            lines = timeline(hp="101", horizon="1", windup="0.3")
             assert "time_to_kill" not in [m["name"] for m in kinds(lines, "measure")]
-            assert any("101" in n and "1 s" in n for n in notes(lines)), notes(lines)
+            found = notes(lines)
+            assert "101" in found[-1] and "1 s" in found[-1], found
+            assert any("wind-up" in n for n in found[:-1]), found
 
         def it_says_nothing_of_hp_when_reached(self):
             assert not any("HP" in n for n in notes(timeline(hp="100", windup="0.25")))
@@ -209,11 +241,21 @@ class DescribeTimeline:
 
         @pytest.mark.parametrize(
             ("param", "value"),
-            [("horizon", "0"), ("horizon", "-1"), ("hp", "0"), ("distance", "-1"), ("spirit", "-1"), ("windup", "-0.1")],
-        )
+            [("horizon", "0"), ("horizon", "-1"), ("hp", "0"), ("distance", "-1"), ("spirit", "-1"), ("windup", "-0.1"),
+             ("level", "-1"), ("level", "4")],
+        )  # fmt: skip
         def it_rejects_an_out_of_range_value(self, param: str, value: str):
             with pytest.raises(BadRequest, match=param):
                 _ = timeline(**{param: value})
+
+        @pytest.mark.parametrize("value", ["1.5", "two", ""])
+        def it_rejects_a_level_that_isnt_a_whole_number(self, value: str):
+            with pytest.raises(BadRequest, match="level"):
+                _ = timeline(level=value)
+
+        def it_says_the_levels_range(self):
+            with pytest.raises(BadRequest, match="from 0 to 3, got 4"):
+                _ = timeline(level="4")
 
 
 def _skip_without_data() -> None:
@@ -236,3 +278,10 @@ class DescribeRealData:
             for line in listed:
                 params: Params = {"hero": hero, "ability": str(line["ability"]), "hp": "1000"}
                 assert QUERIES["timeline"].run(params), params
+
+    def it_runs_the_timeline_at_the_last_level(self):
+        _skip_without_data()
+        for hero in [str(line["hero"]) for line in QUERIES["heroes"].run({})]:
+            for line in QUERIES["abilities"].run({"hero": hero}):
+                params: Params = {"hero": hero, "ability": str(line["ability"]), "level": "35"}
+                assert notes(QUERIES["timeline"].run(params))[1].startswith("Level 35 is 35 boons"), params

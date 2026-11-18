@@ -7,7 +7,7 @@ import type { Params } from "./api";
 import type { AbilityKind, CycleLine } from "./protocol";
 
 /** A parameter that only some kinds of ability use. */
-export type Knob = "distance" | "spirit" | "windup" | "hp";
+export type Knob = "level" | "distance" | "spirit" | "windup" | "hp";
 
 /**
  * Text as typed, `undefined` or blank meaning "server default". At most one
@@ -19,6 +19,7 @@ export interface Selection {
   ability: string;
   horizon?: string;
   periods?: string;
+  level?: string;
   distance?: string;
   spirit?: string;
   windup?: string;
@@ -26,7 +27,7 @@ export interface Selection {
 }
 
 type Key = keyof Selection;
-const KEYS: readonly Key[] = ["hero", "ability", "horizon", "periods", "distance", "spirit", "windup", "hp"];
+const KEYS: readonly Key[] = ["hero", "ability", "level", "horizon", "periods", "distance", "spirit", "windup", "hp"];
 
 /** Parse `location.search`; unknown keys are ignored. */
 export function fromSearch(search: string): Selection {
@@ -51,9 +52,9 @@ export function toSearch(sel: Selection): string {
 
 /** The knobs each kind of ability reads; `horizon` applies to every kind. */
 const KNOBS: Record<AbilityKind, readonly Knob[]> = {
-  gun: ["distance", "hp"],
-  melee: ["windup", "hp"],
-  cast: ["spirit", "hp"],
+  gun: ["level", "distance", "hp"],
+  melee: ["level", "windup", "hp"],
+  cast: ["level", "spirit", "hp"],
 };
 
 export function knobsFor(kind: AbilityKind | null): readonly Knob[] {

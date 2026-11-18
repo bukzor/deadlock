@@ -19,12 +19,12 @@ const base: Selection = { hero: "hero_inferno", ability: "citadel_weapon_inferno
 
 describe("toSearch / fromSearch", () => {
   it("round-trips a full selection", () => {
-    const sel: Selection = { ...base, periods: "3", distance: "30", hp: "500" };
+    const sel: Selection = { ...base, level: "10", periods: "3", distance: "30", hp: "500" };
     expect(fromSearch(toSearch(sel))).toEqual(sel);
   });
 
   it("writes keys in a fixed order and leaves out blanks", () => {
-    expect(toSearch({ hp: "500", ability: "a", hero: "h b", horizon: "" })).toBe("?hero=h+b&ability=a&hp=500");
+    expect(toSearch({ hp: "500", level: "3", ability: "a", hero: "h b", horizon: "" })).toBe("?hero=h+b&ability=a&level=3&hp=500");
   });
 
   it("is empty for an empty selection", () => {
@@ -37,16 +37,16 @@ describe("toSearch / fromSearch", () => {
 });
 
 describe("knobsFor", () => {
-  it("gives a gun distance and hp", () => {
-    expect(knobsFor("gun")).toEqual(["distance", "hp"]);
+  it("gives a gun level, distance and hp", () => {
+    expect(knobsFor("gun")).toEqual(["level", "distance", "hp"]);
   });
 
-  it("gives melee wind-up and hp", () => {
-    expect(knobsFor("melee")).toEqual(["windup", "hp"]);
+  it("gives melee level, wind-up and hp", () => {
+    expect(knobsFor("melee")).toEqual(["level", "windup", "hp"]);
   });
 
-  it("gives a cast spirit and hp", () => {
-    expect(knobsFor("cast")).toEqual(["spirit", "hp"]);
+  it("gives a cast level, spirit and hp", () => {
+    expect(knobsFor("cast")).toEqual(["level", "spirit", "hp"]);
   });
 
   it("gives an unmodeled ability nothing", () => {
@@ -56,8 +56,8 @@ describe("knobsFor", () => {
 
 describe("timelineParams", () => {
   it("sends only the knobs that apply to the kind", () => {
-    const sel: Selection = { ...base, distance: "30", spirit: "100", windup: "0.4", hp: "500" };
-    expect(timelineParams(sel, "gun", undefined)).toEqual({ ...base, distance: "30", hp: "500" });
+    const sel: Selection = { ...base, level: "5", distance: "30", spirit: "100", windup: "0.4", hp: "500" };
+    expect(timelineParams(sel, "gun", undefined)).toEqual({ ...base, level: "5", distance: "30", hp: "500" });
   });
 
   it("sends the seconds as typed", () => {

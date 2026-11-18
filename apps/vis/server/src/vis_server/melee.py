@@ -13,13 +13,14 @@ stat on every hero (see ``deadlock.heroes``), and melee abilities carry the full
 Every swing is assumed to hit. A miss can cost a longer cooldown (heavy: 1.3 s
 against 1.0 s on a hit); a note says so whenever the two differ. The wind-up is
 not in the data, so it is the caller's ``windup``, and a note says that too.
-Level scaling of melee damage is not modeled.
+The hero's level adds to the damage (``boons``).
 """
 
 from collections.abc import Mapping
 
 from deadlock.types import dig, is_str_mapping
 
+from .boons import NONE, Boons, spirit_note
 from .timeline import Cycle, Hit
 from .types import BadRequest
 
@@ -40,13 +41,14 @@ def cycle(
     hero: str,
     ability: str,
     windup: float,
+    boons: Boons = NONE,
 ) -> tuple[Cycle, tuple[str, ...]] | None:
     """``hero``'s ``ability`` as ``(Cycle, notes)``; ``None`` unless ``ability`` is ``LIGHT`` or ``HEAVY``.
 
     ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
-    trees (see ``deadlock.gamedata``). The cycle is one hit, triggered at 0 and
-    landing at ``windup`` seconds. Raises ``BadRequest`` for an unknown hero or a
-    negative ``windup``.
+    trees (see ``deadlock.gamedata``); ``boons`` is what the hero's level adds.
+    The cycle is one hit, triggered at 0 and landing at ``windup`` seconds.
+    Raises ``BadRequest`` for an unknown hero or a negative ``windup``.
     """
     if ability not in _ATTACKS:
         return None
@@ -55,13 +57,13 @@ def cycle(
     if windup < 0:
         raise BadRequest(f"windup must be >= 0, got {windup}")
     label, stat, attack_type = _ATTACKS[ability]
-    damage = _num(dig(heroes, hero, "m_mapStartingStats", stat), hero, stat)
+    damage = _num(dig(heroes, hero, "m_mapStartingStats", stat), hero, stat) + (boons.light_melee if ability == LIGHT else boons.heavy_melee)
     melee = dig(heroes, hero, "m_mapBoundAbilities", _MELEE_SLOT)
     assert isinstance(melee, str), (hero, melee)
     attack = dig(abilities, melee, "m_mapAttacks", attack_type)
     on_hit = _num(dig(attack, "m_flCooldownOnHit"), melee, attack_type)
     on_miss = _num(dig(attack, "m_flCooldownOnMiss"), melee, attack_type)
-    notes: list[str] = []
+    notes = spirit_note(heroes, hero, stat, f"{label.capitalize()} damage", boons.spirit)
     if on_miss != on_hit:
         notes.append(f"Every swing is assumed to hit: the cooldown is {on_hit:g} s on a hit, {on_miss:g} s on a miss.")
     notes.append(f"The swing's wind-up is not in the data: {windup:g} s is assumed (set it with the wind-up field).")

@@ -67,9 +67,16 @@ class DescribeMeasures:
             assert ("uptime_dps" in values(SWING), values(SWING)["steady_dps"]) == (False, 10)
 
         def it_labels_each_measure_in_player_words(self):
-            found = by_name(measures(gun_cycle(PAIGE), horizon=10))
-            assert found["uptime_dps"].label == "DPS while active (≈ stat panel for guns)"
-            assert found["average_dps"].label == "DPS over the first 10 s"
+            found = by_name(measures(gun_cycle(PAIGE), horizon=10.0, hp=50.0))
+            assert {name: m.label for name, m in found.items()} == {
+                "uptime_dps": "DPS while active (≈ stat panel for guns)",
+                "steady_dps": "DPS incl. reload/cooldown",
+                "cycle_damage": "Damage per cycle",
+                "total_damage": "Damage in the first 10 s",
+                "average_dps": "DPS over the first 10 s",
+                "first_land": "Time to first damage",
+                "time_to_kill": "Time to deal 50 damage",
+            }
 
     class WhenThePeriodIsAllDowntime:
         def it_omits_uptime_dps_but_keeps_steady_dps(self):

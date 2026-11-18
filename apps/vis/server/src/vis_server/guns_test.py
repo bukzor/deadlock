@@ -7,6 +7,7 @@ from deadlock.ability_profiles import profiles
 from pytest import approx
 
 from . import guns
+from .boons import Boons
 from .timeline import Cycle, Gun, gun_cycle
 
 INCH = 0.0254  # meters per engine unit
@@ -68,6 +69,19 @@ class DescribeCycle:
     def it_is_none_for_any_key_but_the_heros_primary_weapon(self, hero: str, ability: str):
         assert guns.cycle(*_trees(), hero, ability) is None
 
+    def it_adds_the_levels_bullet_damage_to_each_pellet(self):
+        result = guns.cycle(*_trees(), "hero_a", "weap", boons=Boons(count=4, bullet=0.5, spirit=4.4))
+        assert result is not None
+        assert result[0].hits[0].damage == approx((4.0 + 0.5) * 9)
+
+    def it_notes_bullet_damage_that_grows_with_the_levels_spirit(self):
+        _, abilities = _trees()
+        scaling = {"EBulletDamage": {"eScalingStat": "ETechPower", "flScale": 0.08}}
+        hero = {"m_bDisabled": False, "m_mapBoundAbilities": {"ESlot_Weapon_Primary": "weap"}, "m_mapScalingStats": scaling}
+        result = guns.cycle({"hero_a": hero}, abilities, "hero_a", "weap", boons=Boons(count=4, spirit=4.4))
+        assert result is not None
+        assert [n for n in result[1] if n.startswith("Bullet damage also grows with spirit")], result[1]
+
     def it_fires_a_clip_divided_by_the_ammo_per_shot(self):
         cycle, _ = _gun(m_iAmmoConsumedPerShot=3)
         assert len(cycle.hits) == 3
@@ -98,6 +112,11 @@ class DescribeCycle:
             cycle, notes = _gun(distance=30.0, m_flBulletSpeed=None)
             assert cycle.hits[0].land == cycle.hits[0].trigger
             assert [n for n in notes if "speed" in n and "not in the data" in n], notes
+
+        def it_orders_notes_by_how_much_they_move_the_numbers(self):
+            extra = {"m_flDamageFalloffStartRange": 20 / INCH, "m_bReloadSingleBullets": True, "m_BulletSpeedCurve": _curve(22500.0, 22500.0)}
+            _, notes = _gun(distance=21, **extra)
+            assert [n.split()[0] for n in notes] == ["Damage", "This", "The"], notes  # falloff, reload, speed
 
         def it_notes_damage_falloff_only_beyond_its_start(self):
             start = 20 / INCH

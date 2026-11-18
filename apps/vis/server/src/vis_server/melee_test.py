@@ -6,6 +6,7 @@ from deadlock.abilities import bindings
 from pytest import approx
 
 from . import melee
+from .boons import NONE, Boons
 from .melee import HEAVY, LIGHT
 from .types import BadRequest
 
@@ -35,8 +36,9 @@ def _cycle(
     windup: float = 0.0,
     heroes: Mapping[str, object] = HEROES,
     abilities: Mapping[str, object] = ABILITIES,
+    boons: Boons = NONE,
 ):
-    result = melee.cycle(heroes, abilities, hero, ability, windup)
+    result = melee.cycle(heroes, abilities, hero, ability, windup, boons)
     assert result is not None, (hero, ability)
     return result
 
@@ -50,6 +52,18 @@ class DescribeCycle:
         assert [(h.trigger, h.damage) for h in cycle.hits] == [(0, 63)]
         cycle, _ = _cycle("hero_b", HEAVY)
         assert [(h.trigger, h.damage) for h in cycle.hits] == [(0, 128)]
+
+    def it_adds_the_levels_melee_damage(self):
+        level = Boons(count=2, light_melee=3.0, heavy_melee=7.0, spirit=2.2)
+        assert _cycle("hero_a", LIGHT, boons=level)[0].hits[0].damage == 53
+        assert _cycle("hero_a", HEAVY, boons=level)[0].hits[0].damage == 123
+
+    def it_notes_melee_damage_that_grows_with_the_levels_spirit(self):
+        hero = {**HEROES["hero_a"], "m_mapScalingStats": {"EHeavyMeleeDamage": {"eScalingStat": "ETechPower", "flScale": 0.45}}}
+        level = Boons(count=2, spirit=2.2)
+        notes = _cycle("hero_a", HEAVY, boons=level, heroes={"hero_a": hero})[1]
+        assert [n for n in notes if n.startswith("Heavy melee damage also grows with spirit")], notes
+        assert not [n for n in _cycle("hero_a", LIGHT, boons=level, heroes={"hero_a": hero})[1] if "spirit" in n]
 
     def it_repeats_at_the_cooldown_on_hit_of_the_bound_melee(self):
         assert _cycle("hero_a", HEAVY)[0].period == approx(1.0)
