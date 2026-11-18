@@ -68,10 +68,18 @@ Melee appears in `abilities` as two pseudo-abilities, `melee_light` and
 `server/src/vis_server/timeline.py` defines `Hit` and `Cycle`, and `repeat`
 unrolls a cycle up to the horizon. A hit's **trigger** is the input (trigger
 pull, swing, cast) and its **land** is when the damage applies. The gap between
-them is the wind-up, which is the bar's width in the chart. The trigger is
-always the player's input, never a derived time. A damage-over-time tick
-therefore triggers at the cast, so its bar spans the whole time from the cast
-to that tick.
+them is the wind-up, which is the bar's width in the chart.
+- For a discrete hit, the trigger is the player's input.
+- For a damage-over-time tick, the trigger is when that tick's damage starts
+  building: the cast for the first tick, the previous tick for the rest. The
+  bars tile the duration.
+
+The first version triggered every tick at the cast. Its bars all overlapped
+from t=0, and the user couldn't read the chart.
+
+A `Cycle` carries its **downtime**: the seconds of each period spent dealing
+no damage. For a gun that is the reload. For a cast it is the cooldown left
+after the last tick lands. For melee it is 0.
 
 Each source module exposes `cycle(heroes, abilities, hero, ability, …)`. The
 trailing arguments are the parameters that source uses. It turns one hero's
@@ -100,8 +108,10 @@ kind. Every timeline also gets a note that stats are level 0 with no items.
 
 `measures.py` computes the measures from a cycle and its unrolled hits:
 
-- **`uptime_dps`**: damage per cycle ÷ (period − reload). It equals the in-game
-  UI's DPS for guns.
+- **`uptime_dps`**: damage per cycle ÷ (period − downtime), the DPS while the
+  source is active. For a gun it equals the in-game UI's DPS. For a cast it is
+  the damage over the ability's active time. Every source gets the same `check`
+  wording, with no special case for guns.
 - **`steady_dps`**: damage per cycle ÷ period. It equals the sustained DPS
   (`sdps`).
 - Over the horizon: total damage, average DPS, and first land.
