@@ -61,8 +61,8 @@ Queries:
 - `{"kind": "measure", "name", "label", "value", "unit", "check"}`: `name` is a
   stable identifier for `jq`, and `label` is the player-facing wording. `check` says how to
   verify the value in-game.
-- `{"kind": "note", "text"}`: a caveat on the model, such as "wind-up is not in
-  the data", "charges not modeled" or "unverified heuristic".
+- `{"kind": "note", "text"}`: a caveat on the model, in player words (no engine
+  field names), ordered by how much it moves the numbers.
 
 Melee appears in `abilities` as two pseudo-abilities, `melee_light` and
 `melee_heavy`, so no separate `attack` parameter is needed.
