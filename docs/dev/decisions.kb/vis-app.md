@@ -51,15 +51,15 @@ Queries:
 |---|---|---|
 | `heroes` | | `{"hero": key, "name": display}` |
 | `abilities` | `hero` | `{"ability": key, "name": in-game name (`names.py`), "kind": "gun"\|"melee"\|"cast"\|null}` |
-| `timeline` | `hero`, `ability`, `horizon` (s; default 2 periods of the cycle, or 10 s for a one-shot; with `hp`, zoomed out to the kill, up to 120 s), `distance`=0 (m), `spirit`=0, `level`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
+| `timeline` | `hero`, `ability`, the window as at most one of `seconds` or `cycles` (default `cycles`=2, or 10 s for a one-shot), `hp` (optional), `distance`=0 (m), `spirit`=0, `level`=0, `windup`=0 (s) | lines tagged `kind`, below |
 
 `timeline` lines:
 
 - `{"kind": "hit", "trigger", "land", "damage", "label", "cycle"}`: one damage
   instance (`timeline.Hit`). `kind` is `hit` and nothing else.
 - `{"kind": "cycle", "period", "downtime", "horizon"}`: one line, first. It
-  carries the cycle's period (`null` for a one-shot) and the horizon actually
-  used, so the client can show the horizon both in seconds and in periods.
+  carries the cycle's period (`null` for a one-shot) and the horizon the window
+  resolved to, so the client can show it in seconds and in cycles.
 - `{"kind": "measure", "name", "label", "value", "unit", "check"}`: `name` is a
   stable identifier for `jq`, and `label` is the player-facing wording. `check` says how to
   verify the value in-game.
@@ -119,10 +119,10 @@ not modeled.
 `measures.py` computes the measures from a cycle and its unrolled hits:
 
 - **`time_to_kill`**, when `hp` is given, comes first: the land time of the hit
-  that brings cumulative damage to `hp` or more. It can be checked against a
-  training-dummy health bar. With `hp`, the horizon (asked-for or default)
-  zooms out, never in, to cover it (up to 120 s), and a note says when it
-  zooms out a horizon the user asked for.
+  that brings cumulative damage to `hp` or more, computed from the cycle
+  wherever it falls, inside the window or not. A source that never deals damage
+  has none, and a note says so. It can be checked against a training-dummy
+  health bar. `hp` never changes the window on the server.
 - **`uptime_dps`**: damage per cycle ÷ (period − downtime), the DPS while the
   source is active. For a gun it equals the weapon panel's DPS. It is omitted
   where it equals `steady_dps` (no downtime) or means nothing (one hit).
@@ -141,9 +141,22 @@ No label names another kind.
 ## Client view
 
 The view has a hero picker, then an ability picker, then only the parameters
-that apply to the ability's `kind`. The horizon has two inputs that update
-each other: seconds, and "cycles shown", a multiple of the period (default 2,
-so two full cycles show). The period comes from the `cycle` line. The selection lives in the URL, so a page
+that apply to the ability's `kind`.
+
+**The window and the target are two separate values** (`[!@bukzor]`
+2026-11-18: "keep two separate values").
+- **The window** is one value, stored in whichever unit the user last typed it
+  in: seconds, or "cycles shown". Both fields show the resolved window. The
+  field being typed in keeps the user's text until they leave it.
+- **Target hp** is its own value. The window never overwrites it.
+- **Zoom out to the kill.** When `hp` changes, and the time to kill would land
+  outside the window, the window becomes the fewest whole cycles that show the
+  kill (seconds for a one-shot). It never zooms in, and there is no time cap.
+  (`[!@bukzor]` 2026-11-18: "a change to target hp causes a change to
+  'horizon' only when TTK would not be visible".) The same rule applies when
+  the hero, ability or level changes, so time to kill can be compared across
+  choices, but never when the user edits the window itself (`[!DRAFT]` agent
+  call). The selection lives in the URL, so a page
 can be reloaded or shared.
 
 The chart is titled "Damage timeline", because in Deadlock "damage over time"
@@ -154,7 +167,7 @@ means DoT.
   tick.
 - **Cumulative damage:** a step line on a right-hand axis. Its slope is the DPS,
   a dashed line at `hp`, and a mark where the line crosses it, show
-  time-to-kill. The bars keep to the lower half of the plot so the line reads
+  time to kill when it is inside the window. The bars keep to the lower half of the plot so the line reads
   as a separate layer, and the gridlines follow one axis. This is the main read for
   comparing sources, because a bar's height is the size of one hit, not how
   much damage the source deals.
