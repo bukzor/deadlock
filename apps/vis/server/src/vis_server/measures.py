@@ -24,7 +24,7 @@ class Measure:
 
 
 def measures(cycle: Cycle, horizon: float, hp: float | None = None) -> list[Measure]:
-    """Per-cycle rates, then totals over ``[0, horizon]`` seconds, the card's number first.
+    """Per-cycle rates, then totals over ``[0, horizon)`` seconds, the card's number first.
 
     - ``uptime_dps``: a cycle's damage over its period less its downtime: the
       DPS while the source is dealing damage. For a gun, the stat panel's DPS.
@@ -32,7 +32,7 @@ def measures(cycle: Cycle, horizon: float, hp: float | None = None) -> list[Meas
       hit (one hit over its land time is not a rate).
     - ``steady_dps``: a cycle's damage over its whole period. Needs a period.
     - ``cycle_damage``: a cycle's damage.
-    - ``total_damage``, ``average_dps``: damage landed by ``horizon``.
+    - ``total_damage``, ``average_dps``: damage landed before ``horizon``.
     - ``first_land``: when the first damage lands. Needs a hit by ``horizon``.
     - ``time_to_kill``: when cumulative landed damage first reaches ``hp``.
       Needs ``hp``, reached by ``horizon``.

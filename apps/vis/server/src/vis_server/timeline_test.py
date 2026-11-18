@@ -3,7 +3,7 @@ from itertools import islice
 
 from pytest import approx, raises
 
-from .timeline import Cycle, Gun, Hit, gun_cycle, repeat
+from .timeline import Cycle, Gun, Hit, gun_cycle, landed_by, repeat
 
 # In-game hero stats, level 0, no items, build 6854: docs/dev/mechanics.kb/gun-fire-rate.md
 SEVEN = Gun(damage=10.8, pellets=1, burst=3, cycle=0.2625, intra=0.084, shots=30, reload=2.35, travel=0.0)
@@ -63,7 +63,7 @@ class DescribeRepeat:
 
     def it_numbers_repeats_in_the_cycle_field(self):
         cycle = Cycle(hits=(Hit(0, 0, 10, "swing"),), period=1.0)
-        assert [h.cycle for h in repeat(cycle, horizon=1)] == [0, 1]
+        assert [h.cycle for h in repeat(cycle, horizon=1.5)] == [0, 1]
 
     def it_fires_once_without_a_period(self):
         cycle = Cycle(hits=(Hit(0, 0.5, 10, "nuke"), Hit(0, 1.5, 5, "tick")), period=None)
@@ -74,6 +74,21 @@ class DescribeRepeat:
         cycle = Cycle(hits=(Hit(0, 0, 1, "a"), Hit(0.9, 0.9, 1, "b")), period=1.0)
         assert [h.trigger for h in repeat(cycle, horizon=1.5)] == [0, 0.9, 1]
 
+    def it_excludes_a_trigger_at_the_horizon(self):
+        cycle = Cycle(hits=(Hit(0, 0, 1, "a"),), period=1.0)
+        assert [h.trigger for h in repeat(cycle, horizon=2)] == [0, 1]
+
+    def it_holds_exactly_n_cycles_in_n_periods(self):
+        cycle = Cycle(hits=(Hit(0, 0.25, 1, "a"), Hit(0.5, 0.75, 1, "b")), period=1.0)
+        assert [h.cycle for h in repeat(cycle, horizon=2)] == [0, 0, 1, 1]
+
     def it_keeps_a_hit_triggered_within_the_horizon_that_lands_past_it(self):
         cycle = Cycle(hits=(Hit(0, 0.5, 1, "shot"),), period=1.0)
         assert [(h.trigger, h.land) for h in repeat(cycle, horizon=1.2)] == [(0, 0.5), (1, 1.5)]
+
+
+class DescribeLandedBy:
+    def it_excludes_a_land_at_the_horizon(self):
+        cycle = Cycle(hits=(Hit(0, 0.5, 1, "a"),), period=1.0)
+        assert [h.land for h in landed_by(cycle, horizon=1.5)] == [0.5]
+        assert [h.land for h in landed_by(cycle, horizon=2)] == [0.5, 1.5]

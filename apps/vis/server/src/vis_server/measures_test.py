@@ -1,7 +1,11 @@
 from collections.abc import Iterable, Mapping
 
+import pytest
+from deadlock import gamedata, paths
+from deadlock.abilities import bindings
 from pytest import approx
 
+from . import guns, melee
 from .measures import Measure, measures
 from .timeline import Cycle, Gun, Hit, gun_cycle
 
@@ -93,6 +97,12 @@ class DescribeMeasures:
         def it_reports_the_first_land(self):
             assert values(NUKE)["first_land"] == 0.5
 
+        def it_excludes_a_hit_landing_at_the_horizon(self):
+            assert values(SWING, horizon=1.25)["total_damage"] == 10
+
+        def it_equals_steady_dps_over_whole_periods(self):
+            assert values(SWING, horizon=2)["average_dps"] == approx(values(SWING)["steady_dps"])
+
     class WhenHpIsNotGiven:
         def it_omits_time_to_kill(self):
             assert "time_to_kill" not in values(SWING)
@@ -117,3 +127,35 @@ class DescribeMeasures:
                 "total_damage": 0,
                 "average_dps": 0,
             }
+
+
+def _load(name: str) -> Mapping[str, object]:
+    path = paths.data_dir() / "gamedata.json/scripts" / name
+    if not path.exists():
+        pytest.skip(f"no local data: {path} (build it with `redo` at the repo root)")
+    with path.open() as file:
+        return gamedata.load(file)
+
+
+class DescribeDefaultHorizon:
+    """The default horizon is 2 periods (see ``queries.timeline``), which must hold exactly 2 cycles."""
+
+    def it_averages_to_the_steady_dps_for_every_live_heros_gun_and_melee(self):
+        heroes, abilities = _load("heroes.json"), _load("abilities.json")
+        cycles = [
+            (hero, ability, guns.cycle(heroes, abilities, hero, ability))
+            for hero, slot, ability in bindings(heroes)
+            if slot == "Weapon_Primary"
+        ]
+        cycles += [
+            (hero, ability, melee.cycle(heroes, abilities, hero, ability, 0.25))
+            for hero in {hero for hero, _, _ in bindings(heroes)}
+            for ability in (melee.LIGHT, melee.HEAVY)
+        ]
+        assert len(cycles) > 2
+        for hero, ability, result in cycles:
+            assert result is not None, (hero, ability)
+            cycle, _ = result
+            assert cycle.period is not None, (hero, ability)
+            found = values(cycle, horizon=2 * cycle.period)
+            assert found["average_dps"] == approx(found["steady_dps"]), (hero, ability)

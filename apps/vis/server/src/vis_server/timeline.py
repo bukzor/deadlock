@@ -62,15 +62,15 @@ def gun_cycle(gun: Gun) -> Cycle:
 
 
 def repeat(cycle: Cycle, horizon: float) -> Iterator[Hit]:
-    """Every hit whose trigger falls within ``[0, horizon]``, in trigger order."""
+    """Every hit whose trigger falls before ``horizon``: the window is ``[0, horizon)``, in trigger order."""
     assert cycle.period is None or cycle.period > 0, cycle.period
     n = 0
     while True:
         start = 0.0 if cycle.period is None else n * cycle.period
-        if start > horizon:
+        if start >= horizon:
             return
         for hit in cycle.hits:
-            if start + hit.trigger > horizon:
+            if start + hit.trigger >= horizon:
                 break
             yield replace(hit, trigger=start + hit.trigger, land=start + hit.land, cycle=n)
         if cycle.period is None:
@@ -79,5 +79,5 @@ def repeat(cycle: Cycle, horizon: float) -> Iterator[Hit]:
 
 
 def landed_by(cycle: Cycle, horizon: float) -> list[Hit]:
-    """Every hit ``repeat`` unrolls that also lands by ``horizon``, in trigger order: the damage totals count."""
-    return [h for h in repeat(cycle, horizon) if h.land <= horizon]
+    """Every hit ``repeat`` unrolls that also lands before ``horizon``, in trigger order: the damage totals count."""
+    return [h for h in repeat(cycle, horizon) if h.land < horizon]

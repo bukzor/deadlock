@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - ./CLAUDE.md
@@ -35,3 +35,19 @@ assertion to red with the old `<=`.
 **Scope:** `apps/vis/server/src/vis_server/timeline.py`, `measures.py` (only if
 it compares against the horizon), and their tests. Also any other `*_test.py`
 whose expectations move because of this change, and only those.
+
+## Steps
+
+- [x] Tests first: timeline (trigger and land at the horizon, N periods hold N cycles), measures (land at the horizon, average equals steady), real-data sweep of every live hero's gun and melee at 2 periods.
+- [x] Red with the old `<=`/`>`: all 6 new or moved assertions failed; green after the change.
+- [x] `timeline.py`: `repeat` stops at `>= horizon`, `landed_by` keeps `land < horizon`; docstrings in `timeline.py` and `measures.py` say `[0, horizon)`.
+
+## Decisions
+
+- The real-data sweep lives in `measures_test.py` (`DescribeDefaultHorizon`), since `average_dps` is a measure; guns at distance 0, melee at windup 0.25.
+- Casts are covered by the synthetic cases only (no live-hero sweep); the repeating-cast path is the same `repeat`.
+- `queries_test.py` expectations moved (default now gives 2 hits, not 3; a hit landing exactly at horizon 1 is out), so I edited them.
+
+## Final report
+
+`uv run pytest` and `basedpyright` clean. Code: `timeline.py`; `measures.py` docstring only (it compares nothing itself). Tests: `timeline_test.py`, `measures_test.py`, `queries_test.py`.

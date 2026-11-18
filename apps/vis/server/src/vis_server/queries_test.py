@@ -139,13 +139,13 @@ class DescribeTimeline:
         assert found[0] == "cycle" and set(found) == {"cycle", "hit", "measure", "note"}
 
     def it_emits_each_unrolled_hit(self):
-        assert kinds(timeline(horizon="1", windup="0.25"), "hit") == [
+        assert kinds(timeline(horizon="1.1", windup="0.25"), "hit") == [
             {"kind": "hit", "trigger": 0.0, "land": 0.25, "damage": 50.0, "label": "light melee", "cycle": 0},
             {"kind": "hit", "trigger": 0.75, "land": 1.0, "damage": 50.0, "label": "light melee", "cycle": 1},
         ]
 
     def it_unrolls_two_periods_by_default(self):
-        assert max(float(str(h["trigger"])) for h in kinds(timeline(), "hit")) == 1.5  # horizon: 2 periods of 0.75 s
+        assert [float(str(h["trigger"])) for h in kinds(timeline(), "hit")] == [0.0, 0.75]  # horizon: 2 periods of 0.75 s, so 2 cycles
         assert kinds(timeline("blast"), "cycle") == [{"kind": "cycle", "period": 10.0, "downtime": 9.5, "horizon": 20.0}]
 
     def it_unrolls_10_seconds_for_a_one_shot(self):
