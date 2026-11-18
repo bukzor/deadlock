@@ -6,7 +6,7 @@ from deadlock.abilities import bindings
 from deadlock.ability_profiles import profiles
 from pytest import approx
 
-from .guns import hero_gun_cycle
+from . import guns
 from .timeline import Cycle, Gun, gun_cycle
 
 INCH = 0.0254  # meters per engine unit
@@ -52,7 +52,7 @@ def _trees(**extra: object) -> tuple[Mapping[str, object], Mapping[str, object]]
 
 
 def _gun(distance: float = 0.0, **extra: object) -> tuple[Cycle, list[str]]:
-    result = hero_gun_cycle(*_trees(**extra), "hero_a", "weap", distance)
+    result = guns.cycle(*_trees(**extra), "hero_a", "weap", distance)
     assert result is not None
     return result
 
@@ -60,13 +60,13 @@ def _gun(distance: float = 0.0, **extra: object) -> tuple[Cycle, list[str]]:
 BASE = Gun(damage=4.0, pellets=9, burst=1, cycle=0.5, intra=0.0, shots=9, reload=2.0, travel=0.0)
 
 
-class DescribeHeroGunCycle:
+class DescribeCycle:
     def it_builds_one_clip_and_its_reload_from_the_primary_profile(self):
         assert _gun() == (gun_cycle(BASE), [])
 
     @pytest.mark.parametrize(("hero", "ability"), [("hero_a", "alt"), ("hero_a", "weap_b"), ("hero_z", "weap")])
     def it_is_none_for_any_key_but_the_heros_primary_weapon(self, hero: str, ability: str):
-        assert hero_gun_cycle(*_trees(), hero, ability) is None
+        assert guns.cycle(*_trees(), hero, ability) is None
 
     def it_fires_a_clip_divided_by_the_ammo_per_shot(self):
         cycle, _ = _gun(m_iAmmoConsumedPerShot=3)
@@ -118,10 +118,10 @@ class DescribeRealData:
     def it_reproduces_every_live_heros_profile_dps_and_sdps(self):
         heroes, abilities = _load("heroes.json"), _load("abilities.json")
         oracle = {(p.hero, p.ability): p for p in profiles(heroes, abilities) if (p.slot, p.profile) == ("Weapon_Primary", "primary")}
-        guns = [(hero, ability) for hero, slot, ability in bindings(heroes) if slot == "Weapon_Primary"]
-        assert guns, "no live hero binds a primary weapon"
-        for hero, ability in guns:
-            result = hero_gun_cycle(heroes, abilities, hero, ability)
+        bound = [(hero, ability) for hero, slot, ability in bindings(heroes) if slot == "Weapon_Primary"]
+        assert bound, "no live hero binds a primary weapon"
+        for hero, ability in bound:
+            result = guns.cycle(heroes, abilities, hero, ability)
             assert result is not None, (hero, ability)
             cycle, _ = result
             assert cycle.period is not None, (hero, ability)

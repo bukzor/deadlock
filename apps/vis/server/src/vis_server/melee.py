@@ -34,7 +34,7 @@ _ATTACKS: Mapping[str, tuple[str, str, str]] = {
 }
 
 
-def melee_cycle(
+def cycle(
     heroes: Mapping[str, object],
     abilities: Mapping[str, object],
     hero: str,

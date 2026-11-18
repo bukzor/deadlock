@@ -5,7 +5,8 @@ from deadlock import gamedata, paths
 from deadlock.abilities import bindings
 from pytest import approx
 
-from .melee import HEAVY, LIGHT, melee_cycle
+from . import melee
+from .melee import HEAVY, LIGHT
 from .types import BadRequest
 
 
@@ -35,14 +36,14 @@ def _cycle(
     heroes: Mapping[str, object] = HEROES,
     abilities: Mapping[str, object] = ABILITIES,
 ):
-    result = melee_cycle(heroes, abilities, hero, ability, windup)
+    result = melee.cycle(heroes, abilities, hero, ability, windup)
     assert result is not None, (hero, ability)
     return result
 
 
-class DescribeMeleeCycle:
+class DescribeCycle:
     def it_returns_none_for_any_other_ability(self):
-        assert melee_cycle(HEROES, ABILITIES, "hero_a", "melee_a", 0.0) is None
+        assert melee.cycle(HEROES, ABILITIES, "hero_a", "melee_a", 0.0) is None
 
     def it_swings_once_per_cycle_for_the_heros_damage(self):
         cycle, _ = _cycle("hero_b", LIGHT)
@@ -77,11 +78,11 @@ class DescribeMeleeCycle:
     class WhenTheRequestIsBad:
         def it_rejects_an_unknown_hero(self):
             with pytest.raises(BadRequest, match="hero_z"):
-                _ = melee_cycle(HEROES, ABILITIES, "hero_z", LIGHT, 0.0)
+                _ = melee.cycle(HEROES, ABILITIES, "hero_z", LIGHT, 0.0)
 
         def it_rejects_a_negative_windup(self):
             with pytest.raises(BadRequest, match="windup"):
-                _ = melee_cycle(HEROES, ABILITIES, "hero_a", LIGHT, -0.1)
+                _ = melee.cycle(HEROES, ABILITIES, "hero_a", LIGHT, -0.1)
 
 
 def _load(name: str) -> Mapping[str, object]:

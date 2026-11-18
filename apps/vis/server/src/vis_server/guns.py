@@ -30,7 +30,7 @@ PROFILE = "primary"
 METERS_PER_UNIT = 0.0254
 
 
-def hero_gun_cycle(
+def cycle(
     heroes: Mapping[str, object], abilities: Mapping[str, object], hero: str, ability: str, distance: float = 0.0
 ) -> tuple[Cycle, list[str]] | None:
     """``hero``'s gun as a cycle, with notes on what the model leaves out; ``None`` unless ``ability`` is that gun.
