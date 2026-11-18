@@ -67,7 +67,7 @@ export function App() {
           <select value={sel.hero} onChange={(e) => setSel({ ...sel, hero: e.target.value, ability: "" })}>
             <option value="">pick a hero</option>
             {heroList.lines.map((h) => (
-              <option key={h.hero} value={h.hero}>
+              <option key={h.hero} value={h.hero} title={h.hero}>
                 {h.name}
               </option>
             ))}
@@ -78,7 +78,7 @@ export function App() {
           <select value={sel.ability} onChange={(e) => setSel({ ...sel, ability: e.target.value })}>
             <option value="">pick an ability</option>
             {abilityList.lines.map((a) => (
-              <option key={a.ability} value={a.ability} disabled={a.kind === null}>
+              <option key={a.ability} value={a.ability} title={a.ability} disabled={a.kind === null}>
                 {a.name} {a.kind === null ? "(no damage model)" : `(${a.kind})`}
               </option>
             ))}

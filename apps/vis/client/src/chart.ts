@@ -24,6 +24,11 @@ export const TEXT = {
 /** Chart text size in px: the page's 0.85rem labels are 13.6 px; Plot's own is 10. */
 const FONT_PX = 12;
 
+/** Room an axis needs beside its plot: the tick (6) and its gap (3), plus the widest label at ~0.62 em a digit. */
+export function axisMargin(labels: readonly string[]): number {
+  return Math.ceil(9 + 0.62 * FONT_PX * Math.max(...labels.map((l) => l.length)));
+}
+
 /**
  * Each hit as a bar from x1 = trigger to x2 = land, damage tall, plus a rule at
  * land so a hit with zero width stays visible and adjacent bars stay apart.
@@ -115,12 +120,15 @@ export function hitChart(
   const barTicks = niceTicks(Math.max(0, ...hits.map((h) => h.damage)));
   const lineTicks = niceTicks(Math.max(steps[steps.length - 1]!.total, 1.1 * (hp ?? 0))); // headroom for the hp label
   const top = 2 * barTicks[barTicks.length - 1]!; // the bars' tallest tick sits at mid-height
+  const left = axisMargin(barTicks.map(num));
+  const right = axisMargin(lineTicks.map(num));
   const k = top / lineTicks[lineTicks.length - 1]!;
   return Plot.plot({
     ...(options.width === undefined ? {} : { width: options.width }),
     ...(options.kind === undefined ? {} : { caption: widthCaption(options.kind) }),
     style: { fontSize: `${FONT_PX}px` },
-    marginRight: 64,
+    marginLeft: left,
+    marginRight: right,
     x: { label: "time (s)", domain: [0, end], insetLeft: 4 }, // the inset keeps a hit at t=0 off the frame
     y: { domain: [0, top] },
     marks: [

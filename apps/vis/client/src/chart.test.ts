@@ -2,7 +2,7 @@
 import * as Plot from "@observablehq/plot";
 import { describe, expect, it } from "vitest";
 
-import { TEXT, cumulative, hitChart, hitMarks, hitTitle, niceTicks, widthCaption, xDomain } from "./chart";
+import { TEXT, axisMargin, cumulative, hitChart, hitMarks, hitTitle, niceTicks, widthCaption, xDomain } from "./chart";
 import type { HitLine } from "./protocol";
 
 function hit(trigger: number, land: number, damage: number, label = "bullet"): HitLine {
@@ -180,5 +180,12 @@ describe("hitChart text", () => {
     expect(fills(true).has(TEXT.dark.bar)).toBe(true);
     expect(fills(false).has(TEXT.light.bar)).toBe(true);
     expect(fills(false).has(TEXT.dark.bar)).toBe(false);
+  });
+});
+
+describe("axisMargin", () => {
+  it("fits the widest label, so narrow labels leave more plot", () => {
+    expect(axisMargin(["0", "5"])).toBeLessThan(axisMargin(["0", "250", "300"]));
+    expect(axisMargin(["0", "250", "300"])).toBe(Math.ceil(9 + 0.62 * 12 * 3));
   });
 });

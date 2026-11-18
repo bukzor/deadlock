@@ -5,7 +5,8 @@
   scrollbar-gutter: stable;
 }
 body {
-  margin: 1rem 2rem;
+  /* Side margin: 2rem on a wide screen, shrinking with a narrow one. */
+  margin: 1rem min(2rem, 2.5vw);
 }
 form {
   display: flex;

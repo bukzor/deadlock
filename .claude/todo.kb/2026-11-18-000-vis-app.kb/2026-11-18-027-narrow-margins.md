@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - ./CLAUDE.md
@@ -37,3 +37,18 @@ you started.
 
 **Scope:** `apps/vis/client/src/*`, `apps/vis/client/index.html`,
 `apps/vis/bin/serve`. Every save leaves the live app working.
+
+## Steps
+
+- [x] CSS side margin `min(2rem, 2.5vw)`; Plot margins from tick-label width (`axisMargin`, tested, mutation-checked)
+- [x] `title` = machine key on hero and ability `<option>`s
+- [x] `bin/serve` 54 -> 50 lines (`up` defined once, reused for the port check; `pids+=` on the launch lines); `bash -n` ok; ran live on 5197/8797
+
+## Decisions
+
+- Body margin `min(2rem, 2.5vw)` (9 px at 460). No other inherited spacing needed changing.
+- Label width estimated at 0.62 em per character (no DOM measuring): works in jsdom, needs no redraw.
+
+## Final report
+
+tsc and vitest clean (55 tests). At 460 px the plot is 423 of 445 px (the rest is the scrollbar gutter). Screenshots: `trash/027/gun-hp200-{460,1280}.png`, dark. Used `node_modules/.bin/{tsc,vitest}` and Windows Chrome headless on CDP 9227 (stopped). Servers I started were killed.
