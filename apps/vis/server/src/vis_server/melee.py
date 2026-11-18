@@ -1,0 +1,75 @@
+"""A hero's light or heavy melee as a repeating ``Cycle``: one swing per cooldown.
+
+Melee is offered as two pseudo-abilities, ``melee_light`` and ``melee_heavy``.
+The damage is the hero's own ``m_mapStartingStats.E{Light,Heavy}MeleeDamage``.
+The period is ``m_mapAttacks.EAttackType_{Light,Heavy}.m_flCooldownOnHit`` of
+the melee ability the hero binds to ``ESlot_Weapon_Melee``: the attack timings
+live on that ability, not on the hero.
+
+No ``_base`` resolution is needed: the compiled data materializes every starting
+stat on every hero (see ``deadlock.heroes``), and melee abilities carry the full
+``m_mapAttacks`` with no ``_base`` of their own.
+
+Every swing is assumed to hit. A miss can cost a longer cooldown (heavy: 1.3 s
+against 1.0 s on a hit); a note says so whenever the two differ. The wind-up is
+not in the data, so it is the caller's ``windup``, and a note says that too.
+Level scaling of melee damage is not modeled.
+"""
+
+from collections.abc import Mapping
+
+from deadlock.types import dig, is_str_mapping
+
+from .timeline import Cycle, Hit
+from .types import BadRequest
+
+LIGHT = "melee_light"
+HEAVY = "melee_heavy"
+
+_MELEE_SLOT = "ESlot_Weapon_Melee"
+# pseudo-ability: (label, hero damage stat, attack type on the melee ability)
+_ATTACKS: Mapping[str, tuple[str, str, str]] = {
+    LIGHT: ("light melee", "ELightMeleeDamage", "EAttackType_Light"),
+    HEAVY: ("heavy melee", "EHeavyMeleeDamage", "EAttackType_Heavy"),
+}
+
+
+def melee_cycle(
+    heroes: Mapping[str, object],
+    abilities: Mapping[str, object],
+    hero: str,
+    ability: str,
+    windup: float,
+) -> tuple[Cycle, tuple[str, ...]] | None:
+    """``hero``'s ``ability`` as ``(Cycle, notes)``; ``None`` unless ``ability`` is ``LIGHT`` or ``HEAVY``.
+
+    ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
+    trees (see ``deadlock.gamedata``). The cycle is one hit, triggered at 0 and
+    landing at ``windup`` seconds. Raises ``BadRequest`` for an unknown hero or a
+    negative ``windup``.
+    """
+    if ability not in _ATTACKS:
+        return None
+    if not is_str_mapping(heroes.get(hero)):
+        raise BadRequest(f"unknown hero: {hero}")
+    if windup < 0:
+        raise BadRequest(f"windup must be >= 0, got {windup}")
+    label, stat, attack_type = _ATTACKS[ability]
+    damage = _num(dig(heroes, hero, "m_mapStartingStats", stat), hero, stat)
+    melee = dig(heroes, hero, "m_mapBoundAbilities", _MELEE_SLOT)
+    assert isinstance(melee, str), (hero, melee)
+    attack = dig(abilities, melee, "m_mapAttacks", attack_type)
+    on_hit = _num(dig(attack, "m_flCooldownOnHit"), melee, attack_type)
+    on_miss = _num(dig(attack, "m_flCooldownOnMiss"), melee, attack_type)
+    notes = [f"Wind-up is not in the data: the windup parameter sets it ({windup:g} s)."]
+    if on_miss != on_hit:
+        notes.append(
+            f"Every swing is assumed to hit: the cooldown is {on_hit:g} s on a hit, {on_miss:g} s on a miss."
+        )
+    cycle = Cycle(hits=(Hit(0.0, windup, damage, label),), period=on_hit)
+    return cycle, tuple(notes)
+
+
+def _num(value: object, *where: str) -> float:
+    assert isinstance(value, (int, float)) and not isinstance(value, bool), (where, value)
+    return float(value)
