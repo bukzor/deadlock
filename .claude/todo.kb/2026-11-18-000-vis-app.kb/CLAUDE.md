@@ -94,6 +94,11 @@ copies them.
   - Write a change that must span files at once in `trash/`, then move the
     files into place together.
   - Write new code first, and wire it into the app last.
+- **Clean up what you start.** Stop your own `bin/serve` by its pid, never with
+  `pkill -f`, which also matches the user's. Stop a headless Windows Chrome by
+  its profile, and confirm that none is left:
+  `Get-CimInstance Win32_Process -Filter "name='chrome.exe'" | ? CommandLine -match '<profile>'`
+  should list nothing. Killing the WSL-side `powershell.exe` does not stop Chrome.
 - **`pnpm` is not on PATH.** It has been missing since about 16:50, and
   `volta` fails with a musl relocation error. The client's own tools work from
   `apps/vis/client/node_modules/.bin/`. Don't repair the user's global setup.
