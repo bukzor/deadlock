@@ -57,9 +57,12 @@ Queries:
 
 - `{"kind": "hit", "trigger", "land", "damage", "label", "cycle"}`: one damage
   instance (`timeline.Hit`). `kind` is `hit` and nothing else.
-- `{"kind": "cycle", "period", "downtime", "horizon"}`: one line, first. It
-  carries the cycle's period (`null` for a one-shot) and the horizon the window
-  resolved to, so the client can show it in seconds and in cycles.
+- `{"kind": "cycle", "period", "downtime", "horizon", "max_horizon"}`: one line,
+  first. It carries the cycle's period (`null` for a one-shot), the horizon the
+  window resolved to, so the client can show it in seconds and in cycles, and
+  `max_horizon`: the largest window in seconds the server accepts (whole
+  cycles within the 10,000-hit guard; `null` for a one-shot). A window past it
+  is a 400 that names it.
 - `{"kind": "measure", "name", "label", "value", "unit", "check"}`: `name` is a
   stable identifier for `jq`, and `label` is the player-facing wording. `check` says how to
   verify the value in-game.

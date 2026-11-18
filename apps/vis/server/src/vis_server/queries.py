@@ -95,7 +95,7 @@ def abilities(data: GameData, hero: str) -> list[JsonObj]:
 
 
 def timeline(data: GameData, params: Params) -> list[JsonObj]:
-    """The ``cycle`` line, every hit that lands by the horizon, every measure, then every note, for ``TIMELINE``'s parameters.
+    """The ``cycle`` line (with ``max_horizon``), every hit that lands by the horizon, every measure, then every note, for ``TIMELINE``'s parameters.
 
     The horizon is ``measures.horizon_used``; a window of more than
     ``MAX_HITS`` hits is a ``BadRequest``. A cast's measures include its
@@ -130,7 +130,7 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
     if hp is not None and "time_to_kill" not in {m.name for m in measured}:
         notes = [*notes, f"The target's {hp:g} HP is never reached: no time to kill is shown."]
     return [
-        {"kind": "cycle", "period": cycle.period, "downtime": cycle.downtime, "horizon": horizon},
+        {"kind": "cycle", "period": cycle.period, "downtime": cycle.downtime, "horizon": horizon, "max_horizon": max_horizon(cycle)},
         *(_hit(hit) for hit in landed_by(cycle, horizon)),
         *(_measure(m) for m in measured),
         *(_note(text) for text in [*level_notes, *notes]),
@@ -191,12 +191,28 @@ def _source(
     return None
 
 
+def _starts(cycle: Cycle, horizon: float) -> int:
+    """How many cycles start within a window of ``horizon`` seconds."""
+    return 1 if cycle.period is None else math.ceil(horizon / cycle.period)
+
+
+def max_horizon(cycle: Cycle) -> float | None:
+    """The largest window, in seconds, that ``_check_hits`` allows: whole cycles; ``None`` for a one-shot or a cycle with no hits."""
+    if cycle.period is None or not cycle.hits:
+        return None
+    horizon = (MAX_HITS // len(cycle.hits)) * cycle.period
+    while _starts(cycle, horizon) * len(cycle.hits) > MAX_HITS:  # float rounding: count as ``_check_hits`` does
+        horizon = math.nextafter(horizon, 0)
+    return horizon
+
+
 def _check_hits(cycle: Cycle, horizon: float) -> None:
-    """``BadRequest`` when the cycles that start within ``horizon`` hold more than ``MAX_HITS`` hits."""
-    starts = 1 if cycle.period is None else math.ceil(horizon / cycle.period)
-    count = starts * len(cycle.hits)
+    """``BadRequest`` when the cycles that start within ``horizon`` hold more than ``MAX_HITS`` hits; the message names the largest window."""
+    count = _starts(cycle, horizon) * len(cycle.hits)
     if count > MAX_HITS:
-        raise BadRequest(f"a window of {horizon:g} s holds {count:,} hits, more than the {MAX_HITS:,} a timeline sends: ask for fewer seconds or cycles")
+        largest = max_horizon(cycle)
+        limit = "" if largest is None or cycle.period is None else f" (the largest window is {largest:g} s, {round(largest / cycle.period):,} cycles)"
+        raise BadRequest(f"a window of {horizon:g} s holds {count:,} hits, more than the {MAX_HITS:,} a timeline sends{limit}: ask for fewer seconds or cycles")
 
 
 def _level(params: Params, last: int) -> int:

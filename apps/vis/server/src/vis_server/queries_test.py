@@ -111,7 +111,7 @@ class DescribeTimeline:
 
     def it_unrolls_two_periods_by_default(self):
         assert [float(str(h["trigger"])) for h in kinds(timeline(), "hit")] == [0.0, 0.75]  # horizon: 2 periods of 0.75 s, so 2 cycles
-        assert kinds(timeline("blast"), "cycle") == [{"kind": "cycle", "period": 10.0, "downtime": 9.5, "horizon": 20.0}]
+        assert kinds(timeline("blast"), "cycle") == [{"kind": "cycle", "period": 10.0, "downtime": 9.5, "horizon": 20.0, "max_horizon": 100000.0}]
 
     def it_unrolls_10_seconds_for_a_one_shot(self):
         [line] = kinds(blast_timeline({"Damage": "5", "AbilityCooldown": "0", "AbilityCastDelay": "0"}), "cycle")
@@ -231,6 +231,21 @@ class DescribeTimeline:
         def it_rejects_a_window_of_too_many_hits(self):
             with pytest.raises(BadRequest, match="1,333,334 hits, more than the 10,000"):
                 _ = timeline(seconds="1e6")
+
+        def it_says_the_largest_window_in_the_400(self):
+            with pytest.raises(BadRequest, match=r"the largest window is 7500 s, 10,000 cycles"):
+                _ = timeline(seconds="1e6")
+
+        def it_states_the_largest_window_on_the_cycle_line(self):
+            [line] = kinds(timeline(), "cycle")
+            assert line["max_horizon"] == 7500.0  # 10,000 one-hit cycles of 0.75 s
+            _ = timeline(cycles="10000")  # the stated window is accepted
+            with pytest.raises(BadRequest):
+                _ = timeline(cycles="10001")
+
+        def it_has_no_largest_window_for_a_one_shot(self):
+            [line] = kinds(blast_timeline({"Damage": "5", "AbilityCooldown": "0", "AbilityCastDelay": "0"}), "cycle")
+            assert line["max_horizon"] is None
 
         def it_no_longer_takes_a_horizon(self):
             with pytest.raises(BadRequest, match="unknown parameter: horizon"):

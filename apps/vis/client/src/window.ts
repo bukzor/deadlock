@@ -47,18 +47,40 @@ export function windowFields(window: Window | null, cycle: CycleLine | undefined
   };
 }
 
+/** The most whole cycles the server will show (its hit guard), or `null` when it states no limit. */
+function maxCycles(cycle: CycleLine): number | null {
+  return cycle.period === null || cycle.max_horizon == null ? null : Math.round(cycle.max_horizon / cycle.period);
+}
+
 /**
  * The window that shows the kill at `killTime`: `null` (keep the window) when
- * there is none or it lands inside `cycle.horizon`, else the fewest whole
- * cycles whose half-open window holds it (whole seconds for a one-shot). It
- * only ever zooms out.
+ * there is none, it lands inside `cycle.horizon`, or the largest window the
+ * server allows is no bigger; else the fewest whole cycles whose half-open
+ * window holds it (whole seconds for a one-shot), at most that largest
+ * window. It only ever zooms out.
  */
 export function zoomToKill(cycle: CycleLine, killTime: number | undefined): Window | null {
   if (killTime === undefined || killTime < cycle.horizon) return null;
   const unit = cycle.period ?? 1;
   let n = Math.floor(killTime / unit) + 1;
   while (n * unit <= killTime) n++; // float rounding: the server multiplies the same way
+  const cap = maxCycles(cycle);
+  if (cap !== null && n > cap) {
+    if (cap * unit <= cycle.horizon) return null;
+    n = cap;
+  }
   return { by: cycle.period === null ? "seconds" : "cycles", value: String(n) };
+}
+
+/**
+ * A note, in player words, when no window the server allows reaches the kill
+ * at `killTime`; `null` otherwise. The time-to-kill row still gives the time.
+ */
+export function unreachableKillNote(cycle: CycleLine, killTime: number | undefined): string | null {
+  const cap = maxCycles(cycle);
+  if (killTime === undefined || cap === null || cycle.period === null || cycle.max_horizon == null) return null;
+  if (killTime < cycle.max_horizon) return null;
+  return `The chart can't reach the kill: it shows at most ${cap.toLocaleString("en-US")} cycles (${num(cycle.max_horizon)} s), and the time to kill is below.`;
 }
 
 /** A number for display: at most 3 decimals, no trailing zeros. */

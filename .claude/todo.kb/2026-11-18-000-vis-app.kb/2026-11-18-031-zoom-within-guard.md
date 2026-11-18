@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - ./CLAUDE.md
@@ -36,3 +36,27 @@ and see it red.
 `apps/vis/docs/dev/claims.kb/window-limits.md`, and the line-kinds list in
 `docs/dev/decisions.kb/vis-app.md` if the `cycle` line gains a field. Every
 save leaves the live app working.
+
+## Steps
+
+- [x] server: `max_horizon` on the `cycle` line; the 400 names the largest window (`queries.py`)
+- [x] client: `zoomToKill` stops at it; `unreachableKillNote`; wired in `App.tsx` last
+- [x] test hang: `within(seconds)` in `conftest.py` (SIGALRM), used on the zero-damage test
+- [x] docs: `window-limits.md`, line kinds in `vis-app.md`
+
+## Decisions
+
+- Chose the `cycle` line (not the 400 body) to carry the guard: the client knows it before any error. Field `max_horizon`, seconds, whole cycles; `null` for a one-shot; optional in the TS type for older servers.
+- Timeout via a SIGALRM context manager, not a new dependency (no pytest-timeout).
+- Note for an unreachable kill is client-derived and shown first in the notes list.
+
+## Open Questions
+
+- A cycle with more than 10,000 hits itself (no whole cycle fits) has `max_horizon` of 0 and no window passes; not seen in real data.
+- No headless-Chrome screenshot taken (not asked for in the brief); logic is covered by vitest and by a real-data API check (hp 1e9 answers; seconds 1e9 gives the 400 naming 10607.3 s).
+
+## Final report
+
+- Checks: server pytest all pass, basedpyright 0/0/0; client tsc clean, vitest 67 pass.
+- Red seen: zero-damage guard mutant now fails in 5 s with TimeoutError (was a hang); one-shot `max_horizon` mutant, cap mutants (`n = cap + 1`, dropped already-largest check, off-by-one note) all red. The `+ 1` mutant of the server's largest-window count loops long in the `nextafter` correction rather than failing quickly (red by hang; not bounded).
+- Deviations: none.

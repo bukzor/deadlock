@@ -6,6 +6,7 @@ from deadlock.abilities import bindings
 from pytest import approx
 
 from . import guns, melee
+from .conftest import within
 from .measures import Measure, horizon_used, measures
 from .timeline import Cycle, Gun, Hit, gun_cycle
 from .types import Kind
@@ -170,7 +171,8 @@ class DescribeMeasures:
             assert ("time_to_kill" not in values(NUKE, hp=106), values(NUKE, hp=105)["time_to_kill"]) == (True, 1.5)
 
         def it_omits_time_to_kill_for_a_cycle_dealing_no_damage(self):
-            assert "time_to_kill" not in values(Cycle(hits=(Hit(0, 0, 0, "tap"),), period=1.0), hp=1)
+            with within(5):  # without its guard, the search for the kill never ends
+                assert "time_to_kill" not in values(Cycle(hits=(Hit(0, 0, 0, "tap"),), period=1.0), hp=1)
 
     class WhenThereAreNoHits:
         def it_reports_zero_damage_and_omits_what_needs_a_hit(self):

@@ -9,7 +9,7 @@ import { abilities, heroes, timeline } from "./api";
 import { hitChart } from "./chart";
 import type { AbilityKind, CycleLine, HitLine, MeasureLine, NoteLine, TimelineLine } from "./protocol";
 import { fromSearch, knobsFor, timelineParams, toSearch, type Knob, type Selection } from "./selection";
-import { windowFields, windowFromText, zoomToKill, type Window, type WindowField, type WindowUnit } from "./window";
+import { unreachableKillNote, windowFields, windowFromText, zoomToKill, type Window, type WindowField, type WindowUnit } from "./window";
 
 /** Each knob's label, and its placeholder: the server's default, never a value. */
 const KNOB_TEXT: Record<Knob, { label: string; placeholder: string }> = {
@@ -53,6 +53,7 @@ export function App() {
     if (zoomed !== null) setTimeWindow(zoomed);
   }, [zoomPending, answered, cycle, killTime]);
   const fields = windowFields(timeWindow, cycle);
+  const reachNote = cycle === undefined ? null : unreachableKillNote(cycle, killTime);
   const hpValue = Number(params?.hp);
 
   return (
@@ -159,8 +160,9 @@ export function App() {
         <p className="chart">No damage lands within the window: the notes say what the model leaves out.</p>
       )}
       {measures.length > 0 && <Measures measures={measures} />}
-      {notes.length > 0 && (
+      {(notes.length > 0 || reachNote !== null) && (
         <ul>
+          {reachNote !== null && <li>{reachNote}</li>}
           {notes.map((n, i) => (
             <li key={i}>{n.text}</li>
           ))}

@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 
 import type { CycleLine } from "./protocol";
-import { windowFields, windowFromText, windowParams, zoomToKill } from "./window";
+import { unreachableKillNote, windowFields, windowFromText, windowParams, zoomToKill } from "./window";
 
-function cycle(period: number | null, horizon: number): CycleLine {
-  return { kind: "cycle", period, downtime: 0, horizon };
+function cycle(period: number | null, horizon: number, max_horizon: number | null = null): CycleLine {
+  return { kind: "cycle", period, downtime: 0, horizon, max_horizon };
 }
 
 describe("windowFromText", () => {
@@ -73,5 +73,40 @@ describe("zoomToKill", () => {
 
   it("zooms a one-shot out by whole seconds", () => {
     expect(zoomToKill(cycle(null, 10), 12.4)).toEqual({ by: "seconds", value: "13" });
+  });
+});
+
+describe("zoomToKill under the server's largest window", () => {
+  const capped = cycle(2, 6, 20); // at most 10 cycles
+
+  it("zooms out as far as the kill when that fits", () => {
+    expect(zoomToKill(capped, 15)).toEqual({ by: "cycles", value: "8" });
+  });
+
+  it("stops at the largest whole-cycle window when the kill is beyond it", () => {
+    expect(zoomToKill(capped, 1e9)).toEqual({ by: "cycles", value: "10" });
+    expect(zoomToKill(capped, 20)).toEqual({ by: "cycles", value: "10" });
+  });
+
+  it("keeps the window when it is already the largest", () => {
+    expect(zoomToKill(cycle(2, 20, 20), 1e9)).toBeNull();
+  });
+
+  it("does not cap a one-shot", () => {
+    expect(zoomToKill(cycle(null, 10), 1e9)).toEqual({ by: "seconds", value: "1000000001" });
+  });
+});
+
+describe("unreachableKillNote", () => {
+  const capped = cycle(2, 6, 20);
+
+  it("says the chart can't reach a kill beyond the largest window", () => {
+    expect(unreachableKillNote(capped, 25)).toMatch(/can't reach the kill.*10 cycles \(20 s\)/);
+  });
+
+  it("is silent when the largest window shows the kill, or there is no kill or no limit", () => {
+    expect(unreachableKillNote(capped, 19.9)).toBeNull();
+    expect(unreachableKillNote(capped, undefined)).toBeNull();
+    expect(unreachableKillNote(cycle(null, 10), 1e9)).toBeNull();
   });
 });

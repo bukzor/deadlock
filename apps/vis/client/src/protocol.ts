@@ -48,6 +48,12 @@ export interface CycleLine {
   downtime: number;
   /** The window the server resolved, in seconds (its default when none was sent). */
   horizon: number;
+  /**
+   * The largest window the server accepts, in seconds (whole cycles: the hit
+   * guard, `MAX_HITS` in `queries.py`); `null` for a one-shot. Absent on
+   * older servers.
+   */
+  max_horizon?: number | null;
 }
 
 /** A derived number, with how to verify it in-game. */
