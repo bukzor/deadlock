@@ -26,6 +26,7 @@ non-claim-tokens:
 - L5
 - CTE
 - TSV
+- MB
 - VPK
 - DAG
 - L83
