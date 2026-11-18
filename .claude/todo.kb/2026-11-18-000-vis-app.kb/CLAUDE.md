@@ -85,3 +85,7 @@ copies them.
   `/tmp`.
 - **Ownership.** The brief (frontmatter inputs, Problem Statement) belongs to
   the coordinator. Edit only your own sections, in place, in ≤60 lines.
+- **`pnpm` is not on PATH.** It has been missing since about 16:50, and
+  `volta` fails with a musl relocation error. The client's own tools work from
+  `apps/vis/client/node_modules/.bin/`. Don't repair the user's global setup.
+  Report what you used instead.
