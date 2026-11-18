@@ -85,6 +85,15 @@ copies them.
   `/tmp`.
 - **Ownership.** The brief (frontmatter inputs, Problem Statement) belongs to
   the coordinator. Edit only your own sections, in place, in ≤60 lines.
+- **Every save leaves the app working.** The user watches a live-reloading
+  `bin/serve` (5173/8788) while you edit, and they want to keep it
+  (`[!@bukzor]` 2026-11-18: "i mostly like the live view"). Only tests may go
+  red in the middle of a change.
+  - Change a signature in steps: add the new parameter with a default, update
+    every caller, then drop the default.
+  - Write a change that must span files at once in `trash/`, then move the
+    files into place together.
+  - Write new code first, and wire it into the app last.
 - **`pnpm` is not on PATH.** It has been missing since about 16:50, and
   `volta` fails with a musl relocation error. The client's own tools work from
   `apps/vis/client/node_modules/.bin/`. Don't repair the user's global setup.
