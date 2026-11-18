@@ -38,6 +38,7 @@ from deadlock.abilities import SIGNATURE, bindings
 from deadlock.ability_upgrades import upgrades
 from deadlock.types import dig, is_str_mapping
 
+from .names import property_label
 from .timeline import Cycle, Hit
 from .types import BadRequest
 
@@ -60,7 +61,12 @@ type Props = Mapping[str, object]
 
 
 def cycle(
-    heroes: Mapping[str, object], abilities: Mapping[str, object], hero: str, ability: str, spirit: float
+    heroes: Mapping[str, object],
+    abilities: Mapping[str, object],
+    hero: str,
+    ability: str,
+    spirit: float,
+    tokens: Mapping[str, str],
 ) -> tuple[Cycle, tuple[str, ...]] | None:
     """``ability`` cast on cooldown by ``hero`` with ``spirit`` spirit power, and caveats on the model.
 
@@ -69,8 +75,9 @@ def cycle(
     one of ``hero``'s signature slots (the ultimate included) and has a
     ``Damage`` or ``DPS`` property. The first note is ``HEURISTIC``; each
     further note names one factor present on the ability that the model leaves
-    out or reads unusually. A zero-damage hit is dropped, so a cycle may have
-    no hits.
+    out or reads unusually, naming a property by its in-game label from the
+    localization ``tokens`` (``names.property_label``), else in words. A
+    zero-damage hit is dropped, so a cycle may have no hits.
 
     A read field that isn't a plain number (``"0.1m"``, a per-level list like
     ``"40 30 20"``) raises ``BadRequest``: the model can't say what it means.
@@ -92,7 +99,7 @@ def cycle(
     cooldown = _number(props, ability, "AbilityCooldown")
     if cooldown <= 0:
         notes.append((NO_COOLDOWN, "This ability has no cooldown: a single cast is shown."))
-    notes.extend(_unmodeled(abilities, ability, props))
+    notes.extend(_unmodeled(abilities, ability, props, tokens))
     cycle = Cycle(hits=tuple(hits), period=cooldown if cooldown > 0 else None, downtime=_downtime(hits, cooldown, notes))
     return cycle, tuple(text for _, text in sorted(notes, key=lambda note: note[0]))
 
@@ -159,20 +166,24 @@ def _ticks(props: Props, ability: str, delay: float, dps: float, notes: Notes) -
     ]
 
 
-def _unmodeled(abilities: Mapping[str, object], ability: str, props: Props) -> Notes:
+def _unmodeled(abilities: Mapping[str, object], ability: str, props: Props, tokens: Mapping[str, str]) -> Notes:
     """One note per factor present on ``ability`` that the model ignores."""
     notes: Notes = []
+
+    def label(prop: str) -> str:
+        return property_label(tokens, props, prop) or _humanize(prop)
+
     charges = _number(props, ability, "AbilityCharges", 0)
     if charges > 0:
         between = _number(props, ability, "AbilityCooldownBetweenCharge", 0)
         notes.append((CHARGES, f"Charges are not included: one cast per cooldown is shown (the ability has {charges:g}, one back every {between:g} s)."))
     ups = upgrades(abilities, {ability})
     if ups:
-        tiers = ", ".join(f"T{u.tier} {_humanize(u.property)} {u.bonus}" for u in ups)
+        tiers = ", ".join(f"T{u.tier} {label(u.property)} {u.bonus}" for u in ups)
         notes.append((UPGRADES, f"Upgrades not included: {tiers}."))
     for name, prop in props.items():
         if name not in _DAMAGE and dig(prop, "m_bIsAbilityDamageProperty") is True:
-            notes.append((LEFT_OUT, f"Extra damage not included: {_humanize(name)} {dig(prop, 'm_strValue')}."))
+            notes.append((LEFT_OUT, f"Extra damage not included: {label(name)} {dig(prop, 'm_strValue')}."))
     return notes
 
 

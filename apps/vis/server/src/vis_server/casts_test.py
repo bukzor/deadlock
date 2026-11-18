@@ -28,8 +28,10 @@ def tree(properties: Mapping[str, object], **entity: object) -> tuple[dict[str, 
     return heroes, abilities
 
 
-def cast(properties: Mapping[str, object], spirit: float = 0, **entity: object) -> tuple[Cycle, tuple[str, ...]]:
-    result = casts.cycle(*tree(properties, **entity), HERO, ABILITY, spirit)
+def cast(
+    properties: Mapping[str, object], spirit: float = 0, tokens: Mapping[str, str] | None = None, **entity: object
+) -> tuple[Cycle, tuple[str, ...]]:
+    result = casts.cycle(*tree(properties, **entity), HERO, ABILITY, spirit, tokens or {})
     assert result is not None
     return result
 
@@ -72,13 +74,13 @@ class DescribeCycle:
 
     class WhenNotACast:
         def it_returns_none_for_the_gun(self):
-            assert casts.cycle(*tree({"Damage": "1"}), HERO, "gun", 0) is None
+            assert casts.cycle(*tree({"Damage": "1"}), HERO, "gun", 0, {}) is None
 
         def it_returns_none_for_another_heros_ability(self):
-            assert casts.cycle(*tree({"Damage": "1"}), "hero_y", ABILITY, 0) is None
+            assert casts.cycle(*tree({"Damage": "1"}), "hero_y", ABILITY, 0, {}) is None
 
         def it_returns_none_without_damage_or_dps(self):
-            assert casts.cycle(*tree({"ImpactDamage": "1"}), HERO, ABILITY, 0) is None
+            assert casts.cycle(*tree({"ImpactDamage": "1"}), HERO, ABILITY, 0, {}) is None
 
     class WhenTicking:
         def it_ticks_dps_every_tick_rate_across_the_duration(self):
@@ -156,6 +158,14 @@ class DescribeCycle:
             _, notes = cast({"Damage": "1"}, m_vecAbilityUpgrades=[tier])
             assert any("Upgrades not included" in n and "T1 damage +40" in n for n in notes), notes
 
+        def it_names_upgrades_and_extra_damage_in_the_games_words(self):
+            tier = {"m_vecPropertyUpgrades": [{"m_strPropertyName": "Damage", "m_strBonus": "+40"}]}
+            flagged = {"m_strValue": "40", "m_bIsAbilityDamageProperty": True, "m_strLocTokenOverride": "Impact"}
+            tokens = {"Damage_label": "Spirit Damage", "Impact_label": "Impact Damage"}
+            _, notes = cast({"Damage": "1", "ImpactDamage": flagged}, tokens=tokens, m_vecAbilityUpgrades=[tier])
+            assert any("T1 Spirit Damage +40" in n for n in notes), notes
+            assert any("Extra damage not included: Impact Damage 40." in n for n in notes), notes
+
         def it_notes_each_unread_damage_property(self):
             flagged = {"m_strValue": "40", "m_bIsAbilityDamageProperty": True}
             _, notes = cast({"Damage": "1", "ImpactDamage": flagged, "BonusDamage": flagged})
@@ -196,7 +206,7 @@ class DescribeRealData:
     def it_models_every_bound_signature_or_returns_none(self):
         heroes, abilities = load("heroes.json"), load("abilities.json")
         bound = [(hero, ability) for hero, slot, ability in bindings(heroes) if slot.startswith(SIGNATURE)]
-        results = [casts.cycle(heroes, abilities, hero, ability, spirit=50) for hero, ability in bound]
+        results = [casts.cycle(heroes, abilities, hero, ability, spirit=50, tokens={}) for hero, ability in bound]
         modeled = [r for r in results if r is not None]
         assert len(bound) > 100, len(bound)
         assert len(modeled) > len(bound) / 3, len(modeled)

@@ -66,10 +66,10 @@ class DescribeListed:
 class DescribeAbilities:
     def it_lists_the_gun_the_melees_then_the_signatures_in_slot_order(self):
         assert run("abilities", hero="hero_a") == [
-            {"ability": "gun_a", "name": "gun_a", "kind": "gun"},
-            {"ability": "melee_light", "name": "melee_light", "kind": "melee"},
-            {"ability": "melee_heavy", "name": "melee_heavy", "kind": "melee"},
-            {"ability": "blast", "name": "blast", "kind": "cast"},
+            {"ability": "gun_a", "name": "gun_a", "kind": "gun"},  # no name in the localization: its key
+            {"ability": "melee_light", "name": "Light Melee", "kind": "melee"},
+            {"ability": "melee_heavy", "name": "Heavy Melee", "kind": "melee"},
+            {"ability": "blast", "name": "Blast", "kind": "cast"},
             {"ability": "buff", "name": "buff", "kind": None},
         ]
 
@@ -184,12 +184,21 @@ class DescribeTimeline:
             lines = timeline(hp="1e9")
             assert kinds(lines, "cycle")[0]["horizon"] == 120 and "within 120 s" in notes(lines)[-1], notes(lines)
 
-        def it_notes_hp_not_reached_within_the_horizon(self):
-            lines = timeline(hp="101", horizon="1", windup="0.3")
+        def it_notes_hp_not_reached_within_a_horizon_past_120_s(self):
+            lines = timeline(hp="1e9", horizon="200", windup="0.3")
             assert "time_to_kill" not in [m["name"] for m in kinds(lines, "measure")]
             found = notes(lines)
-            assert "101" in found[-1] and "1 s" in found[-1], found
+            assert "1e+09" in found[-1] and "200 s" in found[-1], found
             assert any("wind-up" in n for n in found[:-1]), found
+
+        def it_zooms_an_asked_horizon_out_to_the_time_to_kill_and_says_so(self):
+            lines = timeline(hp="300", horizon="1", windup="0.25")
+            assert kinds(lines, "cycle")[0]["horizon"] == approx(4.5)
+            assert "from 1 s to 4.5 s" in notes(lines)[-1], notes(lines)
+
+        def it_never_zooms_in(self):
+            lines = timeline(hp="100", horizon="9", windup="0.25")
+            assert kinds(lines, "cycle")[0]["horizon"] == 9 and not any("horizon" in n for n in notes(lines)), notes(lines)
 
         def it_says_nothing_of_hp_when_reached(self):
             assert not any("HP" in n for n in notes(timeline(hp="100", windup="0.25")))
@@ -265,3 +274,10 @@ class DescribeRealData:
             for line in QUERIES["abilities"].run({"hero": hero}):
                 params: Params = {"hero": hero, "ability": str(line["ability"]), "level": "35"}
                 assert notes(QUERIES["timeline"].run(params))[1].startswith("Level 35 is 35 boons"), params
+
+    def it_names_abilities_and_upgrades_in_the_games_words(self):
+        _skip_without_data()
+        names = {line["ability"]: line["name"] for line in QUERIES["abilities"].run({"hero": "hero_inferno"})}
+        assert names["ability_incendiary_projectile"] == "Napalm", names
+        found = notes(QUERIES["timeline"].run({"hero": "hero_inferno", "ability": "ability_incendiary_projectile"}))
+        assert any("T2 Lifesteal 20" in n for n in found), found

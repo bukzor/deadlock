@@ -19,7 +19,7 @@ from .types import Kind
 DPS = "damage/s"
 DEFAULT_PERIODS = 2  # cycles shown when the horizon is not given
 ONE_SHOT_HORIZON = 10.0  # seconds, for a cycle that happens once
-KILL_HORIZON = 120.0  # seconds: how far the default horizon stretches to reach ``hp``
+KILL_HORIZON = 120.0  # seconds: how far the horizon zooms out to reach ``hp``
 
 
 @dataclass(frozen=True)
@@ -71,24 +71,25 @@ def _words(kind: Kind) -> _Words:
             assert_never(kind)
 
 
-def default_horizon(cycle: Cycle, hp: float | None = None) -> float:
-    """The horizon when none is given: ``DEFAULT_PERIODS`` periods, or ``ONE_SHOT_HORIZON`` for a one-shot.
+def horizon_used(cycle: Cycle, hp: float | None = None, asked: float | None = None) -> float:
+    """The ``asked`` horizon, or by default ``DEFAULT_PERIODS`` periods (``ONE_SHOT_HORIZON`` for a one-shot).
 
-    With ``hp``, it stretches by whole periods (whole seconds for a one-shot)
-    until the hit that reaches ``hp`` lands inside it, up to ``KILL_HORIZON``,
-    and to ``KILL_HORIZON`` when ``hp`` is not reached by then. It never
-    shrinks below the default.
+    With ``hp``, it zooms out, never in: by whole periods (whole seconds for a
+    one-shot) until the hit that reaches ``hp`` lands inside it, up to
+    ``KILL_HORIZON``, and to ``KILL_HORIZON`` when ``hp`` is not reached by
+    then. A horizon already past ``KILL_HORIZON`` is kept.
     """
     unit, default = (1.0, ONE_SHOT_HORIZON) if cycle.period is None else (cycle.period, DEFAULT_PERIODS * cycle.period)
+    base = default if asked is None else asked
     if hp is None:
-        return default
-    land = _kill_land(sorted(landed_by(cycle, max(default, KILL_HORIZON)), key=lambda h: h.land), hp)
+        return base
+    land = _kill_land(sorted(landed_by(cycle, max(base, KILL_HORIZON)), key=lambda h: h.land), hp)
     if land is None:
-        return max(default, KILL_HORIZON)
+        return max(base, KILL_HORIZON)
     units = math.floor(land / unit) + 1
     while units * unit <= land:  # float rounding: the window is half-open
         units += 1
-    return max(default, min(KILL_HORIZON, units * unit))
+    return max(base, min(KILL_HORIZON, units * unit))
 
 
 def measures(

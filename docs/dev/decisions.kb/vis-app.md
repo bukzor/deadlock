@@ -51,7 +51,7 @@ Queries:
 |---|---|---|
 | `heroes` | | `{"hero": key, "name": display}` |
 | `abilities` | `hero` | `{"ability": key, "name", "kind": "gun"\|"melee"\|"cast"\|null}` |
-| `timeline` | `hero`, `ability`, `horizon` (s; default 2 periods of the cycle, or 10 s for a one-shot), `distance`=0 (m), `spirit`=0, `level`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
+| `timeline` | `hero`, `ability`, `horizon` (s; default 2 periods of the cycle, or 10 s for a one-shot; with `hp`, zoomed out to the kill, up to 120 s), `distance`=0 (m), `spirit`=0, `level`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
 
 `timeline` lines:
 
@@ -120,8 +120,9 @@ not modeled.
 
 - **`time_to_kill`**, when `hp` is given, comes first: the land time of the hit
   that brings cumulative damage to `hp` or more. It can be checked against a
-  training-dummy health bar. When `hp` is given and `horizon` is not, the
-  default horizon stretches to cover it (up to 120 s).
+  training-dummy health bar. With `hp`, the horizon (asked-for or default)
+  zooms out, never in, to cover it (up to 120 s), and a note says when it
+  zooms out a horizon the user asked for.
 - **`uptime_dps`**: damage per cycle ÷ (period − downtime), the DPS while the
   source is active. For a gun it equals the weapon panel's DPS. It is omitted
   where it equals `steady_dps` (no downtime) or means nothing (one hit).

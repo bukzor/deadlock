@@ -57,5 +57,6 @@ DATA = GameData(
         "buff": {"m_mapAbilityProperties": ability_props(AbilityCooldown="20")},
     },  # fmt: skip
     listed={"hero_a": "Bravo", "hero_c": "Alpha", "hero_off": "Off"},
+    tokens={"blast:n": "Blast"},
 )
 SYNTHETIC = registry(lambda: DATA)

@@ -6,7 +6,7 @@ from deadlock.abilities import bindings
 from pytest import approx
 
 from . import guns, melee
-from .measures import Measure, default_horizon, measures
+from .measures import Measure, horizon_used, measures
 from .timeline import Cycle, Gun, Hit, gun_cycle
 from .types import Kind
 
@@ -164,35 +164,48 @@ class DescribeMeasures:
             }
 
 
-class DescribeDefaultHorizon:
+class DescribeHorizonUsed:
     def it_is_two_periods(self):
-        assert default_horizon(SWING) == 2
+        assert horizon_used(SWING) == 2
 
     def it_is_10_s_for_a_one_shot(self):
-        assert default_horizon(NUKE) == 10
+        assert horizon_used(NUKE) == 10
 
     class WhenHpIsGiven:
         def it_stretches_to_whole_periods_past_the_time_to_kill(self):
-            assert default_horizon(SWING, hp=50) == 5  # the 5th swing lands at 4.25
+            assert horizon_used(SWING, hp=50) == 5  # the 5th swing lands at 4.25
 
         def it_includes_a_kill_landing_on_a_period_boundary(self):
             on_beat = Cycle(hits=(Hit(0, 0, 10, "beat"),), period=0.7)  # the 4th beat lands at 3 * 0.7 == 2.0999999999999996
-            horizon = default_horizon(on_beat, hp=40)
+            horizon = horizon_used(on_beat, hp=40)
             assert values(on_beat, horizon, hp=40).get("time_to_kill") == approx(2.1), horizon
 
         def it_never_shrinks_below_two_periods(self):
-            assert default_horizon(SWING, hp=5) == 2
+            assert horizon_used(SWING, hp=5) == 2
 
         def it_stretches_a_one_shot_by_whole_seconds(self):
             slow = Cycle(hits=(Hit(0, 12.4, 100, "late"),), period=None)
-            assert (default_horizon(slow, hp=100), default_horizon(NUKE, hp=100)) == (13, 10)
+            assert (horizon_used(slow, hp=100), horizon_used(NUKE, hp=100)) == (13, 10)
 
         def it_stops_at_120_s(self):
             weekly = Cycle(hits=SWING.hits, period=7.0)  # the 18th swing lands at 119.25, in the 18th period of 7 s
-            assert (default_horizon(weekly, hp=180), default_horizon(SWING, hp=10_000)) == (120, 120)
+            assert (horizon_used(weekly, hp=180), horizon_used(SWING, hp=10_000)) == (120, 120)
 
         def it_keeps_two_periods_beyond_120_s(self):
-            assert default_horizon(Cycle(hits=SWING.hits, period=90.0), hp=10_000) == 180
+            assert horizon_used(Cycle(hits=SWING.hits, period=90.0), hp=10_000) == 180
+
+    class WhenAHorizonIsAsked:
+        def it_is_the_asked_horizon_without_hp(self):
+            assert horizon_used(SWING, asked=3.3) == 3.3
+
+        def it_zooms_out_by_whole_periods_to_the_time_to_kill(self):
+            assert (horizon_used(SWING, hp=50, asked=1.5), horizon_used(SWING, hp=5, asked=0.5)) == (5, 1)
+
+        def it_never_zooms_in(self):
+            assert horizon_used(SWING, hp=50, asked=7.5) == 7.5
+
+        def it_zooms_out_to_120_s_when_hp_is_out_of_reach(self):
+            assert (horizon_used(SWING, hp=10_000, asked=3), horizon_used(SWING, hp=10_000, asked=200)) == (120, 200)
 
 def _load(name: str) -> Mapping[str, object]:
     path = paths.data_dir() / "gamedata.json/scripts" / name

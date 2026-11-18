@@ -11,7 +11,7 @@ why:
 # The horizon defaults to two periods of the cycle
 
 When `horizon` and `hp` are absent the server uses exactly 2 periods of the
-cycle, and 10 s for a cycle that happens once; with `hp`, it stretches from
+cycle, and 10 s for a cycle that happens once; with `hp`, it zooms out from
 there (`kill-horizon.md`). The server sends a `cycle` line with the
 period and the horizon used, so the client offers the horizon in seconds and
 in periods (default 2). The owner amended finding 3 (unit 016's brief records
