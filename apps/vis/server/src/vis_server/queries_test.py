@@ -4,63 +4,9 @@ import pytest
 from deadlock import paths
 from pytest import approx
 
+from .conftest import DATA, SYNTHETIC, TECH, ability_props
 from .queries import QUERIES, GameData, listed, load_data, registry
 from .types import BadRequest, JsonObj, Params
-
-TECH = {"_class": "scale_function_tech_damage", "m_flStatScale": 0.5, "m_eSpecificStatScaleType": "ETechPower"}
-
-
-def _props(**values: object) -> dict[str, object]:
-    return {k: v if isinstance(v, Mapping) else {"m_strValue": v} for k, v in values.items()}
-
-
-def _level(game: int) -> dict[str, object]:
-    info: dict[str, object] = {"m_unRequiredGold": 100 * game, "m_mapBonusCurrencies": {"EAbilityPoints": 1}}
-    return info if game == 1 else {**info, "m_bUseStandardUpgrade": True}
-
-
-PER_BOON = {
-    "MODIFIER_VALUE_BASE_BULLET_DAMAGE_FROM_LEVEL": 0.25,
-    "MODIFIER_VALUE_BASE_MELEE_DAMAGE_FROM_LEVEL": 2.0,
-    "MODIFIER_VALUE_TECH_POWER": 1.5,
-}
-
-
-def _hero(slots: Mapping[str, str], disabled: bool = False) -> dict[str, object]:
-    """A hero whose last level is 3."""
-    return {
-        "m_bDisabled": disabled,
-        "m_mapStartingStats": {"ELightMeleeDamage": 50, "EHeavyMeleeDamage": 116},
-        "m_mapBoundAbilities": {f"ESlot_{slot}": ability for slot, ability in slots.items()},
-        "m_mapLevelInfo": {str(game): _level(game) for game in range(1, 5)},
-        "m_mapStandardLevelUpUpgrades": PER_BOON,
-    }
-
-
-GUN = {
-    "m_flBulletDamage": 4.0, "m_iBullets": 1, "m_iBurstShotCount": 1, "m_flCycleTime": 0.5,
-    "m_flIntraBurstCycleTime": 0.0, "m_iClipSize": 4, "m_reloadDuration": 2.0, "m_flRange": 7000.0,
-    "m_flBulletSpeed": 10000 / 0.0254,  # 10000 m/s
-}  # fmt: skip
-ATTACK = {"m_flCooldownOnHit": 0.75, "m_flCooldownOnMiss": 0.75}
-KIT = {"Weapon_Primary": "gun_a", "Weapon_Melee": "melee_a", "Signature_2": "buff", "Signature_1": "blast"}
-DATA = GameData(
-    heroes={
-        "hero_c": _hero({"Weapon_Melee": "melee_a"}),
-        "hero_a": _hero(KIT),
-        "hero_off": _hero(KIT, disabled=True),
-        "hero_dev": _hero(KIT),  # live, but not listed
-    },
-    abilities={
-        "gun_a": {"m_mapWeaponInfos": {"primary": GUN}},
-        "melee_a": {"m_mapAttacks": {"EAttackType_Light": ATTACK, "EAttackType_Heavy": ATTACK}},
-        "blast": {"m_mapAbilityProperties": _props(Damage={"m_strValue": "100", "m_subclassScaleFunction": TECH},
-                                                   AbilityCooldown="10", AbilityCastDelay="0.5")},
-        "buff": {"m_mapAbilityProperties": _props(AbilityCooldown="20")},
-    },  # fmt: skip
-    listed={"hero_a": "Bravo", "hero_c": "Alpha", "hero_off": "Off"},
-)
-SYNTHETIC = registry(lambda: DATA)
 
 
 def run(query: str, **params: str) -> Sequence[JsonObj]:
@@ -106,9 +52,15 @@ class DescribeHeroes:
 
 
 class DescribeListed:
-    def it_names_each_hero_but_those_in_development_and_the_training_dummy(self):
-        rows = [("hero_astro", "Holliday", "false"), ("hero_genericperson", "Generic Person", "true"), ("hero_targetdummy", "TargetDummy", "false")]
-        assert listed({"hero": h, "name": n, "in_development": d} for h, n, d in rows) == {"hero_astro": "Holliday"}
+    def it_names_each_enabled_hero_but_the_nameless_generic_and_dummy(self):
+        rows = [
+            ("hero_astro", "Holliday", "false"), ("hero_artist", "Violet", "false"), ("hero_kali", "Kali", "true"),
+            ("hero_base", "", "false"), ("hero_testhero", "", "true"),
+            ("hero_genericperson", "Generic Person", "false"), ("hero_targetdummy", "TargetDummy", "false"),
+        ]  # fmt: skip
+        assert listed({"hero": h, "name": n, "disabled": d, "in_development": "true"} for h, n, d in rows) == {
+            "hero_astro": "Holliday", "hero_artist": "Violet"
+        }
 
 
 class DescribeAbilities:
@@ -141,7 +93,7 @@ def timeline(ability: str = "melee_light", hero: str = "hero_a", **params: str) 
 
 def blast_timeline(props: Mapping[str, object], **params: str) -> Sequence[JsonObj]:
     """The timeline of ``hero_a``'s ``blast``, its properties replaced by ``props``."""
-    data = GameData(DATA.heroes, {**DATA.abilities, "blast": {"m_mapAbilityProperties": _props(**props)}}, DATA.listed)
+    data = GameData(DATA.heroes, {**DATA.abilities, "blast": {"m_mapAbilityProperties": ability_props(**props)}}, DATA.listed)
     return registry(lambda: data)["timeline"].run({"hero": "hero_a", "ability": "blast", **params})
 
 

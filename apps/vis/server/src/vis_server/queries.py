@@ -24,7 +24,7 @@ from .measures import Measure, default_horizon, measures
 from .timeline import Cycle, Hit, landed_by
 from .types import BadRequest, JsonObj, Kind, Params, Query
 
-TRAINING_DUMMY = "hero_targetdummy"
+NOT_PLAYABLE = {"hero_targetdummy", "hero_genericperson"}  # the training dummy; Generic Person
 
 HERO = "hero key, from the heroes query (required)"
 TIMELINE = {
@@ -141,8 +141,8 @@ def load_data() -> GameData:
 
 
 def listed(rows: Iterable[Mapping[str, str]]) -> dict[str, str]:
-    """``{hero: name}`` from ``heroes.tsv`` rows, leaving out heroes in development and the training dummy."""
-    return {row["hero"]: row["name"] for row in rows if row["in_development"] == "false" and row["hero"] != TRAINING_DUMMY}
+    """``{hero: name}`` from ``heroes.tsv`` rows that are not ``disabled``, have a name, and are neither Generic Person nor the training dummy."""
+    return {r["hero"]: r["name"] for r in rows if r["disabled"] == "false" and r["name"] and r["hero"] not in NOT_PLAYABLE}
 
 
 QUERIES: Mapping[str, Query] = registry(load_data)
