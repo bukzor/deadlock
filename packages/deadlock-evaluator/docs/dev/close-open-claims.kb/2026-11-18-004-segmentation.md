@@ -18,13 +18,18 @@ required-reading:
 
 ## Problem Statement
 
-Goal: close `SEGMENTATION` for fights. From the public demo's damage
-events (hero-on-hero only), cluster in time and space: a gap longer than
+Goal: close `SEGMENTATION` for fights. From the public demo's
+(`data/replays/139163969.dem`, parsed tables already in
+`trash/unit-002/139163969/` as Parquet) damage events (hero-on-hero only), cluster in time and space: a gap longer than
 G seconds or farther than R units starts a new episode. Sweep G over
 {5, 10, 15} and R over {1500, 3000, none} and report episode counts and
 median duration per setting. Pick the setting whose boundaries agree
 with kill events (every kill inside an episode; no episode without
 damage from both teams) and state the agreement rate.
+
+Use `data/tools/boon.d/bin/python -I` (it has polars and boon). Unit 002
+noted boon's `game_start_tick` is None on the April demo, so stay on the
+November one; its `tick_to_match_clock` works there.
 
 Then assess rotations and farm windows: can they be told apart from
 position tracks alone, at the position-update rate unit 002 measured?

@@ -25,7 +25,7 @@ Wave 1 (parallel):
 - [x] [003 public demo](close-open-claims.kb/2026-11-18-003-public-demo.md): obtain one real public match demo
 
 Wave 2:
-- [ ] [002 event volume](close-open-claims.kb/2026-11-18-002-event-volume.md): count rows by event type on a bot and a public demo; close `EVENT_VOLUME`
+- [x] [002 event volume](close-open-claims.kb/2026-11-18-002-event-volume.md): count rows by event type on a bot and a public demo; close `EVENT_VOLUME`
 
 Wave 3:
 - [ ] [004 segmentation](close-open-claims.kb/2026-11-18-004-segmentation.md): cut one demo into episodes from damage events; close `SEGMENTATION`
