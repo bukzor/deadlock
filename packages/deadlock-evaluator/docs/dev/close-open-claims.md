@@ -32,7 +32,7 @@ Wave 3:
 - [x] [004 segmentation](close-open-claims.kb/2026-11-18-004-segmentation.md): cut one demo into episodes from damage events; close `SEGMENTATION`
 
 Wave 4:
-- [ ] [005 demo triggers](close-open-claims.kb/2026-11-18-005-demo-triggers.md): what writes each kind of file under the install's `replays/`; close or narrow `LOCAL_DEMO_TRIGGERS`
+- [x] [005 demo triggers](close-open-claims.kb/2026-11-18-005-demo-triggers.md): what writes each kind of file under the install's `replays/`; close or narrow `LOCAL_DEMO_TRIGGERS`
 
 ## Success criteria
 
@@ -41,5 +41,5 @@ Wave 4:
 - `reuse-a-demo-parser.md` names the parser and what it exposes.
 - `grep -rl 'standing: open' claims.kb/` lists only owner-ruling claims.
 
-Commit range: 2041c59..HEAD (plan, four units, routing). Review pending;
+Commit range: 2041c59..HEAD (plan, five units, routing). Review pending;
 the handoff files are removed once the owner is satisfied.
