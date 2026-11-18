@@ -70,8 +70,11 @@ when the ability is not its kind:
 
 - **Gun** (`guns.py`): one clip fired at the gun's rate, then its reload. The
   formulas are in `docs/dev/mechanics.kb/gun-*.md`. Travel time is `distance /
-  bullet speed`; the speed is read from `m_BulletSpeedCurve` and is known for
-  only a few guns, so the others get travel 0 and a note.
+  bullet speed`. Every live gun sets `m_flBulletSpeed`, in engine units (inches)
+  per second. Six also carry a `m_BulletSpeedCurve`, and on five of those the
+  two speeds disagree. Where a curve exists, the model uses it and notes the
+  conflict as unverified; which speed the game actually uses can be checked
+  in-game.
 - **Melee** (`melee.py`): damage comes from hero
   `m_mapStartingStats.E{Light,Heavy}MeleeDamage`, and the period from
   `m_mapAttacks.EAttackType_{Light,Heavy}.m_flCooldownOnHit`. Wind-up is not
