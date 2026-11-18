@@ -1,6 +1,10 @@
 ---
 label: HORIZON_DEFAULT
-standing: agent
+standing: user
+authority:
+  address: 14fac9c8#L2963
+  words: yes, two cycles
+  about: a cast's default window, against UX review 2's finding 1 (one cast plus 20%)
 why:
 - original-request.md
 - judge-on-own-authority.md
@@ -24,3 +28,9 @@ ponder the intelligibility and overall UX of this UI", quoted in unit 015's
 brief); the finding is in
 [unit 015's report](../../../../../.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-015-ux-review.md). Design:
 [`vis-app.md`](../../../../../docs/dev/decisions.kb/vis-app.md).
+
+The owner ruled on it for casts too, against UX review 2's finding 1, which
+proposed the first cast plus about 20% (idea entry 012):
+
+> [!@bukzor] 14fac9c8#L2963
+> yes, two cycles
