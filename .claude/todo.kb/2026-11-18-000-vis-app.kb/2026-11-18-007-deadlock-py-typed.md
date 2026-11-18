@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - ./CLAUDE.md
@@ -27,3 +27,32 @@ belong to sibling units.
 
 **Scope (only these files):** `src/deadlock/py.typed`, plus the root
 `pyproject.toml` only if the build needs it to ship the marker
+
+## Steps
+
+- [x] Baseline: root `./bin/shell pyright` 0 errors; vis-server `basedpyright` 15
+  errors (13 `reportMissingTypeStubs`, 2 others).
+- [x] Add empty `src/deadlock/py.typed`.
+- [x] Re-run checks; build a wheel to confirm the marker ships.
+
+## Decisions
+
+- Root `pyproject.toml` left alone: hatch's `packages = ["src/deadlock"]`
+  includes every file in the directory (the built wheel lists
+  `deadlock/py.typed`). The vis server's editable install is a `.pth` pointing
+  at `src/`, so it sees the marker without a reinstall.
+
+## Open Questions
+
+None.
+
+## Final report
+
+- `melee.py` + `melee_test.py` basedpyright: 0 errors, 0 warnings.
+- Root `./bin/shell pyright`: 0 errors before, 0 errors after.
+- All 13 `reportMissingTypeStubs` in `apps/vis/server` are gone. Marking the
+  package typed brought out no new errors. Two errors were already present
+  before this change, and both belong to sibling units (not fixed):
+  - `casts.py:142:13` reportImplicitStringConcatenation
+  - `casts_test.py:23:5` type of `wrapped` is partially unknown
+- No deviations from the brief.
