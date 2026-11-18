@@ -41,6 +41,12 @@ venvPath = "."
 venv = ".venv"
 # third-party container/KV3 libs ship no type stubs; we wrap them at typed boundaries
 reportMissingTypeStubs = false
+# apps/vis/server is its own uv project (Python 3.14, Starlette), outside
+# `include`. An editor that opens one of its files here gets that project's
+# packages and Python, so its imports resolve; its own config is the check.
+executionEnvironments = [
+    { root = "apps/vis/server", pythonVersion = "3.14", extraPaths = ["apps/vis/server/.venv/lib/python3.14/site-packages"] },
+]
 
 [tool.uv.workspace]
 members = ["packages/*"]

@@ -1,7 +1,6 @@
 ---
 label: RESPONSE_BUFFERING
 standing: agent
-todo: true
 why:
 - judge-on-own-authority.md
 - ../../../../../docs/dev/decisions.kb/vis-app.md

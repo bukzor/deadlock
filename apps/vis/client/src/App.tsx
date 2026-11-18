@@ -93,6 +93,9 @@ export function App() {
       )}
       {lines.loading && <p>loading…</p>}
       {hits.length > 0 && <Chart hits={hits} horizon={Number(knobs.horizon ?? 10)} />}
+      {hits.length === 0 && measures.length > 0 && (
+        <p className="chart">No damage lands within the horizon: the notes say what the model leaves out.</p>
+      )}
       {measures.length > 0 && <Measures measures={measures} />}
       {notes.length > 0 && (
         <ul>
@@ -113,7 +116,7 @@ function Chart({ hits, horizon }: { hits: readonly HitLine[]; horizon: number })
     const width = el.clientWidth || 640;
     el.replaceChildren(hitChart(hits, Number.isFinite(horizon) ? { width, horizon } : { width }));
   }, [hits, horizon]);
-  return <div ref={ref} />;
+  return <div ref={ref} className="chart" />;
 }
 
 function Measures({ measures }: { measures: readonly MeasureLine[] }) {
@@ -178,7 +181,7 @@ function useLines<T>(load: (() => AsyncIterable<T>) | null, key: string): Loaded
         for await (const line of load()) lines.push(line);
         if (!stale) setState({ lines, error: null, loading: false });
       } catch (e) {
-        if (!stale) setState({ lines: [], error: String(e), loading: false });
+        if (!stale) setState({ lines: [], error: e instanceof Error ? e.message : String(e), loading: false });
       }
     })();
     return () => {

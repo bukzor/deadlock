@@ -1,0 +1,43 @@
+#!/bin/bash
+# usage: [PORT=8787] apps/vis/bin/serve [vis-server serve options, e.g. --host]
+# Install the client's dependencies and build it when its sources are newer
+# than client/dist, then serve the built client and /api from one process.
+set -euo pipefail
+shopt -s failglob
+export DEBUG="${DEBUG:-0}"
+
+onerror() {
+  error="$?"
+  echo >&2 "ERROR($error): serve failed"
+  exit "$error"
+}
+trap onerror ERR
+
+vis=$(dirname "$(dirname "$(readlink -f "$0")")")
+client="$vis/client"
+port="${PORT:-8787}"
+
+# Is client/dist missing, or older than anything it is built from?
+stale() {
+  [[ ! -f "$client/dist/index.html" ]] ||
+    [[ -n "$(find "$client/src" "$client"/{index.html,package.json,pnpm-lock.yaml,tsconfig.json,vite.config.ts} \
+      -newer "$client/dist/index.html" -print -quit)" ]]
+}
+
+if (( DEBUG > 0 )); then
+  set -x
+fi
+
+# The server is its own uv project; a caller's activated venv is not its venv.
+unset VIRTUAL_ENV
+
+if [[ ! -d "$client/node_modules" || "$client/pnpm-lock.yaml" -nt "$client/node_modules" ]]; then
+  pnpm --dir "$client" install --frozen-lockfile
+  touch "$client/node_modules"
+fi
+if stale; then
+  pnpm --dir "$client" run build
+fi
+
+echo >&2 "vis: serving http://localhost:$port/"
+exec uv run --project "$vis/server" vis-server serve --port "$port" "$@"

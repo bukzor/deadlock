@@ -1,7 +1,6 @@
 ---
 label: MELEE_LISTING
 standing: agent
-todo: true
 why:
 - original-request.md
 - judge-on-own-authority.md

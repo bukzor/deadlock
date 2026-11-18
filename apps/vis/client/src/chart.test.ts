@@ -5,8 +5,8 @@ import { describe, expect, it } from "vitest";
 import { hitMarks } from "./chart";
 import type { HitLine } from "./protocol";
 
-function hit(trigger: number, land: number, damage: number): HitLine {
-  return { kind: "hit", trigger, land, damage, label: "bullet", cycle: 0 };
+function hit(trigger: number, land: number, damage: number, label = "bullet"): HitLine {
+  return { kind: "hit", trigger, land, damage, label, cycle: 0 };
 }
 
 /** Render with 100 px per second and 2 px per damage, y up from 200. */
@@ -19,6 +19,10 @@ function render(hits: HitLine[]): Element {
     height: 200,
     margin: 0,
   });
+}
+
+function colors(svg: Element, selector: string, name: string): Set<string | null> {
+  return new Set([...svg.querySelectorAll(selector)].map((el) => el.getAttribute(name)));
 }
 
 function attrs(svg: Element, selector: string, names: string[]): number[][] {
@@ -42,5 +46,11 @@ describe("hitMarks", () => {
       [150, 150, 200, 100],
       [300, 300, 200, 0],
     ]);
+  });
+
+  it("draws every hit in one color, however many labels there are", () => {
+    const svg = render([hit(0, 1, 50, "shot 1"), hit(0, 2, 50, "shot 2"), hit(0, 3, 50, "DPS tick 1")]);
+    expect(colors(svg, `[aria-label="rect"] rect`, "fill")).toHaveLength(1);
+    expect(colors(svg, `[aria-label="rule"] line`, "stroke")).toHaveLength(1);
   });
 });

@@ -6,10 +6,17 @@ import * as Plot from "@observablehq/plot";
 
 import type { HitLine } from "./protocol";
 
+const COLOR = "steelblue";
+
 /**
  * Each hit as a bar from x1 = trigger to x2 = land, damage tall, plus a rule at
- * land so a hit with no wind-up (zero width) stays visible. Hits are colored by
- * `label`; hovering a rule shows the hit's fields.
+ * land so a hit with no wind-up (zero width) stays visible. Hovering a rule
+ * shows the hit's fields, `label` among them.
+ *
+ * Every hit has the same color: a label names one hit ("shot 12"), so coloring
+ * by it gives a gun a color per bullet. The bars are faint, so where they
+ * overlap they darken: damage-over-time ticks, which all trigger at the cast,
+ * read as a staircase whose steps are the ticks' lands.
  */
 export function hitMarks(hits: readonly HitLine[]): Plot.Markish[] {
   return [
@@ -18,16 +25,16 @@ export function hitMarks(hits: readonly HitLine[]): Plot.Markish[] {
       x2: "land",
       y1: 0,
       y2: "damage",
-      fill: "label",
-      fillOpacity: 0.4,
+      fill: COLOR,
+      fillOpacity: 0.12,
     }),
     Plot.ruleX(hits, {
       x: "land",
       y1: 0,
       y2: "damage",
-      stroke: "label",
+      stroke: COLOR,
       strokeWidth: 2,
-      channels: { trigger: "trigger", cycle: "cycle" },
+      channels: { label: "label", trigger: "trigger", cycle: "cycle" },
       tip: true,
     }),
   ];
@@ -42,10 +49,10 @@ export function hitChart(
     ...(options.width === undefined ? {} : { width: options.width }),
     x: {
       label: "time (s): bar spans trigger → land",
+      insetLeft: 4, // keeps a hit at t=0 off the frame's edge
       ...(options.horizon === undefined ? {} : { domain: [0, options.horizon] }),
     },
-    y: { label: "damage", grid: true },
-    color: { legend: true },
+    y: { label: "damage", grid: true, nice: true },
     marks: [...hitMarks(hits), Plot.ruleY([0])],
   });
 }

@@ -1,7 +1,6 @@
 ---
 label: SERVE_COMMAND
 standing: agent
-todo: true
 why:
 - acceptance-bar.md
 - judge-on-own-authority.md
