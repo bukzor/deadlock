@@ -39,10 +39,24 @@ export interface HitLine {
   cycle: number;
 }
 
+/** The cycle behind the timeline: always the first line. */
+export interface CycleLine {
+  kind: "cycle";
+  /** Seconds between repetitions; `null` for a one-shot. */
+  period: number | null;
+  /** Seconds of each period spent dealing no damage (reload, cooldown). */
+  downtime: number;
+  /** The horizon the server used, in seconds (its default when none was sent). */
+  horizon: number;
+}
+
 /** A derived number, with how to verify it in-game. */
 export interface MeasureLine {
   kind: "measure";
+  /** A stable identifier, for `jq`. */
   name: string;
+  /** The player-facing wording. Older servers omit it: fall back to `name`. */
+  label?: string;
   value: number;
   unit: string;
   check: string;
@@ -55,7 +69,7 @@ export interface NoteLine {
 }
 
 /** `GET /api/timeline?…`: lines are tagged by `kind`. */
-export type TimelineLine = HitLine | MeasureLine | NoteLine;
+export type TimelineLine = CycleLine | HitLine | MeasureLine | NoteLine;
 
 /** The single line of a 400 answer. */
 export interface ErrorLine {
@@ -66,7 +80,7 @@ export interface ErrorLine {
 export interface TimelineParams {
   hero: string;
   ability: string;
-  /** Seconds to unroll the cycle over. Default 10. */
+  /** Seconds to unroll the cycle over. Default 2 periods, or 10 s for a one-shot. */
   horizon?: number;
   /** Metres to the target, for bullet travel time. Default 0. */
   distance?: number;
