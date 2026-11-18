@@ -3,6 +3,7 @@ managed-by: Skill(llm-subtask)
 status: open
 ---
 
+- [ ] <https:todo.kb/2026-11-18-000-vis-app.md> — `apps/vis`: browser visualizer over `data/` (client + JSONL server); first view: damage over time per hero ability
 - [ ] <https:todo.kb/2026-11-05-000-per-dll-dump-tree.md> — per-DLL data store, first purpose the convar/concommand dump: `dlls.list` → `dlls/<facet>/<dll>.json` → `dlls/<facet>.tsv` (design: `docs/dev/cvar-dump.kb/output-views.md`)
 - [x] Deterministic, fail-loud DLL scan: decisions made 2026-11-11 on the agent's recommendation, open to review; each is a `[!TODO]` with its "what would change this" in its doc
   - [x] Allocator hook locates every DLL's queues but tier0's; then drop `learn_strides` and `data/dlls.check/strides` (`docs/dev/cvar-dump.kb/capture-approach.kb/allocator-hook.md`)
