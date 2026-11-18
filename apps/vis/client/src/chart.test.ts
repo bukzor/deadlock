@@ -147,6 +147,21 @@ describe("hitChart", () => {
     expect(dashed(hitChart(hits, { horizon: 3, hp: 120 }))).toBe(1);
   });
 
+  it("keeps the bars to the lower half, so the line reads as its own layer", () => {
+    const svg = hitChart(hits, { horizon: 3 }) as unknown as Element & { scale(n: "y"): Plot.Scale };
+    const y = svg.scale("y");
+    const [bottom, top] = y.range as [number, number];
+    expect(y.apply(100)).toBeCloseTo((bottom + top) / 2);
+  });
+
+  it("marks where the line reaches hp with a rule and its time", () => {
+    const texts = (svg: Element) => labels(svg).filter((t) => t === "1 s");
+    const rules = (svg: Element) => svg.querySelectorAll(`[aria-label="rule"] line`).length;
+    expect(texts(hitChart(hits, { horizon: 3, hp: 40 }))).toEqual([]);
+    expect(texts(hitChart(hits, { horizon: 3, hp: 40, killTime: 1 }))).toEqual(["1 s"]);
+    expect(rules(hitChart(hits, { horizon: 3, hp: 40, killTime: 1 }))).toBe(rules(hitChart(hits, { horizon: 3, hp: 40 })) + 1);
+  });
+
   it("follows the pointer with a tip", () => {
     expect(hitChart(hits, { horizon: 3 }).querySelector(`[aria-label="tip"]`)).not.toBeNull();
   });

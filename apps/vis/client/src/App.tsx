@@ -55,6 +55,8 @@ export function App() {
   }, [cycle, lines.key]);
   const horizon = horizonInputs(sel, current);
   const hp = Number(params?.hp);
+  // By name: the server orders and adds measures as it likes.
+  const killTime = measures.find((m) => m.name === "time_to_kill")?.value;
 
   return (
     <main>
@@ -94,7 +96,7 @@ export function App() {
               />
             </label>
             <label>
-              × period
+              cycles shown
               <input
                 inputMode="decimal"
                 placeholder={horizon.periods.placeholder}
@@ -131,7 +133,13 @@ export function App() {
       )}
       {lines.loading && <p>loading…</p>}
       {hits.length > 0 && kind != null && (
-        <Chart hits={hits} kind={kind} horizon={cycle?.horizon ?? 10} {...(Number.isFinite(hp) ? { hp } : {})} />
+        <Chart
+          hits={hits}
+          kind={kind}
+          horizon={cycle?.horizon ?? 10}
+          {...(Number.isFinite(hp) ? { hp } : {})}
+          {...(killTime === undefined ? {} : { killTime })}
+        />
       )}
       {hits.length === 0 && measures.length > 0 && (
         <p className="chart">No damage lands within the horizon: the notes say what the model leaves out.</p>
@@ -154,32 +162,42 @@ function baseOf(key: string): string {
   return JSON.stringify(rest);
 }
 
-function Chart(props: { hits: readonly HitLine[]; kind: AbilityKind; horizon: number; hp?: number }) {
+function Chart(props: { hits: readonly HitLine[]; kind: AbilityKind; horizon: number; hp?: number; killTime?: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { hits, kind, horizon, hp } = props;
+  const { hits, kind, horizon, hp, killTime } = props;
   // Redrawn from `hits` at the container's own width whenever that changes, and
   // when the color scheme flips: a scaled SVG shrinks its text with it.
+  //
+  // A redraw changes the container's height. Drawn inside the observer's
+  // callback, that is a new notification mid-delivery ("ResizeObserver loop
+  // completed with undelivered notifications"), so the observer only schedules
+  // a draw for the next frame, and only when the whole-pixel width changed.
   useEffect(() => {
     const el = ref.current;
     if (el === null) return;
     const scheme = matchMedia("(prefers-color-scheme: dark)");
     const draw = () => {
       const width = el.clientWidth || 640;
-      el.replaceChildren(hitChart(hits, { width, kind, horizon, dark: scheme.matches, ...(hp === undefined ? {} : { hp }) }));
+      const extra = { ...(hp === undefined ? {} : { hp }), ...(killTime === undefined ? {} : { killTime }) };
+      el.replaceChildren(hitChart(hits, { width, kind, horizon, dark: scheme.matches, ...extra }));
     };
     let last = -1;
-    const observer = new ResizeObserver(() => {
-      if (el.clientWidth === last) return;
-      last = el.clientWidth;
-      draw();
+    let frame = 0;
+    const observer = new ResizeObserver(([entry]) => {
+      const width = Math.round(entry!.contentRect.width);
+      if (width === last) return;
+      last = width;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(draw);
     });
     observer.observe(el);
     scheme.addEventListener("change", draw);
     return () => {
+      cancelAnimationFrame(frame);
       observer.disconnect();
       scheme.removeEventListener("change", draw);
     };
-  }, [hits, kind, horizon, hp]);
+  }, [hits, kind, horizon, hp, killTime]);
   return <div ref={ref} className="chart" />;
 }
 

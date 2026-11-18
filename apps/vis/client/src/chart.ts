@@ -98,28 +98,31 @@ export function xDomain(hits: readonly HitLine[], horizon: number): [number, num
 }
 
 /**
- * The whole chart, ready to mount. Both axes share the plot's one y scale: the
- * cumulative series is scaled into the bars' range, and the right axis labels
- * it back in damage dealt.
+ * The whole chart, ready to mount. Both axes share the plot's one y scale. The
+ * bars keep to its lower half and the cumulative line spans all of it, so the
+ * two read as separate layers; the right axis labels the line back in damage
+ * dealt, and the gridlines follow that axis only. `killTime`, the server's
+ * `time_to_kill`, marks where the line reaches `hp`.
  */
 export function hitChart(
   hits: readonly HitLine[],
-  options: { width?: number; horizon?: number; hp?: number; kind?: AbilityKind; dark?: boolean } = {},
+  options: { width?: number; horizon?: number; hp?: number; killTime?: number; kind?: AbilityKind; dark?: boolean } = {},
 ): ReturnType<typeof Plot.plot> {
-  const { hp } = options;
+  const { hp, killTime } = options;
   const text = TEXT[options.dark === true ? "dark" : "light"];
   const [, end] = xDomain(hits, options.horizon ?? 0);
   const steps = cumulative(hits, end);
   const barTicks = niceTicks(Math.max(0, ...hits.map((h) => h.damage)));
   const lineTicks = niceTicks(Math.max(steps[steps.length - 1]!.total, 1.1 * (hp ?? 0))); // headroom for the hp label
-  const k = barTicks[barTicks.length - 1]! / lineTicks[lineTicks.length - 1]!;
+  const top = 2 * barTicks[barTicks.length - 1]!; // the bars' tallest tick sits at mid-height
+  const k = top / lineTicks[lineTicks.length - 1]!;
   return Plot.plot({
     ...(options.width === undefined ? {} : { width: options.width }),
     ...(options.kind === undefined ? {} : { caption: widthCaption(options.kind) }),
     style: { fontSize: `${FONT_PX}px` },
     marginRight: 64,
     x: { label: "time (s)", domain: [0, end], insetLeft: 4 }, // the inset keeps a hit at t=0 off the frame
-    y: { domain: [0, barTicks[barTicks.length - 1]!] },
+    y: { domain: [0, top] },
     marks: [
       Plot.gridY(lineTicks.map((v) => v * k)),
       Plot.axisY(barTicks, { anchor: "left", label: "↑ damage per hit", color: text.bar }),
@@ -133,20 +136,45 @@ export function hitChart(
         ? []
         : [
             Plot.ruleY([hp * k], { stroke: LINE, strokeDasharray: "4 3" }),
+            // Away from the kill mark, where the line is not: left and above hp
+            // (the line is still below it), or right and below once it is past.
             Plot.text([hp * k], {
               y: (v: number) => v,
-              frameAnchor: "right",
-              textAnchor: "end",
-              dx: -4,
-              dy: -7,
+              ...(killTime !== undefined && killTime < end / 2
+                ? { frameAnchor: "right", textAnchor: "end", dx: -4, dy: 9 }
+                : { frameAnchor: "left", textAnchor: "start", dx: 4, dy: -7 }),
               text: () => `target hp ${num(hp)}`,
               fill: text.line,
             }),
           ]),
+      ...(hp === undefined || killTime === undefined ? [] : killMarks(killTime, hp * k, end, text.line)),
       Plot.ruleY([0]),
       Plot.tip(hits, Plot.pointerX({ x1: "trigger", x2: "land", y: "damage", title: hitTitle })),
     ],
   });
+}
+
+/**
+ * A rule up from the axis to where the line reaches hp (at `y`), labelled with
+ * its time. The label sits where the line is not: left of the rule and above hp
+ * in the right half, else right of the rule and below hp.
+ */
+function killMarks(t: number, y: number, end: number, color: string): Plot.Markish[] {
+  const right = t < end / 2;
+  return [
+    Plot.ruleX([t], { y1: 0, y2: y, stroke: color, strokeWidth: 1.5 }),
+    Plot.dot([t], { x: (v: number) => v, y, r: 3, fill: color }),
+    Plot.text([t], {
+      x: (v: number) => v,
+      y,
+      textAnchor: right ? "start" : "end",
+      dx: right ? 6 : -6,
+      dy: right ? 9 : -7,
+      text: (v: number) => `${num(v)} s`,
+      fill: color,
+      fontWeight: "bold",
+    }),
+  ];
 }
 
 /** A number for display: at most 3 decimals, no trailing zeros. */
