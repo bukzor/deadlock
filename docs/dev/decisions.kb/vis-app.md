@@ -49,12 +49,15 @@ Queries:
 |---|---|---|
 | `heroes` | | `{"hero": key, "name": display}` |
 | `abilities` | `hero` | `{"ability": key, "name", "kind": "gun"\|"melee"\|"cast"\|null}` |
-| `timeline` | `hero`, `ability`, `horizon` (default: 2 periods of the cycle, at least 10 s), `distance`=0 (m), `spirit`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
+| `timeline` | `hero`, `ability`, `horizon` (s; default 2 periods of the cycle, or 10 s for a one-shot), `distance`=0 (m), `spirit`=0, `windup`=0 (s), `hp` (optional) | lines tagged `kind`, below |
 
 `timeline` lines:
 
 - `{"kind": "hit", "trigger", "land", "damage", "label", "cycle"}`: one damage
   instance (`timeline.Hit`). `kind` is `hit` and nothing else.
+- `{"kind": "cycle", "period", "downtime", "horizon"}`: one line, first. It
+  carries the cycle's period (`null` for a one-shot) and the horizon actually
+  used, so the client can show the horizon both in seconds and in periods.
 - `{"kind": "measure", "name", "label", "value", "unit", "check"}`: `name` is a
   stable identifier for `jq`, and `label` is the player-facing wording. `check` says how to
   verify the value in-game.
@@ -124,7 +127,9 @@ kind. Every timeline also gets a note that stats are level 0 with no items.
 ## Client view
 
 The view has a hero picker, then an ability picker, then only the parameters
-that apply to the ability's `kind`. The selection lives in the URL, so a page
+that apply to the ability's `kind`. The horizon has two inputs that update
+each other: seconds, and a multiple of the period (default 2, so two full
+cycles show). The period comes from the `cycle` line. The selection lives in the URL, so a page
 can be reloaded or shared.
 
 The chart is titled "Damage timeline", because in Deadlock "damage over time"
