@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - ./2026-11-18-013-legible-dot-and-downtime.md   # shares server/src/vis_server/
 required-reading:
@@ -56,8 +56,42 @@ didn't start. If the port is taken, say so; don't take it.
 
 ## Steps
 
+- [x] `vis-server serve --reload` (uvicorn import-string factory, watching `vis_server/` and `deadlock/`), tested
+- [x] `vite.config.ts` proxy target from `$VIS_API` (default unchanged)
+- [x] `bin/serve` rewritten as the live loop (48 lines)
+- [x] README "Run it"/"Develop it"; `serve-command.md` superseded by `serve-live-reload.md` (`SERVE_LIVE`)
+- [x] Proof in headless Windows Chrome over CDP; both edits reverted
+
 ## Decisions
+
+- **Ports:** Vite (the URL) on `PORT`, default 5173; the API on `API_PORT`, default 8788. Not 8787, so it
+  never collides with the user's old `serve`. A taken port aborts with a message; nothing is killed.
+  `--strictPort` stops Vite silently moving.
+- **Built-`dist` path dropped** from `bin/serve`, no flag: one command, one loop. `pnpm run build` plus
+  `vis-server serve` still serves `dist` (documented in the README). Recorded as `SERVE_LIVE`; the old
+  claim is marked superseded.
+- **No global pnpm needed:** `bin/serve` runs `client/node_modules/.bin/vite` directly; `pnpm` is called
+  only when `node_modules` is missing or older than the lockfile.
+- **Cleanup:** `set -m` gives each child its own process group; an EXIT trap kills both groups.
+- **Port probe** is `timeout 1 bash -c '</dev/tcp/...'` because in this sandbox a connect to a closed
+  port hangs instead of refusing.
 
 ## Open Questions
 
+- The 8788/5173 defaults are my pick; the README had 8787 as the one port.
+- `bin/serve` no longer builds `dist`, so nothing exercises `tsc --noEmit` on launch; `pnpm run check` does.
+
 ## Final report
+
+Checks: server `pytest` and basedpyright clean; the `--reload` test fails with `reload=False` (mutation
+observed). Port 8787 taken: `PORT=8787 bin/serve` printed `vis: port 8787 is taken ...`, exit 1.
+Proof (`trash/014/prove.mjs`, page kept open, `window.__marker` set):
+```
+before client edit: h1 = Damage over time
+after client edit:  h1 = Damage over time (LIVE-EDIT) | window.__marker = no-reload
+before server edit: /api/heroes line 1 = {"hero":"hero_artist","name":"Violet"}
+after server edit:  /api/heroes line 1 = {"hero":"hero_artist","name":"Violet","proof":14}
+```
+`powershell.exe -c "curl.exe -s http://localhost:5173/api"` returned the API listing; `/` returned Vite's
+HTML. SIGINT and SIGTERM each left no `vite`/`uvicorn`/`serve` process; the user's 8787 server was untouched.
+Edits to `App.tsx` and `queries.py` were reverted (empty `git diff`). No pnpm used at all.

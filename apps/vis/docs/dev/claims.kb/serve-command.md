@@ -7,6 +7,10 @@ why:
 - ../../../../../docs/dev/decisions.kb/vis-app.md
 ---
 
+Superseded by `SERVE_LIVE` ([`serve-live-reload.md`](serve-live-reload.md)):
+`bin/serve` no longer builds and serves `client/dist`; it runs the live
+loop, which is the Vite-plus-API pair this claim declined.
+
 # One command serves the built client and the API on localhost
 
 `ACCEPTANCE` is met by one documented command that serves the built

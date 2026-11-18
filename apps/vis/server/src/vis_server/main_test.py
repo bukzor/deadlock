@@ -1,4 +1,5 @@
 import json
+from typing import cast
 from pathlib import Path
 
 import pytest
@@ -77,3 +78,18 @@ class DescribeServe:
         served = calls[0][0]
         assert isinstance(served, Starlette), served
         assert TestClient(served).get("/api").text.startswith('{"params":{"x":')
+
+    def it_reloads_on_the_sources_when_asked(self, monkeypatch: pytest.MonkeyPatch):
+        calls: list[tuple[object, dict[str, object]]] = []
+
+        def run(asgi: object, **kwargs: object) -> None:
+            calls.append((asgi, kwargs))
+
+        monkeypatch.setattr("uvicorn.run", run)
+        assert main(["serve", "--reload", "--port", "9000"], FAKE) == 0
+        asgi, kwargs = calls[0]
+        assert asgi == "vis_server.http:app"
+        assert (kwargs["factory"], kwargs["reload"], kwargs["port"]) == (True, True, 9000)
+        watched = kwargs["reload_dirs"]
+        assert isinstance(watched, list)
+        assert [Path(str(d)).name for d in cast("list[object]", watched)] == ["vis_server", "deadlock"]

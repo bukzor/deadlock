@@ -7,18 +7,24 @@ answers. A bad request prints its ``{"error"}`` line to stderr and exits 2.
 import argparse
 import sys
 from collections.abc import Mapping, Sequence
+from pathlib import Path
 
+import deadlock
 import uvicorn
 
 from .http import answer, app, jsonl
 from .queries import QUERIES
 from .types import Query
 
+# What ``serve --reload`` watches: this package and the ``deadlock`` one it reads.
+RELOAD_DIRS = (Path(__file__).parent, Path(deadlock.__file__).parent)
+
 
 class Args(argparse.Namespace):
     command: str = ""
     host: str = ""
     port: int = 0
+    reload: bool = False
     name: str = ""
     params: list[tuple[str, str]] = []
 
@@ -28,7 +34,18 @@ def main(argv: Sequence[str] | None = None, queries: Mapping[str, Query] = QUERI
     args = _parser().parse_args(argv, namespace=Args())
     match args.command:
         case "serve":
-            uvicorn.run(app(queries), host=args.host, port=args.port)
+            if args.reload:
+                # uvicorn restarts the worker on a source change, so it needs an import string.
+                uvicorn.run(
+                    "vis_server.http:app",
+                    factory=True,
+                    host=args.host,
+                    port=args.port,
+                    reload=True,
+                    reload_dirs=[str(d) for d in RELOAD_DIRS],
+                )
+            else:
+                uvicorn.run(app(queries), host=args.host, port=args.port)
             return 0
         case "query":
             status, lines = answer(queries, args.name, args.params)
@@ -48,6 +65,7 @@ def _parser() -> argparse.ArgumentParser:
     serve = commands.add_parser("serve", help="serve the API (and client/dist, if built) over HTTP")
     _ = serve.add_argument("--host", default="127.0.0.1")
     _ = serve.add_argument("--port", type=int, default=8787)
+    _ = serve.add_argument("--reload", action="store_true", help="restart on a change to the server or deadlock sources")
     query = commands.add_parser("query", help="print one query's JSONL lines (see GET /api for the queries)")
     _ = query.add_argument("name")
     _ = query.add_argument("params", nargs="*", type=_pair, metavar="k=v")

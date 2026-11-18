@@ -16,23 +16,31 @@ the calls made on the way are in [`docs/dev/claims.md`](docs/dev/claims.md).
 ## Run it
 
 ```bash
-apps/vis/bin/serve            # PORT=8788 apps/vis/bin/serve for another port
+apps/vis/bin/serve            # PORT=5174 API_PORT=8789 apps/vis/bin/serve for other ports
 ```
 
-It installs the client's packages and builds it when the sources are newer
-than the build, then serves the client and `/api` on one port, and prints the
-URL: <http://localhost:8787/>. From WSL2, that URL opens in a Windows browser
-too. The server reads `data/`, built by `redo` at the repo root; set
-`DEADLOCK_DATA_DIR` to read another checkout's.
+One command, the live loop: it installs the client's packages when the
+lockfile is newer, then runs Vite (hot reload) and `vis-server serve
+--reload` (restarts on a change to the server or `deadlock` sources), and
+prints the one URL to open: <http://localhost:5173/>, which proxies `/api` to
+the server on :8788. From WSL2, that URL opens in a Windows browser too.
+Ctrl-C stops both. It refuses a port that is already taken. The server reads
+`data/`, built by `redo` at the repo root; set `DEADLOCK_DATA_DIR` to read
+another checkout's.
 
 ## Develop it
 
-Two terminals, so client edits reload in place:
+`bin/serve` is the development loop. To serve the built client from the one
+Python process instead (no reload):
 
 ```bash
-(cd apps/vis/server && uv run vis-server serve)   # the API, on :8787
-(cd apps/vis/client && pnpm exec vite)            # the client, proxying /api to :8787
+(cd apps/vis/client && pnpm run build)
+(cd apps/vis/server && uv run vis-server serve)   # client and /api on :8787
 ```
+
+To run the halves yourself: `uv run vis-server serve [--reload]` for the API,
+and `pnpm exec vite` for the client, which proxies `/api` to `$VIS_API`
+(default `http://localhost:8787`).
 
 Checks:
 
