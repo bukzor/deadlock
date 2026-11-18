@@ -38,6 +38,9 @@
 !/data/cvarlist/
 /data/cvarlist/*
 !/data/cvarlist/*.do
+!/data/replays/
+/data/replays/*
+!/data/replays/*.do
 
 # redo's markers for the phony aggregator targets (all.do, clean.do)
 /all
