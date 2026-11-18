@@ -16,7 +16,7 @@ vis-server = "vis_server.__main__:main"
 [dependency-groups]
 dev = [
     "basedpyright>=1.40.2",
-    "httpx>=0.28.1",
+    "httpx2>=2.16.2",
     "pytest>=9.2.0",
 ]
 
