@@ -22,8 +22,10 @@ as DPS numbers a player can check in-game.
   whose root is `apps/vis/client/`. Charts use Observable Plot, tests use vitest.
   The user allowed Vue/Nuxt; React was kept because nothing here needs SSR or
   routing, and Plot is framework-agnostic.
-- The dev server proxies `/api` to the Python server (port 8787). For a single
-  process, the server can also serve `client/dist`.
+- `apps/vis/bin/serve` is the live loop: Vite with hot reload on 5173 proxies
+  `/api` to `vis-server serve --reload` on 8788, so an edit on either side shows
+  without a restart. For a single process, the server can also serve a built
+  `client/dist`.
 
 ## Protocol: JSONL that `jq` reads
 
