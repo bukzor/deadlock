@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - ./2026-11-18-026-names-and-hp-zoom.md   # it may close Later items; list only what remains
 required-reading:
@@ -44,3 +44,21 @@ removed. Then replace the plan's "Later" list with one line pointing at
 `.claude/ideas.kb/`.
 
 **Scope:** `.claude/ideas.kb/*`, and the plan's "Later" section only.
+
+## Steps
+
+- [x] Drop closed items; create one `ideas.kb/` entry per open improvement
+- [x] Replace the plan's "Later" list with a pointer
+
+## Decisions
+
+- Closed, so dropped (checked in code): `uptime_dps` on a single-hit cast
+  (`measures.py` omits it), the cumulative-damage line (`chart.ts`), ability
+  display names (026). 020's findings 2-8 were closed by 021-025.
+- 020's gun-distance question is folded into the default-window entry.
+- Upgrade-note casing (026) and round 1's "raw upgrade notes" are one entry.
+
+## Final report
+
+15 entries, `.claude/ideas.kb/2026-11-18-0{00..14}-vis--*.md`; the plan's
+"Later" is now one line. Each entry cites its source file by path and commit.
