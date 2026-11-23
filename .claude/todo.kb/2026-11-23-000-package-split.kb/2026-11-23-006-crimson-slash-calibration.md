@@ -31,9 +31,10 @@ What changes and what doesn't:
   differs from the data's `hero_targetdummy` (2990): the sandbox
   configures its dummies.
 - **Item names are checked against the lookup.** Each item list names
-  real items. Assert the equal-cost swaps the comments now only claim: the
-  Tankbuster scenarios replace Rapid Recharge, and the Reverb scenarios
-  replace Refresher or Focus Lens (unconfirmed which). Keep the record
+  real items. Spirit investment is held constant across a dummy's
+  scenarios (the module docstring), so assert that every scenario's spirit
+  items cost the same total as the baseline's. Take the item lists as the
+  file states them; the owner corrects them by hand. Keep the record
   readable for hand editing: the owner adds scenarios by hand.
 - **The comment on regen is unsourced.** "Repeated measurements disagreed;
   these are the values that each recurred" appears nowhere in the owner's

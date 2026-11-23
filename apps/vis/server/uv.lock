@@ -67,6 +67,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "basedpyright-as-pyright", git = "https://github.com/bukzor/basedpyright-as-pyright" },
+    { name = "black", specifier = ">=26.10.1" },
     { name = "bukzor-redotools", editable = "../../../packages/bukzor-redotools" },
     { name = "capstone", specifier = ">=5.0.9" },
     { name = "pyright", specifier = ">=1.1.380" },
