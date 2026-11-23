@@ -8,9 +8,9 @@ resolution-markers = [
 
 [manifest]
 members = [
+    "bukzor-deadlock",
+    "bukzor-deadlock-evaluator",
     "bukzor-redotools",
-    "deadlock",
-    "deadlock-evaluator",
 ]
 
 [[package]]
@@ -112,6 +112,56 @@ wheels = [
 ]
 
 [[package]]
+name = "bukzor-deadlock"
+version = "0.0.0"
+source = { editable = "." }
+dependencies = [
+    { name = "keyvalues3" },
+    { name = "python-typed-json" },
+    { name = "vdf" },
+    { name = "vpk" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "basedpyright-as-pyright" },
+    { name = "black" },
+    { name = "bukzor-redotools" },
+    { name = "capstone" },
+    { name = "pyright" },
+    { name = "pytest" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "keyvalues3", specifier = ">=0.3" },
+    { name = "python-typed-json", specifier = ">=0.1.0" },
+    { name = "vdf", specifier = ">=3.4" },
+    { name = "vpk", specifier = ">=1.4.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "basedpyright-as-pyright", git = "https://github.com/bukzor/basedpyright-as-pyright" },
+    { name = "black", specifier = ">=26.10.1" },
+    { name = "bukzor-redotools", editable = "packages/bukzor-redotools" },
+    { name = "capstone", specifier = ">=5.0.9" },
+    { name = "pyright", specifier = ">=1.1.380" },
+    { name = "pytest", specifier = ">=8" },
+]
+
+[[package]]
+name = "bukzor-deadlock-evaluator"
+version = "0.0.0"
+source = { editable = "packages/bukzor-deadlock-evaluator" }
+dependencies = [
+    { name = "boon-deadlock" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "boon-deadlock", specifier = "==0.19.0" }]
+
+[[package]]
 name = "bukzor-redotools"
 version = "0.1.0"
 source = { editable = "packages/bukzor-redotools" }
@@ -151,56 +201,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6", size = 25335, upload-time = "2022-10-25T02:36:20.889Z" },
 ]
-
-[[package]]
-name = "deadlock"
-version = "0.0.0"
-source = { editable = "." }
-dependencies = [
-    { name = "keyvalues3" },
-    { name = "python-typed-json" },
-    { name = "vdf" },
-    { name = "vpk" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "basedpyright-as-pyright" },
-    { name = "black" },
-    { name = "bukzor-redotools" },
-    { name = "capstone" },
-    { name = "pyright" },
-    { name = "pytest" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "keyvalues3", specifier = ">=0.3" },
-    { name = "python-typed-json", specifier = ">=0.1.0" },
-    { name = "vdf", specifier = ">=3.4" },
-    { name = "vpk", specifier = ">=1.4.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "basedpyright-as-pyright", git = "https://github.com/bukzor/basedpyright-as-pyright" },
-    { name = "black", specifier = ">=26.10.1" },
-    { name = "bukzor-redotools", editable = "packages/bukzor-redotools" },
-    { name = "capstone", specifier = ">=5.0.9" },
-    { name = "pyright", specifier = ">=1.1.380" },
-    { name = "pytest", specifier = ">=8" },
-]
-
-[[package]]
-name = "deadlock-evaluator"
-version = "0.0.0"
-source = { editable = "packages/deadlock-evaluator" }
-dependencies = [
-    { name = "boon-deadlock" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "boon-deadlock", specifier = "==0.19.0" }]
 
 [[package]]
 name = "iniconfig"

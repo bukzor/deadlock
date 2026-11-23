@@ -1,6 +1,6 @@
 """What a hero's level adds to its stats, with no items: one boon per standard level-up.
 
-A level is numbered as ``deadlock.levels`` numbers it: game level − 1, so 0 is
+A level is numbered as ``bukzor_deadlock.levels`` numbers it: game level − 1, so 0 is
 the match start. Each game level after the first that sets
 ``m_bUseStandardUpgrade`` grants one boon, which adds the hero's
 ``m_mapStandardLevelUpUpgrades``. Heavy melee grows in proportion to light. The
@@ -10,8 +10,8 @@ formulas and their evidence: ``docs/dev/mechanics.kb/boons-per-level.md``.
 from collections.abc import Mapping
 from dataclasses import dataclass
 
-from deadlock.levels import curves
-from deadlock.types import dig, is_str_mapping
+from bukzor_deadlock.levels import curves
+from bukzor_deadlock.types import dig, is_str_mapping
 
 _PER_BOON = "m_mapStandardLevelUpUpgrades"
 

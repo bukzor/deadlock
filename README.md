@@ -18,7 +18,7 @@ decompilation. See `docs/dev/decisions.kb/` for why.
 `data/gamedata.tsv/` holds the committed output — one row per entity, stable
 sort, so a balance change is a one-line diff. Columns with the same value in
 every row are kept out of `X.tsv` and listed once in `X.defaults.tsv` (absent
-when there are none); `python -m deadlock.sparse dense X.tsv X.defaults.tsv`
+when there are none); `python -m bukzor_deadlock.sparse dense X.tsv X.defaults.tsv`
 rejoins them, and the local `data/gamedata.dense.tsv/` has the full views:
 
 | view | what it shows |
@@ -86,18 +86,18 @@ The DLL views load the game's DLLs into Windows Python, so `redo` needs
 Each TSV view is a module reading game-data JSON on stdin; the other entry points:
 
 ```sh
-python -m deadlock.manifest [vpk]                 # VPK manifest as JSONL
-python -m deadlock.gamedata < file.vdata         # KV3 -> JSON
-python -m deadlock.version < .../citadel/steam.inf  # build stamp as JSON
-python -m deadlock.extract [--gltf] <dir> [ext…]  # extract+decompile assets
+python -m bukzor_deadlock.manifest [vpk]                 # VPK manifest as JSONL
+python -m bukzor_deadlock.gamedata < file.vdata         # KV3 -> JSON
+python -m bukzor_deadlock.version < .../citadel/steam.inf  # build stamp as JSON
+python -m bukzor_deadlock.extract [--gltf] <dir> [ext…]  # extract+decompile assets
 ```
 
 Assets are bulk/binary and **extracted on demand** into gitignored `data/`:
 
 ```sh
-python -m deadlock.extract --gltf data/assets vmdl_c   # models -> .glb
-python -m deadlock.extract data/assets vtex_c          # textures -> .png
-python -m deadlock.extract data/assets vsnd_c          # audio -> .wav/.mp3
+python -m bukzor_deadlock.extract --gltf data/assets vmdl_c   # models -> .glb
+python -m bukzor_deadlock.extract data/assets vtex_c          # textures -> .png
+python -m bukzor_deadlock.extract data/assets vsnd_c          # audio -> .wav/.mp3
 ```
 
 ## About the game data
@@ -119,7 +119,7 @@ quick to comply.
 
 ## Layout
 
-- `src/deadlock/` — modules (≤300 lines each) with `{module}_test.py` alongside
+- `src/bukzor_deadlock/` — modules (≤300 lines each) with `{module}_test.py` alongside
 - `docs/dev/*.kb/` — decisions, format reference, environment facts
 - `data/` — generated output (only the TSV views and build stamp are tracked)
 

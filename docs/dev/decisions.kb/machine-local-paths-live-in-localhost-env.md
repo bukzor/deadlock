@@ -5,7 +5,7 @@ date: "2026-08-24"
 
 # Machine-local paths live in `localhost.env`, not in the code
 
-`deadlock.paths` exposes exactly one install knob, `DEADLOCK_HOME` — the install
+`bukzor_deadlock.paths` exposes exactly one install knob, `DEADLOCK_HOME` — the install
 root, i.e. what Steam's "Browse local files" opens. Everything else
 (`game/`, `citadel/`, `pak01_dir.vpk`, `steam.inf`) is derived from it. Its
 committed default is the stock native-Linux Steam library,

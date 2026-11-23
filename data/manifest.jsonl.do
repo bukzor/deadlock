@@ -10,14 +10,14 @@ root=$(cd .. && pwd)
 py="$root/.venv/bin/python"
 
 redo-ifchange \
-  "$root/src/deadlock/manifest.py" \
-  "$root/src/deadlock/archive.py" \
-  "$root/src/deadlock/jsonl.py" \
-  "$root/src/deadlock/paths.py" \
+  "$root/src/bukzor_deadlock/manifest.py" \
+  "$root/src/bukzor_deadlock/archive.py" \
+  "$root/src/bukzor_deadlock/jsonl.py" \
+  "$root/src/bukzor_deadlock/paths.py" \
   "$root/data/deadlock-version.json"
 
-vpk=$("$py" -m deadlock.paths vpk_dir_file)
+vpk=$("$py" -m bukzor_deadlock.paths vpk_dir_file)
 redo-ifchange "$vpk"
 
 # already path-sorted by manifest_records; no external sort needed
-"$py" -m deadlock.manifest "$vpk"
+"$py" -m bukzor_deadlock.manifest "$vpk"

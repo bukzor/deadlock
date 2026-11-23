@@ -19,7 +19,7 @@ survives `taskkill /F` and `Stop-Process -Force`.
 The `load` facet (`output-views.md`) records every DLL's outcome: `ok`, with
 the modules the load added whose files are in the install (under `game/`); `failed`, with the error (`vfx_dx11` and `phonon4`
 on 6860, `LoadLibraryExW: 126`, a dependency not found); or `excluded`, with
-its reason. Excluded DLLs (`deadlock.dll_load.EXCLUDED`, WSL-side) are never
+its reason. Excluded DLLs (`bukzor_deadlock.dll_load.EXCLUDED`, WSL-side) are never
 loaded, since a hung load leaves an unkillable process behind. A timeout fails
 the build, and the fix is a new exclusion. A DLL that loads and yields no
 queue is accepted: on 6860, 8 of the 43 `ok` DLLs whose load includes tier0
@@ -30,7 +30,7 @@ queue block while loading (`capture-approach.kb/allocator-hook.md`).
 
 Loading a DLL also loads its imports, so a DLL importing an excluded one
 would hang too. None does: on 6860, the static plus delay-import closure of
-every other DLL reaches no excluded one (`deadlock.dll_load.EXCLUDED`).
+every other DLL reaches no excluded one (`bukzor_deadlock.dll_load.EXCLUDED`).
 
 The rest of a load's closure is the host's (the OS's system DLLs, or the
 interpreter's) and varies with the Windows build, so the `load` facet leaves

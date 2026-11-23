@@ -1,11 +1,11 @@
 """A hero's gun as a ``Cycle``: one clip fired as fast as the gun fires, then its reload.
 
-A hero's gun is the ability ``deadlock.abilities.bindings`` binds to its
+A hero's gun is the ability ``bukzor_deadlock.abilities.bindings`` binds to its
 ``Weapon_Primary`` slot, read from that ability's ``primary`` weapon profile.
 That ability key is the one the gun answers to. ``Weapon_Secondary`` weapons
 are not guns here.
 
-The base stats are ``deadlock.ability_profiles.profiles``' row for that
+The base stats are ``bukzor_deadlock.ability_profiles.profiles``' row for that
 binding. Shots per clip and the reload from empty re-read the same fields that
 ``ability_profiles`` reads for its ``sdps``. The formulas are in
 ``docs/dev/mechanics.kb/gun-*.md``.
@@ -20,8 +20,8 @@ is 525 m/s, 669.291 is 17 m).
 
 from collections.abc import Mapping
 
-from deadlock.ability_profiles import Profile, profiles
-from deadlock.types import dig, is_sequence, is_str_mapping
+from bukzor_deadlock.ability_profiles import Profile, profiles
+from bukzor_deadlock.types import dig, is_sequence, is_str_mapping
 
 from .boons import NONE, Boons, spirit_note
 from .timeline import Cycle, Gun, gun_cycle
@@ -42,7 +42,7 @@ def cycle(
     """``hero``'s gun as a cycle, with notes on what the model leaves out; ``None`` unless ``ability`` is that gun.
 
     ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
-    trees (see ``deadlock.gamedata``); ``distance`` is to the target, in meters.
+    trees (see ``bukzor_deadlock.gamedata``); ``distance`` is to the target, in meters.
     ``boons`` is what the hero's level adds.
     """
     rows = [p for p in profiles(heroes, abilities) if (p.hero, p.slot, p.ability, p.profile) == (hero, SLOT, ability, PROFILE)]

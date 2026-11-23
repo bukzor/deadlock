@@ -1,7 +1,7 @@
 # Game install paths
 
 Everything hangs off one knob: `DEADLOCK_HOME`, the install root (what Steam's
-"Browse local files" opens). `deadlock.paths` derives the rest from it and
+"Browse local files" opens). `bukzor_deadlock.paths` derives the rest from it and
 defaults to the stock native-Linux library,
 `~/.local/share/Steam/steamapps/common/Deadlock`.
 
@@ -16,7 +16,7 @@ Do not move that path back into the code — see
 
 Layout below `$DEADLOCK_HOME`:
 
-- **`game/`** — `deadlock.paths.game_dir()`
+- **`game/`** — `bukzor_deadlock.paths.game_dir()`
   - `citadel/` — primary content mod; holds `pak01_dir.vpk` + `pak01_NNN.vpk`,
     `gameinfo.gi`, `steam.inf`, maps, etc. **This is the main target.**
   - `core/` — shared engine content (also paked).
@@ -62,4 +62,4 @@ Read in place; never write under the install. Sizes are on-disk MiB.
     only where upload is enabled.
 - A current-patch public match lives in the repo at `data/replays/<id>.dem`
   (`redo data/replays/<match_id>.dem` fetches one; see
-  `packages/deadlock-evaluator/docs/dev/claims.kb/tooling.kb/public-match-demos-source.md`).
+  `packages/bukzor-deadlock-evaluator/docs/dev/claims.kb/tooling.kb/public-match-demos-source.md`).

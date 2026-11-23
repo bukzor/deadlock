@@ -10,7 +10,7 @@ one value in every row moves to an optional sidecar, `X.defaults.tsv`, as a
 `column<TAB>value` row. With no such column there is no sidecar. The full,
 dense view is still built, locally and gitignored, in
 `data/gamedata.dense.tsv/`. The committed pair is split from it by
-`deadlock.sparse`, and `python -m deadlock.sparse dense X.tsv X.defaults.tsv`
+`bukzor_deadlock.sparse`, and `python -m bukzor_deadlock.sparse dense X.tsv X.defaults.tsv`
 rejoins it.
 
 ## Why

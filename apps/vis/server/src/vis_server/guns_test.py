@@ -1,9 +1,9 @@
 from collections.abc import Mapping
 
 import pytest
-from deadlock import gamedata, paths
-from deadlock.abilities import bindings
-from deadlock.ability_profiles import profiles
+from bukzor_deadlock import gamedata, paths
+from bukzor_deadlock.abilities import bindings
+from bukzor_deadlock.ability_profiles import profiles
 from pytest import approx
 
 from . import guns

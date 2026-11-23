@@ -1,7 +1,7 @@
 from collections.abc import Mapping, Sequence
 
 import pytest
-from deadlock import paths
+from bukzor_deadlock import paths
 from pytest import approx
 
 from .conftest import DATA, SYNTHETIC, TECH, ability_props

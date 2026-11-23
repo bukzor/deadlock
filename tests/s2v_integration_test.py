@@ -6,7 +6,7 @@ and the game VPK exist.
 
 import pytest
 
-from deadlock import paths, s2v
+from bukzor_deadlock import paths, s2v
 
 _VPK = paths.vpk_dir_file()
 _BIN = s2v.binary_path()

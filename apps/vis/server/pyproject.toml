@@ -5,7 +5,7 @@ description = "Serve views over the deadlock data/ tree to the vis client, as JS
 license = "Apache-2.0"
 requires-python = ">=3.14"
 dependencies = [
-    "deadlock",
+    "bukzor-deadlock",
     "starlette>=1.10.0",
     "uvicorn>=0.54.0",
 ]
@@ -31,7 +31,7 @@ packages = ["src/vis_server"]
 members = []
 
 [tool.uv.sources]
-deadlock = { path = "../../../", editable = true }
+bukzor-deadlock = { path = "../../../", editable = true }
 
 [tool.pytest.ini_options]
 testpaths = ["src"]

@@ -14,9 +14,9 @@ as DPS numbers a player can check in-game.
 - **`apps/vis/server/`**: Python, **its own uv workspace** (`[tool.uv.workspace]
   members = []`) on 3.14, basedpyright `all`. It is not a member of the root
   workspace because the root pins 3.12 for the extract tooling. It depends on the
-  root `deadlock` package as an editable path dependency and reuses it rather
+  root `bukzor-deadlock` package as an editable path dependency and reuses it rather
   than re-reading the data its own way. That includes
-  `deadlock.ability_profiles.profiles`, which already derives gun DPS. Runtime
+  `bukzor_deadlock.ability_profiles.profiles`, which already derives gun DPS. Runtime
   dependencies are Starlette and uvicorn.
 - **`apps/vis/client/`**: Vite + React + TypeScript (strict), a pnpm workspace
   whose root is `apps/vis/client/`. Charts use Observable Plot, tests use vitest.
@@ -30,7 +30,7 @@ as DPS numbers a player can check in-game.
 ## Protocol: JSONL that `jq` reads
 
 - `GET /api/{query}?k=v…` answers `application/jsonl`: one compact JSON object
-  per line, keys sorted (`deadlock.jsonl.dumps`).
+  per line, keys sorted (`bukzor_deadlock.jsonl.dumps`).
 - `vis-server query {query} k=v …` prints the same lines, so `vis-server query
   timeline hero=… | jq` works without a browser. `vis-server serve` runs HTTP.
 - `GET /api` lists the queries, one line each: `{"query", "params": {name:

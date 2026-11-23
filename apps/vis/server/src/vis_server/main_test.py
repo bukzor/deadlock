@@ -92,4 +92,4 @@ class DescribeServe:
         assert (kwargs["factory"], kwargs["reload"], kwargs["port"]) == (True, True, 9000)
         watched = kwargs["reload_dirs"]
         assert isinstance(watched, list)
-        assert [Path(str(d)).name for d in cast("list[object]", watched)] == ["vis_server", "deadlock"]
+        assert [Path(str(d)).name for d in cast("list[object]", watched)] == ["vis_server", "bukzor_deadlock"]

@@ -8,7 +8,7 @@ The built client, when present, is served at ``/``; ``live`` never serves it.
 from collections.abc import Iterable, Mapping, Sequence
 from pathlib import Path
 
-from deadlock.jsonl import dump_lines
+from bukzor_deadlock.jsonl import dump_lines
 from starlette.applications import Starlette
 from starlette.requests import Request
 from starlette.responses import Response
@@ -92,7 +92,7 @@ def _error(message: str) -> JsonObj:
 
 
 def jsonl(lines: Iterable[JsonObj]) -> str:
-    """The response body: each line compact and key-sorted (``deadlock.jsonl.dumps``), newline-terminated."""
+    """The response body: each line compact and key-sorted (``bukzor_deadlock.jsonl.dumps``), newline-terminated."""
     return "".join(dump_lines(lines))
 
 

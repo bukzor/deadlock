@@ -13,13 +13,13 @@ list="$root/data/dlls.list"
 
 redo-ifchange \
   "$list" \
-  "$root/src/deadlock/dlls_list.py" \
-  "$root/src/deadlock/paths.py" \
-  "$root/src/deadlock/dll_file.py" \
+  "$root/src/bukzor_deadlock/dlls_list.py" \
+  "$root/src/bukzor_deadlock/paths.py" \
+  "$root/src/bukzor_deadlock/dll_file.py" \
   "$root/src/dllscan/document.py"
 
-dll=$("$py" -m deadlock.dlls_list "$2" <"$list")
+dll=$("$py" -m bukzor_deadlock.dlls_list "$2" <"$list")
 redo-ifchange "$dll"
 
-"$py" -m deadlock.dll_file "$dll" >"$3"
+"$py" -m bukzor_deadlock.dll_file "$dll" >"$3"
 redo-stamp <"$3"

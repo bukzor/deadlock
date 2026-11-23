@@ -1,4 +1,4 @@
-"""Player-facing names from the game's English localization (``deadlock.loc``).
+"""Player-facing names from the game's English localization (``bukzor_deadlock.loc``).
 
 An ability's name is its own token. A property's label is ``{token}_label``,
 where the token is the property's ``m_strLocTokenOverride`` when it has one,
@@ -7,8 +7,8 @@ else its key: the game's tooltips label a property the same way.
 
 from collections.abc import Mapping
 
-from deadlock import loc, paths
-from deadlock.types import dig
+from bukzor_deadlock import loc, paths
+from bukzor_deadlock.types import dig
 
 from . import melee
 

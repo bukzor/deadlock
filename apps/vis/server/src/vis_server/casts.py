@@ -34,9 +34,9 @@ Survey of the live roster's bound signatures and ultimates (build of
 import re
 from collections.abc import Mapping
 
-from deadlock.abilities import SIGNATURE, bindings
-from deadlock.ability_upgrades import upgrades
-from deadlock.types import dig, is_str_mapping
+from bukzor_deadlock.abilities import SIGNATURE, bindings
+from bukzor_deadlock.ability_upgrades import upgrades
+from bukzor_deadlock.types import dig, is_str_mapping
 
 from .names import property_label
 from .timeline import Cycle, Hit
@@ -71,7 +71,7 @@ def cycle(
     """``ability`` cast on cooldown by ``hero`` with ``spirit`` spirit power, and caveats on the model.
 
     ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
-    trees (see ``deadlock.gamedata``). ``None`` unless ``ability`` is bound to
+    trees (see ``bukzor_deadlock.gamedata``). ``None`` unless ``ability`` is bound to
     one of ``hero``'s signature slots (the ultimate included) and has a
     ``Damage`` or ``DPS`` property. The first note is ``HEURISTIC``; each
     further note names one factor present on the ability that the model leaves

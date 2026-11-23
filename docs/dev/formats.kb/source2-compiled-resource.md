@@ -23,4 +23,4 @@ engine changes closely (Deadlock-specific blocks appear here first).
 ValveResourceFormat implements this fully; we shell out to `Source2Viewer-CLI`
 for decompilation (`-d`) and `--block DATA|RERL|REDI|NTRO|--all` to inspect raw
 blocks. Do not reimplement the full container; only parse blocks directly via
-`deadlock.binary` for needs VRF doesn't expose.
+`bukzor_deadlock.binary` for needs VRF doesn't expose.

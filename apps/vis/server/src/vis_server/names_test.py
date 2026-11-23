@@ -1,5 +1,5 @@
 import pytest
-from deadlock import paths
+from bukzor_deadlock import paths
 
 from . import names
 

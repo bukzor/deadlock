@@ -6,8 +6,8 @@ checkout / CI.
 
 import pytest
 
-from deadlock import paths
-from deadlock.archive import read_entries
+from bukzor_deadlock import paths
+from bukzor_deadlock.archive import read_entries
 
 _VPK = paths.vpk_dir_file()
 

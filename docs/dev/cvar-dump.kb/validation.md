@@ -42,7 +42,7 @@ Run on demand, and on each new build, not as part of `all.do`:
   (`capture-approach.kb/icvar-hook.md`; `dllscan registry`) holds every queue
   entry's name, and each name declared once as the queue declares it: type,
   default, min, max, version, help, and flags plus the per-DLL flag
-  registration adds (`deadlock.registry_check` states the rule, `reference`
+  registration adds (`bukzor_deadlock.registry_check` states the rule, `reference`
   declarations included). Checks the value decoding against the engine, not
   against our reading of the SDK. `Init` must stop at a placeholder's trap or
   return; a fault no placeholder explains fails the readback
@@ -55,6 +55,6 @@ Run on demand, and on each new build, not as part of `all.do`:
   (not `developmentonly` or `hidden`, not a `-` command) of a DLL the listing
   proves loaded is listed; and each listed name's flags, help and value are
   its declarations', through the listing's print rules, the value overridden
-  by `gameinfo.gi` or the user (`differences`). `deadlock.cvarlist_check`
+  by `gameinfo.gi` or the user (`differences`). `bukzor_deadlock.cvarlist_check`
   states each rule. The only check that catches a DLL whose queue the scan
   missed outright.

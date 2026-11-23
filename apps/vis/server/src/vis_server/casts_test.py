@@ -2,8 +2,8 @@ from collections.abc import Mapping
 from pathlib import Path
 
 import pytest
-from deadlock import gamedata, paths
-from deadlock.abilities import SIGNATURE, bindings
+from bukzor_deadlock import gamedata, paths
+from bukzor_deadlock.abilities import SIGNATURE, bindings
 from pytest import approx
 
 from . import casts

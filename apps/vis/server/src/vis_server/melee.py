@@ -7,7 +7,7 @@ the melee ability the hero binds to ``ESlot_Weapon_Melee``: the attack timings
 live on that ability, not on the hero.
 
 No ``_base`` resolution is needed: the compiled data materializes every starting
-stat on every hero (see ``deadlock.heroes``), and melee abilities carry the full
+stat on every hero (see ``bukzor_deadlock.heroes``), and melee abilities carry the full
 ``m_mapAttacks`` with no ``_base`` of their own.
 
 Every swing is assumed to hit. A miss can cost a longer cooldown (heavy: 1.3 s
@@ -18,7 +18,7 @@ The hero's level adds to the damage (``boons``).
 
 from collections.abc import Mapping
 
-from deadlock.types import dig, is_str_mapping
+from bukzor_deadlock.types import dig, is_str_mapping
 
 from .boons import NONE, Boons, spirit_note
 from .timeline import Cycle, Hit
@@ -46,7 +46,7 @@ def cycle(
     """``hero``'s ``ability`` as ``(Cycle, notes)``; ``None`` unless ``ability`` is ``LIGHT`` or ``HEAVY``.
 
     ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
-    trees (see ``deadlock.gamedata``); ``boons`` is what the hero's level adds.
+    trees (see ``bukzor_deadlock.gamedata``); ``boons`` is what the hero's level adds.
     The cycle is one hit, triggered at 0 and landing at ``windup`` seconds.
     Raises ``BadRequest`` for an unknown hero or a negative ``windup``.
     """

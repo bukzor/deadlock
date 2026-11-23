@@ -14,7 +14,7 @@ writing our own format parsers.
 - **`keyvalues3`** (PyPI) — KV3 text and binary (incl. compiled block versions).
   Kept as the reference implementation (test oracle), but off the hot path: its
   parsimonious-based text reader took ~26s on `scripts/abilities.vdata` alone
-  (~37s of a 38s full build). `deadlock.kv3text` is a small recursive-descent
+  (~37s of a 38s full build). `bukzor_deadlock.kv3text` is a small recursive-descent
   reader for the machine-generated KV3 subset VRF emits, verified by
   output-equality against `keyvalues3` across the corpus.
 - **ValveResourceFormat / `Source2Viewer-CLI`** — the canonical decompiler. The
@@ -32,6 +32,6 @@ writing our own format parsers.
 Drop a dependency only if it blocks a needed feature (e.g. `vpk`'s lack of
 multi-archive *write* support — irrelevant, we only read). A small bespoke
 parser is justified only where no tool covers the need (e.g. block-level diffing
-finer than VRF exposes), built on `deadlock.binary` — or where the existing
+finer than VRF exposes), built on `bukzor_deadlock.binary` — or where the existing
 parser's cost dominates the build and an oracle test pins equivalence
-(`deadlock.kv3text`, 2026-08).
+(`bukzor_deadlock.kv3text`, 2026-08).

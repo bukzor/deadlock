@@ -14,7 +14,7 @@
   re-provisions `data/tools/Source2Viewer-CLI` (fetch: `bin/fetch-vrf`) and
   re-extracts, and the bump shows in `git diff` beside the data it changed.
   The glibc `cli-linux-x64` build runs natively here.
-  `deadlock.s2v.binary_path` resolves the binary (override `DEADLOCK_S2V`).
+  `bukzor_deadlock.s2v.binary_path` resolves the binary (override `DEADLOCK_S2V`).
   Upstream warns CLI flags aren't stable across releases — if extraction breaks
   after a bump, check `--help` against `s2v.py`.
 

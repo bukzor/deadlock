@@ -17,14 +17,14 @@ src="$root/data/gamedata/$2.vdata"
 
 redo-ifchange \
   "$root/data/deadlock-version.json" \
-  "$root/src/deadlock/gamedata.py" \
-  "$root/src/deadlock/jsonl.py" \
-  "$root/src/deadlock/kv3.py" \
-  "$root/src/deadlock/kv3text.py" \
-  "$root/src/deadlock/types.py" \
+  "$root/src/bukzor_deadlock/gamedata.py" \
+  "$root/src/bukzor_deadlock/jsonl.py" \
+  "$root/src/bukzor_deadlock/kv3.py" \
+  "$root/src/bukzor_deadlock/kv3text.py" \
+  "$root/src/bukzor_deadlock/types.py" \
   "$src"
 
 # redo doesn't create target subdirectories
 mkdir -p "$(dirname "$1")"
 
-"$py" -m deadlock.gamedata <"$src"
+"$py" -m bukzor_deadlock.gamedata <"$src"

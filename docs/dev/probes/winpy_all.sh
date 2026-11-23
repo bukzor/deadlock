@@ -7,11 +7,11 @@ set -euo pipefail
 cd "$(dirname "$0")/../../.."
 py=.venv/bin/python
 export probe=$1 WINPY_TIMEOUT=240
-mapfile -t bins < <($py -m deadlock.paths bin_dirs)
+mapfile -t bins < <($py -m bukzor_deadlock.paths bin_dirs)
 wb=(); for b in "${bins[@]}"; do wb+=("$(wslpath -w "$b")"); done
 export B0=${wb[0]} B1=${wb[1]}
-$py -m deadlock.dlls_load --ok data/dlls/load/*.json |
+$py -m bukzor_deadlock.dlls_load --ok data/dlls/load/*.json |
   while read -r n; do
-    printf '%s\0' "$(wslpath -w "$($py -m deadlock.dlls_list "$n" <data/dlls.list)")"
+    printf '%s\0' "$(wslpath -w "$($py -m bukzor_deadlock.dlls_list "$n" <data/dlls.list)")"
   done |
   xargs -0 -P4 -n1 bash -c 'out=$(./bin/winpy "$probe" "$1" "$B0" "$B1" 2>/dev/null) || out="{\"dll\": \"${1##*\\}\", \"failed\": $?}"; printf "%s\n" "$out"' _

@@ -183,4 +183,4 @@ cvars are registered by then.
 
 So an oracle comparing values must apply `gameinfo.gi` overrides and take a
 `differences` name's value against its `default` column, as
-`deadlock.cvarlist_check` does.
+`bukzor_deadlock.cvarlist_check` does.

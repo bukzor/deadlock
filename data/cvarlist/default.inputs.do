@@ -16,7 +16,7 @@
 set -euo pipefail
 
 redo-always
-citadel=$(../../.venv/bin/python -m deadlock.paths citadel_dir)
+citadel=$(../../.venv/bin/python -m bukzor_deadlock.paths citadel_dir)
 files=("$citadel/gameinfo.gi")
 case "$2" in
   server) ;;

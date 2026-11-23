@@ -11,19 +11,19 @@ out="$root/data/gamedata"
 
 # depending on the CLI provisions the pinned VRF on demand
 redo-ifchange \
-  "$root/src/deadlock/extract.py" \
-  "$root/src/deadlock/s2v.py" \
-  "$root/src/deadlock/paths.py" \
+  "$root/src/bukzor_deadlock/extract.py" \
+  "$root/src/bukzor_deadlock/s2v.py" \
+  "$root/src/bukzor_deadlock/paths.py" \
   "$root/data/deadlock-version.json" \
   "$root/data/tools/Source2Viewer-CLI"
 
-vpk=$("$py" -m deadlock.paths vpk_dir_file)
+vpk=$("$py" -m bukzor_deadlock.paths vpk_dir_file)
 redo-ifchange "$vpk"
 
 # rebuild cleanly so removed assets don't linger, in gamedata/ and in its
 # JSON mirror (every JSON file rebuilds after extraction anyway)
 if [[ -d "$out" ]]; then rm -r "$out"; fi
 find gamedata.json -type f -name '*.json' -delete
-"$py" -m deadlock.extract "$out" vdata_c
+"$py" -m bukzor_deadlock.extract "$out" vdata_c
 
 ( cd "$out" && find . -type f | sort )

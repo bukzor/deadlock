@@ -7,7 +7,7 @@
 # CLI and the repo's venv pins 3.12.
 # Valve serves replays for a limited time after the match (the CDN's
 # x-goog-custom-time was match + 10 days), so an old salts record can 404; the
-# fix is to pick a newer match (see packages/deadlock-evaluator/docs/dev/
+# fix is to pick a newer match (see packages/bukzor-deadlock-evaluator/docs/dev/
 # claims.kb/tooling.kb/public-match-demos-source.md).
 # Writes $3 rather than stdout so the Source 2 demo magic (PBDEMS2) can be
 # checked afterwards: a CDN error page or a truncated download fails the build

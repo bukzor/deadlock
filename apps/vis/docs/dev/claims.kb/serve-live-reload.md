@@ -11,7 +11,7 @@ why:
 
 `ACCEPTANCE` is met by one documented command, `apps/vis/bin/serve`, that
 runs the Vite dev server (hot module reload) and `vis-server serve
---reload` (uvicorn restarts on a change to the server or `deadlock`
+--reload` (uvicorn restarts on a change to the server or `bukzor_deadlock`
 sources), and prints the one URL to open: Vite's, which proxies `/api` to
 the server. Ctrl-C stops both. The owner's browser runs on Windows and the
 server in WSL2, whose mirrored networking makes that URL open there

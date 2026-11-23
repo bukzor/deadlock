@@ -14,8 +14,8 @@ from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from functools import cache
 
-from deadlock import gamedata, paths
-from deadlock.abilities import SIGNATURE, bindings
+from bukzor_deadlock import gamedata, paths
+from bukzor_deadlock.abilities import SIGNATURE, bindings
 
 from . import boons, casts, guns, melee, names
 from .boons import NONE, Boons
@@ -44,7 +44,7 @@ type Source = tuple[Kind, Cycle, Sequence[str]]  # (kind, cycle, notes)
 
 @dataclass(frozen=True)
 class GameData:
-    """The ``heroes.vdata`` and ``abilities.vdata`` trees (see ``deadlock.gamedata``), the heroes to list, and the localization."""
+    """The ``heroes.vdata`` and ``abilities.vdata`` trees (see ``bukzor_deadlock.gamedata``), the heroes to list, and the localization."""
 
     heroes: Mapping[str, object]
     abilities: Mapping[str, object]

@@ -9,12 +9,12 @@ root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 py="$root/.venv/bin/python"
 
 # The guard: NAME must be a basename in dlls.list; sets `dll` to its path.
-# Also declares deadlock.dll_load, which each atom's own guard step runs.
+# Also declares bukzor_deadlock.dll_load, which each atom's own guard step runs.
 lookup() {
   local list="$root/data/dlls.list"
-  redo-ifchange "$list" "$root/src/deadlock/"{dlls_list,paths,dll_load,types}.py \
+  redo-ifchange "$list" "$root/src/bukzor_deadlock/"{dlls_list,paths,dll_load,types}.py \
     "$root/src/dllscan/document.py"
-  dll=$("$py" -m deadlock.dlls_list "$1" <"$list")
+  dll=$("$py" -m bukzor_deadlock.dlls_list "$1" <"$list")
 }
 
 # A load-time facet's guard: load/NAME.json must say `ok`. Any other outcome
@@ -22,14 +22,14 @@ lookup() {
 require_loaded() {
   local load="$root/data/dlls/load/$1.json"
   redo-ifchange "$load"
-  "$py" -m deadlock.dll_load ok "$load"
+  "$py" -m bukzor_deadlock.dll_load ok "$load"
 }
 
 # Depend on the listed DLLs that the load in load document LOAD pulled in: a
 # load-time atom's output depends on its DLL's whole import closure.
 closure() {
-  redo-ifchange "$root/src/deadlock/dll_closure.py"
-  "$py" -m deadlock.dll_closure "$1" <"$root/data/dlls.list" |
+  redo-ifchange "$root/src/bukzor_deadlock/dll_closure.py"
+  "$py" -m bukzor_deadlock.dll_closure "$1" <"$root/data/dlls.list" |
     tr '\n' '\0' | xargs -r0 redo-ifchange
 }
 
@@ -41,7 +41,7 @@ dllscan() {
     [[ $f == *_test.py ]] || scanner+=("$f")
   done
   redo-ifchange "$dll" "$root/bin/winpy" "${scanner[@]}"
-  bins=$("$py" -m deadlock.paths bin_dirs)
+  bins=$("$py" -m bukzor_deadlock.paths bin_dirs)
   mapfile -t bins <<<"$bins"
   for path in "$dll" "${bins[@]}"; do
     args+=("$(wslpath -w "$path")")

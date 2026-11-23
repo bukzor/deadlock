@@ -28,7 +28,7 @@ The layout is facet-first under one root, one process per (facet, DLL)
   `gamedata.dense.tsv/default.tsv.do` has. Each calls `redo-ifchange` once
   over its facet's documents (one call, so redo parallelises): every DLL in
   `dlls.list` for `file` and `load`, every `ok` one for a load-time facet. Then
-  a WSL-side `deadlock.dlls_<facet>` module writes `<facet>.tsv`, the facet's
+  a WSL-side `bukzor_deadlock.dlls_<facet>` module writes `<facet>.tsv`, the facet's
   lossless aggregate. All four are committed.
 
 The facets: `file` (size, sha256), `load` (outcome: `ok` with the modules the

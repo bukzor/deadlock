@@ -12,7 +12,7 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import override
 
-import deadlock
+import bukzor_deadlock
 import uvicorn
 from uvicorn.config import LOGGING_CONFIG
 
@@ -20,8 +20,8 @@ from .http import answer, app, jsonl
 from .queries import QUERIES
 from .types import Query
 
-# What ``serve --reload`` watches: this package and the ``deadlock`` one it reads.
-RELOAD_DIRS = (Path(__file__).parent, Path(deadlock.__file__).parent)
+# What ``serve --reload`` watches: this package and the ``bukzor_deadlock`` one it reads.
+RELOAD_DIRS = (Path(__file__).parent, Path(bukzor_deadlock.__file__).parent)
 
 
 class NoBanner(logging.Filter):
@@ -87,7 +87,7 @@ def _parser() -> argparse.ArgumentParser:
     serve = commands.add_parser("serve", help="serve the API (and client/dist, if built) over HTTP")
     _ = serve.add_argument("--host", default="127.0.0.1")
     _ = serve.add_argument("--port", type=int, default=8787)
-    _ = serve.add_argument("--reload", action="store_true", help="restart on a change to the server or deadlock sources; serves no client/dist (Vite does)")
+    _ = serve.add_argument("--reload", action="store_true", help="restart on a change to the server or bukzor_deadlock sources; serves no client/dist (Vite does)")
     query = commands.add_parser("query", help="print one query's JSONL lines (see GET /api for the queries)")
     _ = query.add_argument("name")
     _ = query.add_argument("params", nargs="*", type=_pair, metavar="k=v")

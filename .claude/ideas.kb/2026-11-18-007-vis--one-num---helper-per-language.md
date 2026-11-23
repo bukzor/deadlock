@@ -14,7 +14,7 @@ cost-benefit-sweh:
 
 Five numeric-coercion helpers with five semantics: `guns._num`/`_given`, `melee._num(value, *where)`, `casts._number` (regex, raises `BadRequest`), `boons._stat`, `queries._number`; and `num()` twice on the client (`selection.ts:129`, `chart.ts:189`).
 
-Smallest fix: one `num(value, *where) -> float` beside `dig` in `src/deadlock/types.py`; one exported client `num` (e.g. in `format.ts`). `casts._number` and `queries._number` stay: they parse user input.
+Smallest fix: one `num(value, *where) -> float` beside `dig` in `src/bukzor_deadlock/types.py`; one exported client `num` (e.g. in `format.ts`). `casts._number` and `queries._number` stay: they parse user input.
 
 ## Exploration Notes
 
