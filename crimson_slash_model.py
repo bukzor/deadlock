@@ -11,7 +11,8 @@ Run `python crimson_slash_model.py` to compare the model with
 from dataclasses import dataclass
 from typing import final
 
-from crimson_slash_test_data import SETUPS, ExperimentalSetup, Scenario
+from bukzor_deadlock_measurements.experiments.crimson_slash import SETUPS
+from bukzor_deadlock_measurements.records import ExperimentalSetup, Scenario
 
 
 @final

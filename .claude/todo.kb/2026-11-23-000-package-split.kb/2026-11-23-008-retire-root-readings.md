@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-23-011-measurements-data-as-python.md
 required-reading:
@@ -54,8 +54,53 @@ the import line of `crimson_slash_model.py`,
 
 ## Steps
 
+- [x] Port the owner's records (`Health`, `Scenario`, `Dummy`, `ExperimentalSetup`) into `records.py`
+- [x] Port the owner's `SETUPS` and docstring into `experiments/crimson_slash.py`
+- [x] `load`, `check`, `summary`, `layering_test`, tests, README follow the new shape
+- [x] Repoint the model's import; `cmp` its stdout with `model.before.txt`
+- [x] `git rm` the root data file; all checks; commit
+
 ## Decisions
+
+- Carried the owner's final file verbatim, not edit by edit: `records.py`
+  is its four classes (field comments included) under the package docstring;
+  `experiments/crimson_slash.py` is its docstring (only the "Run ..." line
+  repointed to `python -m bukzor_deadlock_measurements`) and its `SETUPS`,
+  `diff`-identical. That carries every later edit: `Health.hit`/`reverb`
+  (for `initial`/`after`), `Scenario.health`/`damage` (for `hero`/
+  `damage_popups`), `Hero` dropped (spirit moved to `ExperimentalSetup`),
+  setup-common items split from per-scenario items, readings 1337->1336 and
+  199->198, the 9091-hp dummy and the 116-spirit "Improved Spirit" setup,
+  per-condition `regen` comments, the procedure and damage-rounding text.
+- `Experiment` (with its `name`) is gone: the owner's shape has none. An
+  experiment module binds `SETUPS`; `load_all()` returns them keyed by module
+  name (`load.Experiments`); `check(name, setups, lookup)` reports
+  `name.SETUPS[n] ('scenario')`; the layering rule now demands `SETUPS`.
+- `check` costs a scenario's spirit items as `setup.items + scenario.items`,
+  matching the owner's "held constant within an ExperimentalSetup". Added
+  `it_names_a_misspelled_setup_item` (seen red with the name corrected); the
+  non-spirit swap test now swaps in the setup's items, where Healbane lives.
+- `summary` is the owner's `format_row`/header (column `damage`, not
+  `popups`); `python -m bukzor_deadlock_measurements` prints exactly what the
+  owner's `python crimson_slash_test_data.py` printed.
+- The model's one import line became two (`SETUPS` from the experiment
+  module, the types from `records`), its only edit.
 
 ## Open Questions
 
+- `crimson_slash_model.py`'s docstring (line 8) still says it compares with
+  `crimson_slash_test_data.py`; outside my scope (import line only). The
+  owner may want it to name `bukzor_deadlock_measurements`.
+
 ## Final report
+
+All clean: package checks pass on the carried-over data (items resolve,
+spirit cost constant in all three setups); `crimson_slash_model.py` stdout
+`cmp`-equal to `trash/package-split/model.before.txt`
+(`trash/unit-008/model.after.txt`); root `pytest`, `pyright`; vis `pytest`,
+`basedpyright`; golden `cmp`-equal. The summary table now equals the owner's
+own table (`trash/unit-008/table.after.txt`). Root
+`crimson_slash_test_data.py` removed with `git rm`. Results live in
+`packages/bukzor-deadlock-measurements/` (`records.py`,
+`experiments/crimson_slash.py`, `load.py`, `check.py`, `summary.py`, tests,
+README) and the model's import. Deviation: the import is two lines, not one.

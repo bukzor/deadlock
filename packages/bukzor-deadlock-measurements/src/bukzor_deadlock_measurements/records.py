@@ -8,48 +8,45 @@ from dataclasses import dataclass
 class Health:
     max: int
     start: int  # just before the cast
-    initial: int | None = None  # right after the cast; only with Mystic Reverb
-    after: int | None = None  # once everything has landed
-
-
-@dataclass(frozen=True, kw_only=True)
-class Hero:
-    spirit: int  # spirit power, as shown on the stat sheet
-    health: Health
+    hit: int  # once the slash's healing has landed
+    reverb: int | None = None  # once the Mystic Reverb echo has landed
 
 
 @dataclass(frozen=True, kw_only=True)
 class Scenario:
     name: str
-    items: tuple[str, ...]
-    hero: Hero
-    # Each purple damage number over the target, in order of appearance.
-    damage_popups: tuple[int, ...] = ()
+    items: tuple[str, ...]  # on top of the setup's
+    health: Health  # the hero's
+    # Each purple damage number that pops up over the target, in order of
+    # appearance (slash, item procs, Reverb echo).
+    damage: tuple[int, ...]
 
     @property
-    def heal(self) -> int | None:
+    def heal(self) -> int:
         """Total self-heal from one cast."""
-        h = self.hero.health
-        return None if h.after is None else h.after - h.start
+        h = self.health
+        return (h.hit if h.reverb is None else h.reverb) - h.start
 
     @property
     def echo_heal(self) -> int | None:
         """Self-heal from the delayed Mystic Reverb echo alone."""
-        h = self.hero.health
-        if h.initial is None or h.after is None:
+        h = self.health
+        if h.reverb is None:
             return None
-        return h.after - h.initial
+        else:
+            return h.reverb - h.hit
 
 
 @dataclass(frozen=True, kw_only=True)
 class Dummy:
     max_health: int
     spirit_resist: float
-    regen: tuple[float, ...]  # health per second
-    scenarios: tuple[Scenario, ...]
+    regen: tuple[float, ...]  # health per second, one value per condition
 
 
 @dataclass(frozen=True, kw_only=True)
-class Experiment:
-    name: str
-    dummies: tuple[Dummy, ...]
+class ExperimentalSetup:
+    dummy: Dummy
+    items: tuple[str, ...]
+    spirit: int  # hero spirit power, as shown on the stat sheet
+    scenarios: tuple[Scenario, ...]

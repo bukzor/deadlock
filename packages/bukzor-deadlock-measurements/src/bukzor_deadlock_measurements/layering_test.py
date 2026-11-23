@@ -3,7 +3,7 @@
 - `records` is vocabulary: frozen keyword-only dataclasses and type aliases,
   whose only methods are `@property` derivations, importing only the stdlib's
   typing modules.
-- An experiment module imports only `records` and binds `EXPERIMENT`.
+- An experiment module imports only `records` and binds `SETUPS`.
 """
 
 import ast
@@ -84,8 +84,8 @@ def experiment_violations(source: str) -> list[str]:
         for t in (node.targets if isinstance(node, ast.Assign) else [node.target])
         if isinstance(t, ast.Name)
     }
-    if "EXPERIMENT" not in bound:
-        found.append("binds no EXPERIMENT")
+    if "SETUPS" not in bound:
+        found.append("binds no SETUPS")
     return found
 
 
@@ -110,7 +110,7 @@ class Health:
 GOOD_EXPERIMENT = """\
 from ..records import Health
 BASE = 1
-EXPERIMENT = Health(max=BASE, start=BASE)
+SETUPS = Health(max=BASE, start=BASE)
 """
 
 
@@ -155,9 +155,9 @@ class DescribeExperimentViolations:
         source = "from ..check import check\n" + GOOD_EXPERIMENT
         assert experiment_violations(source) == ["imports ..check"]
 
-    def it_flags_a_missing_experiment(self):
-        source = GOOD_EXPERIMENT.replace("EXPERIMENT", "OTHER")
-        assert experiment_violations(source) == ["binds no EXPERIMENT"]
+    def it_flags_missing_setups(self):
+        source = GOOD_EXPERIMENT.replace("SETUPS", "OTHER")
+        assert experiment_violations(source) == ["binds no SETUPS"]
 
 
 class DescribePackage:
