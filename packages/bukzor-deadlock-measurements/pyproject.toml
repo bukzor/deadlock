@@ -1,14 +1,12 @@
 [project]
 name = "bukzor-deadlock-measurements"
 version = "0.0.0"
-description = "Hand-recorded sandbox readings of Deadlock, one YAML file per experiment with a JSON Schema, plus typed loaders."
+description = "Hand-recorded sandbox readings of Deadlock, one Python module per experiment over a frozen-dataclass vocabulary, plus the code that checks and reports them."
 license = "Apache-2.0"
 requires-python = ">=3.12"
 dependencies = [
     "bukzor-deadlock",
     "bukzor-deadlock-lookup",
-    "jsonschema>=4.26.0",
-    "pyyaml",
 ]
 
 [build-system]

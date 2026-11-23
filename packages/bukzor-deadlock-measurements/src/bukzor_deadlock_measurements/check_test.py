@@ -3,8 +3,8 @@ import dataclasses
 import pytest
 from bukzor_deadlock_lookup.load import load
 
-from .check import check
-from .load import ReadingsError, load_all
+from .check import ReadingsError, check
+from .load import load_all
 from .records import Dummy, Experiment, Scenario
 
 

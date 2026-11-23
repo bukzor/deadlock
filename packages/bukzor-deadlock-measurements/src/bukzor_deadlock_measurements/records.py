@@ -1,4 +1,5 @@
-"""Typed records of one experiment's sandbox readings."""
+"""The vocabulary of sandbox readings, shared by the experiment modules and the
+programs that load, check and report them (rules: `layering_test.py`)."""
 
 from dataclasses import dataclass
 

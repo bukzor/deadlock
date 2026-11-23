@@ -7,11 +7,14 @@ number from the data, it only compares.
 from bukzor_deadlock_lookup.lookup import Lookup
 from bukzor_deadlock_lookup.resolve import Unresolved
 
-from .load import ReadingsError
 from .records import Experiment, Scenario
 
 SPIRIT_SLOT = "Tech"  # the shop's spirit column
 BASELINE = "baseline"
+
+
+class ReadingsError(ValueError):
+    pass
 
 
 def spirit_cost(lookup: Lookup, where: str, scenario: Scenario) -> int:

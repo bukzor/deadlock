@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-23-007-measurements-check-items.md
 required-reading:
@@ -54,8 +54,43 @@ No other unit runs this wave, so the root lock is yours.
 
 ## Steps
 
+- [x] capture the table before (`trash/unit-011/table.before.txt`)
+- [x] `layering_test.py`, red against the current package
+- [x] `records.py` to the vocabulary rules
+- [x] `experiments/crimson_slash.py` from the YAML
+- [x] `load.py` discovers experiment modules; tests follow
+- [x] subtract `data/`, deps, schema paths; README, description; `uv lock` x2
+- [x] checks: table `cmp`, pytest, pyright, vis, golden
+
 ## Decisions
+
+- `records.py` already met the rules; only its docstring changed. Field
+  names stay `initial`/`after`/`damage_popups` (the YAML's), not the owner's
+  working-copy `hit`/`reverb`/`damage`: the brief says carry the YAML's
+  readings over exactly, and the table must not change.
+- `ReadingsError` moved from `load.py` to `check.py`, its only raiser; it
+  cannot live in `records` (not a dataclass).
+- The guard also flags non-`kw_only` dataclasses, non-property methods,
+  non-field class-body lines and a missing `EXPERIMENT`, beyond the three
+  violations the brief named; each flag test was seen red by mutating its
+  check (`trash/unit-011/mut/`). "Pure" in properties is not checked from
+  the AST: only that every method is a bare `@property`.
+- Experiment modules may bind helper constants (`BASE_ITEMS`), as the
+  owner's file does.
 
 ## Open Questions
 
+- The owner's `crimson_slash_test_data.py` (uncommitted edits) records
+  different readings and fields (`hit`, `reverb`, `damage`, a second dummy
+  marked TODO). Porting those is unit 008's or the owner's call, not done.
+
 ## Final report
+
+Checks, all clean: `python -m bukzor_deadlock_measurements` `cmp`-equal to
+before (`trash/unit-011/table.{before,after}.txt`); root `pytest`,
+`pyright`; vis `pytest`, `basedpyright`; golden `cmp`-equal. `uv lock`
+dropped pyyaml, jsonschema and their deps from `uv.lock`;
+`apps/vis/server/uv.lock` was unchanged (vis does not depend on this
+package). Results live in the package itself: `records.py`,
+`experiments/crimson_slash.py`, `load.py`, `layering_test.py`, README,
+`pyproject.toml`. No deviation from scope.
