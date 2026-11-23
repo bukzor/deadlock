@@ -74,27 +74,7 @@ class Dummy:
     scenarios: tuple[Scenario, ...]
 
 
-__BASE_ITEMS = (
-    "Healbane",
-    "Mystic Shot",
-    "Boundless Spirit",
-    )
-BASELINE_ITEMS = __BASE_ITEMS + (
-    "Refresher",
-    "Rapid Recharge",
-)
-TANKBUSTER_ITEMS = __BASE_ITEMS + (
-    "Refresher",
-    "Tankbuster",
-)
-REVERB_ITEMS = __BASE_ITEMS + (
-    "Mystic Reverb",
-    "Rapid Recharge",
-)
-REVERB_TANKBUSTER_ITEMS = __BASE_ITEMS + (
-    "Focus Lens",
-    "Tankbuster",
-)
+BASE_ITEMS = ("Healbane", "Mystic Shot", "Boundless Spirit")
 
 DUMMIES = (
     Dummy(
@@ -104,20 +84,19 @@ DUMMIES = (
         scenarios=(
             Scenario(
                 name="baseline",
-                items=BASELINE_ITEMS,
+                items=(*BASE_ITEMS, "Refresher", "Rapid Recharge"),
                 hero=Hero(spirit=171, health=Health(max=2672, start=1337, after=1800)),
                 damage_popups=(199,),
             ),
             Scenario(
                 name="tankbuster",
-                items=TANKBUSTER_ITEMS,
+                items=(*BASE_ITEMS, "Refresher", "Tankbuster"),
                 hero=Hero(spirit=171, health=Health(max=2722, start=1361, after=1828)),
                 damage_popups=(1025,),
             ),
-            # Target readings for the Reverb scenarios were not recorded.
             Scenario(
                 name="reverb",
-                items=REVERB_ITEMS,
+                items=(*BASE_ITEMS, "Mystic Reverb", "Rapid Recharge"),
                 hero=Hero(
                     spirit=171,
                     health=Health(max=2672, start=1337, initial=1860, after=1894),
@@ -126,7 +105,7 @@ DUMMIES = (
             ),
             Scenario(
                 name="reverb+tankbuster",
-                items=REVERB_TANKBUSTER_ITEMS,
+                items=(*BASE_ITEMS, "Mystic Reverb", "Tankbuster"),
                 hero=Hero(
                     spirit=171,
                     health=Health(max=2722, start=1361, initial=2136, after=2284),
