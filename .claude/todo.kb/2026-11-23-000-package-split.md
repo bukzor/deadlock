@@ -46,7 +46,7 @@ Wave 3 (parallel):
 - [x] [010 docs follow the lookup](2026-11-23-000-package-split.kb/2026-11-23-010-docs-follow-the-lookup.md): after 005, the four live docs that still describe vis's own loader
 
 Wave 4:
-- [ ] [011 measurements data as Python](2026-11-23-000-package-split.kb/2026-11-23-011-measurements-data-as-python.md): the owner's ruling: readings as Python over a strict frozen-dataclass vocabulary; YAML, schema and their deps removed
+- [x] [011 measurements data as Python](2026-11-23-000-package-split.kb/2026-11-23-011-measurements-data-as-python.md): the owner's ruling: readings as Python over a strict frozen-dataclass vocabulary; YAML, schema and their deps removed
 
 Wave 5, on the owner's word that their edits to the root file are done:
 - [ ] [008 retire root readings](2026-11-23-000-package-split.kb/2026-11-23-008-retire-root-readings.md): the owner's edits since `b9f93b9` carried into the experiment module; the root `crimson_slash_test_data.py` removed
