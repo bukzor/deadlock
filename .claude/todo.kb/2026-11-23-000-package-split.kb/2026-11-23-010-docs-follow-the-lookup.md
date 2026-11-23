@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-23-005-adopt-lookup.md
 required-reading:
@@ -43,8 +43,20 @@ changed.
 
 ## Steps
 
+- [x] vis-app.md, ability-names.md, hero-list.md, todo.md item restated
+
 ## Decisions
+
+- hero-list: `playable` filters on vdata `m_bDisabled` (via `bindings`), not the
+  `heroes.tsv` `disabled` column; the claim's meaning is unchanged (same field),
+  so I named the vdata field.
+- todo.md: split is still needed (251/299 lines raw; 329/450 after black).
 
 ## Open Questions
 
+None.
+
 ## Final report
+
+Edited only the four docs plus this file. `llm.kb-validate apps/vis/docs/dev`:
+36 files, 0 errors. No code changed, so pytest/pyright/golden are untouched.

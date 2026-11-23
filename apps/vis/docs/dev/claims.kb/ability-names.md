@@ -20,7 +20,9 @@ game has no label (127 of the 1038 upgrade properties of the live
 signatures), the note falls back to the key in lower-case words.
 Declined: the key itself as the fallback in notes, which puts an engine
 name in player text. Overturned if the owner wants one casing throughout.
-Built in `packages/bukzor-deadlock-lookup/src/bukzor_deadlock_lookup/names.py`;
+Built in `Lookup.ability` (`name`) and `Lookup.label` in
+`packages/bukzor-deadlock-lookup/src/bukzor_deadlock_lookup/lookup.py`, the
+tokens loaded by `load.load_tokens`;
 the melee pseudo-names are `melee.NAMES` in
 `packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/melee.py`.
 

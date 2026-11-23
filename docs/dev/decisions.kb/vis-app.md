@@ -20,8 +20,8 @@ as DPS numbers a player can check in-game.
   dependencies are Starlette and uvicorn. The server holds the protocol only
   (`queries`, `http`, `__main__`, `types`). The damage model (the modules named
   under *Model* and *Measures*) is the root-workspace package
-  `bukzor-deadlock-damage`, and the localized names are
-  `bukzor_deadlock_lookup.names`; both are editable path dependencies too
+  `bukzor-deadlock-damage`, and the game data and its localized names
+  are the package `bukzor-deadlock-lookup` (`Lookup`); both are editable path dependencies too
   (`small-bukzor-prefixed-packages.md`).
 - **`apps/vis/client/`**: Vite + React + TypeScript (strict), a pnpm workspace
   whose root is `apps/vis/client/`. Charts use Observable Plot, tests use vitest.
@@ -56,7 +56,7 @@ Queries:
 | query | params | lines |
 |---|---|---|
 | `heroes` | | `{"hero": key, "name": display}` |
-| `abilities` | `hero` | `{"ability": key, "name": in-game name (`bukzor_deadlock_lookup.names`), "kind": "gun"\|"melee"\|"cast"\|null}` |
+| `abilities` | `hero` | `{"ability": key, "name": in-game name (`Lookup.ability`'s `name`), "kind": "gun"\|"melee"\|"cast"\|null}` |
 | `timeline` | `hero`, `ability`, the window as at most one of `seconds` or `cycles` (default `cycles`=2, or 10 s for a one-shot), `hp` (optional), `distance`=0 (m), `spirit`=0, `level`=0, `windup`=0 (s) | lines tagged `kind`, below |
 
 `timeline` lines:
