@@ -43,7 +43,7 @@ Wave 2 (parallel):
 Wave 3 (parallel):
 - [x] [005 adopt lookup](2026-11-23-000-package-split.kb/2026-11-23-005-adopt-lookup.md): damage and vis read the game data through the lookup
 - [x] [007 measurements check items](2026-11-23-000-package-split.kb/2026-11-23-007-measurements-check-items.md): item names and constant spirit investment checked against the lookup
-- [ ] [010 docs follow the lookup](2026-11-23-000-package-split.kb/2026-11-23-010-docs-follow-the-lookup.md): after 005, the four live docs that still describe vis's own loader
+- [x] [010 docs follow the lookup](2026-11-23-000-package-split.kb/2026-11-23-010-docs-follow-the-lookup.md): after 005, the four live docs that still describe vis's own loader
 
 Wave 4, on the owner's word that their edits to the root file are done:
 - [ ] [008 retire root readings](2026-11-23-000-package-split.kb/2026-11-23-008-retire-root-readings.md): the owner's edits since `b9f93b9` carried into the YAML; the root `crimson_slash_test_data.py` removed
@@ -53,11 +53,16 @@ Byte-for-byte baseline of every vis query, captured before wave 1:
 
 ## Success Criteria
 
-- [ ] `ls packages/` matches the decision's layout table; no `import deadlock`
+- [x] `ls packages/` matches the decision's layout table; no `import deadlock`
   or `import dllscan` remains outside frozen handoff records
-- [ ] `./bin/shell pytest` and `./bin/shell pyright` clean at the root;
+- [x] `./bin/shell pytest` and `./bin/shell pyright` clean at the root;
   `uv run pytest` and `uv run basedpyright` clean in `apps/vis/server`
-- [ ] `redo` rebuilds `data/` with no change to any committed TSV
-- [ ] `vis-server query timeline hero=hero_yamato ability=<Crimson Slash's key>`
+- [x] `redo` rebuilds `data/` with no change to any committed TSV
+- [x] `vis-server query timeline hero=hero_yamato ability=<Crimson Slash's key>`
   prints the same bytes before and after the plan
-- [ ] the damage modules hold no raw `dig` of a vdata key; vis holds no loader
+- [x] the damage modules hold no raw `dig` of a vdata key; vis holds no loader
+
+Verified 2026-11-23 after units 001-007, 009, 010 (commits `c8a0fbc..c51a9cf`),
+except that the full `redo` ran in units 001 and 003, not again at the end.
+Open: unit 008, on the owner's word. Review pending; once the owner is
+satisfied, `git rm -r` this plan's `.kb/` and `.jsonschema.yaml`.
