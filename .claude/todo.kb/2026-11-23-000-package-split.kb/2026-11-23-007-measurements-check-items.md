@@ -4,6 +4,7 @@ status: open
 blocked-by:
   - 2026-11-23-004-lookup-api.md
   - 2026-11-23-006-measurements-package.md
+  - 2026-11-23-009-root-depends-on-dllscan.md (it holds the root lock)
 required-reading:
   - .claude/todo.kb/2026-11-23-000-package-split.kb/CLAUDE.md
   - packages/bukzor-deadlock-measurements/
