@@ -3,7 +3,7 @@ from typing import cast
 
 import pytest
 
-from . import ReadingsError, load_all, parse
+from .load import ReadingsError, load_all, parse
 
 DOC: dict[str, object] = {
     "experiment": "x",
@@ -34,19 +34,19 @@ class DescribeParse:
         assert e.dummies[0].scenarios[0].heal is None
 
     def it_rejects_unknown_keys(self):
-        with pytest.raises(ReadingsError, match="unknown keys"):
+        with pytest.raises(ReadingsError, match="Additional properties"):
             _ = parse({**DOC, "extra": 1})
 
     def it_rejects_missing_keys(self):
         doc = copy.deepcopy(DOC)
         del dummy(doc)["regen"]
-        with pytest.raises(ReadingsError, match="missing"):
+        with pytest.raises(ReadingsError, match="required property"):
             _ = parse(doc)
 
     def it_rejects_wrong_types(self):
         doc = copy.deepcopy(DOC)
         dummy(doc)["max_health"] = "10"
-        with pytest.raises(ReadingsError, match="expected an integer"):
+        with pytest.raises(ReadingsError, match="is not of type .integer."):
             _ = parse(doc)
 
 
@@ -56,3 +56,9 @@ class DescribeShippedData:
         assert crimson.name == "crimson-slash"
         heals = [s.heal for s in crimson.dummies[0].scenarios]
         assert heals == [463, 467, 557, 923]
+
+    def it_names_the_file_and_path_of_a_violation(self):
+        doc = copy.deepcopy(DOC)
+        dummy(doc)["max_health"] = "10"
+        with pytest.raises(ReadingsError, match=r"f\.yaml\.dummies\[0\]\.max_health"):
+            _ = parse(doc, "f.yaml")

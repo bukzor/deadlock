@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "bukzor-deadlock",
     "bukzor-deadlock-lookup",
+    "jsonschema>=4.26.0",
     "pyyaml",
 ]
 

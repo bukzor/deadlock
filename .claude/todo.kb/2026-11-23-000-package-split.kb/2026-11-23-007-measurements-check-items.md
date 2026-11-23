@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-23-004-lookup-api.md
   - 2026-11-23-006-measurements-package.md
@@ -60,8 +60,31 @@ its `pyproject.toml`, the root `uv.lock`, and this file
 
 ## Steps
 
+- [x] jsonschema dependency (root lock rewritten by `uv add`)
+- [x] load.py validates against the schema; hand mirror deleted
+- [x] `__init__.py` emptied; imports go to defining modules
+- [x] check.py (item names, spirit total) and check_test.py
+- [x] tests: real files pass; misspelling and unequal swap fail
+
 ## Decisions
+
+- Spirit items are shop slot `Tech`; the dummy's baseline is its scenario
+  named `baseline` (a missing one is an error).
+- Violations from the schema are joined into one `ReadingsError`, each as
+  `FILE.PATH: message` (jsonschema's wording, e.g. "is not of type 'integer'").
+- Item-name failures re-raise the lookup's `Unresolved` text (near candidates)
+  as `ReadingsError`, prefixed with experiment, dummy index and scenario.
+- Guards seen red by mutation: slot filter, cost comparison.
 
 ## Open Questions
 
+- Nothing missing from the lookup's public API.
+
 ## Final report
+
+Added `check.py` (`check(experiment, lookup)`) and `check_test.py`; rewrote
+`load.py` on the schema; emptied `__init__.py`; added `jsonschema` to the
+package and root lock. Root pytest (1104) and pyright clean; black clean; the
+summary table prints as before. Vis and golden not run: nothing vis imports
+changed. `check` is not yet called from `load_all`/`__main__`; callers invoke it
+with `bukzor_deadlock_lookup.load.load()`.
