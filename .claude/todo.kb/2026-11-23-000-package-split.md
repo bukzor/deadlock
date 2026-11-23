@@ -52,7 +52,7 @@ Wave 5, on the owner's word that their edits to the root file are done:
 - [x] [008 retire root readings](2026-11-23-000-package-split.kb/2026-11-23-008-retire-root-readings.md): the owner's edits since `b9f93b9` carried into the experiment module; the root `crimson_slash_test_data.py` removed
 
 Wave 6:
-- [ ] [012 data follows the install](2026-11-23-000-package-split.kb/2026-11-23-012-data-follows-the-install.md): the full build at the installed game and latest VRF, as its own commit (the split held this drift back)
+- [x] [012 data follows the install](2026-11-23-000-package-split.kb/2026-11-23-012-data-follows-the-install.md): the full build at the installed game and latest VRF, as its own commit (the split held this drift back)
 
 Wave 7:
 - [ ] [013 model reads the lookup](2026-11-23-000-package-split.kb/2026-11-23-013-model-reads-the-lookup.md): the owner's Crimson Slash model moves into the measurements package and reads its constants through the lookup, output unchanged

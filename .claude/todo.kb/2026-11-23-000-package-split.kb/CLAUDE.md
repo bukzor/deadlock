@@ -77,11 +77,6 @@ copies them.
 - Sync the root venv with `uv sync --all-packages`; a plain `uv sync`
   prunes workspace members' dependencies (the evaluator's `boon-deadlock`,
   `polars`). Wave-2 units touch no dependency list, so they rarely need it.
-- The installed game (build 6864) and VRF feed (21.1) are newer than the
-  committed views (6860, 20.1), so a full `redo` rewrites
-  `data/deadlock-version.json`, `data/tools/vrf-release.json` and
-  `data/dlls/file.tsv`. That is drift, not your unit's effect: restore those
-  three (`git checkout -- PATHS`) and judge the rest.
 - A check that was red before your unit (try it on `HEAD` in a scratch
   worktree) is not yours to fix: report it.
 - Run builds and checks in the foreground. Never end your turn waiting on a
