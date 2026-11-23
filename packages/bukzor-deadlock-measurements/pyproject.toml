@@ -1,7 +1,7 @@
 [project]
 name = "bukzor-deadlock-measurements"
 version = "0.0.0"
-description = "Measured in-game values of Deadlock that calibrate the evaluator."
+description = "Hand-recorded sandbox readings of Deadlock, one YAML file per experiment with a JSON Schema, plus typed loaders."
 license = "Apache-2.0"
 requires-python = ">=3.12"
 dependencies = [

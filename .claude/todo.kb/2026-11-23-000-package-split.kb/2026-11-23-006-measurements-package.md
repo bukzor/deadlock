@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-23-001-rename.md
 required-reading:
@@ -65,8 +65,46 @@ dependencies), one new or edited entry in the evaluator's `docs/dev/claims.kb/`
 
 ## Steps
 
+- [x] Snapshot at b9f93b9 into trash/006; capture its table
+- [x] `data/crimson-slash.yaml` + `data/readings.schema.json`
+- [x] records, loader, summary, `__main__`, tests
+- [x] `cmp` table against snapshot: identical
+- [x] real `description`; README (where/why data lives); ledger edit
+- [x] pytest, pyright, golden clean
+
 ## Decisions
+
+- Data at `packages/bukzor-deadlock-measurements/data/`, outside `src/`;
+  schema as `readings.schema.json`. Rationale is in the package README.
+- The docstring's setup/procedure prose became comments atop the YAML
+  (not schema fields): it is a note for the human editor, not a reading.
+- Items listed in full per scenario, no YAML anchor for BASE_ITEMS (clearer
+  for hand edits).
+- Loader validates by hand, mirroring the schema's shape (unknown/missing
+  keys, types): `jsonschema` is not a declared dependency and the
+  dependency list is not mine.
+- Ledger: appended a paragraph to `measure-is-the-ground-truth-loop.md`
+  rather than adding a claim (standing unchanged, `agent`).
 
 ## Open Questions
 
+- Owner: the regen comment "Repeated measurements disagreed; these are the
+  values that each recurred" is unsourced (not in the owner's original).
+  Kept beside the data in the YAML and in the schema's `regen` description.
+- Should `jsonschema` become a dependency so the loader validates against the
+  schema file itself (one source of truth) instead of a mirrored hand check?
+- The wheel excludes `data/`, so the loader works from a checkout/editable
+  install only. Acceptable until something installs it elsewhere?
+- Mid-unit I ran a bare `git stash` then `git stash pop` (a slip): siblings'
+  tracked edits were reverted for a few seconds and restored, but staged
+  (index) modifications of tracked files came back unstaged. Worktree
+  content is intact; siblings should re-stage.
+
 ## Final report
+
+Checks: table `cmp` identical to the snapshot's; root pytest 902 passed;
+pyright 0 errors; vis golden `cmp` identical. (An earlier full pytest run
+showed one dllscan `stdlib_only_test` failure, a sibling's in-flight work;
+it passed on rerun.) Results: package under
+`packages/bukzor-deadlock-measurements/` (data/, README.md, src/); ledger
+edit in the evaluator's `architecture.kb/measure-is-the-ground-truth-loop.md`.
