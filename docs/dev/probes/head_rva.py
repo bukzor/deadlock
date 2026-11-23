@@ -4,10 +4,10 @@ per-type placeholder ConVarData array (sentinel.py)?
 usage: copy into trash/winpy/ (bin/winpy's cwd), then bin/winpy head_rva DLL DIR...
 """
 import json, ntpath, sys
-from dllscan import reglist, win32
-from dllscan.convar_h import ConVarRegList_Entry_t, offset_of
-from dllscan.image import read_image
-from dllscan.memory import Memory
+from bukzor_dllscan import reglist, win32
+from bukzor_dllscan.convar_h import ConVarRegList_Entry_t, offset_of
+from bukzor_dllscan.image import read_image
+from bukzor_dllscan.memory import Memory
 dll, *dirs = sys.argv[1:]
 win32.add_dll_directories(dirs)
 mem = Memory(win32.read)

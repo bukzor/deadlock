@@ -26,7 +26,7 @@ A package's directory is its distribution name.
 
 | package | holds | depends on |
 |---|---|---|
-| `bukzor-deadlock` (repo root) | extraction, the `data/` views, `paths`, `loc` | `vpk`, `keyvalues3`, ... |
+| `bukzor-deadlock` (repo root) | extraction, the `data/` views, `paths`, `loc` | `bukzor-dllscan`, `vpk`, `keyvalues3`, ... |
 | `packages/bukzor-deadlock-lookup` | typed lookup of heroes, abilities and items by key or English name | `bukzor-deadlock` |
 | `packages/bukzor-deadlock-damage` | one attacker's damage over time: cycles, hits, DPS, time to kill | lookup |
 | `packages/bukzor-deadlock-evaluator` | build evaluation | damage, lookup, measurements |

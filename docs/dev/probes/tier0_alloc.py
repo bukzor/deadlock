@@ -17,9 +17,9 @@ import struct
 import sys
 
 from alloc_trace import ALLOC, EXECUTE, RECORD, RECORDS, _q, call_through, tail_logger
-from dllscan import reglist, win32
-from dllscan.image import read_image
-from dllscan.memory import Memory
+from bukzor_dllscan import reglist, win32
+from bukzor_dllscan.image import read_image
+from bukzor_dllscan.memory import Memory
 
 NOTIFY = ctypes.CFUNCTYPE(None, ctypes.c_uint32, ctypes.c_void_p, ctypes.c_void_p)
 LOADED = 1

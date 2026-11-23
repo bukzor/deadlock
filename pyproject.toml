@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "keyvalues3>=0.3",
     "python-typed-json>=0.1.0",
+    "bukzor-dllscan",
     "vdf>=3.4",
     "vpk>=1.4.0",
 ]
@@ -53,5 +54,6 @@ executionEnvironments = [
 members = ["packages/*"]
 
 [tool.uv.sources]
+bukzor-dllscan = { workspace = true }
 bukzor-redotools = { workspace = true }
 basedpyright-as-pyright = { git = "https://github.com/bukzor/basedpyright-as-pyright" }

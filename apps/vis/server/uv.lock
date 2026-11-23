@@ -32,6 +32,7 @@ name = "bukzor-deadlock"
 version = "0.0.0"
 source = { editable = "../../../" }
 dependencies = [
+    { name = "bukzor-dllscan" },
     { name = "keyvalues3" },
     { name = "python-typed-json" },
     { name = "vdf" },
@@ -40,6 +41,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "bukzor-dllscan", editable = "../../../packages/bukzor-dllscan" },
     { name = "keyvalues3", specifier = ">=0.3" },
     { name = "python-typed-json", specifier = ">=0.1.0" },
     { name = "vdf", specifier = ">=3.4" },
@@ -81,6 +83,11 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [{ name = "bukzor-deadlock", editable = "../../../" }]
+
+[[package]]
+name = "bukzor-dllscan"
+version = "0.0.0"
+source = { editable = "../../../packages/bukzor-dllscan" }
 
 [[package]]
 name = "click"

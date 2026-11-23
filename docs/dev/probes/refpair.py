@@ -5,10 +5,10 @@ int 0; *m_pConVarData one target per type. Command: the ref's first qword 0xFFFF
 usage: copy into trash/winpy/ (bin/winpy's cwd), then bin/winpy refpair DLL DIR...
 """
 import collections, json, sys
-from dllscan import reglist, win32, values
-from dllscan.convar_h import ConCommandRegList_Entry_t, ConVarRegList_Entry_t, offset_of
-from dllscan.image import read_image
-from dllscan.memory import Memory
+from bukzor_dllscan import reglist, win32, values
+from bukzor_dllscan.convar_h import ConCommandRegList_Entry_t, ConVarRegList_Entry_t, offset_of
+from bukzor_dllscan.image import read_image
+from bukzor_dllscan.memory import Memory
 dll, *dirs = sys.argv[1:]
 win32.add_dll_directories(dirs)
 mem = Memory(win32.read)

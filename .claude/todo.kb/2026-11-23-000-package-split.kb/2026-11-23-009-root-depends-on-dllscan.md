@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-23-003-dllscan-package.md
 required-reading:
@@ -45,8 +45,19 @@ this file
 
 ## Steps
 
+- [x] Root `pyproject.toml`: dependency plus workspace source; `uv lock` at root and vis
+- [x] Decision record: root row's "depends on" cell
+- [x] Probes: import names only (6 files)
+
 ## Decisions
+
+- Probe prose in `sentinel.py`'s docstring (`dllscan.registry`) renamed too, so it matches the import.
 
 ## Open Questions
 
+- `docs/dev/probes/flags_cmdline.py` does `from bukzor_dllscan.__main__ import load_image`, but no `load_image` exists in the package (nor was it found in pre-split history I checked). Stale before this unit; left as is (archived evidence, imports otherwise resolve).
+
 ## Final report
+
+- Root and vis locks regenerated (root +2 lines, vis +7: `bukzor-dllscan` added).
+- Root pytest 1098 passed, pyright 0. Vis pytest 95 passed, basedpyright 0. Probes parse; every imported `bukzor_dllscan` module resolves except the `load_image` name above. Golden protocol not run: no vis code or data touched.

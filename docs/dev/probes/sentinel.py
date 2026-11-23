@@ -1,7 +1,7 @@
 """Probe: what is `*m_pConVarData` before registration (one value per type, 6860)?
 
 For each convar type in the DLL's queue: where the target lives (module,
-section, RVA), and the target read as s2sdk's `ConVarData` (`dllscan.registry`):
+section, RVA), and the target read as s2sdk's `ConVarData` (`bukzor_dllscan.registry`):
 its name, its `m_eVarType` against the entries' type code, and its value
 pointers. Also each target's qwords classified, in case it points at tier0's
 type-traits table.
@@ -14,11 +14,11 @@ import json
 import ntpath
 import sys
 
-from dllscan import reglist, win32
-from dllscan.convar_h import ConVarRegList_Entry_t, offset_of
-from dllscan.image import read_image
-from dllscan.memory import Memory
-from dllscan.registry import ConVarData
+from bukzor_dllscan import reglist, win32
+from bukzor_dllscan.convar_h import ConVarRegList_Entry_t, offset_of
+from bukzor_dllscan.image import read_image
+from bukzor_dllscan.memory import Memory
+from bukzor_dllscan.registry import ConVarData
 
 PD = offset_of(ConVarRegList_Entry_t, "m_pConVarData")
 TY = offset_of(ConVarRegList_Entry_t, "m_Info.m_valueInfo.m_eVarType")
@@ -70,7 +70,7 @@ def main(dll: str, dirs: list[str]) -> None:
     for i in range(length):
         row = base - (length - i) * 88
         traits.append([mem.cstr_in(mem.u64(row) or 0, 0, 1 << 64), mem.u32(row + 8), where(row)])
-    from dllscan.values import TYPES
+    from bukzor_dllscan.values import TYPES
     print(json.dumps({"traits_match_TYPES": [(n, s) for n, s, _ in traits] == list(TYPES.items()), "traits": traits}))
     after = ConVarData.from_buffer_copy(mem.read(base + length * step, ctypes.sizeof(ConVarData)) or bytes(ctypes.sizeof(ConVarData)))
     print(json.dumps({"dll": ntpath.basename(dll), "array": {"at": where(base), "step": step, "length": length,

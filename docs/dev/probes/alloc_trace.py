@@ -19,9 +19,9 @@ import struct
 import sys
 from collections import Counter
 
-from dllscan import reglist, win32
-from dllscan.image import Image, read_image
-from dllscan.memory import Memory
+from bukzor_dllscan import reglist, win32
+from bukzor_dllscan.image import Image, read_image
+from bukzor_dllscan.memory import Memory
 
 ALLOC = 1
 """`MemAlloc_AllocFunc` (tier0 RVA 0x12dd50 on 6860) is `mov rdx, rcx; mov rcx,

@@ -15,8 +15,8 @@ import hashlib
 import json
 import sys
 
-from dllscan import facets, win32
-from dllscan.__main__ import load_image
+from bukzor_dllscan import facets, win32
+from bukzor_dllscan.__main__ import load_image
 
 
 def main(dll: str, dirs: list[str]) -> None:
