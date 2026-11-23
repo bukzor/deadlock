@@ -228,6 +228,10 @@ class DescribeTimeline:
             with pytest.raises(BadRequest, match="seconds or in cycles, not both"):
                 _ = timeline(seconds="3", cycles="2")
 
+        def it_rejects_a_cast_the_damage_model_cannot_read(self):
+            with pytest.raises(BadRequest, match=r"^blast: AbilityCooldown is '40 30 20', not a number this model can read$"):
+                _ = blast_timeline({"Damage": "5", "AbilityCooldown": "40 30 20", "AbilityCastDelay": "0"})
+
         def it_rejects_a_window_of_too_many_hits(self):
             with pytest.raises(BadRequest, match="1,333,334 hits, more than the 10,000"):
                 _ = timeline(seconds="1e6")

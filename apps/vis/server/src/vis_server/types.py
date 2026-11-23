@@ -2,11 +2,9 @@
 
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
-from typing import Literal
 
 type Json = None | bool | int | float | str | Sequence[Json] | Mapping[str, Json]
 type JsonObj = Mapping[str, Json]
-type Kind = Literal["gun", "melee", "cast"]  # the source that models an ability
 type Params = Mapping[str, str]  # a query's arguments: URL query string or CLI key=value
 
 

@@ -12,7 +12,7 @@ cost-benefit-sweh:
 
 ## The Idea
 
-14 casts list as `kind: "cast"` but draw no hits at default settings (e.g. `ability_afterburn`, spirit 0). The player sees an empty chart with no reason. Evidence: `apps/vis/server/src/vis_server/casts.py` module docstring ("14 cycles have no hits at spirit 0").
+14 casts list as `kind: "cast"` but draw no hits at default settings (e.g. `ability_afterburn`, spirit 0). The player sees an empty chart with no reason. Evidence: `packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/casts.py` module docstring ("14 cycles have no hits at spirit 0").
 
 Smallest fix: add a note to such a cycle saying its damage scales from spirit and is 0 at spirit 0, or mark the ability in `abilities`.
 

@@ -5,10 +5,9 @@ from bukzor_deadlock import gamedata, paths
 from bukzor_deadlock.abilities import bindings
 from pytest import approx
 
-from . import melee
+from . import BadInput, melee
 from .boons import NONE, Boons
 from .melee import HEAVY, LIGHT
-from .types import BadRequest
 
 
 def _hero(light: float = 50, heavy: float = 116, melee: str = "melee_a") -> Mapping[str, object]:
@@ -91,11 +90,11 @@ class DescribeCycle:
 
     class WhenTheRequestIsBad:
         def it_rejects_an_unknown_hero(self):
-            with pytest.raises(BadRequest, match="hero_z"):
+            with pytest.raises(BadInput, match="hero_z"):
                 _ = melee.cycle(HEROES, ABILITIES, "hero_z", LIGHT, 0.0)
 
         def it_rejects_a_negative_windup(self):
-            with pytest.raises(BadRequest, match="windup"):
+            with pytest.raises(BadInput, match="windup"):
                 _ = melee.cycle(HEROES, ABILITIES, "hero_a", LIGHT, -0.1)
 
 

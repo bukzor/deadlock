@@ -24,4 +24,4 @@ For guns and melee, trigger stays the player's input; for a tick it is
 when that tick's damage starts building. Only the owner can overrule
 the reading; no in-game measurement bears on it. Design:
 [`vis-app.md`](../../../../../../docs/dev/decisions.kb/vis-app.md),
-*Model*; built in `apps/vis/server/src/vis_server/casts.py`.
+*Model*; built in `packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/casts.py`.

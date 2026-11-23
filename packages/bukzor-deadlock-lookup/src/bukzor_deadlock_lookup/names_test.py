@@ -10,9 +10,6 @@ class DescribeAbilityName:
     def it_is_the_in_game_name(self):
         assert names.ability_name(TOKENS, "ability_x") == "Napalm"
 
-    def it_gives_the_melee_pseudo_abilities_plain_names(self):
-        assert [names.ability_name(TOKENS, a) for a in ("melee_light", "melee_heavy")] == ["Light Melee", "Heavy Melee"]
-
     @pytest.mark.parametrize("key", ["ability_y", "ability_blank"])
     def it_falls_back_to_the_key(self, key: str):
         assert names.ability_name(TOKENS, key) == key

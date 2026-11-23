@@ -27,7 +27,7 @@ land itself, which the half-open window would leave out; a margin such as
 discard a horizon the user chose; and keeping the horizon when `hp` is out
 of reach, which would answer "not within 4 s" to a question 120 s could
 still settle. Overturned if the owner wants the chart to end at the kill.
-Built in `apps/vis/server/src/vis_server/measures.py` (`horizon_used`).
+Built in `packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/measures.py` (`horizon_used`).
 
 Out of force: the owner ruled that the window and the target hp are two
 separate values, and that a change to hp moves the window only when the

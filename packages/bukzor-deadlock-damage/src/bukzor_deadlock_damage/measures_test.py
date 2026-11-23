@@ -7,9 +7,8 @@ from pytest import approx
 
 from . import guns, melee
 from .conftest import within
-from .measures import Measure, horizon_used, measures
+from .measures import Kind, Measure, horizon_used, measures
 from .timeline import Cycle, Gun, Hit, gun_cycle
-from .types import Kind
 
 # In-game hero stats, level 0, no items, build 6854: docs/dev/mechanics.kb/gun-fire-rate.md
 SEVEN = Gun(damage=10.8, pellets=1, burst=3, cycle=0.2625, intra=0.084, shots=30, reload=2.35, travel=0.0)

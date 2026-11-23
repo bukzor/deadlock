@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-23-001-rename.md
 required-reading:
@@ -76,8 +76,50 @@ moved module, `.claude/ideas.kb/`, and this file
 
 ## Steps
 
+- [x] Baseline: root and vis checks on HEAD
+- [x] `git mv` the six modules and tests into damage; `names{,_test}` into lookup
+- [x] Cut the edges: `Kind`, the damage exception, names, conftest, `RELOAD_DIRS`
+- [x] Checks: root, vis, golden
+- [x] Docs: VIS_SEED, SERVER_PYTHON, `vis-app.md`, README, `bin/serve`, path refs
+- [x] Commit
+
 ## Decisions
+
+- **Exception: `bukzor_deadlock_damage.BadInput(ValueError)`, caught at the
+  query boundary.** `queries._query.checked` re-raises it as
+  `BadRequest(str(bad))`, so every query (not only `timeline`) keeps its
+  400 and its message bytes. A subclass was impossible without damage
+  knowing vis. Pinned by `queries_test`'s
+  `it_rejects_a_cast_the_damage_model_cannot_read` (observed red with the
+  catch disabled).
+- **`Kind` lives in `measures.py`**, its one damage-side consumer; no
+  damage `types` module.
+- **Melee pseudo-names: `melee.NAMES`.** vis's `names.py` would have held
+  one two-term `or`, so it is gone; `queries.abilities` does
+  `melee.NAMES.get(a) or names.ability_name(tokens, a)`. Its old test is
+  covered by `queries_test` (`Light Melee`, `Heavy Melee` lines).
+- **conftest:** `within` went to a new damage `conftest.py` (its one user is
+  `measures_test`); the synthetic trees stay in vis.
+- **`py.typed`** added to damage and to lookup: vis's basedpyright reports
+  `reportMissingTypeStubs` on both imports without it.
 
 ## Open Questions
 
+- `bukzor_deadlock_lookup/py.typed` is outside this brief's file list; unit
+  004 owns that package. Added because vis's checks need it.
+
 ## Final report
+
+- Checks: root pytest exit 0; root pyright 0 errors on this unit's paths,
+  8 whole-tree errors all in `bukzor_deadlock_measurements/{check,load}.py`
+  (unit 006's in-progress files; the same tree was 0 at my baseline);
+  vis pytest 95 passed (was 239: 144 moved to root, one names test dropped,
+  one boundary test added); vis basedpyright 0 errors; golden
+  byte-identical (`trash/002/golden.after.txt`, 11593 lines).
+- Deviations: the lookup `py.typed` (above); the `__main__` `--reload` help
+  text and `SERVE_LIVE` (`serve-live-reload.md`) also named the old reload
+  set, so they were updated with `RELOAD_DIRS`.
+- `.claude/todo.md`: no hit names a moved module (its one vis hit is
+  `queries.py`, which stays).
+- Findings: VIS_SEED and SERVER_PYTHON rewritten with the owner's ruling;
+  `vis-app.md` *Shape* and *Protocol* name the split and `BadInput`.

@@ -17,7 +17,12 @@ as DPS numbers a player can check in-game.
   root `bukzor-deadlock` package as an editable path dependency and reuses it rather
   than re-reading the data its own way. That includes
   `bukzor_deadlock.ability_profiles.profiles`, which already derives gun DPS. Runtime
-  dependencies are Starlette and uvicorn.
+  dependencies are Starlette and uvicorn. The server holds the protocol only
+  (`queries`, `http`, `__main__`, `types`). The damage model (the modules named
+  under *Model* and *Measures*) is the root-workspace package
+  `bukzor-deadlock-damage`, and the localized names are
+  `bukzor_deadlock_lookup.names`; both are editable path dependencies too
+  (`small-bukzor-prefixed-packages.md`).
 - **`apps/vis/client/`**: Vite + React + TypeScript (strict), a pnpm workspace
   whose root is `apps/vis/client/`. Charts use Observable Plot, tests use vitest.
   The user allowed Vue/Nuxt; React was kept because nothing here needs SSR or
@@ -37,8 +42,9 @@ as DPS numbers a player can check in-game.
   description}}`.
 - The server builds the whole response before sending it, so an error can
   still set the status. A `BadRequest` (unknown hero, unparseable number)
-  becomes a 400 with one `{"error": message}` line. Anything else is a bug and
-  fails loudly (500).
+  becomes a 400 with one `{"error": message}` line; so does the damage model's
+  `BadInput`, which the registry turns into a `BadRequest` with its message.
+  Anything else is a bug and fails loudly (500).
 
 The query registry `queries.QUERIES` maps a name to a `Query`. A `Query`
 carries its `params` as `{name: description}` and a `run(params: Params) ->
@@ -50,7 +56,7 @@ Queries:
 | query | params | lines |
 |---|---|---|
 | `heroes` | | `{"hero": key, "name": display}` |
-| `abilities` | `hero` | `{"ability": key, "name": in-game name (`names.py`), "kind": "gun"\|"melee"\|"cast"\|null}` |
+| `abilities` | `hero` | `{"ability": key, "name": in-game name (`bukzor_deadlock_lookup.names`), "kind": "gun"\|"melee"\|"cast"\|null}` |
 | `timeline` | `hero`, `ability`, the window as at most one of `seconds` or `cycles` (default `cycles`=2, or 10 s for a one-shot), `hp` (optional), `distance`=0 (m), `spirit`=0, `level`=0, `windup`=0 (s) | lines tagged `kind`, below |
 
 `timeline` lines:
@@ -74,7 +80,7 @@ Melee appears in `abilities` as two pseudo-abilities, `melee_light` and
 
 ## Model: every damage source is a repeating `Cycle`
 
-`server/src/vis_server/timeline.py` defines `Hit` and `Cycle`, and `repeat`
+`bukzor_deadlock_damage.timeline` defines `Hit` and `Cycle`, and `repeat`
 unrolls a cycle up to the horizon. The window is half-open, `[0, horizon)`: only
 hits that land before the horizon are sent, so the chart draws exactly what the
 totals count, and a horizon of N periods holds exactly N cycles. A hit's **trigger** is the input (trigger

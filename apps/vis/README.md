@@ -6,7 +6,8 @@ trigger, the right edge the land), the DPS measures with how to check each
 in-game, and the model's caveats.
 
 - `server/`: Python, its own uv project. It reads `data/` through the root
-  `deadlock` package and answers queries as JSONL.
+  `bukzor-deadlock` package, models damage with `bukzor-deadlock-damage`
+  (`packages/`), and answers queries as JSONL.
 - `client/`: Vite, React and TypeScript, a pnpm workspace.
 
 The design, including the protocol, is
@@ -21,8 +22,8 @@ apps/vis/bin/serve            # PORT=5174 API_PORT=8789 apps/vis/bin/serve for o
 
 One command, the live loop: it installs the client's packages when the
 lockfile is newer, then runs Vite (hot reload) and `vis-server serve
---reload` (restarts on a change to the server or `deadlock` sources), and
-prints the one URL to open: <http://localhost:5173/>, which proxies `/api` to
+--reload` (restarts on a change to the server or the `bukzor-*` packages it
+imports), and prints the one URL to open: <http://localhost:5173/>, which proxies `/api` to
 the server on :8788. From WSL2, that URL opens in a Windows browser too.
 Ctrl-C stops both. The API port serves no page (`GET /` is a 404 saying so),
 and the output names no URL but Vite's. It refuses a port that is already taken. The server reads

@@ -16,12 +16,13 @@ from functools import cache
 
 from bukzor_deadlock import gamedata, paths
 from bukzor_deadlock.abilities import SIGNATURE, bindings
+from bukzor_deadlock_damage import BadInput, boons, casts, guns, melee
+from bukzor_deadlock_damage.boons import NONE, Boons
+from bukzor_deadlock_damage.measures import Kind, Measure, horizon_used, measures
+from bukzor_deadlock_damage.timeline import Cycle, Hit, landed_by
+from bukzor_deadlock_lookup import names
 
-from . import boons, casts, guns, melee, names
-from .boons import NONE, Boons
-from .measures import Measure, horizon_used, measures
-from .timeline import Cycle, Hit, landed_by
-from .types import BadRequest, JsonObj, Kind, Params, Query
+from .types import BadRequest, JsonObj, Params, Query
 
 MAX_HITS = 10_000  # per timeline: what a browser chart draws without stalling
 NOT_PLAYABLE = {"hero_targetdummy", "hero_genericperson"}  # the training dummy; Generic Person
@@ -69,7 +70,10 @@ def _query(params: Mapping[str, str], run: Callable[[Params], Sequence[JsonObj]]
         unknown = sorted(set(given) - set(params))
         if unknown:
             raise BadRequest(f"unknown parameter: {', '.join(unknown)} (accepted: {', '.join(params) or 'none'})")
-        return run(given)
+        try:
+            return run(given)
+        except BadInput as bad:
+            raise BadRequest(str(bad)) from bad  # the damage model's bad input is the caller's
 
     return Query(params, checked)
 
@@ -83,14 +87,14 @@ def heroes(data: GameData) -> list[JsonObj]:
 def abilities(data: GameData, hero: str) -> list[JsonObj]:
     """``{"ability", "name", "kind"}`` for ``hero``'s gun, light and heavy melee, then signatures by slot.
 
-    ``name`` is the in-game name (``names.ability_name``).
+    ``name`` is the in-game name (``names.ability_name``; ``melee.NAMES`` for melee).
     ``kind`` is the source that models the ability at default parameters
     (``"gun"``, ``"melee"``, ``"cast"``), or ``None`` when none does.
     """
     lines: list[JsonObj] = []
     for ability in _kit(data, hero):
         found = _source(data, hero, ability)
-        lines.append({"ability": ability, "name": names.ability_name(data.tokens, ability), "kind": None if found is None else found[0]})
+        lines.append({"ability": ability, "name": melee.NAMES.get(ability) or names.ability_name(data.tokens, ability), "kind": None if found is None else found[0]})
     return lines
 
 

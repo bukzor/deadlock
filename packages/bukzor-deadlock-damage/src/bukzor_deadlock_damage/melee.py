@@ -20,12 +20,13 @@ from collections.abc import Mapping
 
 from bukzor_deadlock.types import dig, is_str_mapping
 
+from . import BadInput
 from .boons import NONE, Boons, spirit_note
 from .timeline import Cycle, Hit
-from .types import BadRequest
 
 LIGHT = "melee_light"
 HEAVY = "melee_heavy"
+NAMES = {LIGHT: "Light Melee", HEAVY: "Heavy Melee"}  # the game's own words for the two melee stats
 
 _MELEE_SLOT = "ESlot_Weapon_Melee"
 # pseudo-ability: (label, hero damage stat, attack type on the melee ability)
@@ -48,14 +49,14 @@ def cycle(
     ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
     trees (see ``bukzor_deadlock.gamedata``); ``boons`` is what the hero's level adds.
     The cycle is one hit, triggered at 0 and landing at ``windup`` seconds.
-    Raises ``BadRequest`` for an unknown hero or a negative ``windup``.
+    Raises ``BadInput`` for an unknown hero or a negative ``windup``.
     """
     if ability not in _ATTACKS:
         return None
     if not is_str_mapping(heroes.get(hero)):
-        raise BadRequest(f"unknown hero: {hero}")
+        raise BadInput(f"unknown hero: {hero}")
     if windup < 0:
-        raise BadRequest(f"windup must be >= 0, got {windup}")
+        raise BadInput(f"windup must be >= 0, got {windup}")
     label, stat, attack_type = _ATTACKS[ability]
     damage = _num(dig(heroes, hero, "m_mapStartingStats", stat), hero, stat) + (boons.light_melee if ability == LIGHT else boons.heavy_melee)
     melee = dig(heroes, hero, "m_mapBoundAbilities", _MELEE_SLOT)

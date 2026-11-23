@@ -1,8 +1,6 @@
 """Synthetic game data shared by the query tests."""
 
-import signal
-from collections.abc import Generator, Mapping
-from contextlib import contextmanager
+from collections.abc import Mapping
 
 from .queries import GameData, registry
 
@@ -62,19 +60,3 @@ DATA = GameData(
     tokens={"blast:n": "Blast"},
 )
 SYNTHETIC = registry(lambda: DATA)
-
-
-@contextmanager
-def within(seconds: int) -> Generator[None]:
-    """Fail, rather than hang the run, if the block takes more than ``seconds`` (Unix main thread)."""
-
-    def expired(_signum: int, _frame: object) -> None:
-        raise TimeoutError(f"still running after {seconds} s: an unbounded loop?")
-
-    previous = signal.signal(signal.SIGALRM, expired)
-    _ = signal.alarm(seconds)
-    try:
-        yield
-    finally:
-        _ = signal.alarm(0)
-        _ = signal.signal(signal.SIGALRM, previous)

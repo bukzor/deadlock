@@ -37,10 +37,10 @@ from collections.abc import Mapping
 from bukzor_deadlock.abilities import SIGNATURE, bindings
 from bukzor_deadlock.ability_upgrades import upgrades
 from bukzor_deadlock.types import dig, is_str_mapping
+from bukzor_deadlock_lookup.names import property_label
 
-from .names import property_label
+from . import BadInput
 from .timeline import Cycle, Hit
-from .types import BadRequest
 
 HEURISTIC = (
     "Not yet checked in-game: damage lands after the cast delay, damage over time ticks through the ability's "
@@ -80,7 +80,7 @@ def cycle(
     zero-damage hit is dropped, so a cycle may have no hits.
 
     A read field that isn't a plain number (``"0.1m"``, a per-level list like
-    ``"40 30 20"``) raises ``BadRequest``: the model can't say what it means.
+    ``"40 30 20"``) raises ``BadInput``: the model can't say what it means.
     """
     if (hero, ability) not in {(h, a) for h, slot, a in bindings(heroes) if slot.startswith(SIGNATURE)}:
         return None
@@ -196,7 +196,7 @@ def _number(props: Props, ability: str, name: str, default: float | None = None)
         return float(value)
     if isinstance(value, str) and _NUMBER.fullmatch(value):
         return float(value)
-    raise BadRequest(f"{ability}: {name} is {value!r}, not a number this model can read")
+    raise BadInput(f"{ability}: {name} is {value!r}, not a number this model can read")
 
 
 def _humanize(name: str) -> str:

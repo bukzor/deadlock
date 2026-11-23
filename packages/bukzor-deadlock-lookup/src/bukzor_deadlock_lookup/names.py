@@ -10,10 +10,7 @@ from collections.abc import Mapping
 from bukzor_deadlock import loc, paths
 from bukzor_deadlock.types import dig
 
-from . import melee
-
 FILES = ("citadel_heroes", "citadel_attributes")  # ability names; property labels (both files hold some of each)
-MELEE = {melee.LIGHT: "Light Melee", melee.HEAVY: "Heavy Melee"}  # the game's own words for the two melee stats
 
 
 def load_tokens() -> dict[str, str]:
@@ -30,8 +27,8 @@ def load_tokens() -> dict[str, str]:
 
 
 def ability_name(tokens: Mapping[str, str], ability: str) -> str:
-    """``ability``'s in-game name; ``Light Melee`` and ``Heavy Melee`` for the melee pseudo-abilities; else its key."""
-    return MELEE.get(ability) or loc.look_up(tokens, ability) or ability
+    """``ability``'s in-game name; else its key."""
+    return loc.look_up(tokens, ability) or ability
 
 
 def property_label(tokens: Mapping[str, str], props: Mapping[str, object], prop: str) -> str | None:

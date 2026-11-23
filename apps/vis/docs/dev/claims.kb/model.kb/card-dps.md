@@ -19,6 +19,6 @@ number. Scaling by another stat is left out, as the cast's note says.
 
 Overturned by hovering the ability in the sandbox at a known spirit power
 and reading a different DPS. Built in
-`apps/vis/server/src/vis_server/casts.py` (`card_dps`).
+`packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/casts.py` (`card_dps`).
 
 Provenance (the handoff files are retired): `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-023-player-words-server.md`.

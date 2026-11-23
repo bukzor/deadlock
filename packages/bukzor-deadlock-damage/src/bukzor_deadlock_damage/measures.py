@@ -11,14 +11,15 @@ reported as 0.
 import math
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
-from typing import assert_never
+from typing import Literal, assert_never
 
 from .timeline import Cycle, Hit, landed_by
-from .types import Kind
 
 DPS = "damage/s"
 DEFAULT_PERIODS = 2  # cycles shown when the horizon is not given
 ONE_SHOT_HORIZON = 10.0  # seconds, for a cycle that happens once
+
+type Kind = Literal["gun", "melee", "cast"]  # the source that models an ability
 
 
 @dataclass(frozen=True)

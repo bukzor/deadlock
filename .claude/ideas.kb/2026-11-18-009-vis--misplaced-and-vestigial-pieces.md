@@ -12,7 +12,7 @@ cost-benefit-sweh:
 
 ## The Idea
 
-`Gun`/`gun_cycle` live in `apps/vis/server/src/vis_server/timeline.py` but only `guns.py` uses them; `protocol.MeasureLine.label?` (`client/src/protocol.ts:59`) is optional "for older servers" that cannot exist (same repo, same process); `docs/dev/decisions.kb/vis-app.md` is still `status: proposed` (needs the user's review).
+`Gun`/`gun_cycle` live in `packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/timeline.py` but only `guns.py` uses them; `protocol.MeasureLine.label?` (`client/src/protocol.ts:59`) is optional "for older servers" that cannot exist (same repo, same process); `docs/dev/decisions.kb/vis-app.md` is still `status: proposed` (needs the user's review).
 
 Smallest fix: move `Gun` into `guns.py`; make `label` required; flip the status once the user rules.
 

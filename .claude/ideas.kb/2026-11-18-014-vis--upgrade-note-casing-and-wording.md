@@ -14,7 +14,7 @@ cost-benefit-sweh:
 
 Upgrade notes mix casing: game labels are Title Case ("T2 Lifesteal 20"), fallbacks are lower-case ("T2 dps 0.6", "T3 beam split 0.93"), and the fallbacks read as raw property names to a player.
 
-Smallest fix: one casing rule in the note builder in `apps/vis/server/src/vis_server/` (find it with `grep -rn "T2"`), and player words for the fallbacks.
+Smallest fix: one casing rule in the note builder in `packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/` (find it with `grep -rn "T2"`), and player words for the fallbacks.
 
 ## Exploration Notes
 

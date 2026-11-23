@@ -6,9 +6,8 @@ from bukzor_deadlock import gamedata, paths
 from bukzor_deadlock.abilities import SIGNATURE, bindings
 from pytest import approx
 
-from . import casts
+from . import BadInput, casts
 from .timeline import Cycle
-from .types import BadRequest
 
 HERO = "hero_x"
 ABILITY = "ability_x"
@@ -178,7 +177,7 @@ class DescribeCycle:
 
         @pytest.mark.parametrize("value", ["0.1m", "40 30 20", "nan", "", True, None])
         def it_rejects_anything_else(self, value: object):
-            with pytest.raises(BadRequest, match="AbilityCooldown"):
+            with pytest.raises(BadInput, match="AbilityCooldown"):
                 _ = cast({"Damage": "1", "AbilityCooldown": value})
 
 

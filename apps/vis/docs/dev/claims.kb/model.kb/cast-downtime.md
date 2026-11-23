@@ -27,4 +27,4 @@ period. A cast with no cooldown happens once and has downtime 0.
 Overturned by timing, in the sandbox, how long one cast keeps damaging
 the training dummy. Design:
 [`vis-app.md`](../../../../../../docs/dev/decisions.kb/vis-app.md),
-*Model* and *Measures*; built in `apps/vis/server/src/vis_server/casts.py`.
+*Model* and *Measures*; built in `packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/casts.py`.

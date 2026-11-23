@@ -20,4 +20,4 @@ correcting it ability by ability later is plainly possible.
 Overturned, one ability at a time, by timing a cast against a training
 dummy. Design: [`vis-app.md`](../../../../../../docs/dev/decisions.kb/vis-app.md),
 *Model*, Cast; the fields are in
-`apps/vis/server/src/vis_server/casts.py`.
+`packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/casts.py`.

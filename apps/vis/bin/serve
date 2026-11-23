@@ -2,7 +2,7 @@
 # usage: [PORT=5173] [API_PORT=8788] apps/vis/bin/serve
 # The live loop, in one command: Vite (hot module reload) on PORT is the URL to
 # open, proxying /api to `vis-server serve --reload` on API_PORT, which restarts
-# on a change to the server or deadlock sources. Ctrl-C stops both.
+# on a change to the server or the bukzor packages it imports. Ctrl-C stops both.
 set -euo pipefail
 shopt -s failglob
 [[ -z "${DEBUG:-}" ]] || set -x

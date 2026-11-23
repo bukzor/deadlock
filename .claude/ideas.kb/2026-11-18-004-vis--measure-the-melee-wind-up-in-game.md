@@ -12,7 +12,7 @@ cost-benefit-sweh:
 
 ## The Idea
 
-Melee wind-up (the bar width) is a guess, not a measurement; the default is 0. Evidence: `apps/vis/server/src/vis_server/melee.py`.
+Melee wind-up (the bar width) is a guess, not a measurement; the default is 0. Evidence: `packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/melee.py`.
 
 Smallest fix: time a swing in-game and put the number (with its source) into `melee.py`.
 

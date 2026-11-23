@@ -20,6 +20,8 @@ game has no label (127 of the 1038 upgrade properties of the live
 signatures), the note falls back to the key in lower-case words.
 Declined: the key itself as the fallback in notes, which puts an engine
 name in player text. Overturned if the owner wants one casing throughout.
-Built in `apps/vis/server/src/vis_server/names.py`.
+Built in `packages/bukzor-deadlock-lookup/src/bukzor_deadlock_lookup/names.py`;
+the melee pseudo-names are `melee.NAMES` in
+`packages/bukzor-deadlock-damage/src/bukzor_deadlock_damage/melee.py`.
 
 Provenance (the handoff files are retired): `git show b3e9e17:.claude/todo.kb/2026-11-18-000-vis-app.kb/2026-11-18-026-names-and-hp-zoom.md`.
