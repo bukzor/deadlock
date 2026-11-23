@@ -40,8 +40,8 @@ changing their code.
 root, imports `SETUPS`, `ExperimentalSetup` and `Scenario` from the root data
 file. Change only that import line, to import from the package. Then
 `./bin/shell python crimson_slash_model.py` must print exactly
-`trash/package-split/model.before.txt` (captured before this unit): `cmp`
-it. The model's other lines are the owner's: don't edit, move or reformat
+`trash/package-split/model.before.txt` on stdout (captured before this unit,
+stdout only): `cmp` it. The model's other lines are the owner's: don't edit, move or reformat
 them.
 
 Then `git rm` the root data file. The package's checks (item names, constant
