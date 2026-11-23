@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-23-012-data-follows-the-install.md
 required-reading:
@@ -55,8 +55,64 @@ possible to the current readability.
 
 ## Steps
 
+- [x] lookup: `Item` reads its properties (TDD)
+- [x] lookup: `Ability.bonus(tier, prop)` reads an upgrade tier (TDD)
+- [x] `git mv` the model into measurements; constants through the lookup
+- [x] stdout `cmp` model.before.txt; all checks; commit
+
 ## Decisions
+
+- **Path: `bukzor_deadlock_measurements/crimson_slash_model.py`**, beside
+  `check` and `summary`, as briefed. The basename is kept, so the rename
+  pairs as a pure move plus edits, and the name still says which experiment
+  it models. A `models/` subpackage mirroring `experiments/` was rejected:
+  one module doesn't earn a package.
+- **Lookup addition: `Item` subclasses `Ability`.** An item is an
+  `abilities.vdata` entity, so it now carries its `tree` and every `Ability`
+  reader (`value`, `scale`, ...). `Lookup` builds it with the tree (new
+  `_tree` helper, shared with `ability`). Tested in `lookup_test`.
+- **Lookup addition: `Ability.bonus(tier, prop) -> Bonus(amount, kind,
+  stat)`**, reading `m_vecAbilityUpgrades`. `kind` is `m_eUpgradeType`
+  (absent means `EAddToBase`; the data also has `EAddToScale`, `EMultiply*`).
+  `bukzor_deadlock.ability_upgrades` was not reused: it keeps bonuses as
+  verbatim strings and drops the kind. Tested in `entities_test`.
+- **Readability layer:** the `@final` namespaces stay, and each constant is
+  one lookup read, using three small helpers (`percent`, `scale_factor`,
+  `spirit_scale_bonus`). The prediction code is unchanged. The constants
+  are read at import, from English names (`"Crimson Slash"`, `"Tankbuster"`,
+  `"Mystic Reverb"`); the key comments stay.
 
 ## Open Questions
 
+- Frozen unit 008 still names `./bin/shell python crimson_slash_model.py`.
+  It is a record, so it stays as written.
+
 ## Final report
+
+**Checks:** model stdout `cmp` equals `trash/package-split/model.before.txt`.
+All 12 read constants `==` the old hardcoded ones (build 6864), so there is
+no finding. Root pytest and pyright pass, and so do vis pytest and
+basedpyright; `golden.after.txt` `cmp` equals `golden.before.txt`. No
+deviations from the brief.
+
+Run: `./bin/shell python -m bukzor_deadlock_measurements.crimson_slash_model`.
+
+Constant block, before -> after (one line each):
+
+| constant | before | after |
+|---|---|---|
+| `CrimsonSlash.Damage.BASE` | `55` | `SLASH.value("Damage")` |
+| `.Damage.SPIRIT_SCALE` | `0.37` | `scale_factor(SLASH, "Damage")` |
+| `.Damage.SPIRIT_SCALE_T3` | `0.6` | `spirit_scale_bonus(SLASH, 3, "Damage")` |
+| `.Heal.BASE` | `55` | `SLASH.value("HealFixedHealth")` |
+| `.Heal.SPIRIT_SCALE` | `1.035871` | `scale_factor(SLASH, "HealFixedHealth")` |
+| `.Heal.SPIRIT_SCALE_T3` | `0.4` | `spirit_scale_bonus(SLASH, 3, "HealFixedHealth")` |
+| `.Heal.MAX_HEALTH_T2` | `0.06` | `SLASH.bonus(2, "HealMaxHealth").amount / 100` |
+| `Tankbuster.DAMAGE` | `40` | `TANKBUSTER.value("Damage")` |
+| `.CURRENT_HEALTH_DAMAGE` | `0.075` | `percent(TANKBUSTER, "CurrentHealthDamage")` |
+| `MysticReverb.ECHO_DAMAGE` | `0.5` | `percent(REVERB, "TechDamagePercent")` |
+| `.IMBUE_LIFESTEAL` | `0.22` | `percent(REVERB, "ImbueAbilityLifesteal")` |
+| `.HERO_LIFESTEAL` | `0.08` | `percent(REVERB, "AbilityLifestealPercentHero")` |
+
+where `SLASH`, `TANKBUSTER`, `REVERB` = `GAME.ability("Crimson Slash")`,
+`GAME.item("Tankbuster")`, `GAME.item("Mystic Reverb")`, and `GAME = load()`.

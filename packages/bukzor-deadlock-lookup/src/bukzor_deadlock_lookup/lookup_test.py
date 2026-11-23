@@ -20,6 +20,7 @@ def item(tier: int, disabled: bool = False) -> dict[str, object]:
     }
 
 
+SHOCK_PROPERTIES = {"m_mapAbilityProperties": {"Damage": {"m_strValue": "40"}}}
 KIT = {"Weapon_Primary": "gun_a", "Signature_1": "slash"}
 LOOKUP = Lookup(
     heroes={
@@ -41,7 +42,7 @@ LOOKUP = Lookup(
             }
         },
         "slash_b": {},
-        "upgrade_shock": item(3),
+        "upgrade_shock": item(3) | SHOCK_PROPERTIES,
         "upgrade_old": item(4, disabled=True),
         "upgrade_new": item(4),
     },
@@ -128,7 +129,11 @@ class DescribeLookup:
                 slot="Tech",
                 disabled=False,
                 components=(),
+                tree=item(3) | SHOCK_PROPERTIES,
             )
+
+        def it_reads_its_properties_as_an_ability_does(self):
+            assert LOOKUP.item("Tankbuster").value("Damage") == 40.0
 
         def it_names_only_enabled_items(self):
             assert LOOKUP.item("Silencer").key == "upgrade_new"

@@ -1,6 +1,6 @@
 import pytest
 
-from .entities import Ability, Attack, Hero, NotANumber, Scale, Weapon, number
+from .entities import Ability, Attack, Bonus, Hero, NotANumber, Scale, Weapon, number
 
 TECH = {
     "_class": "scale_function_tech_damage",
@@ -33,7 +33,29 @@ BLAST = Ability(
             },
             "Levels": {"m_strValue": "40 30 20"},
             "ImpactDamage": {"m_strValue": "5", "m_bIsAbilityDamageProperty": True},
-        }
+        },
+        "m_vecAbilityUpgrades": [
+            {
+                "m_vecPropertyUpgrades": [
+                    {"m_strPropertyName": "Damage", "m_strBonus": "20"}
+                ]
+            },
+            {
+                "m_vecPropertyUpgrades": [
+                    {"m_strPropertyName": "Levels", "m_strBonus": "4m"}
+                ]
+            },
+            {
+                "m_vecPropertyUpgrades": [
+                    {
+                        "m_strPropertyName": "Damage",
+                        "m_strBonus": 0.25,
+                        "m_eUpgradeType": "EAddToScale",
+                        "m_eScaleStatFilter": "ETechPower",
+                    }
+                ]
+            },
+        ],
     },
 )
 GUN = {
@@ -111,6 +133,28 @@ class DescribeAbility:
                 Scale("ELightMeleeDamage", 1).spirit,
                 Scale(None, 1).spirit,
             ] == [True, False, False]
+
+    class WhenUpgraded:
+        def it_reads_a_tiers_bonus_to_a_property(self):
+            assert BLAST.bonus(1, "Damage") == Bonus(20.0, "EAddToBase", None)
+
+        def it_reads_a_bonus_to_a_scale(self):
+            assert BLAST.bonus(3, "Damage") == Bonus(0.25, "EAddToScale", "ETechPower")
+
+        def it_raises_when_the_tier_leaves_the_property_alone(self):
+            with pytest.raises(KeyError, match="blast: tier 2 leaves Damage alone"):
+                _ = BLAST.bonus(2, "Damage")
+
+        def it_raises_for_a_tier_the_ability_lacks(self):
+            with pytest.raises(KeyError, match="blast: tier 4 leaves Damage alone"):
+                _ = BLAST.bonus(4, "Damage")
+
+        def it_names_the_ability_when_a_bonus_is_not_a_number(self):
+            with pytest.raises(NotANumber) as error:
+                _ = BLAST.bonus(2, "Levels")
+            assert (
+                str(error.value) == "blast: tier 2's Levels bonus is '4m', not a number"
+            )
 
 
 class DescribeWeapon:

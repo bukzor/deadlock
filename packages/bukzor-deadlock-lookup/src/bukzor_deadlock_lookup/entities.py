@@ -52,6 +52,20 @@ class Scale:
 
 
 @dataclass(frozen=True)
+class Bonus:
+    """What one ability upgrade tier does to one property (an ``m_vecPropertyUpgrades`` entry).
+
+    ``kind`` is its ``m_eUpgradeType``: ``EAddToBase`` (when absent),
+    ``EAddToScale``, ``EMultiplyBase`` or ``EMultiplyScale``. ``stat`` is its
+    ``m_eScaleStatFilter``, the stat whose scale a ``*Scale`` kind changes.
+    """
+
+    amount: float
+    kind: str
+    stat: str | None
+
+
+@dataclass(frozen=True)
 class Attack:
     """One ``m_mapAttacks`` entry of a melee ability: seconds until the next swing."""
 
@@ -149,6 +163,33 @@ class Ability:
             on_miss=number(dig(attack, "m_flCooldownOnMiss")),
         )
 
+    def bonus(self, tier: int, prop: str) -> Bonus:
+        """What upgrade ``tier`` (1..3, ``m_vecAbilityUpgrades``' index + 1) does to ``prop``; ``KeyError`` when nothing.
+
+        A bonus that is not a plain number raises ``NotANumber``, naming the ability, tier and property.
+        """
+        tiers = self.tree.get("m_vecAbilityUpgrades", ())
+        assert is_sequence(tiers), (self.key, tiers)
+        entries = (
+            dig(tiers[tier - 1], "m_vecPropertyUpgrades")
+            if 1 <= tier <= len(tiers)
+            else ()
+        )
+        assert entries is None or is_sequence(entries), (self.key, tier, entries)
+        for entry in entries or ():
+            if dig(entry, "m_strPropertyName") == prop:
+                raw = dig(entry, "m_strBonus")
+                kind = dig(entry, "m_eUpgradeType") or "EAddToBase"
+                stat = dig(entry, "m_eScaleStatFilter")
+                assert isinstance(kind, str) and (stat is None or isinstance(stat, str))
+                try:
+                    return Bonus(number(raw), kind, stat)
+                except NotANumber:
+                    raise NotANumber(
+                        f"{self.key}: tier {tier}'s {prop} bonus is {raw!r}, not a number"
+                    ) from None
+        raise KeyError(f"{self.key}: tier {tier} leaves {prop} alone")
+
     def damage_properties(self) -> list[str]:
         """The properties flagged ``m_bIsAbilityDamageProperty``, in the data's order."""
         return [
@@ -203,11 +244,9 @@ class Hero:
 
 
 @dataclass(frozen=True)
-class Item:
-    """A shop item: ``bukzor_deadlock.items.Item``'s columns, with its English name."""
+class Item(Ability):
+    """A shop item: an ``abilities.vdata`` entity, read as an ``Ability`` is, with ``bukzor_deadlock.items.Item``'s columns."""
 
-    key: str
-    name: str | None
     tier: int
     cost: int  # souls
     slot: str  # Weapon | Armor | Tech | ...

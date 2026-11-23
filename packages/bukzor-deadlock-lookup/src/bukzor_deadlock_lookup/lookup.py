@@ -57,9 +57,7 @@ class Lookup:
             owner = self.hero(hero)
             keys, kind = set(owner.kit.values()), f"ability of {owner.key}"
         key = resolve(ref, keys, self._names(keys), kind)
-        tree = self.abilities[key]
-        assert is_str_mapping(tree), key
-        return Ability(key, loc.look_up(self.tokens, key), tree)
+        return Ability(key, loc.look_up(self.tokens, key), self._tree(key))
 
     def item(self, ref: str) -> Item:
         """The item ``ref`` names; only enabled items answer to a name, but any to its key."""
@@ -83,6 +81,11 @@ class Lookup:
         assert is_str_mapping(tree), key
         return Hero(key, loc.look_up(self.tokens, key), tree)
 
+    def _tree(self, key: str) -> Mapping[str, object]:
+        tree = self.abilities[key]
+        assert is_str_mapping(tree), key
+        return tree
+
     def _names(self, keys: Collection[str]) -> dict[str, str]:
         return {key: name for key in keys if (name := loc.look_up(self.tokens, key))}
 
@@ -100,6 +103,7 @@ class Lookup:
             row.name: Item(
                 row.name,
                 loc.look_up(self.tokens, row.name),
+                self._tree(row.name),
                 row.tier,
                 row.cost,
                 row.slot,

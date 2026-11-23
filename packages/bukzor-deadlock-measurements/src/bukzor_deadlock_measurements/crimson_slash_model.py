@@ -1,47 +1,72 @@
 """Model of one Crimson Slash cast: damage dealt and self-heal.
 
-Constants come from the game data (`data/gamedata.json/scripts/abilities.json`),
-for a fully upgraded Crimson Slash with Mystic Reverb and Tankbuster imbued.
+Constants are read through `bukzor_deadlock_lookup` from the game data
+(`data/gamedata.json/scripts/abilities.json`), at import, for a fully upgraded
+Crimson Slash with Mystic Reverb and Tankbuster imbued.
 Damage values are unrounded; the game rounds each damage number randomly.
 
-Run `python crimson_slash_model.py` to compare the model with the readings in
-`bukzor_deadlock_measurements.experiments.crimson_slash`.
+Run `python -m bukzor_deadlock_measurements.crimson_slash_model` to compare the
+model with the readings in `bukzor_deadlock_measurements.experiments.crimson_slash`.
 """
 
 from dataclasses import dataclass
 from typing import final
 
+from bukzor_deadlock_lookup.entities import SPIRIT, Ability
+from bukzor_deadlock_lookup.load import load
+
 from bukzor_deadlock_measurements.experiments.crimson_slash import SETUPS
 from bukzor_deadlock_measurements.records import ExperimentalSetup, Scenario
+
+GAME = load()
+SLASH = GAME.ability("Crimson Slash")
+TANKBUSTER = GAME.item("Tankbuster")
+REVERB = GAME.item("Mystic Reverb")
+
+
+def percent(ability: Ability, prop: str) -> float:
+    return ability.value(prop) / 100
+
+
+def scale_factor(ability: Ability, prop: str) -> float:
+    scale = ability.scale(prop)
+    assert scale is not None, (ability.key, prop)
+    return scale.factor
+
+
+def spirit_scale_bonus(ability: Ability, tier: int, prop: str) -> float:
+    bonus = ability.bonus(tier, prop)
+    assert (bonus.kind, bonus.stat) == ("EAddToScale", SPIRIT), bonus
+    return bonus.amount
 
 
 @final
 class CrimsonSlash:  # citadel_ability_healing_slash
     @final
     class Damage:
-        BASE = 55
-        SPIRIT_SCALE = 0.37
-        SPIRIT_SCALE_T3 = 0.6  # third upgrade
+        BASE = SLASH.value("Damage")
+        SPIRIT_SCALE = scale_factor(SLASH, "Damage")
+        SPIRIT_SCALE_T3 = spirit_scale_bonus(SLASH, 3, "Damage")  # third upgrade
 
     @final
     class Heal:
-        BASE = 55  # HealFixedHealth
-        SPIRIT_SCALE = 1.035871
-        SPIRIT_SCALE_T3 = 0.4  # third upgrade
-        MAX_HEALTH_T2 = 0.06  # second upgrade: HealMaxHealth, a percentage
+        BASE = SLASH.value("HealFixedHealth")
+        SPIRIT_SCALE = scale_factor(SLASH, "HealFixedHealth")
+        SPIRIT_SCALE_T3 = spirit_scale_bonus(SLASH, 3, "HealFixedHealth")
+        MAX_HEALTH_T2 = SLASH.bonus(2, "HealMaxHealth").amount / 100  # a percentage
 
 
 @final
 class Tankbuster:  # upgrade_magic_shock; ignores spirit resist
-    DAMAGE = 40
-    CURRENT_HEALTH_DAMAGE = 0.075
+    DAMAGE = TANKBUSTER.value("Damage")
+    CURRENT_HEALTH_DAMAGE = percent(TANKBUSTER, "CurrentHealthDamage")
 
 
 @final
 class MysticReverb:  # upgrade_mystic_reverb
-    ECHO_DAMAGE = 0.5  # TechDamagePercent
-    IMBUE_LIFESTEAL = 0.22
-    HERO_LIFESTEAL = 0.08
+    ECHO_DAMAGE = percent(REVERB, "TechDamagePercent")
+    IMBUE_LIFESTEAL = percent(REVERB, "ImbueAbilityLifesteal")
+    HERO_LIFESTEAL = percent(REVERB, "AbilityLifestealPercentHero")
 
 
 @dataclass(frozen=True, kw_only=True)
