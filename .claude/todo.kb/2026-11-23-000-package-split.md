@@ -43,6 +43,9 @@ Wave 3 (parallel):
 - [ ] [005 adopt lookup](2026-11-23-000-package-split.kb/2026-11-23-005-adopt-lookup.md): damage and vis read the game data through the lookup
 - [ ] [007 measurements check items](2026-11-23-000-package-split.kb/2026-11-23-007-measurements-check-items.md): item names and constant spirit investment checked against the lookup
 
+Wave 4, on the owner's word that their edits to the root file are done:
+- [ ] [008 retire root readings](2026-11-23-000-package-split.kb/2026-11-23-008-retire-root-readings.md): the owner's edits since `b9f93b9` carried into the YAML; the root `crimson_slash_test_data.py` removed
+
 Byte-for-byte baseline of every vis query, captured before wave 1:
 `trash/package-split/golden.before.txt`, from `golden.py` in the kb.
 
