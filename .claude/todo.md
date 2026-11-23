@@ -3,11 +3,12 @@ managed-by: Skill(llm-subtask)
 status: open
 ---
 
+- [~] <https:todo.kb/2026-11-23-000-package-split.md> -- small `bukzor`-prefixed packages (lookup, damage, dllscan) per `docs/dev/decisions.kb/small-bukzor-prefixed-packages.md`; sub-agent units in progress
 - [ ] `packages/deadlock-evaluator` design ledger (`docs/dev/claims.md` there): owner rulings parked 2026-11-18, each a short read; the agent-filed answers stand until vetoed
   - [ ] Review the closed plan `docs/dev/close-open-claims.md` (commits 2041c59..) and say so; then its `close-open-claims.kb/` gets `git rm -r`'d
   - [ ] Ground `claims.kb/goals.kb/`: six files carry `standing: user` with no quote of yours (base-before-branches, build-synthesis, dominated-decisions, explain-popular-builds, item-choice, skill-point-choice); confirm or reword. Eight agent-standing goals stand unless vetoed
   - [ ] Veto or let stand two agent rulings: `architecture.kb/outcome-trace-or-summary.md` (summary stats, per-tick trace optional) and `architecture.kb/micro-policy-is-the-open-input.md` (scripted per-hero rotation first, calibrated against live measurement later)
-  - [ ] Rule on the vis import edge (`architecture.kb/vis-timeline-seeds-compile-and-engage.md`): lift the timeline into the shared `deadlock` package, or move the evaluator into vis's 3.14 workspace
+  - [x] Rule on the vis import edge (`architecture.kb/vis-timeline-seeds-compile-and-engage.md`): ruled 2026-11-23, the damage model becomes its own package (`docs/dev/decisions.kb/small-bukzor-prefixed-packages.md`); the claim is rewritten by the package-split plan's unit 002
 - [x] <https:todo.kb/2026-11-18-000-vis-app.md> — `apps/vis`: browser visualizer over `data/` (client + JSONL server); first view: damage over time per hero ability
 - [ ] <https:todo.kb/2026-11-05-000-per-dll-dump-tree.md> — per-DLL data store, first purpose the convar/concommand dump: `dlls.list` → `dlls/<facet>/<dll>.json` → `dlls/<facet>.tsv` (design: `docs/dev/cvar-dump.kb/output-views.md`)
 - [x] Deterministic, fail-loud DLL scan: decisions made 2026-11-11 on the agent's recommendation, open to review; each is a `[!TODO]` with its "what would change this" in its doc
