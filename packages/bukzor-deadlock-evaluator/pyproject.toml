@@ -7,6 +7,9 @@ license = "Apache-2.0"
 requires-python = ">=3.12"
 dependencies = [
     "boon-deadlock==0.19.0",
+    "bukzor-deadlock-damage",
+    "bukzor-deadlock-lookup",
+    "bukzor-deadlock-measurements",
 ]
 
 [build-system]
@@ -15,3 +18,8 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/bukzor_deadlock_evaluator"]
+
+[tool.uv.sources]
+bukzor-deadlock-damage = { workspace = true }
+bukzor-deadlock-lookup = { workspace = true }
+bukzor-deadlock-measurements = { workspace = true }

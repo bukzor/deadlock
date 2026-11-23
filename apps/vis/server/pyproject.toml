@@ -6,6 +6,8 @@ license = "Apache-2.0"
 requires-python = ">=3.14"
 dependencies = [
     "bukzor-deadlock",
+    "bukzor-deadlock-damage",
+    "bukzor-deadlock-lookup",
     "starlette>=1.10.0",
     "uvicorn>=0.54.0",
 ]
@@ -32,6 +34,8 @@ members = []
 
 [tool.uv.sources]
 bukzor-deadlock = { path = "../../../", editable = true }
+bukzor-deadlock-damage = { path = "../../../packages/bukzor-deadlock-damage", editable = true }
+bukzor-deadlock-lookup = { path = "../../../packages/bukzor-deadlock-lookup", editable = true }
 
 [tool.pytest.ini_options]
 testpaths = ["src"]

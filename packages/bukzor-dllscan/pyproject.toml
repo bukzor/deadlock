@@ -1,0 +1,14 @@
+[project]
+name = "bukzor-dllscan"
+version = "0.0.0"
+description = "Scanner for the Deadlock DLLs, run on the Windows host with the stdlib only."
+license = "Apache-2.0"
+requires-python = ">=3.12"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bukzor_dllscan"]

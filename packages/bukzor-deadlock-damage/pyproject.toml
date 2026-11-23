@@ -1,0 +1,21 @@
+[project]
+name = "bukzor-deadlock-damage"
+version = "0.0.0"
+description = "One attacker's damage over time: cycles, hits, DPS and time to kill in Deadlock."
+license = "Apache-2.0"
+requires-python = ">=3.12"
+dependencies = [
+    "bukzor-deadlock",
+    "bukzor-deadlock-lookup",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bukzor_deadlock_damage"]
+
+[tool.uv.sources]
+bukzor-deadlock = { workspace = true }
+bukzor-deadlock-lookup = { workspace = true }
