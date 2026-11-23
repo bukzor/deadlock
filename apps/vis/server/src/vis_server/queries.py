@@ -2,30 +2,28 @@
 
 ``QUERIES`` maps a name to a ``Query`` (see ``types.py``); the lines each one
 emits are the design's "Protocol" (``docs/dev/decisions.kb/vis-app.md``).
-``registry`` builds the same table over any game-data loader, so tests can
-substitute synthetic trees. ``QUERIES`` reads ``data/`` once per process, when
-its first query runs, so importing this module is cheap and needs no data.
-Ability and property names come from the game's localization (``names``).
+``registry`` builds the same table over any ``Lookup`` factory, so tests can
+substitute synthetic trees. ``QUERIES`` reads the game data once per process
+(``bukzor_deadlock_lookup.load``), when its first query runs, so importing
+this module is cheap and needs no data.
 """
 
-import csv
 import math
-from collections.abc import Callable, Iterable, Mapping, Sequence
-from dataclasses import dataclass, field
-from functools import cache
+from collections.abc import Callable, Mapping, Sequence
 
-from bukzor_deadlock import gamedata, paths
 from bukzor_deadlock.abilities import SIGNATURE, bindings
 from bukzor_deadlock_damage import BadInput, boons, casts, guns, melee
 from bukzor_deadlock_damage.boons import NONE, Boons
 from bukzor_deadlock_damage.measures import Kind, Measure, horizon_used, measures
 from bukzor_deadlock_damage.timeline import Cycle, Hit, landed_by
-from bukzor_deadlock_lookup import names
+from bukzor_deadlock_lookup.entities import NotANumber
+from bukzor_deadlock_lookup.load import load
+from bukzor_deadlock_lookup.lookup import Lookup
+from bukzor_deadlock_lookup.resolve import Unresolved
 
 from .types import BadRequest, JsonObj, Params, Query
 
 MAX_HITS = 10_000  # per timeline: what a browser chart draws without stalling
-NOT_PLAYABLE = {"hero_targetdummy", "hero_genericperson"}  # the training dummy; Generic Person
 
 HERO = "hero key, from the heroes query (required)"
 TIMELINE = {
@@ -43,17 +41,7 @@ TIMELINE = {
 type Source = tuple[Kind, Cycle, Sequence[str]]  # (kind, cycle, notes)
 
 
-@dataclass(frozen=True)
-class GameData:
-    """The ``heroes.vdata`` and ``abilities.vdata`` trees (see ``bukzor_deadlock.gamedata``), the heroes to list, and the localization."""
-
-    heroes: Mapping[str, object]
-    abilities: Mapping[str, object]
-    listed: Mapping[str, str]  # hero key: display name, for each hero the heroes query may list
-    tokens: Mapping[str, str] = field(default_factory=dict[str, str])  # the localization (``names.load_tokens``)
-
-
-def registry(data: Callable[[], GameData]) -> Mapping[str, Query]:
+def registry(data: Callable[[], Lookup]) -> Mapping[str, Query]:
     """``heroes``, ``abilities`` and ``timeline`` over ``data``, which each run calls.
 
     Every query rejects a parameter it doesn't declare.
@@ -72,33 +60,32 @@ def _query(params: Mapping[str, str], run: Callable[[Params], Sequence[JsonObj]]
             raise BadRequest(f"unknown parameter: {', '.join(unknown)} (accepted: {', '.join(params) or 'none'})")
         try:
             return run(given)
-        except BadInput as bad:
-            raise BadRequest(str(bad)) from bad  # the damage model's bad input is the caller's
+        except (BadInput, Unresolved, NotANumber) as bad:
+            raise BadRequest(str(bad)) from bad  # the damage model's or the lookup's bad input is the caller's
 
     return Query(params, checked)
 
 
-def heroes(data: GameData) -> list[JsonObj]:
-    """``{"hero", "name"}`` for each live hero in ``data.listed``, by display name."""
-    live = {h for h, _, _ in bindings(data.heroes)} & set(data.listed)
-    return [{"hero": hero, "name": data.listed[hero]} for hero in sorted(live, key=lambda h: (data.listed[h], h))]
+def heroes(data: Lookup) -> list[JsonObj]:
+    """``{"hero", "name"}`` for each playable hero (``Lookup.playable``), by name."""
+    return [{"hero": hero.key, "name": hero.name} for hero in data.playable()]
 
 
-def abilities(data: GameData, hero: str) -> list[JsonObj]:
+def abilities(data: Lookup, hero: str) -> list[JsonObj]:
     """``{"ability", "name", "kind"}`` for ``hero``'s gun, light and heavy melee, then signatures by slot.
 
-    ``name`` is the in-game name (``names.ability_name``; ``melee.NAMES`` for melee).
+    ``name`` is the in-game name (``melee.NAMES`` for melee), else the key.
     ``kind`` is the source that models the ability at default parameters
     (``"gun"``, ``"melee"``, ``"cast"``), or ``None`` when none does.
     """
     lines: list[JsonObj] = []
     for ability in _kit(data, hero):
         found = _source(data, hero, ability)
-        lines.append({"ability": ability, "name": melee.NAMES.get(ability) or names.ability_name(data.tokens, ability), "kind": None if found is None else found[0]})
+        lines.append({"ability": ability, "name": melee.NAMES.get(ability) or data.ability(ability).name or ability, "kind": None if found is None else found[0]})
     return lines
 
 
-def timeline(data: GameData, params: Params) -> list[JsonObj]:
+def timeline(data: Lookup, params: Params) -> list[JsonObj]:
     """The ``cycle`` line (with ``max_horizon``), every hit that lands by the horizon, every measure, then every note, for ``TIMELINE``'s parameters.
 
     The horizon is ``measures.horizon_used``; a window of more than
@@ -117,8 +104,9 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
     hp = _optional_number(params, "hp", positive=True)
     if ability not in _kit(data, hero):
         raise BadRequest(f"unknown ability for {hero}: {ability} (see the abilities query)")
-    level = _level(params, boons.last_level(data.heroes, hero))
-    gained = boons.at_level(data.heroes, hero, level)
+    attacker = data.hero(hero)
+    level = _level(params, boons.last_level(attacker))
+    gained = boons.at_level(attacker, level)
     found = _source(data, hero, ability, distance=distance, spirit=spirit + gained.spirit, windup=windup, boons=gained)
     level_notes = _level_notes(level, gained)
     if found is None:
@@ -129,7 +117,7 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
     _check_hits(cycle, horizon)
     if cycles is not None and cycle.period is None:
         notes = [*notes, f"This happens once, so it has no cycles: the window is {horizon:g} s."]
-    card = casts.card_dps(data.abilities, ability, spirit + gained.spirit) if kind == "cast" else None
+    card = casts.card_dps(data.ability(ability), spirit + gained.spirit) if kind == "cast" else None
     measured = measures(cycle, horizon, hp, kind=kind, card_dps=card)
     if hp is not None and "time_to_kill" not in {m.name for m in measured}:
         notes = [*notes, f"The target's {hp:g} HP is never reached: no time to kill is shown."]
@@ -141,28 +129,10 @@ def timeline(data: GameData, params: Params) -> list[JsonObj]:
     ]
 
 
-@cache
-def load_data() -> GameData:
-    """``data/``'s hero and ability trees, ``gamedata.tsv/heroes.tsv``'s ``listed`` heroes, and the install's localization, read once per process."""
-    root = paths.data_dir()
-    with (root / "gamedata.json/scripts/heroes.json").open() as file:
-        hero_tree = gamedata.load(file)
-    with (root / "gamedata.json/scripts/abilities.json").open() as file:
-        ability_tree = gamedata.load(file)
-    with (root / "gamedata.tsv/heroes.tsv").open(newline="") as file:
-        hero_names = listed(csv.DictReader(file, delimiter="\t", quoting=csv.QUOTE_NONE))
-    return GameData(hero_tree, ability_tree, hero_names, names.load_tokens())
+QUERIES: Mapping[str, Query] = registry(load)
 
 
-def listed(rows: Iterable[Mapping[str, str]]) -> dict[str, str]:
-    """``{hero: name}`` from ``heroes.tsv`` rows that are not ``disabled``, have a name, and are neither Generic Person nor the training dummy."""
-    return {r["hero"]: r["name"] for r in rows if r["disabled"] == "false" and r["name"] and r["hero"] not in NOT_PLAYABLE}
-
-
-QUERIES: Mapping[str, Query] = registry(load_data)
-
-
-def _kit(data: GameData, hero: str) -> list[str]:
+def _kit(data: Lookup, hero: str) -> list[str]:
     """The abilities ``abilities`` lists for ``hero``, in order; ``BadRequest`` unless ``hero`` is live."""
     slots = {slot: ability for h, slot, ability in bindings(data.heroes) if h == hero}
     if not slots:
@@ -172,7 +142,7 @@ def _kit(data: GameData, hero: str) -> list[str]:
 
 
 def _source(
-    data: GameData,
+    data: Lookup,
     hero: str,
     ability: str,
     distance: float = 0.0,
@@ -181,11 +151,10 @@ def _source(
     boons: Boons = NONE,
 ) -> Source | None:
     """The first source that models ``ability``, as ``(kind, cycle, notes)``; ``spirit`` is the total."""
-    trees = (data.heroes, data.abilities, hero, ability)
     sources: Mapping[Kind, Callable[[], tuple[Cycle, Sequence[str]] | None]] = {
-        "gun": lambda: guns.cycle(*trees, distance, boons),
-        "melee": lambda: melee.cycle(*trees, windup, boons),
-        "cast": lambda: casts.cycle(*trees, spirit, data.tokens),
+        "gun": lambda: guns.cycle(data, hero, ability, distance, boons),
+        "melee": lambda: melee.cycle(data, hero, ability, windup, boons),
+        "cast": lambda: casts.cycle(data, hero, ability, spirit),
     }
     for kind, source in sources.items():
         found = source()

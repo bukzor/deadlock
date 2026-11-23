@@ -21,6 +21,13 @@ class DescribeLoad:
     def it_finds_crimson_slash_unscoped_too(self):
         assert load().ability("Crimson Slash").key == "citadel_ability_healing_slash"
 
+    def it_labels_a_property_from_the_attributes_file(self):
+        napalm = load().ability("ability_incendiary_projectile")
+        assert (napalm.name, load().label(napalm, "AbilityCooldown")) == (
+            "Napalm",
+            "Cooldown",
+        )
+
     def it_reads_once_per_process(self):
         assert load() is load()
 

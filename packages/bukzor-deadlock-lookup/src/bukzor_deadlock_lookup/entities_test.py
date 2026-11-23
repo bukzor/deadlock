@@ -1,6 +1,6 @@
 import pytest
 
-from .entities import Ability, Hero, NotANumber, Scale, number
+from .entities import Ability, Attack, Hero, NotANumber, Scale, Weapon, number
 
 TECH = {
     "_class": "scale_function_tech_damage",
@@ -36,6 +36,24 @@ BLAST = Ability(
         }
     },
 )
+GUN = {
+    "m_flBulletSpeed": 20000,
+    "m_flDamageFalloffStartRange": "500",
+    "m_bReloadSingleBullets": True,
+    "m_flReloadSingleBulletsInitialDelay": 0.5,
+    "m_iAmmoConsumedPerShot": 2,
+    "m_BulletSpeedCurve": {"m_spline": [{"x": 0, "y": 100}, {"x": 1, "y": 200}]},
+}
+WEAPON = Ability(
+    key="gun",
+    name=None,
+    tree={
+        "m_mapWeaponInfos": {"primary": GUN, "bare": {}},
+        "m_mapAttacks": {
+            "EAttackType_Heavy": {"m_flCooldownOnHit": 1.0, "m_flCooldownOnMiss": 1.3}
+        },
+    },
+)
 
 
 class DescribeNumber:
@@ -68,6 +86,9 @@ class DescribeAbility:
             _ = BLAST.value("Levels")
         assert str(error.value) == "blast: Levels is '40 30 20', not a number"
 
+    def it_gives_a_property_as_the_data_writes_it(self):
+        assert [BLAST.text("Levels"), BLAST.text("Melee")] == ["40 30 20", "3"]
+
     def it_lists_its_damage_properties(self):
         assert BLAST.damage_properties() == ["Damage", "ImpactDamage"]
 
@@ -92,11 +113,43 @@ class DescribeAbility:
             ] == [True, False, False]
 
 
+class DescribeWeapon:
+    def it_reads_a_weapon_profile(self):
+        assert WEAPON.weapon("primary") == Weapon(
+            ammo_per_shot=2.0,
+            reload_single=True,
+            reload_single_delay=0.5,
+            bullet_speed=20000.0,
+            speed_curve=(100.0, 200.0),
+            falloff_start=500.0,
+        )
+
+    def it_defaults_what_a_profile_leaves_out(self):
+        assert WEAPON.weapon("bare") == Weapon(
+            ammo_per_shot=1.0,
+            reload_single=False,
+            reload_single_delay=0.0,
+            bullet_speed=None,
+            speed_curve=None,
+            falloff_start=None,
+        )
+
+
+class DescribeAttack:
+    def it_reads_the_cooldowns_on_a_hit_and_a_miss(self):
+        assert WEAPON.attack("EAttackType_Heavy") == Attack(on_hit=1.0, on_miss=1.3)
+
+
 HERO = Hero(
     key="hero_a",
     name="Alpha",
     tree={
         "m_mapStartingStats": {"ELightMeleeDamage": 50, "EMaxHealth": 600.0},
+        "m_mapScalingStats": {
+            "EBulletDamage": {"eScalingStat": "ETechPower", "flScale": 0.14}
+        },
+        "m_mapStandardLevelUpUpgrades": {"MODIFIER_VALUE_TECH_POWER": 1.5},
+        "m_mapLevelInfo": {"1": {}, "2": {"m_bUseStandardUpgrade": True}},
         "m_mapBoundAbilities": {
             "ESlot_Weapon_Primary": "gun_a",
             "ESlot_Signature_1": "blast",
@@ -114,3 +167,15 @@ class DescribeHero:
 
     def it_has_no_kit_without_bindings(self):
         assert Hero("hero_x", None, {}).kit == {}
+
+    def it_reads_how_a_stat_scales(self):
+        assert HERO.scaling("EBulletDamage") == Scale(stat="ETechPower", factor=0.14)
+
+    def it_is_none_for_a_stat_that_does_not_scale(self):
+        assert HERO.scaling("EMaxHealth") is None
+
+    def it_reads_what_one_boon_adds(self):
+        assert HERO.per_boon("MODIFIER_VALUE_TECH_POWER") == 1.5
+
+    def it_says_which_game_levels_grant_a_boon(self):
+        assert [HERO.grants_boon(1), HERO.grants_boon(2)] == [False, True]

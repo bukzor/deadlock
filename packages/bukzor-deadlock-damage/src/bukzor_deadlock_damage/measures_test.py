@@ -1,8 +1,9 @@
 from collections.abc import Iterable, Mapping
 
 import pytest
-from bukzor_deadlock import gamedata, paths
+from bukzor_deadlock import paths
 from bukzor_deadlock.abilities import bindings
+from bukzor_deadlock_lookup.load import load
 from pytest import approx
 
 from . import guns, melee
@@ -199,26 +200,23 @@ class DescribeHorizonUsed:
         assert horizon_used(NUKE, cycles=3) == 10
 
 
-def _load(name: str) -> Mapping[str, object]:
-    path = paths.data_dir() / "gamedata.json/scripts" / name
-    if not path.exists():
-        pytest.skip(f"no local data: {path} (build it with `redo` at the repo root)")
-    with path.open() as file:
-        return gamedata.load(file)
+SCRIPTS = paths.data_dir() / "gamedata.json/scripts"
 
 
 class DescribeTwoPeriods:
     """The default horizon is 2 periods (see ``queries.timeline``), which must hold exactly 2 cycles."""
 
+    @pytest.mark.skipif(not SCRIPTS.exists(), reason=f"no local data: {SCRIPTS} (build it with `redo` at the repo root)")
     def it_holds_two_cycles_for_every_live_heros_gun_and_melee(self):
-        heroes, abilities = _load("heroes.json"), _load("abilities.json")
+        game = load()
+        heroes = game.heroes
         cycles = [
-            (hero, ability, guns.cycle(heroes, abilities, hero, ability))
+            (hero, ability, guns.cycle(game, hero, ability))
             for hero, slot, ability in bindings(heroes)
             if slot == "Weapon_Primary"
         ]
         cycles += [
-            (hero, ability, melee.cycle(heroes, abilities, hero, ability, 0.25))
+            (hero, ability, melee.cycle(game, hero, ability, 0.25))
             for hero in {hero for hero, _, _ in bindings(heroes)}
             for ability in (melee.LIGHT, melee.HEAVY)
         ]

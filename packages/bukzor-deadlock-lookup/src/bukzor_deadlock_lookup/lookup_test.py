@@ -34,7 +34,12 @@ LOOKUP = Lookup(
     abilities={
         "generic_data_type": "CitadelAbilityVData",
         "gun_a": {},
-        "slash": {"m_mapAbilityProperties": {}},
+        "slash": {
+            "m_mapAbilityProperties": {
+                "Damage": {"m_strValue": "1"},
+                "AbilityChannelTime": {"m_strLocTokenOverride": "EscapeDuration"},
+            }
+        },
         "slash_b": {},
         "upgrade_shock": item(3),
         "upgrade_old": item(4, disabled=True),
@@ -47,6 +52,8 @@ LOOKUP = Lookup(
         "hero_off:n": "Off",
         "hero_targetdummy:n": "Dummy",
         "slash": "Slash",
+        "Damage_label": "Damage",
+        "EscapeDuration_label": "Escape Duration",
         "slash_b": "Slash",
         "upgrade_shock": "Tankbuster",
         "upgrade_old": "Silencer",
@@ -99,6 +106,17 @@ class DescribeLookup:
         def it_never_takes_an_item(self):
             with pytest.raises(Unresolved):
                 _ = LOOKUP.ability("upgrade_shock")
+
+    class WhenLabelingAProperty:
+        def it_is_the_in_game_label(self):
+            assert LOOKUP.label(LOOKUP.ability("slash_b"), "Damage") == "Damage"
+
+        def it_follows_the_propertys_token_override(self):
+            slash = LOOKUP.ability("slash")
+            assert LOOKUP.label(slash, "AbilityChannelTime") == "Escape Duration"
+
+        def it_is_none_when_the_game_has_no_label(self):
+            assert LOOKUP.label(LOOKUP.ability("slash"), "BrewEffectiveness") is None
 
     class WhenFindingAnItem:
         def it_takes_a_name_with_its_tier_cost_and_slot(self):

@@ -1,9 +1,10 @@
 from collections.abc import Mapping
-from pathlib import Path
 
 import pytest
-from bukzor_deadlock import gamedata, paths
+from bukzor_deadlock import paths
 from bukzor_deadlock.abilities import SIGNATURE, bindings
+from bukzor_deadlock_lookup.load import load as load_game
+from bukzor_deadlock_lookup.lookup import Lookup
 from pytest import approx
 
 from . import BadInput, casts
@@ -14,8 +15,8 @@ ABILITY = "ability_x"
 TECH = {"_class": "scale_function_tech_damage", "m_flStatScale": 0.5, "m_eSpecificStatScaleType": "ETechPower"}
 
 
-def tree(properties: Mapping[str, object], **entity: object) -> tuple[dict[str, object], dict[str, object]]:
-    """``(heroes, abilities)``: one live hero binding ``ABILITY`` as a signature and ``gun`` as its weapon.
+def tree(properties: Mapping[str, object], tokens: Mapping[str, str] | None = None, **entity: object) -> Lookup:
+    """One live hero binding ``ABILITY`` as a signature and ``gun`` as its weapon.
 
     A property given as ``None`` is left out.
     """
@@ -24,13 +25,13 @@ def tree(properties: Mapping[str, object], **entity: object) -> tuple[dict[str, 
     props = {"AbilityCooldown": "10", "AbilityCastDelay": "0", **properties}
     wrapped: dict[str, object] = {k: v if isinstance(v, Mapping) else {"m_strValue": v} for k, v in props.items() if v is not None}
     abilities: dict[str, object] = {ABILITY: {"m_mapAbilityProperties": wrapped, **entity}, "gun": {}}
-    return heroes, abilities
+    return Lookup(heroes, abilities, {}, tokens or {})
 
 
 def cast(
     properties: Mapping[str, object], spirit: float = 0, tokens: Mapping[str, str] | None = None, **entity: object
 ) -> tuple[Cycle, tuple[str, ...]]:
-    result = casts.cycle(*tree(properties, **entity), HERO, ABILITY, spirit, tokens or {})
+    result = casts.cycle(tree(properties, tokens, **entity), HERO, ABILITY, spirit)
     assert result is not None
     return result
 
@@ -73,13 +74,13 @@ class DescribeCycle:
 
     class WhenNotACast:
         def it_returns_none_for_the_gun(self):
-            assert casts.cycle(*tree({"Damage": "1"}), HERO, "gun", 0, {}) is None
+            assert casts.cycle(tree({"Damage": "1"}), HERO, "gun", 0) is None
 
         def it_returns_none_for_another_heros_ability(self):
-            assert casts.cycle(*tree({"Damage": "1"}), "hero_y", ABILITY, 0, {}) is None
+            assert casts.cycle(tree({"Damage": "1"}), "hero_y", ABILITY, 0) is None
 
         def it_returns_none_without_damage_or_dps(self):
-            assert casts.cycle(*tree({"ImpactDamage": "1"}), HERO, ABILITY, 0, {}) is None
+            assert casts.cycle(tree({"ImpactDamage": "1"}), HERO, ABILITY, 0) is None
 
     class WhenTicking:
         def it_ticks_dps_every_tick_rate_across_the_duration(self):
@@ -184,28 +185,21 @@ class DescribeCycle:
 SCRIPTS = paths.data_dir() / "gamedata.json/scripts"
 
 
-
 class DescribeCardDps:
     def it_is_the_dps_property_at_the_given_spirit(self):
-        _, abilities = tree({"DPS": {"m_strValue": "20", "m_subclassScaleFunction": TECH}})
-        assert casts.card_dps(abilities, ABILITY, spirit=10) == 25
+        game = tree({"DPS": {"m_strValue": "20", "m_subclassScaleFunction": TECH}})
+        assert casts.card_dps(game.ability(ABILITY), spirit=10) == 25
 
     def it_is_none_without_a_dps_property(self):
-        _, abilities = tree({"Damage": "100"})
-        assert casts.card_dps(abilities, ABILITY, spirit=10) is None
-
-
-def load(name: str) -> Mapping[str, object]:
-    with Path(SCRIPTS / name).open() as file:
-        return gamedata.load(file)
+        assert casts.card_dps(tree({"Damage": "100"}).ability(ABILITY), spirit=10) is None
 
 
 @pytest.mark.skipif(not SCRIPTS.is_dir(), reason=f"no local game data at {SCRIPTS}; build it with redo")
 class DescribeRealData:
     def it_models_every_bound_signature_or_returns_none(self):
-        heroes, abilities = load("heroes.json"), load("abilities.json")
-        bound = [(hero, ability) for hero, slot, ability in bindings(heroes) if slot.startswith(SIGNATURE)]
-        results = [casts.cycle(heroes, abilities, hero, ability, spirit=50, tokens={}) for hero, ability in bound]
+        game = load_game()
+        bound = [(hero, ability) for hero, slot, ability in bindings(game.heroes) if slot.startswith(SIGNATURE)]
+        results = [casts.cycle(game, hero, ability, spirit=50) for hero, ability in bound]
         modeled = [r for r in results if r is not None]
         assert len(bound) > 100, len(bound)
         assert len(modeled) > len(bound) / 3, len(modeled)

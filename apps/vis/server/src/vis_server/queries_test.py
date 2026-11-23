@@ -5,7 +5,9 @@ from bukzor_deadlock import paths
 from pytest import approx
 
 from .conftest import DATA, SYNTHETIC, TECH, ability_props
-from .queries import QUERIES, GameData, listed, load_data, registry
+from bukzor_deadlock_lookup.lookup import Lookup
+
+from .queries import QUERIES, registry
 from .types import BadRequest, JsonObj, Params
 
 
@@ -33,7 +35,7 @@ class DescribeRegistry:
         }
 
     def it_loads_nothing_until_a_query_runs(self):
-        def unloadable() -> GameData:
+        def unloadable() -> Lookup:
             raise AssertionError("loaded")
 
         queries = registry(unloadable)
@@ -49,18 +51,6 @@ class DescribeRegistry:
 class DescribeHeroes:
     def it_lists_each_live_listed_hero_by_display_name(self):
         assert run("heroes") == [{"hero": "hero_c", "name": "Alpha"}, {"hero": "hero_a", "name": "Bravo"}]
-
-
-class DescribeListed:
-    def it_names_each_enabled_hero_but_the_nameless_generic_and_dummy(self):
-        rows = [
-            ("hero_astro", "Holliday", "false"), ("hero_artist", "Violet", "false"), ("hero_kali", "Kali", "true"),
-            ("hero_base", "", "false"), ("hero_testhero", "", "true"),
-            ("hero_genericperson", "Generic Person", "false"), ("hero_targetdummy", "TargetDummy", "false"),
-        ]  # fmt: skip
-        assert listed({"hero": h, "name": n, "disabled": d, "in_development": "true"} for h, n, d in rows) == {
-            "hero_astro": "Holliday", "hero_artist": "Violet"
-        }
 
 
 class DescribeAbilities:
@@ -93,7 +83,7 @@ def timeline(ability: str = "melee_light", hero: str = "hero_a", **params: str) 
 
 def blast_timeline(props: Mapping[str, object], **params: str) -> Sequence[JsonObj]:
     """The timeline of ``hero_a``'s ``blast``, its properties replaced by ``props``."""
-    data = GameData(DATA.heroes, {**DATA.abilities, "blast": {"m_mapAbilityProperties": ability_props(**props)}}, DATA.listed)
+    data = Lookup(DATA.heroes, {**DATA.abilities, "blast": {"m_mapAbilityProperties": ability_props(**props)}}, DATA.prices, DATA.tokens)
     return registry(lambda: data)["timeline"].run({"hero": "hero_a", "ability": "blast", **params})
 
 
@@ -284,7 +274,6 @@ def _skip_without_data() -> None:
 class DescribeRealData:
     def it_runs_the_timeline_for_every_live_hero_and_listed_ability(self):
         _skip_without_data()
-        assert load_data() is load_data()
         lines = QUERIES["heroes"].run({})
         assert len(lines) > 10 and all(line["name"] != line["hero"] for line in lines), lines
         heroes = [str(line["hero"]) for line in lines]

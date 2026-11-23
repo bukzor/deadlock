@@ -18,7 +18,7 @@ The hero's level adds to the damage (``boons``).
 
 from collections.abc import Mapping
 
-from bukzor_deadlock.types import dig, is_str_mapping
+from bukzor_deadlock_lookup.lookup import Lookup
 
 from . import BadInput
 from .boons import NONE, Boons, spirit_note
@@ -28,7 +28,7 @@ LIGHT = "melee_light"
 HEAVY = "melee_heavy"
 NAMES = {LIGHT: "Light Melee", HEAVY: "Heavy Melee"}  # the game's own words for the two melee stats
 
-_MELEE_SLOT = "ESlot_Weapon_Melee"
+_MELEE_SLOT = "Weapon_Melee"
 # pseudo-ability: (label, hero damage stat, attack type on the melee ability)
 _ATTACKS: Mapping[str, tuple[str, str, str]] = {
     LIGHT: ("light melee", "ELightMeleeDamage", "EAttackType_Light"),
@@ -37,8 +37,7 @@ _ATTACKS: Mapping[str, tuple[str, str, str]] = {
 
 
 def cycle(
-    heroes: Mapping[str, object],
-    abilities: Mapping[str, object],
+    game: Lookup,
     hero: str,
     ability: str,
     windup: float,
@@ -46,32 +45,23 @@ def cycle(
 ) -> tuple[Cycle, tuple[str, ...]] | None:
     """``hero``'s ``ability`` as ``(Cycle, notes)``; ``None`` unless ``ability`` is ``LIGHT`` or ``HEAVY``.
 
-    ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
-    trees (see ``bukzor_deadlock.gamedata``); ``boons`` is what the hero's level adds.
+    ``boons`` is what the hero's level adds.
     The cycle is one hit, triggered at 0 and landing at ``windup`` seconds.
-    Raises ``BadInput`` for an unknown hero or a negative ``windup``.
+    Raises ``BadInput`` for a negative ``windup``, and ``Lookup.hero``'s
+    ``Unresolved`` for an unknown hero.
     """
     if ability not in _ATTACKS:
         return None
-    if not is_str_mapping(heroes.get(hero)):
-        raise BadInput(f"unknown hero: {hero}")
     if windup < 0:
         raise BadInput(f"windup must be >= 0, got {windup}")
     label, stat, attack_type = _ATTACKS[ability]
-    damage = _num(dig(heroes, hero, "m_mapStartingStats", stat), hero, stat) + (boons.light_melee if ability == LIGHT else boons.heavy_melee)
-    melee = dig(heroes, hero, "m_mapBoundAbilities", _MELEE_SLOT)
-    assert isinstance(melee, str), (hero, melee)
-    attack = dig(abilities, melee, "m_mapAttacks", attack_type)
-    on_hit = _num(dig(attack, "m_flCooldownOnHit"), melee, attack_type)
-    on_miss = _num(dig(attack, "m_flCooldownOnMiss"), melee, attack_type)
-    notes = spirit_note(heroes, hero, stat, f"{label.capitalize()} damage", boons.spirit)
+    attacker = game.hero(hero)
+    damage = attacker.stat(stat) + (boons.light_melee if ability == LIGHT else boons.heavy_melee)
+    attack = game.ability(attacker.kit[_MELEE_SLOT]).attack(attack_type)
+    on_hit, on_miss = attack.on_hit, attack.on_miss
+    notes = spirit_note(attacker, stat, f"{label.capitalize()} damage", boons.spirit)
     if on_miss != on_hit:
         notes.append(f"Every swing is assumed to hit: the cooldown is {on_hit:g} s on a hit, {on_miss:g} s on a miss.")
     notes.append(f"The swing's wind-up is not in the data: {windup:g} s is assumed (set it with the wind-up field).")
     cycle = Cycle(hits=(Hit(0.0, windup, damage, label),), period=on_hit)
     return cycle, tuple(notes)
-
-
-def _num(value: object, *where: str) -> float:
-    assert isinstance(value, (int, float)) and not isinstance(value, bool), (where, value)
-    return float(value)

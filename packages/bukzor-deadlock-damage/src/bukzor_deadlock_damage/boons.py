@@ -7,13 +7,10 @@ the match start. Each game level after the first that sets
 formulas and their evidence: ``docs/dev/mechanics.kb/boons-per-level.md``.
 """
 
-from collections.abc import Mapping
 from dataclasses import dataclass
 
 from bukzor_deadlock.levels import curves
-from bukzor_deadlock.types import dig, is_str_mapping
-
-_PER_BOON = "m_mapStandardLevelUpUpgrades"
+from bukzor_deadlock_lookup.entities import Hero
 
 
 @dataclass(frozen=True)
@@ -30,43 +27,29 @@ class Boons:
 NONE = Boons()  # level 0
 
 
-def last_level(heroes: Mapping[str, object], hero: str) -> int:
+def last_level(hero: Hero) -> int:
     """``hero``'s highest level."""
-    return max(_game_levels(heroes, hero)) - 1
+    return max(curves({hero.key: hero.tree})[hero.key]) - 1
 
 
-def at_level(heroes: Mapping[str, object], hero: str, level: int) -> Boons:
+def at_level(hero: Hero, level: int) -> Boons:
     """What ``hero``'s boons add at ``level``, which must be from 0 to ``last_level``."""
-    assert 0 <= level <= last_level(heroes, hero), (hero, level)
-    standard = [dig(heroes, hero, "m_mapLevelInfo", str(game), "m_bUseStandardUpgrade") is True for game in range(2, level + 2)]
-    count = sum(standard)
-    light = count * _stat(heroes, hero, _PER_BOON, "MODIFIER_VALUE_BASE_MELEE_DAMAGE_FROM_LEVEL")
-    ratio = _stat(heroes, hero, "m_mapStartingStats", "EHeavyMeleeDamage") / _stat(heroes, hero, "m_mapStartingStats", "ELightMeleeDamage")
+    assert 0 <= level <= last_level(hero), (hero.key, level)
+    count = sum(hero.grants_boon(game) for game in range(2, level + 2))
+    light = count * hero.per_boon("MODIFIER_VALUE_BASE_MELEE_DAMAGE_FROM_LEVEL")
+    ratio = hero.stat("EHeavyMeleeDamage") / hero.stat("ELightMeleeDamage")
     return Boons(
         count=count,
-        bullet=count * _stat(heroes, hero, _PER_BOON, "MODIFIER_VALUE_BASE_BULLET_DAMAGE_FROM_LEVEL"),
+        bullet=count * hero.per_boon("MODIFIER_VALUE_BASE_BULLET_DAMAGE_FROM_LEVEL"),
         light_melee=light,
         heavy_melee=light * ratio,
-        spirit=count * _stat(heroes, hero, _PER_BOON, "MODIFIER_VALUE_TECH_POWER"),
+        spirit=count * hero.per_boon("MODIFIER_VALUE_TECH_POWER"),
     )
 
 
-def _game_levels(heroes: Mapping[str, object], hero: str) -> Mapping[int, object]:
-    entity = heroes.get(hero)
-    assert is_str_mapping(entity), hero
-    return curves({hero: entity})[hero]
-
-
-def _stat(heroes: Mapping[str, object], hero: str, group: str, name: str) -> float:
-    value = dig(heroes, hero, group, name)
-    assert isinstance(value, (int, float)) and not isinstance(value, bool), (hero, group, name, value)
-    return float(value)
-
-
-def spirit_note(heroes: Mapping[str, object], hero: str, stat: str, what: str, spirit: float) -> list[str]:
+def spirit_note(hero: Hero, stat: str, what: str, spirit: float) -> list[str]:
     """A note, when ``hero``'s ``stat`` (``what``, in player words) scales with spirit power and ``spirit`` is above 0."""
-    scaling = dig(heroes, hero, "m_mapScalingStats", stat)
-    if spirit <= 0 or dig(scaling, "eScalingStat") != "ETechPower":
+    scale = hero.scaling(stat)
+    if spirit <= 0 or scale is None or not scale.spirit:
         return []
-    scale = dig(scaling, "flScale")
-    return [f"{what} also grows with spirit power (×{scale}; this level gives {spirit:g}): that is not included."]
+    return [f"{what} also grows with spirit power (×{scale.factor}; this level gives {spirit:g}): that is not included."]

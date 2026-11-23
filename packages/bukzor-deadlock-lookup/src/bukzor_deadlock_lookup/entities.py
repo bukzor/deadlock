@@ -9,7 +9,7 @@ import re
 from collections.abc import Mapping
 from dataclasses import dataclass
 
-from bukzor_deadlock.types import dig, is_str_mapping
+from bukzor_deadlock.types import dig, is_sequence, is_str_mapping
 
 SPIRIT = "ETechPower"
 _SPIRIT_CLASS = "scale_function_tech_damage"  # scales with spirit when it names no stat
@@ -35,6 +35,10 @@ def number(value: object) -> float:
         raise NotANumber(repr(value))
 
 
+def _optional(value: object) -> float | None:
+    return None if value is None else number(value)
+
+
 @dataclass(frozen=True)
 class Scale:
     """How a property grows with a stat: ``factor`` per point of ``stat`` (``None`` when the data names none)."""
@@ -45,6 +49,26 @@ class Scale:
     @property
     def spirit(self) -> bool:
         return self.stat == SPIRIT
+
+
+@dataclass(frozen=True)
+class Attack:
+    """One ``m_mapAttacks`` entry of a melee ability: seconds until the next swing."""
+
+    on_hit: float
+    on_miss: float
+
+
+@dataclass(frozen=True)
+class Weapon:
+    """The fields of one ``m_mapWeaponInfos`` profile that ``bukzor_deadlock.ability_profiles`` doesn't read; speeds and ranges in engine units (inches)."""
+
+    ammo_per_shot: float
+    reload_single: bool  # reloads one bullet at a time
+    reload_single_delay: float  # seconds before the first bullet goes in
+    bullet_speed: float | None  # ``m_flBulletSpeed``, per second
+    speed_curve: tuple[float, ...] | None  # ``m_BulletSpeedCurve``'s speeds, per second
+    falloff_start: float | None
 
 
 @dataclass(frozen=True)
@@ -91,6 +115,40 @@ class Ability:
             stat = SPIRIT
         return Scale(stat=stat, factor=number(factor))
 
+    def text(self, prop: str) -> str:
+        """``prop``'s ``m_strValue`` as the data writes it."""
+        assert prop in self.properties, (self.key, prop)
+        return str(dig(self.properties, prop, "m_strValue"))
+
+    def weapon(self, profile: str) -> Weapon:
+        """The ``m_mapWeaponInfos`` profile ``profile``; an absent field takes the engine's default."""
+        stats = dig(self.tree, "m_mapWeaponInfos", profile)
+        assert is_str_mapping(stats), (self.key, profile)
+        spline = dig(stats, "m_BulletSpeedCurve", "m_spline")
+        assert spline is None or is_sequence(spline), (self.key, spline)
+        return Weapon(
+            ammo_per_shot=number(stats.get("m_iAmmoConsumedPerShot", 1)),
+            reload_single=stats.get("m_bReloadSingleBullets") is True,
+            reload_single_delay=number(
+                stats.get("m_flReloadSingleBulletsInitialDelay", 0)
+            ),
+            bullet_speed=_optional(stats.get("m_flBulletSpeed")),
+            speed_curve=(
+                None
+                if spline is None
+                else tuple(number(dig(point, "y")) for point in spline)
+            ),
+            falloff_start=_optional(stats.get("m_flDamageFalloffStartRange")),
+        )
+
+    def attack(self, kind: str) -> Attack:
+        """The ``m_mapAttacks`` entry ``kind`` (``EAttackType_Light``, ...)."""
+        attack = dig(self.tree, "m_mapAttacks", kind)
+        return Attack(
+            on_hit=number(dig(attack, "m_flCooldownOnHit")),
+            on_miss=number(dig(attack, "m_flCooldownOnMiss")),
+        )
+
     def damage_properties(self) -> list[str]:
         """The properties flagged ``m_bIsAbilityDamageProperty``, in the data's order."""
         return [
@@ -124,6 +182,24 @@ class Hero:
         value = dig(self.tree, "m_mapStartingStats", name)
         assert value is not None, (self.key, name)
         return number(value)
+
+    def scaling(self, stat: str) -> Scale | None:
+        """How ``stat`` grows (``m_mapScalingStats``); ``None`` when it doesn't."""
+        scaling = dig(self.tree, "m_mapScalingStats", stat)
+        if scaling is None:
+            return None
+        by = dig(scaling, "eScalingStat")
+        assert isinstance(by, str), (self.key, stat, by)
+        return Scale(stat=by, factor=number(dig(scaling, "flScale")))
+
+    def per_boon(self, name: str) -> float:
+        """What one boon adds to ``name`` (``m_mapStandardLevelUpUpgrades``)."""
+        return number(dig(self.tree, "m_mapStandardLevelUpUpgrades", name))
+
+    def grants_boon(self, game_level: int) -> bool:
+        """Whether reaching ``game_level`` grants a boon (``m_bUseStandardUpgrade``)."""
+        info = dig(self.tree, "m_mapLevelInfo", str(game_level))
+        return dig(info, "m_bUseStandardUpgrade") is True
 
 
 @dataclass(frozen=True)

@@ -2,7 +2,9 @@
 
 from collections.abc import Mapping
 
-from .queries import GameData, registry
+from bukzor_deadlock_lookup.lookup import Lookup
+
+from .queries import registry
 
 
 TECH = {"_class": "scale_function_tech_damage", "m_flStatScale": 0.5, "m_eSpecificStatScaleType": "ETechPower"}
@@ -42,12 +44,12 @@ GUN = {
 }  # fmt: skip
 ATTACK = {"m_flCooldownOnHit": 0.75, "m_flCooldownOnMiss": 0.75}
 KIT = {"Weapon_Primary": "gun_a", "Weapon_Melee": "melee_a", "Signature_2": "buff", "Signature_1": "blast"}
-DATA = GameData(
+DATA = Lookup(
     heroes={
         "hero_c": hero({"Weapon_Melee": "melee_a"}),
         "hero_a": hero(KIT),
         "hero_off": hero(KIT, disabled=True),
-        "hero_dev": hero(KIT),  # live, but not listed
+        "hero_dev": hero(KIT),  # live, but unnamed
     },
     abilities={
         "gun_a": {"m_mapWeaponInfos": {"primary": GUN}},
@@ -56,7 +58,7 @@ DATA = GameData(
                                                    AbilityCooldown="10", AbilityCastDelay="0.5")},
         "buff": {"m_mapAbilityProperties": ability_props(AbilityCooldown="20")},
     },  # fmt: skip
-    listed={"hero_a": "Bravo", "hero_c": "Alpha", "hero_off": "Off"},
-    tokens={"blast:n": "Blast"},
+    prices={},
+    tokens={"blast:n": "Blast", "hero_a:n": "Bravo", "hero_c:n": "Alpha", "hero_off:n": "Off"},
 )
 SYNTHETIC = registry(lambda: DATA)

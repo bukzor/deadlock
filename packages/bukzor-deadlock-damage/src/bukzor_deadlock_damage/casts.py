@@ -32,12 +32,11 @@ Survey of the live roster's bound signatures and ultimates (build of
 """
 
 import re
-from collections.abc import Mapping
 
 from bukzor_deadlock.abilities import SIGNATURE, bindings
 from bukzor_deadlock.ability_upgrades import upgrades
-from bukzor_deadlock.types import dig, is_str_mapping
-from bukzor_deadlock_lookup.names import property_label
+from bukzor_deadlock_lookup.entities import Ability, NotANumber
+from bukzor_deadlock_lookup.lookup import Lookup
 
 from . import BadInput
 from .timeline import Cycle, Hit
@@ -53,66 +52,51 @@ _DAMAGE = ("Damage", "DPS")
 _DURATIONS = ("AbilityDuration", "AbilityChannelTime")  # first positive wins
 _TICKS = ("TickRate", "DPSTickInterval", "DamageInterval", "TickInterval", "Interval")  # first positive wins
 _NAMES = {"Damage": "Damage", "DPS": "Damage over time"}  # property: player-facing name
-_SPIRIT = "ETechPower"
-_SPIRIT_CLASS = "scale_function_tech_damage"  # scales with spirit when it names no stat
-_NUMBER = re.compile(r"-?(\d+\.?\d*|\.\d+)")
-
-type Props = Mapping[str, object]
 
 
-def cycle(
-    heroes: Mapping[str, object],
-    abilities: Mapping[str, object],
-    hero: str,
-    ability: str,
-    spirit: float,
-    tokens: Mapping[str, str],
-) -> tuple[Cycle, tuple[str, ...]] | None:
+def cycle(game: Lookup, hero: str, ability: str, spirit: float) -> tuple[Cycle, tuple[str, ...]] | None:
     """``ability`` cast on cooldown by ``hero`` with ``spirit`` spirit power, and caveats on the model.
 
-    ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
-    trees (see ``bukzor_deadlock.gamedata``). ``None`` unless ``ability`` is bound to
+    ``None`` unless ``ability`` is bound to
     one of ``hero``'s signature slots (the ultimate included) and has a
     ``Damage`` or ``DPS`` property. The first note is ``HEURISTIC``; each
     further note names one factor present on the ability that the model leaves
-    out or reads unusually, naming a property by its in-game label from the
-    localization ``tokens`` (``names.property_label``), else in words. A
+    out or reads unusually, naming a property by its in-game label
+    (``Lookup.label``), else in words. A
     zero-damage hit is dropped, so a cycle may have no hits.
 
-    A read field that isn't a plain number (``"0.1m"``, a per-level list like
-    ``"40 30 20"``) raises ``BadInput``: the model can't say what it means.
+    A read field that is missing or isn't a plain number (``"0.1m"``, a
+    per-level list like ``"40 30 20"``) raises ``BadInput``: the model can't
+    say what it means.
     """
-    if (hero, ability) not in {(h, a) for h, slot, a in bindings(heroes) if slot.startswith(SIGNATURE)}:
+    if (hero, ability) not in {(h, a) for h, slot, a in bindings(game.heroes) if slot.startswith(SIGNATURE)}:
         return None
-    props = dig(abilities, ability, "m_mapAbilityProperties")
-    assert is_str_mapping(props), ability
-    if not any(name in props for name in _DAMAGE):
+    cast = game.ability(ability)
+    if not any(name in cast.properties for name in _DAMAGE):
         return None
     notes: Notes = [(UNVERIFIED, HEURISTIC)]
-    delay = _number(props, ability, "AbilityCastDelay")
+    delay = _number(cast, "AbilityCastDelay")
     hits: list[Hit] = []
-    if "Damage" in props:
-        damage = _scaled(props, ability, "Damage", spirit, notes)
+    if "Damage" in cast.properties:
+        damage = _scaled(cast, "Damage", spirit, notes)
         hits.extend([Hit(0.0, delay, damage, "Damage")] if damage else [])
-    if "DPS" in props:
-        hits.extend(_ticks(props, ability, delay, _scaled(props, ability, "DPS", spirit, notes), notes))
-    cooldown = _number(props, ability, "AbilityCooldown")
+    if "DPS" in cast.properties:
+        hits.extend(_ticks(cast, delay, _scaled(cast, "DPS", spirit, notes), notes))
+    cooldown = _number(cast, "AbilityCooldown")
     if cooldown <= 0:
         notes.append((NO_COOLDOWN, "This ability has no cooldown: a single cast is shown."))
-    notes.extend(_unmodeled(abilities, ability, props, tokens))
+    notes.extend(_unmodeled(game, cast))
     cycle = Cycle(hits=tuple(hits), period=cooldown if cooldown > 0 else None, downtime=_downtime(hits, cooldown, notes))
     return cycle, tuple(text for _, text in sorted(notes, key=lambda note: note[0]))
 
 
-
-def card_dps(abilities: Mapping[str, object], ability: str, spirit: float) -> float | None:
+def card_dps(ability: Ability, spirit: float) -> float | None:
     """``ability``'s ``DPS`` property with ``spirit`` spirit power: the DPS its card shows; ``None`` without one.
 
     Scaling by a stat other than spirit is left out, as in ``cycle``, which notes it.
     """
-    props = dig(abilities, ability, "m_mapAbilityProperties")
-    assert is_str_mapping(props), ability
-    return _scaled(props, ability, "DPS", spirit, []) if "DPS" in props else None
+    return _scaled(ability, "DPS", spirit, []) if "DPS" in ability.properties else None
+
 
 def _downtime(hits: list[Hit], cooldown: float, notes: Notes) -> float:
     """The cooldown left after the last land; 0, with a note, when the damage outlasts it."""
@@ -126,37 +110,34 @@ def _downtime(hits: list[Hit], cooldown: float, notes: Notes) -> float:
         return cooldown - last
 
 
-def _scaled(props: Props, ability: str, name: str, spirit: float, notes: Notes) -> float:
+def _scaled(ability: Ability, name: str, spirit: float, notes: Notes) -> float:
     """``name``'s value plus its spirit scaling; a note if it scales with another stat instead."""
-    base = _number(props, ability, name)
-    scale = dig(props, name, "m_subclassScaleFunction")
-    factor = dig(scale, "m_flStatScale")
-    if factor is None:
+    base = _number(ability, name)
+    scale = ability.scale(name)
+    if scale is None:
         return base
-    assert isinstance(factor, (int, float)) and not isinstance(factor, bool), (ability, name, factor)
-    stat = dig(scale, "m_eSpecificStatScaleType")
-    if stat == _SPIRIT or (stat is None and dig(scale, "_class") == _SPIRIT_CLASS):
-        return base + factor * spirit
-    what = _humanize(str(stat)) if stat else "an unnamed stat"
-    notes.append((LEFT_OUT, f"{_NAMES.get(name, name)} also scales with {what} (×{factor:g}); that is not included."))
+    if scale.spirit:
+        return base + scale.factor * spirit
+    what = _humanize(scale.stat) if scale.stat else "an unnamed stat"
+    notes.append((LEFT_OUT, f"{_NAMES.get(name, name)} also scales with {what} (×{scale.factor:g}); that is not included."))
     return base
 
 
-def _ticks(props: Props, ability: str, delay: float, dps: float, notes: Notes) -> list[Hit]:
+def _ticks(ability: Ability, delay: float, dps: float, notes: Notes) -> list[Hit]:
     """``dps`` as ticks landing every interval from ``delay``, each triggered at the previous land.
 
     Ticks are whole intervals that fit the duration; a remainder is dropped.
     """
-    duration_field = next((f for f in _DURATIONS if _number(props, ability, f, 0) > 0), None)
-    tick_field = next((f for f in _TICKS if _number(props, ability, f, 0) > 0), None)
+    duration_field = next((f for f in _DURATIONS if _number(ability, f, 0) > 0), None)
+    tick_field = next((f for f in _TICKS if _number(ability, f, 0) > 0), None)
     if duration_field is None:
         notes.append((LEFT_OUT, f"Damage over time ({dps:g}/s) is not included: its duration is not in the data."))
         return []
     if tick_field is None:
         notes.append((LEFT_OUT, f"Damage over time ({dps:g}/s) is not included: its tick interval is not in the data."))
         return []
-    duration = _number(props, ability, duration_field)
-    interval = _number(props, ability, tick_field)
+    duration = _number(ability, duration_field)
+    interval = _number(ability, tick_field)
     count = int(duration / interval + 1e-9)
     if not dps:
         return []
@@ -166,37 +147,35 @@ def _ticks(props: Props, ability: str, delay: float, dps: float, notes: Notes) -
     ]
 
 
-def _unmodeled(abilities: Mapping[str, object], ability: str, props: Props, tokens: Mapping[str, str]) -> Notes:
+def _unmodeled(game: Lookup, ability: Ability) -> Notes:
     """One note per factor present on ``ability`` that the model ignores."""
     notes: Notes = []
 
     def label(prop: str) -> str:
-        return property_label(tokens, props, prop) or _humanize(prop)
+        return game.label(ability, prop) or _humanize(prop)
 
-    charges = _number(props, ability, "AbilityCharges", 0)
+    charges = _number(ability, "AbilityCharges", 0)
     if charges > 0:
-        between = _number(props, ability, "AbilityCooldownBetweenCharge", 0)
+        between = _number(ability, "AbilityCooldownBetweenCharge", 0)
         notes.append((CHARGES, f"Charges are not included: one cast per cooldown is shown (the ability has {charges:g}, one back every {between:g} s)."))
-    ups = upgrades(abilities, {ability})
+    ups = upgrades(game.abilities, {ability.key})
     if ups:
         tiers = ", ".join(f"T{u.tier} {label(u.property)} {u.bonus}" for u in ups)
         notes.append((UPGRADES, f"Upgrades not included: {tiers}."))
-    for name, prop in props.items():
-        if name not in _DAMAGE and dig(prop, "m_bIsAbilityDamageProperty") is True:
-            notes.append((LEFT_OUT, f"Extra damage not included: {label(name)} {dig(prop, 'm_strValue')}."))
+    for name in ability.damage_properties():
+        if name not in _DAMAGE:
+            notes.append((LEFT_OUT, f"Extra damage not included: {label(name)} {ability.text(name)}."))
     return notes
 
 
-def _number(props: Props, ability: str, name: str, default: float | None = None) -> float:
-    """``name``'s ``m_strValue`` as a number; ``default`` if absent, when given."""
-    if name not in props and default is not None:
-        return default
-    value = dig(props, name, "m_strValue")
-    if isinstance(value, (int, float)) and not isinstance(value, bool):
-        return float(value)
-    if isinstance(value, str) and _NUMBER.fullmatch(value):
-        return float(value)
-    raise BadInput(f"{ability}: {name} is {value!r}, not a number this model can read")
+def _number(ability: Ability, name: str, default: float | None = None) -> float:
+    """``Ability.value``, a missing or unreadable value as ``BadInput``."""
+    try:
+        return ability.value(name, default)
+    except KeyError:
+        raise BadInput(f"{ability.key}: {name} is missing, and this model needs it") from None
+    except NotANumber as bad:
+        raise BadInput(f"{bad} this model can read") from None
 
 
 def _humanize(name: str) -> str:

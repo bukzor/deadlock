@@ -12,7 +12,7 @@ from functools import cached_property
 
 from bukzor_deadlock import items, loc
 from bukzor_deadlock.abilities import TEMPLATE_HERO, bindings
-from bukzor_deadlock.types import is_str_mapping
+from bukzor_deadlock.types import dig, is_str_mapping
 
 from .entities import Ability, Hero, Item
 from .resolve import resolve
@@ -65,6 +65,18 @@ class Lookup:
         """The item ``ref`` names; only enabled items answer to a name, but any to its key."""
         enabled = [key for key, item in self._items.items() if not item.disabled]
         return self._items[resolve(ref, self._items, self._names(enabled), "item")]
+
+    def label(self, ability: Ability, prop: str) -> str | None:
+        """``prop``'s in-game label; ``None`` when the game has none.
+
+        The label is ``{token}_label``, where the token is the property's
+        ``m_strLocTokenOverride`` when it has one, else its key: the game's
+        tooltips label a property the same way. ``prop`` need not be one of
+        ``ability``'s properties.
+        """
+        override = dig(ability.properties, prop, "m_strLocTokenOverride")
+        token = override if isinstance(override, str) and override else prop
+        return self.tokens.get(f"{token}_label") or None
 
     def _hero(self, key: str) -> Hero:
         tree = self.heroes[key]

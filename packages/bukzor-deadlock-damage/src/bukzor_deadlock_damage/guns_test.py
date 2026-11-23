@@ -1,9 +1,9 @@
-from collections.abc import Mapping
-
 import pytest
-from bukzor_deadlock import gamedata, paths
+from bukzor_deadlock import paths
 from bukzor_deadlock.abilities import bindings
 from bukzor_deadlock.ability_profiles import profiles
+from bukzor_deadlock_lookup.load import load
+from bukzor_deadlock_lookup.lookup import Lookup
 from pytest import approx
 
 from . import guns
@@ -34,7 +34,7 @@ def _curve(*speeds: float) -> dict[str, object]:
     return {"m_spline": [{"x": 100.0 * i, "y": y} for i, y in enumerate(speeds)]}
 
 
-def _trees(**extra: object) -> tuple[Mapping[str, object], Mapping[str, object]]:
+def _game(**extra: object) -> Lookup:
     """Live ``hero_a`` with primary ``weap`` (beside a non-``primary`` profile) and secondary ``alt``, and
     ``hero_b``; ``extra`` merges into ``weap``'s ``primary`` profile."""
     heroes = {
@@ -49,11 +49,11 @@ def _trees(**extra: object) -> tuple[Mapping[str, object], Mapping[str, object]]
         "alt": {"m_mapWeaponInfos": {"primary": _info()}},
         "weap_b": {"m_mapWeaponInfos": {"primary": _info()}},
     }
-    return heroes, abilities
+    return Lookup(heroes, abilities, {}, {})
 
 
 def _gun(distance: float = 0.0, **extra: object) -> tuple[Cycle, list[str]]:
-    result = guns.cycle(*_trees(**extra), "hero_a", "weap", distance)
+    result = guns.cycle(_game(**extra), "hero_a", "weap", distance)
     assert result is not None
     return result
 
@@ -67,18 +67,18 @@ class DescribeCycle:
 
     @pytest.mark.parametrize(("hero", "ability"), [("hero_a", "alt"), ("hero_a", "weap_b"), ("hero_z", "weap")])
     def it_is_none_for_any_key_but_the_heros_primary_weapon(self, hero: str, ability: str):
-        assert guns.cycle(*_trees(), hero, ability) is None
+        assert guns.cycle(_game(), hero, ability) is None
 
     def it_adds_the_levels_bullet_damage_to_each_pellet(self):
-        result = guns.cycle(*_trees(), "hero_a", "weap", boons=Boons(count=4, bullet=0.5, spirit=4.4))
+        result = guns.cycle(_game(), "hero_a", "weap", boons=Boons(count=4, bullet=0.5, spirit=4.4))
         assert result is not None
         assert result[0].hits[0].damage == approx((4.0 + 0.5) * 9)
 
     def it_notes_bullet_damage_that_grows_with_the_levels_spirit(self):
-        _, abilities = _trees()
+        abilities = _game().abilities
         scaling = {"EBulletDamage": {"eScalingStat": "ETechPower", "flScale": 0.08}}
         hero = {"m_bDisabled": False, "m_mapBoundAbilities": {"ESlot_Weapon_Primary": "weap"}, "m_mapScalingStats": scaling}
-        result = guns.cycle({"hero_a": hero}, abilities, "hero_a", "weap", boons=Boons(count=4, spirit=4.4))
+        result = guns.cycle(Lookup({"hero_a": hero}, abilities, {}, {}), "hero_a", "weap", boons=Boons(count=4, spirit=4.4))
         assert result is not None
         assert [n for n in result[1] if n.startswith("Bullet damage also grows with spirit")], result[1]
 
@@ -125,22 +125,22 @@ class DescribeCycle:
             assert [n for n in notes if "falloff" in n and "20 m" in n], notes
 
 
-def _load(name: str) -> Mapping[str, object]:
-    path = paths.data_dir() / "gamedata.json/scripts" / name
+def _real() -> Lookup:
+    path = paths.data_dir() / "gamedata.json/scripts"
     if not path.exists():
         pytest.skip(f"no local data: {path} (build it with `redo` at the repo root)")
-    with path.open() as file:
-        return gamedata.load(file)
+    return load()
 
 
 class DescribeRealData:
     def it_reproduces_every_live_heros_profile_dps_and_sdps(self):
-        heroes, abilities = _load("heroes.json"), _load("abilities.json")
+        game = _real()
+        heroes, abilities = game.heroes, game.abilities
         oracle = {(p.hero, p.ability): p for p in profiles(heroes, abilities) if (p.slot, p.profile) == ("Weapon_Primary", "primary")}
         bound = [(hero, ability) for hero, slot, ability in bindings(heroes) if slot == "Weapon_Primary"]
         assert bound, "no live hero binds a primary weapon"
         for hero, ability in bound:
-            result = guns.cycle(heroes, abilities, hero, ability)
+            result = guns.cycle(game, hero, ability)
             assert result is not None, (hero, ability)
             cycle, _ = result
             assert cycle.period is not None, (hero, ability)

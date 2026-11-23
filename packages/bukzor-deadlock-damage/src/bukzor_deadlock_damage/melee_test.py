@@ -1,8 +1,11 @@
 from collections.abc import Mapping
 
 import pytest
-from bukzor_deadlock import gamedata, paths
+from bukzor_deadlock import paths
 from bukzor_deadlock.abilities import bindings
+from bukzor_deadlock_lookup.load import load
+from bukzor_deadlock_lookup.lookup import Lookup
+from bukzor_deadlock_lookup.resolve import Unresolved
 from pytest import approx
 
 from . import BadInput, melee
@@ -27,6 +30,7 @@ def _melee(light: tuple[float, float] = (0.75, 0.75), heavy: tuple[float, float]
 
 HEROES = {"hero_a": _hero(), "hero_b": _hero(light=63, heavy=128, melee="melee_b")}
 ABILITIES = {"melee_a": _melee(), "melee_b": _melee(light=(0.65, 0.65), heavy=(1.1, 1.4))}
+GAME = Lookup(HEROES, ABILITIES, {}, {})
 
 
 def _cycle(
@@ -37,14 +41,14 @@ def _cycle(
     abilities: Mapping[str, object] = ABILITIES,
     boons: Boons = NONE,
 ):
-    result = melee.cycle(heroes, abilities, hero, ability, windup, boons)
+    result = melee.cycle(Lookup(heroes, abilities, {}, {}), hero, ability, windup, boons)
     assert result is not None, (hero, ability)
     return result
 
 
 class DescribeCycle:
     def it_returns_none_for_any_other_ability(self):
-        assert melee.cycle(HEROES, ABILITIES, "hero_a", "melee_a", 0.0) is None
+        assert melee.cycle(GAME, "hero_a", "melee_a", 0.0) is None
 
     def it_swings_once_per_cycle_for_the_heros_damage(self):
         cycle, _ = _cycle("hero_b", LIGHT)
@@ -90,30 +94,31 @@ class DescribeCycle:
 
     class WhenTheRequestIsBad:
         def it_rejects_an_unknown_hero(self):
-            with pytest.raises(BadInput, match="hero_z"):
-                _ = melee.cycle(HEROES, ABILITIES, "hero_z", LIGHT, 0.0)
+            with pytest.raises(Unresolved, match="hero_z"):
+                _ = melee.cycle(GAME, "hero_z", LIGHT, 0.0)
 
         def it_rejects_a_negative_windup(self):
             with pytest.raises(BadInput, match="windup"):
-                _ = melee.cycle(HEROES, ABILITIES, "hero_a", LIGHT, -0.1)
+                _ = melee.cycle(GAME, "hero_a", LIGHT, -0.1)
 
 
-def _load(name: str) -> Mapping[str, object]:
-    path = paths.data_dir() / "gamedata.json/scripts" / name
+def _real() -> Lookup:
+    path = paths.data_dir() / "gamedata.json/scripts"
     if not path.exists():
         pytest.skip(f"no local game data at {path}; build it with `redo` at the repo root")
-    with path.open() as file:
-        return gamedata.load(file)
+    return load()
 
 
 class DescribeRealData:
     def it_yields_both_melee_cycles_for_every_live_hero(self):
-        heroes, abilities = _load("heroes.json"), _load("abilities.json")
-        live = sorted({hero for hero, _, _ in bindings(heroes)})
+        game = _real()
+        live = sorted({hero for hero, _, _ in bindings(game.heroes)})
         assert live
         for hero in live:
             for ability in (LIGHT, HEAVY):
-                cycle, _ = _cycle(hero, ability, heroes=heroes, abilities=abilities)
+                result = melee.cycle(game, hero, ability, 0.0)
+                assert result is not None, (hero, ability)
+                cycle, _ = result
                 assert cycle.hits[0].damage > 0, (hero, ability)
                 assert cycle.period is not None and cycle.period > 0, (hero, ability)
 

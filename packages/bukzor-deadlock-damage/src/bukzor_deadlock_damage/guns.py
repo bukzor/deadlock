@@ -18,10 +18,9 @@ inches: speeds and ranges in those units convert to round m/s and m (20669.3
 is 525 m/s, 669.291 is 17 m).
 """
 
-from collections.abc import Mapping
-
 from bukzor_deadlock.ability_profiles import Profile, profiles
-from bukzor_deadlock.types import dig, is_sequence, is_str_mapping
+from bukzor_deadlock_lookup.entities import Weapon
+from bukzor_deadlock_lookup.lookup import Lookup
 
 from .boons import NONE, Boons, spirit_note
 from .timeline import Cycle, Gun, gun_cycle
@@ -32,8 +31,7 @@ METERS_PER_UNIT = 0.0254
 
 
 def cycle(
-    heroes: Mapping[str, object],
-    abilities: Mapping[str, object],
+    game: Lookup,
     hero: str,
     ability: str,
     distance: float = 0.0,
@@ -41,16 +39,14 @@ def cycle(
 ) -> tuple[Cycle, list[str]] | None:
     """``hero``'s gun as a cycle, with notes on what the model leaves out; ``None`` unless ``ability`` is that gun.
 
-    ``heroes`` and ``abilities`` are the ``heroes.vdata`` and ``abilities.vdata``
-    trees (see ``bukzor_deadlock.gamedata``); ``distance`` is to the target, in meters.
+    ``distance`` is to the target, in meters.
     ``boons`` is what the hero's level adds.
     """
-    rows = [p for p in profiles(heroes, abilities) if (p.hero, p.slot, p.ability, p.profile) == (hero, SLOT, ability, PROFILE)]
+    rows = [p for p in profiles(game.heroes, game.abilities) if (p.hero, p.slot, p.ability, p.profile) == (hero, SLOT, ability, PROFILE)]
     if not rows:
         return None
     [row] = rows
-    stats = dig(abilities, ability, "m_mapWeaponInfos", PROFILE)
-    assert is_str_mapping(stats), (hero, ability)
+    stats = game.ability(ability).weapon(PROFILE)
     reload, reload_notes = _reload(row, stats)
     speed, speed_notes = _speed(stats)
     travel = 0.0 if speed is None else distance / speed
@@ -58,38 +54,35 @@ def cycle(
         damage=_given(row.damage) + boons.bullet, pellets=_given(row.bullets), burst=_given(row.burst), cycle=_given(row.cycle),
         intra=_given(row.intra), shots=_shots(_given(row.clip), stats), reload=reload, travel=travel,
     )  # fmt: skip
-    spirit = spirit_note(heroes, hero, "EBulletDamage", "Bullet damage", boons.spirit)
+    spirit = spirit_note(game.hero(hero), "EBulletDamage", "Bullet damage", boons.spirit)
     return gun_cycle(gun), _falloff(stats, distance) + spirit + reload_notes + speed_notes  # biggest effect first
 
 
-def _shots(clip: int, stats: Mapping[str, object]) -> int:
-    ammo = int(_num(stats.get("m_iAmmoConsumedPerShot", 1)))
+def _shots(clip: int, stats: Weapon) -> int:
+    ammo = int(stats.ammo_per_shot)
     assert clip % ammo == 0, (clip, ammo)
     return clip // ammo
 
 
-def _reload(row: Profile, stats: Mapping[str, object]) -> tuple[float, list[str]]:
+def _reload(row: Profile, stats: Weapon) -> tuple[float, list[str]]:
     """Seconds to refill an empty clip."""
     per = _given(row.reload)
-    if stats.get("m_bReloadSingleBullets", False) is not True:
+    if not stats.reload_single:
         return per, []
-    delay = _num(stats.get("m_flReloadSingleBulletsInitialDelay", 0))
+    delay = stats.reload_single_delay
     reload = delay + _given(row.clip) * per
     note = f"This gun reloads one bullet at a time; a full reload from empty is taken as {reload:g} s ({delay:g} s delay + {row.clip} × {per:g} s). Not checked in-game."
     return reload, [note]
 
 
-def _speed(stats: Mapping[str, object]) -> tuple[float | None, list[str]]:
+def _speed(stats: Weapon) -> tuple[float | None, list[str]]:
     """Bullet speed in m/s, ``None`` if unknown."""
-    flat = stats.get("m_flBulletSpeed")
-    flat_speed = None if flat is None else _num(flat) * METERS_PER_UNIT
-    spline = dig(stats, "m_BulletSpeedCurve", "m_spline")
-    if spline is None:
+    flat_speed = None if stats.bullet_speed is None else stats.bullet_speed * METERS_PER_UNIT
+    if stats.speed_curve is None:
         if flat_speed is None:
             return None, ["Bullet speed is not in the data: hits land the instant you fire, with no travel time."]
         return flat_speed, []
-    assert is_sequence(spline), spline
-    ys = {_num(dig(point, "y")) for point in spline}
+    ys = set(stats.speed_curve)
     if len(ys) != 1:
         raise NotImplementedError(f"m_BulletSpeedCurve varies, which is not modeled: {sorted(ys)}")
     [y] = ys
@@ -100,18 +93,13 @@ def _speed(stats: Mapping[str, object]) -> tuple[float | None, list[str]]:
     return speed, [note]
 
 
-def _falloff(stats: Mapping[str, object], distance: float) -> list[str]:
-    start = stats.get("m_flDamageFalloffStartRange")
-    if start is None or distance <= _num(start) * METERS_PER_UNIT:
+def _falloff(stats: Weapon, distance: float) -> list[str]:
+    start = stats.falloff_start
+    if start is None or distance <= start * METERS_PER_UNIT:
         return []
-    return [f"Damage falls off beyond {_num(start) * METERS_PER_UNIT:.3g} m; the falloff is not included."]
+    return [f"Damage falls off beyond {start * METERS_PER_UNIT:.3g} m; the falloff is not included."]
 
 
 def _given[T](value: T | None) -> T:
     assert value is not None
     return value
-
-
-def _num(value: object) -> float:
-    assert isinstance(value, (int, float, str)) and not isinstance(value, bool), value
-    return float(value)
