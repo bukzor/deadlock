@@ -3,7 +3,7 @@ managed-by: Skill(llm-subtask)
 status: open
 ---
 
-- [~] <https:todo.kb/2026-11-23-000-package-split.md> -- small `bukzor`-prefixed packages (lookup, damage, dllscan) per `docs/dev/decisions.kb/small-bukzor-prefixed-packages.md`; sub-agent units in progress
+- [~] <https:todo.kb/2026-11-23-000-package-split.md> -- small `bukzor`-prefixed packages (lookup, damage, dllscan, measurements) per `docs/dev/decisions.kb/small-bukzor-prefixed-packages.md`; all units done, awaiting the owner's review, then `git rm -r` its `.kb/`
 - [ ] `packages/bukzor-deadlock-evaluator` design ledger (`docs/dev/claims.md` there): owner rulings parked 2026-11-18, each a short read; the agent-filed answers stand until vetoed
   - [ ] Review the closed plan `docs/dev/close-open-claims.md` (commits 2041c59..) and say so; then its `close-open-claims.kb/` gets `git rm -r`'d
   - [ ] Ground `claims.kb/goals.kb/`: six files carry `standing: user` with no quote of yours (base-before-branches, build-synthesis, dominated-decisions, explain-popular-builds, item-choice, skill-point-choice); confirm or reword. Eight agent-standing goals stand unless vetoed

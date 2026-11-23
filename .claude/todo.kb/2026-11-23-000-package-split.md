@@ -49,7 +49,7 @@ Wave 4:
 - [x] [011 measurements data as Python](2026-11-23-000-package-split.kb/2026-11-23-011-measurements-data-as-python.md): the owner's ruling: readings as Python over a strict frozen-dataclass vocabulary; YAML, schema and their deps removed
 
 Wave 5, on the owner's word that their edits to the root file are done:
-- [ ] [008 retire root readings](2026-11-23-000-package-split.kb/2026-11-23-008-retire-root-readings.md): the owner's edits since `b9f93b9` carried into the experiment module; the root `crimson_slash_test_data.py` removed
+- [x] [008 retire root readings](2026-11-23-000-package-split.kb/2026-11-23-008-retire-root-readings.md): the owner's edits since `b9f93b9` carried into the experiment module; the root `crimson_slash_test_data.py` removed
 
 Byte-for-byte baseline of every vis query, captured before wave 1:
 `trash/package-split/golden.before.txt`, from `golden.py` in the kb.
@@ -67,5 +67,5 @@ Byte-for-byte baseline of every vis query, captured before wave 1:
 
 Verified 2026-11-23 after units 001-007, 009, 010 (commits `c8a0fbc..c51a9cf`),
 except that the full `redo` ran in units 001 and 003, not again at the end.
-Open: unit 008, on the owner's word. Review pending; once the owner is
+Units 011 and 008 followed (through `ce8b21e`); every unit is done. Review pending; once the owner is
 satisfied, `git rm -r` this plan's `.kb/` and `.jsonschema.yaml`.
