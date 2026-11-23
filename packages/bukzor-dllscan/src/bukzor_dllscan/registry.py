@@ -1,6 +1,6 @@
 """tier0's own cvar registry, read back after a DLL's `Init` has replayed the
 DLL's queues into it (`docs/dev/cvar-dump.kb/capture-approach.kb/icvar-hook.md`).
-A check on the queue scan, never a source: `deadlock.registry_check` compares
+A check on the queue scan, never a source: `bukzor_deadlock.registry_check` compares
 it with the DLL's `convars` and `concommands` documents.
 
 `read_back` loads the DLL, `Connect`s tier0's cvar system, then `Connect`s and

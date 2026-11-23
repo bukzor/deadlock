@@ -10,7 +10,7 @@ set -euo pipefail
 root=$(cd ../.. && pwd)
 py="$root/.venv/bin/python"
 src="$root/src/bukzor_deadlock"
-deps=("$src/dlls_$2.py" "$src/dlls_tsv.py" "$src/sparse.py" "$src/types.py" "$root/src/dllscan/document.py")
+deps=("$src/dlls_$2.py" "$src/dlls_tsv.py" "$src/sparse.py" "$src/types.py" "$root/packages/bukzor-dllscan/src/bukzor_dllscan/document.py")
 
 redo-ifchange ../dlls.list
 all=$(sed 's,.*/,,' ../dlls.list)

@@ -1,6 +1,6 @@
 #!/bin/bash
 # On-demand check, not part of all.do: tier0's own registry, read back after
-# server's and client's Init replayed their queues (bin/winpy dllscan registry),
+# server's and client's Init replayed their queues (bin/winpy bukzor_dllscan registry),
 # against each DLL's convars and concommands documents
 # (bukzor_deadlock.registry_check). The target is the summary of counts, also
 # printed on stderr; any mismatch fails it, naming each name.

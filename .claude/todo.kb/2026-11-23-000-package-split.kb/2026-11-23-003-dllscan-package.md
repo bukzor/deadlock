@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by:
   - 2026-11-23-001-rename.md
 required-reading:
@@ -59,8 +59,28 @@ wheel list (and whatever `uv lock` then rewrites).
 
 ## Steps
 
+- [x] `git mv` `src/dllscan/*` into `packages/bukzor-dllscan/src/bukzor_dllscan/` (the empty scaffold `__init__.py` replaced by the real one)
+- [x] Module name `bukzor_dllscan` in the scanner, the root package's imports, `bin/winpy` (`PYTHONPATH`), `bin/winpy-facet.bash`, the `.do` recipes
+- [x] Docs: `cvar-dump.kb/`, `own-the-dll-scanner.md`, the open plan `2026-11-05-000-per-dll-dump-tree.md` (`deadlock.*` -> `bukzor_deadlock.*` too)
+- [x] Root wheel list drops `src/dllscan`; `uv lock` rewrote nothing
+- [x] Checks, including `redo` on the DLL views
+
 ## Decisions
+
+- `bin/winpy`'s `PYTHONPATH` is now `packages/bukzor-dllscan/src`: the scanner is the only thing the Windows side imports.
+- Kept the CLI word `dllscan` for the shell function in `bin/winpy-facet.bash` and for prose naming the tool (`dllscan registry` in `cvar-dump.kb`); every module-name use (`bin/winpy MODULE`, `python -m`, dotted names, paths, argparse `prog`) is `bukzor_dllscan`.
+- Did not add `bukzor-dllscan` to the root `dependencies`: the brief limits `pyproject.toml` to the wheel list. See Open Questions.
 
 ## Open Questions
 
+- The root package imports `bukzor_dllscan` at runtime (`dll_load`, `dlls_*`, `registry_check`, `cvarlist_check`) but declares no dependency on it, and its wheel no longer ships it. Works in the workspace venv (`uv sync --all-packages`); a built root wheel would not. Fix is `"bukzor-dllscan"` in `[project].dependencies` plus `bukzor-dllscan = { workspace = true }` in `[tool.uv.sources]`.
+- `docs/dev/probes/*.py` (archived experiment scripts, outside this brief's scope) still `from dllscan import ...`; they no longer import.
+
 ## Final report
+
+- Moved by `git mv`: 28 files (`__init__.py` shows as modify/delete against the scaffold's empty one). Edits beyond the move are names only (imports, docstrings, `prog=`, `stdlib_only_test.py`'s allowed-name set).
+- `./bin/shell pytest`: 902 passed. `./bin/shell pyright`: 2 errors, both in the sibling's `bukzor_deadlock_measurements/load_test.py` (not this unit's). Vis `uv run pytest` 239 passed, `basedpyright` clean; golden protocol `cmp`-identical to `golden.before.txt`.
+- Windows host works here. `redo` of `data/dlls/{file,load,convars,concommands}.tsv`, `load.tree.txt`, `data/dlls.check/{concommands,convars,registry}` succeeded; `git status --short -- data/` showed no committed view changed (only the known `deadlock-version.json` drift, restored). `registry`: all match (server 2008/493, client 2289/428).
+- Note: `redo` refused `data/deadlock-version.json` ("you modified it") after an earlier `git checkout` of it; deleting it first let redo rebuild it, then I restored it.
+- `.claude/todo.md` hits: line 6 (`dllscan` as a package name, fine) and line 43 (`src/dllscan/registry.py` now `packages/bukzor-dllscan/src/bukzor_dllscan/registry.py`). Not edited.
+- `.claude/todo.kb/2026-11-23-000-package-split.md` lines 38 and 55 mention `src/dllscan` / `import dllscan` (parent plan; not mine).

@@ -11,7 +11,7 @@ by watching tier0's allocator hand out its blocks
 (`capture-approach.kb/allocator-hook.md`), for every DLL but tier0, whose
 queues are built before any hook can be placed; tier0's are found by their
 data shape (`capture-approach.kb/queue-shape-scan.md`). Both read entries at
-the two strides of s2sdk's layout (`dllscan.reglist.STRIDES`). It covers
+the two strides of s2sdk's layout (`bukzor_dllscan.reglist.STRIDES`). It covers
 every DLL whose load is `ok` (`dll-coverage.md`), each on its own
 (`output-views.md`). On 6860 that is 30 convar and 30 command queues (6223
 and 1418 declarations).
@@ -26,7 +26,7 @@ Why it meets each criterion:
   pointer the allocator returned, not a search, and a DLL with no queue is
   one that allocated no block.
 - **Small, self-checking knowledge.** It relies on the reg-list shape, the
-  entry layout from s2sdk's `convar.h` (`src/dllscan/convar_h.py`), and
+  entry layout from s2sdk's `convar.h` (`packages/bukzor-dllscan/src/bukzor_dllscan/convar_h.py`), and
   tier0's `MemAlloc_AllocFunc`, from which the allocator's slot is read on
   every load. Each part fails loudly when it stops fitting (`validation.md`,
   "Shape").

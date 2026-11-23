@@ -2,7 +2,7 @@
 
     python -m bukzor_deadlock.dll_file /path/to/game/citadel/bin/win64/server.dll
 
-The output is formatted as the scanner's documents are (``dllscan.facets.dumps``;
+The output is formatted as the scanner's documents are (``bukzor_dllscan.facets.dumps``;
 a test holds the two equal), so every facet diffs alike. That function is not
 imported here: ``facets`` pulls in the whole scanner, and this facet's atoms
 would then re-run on every scanner change.
@@ -13,7 +13,7 @@ import json
 import sys
 from pathlib import Path
 
-from dllscan.document import FileDocument
+from bukzor_dllscan.document import FileDocument
 
 
 def document(data: bytes) -> FileDocument:

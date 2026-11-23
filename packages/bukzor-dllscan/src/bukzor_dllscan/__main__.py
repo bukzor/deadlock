@@ -1,6 +1,6 @@
 """The scanner's CLI, one process per (facet, DLL), run from WSL as
 
-    bin/winpy dllscan SUBCOMMAND DLL [DIR ...]
+    bin/winpy bukzor_dllscan SUBCOMMAND DLL [DIR ...]
 
 `DLL` is the DLL's Windows path; each `DIR` (Windows form, e.g. both bin dirs)
 is added to the DLL search path before the load. Each subcommand prints one
@@ -36,7 +36,7 @@ class _Args(argparse.Namespace):
 
 
 def _parse(argv: Sequence[str]) -> _Args:
-    parser = argparse.ArgumentParser(prog="dllscan", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(prog="bukzor_dllscan", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     _ = parser.add_argument("subcommand", choices=("load", "convars", "concommands", "registry"))
     _ = parser.add_argument("dll", help="the DLL's Windows path")
     _ = parser.add_argument("dirs", nargs="*", metavar="dir", help="a DLL search dir, Windows form")

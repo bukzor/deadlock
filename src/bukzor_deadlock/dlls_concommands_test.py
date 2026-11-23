@@ -1,6 +1,6 @@
 import pytest
 
-from dllscan.document import ConCommand, ConCommandsDocument
+from bukzor_dllscan.document import ConCommand, ConCommandsDocument
 
 from .dlls_concommands import is_concommands_document, table
 from .dlls_tsv import uncell, unlist_cell

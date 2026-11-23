@@ -64,7 +64,7 @@ a filter over the store, never a filter baked into it.
 | `data/dlls.list` | no | membership only: every `*.dll` under `game/`, paths relative to `game/`, sorted; basenames asserted unique. Changes only when a DLL is added, removed or renamed, so it never re-runs the atoms on a patch |
 | `data/dlls/<facet>/default.json.do` | `.do` yes | one per facet; `$2` = DLL basename; guard: basename in `dlls.list` (load-time facets: and `load/<dll>.json` says `ok`), else fail |
 | `data/dlls/<facet>/<dll>.json` | no | one document: one facet, one DLL |
-| `data/dlls/default.tsv.do` | yes | case table on `$2` = facet; one `redo-ifchange` over that facet's documents, then `deadlock.dlls_<facet>` |
+| `data/dlls/default.tsv.do` | yes | case table on `$2` = facet; one `redo-ifchange` over that facet's documents, then `bukzor_deadlock.dlls_<facet>` |
 | `data/dlls/<facet>.tsv` | per facet | the facet's lossless aggregate, one row per item |
 | `data/dlls.check/strides` | no | re-learns the strides from `server.dll`, non-zero if they moved; in `all.do` |
 
@@ -87,9 +87,9 @@ Every load-time facet runs on every DLL whose load is `ok`, not only tier0
 importers: "only tier0 importers carry queues" becomes a fact checked against
 the store.
 
-### `src/dllscan/`: the scanner (Windows side, stdlib only)
+### `packages/bukzor-dllscan/src/bukzor_dllscan/`: the scanner (Windows side, stdlib only)
 
-It is a top-level package of its own, not `deadlock.*`, so the stdlib-only
+It is a package of its own, `bukzor-dllscan`, not `bukzor_deadlock.*`, so the stdlib-only
 rule has a boundary that a test can enforce. Every module except `win32` is
 pure: it reads memory through a `read(addr, n) -> bytes | None` callable, so
 WSL pytest drives it with a fake. It must be 3.12-compatible (WSL pins 3.12).
@@ -102,20 +102,20 @@ WSL pytest drives it with a fake. It must be 3.12-compatible (WSL pins 3.12).
 | `flags` | FCVAR bit → name (s2sdk `convar.h`, lowercased, unprefixed, DumpSource2 spelling), unknown bits → `flag_<n>` |
 | `values` | the binary's `EConVarType` table; decodes `CVValue_t` bytes by type to a JSON value; bytes that don't fit their type raise `ShapeError` |
 | `entries` | `decode_convar(mem, addr, image)` / `decode_concommand(…)`: creation-struct offsets → `{name, help, flags, type, default, min, max}` / `{name, help, flags}` (queue index is list position, never a field); every shape check from `validation.md` raises `ShapeError` |
-| `document` | the `TypedDict`s of every facet's document; `deadlock` imports them, so pyright checks both sides of the process boundary |
+| `document` | the `TypedDict`s of every facet's document; `bukzor_deadlock` imports them, so pyright checks both sides of the process boundary |
 | `win32` | the only Windows-only module (ctypes): `add_dll_directory` both bin dirs and the DLL's own, `LoadLibraryExW` → base, loaded-module list, `ReadProcessMemory` as the `read` callable, `hard_exit(code)`: flush stdout, then `TerminateProcess` (skips DLL detach / static destructors) |
 | `__main__` | CLI, one subcommand per load-time facet: `load DLL`, `convars DLL`, `concommands DLL` print that facet's document; `strides DLL` learns and compares to the pinned values. Any exception → message on stderr, `hard_exit(1)` |
 | `registry` | ICvar hook, placeholder factory, registry readback (from `hook_probe3.py`) |
 
 There is also `stdlib_only_test.py`, which parses every module with `ast` and
-fails on any import outside `sys.stdlib_module_names` and `dllscan`.
+fails on any import outside `sys.stdlib_module_names` and `bukzor_dllscan`.
 
 No document has a `build` field: the DLL's bytes already key the target,
 so a build stamp would only add churn.
 
 ### `bin/winpy`: the process boundary (bash, ≤50 lines)
 
-`bin/winpy MODULE ARGS…` runs `python.exe -m MODULE` with `src/` on
+`bin/winpy MODULE ARGS…` runs `python.exe -m MODULE` with the scanner's `src/` on
 `PYTHONPATH` (Windows path, passed via `WSLENV`) and stdin from `/dev/null`
 (`python.exe` reads its inherited stdin; under redo it would eat the caller's).
 Its cwd is a scratch dir, `trash/winpy/`, which catches `*.mdmp` files. It
@@ -123,7 +123,7 @@ runs under `timeout` and passes the exit status through. If `python.exe` is
 missing it fails loudly. That is the whole host policy: `all.do` always builds
 the DLL facets, never skips them.
 
-### `src/deadlock/` additions (WSL side, tests beside)
+### `src/bukzor_deadlock/` additions (WSL side, tests beside)
 
 | module | what it owns |
 |---|---|
@@ -147,22 +147,22 @@ on another prototype.
   report is a file in `2026-11-05-000-per-dll-dump-tree.kb/` (protocol in
   its `CLAUDE.md`).
   - [x] Wave 1: package skeleton (`pyproject.toml` hatch packages,
-        `__init__`, `stdlib_only_test.py`) + `dllscan.memory`
+        `__init__`, `stdlib_only_test.py`) + `bukzor_dllscan.memory`
         (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-001-dllscan-skeleton-and-memory.md>)
-  - [x] Wave 1: `dllscan.flags`
+  - [x] Wave 1: `bukzor_dllscan.flags`
         (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-002-dllscan-flags-table.md>)
-  - [x] Wave 1: `dllscan.document`
+  - [x] Wave 1: `bukzor_dllscan.document`
         (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-000-dllscan-document-types.md>)
-  - [x] Wave 2 (after memory): `dllscan.image`
+  - [x] Wave 2 (after memory): `bukzor_dllscan.image`
         (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-003-dllscan-image-layout.md>)
-  - [x] Wave 3 (after image): `dllscan.reglist`
+  - [x] Wave 3 (after image): `bukzor_dllscan.reglist`
         (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-004-dllscan-reglist.md>)
-  - [x] Wave 3 (after memory, beside `reglist`): `dllscan.win32`, `bin/winpy`.
+  - [x] Wave 3 (after memory, beside `reglist`): `bukzor_dllscan.win32`, `bin/winpy`.
         Verify Windows Python takes a `\\wsl.localhost\…` entry on `PYTHONPATH`
         (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-005-dllscan-win32-and-winpy.md>)
-  - [x] Wave 4 (after `reglist`): `dllscan.entries`, names/help/flags only
+  - [x] Wave 4 (after `reglist`): `bukzor_dllscan.entries`, names/help/flags only
         (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-006-dllscan-entries-names-help-flags.md>)
-  - [x] Wave 5 (after `entries`): `dllscan.__main__ load|concommands|strides`
+  - [x] Wave 5 (after `entries`): `bukzor_dllscan.__main__ load|concommands|strides`
         (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-008-dllscan-main-load-concommands-strides.md>)
         (`convars` waits for the value decode: no placeholder values), and on
         the real install: time `find_queues` on `server.dll` and settle the
@@ -172,17 +172,17 @@ on another prototype.
       check (commands: the ref reads u16 `0xFFFF`; convars: the owner check)
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-013-reglist-per-kind-ref-check.md>)
   - [x] Evidence (6860): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-007-rendersystemdx11-owner-check-evidence.md>
-- [x] Decode the value fields against the engine (`dllscan.values`, `dllscan.entries`)
+- [x] Decode the value fields against the engine (`bukzor_dllscan.values`, `bukzor_dllscan.entries`)
   - [x] Fit the layout (research): <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-018-convar-value-layout-fit.md>
   - [x] The decoder and `dllscan convars`: <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-019-dllscan-convar-decode.md>
-  - [x] The entry layout as `ctypes` structs (`dllscan.convar_h`), the one
+  - [x] The entry layout as `ctypes` structs (`bukzor_dllscan.convar_h`), the one
         source for its offsets: <https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-021-entry-layout-as-ctypes-structs.md>
-- [x] `dllscan.__main__ strides`; all `validation.md` shape checks raise
-- [x] `deadlock.paths.bin_dirs`, `deadlock.dll_inventory`, `data/dlls.list.do`
+- [x] `bukzor_dllscan.__main__ strides`; all `validation.md` shape checks raise
+- [x] `bukzor_deadlock.paths.bin_dirs`, `bukzor_deadlock.dll_inventory`, `data/dlls.list.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-009-dll-inventory-and-dlls-list.md>)
-- [x] `deadlock.dll_file`, `data/dlls/file/default.json.do`
+- [x] `bukzor_deadlock.dll_file`, `data/dlls/file/default.json.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-010-dll-file-facet.md>)
-- [x] `deadlock.dll_load`, `data/dlls/load/default.json.do`; load all 97, add
+- [x] `bukzor_deadlock.dll_load`, `data/dlls/load/default.json.do`; load all 97, add
       any new hang to `EXCLUDED` with its reason; and
       `data/dlls/concommands/default.json.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-011-dll-load-and-concommands-atoms.md>, after 010)
@@ -195,9 +195,9 @@ on another prototype.
       import closure, not only its file: after the load, `redo-ifchange` the
       `modules` that are in `dlls.list`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-024-load-time-atoms-depend-on-import-closure.md>)
-- [x] One helper for the `bin/winpy dllscan <facet>` invocation, now copied
+- [x] One helper for the `bin/winpy bukzor_dllscan <facet>` invocation, now copied
       into three `.do` files (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-023-one-winpy-facet-invocation.md>)
-- [x] `deadlock.dlls_{file,load,convars,concommands}`, `data/dlls/default.tsv.do`
+- [x] `bukzor_deadlock.dlls_{file,load,convars,concommands}`, `data/dlls/default.tsv.do`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-012-dlls-facet-aggregates.md>: all but `convars`)
 - [x] A document's `module` is the listed basename, case kept
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-014-module-is-the-listed-basename.md>)
@@ -215,8 +215,8 @@ on another prototype.
       README views table
 - [x] Rename `docs/dev/convar-dump.kb/` to `cvar-dump.kb/`: it covers both
       kinds (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-022-rename-convar-dump-kb-to-cvar-dump-kb.md>)
-- [x] On-demand check `data/dlls.check/registry`: `dllscan.registry` +
-      `deadlock.registry_check` for `server`/`client`
+- [x] On-demand check `data/dlls.check/registry`: `bukzor_dllscan.registry` +
+      `bukzor_deadlock.registry_check` for `server`/`client`
       (<https:2026-11-05-000-per-dll-dump-tree.kb/2026-11-09-026-registry-readback-check.md>)
 - [x] On-demand check: the `cvarlist` oracle (`capture-approach.kb/runtime-cvarlist.md`)
   - [x] Capture, server and client, from the CLI (`bin/cvarlist-capture`):
@@ -262,7 +262,7 @@ trash/hook && python.exe "$(wslpath -w ../../docs/dev/probes/hook_probe3.py)"
 server.dll Source2ServerConfig001 </dev/null`. The probes hardcode the stock
 `C:\Program Files (x86)\Steam` install; the real scanner takes the DLL path
 as an argument, which the `.do` derives from `DEADLOCK_HOME` (`python -m
-deadlock.paths game_dir`, `wslpath -w`). `python.exe` (Windows 3.14) is on the WSL `PATH` and
+bukzor_deadlock.paths game_dir`, `wslpath -w`). `python.exe` (Windows 3.14) is on the WSL `PATH` and
 accepts a `\\wsl.localhost\…` script path; run from a scratch dir.
 Disassembly and PE parsing in WSL without touching the project deps:
 `uv run -q --no-project --with capstone --with pefile python …`; helpers in

@@ -1,6 +1,6 @@
 import pytest
 
-from dllscan.document import ConVarValue
+from bukzor_dllscan.document import ConVarValue
 
 from .cvarlist import Capture, Difference, Entry
 from .cvarlist_check import (

@@ -20,7 +20,7 @@ import sys
 from collections.abc import Callable, Mapping
 from typing import Literal, TypeGuard
 
-from dllscan.document import ConVar, ConVarsDocument, ConVarValue
+from bukzor_dllscan.document import ConVar, ConVarsDocument, ConVarValue
 
 from . import dlls_tsv
 from .sparse import Table, render

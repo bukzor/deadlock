@@ -5,8 +5,9 @@ date: "2026-11-09"
 
 # Own the DLL scanner, not an upstream dumper
 
-The project writes and maintains its own cvar scanner, `src/dllscan/`. It loads
-each game DLL in Windows Python and reads the DLL's reg-list queues from memory
+The project writes and maintains its own cvar scanner, the `bukzor-dllscan`
+package (`packages/bukzor-dllscan/`). It loads each game DLL in Windows Python
+and reads the DLL's reg-list queues from memory
 (`../cvar-dump.kb/capture-approach.md`). On its face that breaks
 `reuse-existing-parsers.md`. It is that decision's own exception instead: no
 tool we would trust covers the need. Leave it in place. Don't swap it for an
@@ -26,10 +27,10 @@ upstream dump.
   values are built by code, so no static table holds them.
 - **The knowledge is small and fails loudly.** The scanner depends on the
   reg-list shape and s2sdk's entry layout, transcribed once as `ctypes`
-  structs (`dllscan.convar_h`). The queues' block sizes, anchors, and a typed
-  decode break the build when a patch moves them (`../cvar-dump.kb/validation.md`).
+  structs (`bukzor_dllscan.convar_h`). The queues' block sizes, anchors, and a
+  typed decode break the build when a patch moves them (`../cvar-dump.kb/validation.md`).
 
-The scanner is stdlib-only: it runs in a bare `python.exe` with `src/` on its
+The scanner is stdlib-only: it runs in a bare `python.exe` with the package's `src/` on its
 path (`bin/winpy`), so the Windows side has no environment to provision. That
 also rules out reusing PyPI packages there. WSL-side code keeps reusing as
 before (a later `pe` facet is to use `pefile`).

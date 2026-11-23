@@ -3,7 +3,7 @@ DLL's queue documents against tier0's registry after the DLL's ``Init``
 (``dllscan registry``), so the queue decoding is checked against the engine,
 not against our reading of the SDK. Run by ``data/dlls.check/registry.do``.
 
-    bin/winpy dllscan registry DLL DIR... | python -m bukzor_deadlock.registry_check CONVARS.json CONCOMMANDS.json
+    bin/winpy bukzor_dllscan registry DLL DIR... | python -m bukzor_deadlock.registry_check CONVARS.json CONCOMMANDS.json
 
 Every queue entry's name is in the registry. Each name declared once in its
 queue must be registered as declared (6860, ``server`` and ``client``):
@@ -31,9 +31,9 @@ from typing import TypeGuard
 
 import typed_json
 
-from dllscan import values
-from dllscan.document import ConCommand, ConCommandsDocument, ConVar, ConVarsDocument, ConVarValue, RegistryDocument
-from dllscan.memory import Memory
+from bukzor_dllscan import values
+from bukzor_dllscan.document import ConCommand, ConCommandsDocument, ConVar, ConVarsDocument, ConVarValue, RegistryDocument
+from bukzor_dllscan.memory import Memory
 
 from .dlls_concommands import is_concommands_document
 from .dlls_convars import is_convars_document
@@ -51,7 +51,7 @@ _NO_MEMORY = Memory(lambda addr, n: None)
 
 
 def zero_value(type: str) -> ConVarValue | None:
-    """The ``type``'s zero value as ``dllscan.values`` decodes it (``""`` for a string)."""
+    """The ``type``'s zero value as ``bukzor_dllscan.values`` decodes it (``""`` for a string)."""
     return values.decode(_NO_MEMORY, type, 1, bytes(values.SIZE))
 
 

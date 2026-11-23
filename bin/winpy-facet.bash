@@ -13,7 +13,7 @@ py="$root/.venv/bin/python"
 lookup() {
   local list="$root/data/dlls.list"
   redo-ifchange "$list" "$root/src/bukzor_deadlock/"{dlls_list,paths,dll_load,types}.py \
-    "$root/src/dllscan/document.py"
+    "$root/packages/bukzor-dllscan/src/bukzor_dllscan/document.py"
   dll=$("$py" -m bukzor_deadlock.dlls_list "$1" <"$list")
 }
 
@@ -33,11 +33,11 @@ closure() {
     tr '\n' '\0' | xargs -r0 redo-ifchange
 }
 
-# Print FACET's document for the DLL at DLL: `bin/winpy dllscan FACET`, given
+# Print FACET's document for the DLL at DLL: `bin/winpy bukzor_dllscan FACET`, given
 # the Windows paths of the DLL and the bin dirs.
 dllscan() {
   local facet=$1 dll=$2 f path bins scanner=() args=()
-  for f in "$root"/src/dllscan/*.py; do
+  for f in "$root"/packages/bukzor-dllscan/src/bukzor_dllscan/*.py; do
     [[ $f == *_test.py ]] || scanner+=("$f")
   done
   redo-ifchange "$dll" "$root/bin/winpy" "${scanner[@]}"
@@ -46,5 +46,5 @@ dllscan() {
   for path in "$dll" "${bins[@]}"; do
     args+=("$(wslpath -w "$path")")
   done
-  "$root/bin/winpy" dllscan "$facet" "${args[@]}"
+  "$root/bin/winpy" bukzor_dllscan "$facet" "${args[@]}"
 }

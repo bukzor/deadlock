@@ -33,7 +33,7 @@ from typing import NamedTuple
 
 import vdf
 
-from dllscan.document import ConVarValue
+from bukzor_dllscan.document import ConVarValue
 
 from . import cvarlist, dlls_tsv
 from .dlls_convars import TYPES, uncell_value

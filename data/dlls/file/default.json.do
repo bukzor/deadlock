@@ -16,7 +16,7 @@ redo-ifchange \
   "$root/src/bukzor_deadlock/dlls_list.py" \
   "$root/src/bukzor_deadlock/paths.py" \
   "$root/src/bukzor_deadlock/dll_file.py" \
-  "$root/src/dllscan/document.py"
+  "$root/packages/bukzor-dllscan/src/bukzor_dllscan/document.py"
 
 dll=$("$py" -m bukzor_deadlock.dlls_list "$2" <"$list")
 redo-ifchange "$dll"

@@ -1,6 +1,6 @@
 import pytest
 
-from dllscan.document import FileDocument
+from bukzor_dllscan.document import FileDocument
 
 from .dlls_file import is_file_document, table
 from .sparse import parse, render

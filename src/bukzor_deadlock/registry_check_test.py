@@ -1,6 +1,6 @@
 import pytest
 
-from dllscan.document import ConCommand, ConCommandsDocument, ConVar, ConVarsDocument, ConVarValue, RegistryDocument
+from bukzor_dllscan.document import ConCommand, ConCommandsDocument, ConVar, ConVarsDocument, ConVarValue, RegistryDocument
 
 from .dlls_convars import is_convars_document
 from .registry_check import check, command_mismatches, convar_mismatches

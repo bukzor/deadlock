@@ -1,6 +1,6 @@
 import pytest
 
-from dllscan.document import LoadDocument, LoadExcluded, LoadFailed, LoadOk
+from bukzor_dllscan.document import LoadDocument, LoadExcluded, LoadFailed, LoadOk
 
 from .dlls_load import is_load_document, ok, table
 from .dlls_tsv import uncell, unlist_cell

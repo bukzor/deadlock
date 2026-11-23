@@ -1,7 +1,7 @@
 """The JSON documents of the per-DLL store, one ``TypedDict`` per facet.
 
 One document is one facet of one DLL (``data/dlls/<facet>/<dll>.json``). The
-scanner builds them on Windows and the ``deadlock.dlls_<facet>`` aggregators
+scanner builds them on Windows and the ``bukzor_deadlock.dlls_<facet>`` aggregators
 read them on WSL; both import these types, so pyright checks the documents on
 both sides of the process boundary.
 
@@ -23,7 +23,7 @@ from collections.abc import Sequence
 from typing import Literal, TypedDict
 
 type ConVarValue = bool | int | float | str | Sequence[float]
-"""A ``CVValue_t`` decoded by its convar's ``type`` (``dllscan.values``).
+"""A ``CVValue_t`` decoded by its convar's ``type`` (``bukzor_dllscan.values``).
 
 ``bool``, ``int`` (int8 … uint64), ``float`` (float32 as the shortest decimal
 that reads back as the same float32; float64), ``str`` (string), or a list of
@@ -114,7 +114,7 @@ class ConCommandsDocument(TypedDict):
 
 class RegistryDocument(TypedDict):
     """Not a facet: tier0's cvar registry, read back after one DLL's ``Init``
-    replayed its queues into it (``dllscan.registry``), for an on-demand check
+    replayed its queues into it (``bukzor_dllscan.registry``), for an on-demand check
     against that DLL's ``convars`` and ``concommands`` documents.
 
     Records are in access-index order, one per name (tier0 merges a name

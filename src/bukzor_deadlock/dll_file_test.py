@@ -2,8 +2,8 @@ from pathlib import Path
 
 import pytest
 
-from dllscan import facets
-from dllscan.document import FileDocument
+from bukzor_dllscan import facets
+from bukzor_dllscan.document import FileDocument
 
 from . import dll_file
 

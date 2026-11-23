@@ -4,10 +4,10 @@ load-time facets (``concommands``, …) run only on a DLL whose load is ``ok``.
     python -m bukzor_deadlock.dll_load excluded helpsystem.dll  # its record, or nothing
     python -m bukzor_deadlock.dll_load ok data/dlls/load/server.dll.json  # or fails
 
-Every other DLL's ``load`` document comes from ``bin/winpy dllscan load``. A
+Every other DLL's ``load`` document comes from ``bin/winpy bukzor_dllscan load``. A
 load that *fails* (``LoadLibraryExW: 126``) is data, a ``failed`` document, not
 an exclusion. Output is formatted as the scanner's documents are
-(``dllscan.facets.dumps``; a test holds the two equal), but not imported from
+(``bukzor_dllscan.facets.dumps``; a test holds the two equal), but not imported from
 it: ``facets`` pulls in the whole scanner, which an excluded DLL's atom
 never runs and so should not depend on.
 """
@@ -19,7 +19,7 @@ from pathlib import Path
 
 import typed_json
 
-from dllscan.document import LoadExcluded
+from bukzor_dllscan.document import LoadExcluded
 
 from .types import is_str_mapping
 

@@ -63,12 +63,12 @@ allocation size on every load. It still needs only `LoadLibrary`: no
 `Connect` or `Init`.
 
 Against: native stubs in the scanner (the registry readback already carries
-one, `dllscan.registry`). It relies on the allocator's slot order (slot 1
+one, `bukzor_dllscan.registry`). It relies on the allocator's slot order (slot 1
 is Alloc), which is read from `MemAlloc_AllocFunc`'s code. tier0 still needs
 the shape scan.
 
 Verdict: chosen as the queue locator for every DLL but tier0, which keeps
-the shape scan (`./queue-shape-scan.md`); built as `dllscan.alloclog`, whose
+the shape scan (`./queue-shape-scan.md`); built as `bukzor_dllscan.alloclog`, whose
 stub logs only allocations of a block's size. Equality on a returned pointer
 beats a search on every criterion `../capture-approach.md` names, and the
 stub is the same kind of native code the readback already carries. Since

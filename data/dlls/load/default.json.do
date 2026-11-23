@@ -1,5 +1,5 @@
 #!/bin/bash
-# One DLL's `load` facet: loaded in a fresh Windows process (bin/winpy dllscan
+# One DLL's `load` facet: loaded in a fresh Windows process (bin/winpy bukzor_dllscan
 # load), what the load added (`ok`) or why it was refused (`failed`). A DLL in
 # bukzor_deadlock.dll_load.EXCLUDED is never loaded: it gets its `excluded` record,
 # written here. A timeout (winpy exit 124) fails the build; the fix is a new

@@ -46,7 +46,7 @@ Run on demand, and on each new build, not as part of `all.do`:
   declarations included). Checks the value decoding against the engine, not
   against our reading of the SDK. `Init` must stop at a placeholder's trap or
   return; a fault no placeholder explains fails the readback
-  (`dllscan.registry.stopped_by`), since the registry could then hold a
+  (`bukzor_dllscan.registry.stopped_by`), since the registry could then hold a
   partial replay.
 - **Oracle** (`redo data/dlls.check/cvarlist`): the engine's own `cvarlist`
   (`capture-approach.kb/runtime-cvarlist.md`), captured fresh on a dedicated

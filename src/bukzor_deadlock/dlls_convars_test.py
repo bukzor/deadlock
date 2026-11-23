@@ -1,7 +1,7 @@
 import pytest
 
-from dllscan import values
-from dllscan.document import ConVar, ConVarsDocument, ConVarValue
+from bukzor_dllscan import values
+from bukzor_dllscan.document import ConVar, ConVarsDocument, ConVarValue
 
 from .dlls_convars import TYPES, is_convars_document, table, uncell_value, value_cell
 from .dlls_tsv import uncell, unlist_cell

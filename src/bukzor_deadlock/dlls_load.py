@@ -18,7 +18,7 @@ import sys
 from collections.abc import Mapping
 from typing import TypeGuard, assert_never
 
-from dllscan.document import LoadDocument
+from bukzor_dllscan.document import LoadDocument
 
 from . import dlls_tsv
 from .sparse import Table, render

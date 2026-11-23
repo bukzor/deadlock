@@ -1,6 +1,6 @@
 #!/bin/bash
 # One DLL's `convars` facet: its convar reg-list queue, decoded in a fresh
-# Windows process (bin/winpy dllscan convars). A load-time facet: the guard is
+# Windows process (bin/winpy bukzor_dllscan convars). A load-time facet: the guard is
 # the basename in dlls.list *and* load/$2.json saying `ok`. Shape as
 # data/dlls/file/default.json.do; the shared steps are in
 # bin/winpy-facet.bash.

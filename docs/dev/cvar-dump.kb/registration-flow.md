@@ -56,7 +56,7 @@ Entry sizes on 6848 and 6851, measured from the queues: `ConVarRegList::Entry_t`
 
 ## The convar entry's layout (6860)
 
-Both entries, as s2sdk's `convar.h` declares them, are `src/dllscan/convar_h.py`:
+Both entries, as s2sdk's `convar.h` declares them, are `packages/bukzor-dllscan/src/bukzor_dllscan/convar_h.py`:
 `ConVarRegList::Entry_t` is `ConVarCreation_t` (`CVarCreationBase_t`, then
 `ConVarValueInfo_t`) and the two refs; its three `CVValue_t` are `uint8[16]`,
 so they sit unaligned. That layout fits tier0's registry
@@ -75,7 +75,7 @@ defensive` (`capture-approach.kb/icvar-hook.md`).
 `m_eVarType` is the row index of tier0's type-traits table (`.data`, RVA
 `0x398610`, 88-byte rows: name pointer, byte size, …), not s2sdk's enum, which
 lacks `int8` and `uint8`. The rows' names and sizes, and how each type's
-`CVValue_t` decodes, are `src/dllscan/values.py`; a `string` holds a
+`CVValue_t` decodes, are `packages/bukzor-dllscan/src/bukzor_dllscan/values.py`; a `string` holds a
 `CUtlString`, a heap `char*` whose null reads as `""` (`utlstring.h:303`). The
 queues of 6860 use bool, uint8, uint16, int32, uint32, uint64, float32,
 string, color and vector2-4; no queue declares int8, int16, int64, float64,

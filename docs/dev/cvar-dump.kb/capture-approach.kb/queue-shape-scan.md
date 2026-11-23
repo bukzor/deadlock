@@ -8,7 +8,7 @@ pointer (null or into the image), then `m_pPrev` at `8 + 100·stride`, chaining
 back through full 100-entry blocks. Reads go through `ReadProcessMemory` on our
 own process, so a wrong guess is a failed read, not a crash.
 
-The scan runs at the two strides of the s2sdk layout (`dllscan.reglist.STRIDES`
+The scan runs at the two strides of the s2sdk layout (`bukzor_dllscan.reglist.STRIDES`
 is `sizeof` of `convar_h`'s entry structs, 160/64), any length, keeping a head
 only if every entry's last qword (the ref the static initializer queued)
 passes its kind's ref test. For convar entries it must point into that DLL's

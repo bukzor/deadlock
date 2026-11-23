@@ -3,8 +3,8 @@ from pathlib import Path
 
 import pytest
 
-from dllscan import facets
-from dllscan.document import LoadExcluded
+from bukzor_dllscan import facets
+from bukzor_dllscan.document import LoadExcluded
 
 from . import dll_load
 

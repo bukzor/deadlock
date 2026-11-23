@@ -15,7 +15,7 @@ import sys
 from collections.abc import Mapping
 from typing import TypeGuard
 
-from dllscan.document import ConCommand, ConCommandsDocument
+from bukzor_dllscan.document import ConCommand, ConCommandsDocument
 
 from . import dlls_tsv
 from .sparse import Table, render

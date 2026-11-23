@@ -12,9 +12,9 @@ into its cwd — run it from a scratch directory, not the repo root.
 
 DLL search: add `game/bin/win64` and `game/citadel/bin/win64` with kernel32's
 `AddDllDirectory` (through `ctypes.CDLL`, not `os.add_dll_directory`, so pyright
-checks `dllscan.win32` off Windows); the install is only read, never written.
+checks `bukzor_dllscan.win32` off Windows); the install is only read, never written.
 
-`python -m dllscan` prints one document to stdout; the WSL side owns
+`python -m bukzor_dllscan` prints one document to stdout; the WSL side owns
 everything after that (`output-views.md`). It is stdlib-only, so the Windows
 side needs no environment of its own.
 
