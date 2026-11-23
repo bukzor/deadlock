@@ -37,7 +37,7 @@ Wave 2 (parallel):
 - [ ] [002 damage package](2026-11-23-000-package-split.kb/2026-11-23-002-damage-package.md): move vis's damage model into `bukzor-deadlock-damage`, and its localization helpers into the lookup's `names.py`
 - [ ] [003 dllscan package](2026-11-23-000-package-split.kb/2026-11-23-003-dllscan-package.md): `src/dllscan` into `bukzor-dllscan`
 - [ ] [004 lookup API](2026-11-23-000-package-split.kb/2026-11-23-004-lookup-api.md): the lookup itself
-- [ ] [006 measurements package](2026-11-23-000-package-split.kb/2026-11-23-006-measurements-package.md): the Crimson Slash readings as YAML data apart from their code
+- [x] [006 measurements package](2026-11-23-000-package-split.kb/2026-11-23-006-measurements-package.md): the Crimson Slash readings as YAML data apart from their code
 
 Wave 3 (parallel):
 - [ ] [005 adopt lookup](2026-11-23-000-package-split.kb/2026-11-23-005-adopt-lookup.md): damage and vis read the game data through the lookup

@@ -58,6 +58,10 @@ copies them.
   `~/.claude/reference.kb/git/commit.md`). Siblings share the index: never
   commit bare, and never stage, unstage or commit a path outside your scope.
   On an `index.lock` collision, retry.
+- **Never `git stash`**, nor any other command that rewrites the whole
+  index or worktree (`git reset` without paths, `git checkout .`): siblings'
+  staged and unstaged work lives there. To look at `HEAD`, use `git show
+  HEAD:PATH` or a scratch `git worktree add` under `trash/<unit-NNN>/`.
 - Project rules: run root tooling through `./bin/shell <cmd>`; vis tooling
   with `uv run <cmd>` from `apps/vis/server`. Python modules ≤300 lines.
   Never hand-edit a `uv.lock`: `uv lock` / `uv sync` rewrite it. New files
