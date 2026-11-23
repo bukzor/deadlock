@@ -34,7 +34,7 @@ Wave 1:
 - [x] [001 rename + scaffold](2026-11-23-000-package-split.kb/2026-11-23-001-rename.md): `deadlock` to `bukzor_deadlock`, `deadlock-evaluator` to `bukzor-deadlock-evaluator`, every live reference; then the four new packages, empty and wired
 
 Wave 2 (parallel):
-- [ ] [002 damage package](2026-11-23-000-package-split.kb/2026-11-23-002-damage-package.md): move vis's damage model into `bukzor-deadlock-damage`, and its localization helpers into the lookup's `names.py`
+- [x] [002 damage package](2026-11-23-000-package-split.kb/2026-11-23-002-damage-package.md): move vis's damage model into `bukzor-deadlock-damage`, and its localization helpers into the lookup's `names.py`
 - [x] [003 dllscan package](2026-11-23-000-package-split.kb/2026-11-23-003-dllscan-package.md): `src/dllscan` into `bukzor-dllscan`
 - [x] [009 root depends on dllscan](2026-11-23-000-package-split.kb/2026-11-23-009-root-depends-on-dllscan.md): after 003, the root package declares the scanner it imports; the probes' imports follow
 - [x] [004 lookup API](2026-11-23-000-package-split.kb/2026-11-23-004-lookup-api.md): the lookup itself
