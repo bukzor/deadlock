@@ -1,11 +1,11 @@
 {
-  "ClientVersion": 6860,
+  "ClientVersion": 6864,
   "ProductName": "citadel",
   "ServerAppID": "1422460",
-  "ServerVersion": 6860,
-  "SourceRevision": 11211860,
+  "ServerVersion": 6864,
+  "SourceRevision": 11254827,
   "ToolsAppID": "211",
-  "VersionDate": "Nov 05 2026",
-  "VersionTime": "16:40:40",
+  "VersionDate": "Nov 18 2026",
+  "VersionTime": "14:12:48",
   "appID": "1422450"
 }

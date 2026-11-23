@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - .claude/todo.kb/2026-11-23-000-package-split.kb/CLAUDE.md
@@ -36,8 +36,13 @@ rewrites and git tracks, and this file
 
 ## Steps
 
+- [x] full `redo` (1m50s, no errors; log in trash/unit-012/redo.log)
+- [x] read the diffs; commit the three changed files
+
 ## Decisions
 
 ## Open Questions
 
 ## Final report
+
+VRF 21.1 extracted without error. Build 6860 -> 6864, VRF 20.1 -> 21.1. Only three tracked files changed: `deadlock-version.json`, `tools/vrf-release.json`, and `dlls/file.tsv` (same rows, new size/sha256 for the rebuilt DLLs). No gamedata.tsv, convars.tsv or concommands.tsv change: the patch moved no stats or convars. Committed as one commit.
