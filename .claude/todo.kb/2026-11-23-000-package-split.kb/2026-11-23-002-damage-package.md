@@ -68,7 +68,9 @@ Findings go to their homes:
 
 **Scope (only these files):** `packages/bukzor-deadlock-damage/src/`,
 `packages/bukzor-deadlock-lookup/src/bukzor_deadlock_lookup/names{,_test}.py`,
-`apps/vis/server/src/`, `apps/vis/docs/`, the VIS_SEED claim,
+`apps/vis/server/src/`, `apps/vis/docs/`, `apps/vis/README.md` and
+`apps/vis/bin/serve` (unit 001 left old package names in both; fix them
+too), the VIS_SEED claim,
 `docs/dev/decisions.kb/vis-app.md` and other live `docs/` files that name a
 moved module, `.claude/ideas.kb/`, and this file
 

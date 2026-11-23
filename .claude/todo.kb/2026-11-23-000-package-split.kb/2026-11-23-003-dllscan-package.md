@@ -32,6 +32,10 @@ Every caller follows the new path and the new module name, `bukzor_dllscan`:
   dependency lists on `document.py`)
 - the root package's own imports of the scanner, if any (check)
 - `docs/dev/cvar-dump.kb/`, `docs/dev/decisions.kb/own-the-dll-scanner.md`
+- the open plan `.claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md` (not
+  its frozen `.kb/` records). Unit 001 also left `deadlock.*` names there,
+  and in the scanner's own comments and `stdlib_only_test.py`. Make those
+  `bukzor_deadlock.*` as you go.
 
 Leave the CLI word `dllscan` in shell function names and prose only where
 it means the tool rather than the module. List any hit in
@@ -51,7 +55,7 @@ wheel list (and whatever `uv lock` then rewrites).
 `packages/bukzor-dllscan/src/bukzor_dllscan/`, `bin/`, `data/dlls/**/*.do`,
 `data/dlls.check/**/*.do`, the root package's imports of the scanner,
 `docs/dev/cvar-dump.kb/`, `docs/dev/decisions.kb/own-the-dll-scanner.md`,
-and this file
+`.claude/todo.kb/2026-11-05-000-per-dll-dump-tree.md`, and this file
 
 ## Steps
 

@@ -31,7 +31,7 @@ later wave's units run in parallel on disjoint files. The rename touches
 nearly every file, so it runs alone.
 
 Wave 1:
-- [ ] [001 rename + scaffold](2026-11-23-000-package-split.kb/2026-11-23-001-rename.md): `deadlock` to `bukzor_deadlock`, `deadlock-evaluator` to `bukzor-deadlock-evaluator`, every live reference; then the four new packages, empty and wired
+- [x] [001 rename + scaffold](2026-11-23-000-package-split.kb/2026-11-23-001-rename.md): `deadlock` to `bukzor_deadlock`, `deadlock-evaluator` to `bukzor-deadlock-evaluator`, every live reference; then the four new packages, empty and wired
 
 Wave 2 (parallel):
 - [ ] [002 damage package](2026-11-23-000-package-split.kb/2026-11-23-002-damage-package.md): move vis's damage model into `bukzor-deadlock-damage`, and its localization helpers into the lookup's `names.py`

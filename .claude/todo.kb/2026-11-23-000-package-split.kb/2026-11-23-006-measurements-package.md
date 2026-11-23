@@ -49,6 +49,10 @@ summary. Split it into the package unit 001 left empty and wired,
 - **No game-data checks yet.** Unit 007 checks the item names against the
   lookup next wave.
 
+Unit 001 left a placeholder `description` in the package's
+`pyproject.toml`; write the real one (that field is yours; the dependencies
+are not).
+
 Leave the root `crimson_slash_test_data.py` in place, and reference neither
 it nor the snapshot from the package. Unit 008 carries over the owner's
 later edits and retires it. Record the package in the evaluator ledger, as the ledger's `CLAUDE.md`
