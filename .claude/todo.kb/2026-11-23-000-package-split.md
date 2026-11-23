@@ -25,23 +25,23 @@ English-name lookup (item names live in the install's
 
 ## Waves
 
-Each wave starts when the previous one is committed: every unit before the
-last touches the root `pyproject.toml` or a `uv.lock`, which no two units
-may share.
+Only wave 1 touches a dependency list or a lock (beyond 003's one-line
+wheel change): it scaffolds every new package, empty but wired, so each
+later wave's units run in parallel on disjoint files. The rename touches
+nearly every file, so it runs alone.
 
 Wave 1:
-- [ ] [001 rename](2026-11-23-000-package-split.kb/2026-11-23-001-rename.md): `deadlock` to `bukzor_deadlock`, `deadlock-evaluator` to `bukzor-deadlock-evaluator`, every live reference
+- [ ] [001 rename + scaffold](2026-11-23-000-package-split.kb/2026-11-23-001-rename.md): `deadlock` to `bukzor_deadlock`, `deadlock-evaluator` to `bukzor-deadlock-evaluator`, every live reference; then the four new packages, empty and wired
 
-Wave 2:
-- [ ] [002 damage package](2026-11-23-000-package-split.kb/2026-11-23-002-damage-package.md): move vis's damage model to `packages/bukzor-deadlock-damage`; scaffold `packages/bukzor-deadlock-lookup`; wire vis and the evaluator to both
+Wave 2 (parallel):
+- [ ] [002 damage package](2026-11-23-000-package-split.kb/2026-11-23-002-damage-package.md): move vis's damage model into `bukzor-deadlock-damage`, and its localization helpers into the lookup's `names.py`
+- [ ] [003 dllscan package](2026-11-23-000-package-split.kb/2026-11-23-003-dllscan-package.md): `src/dllscan` into `bukzor-dllscan`
+- [ ] [004 lookup API](2026-11-23-000-package-split.kb/2026-11-23-004-lookup-api.md): the lookup itself
+- [ ] [006 measurements package](2026-11-23-000-package-split.kb/2026-11-23-006-measurements-package.md): the Crimson Slash readings as YAML data apart from their code; blocked on the owner committing their edits
 
 Wave 3 (parallel):
-- [ ] [003 dllscan package](2026-11-23-000-package-split.kb/2026-11-23-003-dllscan-package.md): `src/dllscan` to `packages/bukzor-dllscan`
-- [ ] [004 lookup API](2026-11-23-000-package-split.kb/2026-11-23-004-lookup-api.md): the lookup itself, inside the scaffold
-
-Wave 4 (parallel):
 - [ ] [005 adopt lookup](2026-11-23-000-package-split.kb/2026-11-23-005-adopt-lookup.md): damage and vis read the game data through the lookup
-- [ ] [006 Crimson Slash calibration](2026-11-23-000-package-split.kb/2026-11-23-006-crimson-slash-calibration.md): the readings move into the evaluator, their item lists checked against the lookup
+- [ ] [007 measurements check items](2026-11-23-000-package-split.kb/2026-11-23-007-measurements-check-items.md): item names and constant spirit investment checked against the lookup
 
 Byte-for-byte baseline of every vis query, captured before wave 1:
 `trash/package-split/golden.before.txt`, from `golden.py` in the kb.

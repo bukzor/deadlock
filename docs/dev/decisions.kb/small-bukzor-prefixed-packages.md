@@ -29,8 +29,9 @@ A package's directory is its distribution name.
 | `bukzor-deadlock` (repo root) | extraction, the `data/` views, `paths`, `loc` | `vpk`, `keyvalues3`, ... |
 | `packages/bukzor-deadlock-lookup` | typed lookup of heroes, abilities and items by key or English name | `bukzor-deadlock` |
 | `packages/bukzor-deadlock-damage` | one attacker's damage over time: cycles, hits, DPS, time to kill | lookup |
-| `packages/bukzor-deadlock-evaluator` | build evaluation; its calibration data | damage, lookup |
+| `packages/bukzor-deadlock-evaluator` | build evaluation | damage, lookup, measurements |
 | `packages/bukzor-dllscan` | the DLL scanner (`own-the-dll-scanner.md`) | stdlib only |
+| `packages/bukzor-deadlock-measurements` | hand-recorded live sandbox readings (YAML), apart from the code that types and checks them | lookup |
 | `apps/vis/server` (`vis-server`) | the JSONL protocol only | damage, lookup |
 
 Apps are never published, so they keep plain names.
@@ -44,6 +45,11 @@ Apps are never published, so they keep plain names.
   out of vis with only import changes. In the root workspace (Python 3.12+)
   it is importable from vis's 3.14 workspace; the reverse edge was the
   blocker.
+- **Measurements apart from the evaluator:** the owner's suggestion. Their
+  activity differs: readings are hand-recorded in the live game and edited
+  as data, while the evaluator is code that is judged against them. The
+  package name is the agent's ([!DRAFT], vetoable): it matches the
+  evaluator's "measure" loop.
 - **DLL scanner apart from extraction:** a different runtime (a stdlib-only
   Windows-host Python), and only incidentally about Deadlock.
 
