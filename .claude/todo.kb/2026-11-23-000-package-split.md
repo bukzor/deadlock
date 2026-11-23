@@ -55,7 +55,7 @@ Wave 6:
 - [x] [012 data follows the install](2026-11-23-000-package-split.kb/2026-11-23-012-data-follows-the-install.md): the full build at the installed game and latest VRF, as its own commit (the split held this drift back)
 
 Wave 7:
-- [ ] [013 model reads the lookup](2026-11-23-000-package-split.kb/2026-11-23-013-model-reads-the-lookup.md): the owner's Crimson Slash model moves into the measurements package and reads its constants through the lookup, output unchanged
+- [x] [013 model reads the lookup](2026-11-23-000-package-split.kb/2026-11-23-013-model-reads-the-lookup.md): the owner's Crimson Slash model moves into the measurements package and reads its constants through the lookup, output unchanged
 
 Byte-for-byte baseline of every vis query, captured before wave 1:
 `trash/package-split/golden.before.txt`, from `golden.py` in the kb.
@@ -73,5 +73,5 @@ Byte-for-byte baseline of every vis query, captured before wave 1:
 
 Verified 2026-11-23 after units 001-007, 009, 010 (commits `c8a0fbc..c51a9cf`),
 except that the full `redo` ran in units 001 and 003, not again at the end.
-Units 011 and 008 followed (through `ce8b21e`); 012 and 013 come next, then review; once the owner is
+Units 011, 008, 012 and 013 followed (through `2a3d441`); every unit is done. Review pending; once the owner is
 satisfied, `git rm -r` this plan's `.kb/` and `.jsonschema.yaml`.
