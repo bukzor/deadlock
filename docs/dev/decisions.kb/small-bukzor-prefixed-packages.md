@@ -31,7 +31,7 @@ A package's directory is its distribution name.
 | `packages/bukzor-deadlock-damage` | one attacker's damage over time: cycles, hits, DPS, time to kill | lookup |
 | `packages/bukzor-deadlock-evaluator` | build evaluation | damage, lookup, measurements |
 | `packages/bukzor-dllscan` | the DLL scanner (`own-the-dll-scanner.md`) | stdlib only |
-| `packages/bukzor-deadlock-measurements` | hand-recorded live sandbox readings (YAML), apart from the code that types and checks them | lookup |
+| `packages/bukzor-deadlock-measurements` | hand-recorded live sandbox readings, as Python data over a frozen-dataclass vocabulary, apart from the code that checks and reports them | lookup |
 | `apps/vis/server` (`vis-server`) | the JSONL protocol only | damage, lookup |
 
 Apps are never published, so they keep plain names.
@@ -50,6 +50,18 @@ Apps are never published, so they keep plain names.
   as data, while the evaluator is code that is judged against them. The
   package name is the agent's ([!DRAFT], vetoable): it matches the
   evaluator's "measure" loop.
+
+  > [!@bukzor] ruled 2026-11-23, recorded sensatim -- the raw readings are
+  > Python, not YAML: it is easier to work the relationship between
+  > representation, data and semantics. A subset of code, chiefly frozen
+  > dataclasses, is shared by the data and by the larger programs.
+
+  So the hand-edited-YAML default (`~/.claude/reference.kb/data-format-selection.md`)
+  does not apply here. [!DRAFT] The shared subset is strict: frozen
+  keyword-only dataclasses whose only methods are pure properties over their
+  own fields, importing only the stdlib's typing modules. An experiment
+  module imports only that subset. A test guards both rules, so the data
+  loads without the game install.
 - **DLL scanner apart from extraction:** a different runtime (a stdlib-only
   Windows-host Python), and only incidentally about Deadlock.
 
