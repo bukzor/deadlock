@@ -4,8 +4,8 @@ Constants come from the game data (`data/gamedata.json/scripts/abilities.json`),
 for a fully upgraded Crimson Slash with Mystic Reverb and Tankbuster imbued.
 Damage values are unrounded; the game rounds each damage number randomly.
 
-Run `python crimson_slash_model.py` to compare the model with
-`crimson_slash_test_data.py`.
+Run `python crimson_slash_model.py` to compare the model with the readings in
+`bukzor_deadlock_measurements.experiments.crimson_slash`.
 """
 
 from dataclasses import dataclass
