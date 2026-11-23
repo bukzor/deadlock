@@ -3,7 +3,6 @@ managed-by: Skill(llm-subtask)
 status: open
 blocked-by:
   - 2026-11-23-001-rename.md
-  - the owner's edits to crimson_slash_test_data.py, committed
 required-reading:
   - .claude/todo.kb/2026-11-23-000-package-split.kb/CLAUDE.md
   - crimson_slash_test_data.py
