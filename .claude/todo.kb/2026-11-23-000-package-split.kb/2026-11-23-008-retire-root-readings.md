@@ -3,7 +3,6 @@ managed-by: Skill(llm-subtask)
 status: open
 blocked-by:
   - 2026-11-23-011-measurements-data-as-python.md
-  - the owner's word that their edits to the root crimson_slash_test_data.py are finished
 required-reading:
   - .claude/todo.kb/2026-11-23-000-package-split.kb/CLAUDE.md
   - packages/bukzor-deadlock-measurements/
