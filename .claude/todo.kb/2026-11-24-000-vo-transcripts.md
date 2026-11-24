@@ -48,24 +48,29 @@ Wave 1 (parallel):
 - [x] [002 vsnd probe](2026-11-24-000-vo-transcripts.kb/2026-11-24-002-vsnd-probe.md) (4d10277): no embedded text; MP3 44.1 kHz mono; 1806 Yamato clips, 48.5 min
 
 Wave 2:
-- [ ] [003 vo lines](2026-11-24-000-vo-transcripts.kb/2026-11-24-003-vo-lines.md): a committed per-soundbite table: event, audio path and CRC, caption per locale
+- [x] [003 vo lines](2026-11-24-000-vo-transcripts.kb/2026-11-24-003-vo-lines.md) (0c8087d): `data/vo/lines.tsv`, committed, 79,936 rows (`hero event vsnd crc32 english`); `data/vo/captions.tsv` (all locales) is local only
+  - No locale translates Yamato's lines; see `docs/dev/formats.kb/vo-captions.md`
+  - Yamato: 1217 of 1806 clips have a real English caption, 532 read "Speaks Japanese", 57 have none
 
 Wave 3 (parallel with 003):
-- [ ] [004 asr probe](2026-11-24-000-vo-transcripts.kb/2026-11-24-004-asr-probe.md): batching, model, prompt, detection threshold, throughput layout, CRC stability
+- [ ] [004 asr probe](2026-11-24-000-vo-transcripts.kb/2026-11-24-004-asr-probe.md): batching, model, whether the caption is a reliable language label, Japanese prompt, throughput layout, CRC stability
 
 Wave 4, briefed from 003 and 004:
-- [ ] 005 transcripts: ASR plus translation for the lines that ship no usable text, starting with Yamato
-  - Design: `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md` (proposed): layout, ledgers, background runner
+- [ ] 005 transcripts: ASR plus translation for the "Speaks Japanese" clips, starting with Yamato
+  - Design: `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md` (proposed); update it to the scope below before briefing
+  - Scope: only clips whose English caption is "Speaks Japanese" (532 for Yamato). Everything else is English with a correct caption
+    - The language is known, so pass `-l ja` with no detection pass. That is one encoder pass, about half the POC's cost
+    - English ASR, prompts for English proper nouns and the `p < 0.8` threshold all drop out of the design
   - Tooling, owner-installed 2026-11-24: brew `whisper.cpp` 1.9.5 (`whisper-cli`) and `ffmpeg` 9.1
     - The model is fetched by redo into `data/tools/whisper/`
   - POC (`trash/vo-transcripts/poc/`, large-v3-turbo, 16 clips):
     - The Japanese transcripts are excellent
-    - The English ones mangle proper nouns ("Less down there" for Lash): pass a hero-name `--prompt`
-    - `whisper-cli` defaults to `-l en`. Detect with `-dl`, then transcribe with `-l <detected>`
-    - The language probability prints only without `-np`
     - whisper.cpp reads MP3 directly: no ffmpeg or WAV step needed
-    - About 20 s wall per clip, flat from 4 to 12 threads; two encoder passes are 93% of it
+    - About 20 s wall per clip with `-l auto` (two encoder passes, 93% of the time), flat from 4 to 12 threads
   - 002's bulk clips are in `trash/vo-transcripts/002/bulk/`
+  - Routed from 003:
+    - Wire `data/vo/lines.tsv` into `data/all.do` (`committed` for `redo-adopt`, and `redo-ifchange`); until then plain `redo` skips it
+    - Every build re-provisions `data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream. This predates the plan; report it to the owner rather than fixing it here
 
 ## Success Criteria
 
