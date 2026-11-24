@@ -4,14 +4,15 @@
 
 Joins ``data/vo/lines.tsv``, each hero's ASR ledger ``<asr_dir>/<hero>.tsv``
 (``vo_asr_ledger``) and the fix-ups, ``transcripts/fixups.tsv``, which may not
-exist yet. Columns: ``hero event vsnd replacement translation source``, one
-row per in-scope event of a hero that has a ledger, in ``lines.tsv`` order.
+exist yet. Columns: ``hero event vsnd replacement translation doubt source``,
+one row per in-scope event of a hero that has a ledger, in ``lines.tsv`` order.
 
 A clip's text is the fix-up of the strongest model's ASR text that has one,
-and ``source`` is the fix-up's ``by``. Until a fix-up lands, ``replacement``
-is the strongest model's raw ASR text, ``translation`` is empty, and
-``source`` is that model's id (ids hold a ``/``; ``by`` values don't). A clip
-with no ASR yet has three empty cells.
+and ``doubt`` and ``source`` are that fix-up's ``doubt`` and ``by``. Until a
+fix-up lands, ``replacement`` is the strongest model's raw ASR text,
+``translation`` and ``doubt`` are empty, and ``source`` is that model's id
+(ids hold a ``/``; ``by`` values don't). A clip with no ASR yet has four empty
+cells.
 
 ``fixups.tsv`` columns: ``asr_text replacement translation doubt by``, every
 cell a ``dlls_tsv.cell``, keyed by ``asr_text``. The design:
@@ -27,7 +28,7 @@ from .dlls_tsv import cell, uncell
 from .vo_asr import MODELS, load_lines
 from .vo_asr_ledger import Row, clips, parse
 
-HEADER = ("hero", "event", "vsnd", "replacement", "translation", "source")
+HEADER = ("hero", "event", "vsnd", "replacement", "translation", "doubt", "source")
 FIXUP_HEADER = ("asr_text", "replacement", "translation", "doubt", "by")
 STRENGTH = {model.id: rank for rank, model in enumerate(MODELS.values())}
 
@@ -39,26 +40,26 @@ class Fixup(NamedTuple):
     by: str
 
 
-def best(asr: Sequence[Row], fixups: Mapping[str, Fixup]) -> tuple[str, str, str]:
-    """``(replacement, translation, source)`` for one clip's ASR rows."""
+def best(asr: Sequence[Row], fixups: Mapping[str, Fixup]) -> tuple[str, str, str, str]:
+    """``(replacement, translation, doubt, source)`` for one clip's ASR rows."""
     for row in asr:
         assert row.model in STRENGTH, row
     ranked = sorted(asr, key=lambda row: STRENGTH[row.model], reverse=True)
     for row in ranked:
         if row.text in fixups:
             fixup = fixups[row.text]
-            return fixup.replacement, fixup.translation, fixup.by
+            return fixup.replacement, fixup.translation, fixup.doubt, fixup.by
     if ranked:
-        return ranked[0].text, "", ranked[0].model
+        return ranked[0].text, "", "", ranked[0].model
     else:
-        return "", "", ""
+        return "", "", "", ""
 
 
 def rows(
     lines: Iterable[Mapping[str, str]],
     ledgers: Mapping[str, Sequence[Row]],
     fixups: Mapping[str, Fixup],
-) -> Iterator[tuple[str, str, str, str, str, str]]:
+) -> Iterator[tuple[str, str, str, str, str, str, str]]:
     lines = list(lines)
     by_hero = {hero: {clip.crc32 for clip in clips(lines, hero)} for hero in ledgers}
     for line in lines:
@@ -66,13 +67,14 @@ def rows(
         if crc32 not in by_hero.get(hero, ()):
             continue
         asr = [row for row in ledgers[hero] if row.crc32 == crc32]
-        replacement, translation, source = best(asr, fixups)
+        replacement, translation, doubt, source = best(asr, fixups)
         yield (
             hero,
             line["event"],
             line["vsnd"],
             cell(replacement),
             cell(translation),
+            cell(doubt),
             source,
         )
 

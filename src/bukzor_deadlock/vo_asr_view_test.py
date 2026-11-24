@@ -21,8 +21,8 @@ def asr(crc32: str, model: str, text: str) -> Row:
     return Row(crc32, f"sounds/vo/yamato/{crc32}.vsnd", model, text)
 
 
-def fixup(replacement: str, by: str = "claude-opus-5.5") -> Fixup:
-    return Fixup(replacement, f"means {replacement}", "", by)
+def fixup(replacement: str, by: str = "claude-opus-5.5", doubt: str = "") -> Fixup:
+    return Fixup(replacement, f"means {replacement}", doubt, by)
 
 
 class DescribeRows:
@@ -31,22 +31,34 @@ class DescribeRows:
         fixups = {"s": fixup("S"), "t": fixup("T", by="@bukzor")}
         got = list(rows([line("a", "0000000a")], {"yamato": ledger}, fixups))
         assert got == [
-            ("yamato", "a", "sounds/vo/yamato/a.vsnd", "T", "means T", "@bukzor")
+            ("yamato", "a", "sounds/vo/yamato/a.vsnd", "T", "means T", "", "@bukzor")
         ]
 
     def it_takes_a_weaker_models_fixup_over_unfixed_text(self):
         ledger = [asr("0000000a", TURBO, "t"), asr("0000000a", SMALL, "s")]
         got = list(rows([line("a", "0000000a")], {"yamato": ledger}, {"s": fixup("S")}))
-        assert [row[3:] for row in got] == [("S", "means S", "claude-opus-5.5")]
+        assert [row[3:] for row in got] == [("S", "means S", "", "claude-opus-5.5")]
+
+    def it_carries_the_doubt_of_the_fixup_that_wins(self):
+        ledger = [asr("0000000a", TURBO, "t"), asr("0000000a", SMALL, "s")]
+        fixups = {"s": fixup("S", doubt="small heard S"), "t": fixup("T")}
+        got = list(rows([line("a", "0000000a")], {"yamato": ledger}, fixups))
+        assert [row[3:] for row in got] == [("T", "means T", "", "claude-opus-5.5")]
+        got = list(
+            rows([line("a", "0000000a")], {"yamato": ledger}, {"s": fixups["s"]})
+        )
+        assert [row[3:] for row in got] == [
+            ("S", "means S", "small heard S", "claude-opus-5.5")
+        ]
 
     def it_shows_the_strongest_asr_text_until_a_fixup_lands(self):
         ledger = [asr("0000000a", TURBO, "t\tx"), asr("0000000a", SMALL, "s")]
         got = list(rows([line("a", "0000000a")], {"yamato": ledger}, {}))
-        assert [row[3:] for row in got] == [("t\\tx", "", TURBO)]
+        assert [row[3:] for row in got] == [("t\\tx", "", "", TURBO)]
 
     def it_lists_a_clip_with_no_asr_yet_with_empty_cells(self):
         got = list(rows([line("a", "0000000a")], {"yamato": []}, {}))
-        assert [row[3:] for row in got] == [("", "", "")]
+        assert [row[3:] for row in got] == [("", "", "", "")]
 
     def it_gives_each_event_of_a_shared_clip_a_row(self):
         lines = [line("a", "0000000a"), line("b", "0000000a")]
@@ -74,6 +86,12 @@ class DescribeParseFixups:
     def it_keys_rows_by_their_unescaped_asr_text(self):
         text = "asr_text\treplacement\ttranslation\tdoubt\tby\na\\tb\tR\tT\t\t@bukzor\n"
         assert parse_fixups(text) == {"a\tb": Fixup("R", "T", "", "@bukzor")}
+
+    def it_keeps_a_doubt_reason_with_its_row(self):
+        text = (
+            "asr_text\treplacement\ttranslation\tdoubt\tby\nS\tR\tT\tunsure\t@bukzor\n"
+        )
+        assert parse_fixups(text) == {"S": Fixup("R", "T", "unsure", "@bukzor")}
 
     def it_rejects_a_file_with_another_header(self):
         with pytest.raises(AssertionError, match="crc32"):

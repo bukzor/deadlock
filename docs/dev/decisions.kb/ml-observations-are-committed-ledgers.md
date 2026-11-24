@@ -36,7 +36,7 @@ what is meant.
 | `data/tools/whisper/<model>.bin` | the GGML model, fetched | redo | no |
 | `transcripts/asr/<hero>.tsv` | `crc32 vsnd model text`, one row per clip and model | the ASR job | **yes** |
 | `transcripts/fixups.tsv` | `asr_text replacement translation doubt by` | the fix-up pass and the owner | **yes** |
-| `data/vo/japanese.tsv` | `hero event vsnd replacement translation source`: the file to read | redo (join) | yes |
+| `data/vo/japanese.tsv` | `hero event vsnd replacement translation doubt source`: the file to read | redo (join) | yes |
 
 ## Why this shape
 
