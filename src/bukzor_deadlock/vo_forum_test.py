@@ -1,7 +1,7 @@
 import csv
 import io
 
-from .vo_forum import HEADER, SPOKEN_OTHER, render, rows
+from .vo_forum import HEADER, SPOKEN_OTHER, plain_doubt, render, rows
 
 NAMES = {"hero_tengu:n": "Ivy", "hero_ghost:n": "Lady Geist", "hero_yamato:n": "Yamato"}
 
@@ -63,7 +63,7 @@ class DescribeRows:
     def it_notes_doubt(self) -> None:
         r = foreign(doubt="small: x; turbo: y")
         [out] = rows([r], lines(r), NAMES)
-        assert out[6] == "Doubtful. small: x; turbo: y"
+        assert out[6] == 'Unsure: speech recognition heard "x"; a larger speech model heard "y"'
 
     def it_notes_a_clip_the_owner_heard(self) -> None:
         r = foreign(source="@bukzor")
@@ -102,3 +102,31 @@ class DescribeRender:
         [_, row] = list(csv.reader(io.StringIO(text.lstrip("﻿"))))
         assert row[4] == 'He said "hi", ok'
         assert '"He said ""hi"", ok"' in text
+
+
+class DescribePlainDoubt:
+    def it_names_both_models_heard_separately(self) -> None:
+        assert plain_doubt("small: A b; turbo: C d; sibling caption: E") == (
+            'Unsure: speech recognition heard "A b"; '
+            'a larger speech model heard "C d"; sibling caption: E'
+        )
+
+    def it_rewrites_both_hear(self) -> None:
+        assert plain_doubt("small and turbo both hear 'I'll see you'; read as X") == (
+            "Unsure: speech recognition and a larger speech model both heard "
+            "\"I'll see you\"; read as X"
+        )
+
+    def it_rewrites_both_models_hear(self) -> None:
+        assert plain_doubt("both models hear Dengu/Tango; old name") == (
+            "Unsure: speech recognition and a larger speech model both heard "
+            '"Dengu/Tango"; old name'
+        )
+
+    def it_rewrites_small_only(self) -> None:
+        assert plain_doubt("small only; 'x' unconfirmed") == (
+            "Unsure: only speech recognition heard it; 'x' unconfirmed"
+        )
+
+    def it_passes_other_text_through(self) -> None:
+        assert plain_doubt("the clip is cropped") == "Unsure: the clip is cropped"

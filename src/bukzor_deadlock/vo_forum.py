@@ -18,6 +18,7 @@ needs it to show Japanese), CRLF line ends.
 
 import csv
 import io
+import re
 import sys
 from collections.abc import Iterable, Iterator, Mapping
 from pathlib import Path
@@ -44,6 +45,32 @@ TENGU_PING = "_tengu_ping_2d"
 
 Row = tuple[str, str, str, str, str, str, str]
 
+ASR = "speech recognition"
+BIGGER = "a larger speech model"
+BOTH = f"{ASR} and {BIGGER} both heard"
+DOUBT_FORMS = (
+    (
+        re.compile(r"small: (.+?); turbo: (.+?)(?=;|$)"),
+        rf'{ASR} heard "\1"; {BIGGER} heard "\2"',
+    ),
+    (re.compile(r"small and turbo both hear '(.+?)'(?=;|$)"), rf'{BOTH} "\1"'),
+    (re.compile(r"both models hear ([^\s;]+)"), rf'{BOTH} "\1"'),
+    (re.compile(r"small only"), f"only {ASR} heard it"),
+)
+"""Our whisper model names, rewritten for forum readers; the first match wins."""
+
+
+def plain_doubt(doubt: str) -> str:
+    """A fix-up's ``doubt`` for forum readers; a text fitting no form passes through.
+
+    >>> plain_doubt("small: BOWBACK; turbo: Bow back")
+    'Unsure: speech recognition heard "BOWBACK"; a larger speech model heard "Bow back"'
+    """
+    for form, replacement in DOUBT_FORMS:
+        if form.search(doubt):
+            return "Unsure: " + form.sub(replacement, doubt, count=1)
+    return f"Unsure: {doubt}"
+
 
 def notes(row: Mapping[str, str], caption: str, text: str) -> str:
     parts: list[str] = []
@@ -57,7 +84,7 @@ def notes(row: Mapping[str, str], caption: str, text: str) -> str:
         parts.append("verified by ear")
     doubt = uncell(row["doubt"]) or ""
     if doubt:
-        parts.append(f"Doubtful. {doubt}")
+        parts.append(plain_doubt(doubt))
     return "; ".join(parts)
 
 
