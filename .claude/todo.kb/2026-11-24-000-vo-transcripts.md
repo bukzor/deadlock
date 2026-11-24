@@ -48,6 +48,16 @@ two texts:
 - **translation:** English that tells English-speaking players what is
   meant.
 
+Extended to every "Speaks <language>" caption ([!@bukzor] 2026-11-24, "yes
+let's do those too"): Ivy (`tengu`) has 34 Spanish clips, and Lady Geist
+(`ghost`) and Bebop have 1 French clip each. Their replacement is styled
+for a native reader of that language.
+
+The forum artifact ([!@bukzor] 2026-11-24): a CSV the owner will publish
+on the Deadlock forum, one row per clip, with the current caption and the
+suggested text and translation. The coordinator recommended the columns
+(unit 009's brief).
+
 Pipeline, per line (as settled by units 002 and 003):
 1. **The game's English caption,** when it is real. That covers every
    English-spoken clip. No other locale translates the Japanese lines, and
@@ -86,6 +96,12 @@ Wave 5, once 005's first rows land:
 
 Wave 6:
 - [x] [007 view doubt](2026-11-24-000-vo-transcripts.kb/2026-11-24-007-view-doubt.md) (340bbc5): `data/vo/japanese.tsv` shows the fix-up's `doubt`; 4 rows carry one
+
+Wave 7:
+- [ ] [008 other languages](2026-11-24-000-vo-transcripts.kb/2026-11-24-008-other-languages.md): the ASR language comes from the caption; the view is renamed to `data/vo/foreign.tsv`; Ivy, Lady Geist and Bebop are transcribed and fixed up
+
+Wave 8:
+- [ ] [009 forum csv](2026-11-24-000-vo-transcripts.kb/2026-11-24-009-forum-csv.md): the CSV to publish
 
 For the owner, not a unit: every build re-provisions
 `data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream
