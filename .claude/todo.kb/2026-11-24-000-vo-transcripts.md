@@ -51,7 +51,7 @@ Wave 2:
 - [ ] [003 vo lines](2026-11-24-000-vo-transcripts.kb/2026-11-24-003-vo-lines.md): a committed per-soundbite table: event, audio path and CRC, caption per locale
 
 Wave 3, briefed from the wave 1 and 2 findings:
-- [ ] 004 transcripts: ASR plus translation for the lines that ship no usable text, starting with Yamato. Tooling (owner-installed 2026-11-24): brew `whisper.cpp` 1.9.5 (`whisper-cli`) and `ffmpeg` 9.1; the model `ggml-large-v3` is fetched by redo into `data/tools/`. `whisper-cli` defaults to `-l en`, so pass `-l auto`. If its language probability is unusable, fall back to faster-whisper via a glibc uv tool. Record the toolchain in `environment.kb/toolchain.md`. The brief must also carry these routed items: VRF writes the stored MP3 unchanged, so 004 decodes it (ffmpeg is not installed); fix `formats.kb/asset-extensions.md`'s `vsnd_c -> wav`; 002's bulk clips are in `trash/vo-transcripts/002/bulk/`
+- [ ] 004 transcripts: ASR plus translation for the lines that ship no usable text, starting with Yamato. Tooling (owner-installed 2026-11-24): brew `whisper.cpp` 1.9.5 (`whisper-cli`) and `ffmpeg` 9.1; the model `ggml-large-v3` is fetched by redo into `data/tools/`. `whisper-cli` defaults to `-l en`, so pass `-l auto`. If its language probability is unusable, fall back to faster-whisper via a glibc uv tool. Record the toolchain in `environment.kb/toolchain.md`. The brief must also carry these routed items: VRF writes the stored MP3 unchanged, so 004 decodes it with ffmpeg; fix `formats.kb/asset-extensions.md`'s `vsnd_c -> wav`; 002's bulk clips are in `trash/vo-transcripts/002/bulk/`
 
 ## Success Criteria
 
