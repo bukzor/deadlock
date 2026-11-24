@@ -1,10 +1,14 @@
-"""CLI: whisper transcripts of one hero's foreign-language VO clips, into its ledger.
+"""CLI: whisper transcripts of one hero's VO clips, into its ledger.
 
-    python -m bukzor_deadlock.vo_asr HERO MODEL [CRC32 ...]
+    python -m bukzor_deadlock.vo_asr [--english] HERO MODEL [CRC32 ...]
 
+The scope is the hero's foreign-language clips (``vo_asr_ledger.clips``) or,
+with ``--english``, its clips with a real English caption
+(``vo_asr_ledger.captioned``), to check the audio against the caption. The
+ledger keeps both scopes' rows whichever runs.
 Whisper is pinned to each clip's language (``Clip.lang``), or detects it,
 once per clip, under a model id that says so (``vo_asr_ledger.decoded_id``).
-Without CRC32s, it transcribes every in-scope clip (``vo_asr_ledger.clips``)
+Without CRC32s, it transcribes every clip in scope
 that has no row for MODEL (a ``MODELS`` key) yet, in batches of one language
 (``vo_asr_batch.pack_languages``) on four one-thread processes; a clip that
 comes back empty is rerun alone.
@@ -34,8 +38,8 @@ from typing import NamedTuple
 
 from . import paths
 from .vo_asr_batch import decode_pcm, pack_languages, seconds, transcribe
-from .vo_asr_ledger import AUTO, Clip, Row, clips, decoded_id, merge, parse, pending
-from .vo_asr_ledger import render
+from .vo_asr_ledger import AUTO, Clip, Row, captioned, clips, decoded_id, merge
+from .vo_asr_ledger import parse, pending, render
 
 VO = "sounds/vo/"
 THREADS = 4
@@ -160,12 +164,17 @@ def run_clips(model: Model, todo: Sequence[Clip], ledger: Ledger) -> None:
 
 
 def main(argv: list[str] | None = None) -> None:
-    hero, model_name, *named = (sys.argv if argv is None else argv)[1:]
+    args = (sys.argv if argv is None else argv)[1:]
+    english = args[:1] == ["--english"]
+    hero, model_name, *named = args[english:]
     model = MODELS[model_name]
     _ = os.nice(19)
-    wanted = clips(load_lines(paths.data_dir() / "vo/lines.tsv"), hero)
+    lines = load_lines(paths.data_dir() / "vo/lines.tsv")
+    foreign, spoken_english = clips(lines, hero), captioned(lines, hero)
+    wanted = spoken_english if english else foreign
     path = paths.repo_root() / "transcripts/asr" / f"{hero}.tsv"
-    ledger = Ledger(path, wanted, parse(path.read_text()) if path.exists() else [])
+    rows = parse(path.read_text()) if path.exists() else []
+    ledger = Ledger(path, [*foreign, *spoken_english], rows)
     ledger.save([])
     if named:
         by_crc = {clip.crc32: clip for clip in wanted}

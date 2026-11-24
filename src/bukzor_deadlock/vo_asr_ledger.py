@@ -21,6 +21,7 @@ SPEAKS = re.compile(r"speaks (\w+)", re.IGNORECASE)
 LANGUAGES = {"japanese": "ja", "spanish": "es", "french": "fr"}
 """Caption language to whisper's ``-l`` code."""
 AUTO = "auto"
+ENGLISH = "en"
 """whisper's ``-l`` for language detection, one per encoder window."""
 PINNED_UNCAPTIONED = {"yamato": "ja"}
 """Heroes whose uncaptioned clips are pinned to a language, not detected:
@@ -69,14 +70,38 @@ def clips(lines: Iterable[Mapping[str, str]], hero: str) -> list[Clip]:
     if not any(speaks(line["english"]) for line in mine):
         return []
     uncaptioned = PINNED_UNCAPTIONED.get(hero, AUTO)
-    by_crc: dict[str, Clip] = {}
+    found: list[Clip] = []
     for line in mine:
-        english, vsnd, crc32 = line["english"], line["vsnd"], line["crc32"]
+        english, vsnd = line["english"], line["vsnd"]
         lang = speaks(english) or (
             uncaptioned if not english and EMOTE not in vsnd else None
         )
-        if lang and (crc32 not in by_crc or vsnd < by_crc[crc32].vsnd):
-            by_crc[crc32] = Clip(crc32, vsnd, lang)
+        if lang:
+            found.append(Clip(line["crc32"], vsnd, lang))
+    return first_names(found)
+
+
+def captioned(lines: Iterable[Mapping[str, str]], hero: str) -> list[Clip]:
+    """The hero's clips with a real English caption, pinned to ``ENGLISH``, one
+    per CRC (its first name), by name: the English mode's scope, whose audio is
+    checked against its caption. Uncaptioned, "Speaks <language>" and unshipped
+    clips are out."""
+    return first_names(
+        Clip(line["crc32"], line["vsnd"], ENGLISH)
+        for line in lines
+        if line["hero"] == hero
+        and line["crc32"]
+        and line["english"]
+        and not speaks(line["english"])
+    )
+
+
+def first_names(found: Iterable[Clip]) -> list[Clip]:
+    """One clip per CRC, under its first name, sorted."""
+    by_crc: dict[str, Clip] = {}
+    for clip in found:
+        if clip.crc32 not in by_crc or clip.vsnd < by_crc[clip.crc32].vsnd:
+            by_crc[clip.crc32] = clip
     return sorted(by_crc.values())
 
 

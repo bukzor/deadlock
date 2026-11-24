@@ -1,6 +1,7 @@
 import pytest
 
-from .vo_asr_ledger import Clip, Row, clips, decoded_id, merge, parse, pending, render
+from .vo_asr_ledger import Clip, Row, captioned, clips, decoded_id, merge, parse
+from .vo_asr_ledger import pending, render
 
 
 def line(event: str, crc32: str, english: str, hero: str = "yamato") -> dict[str, str]:
@@ -63,6 +64,25 @@ class DescribeClips:
     def it_rejects_a_language_it_has_no_whisper_code_for(self):
         with pytest.raises(AssertionError, match="klingon"):
             _ = clips([line("a", "0000000a", "Speaks Klingon")], "yamato")
+
+
+class DescribeCaptioned:
+    def it_takes_only_clips_with_a_real_english_caption_pinned_to_english(self):
+        lines = [
+            line("a", "0000000a", "Speaks Japanese"),
+            line("b", "0000000b", "Careful, Calico!"),
+            line("c", "0000000c", ""),
+            line("d", "", "Unshipped."),
+        ]
+        assert captioned(lines, "yamato") == [clip("b", "0000000b", "en")]
+
+    def it_takes_a_hero_with_no_foreign_lines(self):
+        lines = [line("a", "0000000a", "Stopped 'em.", hero="viper")]
+        assert captioned(lines, "viper") == [clip("a", "0000000a", "en", "viper")]
+
+    def it_keys_a_repeated_clip_once_under_its_first_name(self):
+        lines = [line("b", "0000000a", "Hi."), line("a", "0000000a", "Hello.")]
+        assert captioned(lines, "yamato") == [clip("a", "0000000a", "en")]
 
 
 class DescribeDecodedId:

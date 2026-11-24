@@ -1,0 +1,1742 @@
+crc32	vsnd	model	text
+c9a4a648	sounds/vo/viper/ping/viper_ping_ability1_almost_ready.vsnd	small/dtw/greedy	Almost ready to stick 'em.
+7e20c890	sounds/vo/viper/ping/viper_ping_ability1_not_ready.vsnd	small/dtw/greedy	Shanks not ready.
+353d7125	sounds/vo/viper/ping/viper_ping_ability2_almost_ready.vsnd	small/dtw/greedy	Poison's almost ready.
+fb40482a	sounds/vo/viper/ping/viper_ping_ability2_not_ready.vsnd	small/dtw/greedy	"Poison's not ready!"
+a3398891	sounds/vo/viper/ping/viper_ping_ability3_almost_ready.vsnd	small/dtw/greedy	Almost feeling like myself again.
+fc7e44b7	sounds/vo/viper/ping/viper_ping_ability3_not_ready.vsnd	small/dtw/greedy	I'm off my game.
+5ecc9e9f	sounds/vo/viper/ping/viper_ping_ability4_almost_ready.vsnd	small/dtw/greedy	Bull is almost ready!
+9f8f8bc0	sounds/vo/viper/ping/viper_ping_ability4_not_ready.vsnd	small/dtw/greedy	Paul is not ready.
+5ed09fb8	sounds/vo/viper/ping/viper_ping_affermative_01.vsnd	small/dtw/greedy	Yes.
+caaba0ce	sounds/vo/viper/ping/viper_ping_affermative_03.vsnd	small/dtw/greedy	Okay.
+73a7ffe6	sounds/vo/viper/ping/viper_ping_artist_missing_01.vsnd	small/dtw/greedy	The artist is missing.
+7ddbd582	sounds/vo/viper/ping/viper_ping_astro_above.vsnd	small/dtw/greedy	Holiday's above us!
+2a51d4d5	sounds/vo/viper/ping/viper_ping_astro_almost_respawn.vsnd	small/dtw/greedy	Holiday is almost back.
+132e70c3	sounds/vo/viper/ping/viper_ping_astro_below.vsnd	small/dtw/greedy	Holiday's down there!
+d2e60982	sounds/vo/viper/ping/viper_ping_astro_check_items.vsnd	small/dtw/greedy	Check out what Holiday Bought.
+67d76ad5	sounds/vo/viper/ping/viper_ping_astro_dead.vsnd	small/dtw/greedy	Holiday is dead.
+4f0967c8	sounds/vo/viper/ping/viper_ping_astro_low_health.vsnd	small/dtw/greedy	Holiday's almost day!
+291a67eb	sounds/vo/viper/ping/viper_ping_astro_missing_01.vsnd	small/dtw/greedy	!" Holiday's missing.
+059cedec	sounds/vo/viper/ping/viper_ping_atlas_above.vsnd	small/dtw/greedy	Abrams is above us!
+c27d1189	sounds/vo/viper/ping/viper_ping_atlas_almost_respawn.vsnd	small/dtw/greedy	Abrams is almost back.
+db898515	sounds/vo/viper/ping/viper_ping_atlas_below.vsnd	small/dtw/greedy	Abrams down there!
+d701abf9	sounds/vo/viper/ping/viper_ping_atlas_check_items.vsnd	small/dtw/greedy	Check out what Abrams bought.
+03e4ebd0	sounds/vo/viper/ping/viper_ping_atlas_dead.vsnd	small/dtw/greedy	Abrams is dead.
+7a369674	sounds/vo/viper/ping/viper_ping_atlas_low_health.vsnd	small/dtw/greedy	Abrams is almost dead.
+ea226986	sounds/vo/viper/ping/viper_ping_atlas_missing_01.vsnd	small/dtw/greedy	Abrams is missing.
+b87a8b27	sounds/vo/viper/ping/viper_ping_attack_artist.vsnd	small/dtw/greedy	- Let's take out the artist.
+bc410af7	sounds/vo/viper/ping/viper_ping_attack_astro.vsnd	small/dtw/greedy	Let's take out holiday.
+fd4f4442	sounds/vo/viper/ping/viper_ping_attack_atlas.vsnd	small/dtw/greedy	Let's take out Abrams.
+8a028b95	sounds/vo/viper/ping/viper_ping_attack_baba.vsnd	small/dtw/greedy	Let's take out the pigeon lady.
+3b379122	sounds/vo/viper/ping/viper_ping_attack_bebop.vsnd	small/dtw/greedy	Let's take out Bebop.
+c09e04cc	sounds/vo/viper/ping/viper_ping_attack_bookworm_alt.vsnd	small/dtw/greedy	Let's take out Paige.
+35790783	sounds/vo/viper/ping/viper_ping_attack_chessmaster.vsnd	small/dtw/greedy	Let's take out the chess player.
+44c5603d	sounds/vo/viper/ping/viper_ping_attack_chrono.vsnd	small/dtw/greedy	Let's take out Paradox.
+3193ca1a	sounds/vo/viper/ping/viper_ping_attack_deadpack.vsnd	small/dtw/greedy	Let's take out the test pilot.
+11929023	sounds/vo/viper/ping/viper_ping_attack_doorman.vsnd	small/dtw/greedy	Let's take out the doorman.
+d3ce775e	sounds/vo/viper/ping/viper_ping_attack_drifter.vsnd	small/dtw/greedy	Let's take out the Drifter.
+aa6ff06c	sounds/vo/viper/ping/viper_ping_attack_dynamo.vsnd	small/dtw/greedy	Let's take out Dynamo.
+1b1c565c	sounds/vo/viper/ping/viper_ping_attack_enemy.vsnd	small/dtw/greedy	Let's take out the enemy.
+b6e53680	sounds/vo/viper/ping/viper_ping_attack_enemy_avatar.vsnd	small/dtw/greedy	Let's take their patron.
+504c6069	sounds/vo/viper/ping/viper_ping_attack_familiar.vsnd	small/dtw/greedy	Let's take out Rime!
+a9590759	sounds/vo/viper/ping/viper_ping_attack_fathom.vsnd	small/dtw/greedy	Let's take out Fathom.
+ceea60f0	sounds/vo/viper/ping/viper_ping_attack_fencer.vsnd	small/dtw/greedy	Let's take out Apollo.
+fafb778f	sounds/vo/viper/ping/viper_ping_attack_forge.vsnd	small/dtw/greedy	!" "Let's take out McGinnis
+550859f3	sounds/vo/viper/ping/viper_ping_attack_frank.vsnd	small/dtw/greedy	Let's take out Victor.
+95f848b1	sounds/vo/viper/ping/viper_ping_attack_ghost.vsnd	small/dtw/greedy	Let's take out Geist.
+afa3ff0d	sounds/vo/viper/ping/viper_ping_attack_gigawatt.vsnd	small/dtw/greedy	Let's take out seven.
+7d8429c7	sounds/vo/viper/ping/viper_ping_attack_haze.vsnd	small/dtw/greedy	Let's take out Hayes.
+f4dc9966	sounds/vo/viper/ping/viper_ping_attack_here.vsnd	small/dtw/greedy	Attack here!
+71b7b1a5	sounds/vo/viper/ping/viper_ping_attack_hornet.vsnd	small/dtw/greedy	Let's take out Vendicta.
+45157ced	sounds/vo/viper/ping/viper_ping_attack_inferno.vsnd	small/dtw/greedy	Let's take out Inferness.
+9e896a6a	sounds/vo/viper/ping/viper_ping_attack_kelvin.vsnd	small/dtw/greedy	Let's take out Kelvin.
+08e1a2c4	sounds/vo/viper/ping/viper_ping_attack_krill.vsnd	small/dtw/greedy	- Let's take out Krill.
+66fecda2	sounds/vo/viper/ping/viper_ping_attack_lash.vsnd	small/dtw/greedy	Let's take out Lash.
+80adc032	sounds/vo/viper/ping/viper_ping_attack_magician.vsnd	small/dtw/greedy	Let's take out Sinclair.
+9acf455e	sounds/vo/viper/ping/viper_ping_attack_mirage.vsnd	small/dtw/greedy	Let's take out Mirage.
+697ef837	sounds/vo/viper/ping/viper_ping_attack_nano.vsnd	small/dtw/greedy	Let's take out Calico.
+ee69718d	sounds/vo/viper/ping/viper_ping_attack_necro.vsnd	small/dtw/greedy	Let's take out Graves!
+503922da	sounds/vo/viper/ping/viper_ping_attack_nurse.vsnd	small/dtw/greedy	Let's take out the nurse.
+8952bd93	sounds/vo/viper/ping/viper_ping_attack_operative.vsnd	small/dtw/greedy	Let's take out Raven.
+84779357	sounds/vo/viper/ping/viper_ping_attack_orion.vsnd	small/dtw/greedy	Let's take out Gray Talon.
+9e45ebc6	sounds/vo/viper/ping/viper_ping_attack_priest.vsnd	small/dtw/greedy	Let's take out Venator.
+2c055e11	sounds/vo/viper/ping/viper_ping_attack_punkgoat.vsnd	small/dtw/greedy	Let's take out Billy.
+fa931180	sounds/vo/viper/ping/viper_ping_attack_ratking.vsnd	small/dtw/greedy	." "Let's take out the Rat King
+16d5bd3d	sounds/vo/viper/ping/viper_ping_attack_shiv.vsnd	small/dtw/greedy	Let's take out Shiv.
+06a05386	sounds/vo/viper/ping/viper_ping_attack_synth.vsnd	small/dtw/greedy	Let's take out Pocket.
+ec66236b	sounds/vo/viper/ping/viper_ping_attack_tengu.vsnd	small/dtw/greedy	Let's take out Ivy.
+37052d17	sounds/vo/viper/ping/viper_ping_attack_trapper.vsnd	small/dtw/greedy	Let's take out Trapper.
+43f3335d	sounds/vo/viper/ping/viper_ping_attack_unicorn.vsnd	small/dtw/greedy	Let's take out Celeste!
+ecf1a253	sounds/vo/viper/ping/viper_ping_attack_vampirebat.vsnd	small/dtw/greedy	Let's take out Mina.
+d82a4dba	sounds/vo/viper/ping/viper_ping_attack_viper.vsnd	small/dtw/greedy	Let's take out Viper.
+d5075643	sounds/vo/viper/ping/viper_ping_attack_viscous.vsnd	small/dtw/greedy	Let's take out Viscous.
+96b0bb85	sounds/vo/viper/ping/viper_ping_attack_warden.vsnd	small/dtw/greedy	Let's take out Warden.
+a821dbf7	sounds/vo/viper/ping/viper_ping_attack_werewolf.vsnd	small/dtw/greedy	Let's take out Silver.
+9c15284f	sounds/vo/viper/ping/viper_ping_attack_wraith.vsnd	small/dtw/greedy	Let's take out Wraith.
+34400580	sounds/vo/viper/ping/viper_ping_attack_wrecker.vsnd	small/dtw/greedy	Let's take out Rekker.
+d8a3141c	sounds/vo/viper/ping/viper_ping_attack_yamato.vsnd	small/dtw/greedy	Let's take out Yamato.
+907a6a52	sounds/vo/viper/ping/viper_ping_avatar_under_attack.vsnd	small/dtw/greedy	They're taking our patron.
+2bb53c6a	sounds/vo/viper/ping/viper_ping_baba_missing_01.vsnd	small/dtw/greedy	The pigeon lady's missing.
+f186c3b2	sounds/vo/viper/ping/viper_ping_be_back_soon.vsnd	small/dtw/greedy	- Be right back.
+ba37d2cf	sounds/vo/viper/ping/viper_ping_bebop_above.vsnd	small/dtw/greedy	Bebops above us!
+934f2b62	sounds/vo/viper/ping/viper_ping_bebop_almost_respawn.vsnd	small/dtw/greedy	!" Bebop is almost back.
+16e43d12	sounds/vo/viper/ping/viper_ping_bebop_below.vsnd	small/dtw/greedy	Bebop's down there!
+f955f36d	sounds/vo/viper/ping/viper_ping_bebop_check_items.vsnd	small/dtw/greedy	Check out what Bebop bought.
+a29f3662	sounds/vo/viper/ping/viper_ping_bebop_dead.vsnd	small/dtw/greedy	Bebop is dead.
+3f2bac4b	sounds/vo/viper/ping/viper_ping_bebop_low_health.vsnd	small/dtw/greedy	Bebop's almost dead!
+1a753976	sounds/vo/viper/ping/viper_ping_bebop_missing_01.vsnd	small/dtw/greedy	Bebop's missing.
+e44f5a5b	sounds/vo/viper/ping/viper_ping_behind_us.vsnd	small/dtw/greedy	They're behind us.
+eeb792db	sounds/vo/viper/ping/viper_ping_blue_help_01.vsnd	small/dtw/greedy	Bloating's help!
+fb273ddc	sounds/vo/viper/ping/viper_ping_blue_help_02.vsnd	small/dtw/greedy	!" "Broadway needs help!"
+22557783	sounds/vo/viper/ping/viper_ping_bookworm_above.vsnd	small/dtw/greedy	Baze is above us!
+55b9624f	sounds/vo/viper/ping/viper_ping_bookworm_almost_respawn_alt.vsnd	small/dtw/greedy	Paige is almost back.
+69103315	sounds/vo/viper/ping/viper_ping_bookworm_below.vsnd	small/dtw/greedy	Page is down there!
+ba9cc9ae	sounds/vo/viper/ping/viper_ping_bookworm_check_items_alt.vsnd	small/dtw/greedy	Check out what Paige bought.
+34b43c84	sounds/vo/viper/ping/viper_ping_bookworm_dead_alt.vsnd	small/dtw/greedy	Page is dead.
+0c0ee1ee	sounds/vo/viper/ping/viper_ping_bookworm_low_health.vsnd	small/dtw/greedy	Paige is almost dead!
+28644105	sounds/vo/viper/ping/viper_ping_bookworm_missing_01_alt.vsnd	small/dtw/greedy	!" Page is missing.
+4ab98249	sounds/vo/viper/ping/viper_ping_bridge_buff.vsnd	small/dtw/greedy	Bridge buffs here.
+070e6a2d	sounds/vo/viper/ping/viper_ping_can_heal_astro.vsnd	small/dtw/greedy	Holiday, I can heal you.
+bbcc3d60	sounds/vo/viper/ping/viper_ping_can_heal_atlas.vsnd	small/dtw/greedy	Abrams, I can heal you.
+ce849ebe	sounds/vo/viper/ping/viper_ping_can_heal_bebop.vsnd	small/dtw/greedy	Bebop, I can heal you.
+ac2956b0	sounds/vo/viper/ping/viper_ping_can_heal_bookworm_alt.vsnd	small/dtw/greedy	Paige, I can heal you.
+65c66579	sounds/vo/viper/ping/viper_ping_can_heal_chrono.vsnd	small/dtw/greedy	Paradox, I can heal you.
+01b38afd	sounds/vo/viper/ping/viper_ping_can_heal_doorman.vsnd	small/dtw/greedy	Door man, I can heal you.
+5e5edcdc	sounds/vo/viper/ping/viper_ping_can_heal_drifter.vsnd	large-v3-turbo/beam5	Drifter, I can't heal you.
+5e5edcdc	sounds/vo/viper/ping/viper_ping_can_heal_drifter.vsnd	small/dtw/greedy	Drifter, I can't heal you!
+da688208	sounds/vo/viper/ping/viper_ping_can_heal_dynamo.vsnd	small/dtw/greedy	Dynamo, I can heal you.
+189dc055	sounds/vo/viper/ping/viper_ping_can_heal_familiar.vsnd	small/dtw/greedy	Rev, I can heal you!
+d28df00c	sounds/vo/viper/ping/viper_ping_can_heal_fencer.vsnd	small/dtw/greedy	Apollo, I can heal you!
+4240dd0f	sounds/vo/viper/ping/viper_ping_can_heal_forge.vsnd	large-v3-turbo/beam5	My goodness, I can hear you.
+4240dd0f	sounds/vo/viper/ping/viper_ping_can_heal_forge.vsnd	small/dtw/greedy	Again, I said I can heal you.
+43565366	sounds/vo/viper/ping/viper_ping_can_heal_frank.vsnd	small/dtw/greedy	Victor, I can heal you.
+6d2833b2	sounds/vo/viper/ping/viper_ping_can_heal_ghost.vsnd	small/dtw/greedy	Guys, I can heal you!
+31d06a05	sounds/vo/viper/ping/viper_ping_can_heal_gigawatt.vsnd	small/dtw/greedy	- Seven, I can heal you.
+3bf519c3	sounds/vo/viper/ping/viper_ping_can_heal_haze.vsnd	small/dtw/greedy	Haze, I can heal you.
+966c80ab	sounds/vo/viper/ping/viper_ping_can_heal_hornet.vsnd	small/dtw/greedy	Bendicta, I can heal you.
+de7f1057	sounds/vo/viper/ping/viper_ping_can_heal_inferno.vsnd	small/dtw/greedy	In fairness, I can heal you.
+8b0aaa83	sounds/vo/viper/ping/viper_ping_can_heal_kelvin.vsnd	small/dtw/greedy	Calvin, I can heal you.
+60b72099	sounds/vo/viper/ping/viper_ping_can_heal_krill.vsnd	small/dtw/greedy	"Krill, I can heal you
+43d14004	sounds/vo/viper/ping/viper_ping_can_heal_lash.vsnd	small/dtw/greedy	Lash, I can heal you.
+2d5b6b47	sounds/vo/viper/ping/viper_ping_can_heal_magician.vsnd	small/dtw/greedy	Sinclair, I can heal you!
+d6f052ab	sounds/vo/viper/ping/viper_ping_can_heal_mirage.vsnd	small/dtw/greedy	- Maraj, I can heal you.
+2e489fe0	sounds/vo/viper/ping/viper_ping_can_heal_nano.vsnd	small/dtw/greedy	Calico, I can heal you.
+92f206c8	sounds/vo/viper/ping/viper_ping_can_heal_necro.vsnd	small/dtw/greedy	Graves, I can heal you.
+4831ae62	sounds/vo/viper/ping/viper_ping_can_heal_operative.vsnd	small/dtw/greedy	Raven, I can heal you.
+d997c0e6	sounds/vo/viper/ping/viper_ping_can_heal_orion.vsnd	small/dtw/greedy	Great Talon, I can heal you.
+c7f375e6	sounds/vo/viper/ping/viper_ping_can_heal_priest.vsnd	small/dtw/greedy	Venator, I can heal you.
+dd2f0329	sounds/vo/viper/ping/viper_ping_can_heal_punkgoat.vsnd	small/dtw/greedy	Billy, I can heal you.
+7ce04dfe	sounds/vo/viper/ping/viper_ping_can_heal_shiv.vsnd	small/dtw/greedy	Jib, I can heal you!
+2b3468ec	sounds/vo/viper/ping/viper_ping_can_heal_slork.vsnd	small/dtw/greedy	Fatem, I can heal you.
+40c77893	sounds/vo/viper/ping/viper_ping_can_heal_synth.vsnd	small/dtw/greedy	Pocket, I can heal you.
+0e0cfb1f	sounds/vo/viper/ping/viper_ping_can_heal_tengu.vsnd	small/dtw/greedy	Ivy, I can heal you.
+94432c60	sounds/vo/viper/ping/viper_ping_can_heal_trapper.vsnd	small/dtw/greedy	"Trapper, I can heal you
+ce020beb	sounds/vo/viper/ping/viper_ping_can_heal_unicorn.vsnd	small/dtw/greedy	- Celeste, I can heal you!
+336f274a	sounds/vo/viper/ping/viper_ping_can_heal_vampirebat.vsnd	small/dtw/greedy	Me and I can heal you!
+5bceb657	sounds/vo/viper/ping/viper_ping_can_heal_viscous.vsnd	small/dtw/greedy	Viscous, I can heal you.
+97e5fba3	sounds/vo/viper/ping/viper_ping_can_heal_warden.vsnd	small/dtw/greedy	Warden, I can hear you.
+f4041d98	sounds/vo/viper/ping/viper_ping_can_heal_werewolf.vsnd	small/dtw/greedy	Silver, I can heal you!
+830adbfc	sounds/vo/viper/ping/viper_ping_can_heal_wraith.vsnd	small/dtw/greedy	Brace, I can heal you.
+ab537412	sounds/vo/viper/ping/viper_ping_can_heal_wrecker.vsnd	small/dtw/greedy	Rekker, I can heal you.
+1be33023	sounds/vo/viper/ping/viper_ping_can_heal_yamato.vsnd	small/dtw/greedy	Yamato, I can heal you.
+13344dc4	sounds/vo/viper/ping/viper_ping_careful_artist_01.vsnd	small/dtw/greedy	Careful, artist.
+79a7ae92	sounds/vo/viper/ping/viper_ping_careful_astro_01.vsnd	small/dtw/greedy	Careful holiday
+26fb2bfb	sounds/vo/viper/ping/viper_ping_careful_astro_02.vsnd	small/dtw/greedy	Careful, Holiday.
+89bf817e	sounds/vo/viper/ping/viper_ping_careful_astro_03.vsnd	small/dtw/greedy	Careful, holiday.
+87cde9cf	sounds/vo/viper/ping/viper_ping_careful_atlas_01.vsnd	small/dtw/greedy	Careful Abrams.
+98c2dd20	sounds/vo/viper/ping/viper_ping_careful_atlas_02.vsnd	small/dtw/greedy	Careful, Abrams.
+b0a6b52c	sounds/vo/viper/ping/viper_ping_careful_atlas_03.vsnd	small/dtw/greedy	Careful Abrams!
+63c8859d	sounds/vo/viper/ping/viper_ping_careful_baba_01.vsnd	small/dtw/greedy	- Careful pigeon lady.
+96f883a6	sounds/vo/viper/ping/viper_ping_careful_bebop_01.vsnd	small/dtw/greedy	Careful, Bebop.
+e7c1b1f7	sounds/vo/viper/ping/viper_ping_careful_bebop_02.vsnd	small/dtw/greedy	Careful, Beba.
+43a33e30	sounds/vo/viper/ping/viper_ping_careful_bebop_03.vsnd	small/dtw/greedy	Careful, Bebop.
+fd772694	sounds/vo/viper/ping/viper_ping_careful_bookworm_01_alt.vsnd	small/dtw/greedy	Careful, Paige.
+cf521199	sounds/vo/viper/ping/viper_ping_careful_bookworm_02_alt.vsnd	small/dtw/greedy	Careful, Paige.
+aecc3a38	sounds/vo/viper/ping/viper_ping_careful_bookworm_03_alt.vsnd	small/dtw/greedy	careful page
+f67ee420	sounds/vo/viper/ping/viper_ping_careful_chessmaster_01.vsnd	small/dtw/greedy	Careful, Chessmaster.
+423778bd	sounds/vo/viper/ping/viper_ping_careful_chrono_01.vsnd	small/dtw/greedy	- Careful, Paradox.
+317ddd34	sounds/vo/viper/ping/viper_ping_careful_chrono_02.vsnd	small/dtw/greedy	Careful, Paradox.
+4f1cede3	sounds/vo/viper/ping/viper_ping_careful_chrono_03.vsnd	small/dtw/greedy	Careful, paradox.
+d4214f99	sounds/vo/viper/ping/viper_ping_careful_deadpack_01.vsnd	small/dtw/greedy	Careful, test pilot.
+9b908e52	sounds/vo/viper/ping/viper_ping_careful_doorman_01.vsnd	small/dtw/greedy	Careful doorman.
+894b01e5	sounds/vo/viper/ping/viper_ping_careful_doorman_02.vsnd	small/dtw/greedy	Careful, doorman.
+f0599d8a	sounds/vo/viper/ping/viper_ping_careful_doorman_03.vsnd	small/dtw/greedy	Careful, doorman!
+7d081b75	sounds/vo/viper/ping/viper_ping_careful_drifter_01.vsnd	small/dtw/greedy	Careful Drifter.
+edbb2dc4	sounds/vo/viper/ping/viper_ping_careful_drifter_02.vsnd	small/dtw/greedy	Careful Drifter.
+f46da894	sounds/vo/viper/ping/viper_ping_careful_drifter_03.vsnd	small/dtw/greedy	Careful, Drifter!
+86c16cc3	sounds/vo/viper/ping/viper_ping_careful_dynamo_01.vsnd	small/dtw/greedy	Careful, Dynamo.
+7d8a3f87	sounds/vo/viper/ping/viper_ping_careful_dynamo_02.vsnd	small/dtw/greedy	Careful, Dynamo.
+810e1b6f	sounds/vo/viper/ping/viper_ping_careful_dynamo_03.vsnd	small/dtw/greedy	Careful, Dynamo.
+811a9454	sounds/vo/viper/ping/viper_ping_careful_familiar_01.vsnd	small/dtw/greedy	Careful, Rem.
+6643d9a6	sounds/vo/viper/ping/viper_ping_careful_familiar_02.vsnd	small/dtw/greedy	Careful Rem.
+2a1c84b2	sounds/vo/viper/ping/viper_ping_careful_familiar_03.vsnd	small/dtw/greedy	Careful, Rab!
+ce40b240	sounds/vo/viper/ping/viper_ping_careful_fencer_01.vsnd	small/dtw/greedy	Careful Apollo.
+ed5d1415	sounds/vo/viper/ping/viper_ping_careful_fencer_02.vsnd	small/dtw/greedy	Careful Apollo.
+6627d664	sounds/vo/viper/ping/viper_ping_careful_fencer_03.vsnd	small/dtw/greedy	Careful Apollo!
+60520d81	sounds/vo/viper/ping/viper_ping_careful_forge_01.vsnd	small/dtw/greedy	Careful, McGannis.
+0033a6d1	sounds/vo/viper/ping/viper_ping_careful_forge_02.vsnd	small/dtw/greedy	Careful, McGinnis.
+8e821b0a	sounds/vo/viper/ping/viper_ping_careful_forge_03.vsnd	small/dtw/greedy	Careful, McGinnis.
+f1646c9c	sounds/vo/viper/ping/viper_ping_careful_frank_01.vsnd	small/dtw/greedy	- Careful, Victor.
+74f4c41e	sounds/vo/viper/ping/viper_ping_careful_frank_02.vsnd	small/dtw/greedy	Careful, Victor.
+25b53198	sounds/vo/viper/ping/viper_ping_careful_frank_03.vsnd	small/dtw/greedy	Careful, Victor.
+2bfcdd51	sounds/vo/viper/ping/viper_ping_careful_ghost_01.vsnd	small/dtw/greedy	Careful, Geist.
+2a58c1d4	sounds/vo/viper/ping/viper_ping_careful_ghost_02.vsnd	small/dtw/greedy	Careful, guys.
+08a2a048	sounds/vo/viper/ping/viper_ping_careful_ghost_03.vsnd	small/dtw/greedy	- Careful, Geist.
+d93846ca	sounds/vo/viper/ping/viper_ping_careful_gigawatt_01.vsnd	small/dtw/greedy	Careful, Seven.
+965617ef	sounds/vo/viper/ping/viper_ping_careful_gigawatt_02.vsnd	small/dtw/greedy	Careful, Seven.
+263dfd59	sounds/vo/viper/ping/viper_ping_careful_gigawatt_03.vsnd	small/dtw/greedy	Careful, Seven.
+9881f856	sounds/vo/viper/ping/viper_ping_careful_haze_01.vsnd	small/dtw/greedy	Careful, Ace.
+2764857b	sounds/vo/viper/ping/viper_ping_careful_haze_02.vsnd	small/dtw/greedy	Careful, Hayes.
+18f96f94	sounds/vo/viper/ping/viper_ping_careful_haze_03.vsnd	small/dtw/greedy	Careful, haze.
+bcd18d3f	sounds/vo/viper/ping/viper_ping_careful_hornet_01.vsnd	small/dtw/greedy	Careful then, Dicta.
+bd163415	sounds/vo/viper/ping/viper_ping_careful_hornet_02.vsnd	small/dtw/greedy	Careful, Vendicta.
+7106c6b3	sounds/vo/viper/ping/viper_ping_careful_hornet_03.vsnd	small/dtw/greedy	Careful, Vendicta.
+6841eca2	sounds/vo/viper/ping/viper_ping_careful_inferno_01.vsnd	small/dtw/greedy	Careful in furnace.
+c06f017d	sounds/vo/viper/ping/viper_ping_careful_inferno_02.vsnd	small/dtw/greedy	Careful in furnace.
+45ac3d9f	sounds/vo/viper/ping/viper_ping_careful_inferno_03.vsnd	small/dtw/greedy	Careful, Inferness.
+db42ccf8	sounds/vo/viper/ping/viper_ping_careful_kelvin_01.vsnd	small/dtw/greedy	Careful, Kelvin.
+0869c04e	sounds/vo/viper/ping/viper_ping_careful_kelvin_02.vsnd	small/dtw/greedy	- Careful, Kelvin.
+090d63a4	sounds/vo/viper/ping/viper_ping_careful_kelvin_03.vsnd	small/dtw/greedy	- Careful, Kelvin.
+7a14bc1b	sounds/vo/viper/ping/viper_ping_careful_krill_01.vsnd	small/dtw/greedy	Careful, Krill.
+31831e61	sounds/vo/viper/ping/viper_ping_careful_krill_02.vsnd	small/dtw/greedy	- Careful, Krill.
+826c7802	sounds/vo/viper/ping/viper_ping_careful_krill_03.vsnd	small/dtw/greedy	Careful, Crill.
+cc8bd655	sounds/vo/viper/ping/viper_ping_careful_lash_01.vsnd	small/dtw/greedy	Careful, Lash.
+a570a49b	sounds/vo/viper/ping/viper_ping_careful_lash_02.vsnd	small/dtw/greedy	Careful, Lash.
+12b3fd21	sounds/vo/viper/ping/viper_ping_careful_lash_03.vsnd	small/dtw/greedy	Careful, Lash.
+43251765	sounds/vo/viper/ping/viper_ping_careful_magician_01.vsnd	small/dtw/greedy	- Careful, Sinclair.
+25c166fe	sounds/vo/viper/ping/viper_ping_careful_magician_02.vsnd	small/dtw/greedy	Careful, Sinclair.
+2bd287e9	sounds/vo/viper/ping/viper_ping_careful_magician_03.vsnd	small/dtw/greedy	Careful, Sinclair!
+708aaade	sounds/vo/viper/ping/viper_ping_careful_mirage_01.vsnd	small/dtw/greedy	Careful Mirage.
+56b9ebb0	sounds/vo/viper/ping/viper_ping_careful_mirage_02.vsnd	small/dtw/greedy	Careful, Mirage.
+e7746096	sounds/vo/viper/ping/viper_ping_careful_mirage_03.vsnd	small/dtw/greedy	Careful, Mirage.
+7f30ff8f	sounds/vo/viper/ping/viper_ping_careful_nano_01.vsnd	small/dtw/greedy	Careful, Calico.
+bb6d8f44	sounds/vo/viper/ping/viper_ping_careful_nano_02.vsnd	small/dtw/greedy	Careful, Calico.
+f80e04f3	sounds/vo/viper/ping/viper_ping_careful_nano_03.vsnd	small/dtw/greedy	Careful, Calico!
+222b6fef	sounds/vo/viper/ping/viper_ping_careful_necro_01.vsnd	small/dtw/greedy	Careful graves.
+214fcbd0	sounds/vo/viper/ping/viper_ping_careful_necro_02.vsnd	small/dtw/greedy	Careful graves.
+ddb56194	sounds/vo/viper/ping/viper_ping_careful_necro_03.vsnd	small/dtw/greedy	Careful, Graves!
+69d38e16	sounds/vo/viper/ping/viper_ping_careful_nurse_01.vsnd	small/dtw/greedy	Careful, nurse.
+f08300a2	sounds/vo/viper/ping/viper_ping_careful_operative_01.vsnd	small/dtw/greedy	Careful, Raven.
+15a2cfee	sounds/vo/viper/ping/viper_ping_careful_operative_02.vsnd	small/dtw/greedy	Careful, Raven.
+a5021a20	sounds/vo/viper/ping/viper_ping_careful_operative_03.vsnd	small/dtw/greedy	Careful Raven.
+9ca45363	sounds/vo/viper/ping/viper_ping_careful_orion_01.vsnd	small/dtw/greedy	Careful, Grey Talon.
+21038349	sounds/vo/viper/ping/viper_ping_careful_orion_02.vsnd	small/dtw/greedy	Careful, Great Talon.
+521f0f01	sounds/vo/viper/ping/viper_ping_careful_orion_03.vsnd	small/dtw/greedy	Careful, Gray Talon.
+29e84d5c	sounds/vo/viper/ping/viper_ping_careful_priest_01.vsnd	small/dtw/greedy	Careful, Venator.
+e651c5a9	sounds/vo/viper/ping/viper_ping_careful_priest_02.vsnd	small/dtw/greedy	Careful, Venator.
+0641e869	sounds/vo/viper/ping/viper_ping_careful_priest_03.vsnd	small/dtw/greedy	Careful, Vanader.
+48f14900	sounds/vo/viper/ping/viper_ping_careful_punkgoat_01.vsnd	small/dtw/greedy	Careful, Billy.
+97e892c8	sounds/vo/viper/ping/viper_ping_careful_punkgoat_02.vsnd	small/dtw/greedy	Careful, Billy.
+eaef7f62	sounds/vo/viper/ping/viper_ping_careful_punkgoat_03.vsnd	small/dtw/greedy	Careful, Billy!
+3ccbf7c1	sounds/vo/viper/ping/viper_ping_careful_ratking_01.vsnd	small/dtw/greedy	Careful, Rat King.
+f691c6fd	sounds/vo/viper/ping/viper_ping_careful_shiv_01.vsnd	small/dtw/greedy	Careful, Shiv.
+7e762051	sounds/vo/viper/ping/viper_ping_careful_shiv_02.vsnd	small/dtw/greedy	Careful, Shiv.
+ba4355c7	sounds/vo/viper/ping/viper_ping_careful_shiv_03.vsnd	small/dtw/greedy	Careful, Shiv.
+5927e8d9	sounds/vo/viper/ping/viper_ping_careful_slork_01.vsnd	small/dtw/greedy	?" "Careful for them
+b34351bd	sounds/vo/viper/ping/viper_ping_careful_slork_02.vsnd	small/dtw/greedy	?" "Careful, Fathom
+39012236	sounds/vo/viper/ping/viper_ping_careful_slork_03.vsnd	small/dtw/greedy	Careful, Fathom.
+4c7101a6	sounds/vo/viper/ping/viper_ping_careful_synth_01.vsnd	small/dtw/greedy	Careful, Pocket.
+92820acf	sounds/vo/viper/ping/viper_ping_careful_synth_02.vsnd	small/dtw/greedy	Careful pocket.
+b9204f3a	sounds/vo/viper/ping/viper_ping_careful_synth_03.vsnd	small/dtw/greedy	Careful pocket.
+079004ab	sounds/vo/viper/ping/viper_ping_careful_tengu_01.vsnd	small/dtw/greedy	Careful, Ivy.
+19953adb	sounds/vo/viper/ping/viper_ping_careful_tengu_02.vsnd	small/dtw/greedy	Careful, Ivy.
+46ee8cdd	sounds/vo/viper/ping/viper_ping_careful_tengu_03.vsnd	small/dtw/greedy	Careful, Ivy.
+b48c6432	sounds/vo/viper/ping/viper_ping_careful_trapper_01.vsnd	small/dtw/greedy	Careful, Trapper.
+3673d04f	sounds/vo/viper/ping/viper_ping_careful_trapper_02.vsnd	small/dtw/greedy	Careful, trapper.
+70da2417	sounds/vo/viper/ping/viper_ping_careful_trapper_03.vsnd	small/dtw/greedy	Careful, Trapper.
+96eea744	sounds/vo/viper/ping/viper_ping_careful_unicorn_01.vsnd	small/dtw/greedy	Careful, Celeste.
+cfaaac8b	sounds/vo/viper/ping/viper_ping_careful_unicorn_02.vsnd	small/dtw/greedy	Careful, Stoleste.
+bbee82ac	sounds/vo/viper/ping/viper_ping_careful_unicorn_03.vsnd	small/dtw/greedy	Careful, Celeste!
+8bdc4e45	sounds/vo/viper/ping/viper_ping_careful_vampirebat_01.vsnd	small/dtw/greedy	Careful, Nina.
+2a61bbd0	sounds/vo/viper/ping/viper_ping_careful_vampirebat_02.vsnd	small/dtw/greedy	Careful, Mina.
+7d4d833a	sounds/vo/viper/ping/viper_ping_careful_vampirebat_03.vsnd	small/dtw/greedy	Careful, Mina!
+cebb1812	sounds/vo/viper/ping/viper_ping_careful_viscous_01.vsnd	small/dtw/greedy	Careful viscous.
+2a5c8add	sounds/vo/viper/ping/viper_ping_careful_viscous_02.vsnd	small/dtw/greedy	Careful, Viscous.
+df480187	sounds/vo/viper/ping/viper_ping_careful_viscous_03.vsnd	small/dtw/greedy	Careful, this, Gis.
+5abc1abe	sounds/vo/viper/ping/viper_ping_careful_warden_01.vsnd	small/dtw/greedy	'? Careful, Warden.
+966c6261	sounds/vo/viper/ping/viper_ping_careful_warden_02.vsnd	small/dtw/greedy	Careful, Warden.
+1579d0c3	sounds/vo/viper/ping/viper_ping_careful_warden_03.vsnd	small/dtw/greedy	Careful, Warden.
+ff245510	sounds/vo/viper/ping/viper_ping_careful_werewolf_01.vsnd	small/dtw/greedy	Careful, Silver.
+f97d22ce	sounds/vo/viper/ping/viper_ping_careful_werewolf_02.vsnd	small/dtw/greedy	Careful, Silver!
+88164cd8	sounds/vo/viper/ping/viper_ping_careful_werewolf_03.vsnd	small/dtw/greedy	Careful Silver.
+d6b2f4ad	sounds/vo/viper/ping/viper_ping_careful_wraith_01.vsnd	small/dtw/greedy	Careful, Wraith.
+19c009bf	sounds/vo/viper/ping/viper_ping_careful_wraith_02.vsnd	small/dtw/greedy	Careful, Wraith.
+10e60e03	sounds/vo/viper/ping/viper_ping_careful_wraith_03.vsnd	small/dtw/greedy	Careful, Wraith.
+8ee1c7ec	sounds/vo/viper/ping/viper_ping_careful_wrecker_01.vsnd	small/dtw/greedy	Careful, Racker.
+8f282970	sounds/vo/viper/ping/viper_ping_careful_wrecker_02.vsnd	small/dtw/greedy	Careful, Racker.
+3d230fe6	sounds/vo/viper/ping/viper_ping_careful_wrecker_03.vsnd	small/dtw/greedy	Careful, wrecker.
+47413ee7	sounds/vo/viper/ping/viper_ping_careful_yamato_01.vsnd	small/dtw/greedy	Careful, Yamato.
+25ea38eb	sounds/vo/viper/ping/viper_ping_careful_yamato_02.vsnd	small/dtw/greedy	Careful, Yamato.
+bf53b92d	sounds/vo/viper/ping/viper_ping_careful_yamato_03.vsnd	small/dtw/greedy	Careful, Yamato.
+c584a215	sounds/vo/viper/ping/viper_ping_check_on_astro.vsnd	small/dtw/greedy	You ready, Holiday?
+b9a2e37b	sounds/vo/viper/ping/viper_ping_check_on_atlas.vsnd	small/dtw/greedy	You ready Abrams?
+c2a6036a	sounds/vo/viper/ping/viper_ping_check_on_bebop.vsnd	small/dtw/greedy	You ready, bebut?
+b83f6f68	sounds/vo/viper/ping/viper_ping_check_on_bookworm.vsnd	small/dtw/greedy	You ready, Paige?
+a4951ce5	sounds/vo/viper/ping/viper_ping_check_on_bookworm_alt.vsnd	small/dtw/greedy	Hey, you ready cinnamon?
+ff26ad53	sounds/vo/viper/ping/viper_ping_check_on_chrono.vsnd	small/dtw/greedy	Hey, you ready, Paradox?
+bbda2145	sounds/vo/viper/ping/viper_ping_check_on_doorman.vsnd	small/dtw/greedy	You ready, dormant?
+516f6897	sounds/vo/viper/ping/viper_ping_check_on_drifter.vsnd	small/dtw/greedy	You ready, Drifter?
+866128a7	sounds/vo/viper/ping/viper_ping_check_on_dynamo.vsnd	small/dtw/greedy	You ready, Dynamo?
+231146b0	sounds/vo/viper/ping/viper_ping_check_on_familiar.vsnd	small/dtw/greedy	You ready, Rem?
+3f8fcbc1	sounds/vo/viper/ping/viper_ping_check_on_fencer.vsnd	small/dtw/greedy	You ready, Apollo?
+0b54e14e	sounds/vo/viper/ping/viper_ping_check_on_forge.vsnd	small/dtw/greedy	You ready, McGinnis?
+cebee2bd	sounds/vo/viper/ping/viper_ping_check_on_frank.vsnd	small/dtw/greedy	You ready Victor?
+fee94ddc	sounds/vo/viper/ping/viper_ping_check_on_ghost.vsnd	small/dtw/greedy	You ready, Geist?
+590f9a7d	sounds/vo/viper/ping/viper_ping_check_on_gigawatt.vsnd	small/dtw/greedy	You ready, seven
+aea76103	sounds/vo/viper/ping/viper_ping_check_on_haze.vsnd	small/dtw/greedy	You ready,
+c52d1e30	sounds/vo/viper/ping/viper_ping_check_on_hornet.vsnd	small/dtw/greedy	You ready, Vendicca?
+559e70a7	sounds/vo/viper/ping/viper_ping_check_on_inferno.vsnd	small/dtw/greedy	You ready, Inferness?
+77eb79c7	sounds/vo/viper/ping/viper_ping_check_on_kelvin.vsnd	small/dtw/greedy	You ready, Kelvin?
+f0c7b81f	sounds/vo/viper/ping/viper_ping_check_on_krill.vsnd	small/dtw/greedy	You ready, Crill?
+955ecada	sounds/vo/viper/ping/viper_ping_check_on_lash.vsnd	small/dtw/greedy	You ready, Lash?
+fc0490fa	sounds/vo/viper/ping/viper_ping_check_on_magician.vsnd	small/dtw/greedy	You ready, Sinclair?
+0b298076	sounds/vo/viper/ping/viper_ping_check_on_mirage.vsnd	small/dtw/greedy	You ready, Mirage?
+29685c2d	sounds/vo/viper/ping/viper_ping_check_on_nano.vsnd	small/dtw/greedy	Are you ready, Calico?
+18a7240c	sounds/vo/viper/ping/viper_ping_check_on_necro.vsnd	small/dtw/greedy	You ready, Graves?
+019728da	sounds/vo/viper/ping/viper_ping_check_on_orion.vsnd	small/dtw/greedy	You ready, Gray Talent?
+7ef09025	sounds/vo/viper/ping/viper_ping_check_on_priest.vsnd	small/dtw/greedy	You ready, Venator?
+3bdec4cf	sounds/vo/viper/ping/viper_ping_check_on_punkgoat.vsnd	small/dtw/greedy	You ready, Billy?
+800dd761	sounds/vo/viper/ping/viper_ping_check_on_shiv.vsnd	small/dtw/greedy	You ready, Shiv?
+21d6e9ae	sounds/vo/viper/ping/viper_ping_check_on_synth.vsnd	small/dtw/greedy	You ready pocket?
+ed2f1d0d	sounds/vo/viper/ping/viper_ping_check_on_tengu.vsnd	small/dtw/greedy	You ready Ivy?
+c834c78d	sounds/vo/viper/ping/viper_ping_check_on_unicorn.vsnd	small/dtw/greedy	You ready Celeste?
+9ca8bd7b	sounds/vo/viper/ping/viper_ping_check_on_vampirebat.vsnd	small/dtw/greedy	You ready, Mina?
+630a173e	sounds/vo/viper/ping/viper_ping_check_on_viscous.vsnd	small/dtw/greedy	You ready, Viscous?
+122fa946	sounds/vo/viper/ping/viper_ping_check_on_warden.vsnd	small/dtw/greedy	You ready, Warden?
+a6e18a39	sounds/vo/viper/ping/viper_ping_check_on_werewolf.vsnd	small/dtw/greedy	You ready, Silver?
+0a00faf2	sounds/vo/viper/ping/viper_ping_check_on_wraith.vsnd	small/dtw/greedy	you ready, right?
+4ff23244	sounds/vo/viper/ping/viper_ping_check_on_yamato.vsnd	small/dtw/greedy	You ready Yamato?
+f88cf4d2	sounds/vo/viper/ping/viper_ping_chessmaster_missing_01.vsnd	small/dtw/greedy	The chestmaster's missing.
+30b308a6	sounds/vo/viper/ping/viper_ping_chrono_above.vsnd	small/dtw/greedy	Paradox is above us!
+ab6e8390	sounds/vo/viper/ping/viper_ping_chrono_almost_respawn.vsnd	small/dtw/greedy	Paradox is almost back.
+07eb7c5d	sounds/vo/viper/ping/viper_ping_chrono_below.vsnd	small/dtw/greedy	Paradox is down there!
+3a994fdc	sounds/vo/viper/ping/viper_ping_chrono_check_items.vsnd	small/dtw/greedy	Check out what Paradox bought.
+6f6577a9	sounds/vo/viper/ping/viper_ping_chrono_dead.vsnd	small/dtw/greedy	Paradox is dead.
+e75be7f8	sounds/vo/viper/ping/viper_ping_chrono_low_health.vsnd	small/dtw/greedy	Paradox is almost dead.
+7279ec3d	sounds/vo/viper/ping/viper_ping_chrono_missing_01.vsnd	small/dtw/greedy	Paradox is missing.
+29f450b9	sounds/vo/viper/ping/viper_ping_clear_troopers.vsnd	small/dtw/greedy	I'll deal with the troopers.
+d10d0d0e	sounds/vo/viper/ping/viper_ping_danger_area.vsnd	small/dtw/greedy	It's dangerous here.
+421ab590	sounds/vo/viper/ping/viper_ping_deadpack_missing_01.vsnd	small/dtw/greedy	The test pilot's missing.
+421b5c8e	sounds/vo/viper/ping/viper_ping_defend_base_01.vsnd	small/dtw/greedy	Defend the base.
+7f71b33a	sounds/vo/viper/ping/viper_ping_defend_blue_01.vsnd	small/dtw/greedy	Defend blue.
+8fc2a795	sounds/vo/viper/ping/viper_ping_defend_blue_02.vsnd	small/dtw/greedy	Defend Broadway.
+ecdcf38b	sounds/vo/viper/ping/viper_ping_defend_green_01.vsnd	small/dtw/greedy	Defend green.
+cd893641	sounds/vo/viper/ping/viper_ping_defend_green_02.vsnd	small/dtw/greedy	Defend Greenwich.
+cef0d9ec	sounds/vo/viper/ping/viper_ping_defend_here.vsnd	small/dtw/greedy	Defend here.
+9e13a4de	sounds/vo/viper/ping/viper_ping_defend_orange_01.vsnd	small/dtw/greedy	Defend Orange.
+4913236a	sounds/vo/viper/ping/viper_ping_defend_orange_02.vsnd	small/dtw/greedy	Defend Orchard!
+5779df5c	sounds/vo/viper/ping/viper_ping_defend_yellow_01.vsnd	small/dtw/greedy	Defend yellow.
+4cd98bec	sounds/vo/viper/ping/viper_ping_defend_yellow_02.vsnd	small/dtw/greedy	Defend York.
+ad231e4f	sounds/vo/viper/ping/viper_ping_disarm_hex_almost_ready.vsnd	small/dtw/greedy	Disarming Hex is almost ready.
+7c465086	sounds/vo/viper/ping/viper_ping_disarm_hex_not_ready.vsnd	small/dtw/greedy	Disarming hex is on cooldown!
+cc84c25b	sounds/vo/viper/ping/viper_ping_door.vsnd	small/dtw/greedy	Door's here.
+c1939baa	sounds/vo/viper/ping/viper_ping_doorman_above.vsnd	small/dtw/greedy	Door man's above us.
+c9e75f5a	sounds/vo/viper/ping/viper_ping_doorman_almost_respawn.vsnd	small/dtw/greedy	The doorman's almost back.
+4a330b39	sounds/vo/viper/ping/viper_ping_doorman_below.vsnd	small/dtw/greedy	Your man's down there!
+3caabc94	sounds/vo/viper/ping/viper_ping_doorman_check_items.vsnd	small/dtw/greedy	Check out what the doorman bought.
+e31ace7e	sounds/vo/viper/ping/viper_ping_doorman_dead.vsnd	small/dtw/greedy	The doorman is dead.
+8207908a	sounds/vo/viper/ping/viper_ping_doorman_low_health.vsnd	small/dtw/greedy	Door man's almost dead.
+8ec1b855	sounds/vo/viper/ping/viper_ping_doorman_missing_01.vsnd	small/dtw/greedy	The doorman's missing.
+67a13f9b	sounds/vo/viper/ping/viper_ping_drifter_above.vsnd	small/dtw/greedy	Drifter's above us.
+e63bdc41	sounds/vo/viper/ping/viper_ping_drifter_almost_respawn.vsnd	small/dtw/greedy	Drifter's almost back.
+334b1d2e	sounds/vo/viper/ping/viper_ping_drifter_below.vsnd	small/dtw/greedy	Drifters down there!
+8791b47c	sounds/vo/viper/ping/viper_ping_drifter_check_items.vsnd	small/dtw/greedy	Check out what Drifter bought.
+28aee71a	sounds/vo/viper/ping/viper_ping_drifter_dead.vsnd	small/dtw/greedy	." The drifter's dead.
+369cb3c2	sounds/vo/viper/ping/viper_ping_drifter_low_health.vsnd	small/dtw/greedy	Drifter's almost dead.
+4cfe4650	sounds/vo/viper/ping/viper_ping_drifter_missing_01.vsnd	small/dtw/greedy	Drifter's missing.
+9e4c2a37	sounds/vo/viper/ping/viper_ping_dynamo_above.vsnd	small/dtw/greedy	Dynamo's above us!
+55dc77d0	sounds/vo/viper/ping/viper_ping_dynamo_almost_respawn.vsnd	small/dtw/greedy	Dynamo's almost back.
+cfd8fa52	sounds/vo/viper/ping/viper_ping_dynamo_below.vsnd	small/dtw/greedy	Dynamo's down there.
+916d6e02	sounds/vo/viper/ping/viper_ping_dynamo_check_items.vsnd	small/dtw/greedy	Check out with Dynamo Bot.
+5c12e8c3	sounds/vo/viper/ping/viper_ping_dynamo_dead.vsnd	small/dtw/greedy	Dynamo's dead.
+3d6f0909	sounds/vo/viper/ping/viper_ping_dynamo_low_health.vsnd	small/dtw/greedy	Dynamo's almost dead!
+e42e5a43	sounds/vo/viper/ping/viper_ping_dynamo_missing_01.vsnd	small/dtw/greedy	Dynamo's missing.
+9d7b1a68	sounds/vo/viper/ping/viper_ping_enemy_count_all.vsnd	small/dtw/greedy	They're all here.
+d77774f8	sounds/vo/viper/ping/viper_ping_enemy_count_big.vsnd	small/dtw/greedy	- There's a lot of 'em!
+e57d990e	sounds/vo/viper/ping/viper_ping_enemy_count_small.vsnd	small/dtw/greedy	There's two of them.
+a16cf847	sounds/vo/viper/ping/viper_ping_enemy_steals_farm.vsnd	small/dtw/greedy	They're taking our camps!
+7e7245bb	sounds/vo/viper/ping/viper_ping_enemy_take_mid.vsnd	small/dtw/greedy	They're going for the rejuvenator.
+4a037c7a	sounds/vo/viper/ping/viper_ping_familiar_above.vsnd	small/dtw/greedy	Rhymes above us!
+6cc62734	sounds/vo/viper/ping/viper_ping_familiar_almost_respawn.vsnd	small/dtw/greedy	Ram is almost back!
+a06e7787	sounds/vo/viper/ping/viper_ping_familiar_below.vsnd	small/dtw/greedy	Hey, Grimm's down there!
+4fa2a515	sounds/vo/viper/ping/viper_ping_familiar_check_items.vsnd	small/dtw/greedy	Hey, check out where Rem bought.
+2d41fe3d	sounds/vo/viper/ping/viper_ping_familiar_dead.vsnd	small/dtw/greedy	Rem is dead!
+1d0f2c4d	sounds/vo/viper/ping/viper_ping_familiar_low_health.vsnd	small/dtw/greedy	Rem's almost dead!
+20a11586	sounds/vo/viper/ping/viper_ping_familiar_missing_01.vsnd	small/dtw/greedy	Rem's missing.
+04852dae	sounds/vo/viper/ping/viper_ping_farm.vsnd	small/dtw/greedy	I'm going to farm.
+b9111435	sounds/vo/viper/ping/viper_ping_fencer_above.vsnd	small/dtw/greedy	Apollo's above us.
+ec13b4b0	sounds/vo/viper/ping/viper_ping_fencer_almost_respawn.vsnd	small/dtw/greedy	Apollo's almost back!
+4b004f1e	sounds/vo/viper/ping/viper_ping_fencer_below.vsnd	small/dtw/greedy	Apollo's down there.
+3844826e	sounds/vo/viper/ping/viper_ping_fencer_check_items.vsnd	small/dtw/greedy	Check out what Apollo bought.
+3c5a07e2	sounds/vo/viper/ping/viper_ping_fencer_dead.vsnd	small/dtw/greedy	Apollo's dead.
+a5bb5de6	sounds/vo/viper/ping/viper_ping_fencer_low_health.vsnd	small/dtw/greedy	Apollo's almost dead.
+8e138ab9	sounds/vo/viper/ping/viper_ping_fencer_missing_01.vsnd	small/dtw/greedy	Apollo's missing.
+e6ff6798	sounds/vo/viper/ping/viper_ping_flank.vsnd	small/dtw/greedy	I'll flank him.
+d2be83e0	sounds/vo/viper/ping/viper_ping_flying_hornet.vsnd	small/dtw/greedy	Vendictus in the air!
+6af210f1	sounds/vo/viper/ping/viper_ping_flying_orion.vsnd	small/dtw/greedy	Great Talon's in the air!
+14bddb12	sounds/vo/viper/ping/viper_ping_flying_tengu.vsnd	small/dtw/greedy	Ivy's in the air.
+8356f5ed	sounds/vo/viper/ping/viper_ping_focus_lens_almost_ready.vsnd	small/dtw/greedy	Focus lens is almost ready.
+9bdd253e	sounds/vo/viper/ping/viper_ping_focus_lens_not_ready.vsnd	small/dtw/greedy	Focus lens is on cooldown.
+874289f3	sounds/vo/viper/ping/viper_ping_forge_above.vsnd	small/dtw/greedy	McGinnis is above us.
+cc550869	sounds/vo/viper/ping/viper_ping_forge_almost_respawn.vsnd	small/dtw/greedy	McGinnis is almost back.
+b35404f3	sounds/vo/viper/ping/viper_ping_forge_below.vsnd	small/dtw/greedy	." "Meghanus is down there!"
+f36de007	sounds/vo/viper/ping/viper_ping_forge_check_items.vsnd	small/dtw/greedy	- Check out what McGinnis bought.
+3dfd2df4	sounds/vo/viper/ping/viper_ping_forge_dead.vsnd	small/dtw/greedy	McGinnis is dead.
+b5d09431	sounds/vo/viper/ping/viper_ping_forge_low_health.vsnd	small/dtw/greedy	McGinnis is almost dead.
+587f2395	sounds/vo/viper/ping/viper_ping_forge_missing_01.vsnd	small/dtw/greedy	McGinnis is missing.
+885fecec	sounds/vo/viper/ping/viper_ping_frank_above.vsnd	small/dtw/greedy	Victor's above us.
+ffa4b0f9	sounds/vo/viper/ping/viper_ping_frank_almost_respawn.vsnd	small/dtw/greedy	Victor's almost back.
+892fd5d4	sounds/vo/viper/ping/viper_ping_frank_below.vsnd	small/dtw/greedy	Victor's down there!
+b591f6ea	sounds/vo/viper/ping/viper_ping_frank_check_items.vsnd	small/dtw/greedy	Check out with Victor by.
+841d2503	sounds/vo/viper/ping/viper_ping_frank_dead.vsnd	small/dtw/greedy	Victor is dead.
+cf989849	sounds/vo/viper/ping/viper_ping_frank_low_health.vsnd	small/dtw/greedy	Victor's almost dead.
+81516654	sounds/vo/viper/ping/viper_ping_frank_missing_01.vsnd	small/dtw/greedy	Victor's missing.
+a963fcdc	sounds/vo/viper/ping/viper_ping_gank.vsnd	small/dtw/greedy	Going to Gank.
+3ddbf7e7	sounds/vo/viper/ping/viper_ping_general_check_items.vsnd	small/dtw/greedy	Look what they bought.
+d6e91050	sounds/vo/viper/ping/viper_ping_ghost_above.vsnd	small/dtw/greedy	- Guys, above us!
+4b1d7b58	sounds/vo/viper/ping/viper_ping_ghost_almost_respawn.vsnd	small/dtw/greedy	Geist is almost back.
+5d06f82e	sounds/vo/viper/ping/viper_ping_ghost_below.vsnd	small/dtw/greedy	Guys down there!
+4cb4e617	sounds/vo/viper/ping/viper_ping_ghost_check_items.vsnd	small/dtw/greedy	Check out what guy's bought.
+16346aa8	sounds/vo/viper/ping/viper_ping_ghost_dead.vsnd	small/dtw/greedy	Geist is dead.
+3c7df6af	sounds/vo/viper/ping/viper_ping_ghost_low_health.vsnd	small/dtw/greedy	Guy's almost dead.
+706f8350	sounds/vo/viper/ping/viper_ping_ghost_missing_01.vsnd	small/dtw/greedy	Guy's missing.
+0d6c1ed2	sounds/vo/viper/ping/viper_ping_gigawatt_above.vsnd	small/dtw/greedy	"Seven's above us
+243dadd6	sounds/vo/viper/ping/viper_ping_gigawatt_almost_respawn.vsnd	small/dtw/greedy	Seven's almost back.
+95703044	sounds/vo/viper/ping/viper_ping_gigawatt_below.vsnd	small/dtw/greedy	Seven's down there!
+26901612	sounds/vo/viper/ping/viper_ping_gigawatt_check_items.vsnd	small/dtw/greedy	Check out what Seven bought.
+f6159311	sounds/vo/viper/ping/viper_ping_gigawatt_dead.vsnd	small/dtw/greedy	Seven is dead.
+cb4a3213	sounds/vo/viper/ping/viper_ping_gigawatt_low_health.vsnd	small/dtw/greedy	Seven's almost dead!
+93dabff5	sounds/vo/viper/ping/viper_ping_gigawatt_missing_01.vsnd	small/dtw/greedy	." "Seven's missing
+9a13278c	sounds/vo/viper/ping/viper_ping_glitch_almost_ready.vsnd	small/dtw/greedy	Cursed relics almost ready.
+370aef1a	sounds/vo/viper/ping/viper_ping_glitch_not_ready.vsnd	small/dtw/greedy	Cursed Ralloch is on cooldown.
+e83b6f8d	sounds/vo/viper/ping/viper_ping_going_in.vsnd	small/dtw/greedy	Going in.
+36ab0f78	sounds/vo/viper/ping/viper_ping_going_in_01.vsnd	small/dtw/greedy	I'm going in.
+4cb0f920	sounds/vo/viper/ping/viper_ping_going_shop_01.vsnd	small/dtw/greedy	Going to shop.
+45c1ed2f	sounds/vo/viper/ping/viper_ping_going_to_base.vsnd	small/dtw/greedy	Go in a base.
+7a9218f8	sounds/vo/viper/ping/viper_ping_going_to_bridge_buff.vsnd	small/dtw/greedy	Going to bridge buff.
+911a8369	sounds/vo/viper/ping/viper_ping_going_to_defend.vsnd	small/dtw/greedy	Going to defend.
+754be839	sounds/vo/viper/ping/viper_ping_going_to_farm.vsnd	small/dtw/greedy	Going to farm.
+4bf9075a	sounds/vo/viper/ping/viper_ping_going_to_push.vsnd	small/dtw/greedy	Going to push.
+3aa19161	sounds/vo/viper/ping/viper_ping_going_to_urn.vsnd	small/dtw/greedy	Going to Earn.
+198cb323	sounds/vo/viper/ping/viper_ping_good_game_03.vsnd	small/dtw/greedy	Good game.
+3fc364af	sounds/vo/viper/ping/viper_ping_good_job_01.vsnd	small/dtw/greedy	Good job.
+1d62958b	sounds/vo/viper/ping/viper_ping_green_help_01.vsnd	small/dtw/greedy	Green needs help.
+99320027	sounds/vo/viper/ping/viper_ping_green_help_02.vsnd	small/dtw/greedy	Greenwich needs help.
+dc32f046	sounds/vo/viper/ping/viper_ping_haze_above.vsnd	small/dtw/greedy	Haze is above us!
+31ace69b	sounds/vo/viper/ping/viper_ping_haze_almost_respawn.vsnd	small/dtw/greedy	Haze is almost back.
+674e044d	sounds/vo/viper/ping/viper_ping_haze_below.vsnd	small/dtw/greedy	Hazes down there.
+2b674294	sounds/vo/viper/ping/viper_ping_haze_check_items.vsnd	small/dtw/greedy	Check out what Hayes bought.
+4b98b45d	sounds/vo/viper/ping/viper_ping_haze_dead.vsnd	small/dtw/greedy	Hayes is dead.
+9d42aaa2	sounds/vo/viper/ping/viper_ping_haze_low_health.vsnd	small/dtw/greedy	Haze is almost dead.
+53e7b1c1	sounds/vo/viper/ping/viper_ping_haze_missing_01.vsnd	small/dtw/greedy	Hayes is missing.
+f6e58ebb	sounds/vo/viper/ping/viper_ping_headed_blue_01.vsnd	small/dtw/greedy	Headed to Blue.
+1fdfe077	sounds/vo/viper/ping/viper_ping_headed_blue_02.vsnd	small/dtw/greedy	Headed to Broadway.
+9c29058c	sounds/vo/viper/ping/viper_ping_headed_green_01.vsnd	small/dtw/greedy	Had it to green.
+af4f9135	sounds/vo/viper/ping/viper_ping_headed_green_02.vsnd	small/dtw/greedy	headed to Greenwich.
+4b5443b9	sounds/vo/viper/ping/viper_ping_headed_orange_01.vsnd	small/dtw/greedy	Headed to orange.
+4f8f4b21	sounds/vo/viper/ping/viper_ping_headed_orange_02.vsnd	small/dtw/greedy	Headed to Orchard.
+30334978	sounds/vo/viper/ping/viper_ping_headed_yellow_01.vsnd	small/dtw/greedy	Had it to yellow.
+e219fe20	sounds/vo/viper/ping/viper_ping_headed_yellow_02.vsnd	small/dtw/greedy	Headed to York.
+730d1d7e	sounds/vo/viper/ping/viper_ping_heading_here.vsnd	small/dtw/greedy	Heading here.
+66c766cf	sounds/vo/viper/ping/viper_ping_heal_ready.vsnd	small/dtw/greedy	Ready to heal.
+c3a16d2c	sounds/vo/viper/ping/viper_ping_health_nova_almost_ready.vsnd	small/dtw/greedy	Healing Nova's almost ready.
+ab5f78f0	sounds/vo/viper/ping/viper_ping_health_nova_not_ready.vsnd	small/dtw/greedy	Healing Nova's on cooldown.
+17d748e4	sounds/vo/viper/ping/viper_ping_help_with_idol.vsnd	small/dtw/greedy	Help me deliver this thing!
+64a52670	sounds/vo/viper/ping/viper_ping_hornet_above.vsnd	small/dtw/greedy	Vendictus above us.
+61c97aa6	sounds/vo/viper/ping/viper_ping_hornet_almost_respawn.vsnd	small/dtw/greedy	Mindicda's almost back.
+904474ad	sounds/vo/viper/ping/viper_ping_hornet_below.vsnd	small/dtw/greedy	and take this down there.
+6139ef3e	sounds/vo/viper/ping/viper_ping_hornet_check_items.vsnd	small/dtw/greedy	?" "Check out what Vendicta bought
+6edd7da3	sounds/vo/viper/ping/viper_ping_hornet_dead.vsnd	small/dtw/greedy	Vendic does dead.
+ef517f36	sounds/vo/viper/ping/viper_ping_hornet_low_health.vsnd	small/dtw/greedy	Benthictus, almost dead!
+60cce245	sounds/vo/viper/ping/viper_ping_hornet_missing_01.vsnd	small/dtw/greedy	!" Vendicta's missing.
+783895f9	sounds/vo/viper/ping/viper_ping_ignore_astro.vsnd	small/dtw/greedy	Ignore holiday
+f829ea59	sounds/vo/viper/ping/viper_ping_ignore_atlas.vsnd	small/dtw/greedy	Ignore Abrams!
+17cd941b	sounds/vo/viper/ping/viper_ping_ignore_bebop.vsnd	small/dtw/greedy	Ignore Bebop.
+718f30e1	sounds/vo/viper/ping/viper_ping_ignore_bookworm_alt.vsnd	small/dtw/greedy	Ignore Paige!
+f3774f4b	sounds/vo/viper/ping/viper_ping_ignore_chrono.vsnd	small/dtw/greedy	Ignore Paradox.
+fe1de95e	sounds/vo/viper/ping/viper_ping_ignore_doorman.vsnd	small/dtw/greedy	Ignore the door, man.
+4bb6da59	sounds/vo/viper/ping/viper_ping_ignore_drifter.vsnd	small/dtw/greedy	Ignore Drifter.
+ec70d4a6	sounds/vo/viper/ping/viper_ping_ignore_dynamo.vsnd	small/dtw/greedy	Ignore Dynamo.
+d1440a7e	sounds/vo/viper/ping/viper_ping_ignore_familiar.vsnd	small/dtw/greedy	Ignore Rad!
+61152779	sounds/vo/viper/ping/viper_ping_ignore_fencer.vsnd	small/dtw/greedy	"Ignore Apollo!"
+c1dbec21	sounds/vo/viper/ping/viper_ping_ignore_forge.vsnd	small/dtw/greedy	Ignore McGuinness.
+d7ac5c5c	sounds/vo/viper/ping/viper_ping_ignore_frank.vsnd	small/dtw/greedy	- Ignore Victor!
+b88b4991	sounds/vo/viper/ping/viper_ping_ignore_ghost.vsnd	small/dtw/greedy	- Ignore Geist.
+162ab37c	sounds/vo/viper/ping/viper_ping_ignore_gigawatt.vsnd	small/dtw/greedy	Ignore Seven.
+4d72d43c	sounds/vo/viper/ping/viper_ping_ignore_haze.vsnd	small/dtw/greedy	Ignore Hayes.
+9b7a67ce	sounds/vo/viper/ping/viper_ping_ignore_hornet.vsnd	small/dtw/greedy	Ignore vindict.
+ae5b4cfc	sounds/vo/viper/ping/viper_ping_ignore_inferno.vsnd	small/dtw/greedy	Ignore Inferness.
+0af97f60	sounds/vo/viper/ping/viper_ping_ignore_kelvin.vsnd	small/dtw/greedy	Ignore Kelvin.
+01d455d4	sounds/vo/viper/ping/viper_ping_ignore_krill.vsnd	small/dtw/greedy	Ignore Krill.
+f067773b	sounds/vo/viper/ping/viper_ping_ignore_lash.vsnd	small/dtw/greedy	Ignore Lash.
+40e8b335	sounds/vo/viper/ping/viper_ping_ignore_magician.vsnd	small/dtw/greedy	Ignore Sinclair!
+0729251e	sounds/vo/viper/ping/viper_ping_ignore_mirage.vsnd	small/dtw/greedy	Ignore Mirage.
+aafe2902	sounds/vo/viper/ping/viper_ping_ignore_nano.vsnd	small/dtw/greedy	Ignore Calico.
+4f415834	sounds/vo/viper/ping/viper_ping_ignore_necro.vsnd	small/dtw/greedy	Ignore graves!
+b15ff457	sounds/vo/viper/ping/viper_ping_ignore_operative.vsnd	small/dtw/greedy	Ignore Raven!
+b5018711	sounds/vo/viper/ping/viper_ping_ignore_orion.vsnd	small/dtw/greedy	Ignore gray talent.
+8a0c437a	sounds/vo/viper/ping/viper_ping_ignore_priest.vsnd	small/dtw/greedy	- Ignore Venator.
+82563603	sounds/vo/viper/ping/viper_ping_ignore_punkgoat.vsnd	small/dtw/greedy	Ignore Billy.
+6df9e9c6	sounds/vo/viper/ping/viper_ping_ignore_shiv.vsnd	small/dtw/greedy	Ignorant.
+da8dffe2	sounds/vo/viper/ping/viper_ping_ignore_slork.vsnd	small/dtw/greedy	Ignore Fathom.
+28f8cb2a	sounds/vo/viper/ping/viper_ping_ignore_synth.vsnd	small/dtw/greedy	." "Ignore pocket
+8dd5b0cc	sounds/vo/viper/ping/viper_ping_ignore_tengu.vsnd	small/dtw/greedy	Ignore Ivy.
+bdbf22a7	sounds/vo/viper/ping/viper_ping_ignore_trapper.vsnd	small/dtw/greedy	Ignore Trapper.
+49ea68de	sounds/vo/viper/ping/viper_ping_ignore_unicorn.vsnd	small/dtw/greedy	Ignore Salas!
+a59fcf7b	sounds/vo/viper/ping/viper_ping_ignore_vampirebat.vsnd	small/dtw/greedy	Ignore Mina.
+10248602	sounds/vo/viper/ping/viper_ping_ignore_viscous.vsnd	small/dtw/greedy	Ignore Viscous.
+8a02a713	sounds/vo/viper/ping/viper_ping_ignore_warden.vsnd	small/dtw/greedy	- Ignore Warden.
+69d3d90e	sounds/vo/viper/ping/viper_ping_ignore_werewolf.vsnd	small/dtw/greedy	Ignore Silver!
+80b37176	sounds/vo/viper/ping/viper_ping_ignore_wraith.vsnd	small/dtw/greedy	Ignore Raith.
+45b23b2d	sounds/vo/viper/ping/viper_ping_ignore_wrecker.vsnd	small/dtw/greedy	Ignore Rekker.
+2f358355	sounds/vo/viper/ping/viper_ping_ignore_yamato.vsnd	small/dtw/greedy	Ignore Yamato.
+de33d7eb	sounds/vo/viper/ping/viper_ping_inferno_above.vsnd	small/dtw/greedy	'! And furnace is above us!
+441d13f9	sounds/vo/viper/ping/viper_ping_inferno_almost_respawn.vsnd	small/dtw/greedy	And Furnace is almost back.
+9c69ca36	sounds/vo/viper/ping/viper_ping_inferno_below.vsnd	small/dtw/greedy	Inferness is down there.
+bd9a3a4e	sounds/vo/viper/ping/viper_ping_inferno_check_items.vsnd	small/dtw/greedy	Check out what Infernaz bought.
+6d2f77ed	sounds/vo/viper/ping/viper_ping_inferno_dead.vsnd	small/dtw/greedy	Inferness is dead.
+bdcb8864	sounds/vo/viper/ping/viper_ping_inferno_low_health.vsnd	small/dtw/greedy	Infernaz is almost dead!
+07287ec1	sounds/vo/viper/ping/viper_ping_inferno_missing_01.vsnd	small/dtw/greedy	Inferness is missing.
+a20efee7	sounds/vo/viper/ping/viper_ping_item_almost_ready.vsnd	small/dtw/greedy	Items almost ready.
+2a5df2a0	sounds/vo/viper/ping/viper_ping_item_not_ready.vsnd	small/dtw/greedy	Items on cooldown.
+e12e0eb0	sounds/vo/viper/ping/viper_ping_item_purchase.vsnd	small/dtw/greedy	Yeah, I bought this.
+3efaa3a8	sounds/vo/viper/ping/viper_ping_item_suggestion.vsnd	small/dtw/greedy	We should get this.
+ebe76b8c	sounds/vo/viper/ping/viper_ping_jar_call_01.vsnd	small/dtw/greedy	Ernest here!
+e4e6ad7a	sounds/vo/viper/ping/viper_ping_jar_call_02.vsnd	small/dtw/greedy	Souljar is here!
+e5cd1155	sounds/vo/viper/ping/viper_ping_kelvin_above.vsnd	small/dtw/greedy	Calvin's above us!
+f0081afa	sounds/vo/viper/ping/viper_ping_kelvin_almost_respawn.vsnd	small/dtw/greedy	Calvin's almost back.
+36903cb0	sounds/vo/viper/ping/viper_ping_kelvin_below.vsnd	small/dtw/greedy	Caldyn's down there.
+3471d7d4	sounds/vo/viper/ping/viper_ping_kelvin_check_items.vsnd	small/dtw/greedy	Check out what Kelvin bought.
+11136708	sounds/vo/viper/ping/viper_ping_kelvin_dead.vsnd	small/dtw/greedy	Calvin is dead.
+5b6f6dba	sounds/vo/viper/ping/viper_ping_kelvin_low_health.vsnd	small/dtw/greedy	Calvin's almost dead!
+27cf9aed	sounds/vo/viper/ping/viper_ping_kelvin_missing_01.vsnd	small/dtw/greedy	Kelvin's missing.
+27dda9b3	sounds/vo/viper/ping/viper_ping_kncokdown_almost_ready.vsnd	small/dtw/greedy	Knockdown's almost ready!
+3287cba5	sounds/vo/viper/ping/viper_ping_kncokdown_not_ready.vsnd	small/dtw/greedy	Knockdown's on cooldown.
+74d5b158	sounds/vo/viper/ping/viper_ping_krill_above.vsnd	small/dtw/greedy	Crails above us!
+ad354202	sounds/vo/viper/ping/viper_ping_krill_almost_respawn.vsnd	small/dtw/greedy	girl's almost back.
+18bb4037	sounds/vo/viper/ping/viper_ping_krill_below.vsnd	small/dtw/greedy	Curls down there!
+e4b76a7d	sounds/vo/viper/ping/viper_ping_krill_check_items.vsnd	small/dtw/greedy	Check out what Krill bought.
+cc76655d	sounds/vo/viper/ping/viper_ping_krill_dead.vsnd	small/dtw/greedy	Krill is dead.
+8e138dac	sounds/vo/viper/ping/viper_ping_krill_low_health.vsnd	small/dtw/greedy	Krill's almost dead!
+a2571d13	sounds/vo/viper/ping/viper_ping_krill_missing_01.vsnd	small/dtw/greedy	Krill's missing.
+7eeaebdc	sounds/vo/viper/ping/viper_ping_lash_above.vsnd	small/dtw/greedy	Lash is above us.
+84e8c2b2	sounds/vo/viper/ping/viper_ping_lash_above_alt.vsnd	small/dtw/greedy	Hey, my future husband's up there.
+f7f6a4b8	sounds/vo/viper/ping/viper_ping_lash_almost_respawn.vsnd	small/dtw/greedy	." Lash is almost back.
+5ec5c334	sounds/vo/viper/ping/viper_ping_lash_below.vsnd	small/dtw/greedy	Blash is down there!
+231629f9	sounds/vo/viper/ping/viper_ping_lash_below_alt.vsnd	small/dtw/greedy	The perfect man, he's right down there.
+aaaeca23	sounds/vo/viper/ping/viper_ping_lash_check_items.vsnd	small/dtw/greedy	- Check out what Lash bought.
+a81c5a7b	sounds/vo/viper/ping/viper_ping_lash_dead.vsnd	small/dtw/greedy	Lash is dead.
+5897ad1f	sounds/vo/viper/ping/viper_ping_lash_low_health.vsnd	small/dtw/greedy	"Lash is almost dead!
+baa36886	sounds/vo/viper/ping/viper_ping_lash_missing_01.vsnd	small/dtw/greedy	Lash is missing.
+295a5dad	sounds/vo/viper/ping/viper_ping_leaving.vsnd	small/dtw/greedy	"Yeah, I'm leaving."
+dfaa203c	sounds/vo/viper/ping/viper_ping_lets_go_blue.vsnd	small/dtw/greedy	Let's go blue.
+cae91078	sounds/vo/viper/ping/viper_ping_lets_go_blue_alt.vsnd	small/dtw/greedy	Let's go to Broadway.
+0b63b710	sounds/vo/viper/ping/viper_ping_lets_go_green.vsnd	small/dtw/greedy	Let's go green.
+e99ccfdf	sounds/vo/viper/ping/viper_ping_lets_go_green_alt.vsnd	small/dtw/greedy	Let's go to Greenwich.
+1205b960	sounds/vo/viper/ping/viper_ping_lets_go_orange.vsnd	small/dtw/greedy	Let's go Orange.
+b489d2d2	sounds/vo/viper/ping/viper_ping_lets_go_orange_alt.vsnd	small/dtw/greedy	Let's go to Orchard.
+7b03c981	sounds/vo/viper/ping/viper_ping_lets_go_yellow.vsnd	small/dtw/greedy	Let's go yellow.
+a8ff1f62	sounds/vo/viper/ping/viper_ping_lets_go_yellow_alt.vsnd	small/dtw/greedy	Let's go to York.
+09fd70b4	sounds/vo/viper/ping/viper_ping_look_here.vsnd	large-v3-turbo/beam5	Look here.
+09fd70b4	sounds/vo/viper/ping/viper_ping_look_here.vsnd	small/dtw/greedy	Okay,
+d691dcbd	sounds/vo/viper/ping/viper_ping_loose_souls.vsnd	small/dtw/greedy	Soulbag here.
+242aaa38	sounds/vo/viper/ping/viper_ping_magician_above.vsnd	small/dtw/greedy	Sinclair's above us!
+9c1ee93e	sounds/vo/viper/ping/viper_ping_magician_almost_respawn.vsnd	small/dtw/greedy	Sinclair's almost back.
+cffe0734	sounds/vo/viper/ping/viper_ping_magician_below.vsnd	small/dtw/greedy	Sinclair's down there.
+20edb1a9	sounds/vo/viper/ping/viper_ping_magician_check_items.vsnd	small/dtw/greedy	Check out what's in Clariborid.
+6a5b97e5	sounds/vo/viper/ping/viper_ping_magician_dead.vsnd	small/dtw/greedy	Sinclair's dead.
+a74bc05b	sounds/vo/viper/ping/viper_ping_magician_low_health.vsnd	small/dtw/greedy	Sinclair's almost dead.
+d2131a29	sounds/vo/viper/ping/viper_ping_magician_missing_01.vsnd	small/dtw/greedy	Sinclair's missing!
+5460354f	sounds/vo/viper/ping/viper_ping_meet_here.vsnd	small/dtw/greedy	Let's meet here.
+6d47a06e	sounds/vo/viper/ping/viper_ping_mirage_above.vsnd	small/dtw/greedy	Mirage is above us!
+be71c3cb	sounds/vo/viper/ping/viper_ping_mirage_almost_respawn.vsnd	small/dtw/greedy	Mirage is almost back.
+7ca8f2d9	sounds/vo/viper/ping/viper_ping_mirage_below.vsnd	small/dtw/greedy	We're on it down there!
+a3a8ed7e	sounds/vo/viper/ping/viper_ping_mirage_check_items.vsnd	small/dtw/greedy	Check out what Mirage bought.
+50346c28	sounds/vo/viper/ping/viper_ping_mirage_dead.vsnd	small/dtw/greedy	Mirage is dead.
+bf879944	sounds/vo/viper/ping/viper_ping_mirage_low_health.vsnd	small/dtw/greedy	Raj is almost dead!
+cdd668df	sounds/vo/viper/ping/viper_ping_mirage_missing_01.vsnd	small/dtw/greedy	- Mirage is missing.
+1b2c54e6	sounds/vo/viper/ping/viper_ping_missing_blue_01.vsnd	small/dtw/greedy	Missing blue.
+7652ba4f	sounds/vo/viper/ping/viper_ping_missing_blue_02.vsnd	small/dtw/greedy	Missing Broadway.
+18eaa704	sounds/vo/viper/ping/viper_ping_missing_green_01.vsnd	small/dtw/greedy	Missing green.
+2024f445	sounds/vo/viper/ping/viper_ping_missing_green_02.vsnd	small/dtw/greedy	Missing Greenwich.
+11247c7e	sounds/vo/viper/ping/viper_ping_missing_orange_01.vsnd	small/dtw/greedy	Missing Orange.
+08980f30	sounds/vo/viper/ping/viper_ping_missing_orange_02.vsnd	small/dtw/greedy	- Missing Orchard.
+40b2b31a	sounds/vo/viper/ping/viper_ping_missing_yellow_01.vsnd	small/dtw/greedy	Missing yellow.
+43aab943	sounds/vo/viper/ping/viper_ping_missing_yellow_02.vsnd	small/dtw/greedy	Missing York.
+3c61a19e	sounds/vo/viper/ping/viper_ping_nano_above.vsnd	small/dtw/greedy	Calcos above us!
+c5076900	sounds/vo/viper/ping/viper_ping_nano_almost_respawn.vsnd	small/dtw/greedy	Calico's almost back.
+92c7a95d	sounds/vo/viper/ping/viper_ping_nano_below.vsnd	small/dtw/greedy	Calico's down there.
+7a0b5c62	sounds/vo/viper/ping/viper_ping_nano_check_items.vsnd	small/dtw/greedy	Check out what Gallicobot.
+6de53917	sounds/vo/viper/ping/viper_ping_nano_dead.vsnd	small/dtw/greedy	Calico is dead.
+aad5dfc9	sounds/vo/viper/ping/viper_ping_nano_low_health.vsnd	small/dtw/greedy	Calico's almost dead!
+4e1e47ad	sounds/vo/viper/ping/viper_ping_nano_missing_01.vsnd	small/dtw/greedy	Calico's missing.
+0dd35e48	sounds/vo/viper/ping/viper_ping_necro_above.vsnd	small/dtw/greedy	Grave's above us
+9ff8acee	sounds/vo/viper/ping/viper_ping_necro_almost_respawn.vsnd	small/dtw/greedy	Graves is almost back!
+41957f0f	sounds/vo/viper/ping/viper_ping_necro_below.vsnd	small/dtw/greedy	Graves down there!
+93128736	sounds/vo/viper/ping/viper_ping_necro_check_items.vsnd	small/dtw/greedy	I checked out a grave spot.
+d936a5a5	sounds/vo/viper/ping/viper_ping_necro_dead.vsnd	small/dtw/greedy	Graves is dead.
+1c3276c0	sounds/vo/viper/ping/viper_ping_necro_low_health.vsnd	small/dtw/greedy	Graves is almost dead.
+7fabc7e3	sounds/vo/viper/ping/viper_ping_necro_missing_01.vsnd	small/dtw/greedy	Graves is missing.
+9ad91f2b	sounds/vo/viper/ping/viper_ping_need_cover.vsnd	small/dtw/greedy	Cover me!
+48a90712	sounds/vo/viper/ping/viper_ping_need_heal.vsnd	small/dtw/greedy	I need healing!
+51f68ddd	sounds/vo/viper/ping/viper_ping_need_help_blue.vsnd	small/dtw/greedy	He's help on blue.
+541178a0	sounds/vo/viper/ping/viper_ping_need_help_blue_alt.vsnd	small/dtw/greedy	Need help on Broadway.
+619f8c44	sounds/vo/viper/ping/viper_ping_need_help_green.vsnd	small/dtw/greedy	." "Need help on grain!"
+875da3a3	sounds/vo/viper/ping/viper_ping_need_help_green_alt.vsnd	small/dtw/greedy	Need help on Greenwich.
+8beb3613	sounds/vo/viper/ping/viper_ping_need_help_orange.vsnd	small/dtw/greedy	Need help on Orange.
+96ef7c87	sounds/vo/viper/ping/viper_ping_need_help_orange_alt.vsnd	small/dtw/greedy	Need help on Orchard.
+b4ed8775	sounds/vo/viper/ping/viper_ping_need_help_yellow.vsnd	small/dtw/greedy	Need help on yellow.
+80ba7ace	sounds/vo/viper/ping/viper_ping_need_help_yellow_alt.vsnd	small/dtw/greedy	Need help on York.
+f132a4ba	sounds/vo/viper/ping/viper_ping_need_plan.vsnd	small/dtw/greedy	What's the plan?
+428cd8b8	sounds/vo/viper/ping/viper_ping_negative_01.vsnd	small/dtw/greedy	- No.
+24b0a0d1	sounds/vo/viper/ping/viper_ping_nevermind_01.vsnd	small/dtw/greedy	Nevermind.
+1f64d426	sounds/vo/viper/ping/viper_ping_nurse_missing_01.vsnd	small/dtw/greedy	The nurse is missing.
+ddcec293	sounds/vo/viper/ping/viper_ping_on_way.vsnd	small/dtw/greedy	On my way.
+bf36cdcf	sounds/vo/viper/ping/viper_ping_operative_almost_respawn.vsnd	small/dtw/greedy	Raven's almost back.
+4db30abe	sounds/vo/viper/ping/viper_ping_operative_check_items.vsnd	small/dtw/greedy	Check out what Raven bought!
+2f3c09e3	sounds/vo/viper/ping/viper_ping_operative_dead.vsnd	small/dtw/greedy	Raven is dead.
+90302487	sounds/vo/viper/ping/viper_ping_operative_missing_01.vsnd	small/dtw/greedy	Raven's missing.
+37daf72a	sounds/vo/viper/ping/viper_ping_orange_help_01.vsnd	small/dtw/greedy	Orange needs help.
+321b11ed	sounds/vo/viper/ping/viper_ping_orange_help_02.vsnd	small/dtw/greedy	- Archer needs help.
+5b44d23d	sounds/vo/viper/ping/viper_ping_orion_above.vsnd	small/dtw/greedy	Great Talon's above us!
+207f3ed7	sounds/vo/viper/ping/viper_ping_orion_almost_respawn.vsnd	small/dtw/greedy	Great Talon's almost back.
+1edafb3d	sounds/vo/viper/ping/viper_ping_orion_below.vsnd	small/dtw/greedy	Great talents down there.
+5b795266	sounds/vo/viper/ping/viper_ping_orion_check_items.vsnd	small/dtw/greedy	Check out what Great Talon bought.
+fa593479	sounds/vo/viper/ping/viper_ping_orion_dead.vsnd	small/dtw/greedy	!" "Great Helen is dead
+e8e10220	sounds/vo/viper/ping/viper_ping_orion_low_health.vsnd	small/dtw/greedy	* Great talent's almost dead!
+c224fbae	sounds/vo/viper/ping/viper_ping_orion_missing_01.vsnd	small/dtw/greedy	Great Talon's missing.
+1fd2a50a	sounds/vo/viper/ping/viper_ping_other_buys_anti_heal.vsnd	small/dtw/greedy	They bought anti-heal.
+0e85c170	sounds/vo/viper/ping/viper_ping_other_buys_cursed_relic.vsnd	small/dtw/greedy	They bought cursed relic.
+e873696d	sounds/vo/viper/ping/viper_ping_other_buys_knockdown.vsnd	large-v3-turbo/beam5	Hey, boy, I knocked down.
+e873696d	sounds/vo/viper/ping/viper_ping_other_buys_knockdown.vsnd	small/dtw/greedy	Hey boy, knock down!
+f05c0e1c	sounds/vo/viper/ping/viper_ping_other_buys_metal_skin.vsnd	small/dtw/greedy	They want metal skin.
+10cebb59	sounds/vo/viper/ping/viper_ping_other_buys_refresher.vsnd	small/dtw/greedy	Yeah, they bought refresher.
+60af62c2	sounds/vo/viper/ping/viper_ping_other_buys_unstoppable.vsnd	small/dtw/greedy	They brought unstoppable.
+422f496a	sounds/vo/viper/ping/viper_ping_over_extend.vsnd	small/dtw/greedy	Don't overextend.
+1bd3853a	sounds/vo/viper/ping/viper_ping_post_game_01.vsnd	small/dtw/greedy	All right, who's buying?
+8202b068	sounds/vo/viper/ping/viper_ping_post_game_02.vsnd	small/dtw/greedy	I'd be happy to break the law with any of you's.
+41a91299	sounds/vo/viper/ping/viper_ping_post_game_03.vsnd	small/dtw/greedy	Time to celebrate!
+73e2a526	sounds/vo/viper/ping/viper_ping_post_game_04.vsnd	small/dtw/greedy	See, who said I'm bad luck?
+e3689508	sounds/vo/viper/ping/viper_ping_post_game_05.vsnd	small/dtw/greedy	Time to get what I'm owed.
+8a6dae44	sounds/vo/viper/ping/viper_ping_post_game_06.vsnd	small/dtw/greedy	- The patron better deliver.
+9fab810d	sounds/vo/viper/ping/viper_ping_pre_game_01.vsnd	small/dtw/greedy	You guys look like you know how to party, am I right?
+a83b6e1e	sounds/vo/viper/ping/viper_ping_pre_game_02.vsnd	small/dtw/greedy	Look at those chomps over there. No way we lose to them.
+940ea292	sounds/vo/viper/ping/viper_ping_pre_game_03.vsnd	small/dtw/greedy	"Can I bum a smoke off of one of you guys?"
+cb9585e4	sounds/vo/viper/ping/viper_ping_pre_game_04.vsnd	small/dtw/greedy	I never summoned a god before, this should be wacky.
+52b0eb1b	sounds/vo/viper/ping/viper_ping_pre_game_05.vsnd	small/dtw/greedy	I'm tired of waiting. Let's get the show on the road.
+1832dff7	sounds/vo/viper/ping/viper_ping_pre_game_06.vsnd	small/dtw/greedy	You guys ready to pick a fight?
+cb731320	sounds/vo/viper/ping/viper_ping_priest_above.vsnd	small/dtw/greedy	The Venator's above us!
+e4e96ff0	sounds/vo/viper/ping/viper_ping_priest_almost_respawn.vsnd	small/dtw/greedy	The Venator's almost back!
+bbe4b4a1	sounds/vo/viper/ping/viper_ping_priest_below.vsnd	small/dtw/greedy	The Venator's down there!
+b2499912	sounds/vo/viper/ping/viper_ping_priest_check_items.vsnd	small/dtw/greedy	!" Check out what Vendor bought.
+decdd09d	sounds/vo/viper/ping/viper_ping_priest_dead.vsnd	small/dtw/greedy	Venator's dead.
+dbaa5e83	sounds/vo/viper/ping/viper_ping_priest_low_health.vsnd	small/dtw/greedy	The Venator's almost dead!
+c58518f9	sounds/vo/viper/ping/viper_ping_priest_missing_01.vsnd	small/dtw/greedy	Venator's missing.
+206c93a7	sounds/vo/viper/ping/viper_ping_protect_urn.vsnd	small/dtw/greedy	Help deliver the yarn!
+2cf343e7	sounds/vo/viper/ping/viper_ping_punkgoat_above.vsnd	small/dtw/greedy	Billy's above us!
+688bcebe	sounds/vo/viper/ping/viper_ping_punkgoat_almost_respawn.vsnd	small/dtw/greedy	Billy's almost back.
+c5debff0	sounds/vo/viper/ping/viper_ping_punkgoat_below.vsnd	small/dtw/greedy	Billy's down there!
+a02e4a2f	sounds/vo/viper/ping/viper_ping_punkgoat_check_items.vsnd	small/dtw/greedy	Check out what Billy bought.
+4620944e	sounds/vo/viper/ping/viper_ping_punkgoat_dead.vsnd	small/dtw/greedy	Billy's dead.
+a5ead628	sounds/vo/viper/ping/viper_ping_punkgoat_low_health.vsnd	small/dtw/greedy	Billy's almost dead.
+6a1f0b80	sounds/vo/viper/ping/viper_ping_punkgoat_missing_01.vsnd	small/dtw/greedy	Billy's missing.
+49c56c92	sounds/vo/viper/ping/viper_ping_push_blue_01.vsnd	small/dtw/greedy	Let's push Blue!
+eb98c575	sounds/vo/viper/ping/viper_ping_push_blue_02.vsnd	small/dtw/greedy	Let's push Broadway.
+046a24b7	sounds/vo/viper/ping/viper_ping_push_green_01.vsnd	small/dtw/greedy	Let's push green.
+3e1eda12	sounds/vo/viper/ping/viper_ping_push_green_02.vsnd	small/dtw/greedy	Let's push Greenwich.
+6fa3305e	sounds/vo/viper/ping/viper_ping_push_orange_01.vsnd	small/dtw/greedy	Let's push orange.
+17d79a34	sounds/vo/viper/ping/viper_ping_push_orange_02.vsnd	small/dtw/greedy	Let's push Orchard.
+c6f985e9	sounds/vo/viper/ping/viper_ping_push_yellow_01.vsnd	small/dtw/greedy	Let's push Yellow.
+fa0b96f5	sounds/vo/viper/ping/viper_ping_push_yellow_02.vsnd	small/dtw/greedy	Let's push York!
+15a143ec	sounds/vo/viper/ping/viper_ping_rat_strat.vsnd	small/dtw/greedy	I'm gonna rat.
+c96f8d20	sounds/vo/viper/ping/viper_ping_ratking_missing_01.vsnd	small/dtw/greedy	The Rat King's missing.
+624e10e7	sounds/vo/viper/ping/viper_ping_refresher_almost_ready.vsnd	small/dtw/greedy	- Refresher's almost ready.
+5c19d8d0	sounds/vo/viper/ping/viper_ping_refresher_not_ready.vsnd	small/dtw/greedy	Refresher's on cooldown!
+765e69ec	sounds/vo/viper/ping/viper_ping_request_follow.vsnd	small/dtw/greedy	Come with me.
+1838e152	sounds/vo/viper/ping/viper_ping_rescue_beam_almost_ready.vsnd	small/dtw/greedy	Rescue beam's almost ready!
+225c2dbc	sounds/vo/viper/ping/viper_ping_rescue_beam_not_ready.vsnd	small/dtw/greedy	Rescue beams on cooldown.
+8241441e	sounds/vo/viper/ping/viper_ping_retreat_01.vsnd	small/dtw/greedy	Pull back.
+25877068	sounds/vo/viper/ping/viper_ping_rupture_almost_ready.vsnd	small/dtw/greedy	Decay's almost ready.
+e4315b2e	sounds/vo/viper/ping/viper_ping_rupture_not_ready.vsnd	small/dtw/greedy	Decay's on cooldown!
+0ea0fba9	sounds/vo/viper/ping/viper_ping_see_artist.vsnd	small/dtw/greedy	I see the artist.
+9c16f35a	sounds/vo/viper/ping/viper_ping_see_astro.vsnd	small/dtw/greedy	I see holiday.
+fb86cf0e	sounds/vo/viper/ping/viper_ping_see_atlas_01.vsnd	small/dtw/greedy	I see Abrams. [BLANK_AUDIO]
+79ba4721	sounds/vo/viper/ping/viper_ping_see_baba.vsnd	small/dtw/greedy	I see the pigeon lady.
+e53b568e	sounds/vo/viper/ping/viper_ping_see_bebop_01.vsnd	small/dtw/greedy	I see bebop.
+3f852faf	sounds/vo/viper/ping/viper_ping_see_bookworm_01_alt.vsnd	small/dtw/greedy	I see Paige.
+72423cbc	sounds/vo/viper/ping/viper_ping_see_bookworm_02_alt.vsnd	small/dtw/greedy	I see cinnamon.
+dce5c691	sounds/vo/viper/ping/viper_ping_see_chessmaster.vsnd	small/dtw/greedy	I see the chestmaster.
+141a2105	sounds/vo/viper/ping/viper_ping_see_chrono.vsnd	small/dtw/greedy	Icy paradox.
+918e628e	sounds/vo/viper/ping/viper_ping_see_deadpack.vsnd	small/dtw/greedy	I see the test pilot.
+0420ba2e	sounds/vo/viper/ping/viper_ping_see_doorman_01.vsnd	small/dtw/greedy	I see the doorman.
+ac9f0beb	sounds/vo/viper/ping/viper_ping_see_drifter_01.vsnd	small/dtw/greedy	I see Drifter.
+a4e9bb7a	sounds/vo/viper/ping/viper_ping_see_dynamo_01.vsnd	small/dtw/greedy	I see dynamo.
+50eccdb2	sounds/vo/viper/ping/viper_ping_see_enemy.vsnd	small/dtw/greedy	I see the enemy.
+c6e51332	sounds/vo/viper/ping/viper_ping_see_familiar_01.vsnd	small/dtw/greedy	I see Rem.
+596f5c31	sounds/vo/viper/ping/viper_ping_see_fencer_01.vsnd	small/dtw/greedy	I see Apollo.
+f520f4e2	sounds/vo/viper/ping/viper_ping_see_forge.vsnd	small/dtw/greedy	I see McGinnis.
+d8411fa8	sounds/vo/viper/ping/viper_ping_see_frank_01.vsnd	small/dtw/greedy	I see Victor.
+de4548f3	sounds/vo/viper/ping/viper_ping_see_ghost_01.vsnd	small/dtw/greedy	I see Geist.
+01c5cec2	sounds/vo/viper/ping/viper_ping_see_gigawatt_01.vsnd	small/dtw/greedy	I see seven.
+116550d8	sounds/vo/viper/ping/viper_ping_see_haze_01.vsnd	small/dtw/greedy	I see Hayes.
+35423c12	sounds/vo/viper/ping/viper_ping_see_hornet_01.vsnd	small/dtw/greedy	I see Vendicta.
+08ce083c	sounds/vo/viper/ping/viper_ping_see_inferno.vsnd	small/dtw/greedy	- I see Inferness.
+c941bde3	sounds/vo/viper/ping/viper_ping_see_kelvin_01.vsnd	small/dtw/greedy	I see Kelvin.
+07d8b031	sounds/vo/viper/ping/viper_ping_see_krill_01.vsnd	small/dtw/greedy	I see Krill.
+2538cdd6	sounds/vo/viper/ping/viper_ping_see_lash_01.vsnd	small/dtw/greedy	I see Lash.
+6a2a0213	sounds/vo/viper/ping/viper_ping_see_magician_01.vsnd	small/dtw/greedy	I see Sinclair.
+4148eca8	sounds/vo/viper/ping/viper_ping_see_mirage_01.vsnd	small/dtw/greedy	I see Mirage.
+8c135a93	sounds/vo/viper/ping/viper_ping_see_nano.vsnd	small/dtw/greedy	I see Calico.
+ac761336	sounds/vo/viper/ping/viper_ping_see_necro_01.vsnd	small/dtw/greedy	I see Graves.
+b84e0f83	sounds/vo/viper/ping/viper_ping_see_nurse.vsnd	small/dtw/greedy	I see the nurse.
+ab132c26	sounds/vo/viper/ping/viper_ping_see_operative_01.vsnd	small/dtw/greedy	I see Raven.
+72e6b9eb	sounds/vo/viper/ping/viper_ping_see_orion_01.vsnd	small/dtw/greedy	I see gray talon.
+e137a9cb	sounds/vo/viper/ping/viper_ping_see_priest_01.vsnd	small/dtw/greedy	I see the Venator.
+47034bf6	sounds/vo/viper/ping/viper_ping_see_punkgoat_01.vsnd	small/dtw/greedy	I see Billy.
+c75b8c2e	sounds/vo/viper/ping/viper_ping_see_ratking.vsnd	small/dtw/greedy	I see the Rat King.
+a410916d	sounds/vo/viper/ping/viper_ping_see_shiv_01.vsnd	small/dtw/greedy	- I see, Shiv.
+8a7503b4	sounds/vo/viper/ping/viper_ping_see_slork_01.vsnd	small/dtw/greedy	- I see Fathom.
+b1c46648	sounds/vo/viper/ping/viper_ping_see_synth_01.vsnd	small/dtw/greedy	I see pocket.
+7c9a8ca2	sounds/vo/viper/ping/viper_ping_see_tengu.vsnd	small/dtw/greedy	I see Ivy.
+02ffd88a	sounds/vo/viper/ping/viper_ping_see_trapper_01.vsnd	small/dtw/greedy	I see Trapper.
+6495a3a4	sounds/vo/viper/ping/viper_ping_see_unicorn_01.vsnd	small/dtw/greedy	I see Celeste.
+13544172	sounds/vo/viper/ping/viper_ping_see_vampirebat_01.vsnd	small/dtw/greedy	I see Mina.
+78bb4891	sounds/vo/viper/ping/viper_ping_see_viscous_01.vsnd	small/dtw/greedy	I See viscous
+9eb57c99	sounds/vo/viper/ping/viper_ping_see_warden_01.vsnd	small/dtw/greedy	I see Warden.
+9b400b11	sounds/vo/viper/ping/viper_ping_see_werewolf_01.vsnd	small/dtw/greedy	I see silver.
+a7d1b6ba	sounds/vo/viper/ping/viper_ping_see_wraith_01.vsnd	small/dtw/greedy	I see Wraith.
+742f7ab8	sounds/vo/viper/ping/viper_ping_see_wrecker_01.vsnd	small/dtw/greedy	I see Rekker.
+f51a0640	sounds/vo/viper/ping/viper_ping_see_yamato.vsnd	small/dtw/greedy	I see Yamato.
+e599613c	sounds/vo/viper/ping/viper_ping_shiv_above.vsnd	small/dtw/greedy	Jav's above us!
+65e71bfc	sounds/vo/viper/ping/viper_ping_shiv_almost_respawn.vsnd	small/dtw/greedy	Chiv is almost back.
+59d66643	sounds/vo/viper/ping/viper_ping_shiv_below.vsnd	small/dtw/greedy	James down there.
+40ab4de8	sounds/vo/viper/ping/viper_ping_shiv_check_items.vsnd	small/dtw/greedy	Check out what Shiv bought.
+c19d620d	sounds/vo/viper/ping/viper_ping_shiv_dead.vsnd	small/dtw/greedy	Shiv is dead.
+4c287da5	sounds/vo/viper/ping/viper_ping_shiv_low_health.vsnd	small/dtw/greedy	Shave's almost dead.
+5d2546fb	sounds/vo/viper/ping/viper_ping_shiv_missing_01.vsnd	small/dtw/greedy	Shifts missing.
+2111bfd6	sounds/vo/viper/ping/viper_ping_silence_almost_ready.vsnd	small/dtw/greedy	Silence waves almost ready.
+d14f94b0	sounds/vo/viper/ping/viper_ping_silence_not_ready.vsnd	small/dtw/greedy	Silence waves on cooldown!
+90482daa	sounds/vo/viper/ping/viper_ping_sinners.vsnd	small/dtw/greedy	Center's here.
+f4da7471	sounds/vo/viper/ping/viper_ping_slork_almost_respawn.vsnd	small/dtw/greedy	Badm's almost back.
+97bb1478	sounds/vo/viper/ping/viper_ping_slork_check_items.vsnd	small/dtw/greedy	Check out what Fathom bought.
+ffa643c9	sounds/vo/viper/ping/viper_ping_slork_dead.vsnd	small/dtw/greedy	Betham is dead.
+97c8d10e	sounds/vo/viper/ping/viper_ping_slork_missing_01.vsnd	small/dtw/greedy	Fathom's missing.
+def8c686	sounds/vo/viper/ping/viper_ping_slowing_hex_almost_ready.vsnd	small/dtw/greedy	Slowing hex is almost ready.
+f19b0b21	sounds/vo/viper/ping/viper_ping_slowing_hex_not_ready.vsnd	small/dtw/greedy	- Slowing hexes on cooldown.
+c99de59d	sounds/vo/viper/ping/viper_ping_someone_was_here.vsnd	small/dtw/greedy	Someone was here.
+26149547	sounds/vo/viper/ping/viper_ping_sorry_01.vsnd	small/dtw/greedy	Sorry.
+0667ff6c	sounds/vo/viper/ping/viper_ping_split_push.vsnd	small/dtw/greedy	Let's split push.
+3f7a4ce3	sounds/vo/viper/ping/viper_ping_stay_together.vsnd	small/dtw/greedy	Stay together!
+32ffbbb7	sounds/vo/viper/ping/viper_ping_steal_farm.vsnd	small/dtw/greedy	Let's steal their farm.
+81e30663	sounds/vo/viper/ping/viper_ping_stim_pack_almost_ready.vsnd	small/dtw/greedy	Healing rights almost ready.
+1a486ef0	sounds/vo/viper/ping/viper_ping_stim_pack_not_ready.vsnd	small/dtw/greedy	Healing Writes on cooldown.
+5a201a93	sounds/vo/viper/ping/viper_ping_stop_urn.vsnd	small/dtw/greedy	They have the yard.
+6dc5d268	sounds/vo/viper/ping/viper_ping_synth_above.vsnd	small/dtw/greedy	Packets above us!
+a6bc23c0	sounds/vo/viper/ping/viper_ping_synth_almost_respawn.vsnd	small/dtw/greedy	Pocket's almost back.
+af9bf2ae	sounds/vo/viper/ping/viper_ping_synth_below.vsnd	small/dtw/greedy	Pocket's down there.
+41bf57c9	sounds/vo/viper/ping/viper_ping_synth_check_items.vsnd	small/dtw/greedy	Check out what pocketbot.
+34aa0514	sounds/vo/viper/ping/viper_ping_synth_dead.vsnd	small/dtw/greedy	Pocket is dead.
+d1fc9c95	sounds/vo/viper/ping/viper_ping_synth_low_health.vsnd	small/dtw/greedy	Packets almost dead!
+bcb92bdf	sounds/vo/viper/ping/viper_ping_synth_missing_01.vsnd	small/dtw/greedy	Pocket's missing.
+0f8c4a4c	sounds/vo/viper/ping/viper_ping_take_mid.vsnd	small/dtw/greedy	Let's go for the rejuvenator.
+7940fd3d	sounds/vo/viper/ping/viper_ping_tengu_above.vsnd	small/dtw/greedy	Ivy's above us
+8bf6a589	sounds/vo/viper/ping/viper_ping_tengu_almost_respawn.vsnd	small/dtw/greedy	Ivy's almost back.
+e13ec036	sounds/vo/viper/ping/viper_ping_tengu_below.vsnd	small/dtw/greedy	Ivy's down there.
+77f4064b	sounds/vo/viper/ping/viper_ping_tengu_check_items.vsnd	small/dtw/greedy	Check out what Ivy bought.
+cda8a32d	sounds/vo/viper/ping/viper_ping_tengu_dead.vsnd	small/dtw/greedy	- Ivy is dead.
+2d4709cd	sounds/vo/viper/ping/viper_ping_tengu_low_health.vsnd	small/dtw/greedy	Ivy's almost dead!
+47551272	sounds/vo/viper/ping/viper_ping_tengu_missing_01.vsnd	small/dtw/greedy	Ivy's missing.
+4817ea24	sounds/vo/viper/ping/viper_ping_thank_you_01.vsnd	small/dtw/greedy	Thanks.
+a7d13275	sounds/vo/viper/ping/viper_ping_trapper_almost_respawn.vsnd	small/dtw/greedy	Trepper's almost back.
+e2b8eb49	sounds/vo/viper/ping/viper_ping_trapper_check_items.vsnd	small/dtw/greedy	Check out what's rapper bought.
+49aad02e	sounds/vo/viper/ping/viper_ping_trapper_dead.vsnd	small/dtw/greedy	Trepper's dead.
+94a6ca02	sounds/vo/viper/ping/viper_ping_trapper_missing_01.vsnd	small/dtw/greedy	Trepper's missing.
+800c2344	sounds/vo/viper/ping/viper_ping_ult_ready_astro.vsnd	small/dtw/greedy	Holiday's ult is ready.
+4c4f2efd	sounds/vo/viper/ping/viper_ping_ult_ready_atlas.vsnd	small/dtw/greedy	Abrams ult is ready.
+a205044c	sounds/vo/viper/ping/viper_ping_ult_ready_bebop.vsnd	small/dtw/greedy	Bebop's ult is ready.
+60c880c5	sounds/vo/viper/ping/viper_ping_ult_ready_bookworm.vsnd	small/dtw/greedy	." "Page is all this ready
+c0d5b963	sounds/vo/viper/ping/viper_ping_ult_ready_chrono.vsnd	small/dtw/greedy	Paradox's alt is ready.
+70feedec	sounds/vo/viper/ping/viper_ping_ult_ready_doorman.vsnd	small/dtw/greedy	Door man's alt is ready.
+13b0ea15	sounds/vo/viper/ping/viper_ping_ult_ready_drifter.vsnd	small/dtw/greedy	Drifter's ult is ready!
+7788e79d	sounds/vo/viper/ping/viper_ping_ult_ready_dynamo.vsnd	small/dtw/greedy	Dynamo's alt is ready!
+5dfc9b17	sounds/vo/viper/ping/viper_ping_ult_ready_familiar.vsnd	small/dtw/greedy	Remzolt is ready.
+728e5662	sounds/vo/viper/ping/viper_ping_ult_ready_fencer.vsnd	small/dtw/greedy	Apollo's alt is ready.
+edba0fe1	sounds/vo/viper/ping/viper_ping_ult_ready_forge.vsnd	small/dtw/greedy	McGinnis's ult is ready.
+29d2d8ea	sounds/vo/viper/ping/viper_ping_ult_ready_frank.vsnd	small/dtw/greedy	Vector's alt is ready.
+69251949	sounds/vo/viper/ping/viper_ping_ult_ready_ghost.vsnd	small/dtw/greedy	Guy's salt is ready!
+4a92eb60	sounds/vo/viper/ping/viper_ping_ult_ready_gigawatt.vsnd	small/dtw/greedy	Savin' Zolt is ready!
+7443ac95	sounds/vo/viper/ping/viper_ping_ult_ready_haze.vsnd	small/dtw/greedy	Hey, Zolt is ready.
+aa62683d	sounds/vo/viper/ping/viper_ping_ult_ready_hornet.vsnd	small/dtw/greedy	Vendictus Alt is ready.
+7dd2add7	sounds/vo/viper/ping/viper_ping_ult_ready_inferno.vsnd	small/dtw/greedy	And Furnace's alt is ready!
+e132c4c2	sounds/vo/viper/ping/viper_ping_ult_ready_kelvin.vsnd	small/dtw/greedy	Calvin's alt is ready.
+d6a0db9f	sounds/vo/viper/ping/viper_ping_ult_ready_krill.vsnd	small/dtw/greedy	Krel's ult is ready.
+16025be2	sounds/vo/viper/ping/viper_ping_ult_ready_lash.vsnd	small/dtw/greedy	Lash's ult is ready.
+f0036ed4	sounds/vo/viper/ping/viper_ping_ult_ready_magician.vsnd	small/dtw/greedy	Sinclair's ult is ready!
+e94602a4	sounds/vo/viper/ping/viper_ping_ult_ready_mirage.vsnd	small/dtw/greedy	Marash's alt is ready!
+15713311	sounds/vo/viper/ping/viper_ping_ult_ready_nano.vsnd	small/dtw/greedy	Calco's alt is ready.
+6eb49d73	sounds/vo/viper/ping/viper_ping_ult_ready_necro.vsnd	small/dtw/greedy	Graves Alt is ready.
+d0ab5412	sounds/vo/viper/ping/viper_ping_ult_ready_orion.vsnd	small/dtw/greedy	Great Talon's ult is ready.
+0c15188f	sounds/vo/viper/ping/viper_ping_ult_ready_priest.vsnd	small/dtw/greedy	The Venator's Alt is ready!
+2d95f50d	sounds/vo/viper/ping/viper_ping_ult_ready_punkgoat.vsnd	small/dtw/greedy	Billy's alt is ready.
+a727b0b5	sounds/vo/viper/ping/viper_ping_ult_ready_shiv.vsnd	small/dtw/greedy	Shave's ult is ready.
+25b396fd	sounds/vo/viper/ping/viper_ping_ult_ready_synth.vsnd	small/dtw/greedy	Package alt is ready.
+021aaf23	sounds/vo/viper/ping/viper_ping_ult_ready_tengu.vsnd	small/dtw/greedy	Ivy's ult is ready.
+62ec5094	sounds/vo/viper/ping/viper_ping_ult_ready_unicorn.vsnd	small/dtw/greedy	- Celeste's salt is ready.
+f0cabd2d	sounds/vo/viper/ping/viper_ping_ult_ready_vampirebat.vsnd	small/dtw/greedy	Mina's ult is ready!
+7a5af60a	sounds/vo/viper/ping/viper_ping_ult_ready_viscous.vsnd	small/dtw/greedy	Viscous is all just ready.
+ac80ff04	sounds/vo/viper/ping/viper_ping_ult_ready_warden.vsnd	small/dtw/greedy	Warden's ult is ready.
+e8673175	sounds/vo/viper/ping/viper_ping_ult_ready_werewolf.vsnd	small/dtw/greedy	Silver's alt is ready!
+cbdca9af	sounds/vo/viper/ping/viper_ping_ult_ready_wraith.vsnd	small/dtw/greedy	Right, Zolt is ready!
+2758eb5b	sounds/vo/viper/ping/viper_ping_ult_ready_yamato.vsnd	small/dtw/greedy	Yamato's ult is ready!
+6f5e58df	sounds/vo/viper/ping/viper_ping_unicorn_above.vsnd	small/dtw/greedy	Slast is above us.
+d38ae5fe	sounds/vo/viper/ping/viper_ping_unicorn_almost_respawn.vsnd	small/dtw/greedy	T'Leste is almost back!
+a2bc38d1	sounds/vo/viper/ping/viper_ping_unicorn_below.vsnd	small/dtw/greedy	Celeste is down there.
+5626d192	sounds/vo/viper/ping/viper_ping_unicorn_check_items.vsnd	small/dtw/greedy	Ah, check out what Celeste bought.
+9a2e3ed7	sounds/vo/viper/ping/viper_ping_unicorn_dead.vsnd	small/dtw/greedy	Celeste is dead.
+676d9bd9	sounds/vo/viper/ping/viper_ping_unicorn_low_health.vsnd	small/dtw/greedy	Celeste is almost dead.
+9db254d4	sounds/vo/viper/ping/viper_ping_unicorn_missing_01.vsnd	small/dtw/greedy	Celeste is missing.
+f2bce93b	sounds/vo/viper/ping/viper_ping_use_ability1.vsnd	small/dtw/greedy	- Daggers ready.
+b730910f	sounds/vo/viper/ping/viper_ping_use_ability2.vsnd	small/dtw/greedy	Poison's ready.
+9a03f4f0	sounds/vo/viper/ping/viper_ping_use_ability3.vsnd	small/dtw/greedy	Ready to be a menace to society, baby.
+ea555453	sounds/vo/viper/ping/viper_ping_use_ability4_01.vsnd	small/dtw/greedy	Bola's ready.
+7230c8e0	sounds/vo/viper/ping/viper_ping_use_ability4_02.vsnd	small/dtw/greedy	Ready to turn 'em to stone.
+41d8dbc5	sounds/vo/viper/ping/viper_ping_use_ability4_03.vsnd	small/dtw/greedy	Ready to petrify.
+94c2a370	sounds/vo/viper/ping/viper_ping_use_ability4_04.vsnd	small/dtw/greedy	Ready to get the party started!
+3e7abbd7	sounds/vo/viper/ping/viper_ping_use_ability4_05.vsnd	small/dtw/greedy	Ready to pick a team fight.
+dc4dc6eb	sounds/vo/viper/ping/viper_ping_use_ability4_06.vsnd	small/dtw/greedy	Ready to use Bola!
+6c175ff7	sounds/vo/viper/ping/viper_ping_use_ability4_07.vsnd	small/dtw/greedy	Ready to go gorgon on em!
+dd618b8e	sounds/vo/viper/ping/viper_ping_use_ability4_08.vsnd	small/dtw/greedy	Ready to throw stones.
+85cad571	sounds/vo/viper/ping/viper_ping_use_ability4_09.vsnd	small/dtw/greedy	Ready to rock. Oh my God, didn't even mean to make a petrify joke, but I'm just too damn good.
+71740fbf	sounds/vo/viper/ping/viper_ping_use_ability4_10.vsnd	small/dtw/greedy	Ready to stone 'em!
+f95945cb	sounds/vo/viper/ping/viper_ping_use_disarm_hex.vsnd	small/dtw/greedy	Disarming hexes ready!
+efb4d29b	sounds/vo/viper/ping/viper_ping_use_focus_lens.vsnd	small/dtw/greedy	Focus lens is ready.
+b87f15b9	sounds/vo/viper/ping/viper_ping_use_glitch.vsnd	small/dtw/greedy	Ready to use cursed relic.
+69753f9d	sounds/vo/viper/ping/viper_ping_use_health_nova.vsnd	small/dtw/greedy	Ready to use Healing Nova?
+35826ca2	sounds/vo/viper/ping/viper_ping_use_item.vsnd	small/dtw/greedy	Ready to use item.
+59a4ff50	sounds/vo/viper/ping/viper_ping_use_kncokdown.vsnd	small/dtw/greedy	Ready to use knockdown.
+69dc64cd	sounds/vo/viper/ping/viper_ping_use_refresher.vsnd	small/dtw/greedy	Ready to use refresher?
+83a1b45a	sounds/vo/viper/ping/viper_ping_use_rescue_beam.vsnd	small/dtw/greedy	Rescue beam is ready.
+5b3d9c93	sounds/vo/viper/ping/viper_ping_use_rupture.vsnd	small/dtw/greedy	Ready to use the K!
+0d80462f	sounds/vo/viper/ping/viper_ping_use_silence.vsnd	small/dtw/greedy	"Ready to use silence, Waif!
+6d88a1bf	sounds/vo/viper/ping/viper_ping_use_slowing_hex.vsnd	small/dtw/greedy	Slowing hex is ready!
+9dc1162a	sounds/vo/viper/ping/viper_ping_use_stim_pack.vsnd	small/dtw/greedy	Ready to use healing right.
+4b4f53a1	sounds/vo/viper/ping/viper_ping_use_vortex_web.vsnd	small/dtw/greedy	Bortex web is ready.
+7109382e	sounds/vo/viper/ping/viper_ping_use_warp_stone.vsnd	small/dtw/greedy	Ready to use Warp Stone.
+9d652052	sounds/vo/viper/ping/viper_ping_vampirebat_above.vsnd	small/dtw/greedy	"Mean is above us
+5a1fc3d1	sounds/vo/viper/ping/viper_ping_vampirebat_almost_respawn.vsnd	small/dtw/greedy	Mina's almost back.
+ed81b1c5	sounds/vo/viper/ping/viper_ping_vampirebat_below.vsnd	small/dtw/greedy	Mina's down there.
+dc526c55	sounds/vo/viper/ping/viper_ping_vampirebat_check_items.vsnd	small/dtw/greedy	Check out what Mina bought.
+3b53d32a	sounds/vo/viper/ping/viper_ping_vampirebat_dead.vsnd	small/dtw/greedy	Mina's dead.
+114b5a85	sounds/vo/viper/ping/viper_ping_vampirebat_low_health.vsnd	small/dtw/greedy	Meena's almost dead.
+44c369f6	sounds/vo/viper/ping/viper_ping_vampirebat_missing_01.vsnd	small/dtw/greedy	Nina's missing.
+0c4d69a8	sounds/vo/viper/ping/viper_ping_viscous_above.vsnd	small/dtw/greedy	This case is for us!
+b79b5985	sounds/vo/viper/ping/viper_ping_viscous_almost_respawn.vsnd	small/dtw/greedy	Viscous is almost back.
+93377a5e	sounds/vo/viper/ping/viper_ping_viscous_below.vsnd	small/dtw/greedy	"Biscuits is down there
+3a27790c	sounds/vo/viper/ping/viper_ping_viscous_check_items.vsnd	small/dtw/greedy	Check out what Viscous bought.
+6f5cc1e4	sounds/vo/viper/ping/viper_ping_viscous_dead.vsnd	small/dtw/greedy	Viscous is dead.
+b2415a9b	sounds/vo/viper/ping/viper_ping_viscous_low_health.vsnd	small/dtw/greedy	"Viscus is almost dead
+1d692291	sounds/vo/viper/ping/viper_ping_viscous_missing_01.vsnd	small/dtw/greedy	Viscous is missing.
+7489d689	sounds/vo/viper/ping/viper_ping_vortex_web_almost_ready.vsnd	small/dtw/greedy	Vortex Web is almost ready.
+5d7c529f	sounds/vo/viper/ping/viper_ping_vortex_web_not_ready.vsnd	small/dtw/greedy	Vortex Web is on cooldown.
+0eab4d5d	sounds/vo/viper/ping/viper_ping_wait.vsnd	small/dtw/greedy	Hold up.
+8c5e1f3e	sounds/vo/viper/ping/viper_ping_warden_above.vsnd	small/dtw/greedy	Warden's above us!
+36a441cb	sounds/vo/viper/ping/viper_ping_warden_almost_respawn.vsnd	small/dtw/greedy	Warden's almost back.
+3011b0f1	sounds/vo/viper/ping/viper_ping_warden_below.vsnd	small/dtw/greedy	Warden's down there!
+2c5e3690	sounds/vo/viper/ping/viper_ping_warden_check_items.vsnd	small/dtw/greedy	Check out what warden by.
+dcede8af	sounds/vo/viper/ping/viper_ping_warden_dead.vsnd	small/dtw/greedy	Warden is dead.
+69c8c0a1	sounds/vo/viper/ping/viper_ping_warden_low_health.vsnd	small/dtw/greedy	Ordon's almost dead!
+8ad343a6	sounds/vo/viper/ping/viper_ping_warden_missing_01.vsnd	small/dtw/greedy	Morden's missing.
+513aaa04	sounds/vo/viper/ping/viper_ping_warp_stone_almost_ready.vsnd	small/dtw/greedy	Ooh, warpstone's almost ready!
+6715e18e	sounds/vo/viper/ping/viper_ping_warp_stone_not_ready.vsnd	small/dtw/greedy	Warp Stones on cooldown.
+89394861	sounds/vo/viper/ping/viper_ping_watch_out.vsnd	small/dtw/greedy	Watch out!
+e8360c63	sounds/vo/viper/ping/viper_ping_welcome.vsnd	small/dtw/greedy	You're welcome.
+3ea4374c	sounds/vo/viper/ping/viper_ping_werewolf_above.vsnd	small/dtw/greedy	Silver's above us!
+31d054bd	sounds/vo/viper/ping/viper_ping_werewolf_almost_respawn.vsnd	small/dtw/greedy	Silver's almost back.
+6acfc4cf	sounds/vo/viper/ping/viper_ping_werewolf_below.vsnd	small/dtw/greedy	Silver's down there!
+39c87eec	sounds/vo/viper/ping/viper_ping_werewolf_check_items.vsnd	small/dtw/greedy	Check out what Silverbite.
+d5da1405	sounds/vo/viper/ping/viper_ping_werewolf_dead.vsnd	small/dtw/greedy	Silver is dead.
+c79b61ac	sounds/vo/viper/ping/viper_ping_werewolf_low_health.vsnd	small/dtw/greedy	Silver's almost dead.
+c51d3c42	sounds/vo/viper/ping/viper_ping_werewolf_missing_01.vsnd	small/dtw/greedy	Silver's missing.
+44903c42	sounds/vo/viper/ping/viper_ping_with_astro.vsnd	small/dtw/greedy	I'm with you, Holiday.
+8added47	sounds/vo/viper/ping/viper_ping_with_atlas.vsnd	small/dtw/greedy	I'm with you, Abrams.
+0088aacb	sounds/vo/viper/ping/viper_ping_with_bebop.vsnd	small/dtw/greedy	I'm with you, bebop.
+1064fd13	sounds/vo/viper/ping/viper_ping_with_bookworm_alt.vsnd	small/dtw/greedy	I'm with you, Paige.
+321fef2c	sounds/vo/viper/ping/viper_ping_with_chrono.vsnd	small/dtw/greedy	I'm with you, paradox.
+e686b6a7	sounds/vo/viper/ping/viper_ping_with_doorman.vsnd	small/dtw/greedy	I'm with you, doorman.
+d9321780	sounds/vo/viper/ping/viper_ping_with_drifter.vsnd	small/dtw/greedy	I'm with you, Drifter.
+b56da6dc	sounds/vo/viper/ping/viper_ping_with_dynamo.vsnd	small/dtw/greedy	I'm with you, Dynamo.
+bef7b5ef	sounds/vo/viper/ping/viper_ping_with_familiar.vsnd	small/dtw/greedy	I'm with you, Rem!
+efaabc51	sounds/vo/viper/ping/viper_ping_with_fencer.vsnd	small/dtw/greedy	I'm with you, Apollo.
+481f8509	sounds/vo/viper/ping/viper_ping_with_forge.vsnd	small/dtw/greedy	I'm with you, McGinnis.
+998ff153	sounds/vo/viper/ping/viper_ping_with_frank.vsnd	small/dtw/greedy	I'm with you, Victor.
+27e0b5a9	sounds/vo/viper/ping/viper_ping_with_ghost.vsnd	small/dtw/greedy	I'm with you guys!
+e793e0ee	sounds/vo/viper/ping/viper_ping_with_gigawatt.vsnd	small/dtw/greedy	I'm with you, Seven.
+9d5cca90	sounds/vo/viper/ping/viper_ping_with_haze.vsnd	small/dtw/greedy	I'm with you, Haze.
+9cd80c52	sounds/vo/viper/ping/viper_ping_with_hornet.vsnd	small/dtw/greedy	I'm with you, Vindicda.
+3aab0c6a	sounds/vo/viper/ping/viper_ping_with_inferno.vsnd	small/dtw/greedy	I'm with you in Furnace.
+abc80bed	sounds/vo/viper/ping/viper_ping_with_kelvin.vsnd	small/dtw/greedy	I'm with you, Kelvin.
+f78c366d	sounds/vo/viper/ping/viper_ping_with_krill.vsnd	small/dtw/greedy	I'm with you, Krill.
+ac2c67ca	sounds/vo/viper/ping/viper_ping_with_lash.vsnd	small/dtw/greedy	I'm with you, Lash.
+ef780bf1	sounds/vo/viper/ping/viper_ping_with_magician.vsnd	small/dtw/greedy	I'm with you, Sinclair.
+39175dd5	sounds/vo/viper/ping/viper_ping_with_mirage.vsnd	small/dtw/greedy	I'm with you, Mirage.
+7abf0ce8	sounds/vo/viper/ping/viper_ping_with_nano.vsnd	small/dtw/greedy	I'm with you Calico!
+46481e58	sounds/vo/viper/ping/viper_ping_with_necro.vsnd	small/dtw/greedy	I'm with you, Graves.
+2c4bee78	sounds/vo/viper/ping/viper_ping_with_operative.vsnd	small/dtw/greedy	I'm with you, Raven!
+89a77f3f	sounds/vo/viper/ping/viper_ping_with_orion.vsnd	small/dtw/greedy	I'm with you, Grey Talon.
+de4003fe	sounds/vo/viper/ping/viper_ping_with_priest.vsnd	small/dtw/greedy	I'm with you, Venator.
+edca4859	sounds/vo/viper/ping/viper_ping_with_punkgoat.vsnd	small/dtw/greedy	I'm with you Billy!
+ea184066	sounds/vo/viper/ping/viper_ping_with_shiv.vsnd	small/dtw/greedy	I'm with you, Shiv.
+b14af61c	sounds/vo/viper/ping/viper_ping_with_slork.vsnd	small/dtw/greedy	I'm with you, Fathom.
+09e3c5fb	sounds/vo/viper/ping/viper_ping_with_synth.vsnd	small/dtw/greedy	I'm with you, pocket!
+8a7ea7f0	sounds/vo/viper/ping/viper_ping_with_tengu.vsnd	small/dtw/greedy	- I'm with you, Ivy.
+1c10e0e4	sounds/vo/viper/ping/viper_ping_with_trapper.vsnd	small/dtw/greedy	I'm with you, Trapper.
+a96e15a9	sounds/vo/viper/ping/viper_ping_with_unicorn.vsnd	small/dtw/greedy	I'm with you Celeste.
+cd742d7b	sounds/vo/viper/ping/viper_ping_with_vampirebat.vsnd	small/dtw/greedy	- I'm with you, Mina.
+88921ff8	sounds/vo/viper/ping/viper_ping_with_viscous.vsnd	small/dtw/greedy	I'm with you, Viscous.
+9c0de106	sounds/vo/viper/ping/viper_ping_with_warden.vsnd	small/dtw/greedy	I'm with you, Warden.
+c66e4b00	sounds/vo/viper/ping/viper_ping_with_werewolf.vsnd	small/dtw/greedy	Hey, I'm with you, Silver!
+14e6e4e0	sounds/vo/viper/ping/viper_ping_with_wraith.vsnd	small/dtw/greedy	I'm with you, Wraith.
+73b8d67e	sounds/vo/viper/ping/viper_ping_with_wrecker.vsnd	small/dtw/greedy	I'm with you, Rekker.
+57bed31d	sounds/vo/viper/ping/viper_ping_with_yamato.vsnd	small/dtw/greedy	I'm with you, Yamato.
+051a9749	sounds/vo/viper/ping/viper_ping_with_you.vsnd	small/dtw/greedy	I'm with you.
+1f30b34d	sounds/vo/viper/ping/viper_ping_wraith_above.vsnd	small/dtw/greedy	Races above us.
+417182c9	sounds/vo/viper/ping/viper_ping_wraith_almost_respawn.vsnd	small/dtw/greedy	Rathas almost back.
+1b6b7968	sounds/vo/viper/ping/viper_ping_wraith_below.vsnd	small/dtw/greedy	Wraith's down there!
+b9ad618c	sounds/vo/viper/ping/viper_ping_wraith_check_items.vsnd	small/dtw/greedy	Check out what Wraith bought.
+b57f4af1	sounds/vo/viper/ping/viper_ping_wraith_dead.vsnd	small/dtw/greedy	Wraith is dead.
+860bff72	sounds/vo/viper/ping/viper_ping_wraith_low_health.vsnd	small/dtw/greedy	Raith is almost dead.
+0d29582c	sounds/vo/viper/ping/viper_ping_wraith_missing_01.vsnd	small/dtw/greedy	." "Race missing."
+5c2bb487	sounds/vo/viper/ping/viper_ping_wrecker_almost_respawn.vsnd	small/dtw/greedy	Recker's almost back.
+9f5cd654	sounds/vo/viper/ping/viper_ping_wrecker_check_items.vsnd	small/dtw/greedy	Check out what Rucker bought.
+757eea64	sounds/vo/viper/ping/viper_ping_wrecker_dead.vsnd	small/dtw/greedy	Wrecker is dead.
+7271bdc3	sounds/vo/viper/ping/viper_ping_wrecker_missing_01.vsnd	small/dtw/greedy	Ruck is missing.
+fe3d5522	sounds/vo/viper/ping/viper_ping_yamato_above.vsnd	small/dtw/greedy	Yavataz above us!
+a9156164	sounds/vo/viper/ping/viper_ping_yamato_almost_respawn.vsnd	small/dtw/greedy	Yamato's almost back.
+5975d3bd	sounds/vo/viper/ping/viper_ping_yamato_below.vsnd	small/dtw/greedy	Yamato's down there.
+86671e49	sounds/vo/viper/ping/viper_ping_yamato_check_items.vsnd	small/dtw/greedy	Check out what Yamato bought.
+76281fdc	sounds/vo/viper/ping/viper_ping_yamato_dead.vsnd	small/dtw/greedy	Yamato is dead.
+417a7abf	sounds/vo/viper/ping/viper_ping_yamato_low_health.vsnd	small/dtw/greedy	Yamato's almost dead!
+761d7ae5	sounds/vo/viper/ping/viper_ping_yamato_missing_01.vsnd	small/dtw/greedy	Yamato's missing.
+0bb3ba74	sounds/vo/viper/ping/viper_ping_yellow_help_01.vsnd	small/dtw/greedy	Yellow needs help.
+99085858	sounds/vo/viper/ping/viper_ping_yellow_help_02.vsnd	small/dtw/greedy	York needs help!
+88cdbe02	sounds/vo/viper/viper_ally_artist_killed_in_lane_01.vsnd	small/dtw/greedy	They took out the painter!
+afb91e35	sounds/vo/viper/viper_ally_astro_killed_in_lane_01.vsnd	small/dtw/greedy	They took out holiday.
+93628174	sounds/vo/viper/viper_ally_atlas_killed_in_lane_01.vsnd	small/dtw/greedy	"They took out Abrams
+fa36bcb9	sounds/vo/viper/viper_ally_atlas_pass_on_zipline_01.vsnd	small/dtw/greedy	"Abe
+6f8420aa	sounds/vo/viper/viper_ally_baba_killed_in_lane_01.vsnd	small/dtw/greedy	Oh, they took out the pigeon lady.
+0caa32cb	sounds/vo/viper/viper_ally_bebop_killed_in_lane_01.vsnd	small/dtw/greedy	?" "Of course, bebop died
+e7469fda	sounds/vo/viper/viper_ally_bebop_killed_in_lane_01_alt.vsnd	small/dtw/greedy	Oh no, they took out Bebop.
+3f01933d	sounds/vo/viper/viper_ally_bebop_pass_on_zipline_01.vsnd	small/dtw/greedy	Bebop, you suck!
+bce766f6	sounds/vo/viper/viper_ally_bookworm_killed_in_lane_01_alt.vsnd	small/dtw/greedy	It took out Paige!
+7d91b2f8	sounds/vo/viper/viper_ally_chessmaster_killed_in_lane_01.vsnd	small/dtw/greedy	They took out the chest guy!
+00fdc571	sounds/vo/viper/viper_ally_chrono_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Paradox.
+ff5c5bd9	sounds/vo/viper/viper_ally_chrono_pass_on_zipline_01.vsnd	small/dtw/greedy	Hey, be careful out there, Paradox.
+41b99944	sounds/vo/viper/viper_ally_deadpack_killed_in_lane_01.vsnd	small/dtw/greedy	They took out the test pilot!
+12e218a9	sounds/vo/viper/viper_ally_doorman_killed_in_lane_01.vsnd	small/dtw/greedy	They took out the doorman!
+107287b0	sounds/vo/viper/viper_ally_drifter_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Drifter.
+3ad3c2fc	sounds/vo/viper/viper_ally_dynamo_killed_in_lane_01.vsnd	large-v3-turbo/beam5	They took out the professor.
+3ad3c2fc	sounds/vo/viper/viper_ally_dynamo_killed_in_lane_01.vsnd	small/dtw/greedy	They took out the professor.
+e961aa87	sounds/vo/viper/viper_ally_dynamo_pass_on_zipline_01.vsnd	small/dtw/greedy	See you soon, Professor!
+52eace91	sounds/vo/viper/viper_ally_familiar_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Rem.
+be2372ef	sounds/vo/viper/viper_ally_fencer_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Apollo!
+7ec157b2	sounds/vo/viper/viper_ally_forge_killed_in_lane_01.vsnd	small/dtw/greedy	They took out McGinnis.
+4cebe5fb	sounds/vo/viper/viper_ally_forge_pass_on_zipline_01.vsnd	small/dtw/greedy	Be with you when I can, Mick G.
+9724f8b0	sounds/vo/viper/viper_ally_frank_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Victor.
+0651ef29	sounds/vo/viper/viper_ally_ghost_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Geist.
+2906bdfe	sounds/vo/viper/viper_ally_ghost_pass_on_zipline_01.vsnd	small/dtw/greedy	." "Looking good, guys
+1067d061	sounds/vo/viper/viper_ally_gigawatt_killed_in_lane_01.vsnd	small/dtw/greedy	They took out seven.
+48a5a3a0	sounds/vo/viper/viper_ally_gigawatt_pass_on_zipline_01.vsnd	small/dtw/greedy	Now there goes one scary son of a bitch.
+d975d104	sounds/vo/viper/viper_ally_haze_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Hayes.
+c0d557c0	sounds/vo/viper/viper_ally_haze_pass_on_zipline_01.vsnd	small/dtw/greedy	Don't make eye contact.
+8759c641	sounds/vo/viper/viper_ally_holliday_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Holiday.
+30bde127	sounds/vo/viper/viper_ally_holliday_pass_on_zipline_01.vsnd	small/dtw/greedy	You make that hat work, Sheriff.
+23aa046b	sounds/vo/viper/viper_ally_hornet_killed_in_lane_01.vsnd	small/dtw/greedy	Oof, they took out Vindicta.
+b8284dab	sounds/vo/viper/viper_ally_hornet_pass_on_zipline_01.vsnd	small/dtw/greedy	Good haunting, Vendicta!
+07ac710b	sounds/vo/viper/viper_ally_inferno_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Inferness.
+f540ef54	sounds/vo/viper/viper_ally_inferno_pass_on_zipline_01.vsnd	small/dtw/greedy	See you soon, Inferness!
+bfc7786f	sounds/vo/viper/viper_ally_kelvin_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Calvin!
+42304c30	sounds/vo/viper/viper_ally_kelvin_pass_on_zipline_01.vsnd	small/dtw/greedy	Good luck, Calvin.
+53b8777d	sounds/vo/viper/viper_ally_krill_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Krill.
+4395c01d	sounds/vo/viper/viper_ally_krill_pass_on_zipline_01.vsnd	small/dtw/greedy	- Don't die, Mo.
+7816be2d	sounds/vo/viper/viper_ally_lash_killed_in_lane_01.vsnd	small/dtw/greedy	They're gonna pay for what they did to Lash.
+4af25cf8	sounds/vo/viper/viper_ally_lash_pass_on_zipline_01.vsnd	small/dtw/greedy	God, he's so cool.
+3788184c	sounds/vo/viper/viper_ally_magician_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Sinclair.
+312dfade	sounds/vo/viper/viper_ally_magician_pass_on_zipline_01.vsnd	small/dtw/greedy	See out there, St. Clair.
+b91497fa	sounds/vo/viper/viper_ally_mirage_killed_in_lane_01.vsnd	small/dtw/greedy	- They took out Mirage.
+71c79cd4	sounds/vo/viper/viper_ally_mirage_pass_on_zipline_01.vsnd	small/dtw/greedy	- Stay safe, Mirage.
+50178e97	sounds/vo/viper/viper_ally_nano_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Calico.
+5a01e74c	sounds/vo/viper/viper_ally_nano_pass_on_zipline_01.vsnd	small/dtw/greedy	Damn, I want her cat.
+c246f70d	sounds/vo/viper/viper_ally_necro_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Graves!
+dbf516a7	sounds/vo/viper/viper_ally_nurse_killed_in_lane_01.vsnd	small/dtw/greedy	They took out the nurse!
+4d1a0e99	sounds/vo/viper/viper_ally_operative_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Raven.
+dc6ef015	sounds/vo/viper/viper_ally_operative_pass_on_zipline_01.vsnd	small/dtw/greedy	Now that looks like a guy that can afford to tip.
+06f19de8	sounds/vo/viper/viper_ally_orion_killed_in_lane_01.vsnd	large-v3-turbo/beam5	They took out the old man.
+06f19de8	sounds/vo/viper/viper_ally_orion_killed_in_lane_01.vsnd	small/dtw/greedy	They took out the old man.
+7f406265	sounds/vo/viper/viper_ally_orion_pass_on_zipline_01.vsnd	small/dtw/greedy	See out there, Gray Talon.
+16db71d2	sounds/vo/viper/viper_ally_priest_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Venator!
+dfb9edcd	sounds/vo/viper/viper_ally_punkgoat_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Billy.
+4cdaf77b	sounds/vo/viper/viper_ally_ratking_killed_in_lane_01.vsnd	small/dtw/greedy	They took out the rat king.
+24afe87d	sounds/vo/viper/viper_ally_shiv_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Shiv.
+9fb53e76	sounds/vo/viper/viper_ally_shiv_pass_on_zipline_01.vsnd	small/dtw/greedy	Have fun knifing people.
+84c2cdf1	sounds/vo/viper/viper_ally_slork_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Featherm.
+d469ad94	sounds/vo/viper/viper_ally_slork_pass_on_zipline_01.vsnd	small/dtw/greedy	I'm never swimming in the ocean again.
+e791ec8b	sounds/vo/viper/viper_ally_synth_killed_in_lane_01.vsnd	small/dtw/greedy	It took out pocket.
+6469f82c	sounds/vo/viper/viper_ally_synth_pass_on_zipline_01.vsnd	small/dtw/greedy	I don't know how, but they can really pull off a scarf.
+872cbd3e	sounds/vo/viper/viper_ally_tengu_killed_in_lane_01.vsnd	large-v3-turbo/beam5	They took out the gargoyle!
+872cbd3e	sounds/vo/viper/viper_ally_tengu_killed_in_lane_01.vsnd	small/dtw/greedy	They took out the gargoyle.
+48caa4ba	sounds/vo/viper/viper_ally_tengu_pass_on_zipline_01.vsnd	small/dtw/greedy	Be back when I can, Ivy.
+3269d603	sounds/vo/viper/viper_ally_trapper_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Trapper.
+ee15a480	sounds/vo/viper/viper_ally_trapper_pass_on_zipline_01.vsnd	small/dtw/greedy	Good luck Trapper!
+66fbc7f8	sounds/vo/viper/viper_ally_unicorn_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Celeste.
+dde2c594	sounds/vo/viper/viper_ally_vampirebat_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Mina!
+5934b6bb	sounds/vo/viper/viper_ally_viscous_killed_in_lane_01.vsnd	small/dtw/greedy	." "They took out Viscous!"
+653865b7	sounds/vo/viper/viper_ally_viscous_pass_on_zipline_01.vsnd	small/dtw/greedy	I love that goo guy.
+79155745	sounds/vo/viper/viper_ally_warden_killed_in_lane_01.vsnd	small/dtw/greedy	They took out warden
+7dd57ad4	sounds/vo/viper/viper_ally_warden_pass_on_zipline_01.vsnd	small/dtw/greedy	You know, that guy needs to smile more.
+b6a30f65	sounds/vo/viper/viper_ally_werewolf_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Silver.
+3d7acb28	sounds/vo/viper/viper_ally_wraith_killed_in_lane_01.vsnd	small/dtw/greedy	They took our race. Hey, looks like I don't have to pay her back.
+ab46533a	sounds/vo/viper/viper_ally_wraith_pass_on_zipline_01.vsnd	small/dtw/greedy	Hey, we cool, Wraith?
+5569bb65	sounds/vo/viper/viper_ally_wrecker_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Rekker.
+9706d305	sounds/vo/viper/viper_ally_wrecker_pass_on_zipline_01.vsnd	small/dtw/greedy	Glad that thing's with us.
+216b322f	sounds/vo/viper/viper_ally_yamato_killed_in_lane_01.vsnd	small/dtw/greedy	They took out Yamato.
+bbcb445a	sounds/vo/viper/viper_ally_yamato_pass_on_zipline_01.vsnd	small/dtw/greedy	Are you got to, baby?
+13ab0e0b	sounds/vo/viper/viper_ap_reminder_01.vsnd	small/dtw/greedy	Gotta upgrade my powers.
+8a8dbecf	sounds/vo/viper/viper_ap_reminder_02.vsnd	small/dtw/greedy	Time to improve my abilities.
+d56cb43c	sounds/vo/viper/viper_ap_reminder_03.vsnd	small/dtw/greedy	Can't forget to improve my skills.
+fec4a1ab	sounds/vo/viper/viper_be_careful_01.vsnd	small/dtw/greedy	You're on a metaphorical island, V. Well, technically it's a literal island 'cause it's Manhattan, but the original point stands and I need to be careful.
+5c781263	sounds/vo/viper/viper_be_careful_02.vsnd	small/dtw/greedy	Yeah, I'm, uh, all alone out here.
+96416a97	sounds/vo/viper/viper_be_careful_03.vsnd	small/dtw/greedy	Well, if I were them, I'd ambush me right about now.
+277fe546	sounds/vo/viper/viper_close_call_01.vsnd	small/dtw/greedy	You know me, Cheating Death, Breaking Hearts.
+f02ad100	sounds/vo/viper/viper_close_call_02.vsnd	small/dtw/greedy	Oh, it takes more than that to kill me.
+00dcd84b	sounds/vo/viper/viper_close_call_03.vsnd	small/dtw/greedy	Things got a little spicy back there.
+534b1594	sounds/vo/viper/viper_close_call_04.vsnd	small/dtw/greedy	Way to not die, V.
+4b0ba893	sounds/vo/viper/viper_close_call_05.vsnd	large-v3-turbo/beam5	I need to not put myself in these situations. I feel like that's the problem.
+4b0ba893	sounds/vo/viper/viper_close_call_05.vsnd	small/dtw/greedy	I need to not put myself in these situations. I feel like that's the problem.
+4e75c0f8	sounds/vo/viper/viper_congrats_01.vsnd	small/dtw/greedy	Nice job!
+7948f65c	sounds/vo/viper/viper_congrats_02.vsnd	small/dtw/greedy	Alright
+b59a9ae9	sounds/vo/viper/viper_congrats_03.vsnd	small/dtw/greedy	This is more fun than a Philly prison riot.
+f14780ad	sounds/vo/viper/viper_congrats_04.vsnd	small/dtw/greedy	- I love taking these guys out.
+8fccf718	sounds/vo/viper/viper_congrats_05.vsnd	small/dtw/greedy	We make a hell of a team, don't we?
+8ea0eaaf	sounds/vo/viper/viper_desperation_power1_01.vsnd	small/dtw/greedy	I can still get him.
+359c2017	sounds/vo/viper/viper_desperation_power1_02.vsnd	small/dtw/greedy	I'm down, but not out.
+e5f4b752	sounds/vo/viper/viper_desperation_power1_03.vsnd	small/dtw/greedy	I'm not finished with you!
+1cfe6225	sounds/vo/viper/viper_desperation_power1_04.vsnd	small/dtw/greedy	I'll cut you up.
+70d72263	sounds/vo/viper/viper_desperation_power1_05.vsnd	small/dtw/greedy	You're gonna bleed.
+2afcda0c	sounds/vo/viper/viper_desperation_power2_01.vsnd	small/dtw/greedy	I'm gonna give him something to remember me by.
+c1d2e9d1	sounds/vo/viper/viper_desperation_power2_02.vsnd	small/dtw/greedy	They're gonna pay.
+129424fa	sounds/vo/viper/viper_desperation_power2_03.vsnd	small/dtw/greedy	We're going down together, baby.
+fda28c21	sounds/vo/viper/viper_desperation_power2_04.vsnd	small/dtw/greedy	Don't count me out yet.
+e8b74316	sounds/vo/viper/viper_desperation_power2_05.vsnd	small/dtw/greedy	I need this stuff to kick in!
+f6500133	sounds/vo/viper/viper_desperation_power4_01.vsnd	small/dtw/greedy	Gotta hit this.
+f806bbdb	sounds/vo/viper/viper_desperation_power4_02.vsnd	small/dtw/greedy	Petrify!
+aacfb942	sounds/vo/viper/viper_desperation_power4_03.vsnd	small/dtw/greedy	Got a landmiss.
+be55e84b	sounds/vo/viper/viper_desperation_power4_04.vsnd	small/dtw/greedy	Come on, come on, come on, come on!
+e8757c86	sounds/vo/viper/viper_desperation_power4_05.vsnd	small/dtw/greedy	Time to make this count.
+4ec31a00	sounds/vo/viper/viper_end_streak.vsnd	small/dtw/greedy	Doesn't matter how good you think you are, life catches up with you eventually.
+f2fcd06f	sounds/vo/viper/viper_enemy_gets_rejuv_01.vsnd	small/dtw/greedy	They have the regiove!
+b37b02a5	sounds/vo/viper/viper_enemy_gets_rejuv_02.vsnd	small/dtw/greedy	They got the rejuvenator, we need to stop them.
+e34aeebe	sounds/vo/viper/viper_enemy_gets_rejuv_03.vsnd	small/dtw/greedy	They got the regio of what's the plan?
+8b4b5f00	sounds/vo/viper/viper_happy_01.vsnd	small/dtw/greedy	Not bad. Not bad.
+56e8e758	sounds/vo/viper/viper_happy_02.vsnd	small/dtw/greedy	♪ Everything's coming up V ♪
+a8dec42e	sounds/vo/viper/viper_happy_03.vsnd	small/dtw/greedy	I'm liking this.
+8d7c3788	sounds/vo/viper/viper_happy_04.vsnd	small/dtw/greedy	Think we might win this thing.
+a03e6106	sounds/vo/viper/viper_happy_05.vsnd	small/dtw/greedy	Oh, we got this.
+57866ba4	sounds/vo/viper/viper_happy_06.vsnd	small/dtw/greedy	This is going our way.
+6b1fe336	sounds/vo/viper/viper_happy_07.vsnd	small/dtw/greedy	They don't have a chance in hell!
+3137ba39	sounds/vo/viper/viper_happy_08.vsnd	small/dtw/greedy	Oh, this couldn't be going better.
+4c7786ab	sounds/vo/viper/viper_happy_09.vsnd	small/dtw/greedy	I knew today was going to be amazing.
+d0c37724	sounds/vo/viper/viper_happy_10.vsnd	large-v3-turbo/beam5	They can't stop us.
+d0c37724	sounds/vo/viper/viper_happy_10.vsnd	small/dtw/greedy	Big kid, stop us.
+fa17641d	sounds/vo/viper/viper_hunt_01.vsnd	small/dtw/greedy	Come out and play!
+72fae3a2	sounds/vo/viper/viper_hunt_02.vsnd	small/dtw/greedy	Damn it, where'd they go?
+3585ab78	sounds/vo/viper/viper_hunt_03.vsnd	small/dtw/greedy	Come on, don't hide. Just come out so we can talk.
+4b0e0c09	sounds/vo/viper/viper_interrupt_01.vsnd	small/dtw/greedy	Uh-uh.
+7a7ad4e5	sounds/vo/viper/viper_interrupt_02.vsnd	small/dtw/greedy	Not happening.
+4456ea0b	sounds/vo/viper/viper_interrupt_03.vsnd	small/dtw/greedy	Yeah, no.
+897fa891	sounds/vo/viper/viper_interrupt_04.vsnd	small/dtw/greedy	Stop them.
+ed3281df	sounds/vo/viper/viper_interrupt_05.vsnd	small/dtw/greedy	V does it again.
+e7ca27fb	sounds/vo/viper/viper_kill_anyhero_01.vsnd	small/dtw/greedy	Oh, look, I've never had a fight for my life before.
+def77fca	sounds/vo/viper/viper_kill_anyhero_02.vsnd	small/dtw/greedy	Done and done.
+deb7ba0a	sounds/vo/viper/viper_kill_anyhero_03.vsnd	small/dtw/greedy	I'm sorry, I thought these guys were supposed to be tough.
+829a4fff	sounds/vo/viper/viper_kill_anyhero_04.vsnd	small/dtw/greedy	They wouldn't last two minutes in a prison riot.
+eba87d0c	sounds/vo/viper/viper_kill_anyhero_05.vsnd	small/dtw/greedy	That's what they get when they mess with me, baby!
+6b832380	sounds/vo/viper/viper_kill_anyhero_06.vsnd	small/dtw/greedy	Easy breezy!
+849019a0	sounds/vo/viper/viper_kill_anyhero_07.vsnd	large-v3-turbo/beam5	I'll be honest, I wasn't worried.
+849019a0	sounds/vo/viper/viper_kill_anyhero_07.vsnd	small/dtw/greedy	I'll be honest, I wasn't worried.
+5596976a	sounds/vo/viper/viper_kill_anyhero_08.vsnd	small/dtw/greedy	Gets easier every time.
+b72242c6	sounds/vo/viper/viper_kill_anyhero_09.vsnd	small/dtw/greedy	Yeah, cause they never fought someone like me.
+81a868ee	sounds/vo/viper/viper_kill_anyhero_10.vsnd	small/dtw/greedy	God, I should've put money on this thing.
+be902e64	sounds/vo/viper/viper_kill_astro_01.vsnd	small/dtw/greedy	Cops man, what are they gonna learn?
+1d2e10fa	sounds/vo/viper/viper_kill_astro_02.vsnd	small/dtw/greedy	You're out of your jurisdiction, lady.
+565256c5	sounds/vo/viper/viper_kill_astro_03.vsnd	small/dtw/greedy	Everyone with a badge thinks they're hard.
+cc050dab	sounds/vo/viper/viper_kill_astro_04.vsnd	small/dtw/greedy	Now I dealt with the sheriff.
+8df746fb	sounds/vo/viper/viper_kill_astro_05.vsnd	small/dtw/greedy	Yeah, we don't need to worry about the sheriff.
+dc60bfc7	sounds/vo/viper/viper_kill_atlas_01.vsnd	small/dtw/greedy	Better luck next time, Abrams!
+b8aa5e4b	sounds/vo/viper/viper_kill_atlas_02.vsnd	small/dtw/greedy	- Sorry, Abe.
+51e7cbf2	sounds/vo/viper/viper_kill_atlas_03.vsnd	small/dtw/greedy	Look down the detective.
+dc54ffd1	sounds/vo/viper/viper_kill_atlas_04.vsnd	small/dtw/greedy	Abrams is a tough bastard.
+33215c94	sounds/vo/viper/viper_kill_atlas_05.vsnd	small/dtw/greedy	I'll buy him some whiskey, he'll get over it.
+8732d4db	sounds/vo/viper/viper_kill_bebop_01.vsnd	small/dtw/greedy	Now I get why Lash loves beating you up so much.
+fc137175	sounds/vo/viper/viper_kill_bebop_02.vsnd	small/dtw/greedy	That was for Lash.
+dd7e8489	sounds/vo/viper/viper_kill_bebop_03.vsnd	small/dtw/greedy	Bebop, just stop trying.
+685d0acb	sounds/vo/viper/viper_kill_bebop_04.vsnd	small/dtw/greedy	Your time's over, bebop. Just retire with what's left of your dignity.
+86025742	sounds/vo/viper/viper_kill_bebop_05.vsnd	small/dtw/greedy	When are you gonna get the message, bebop? You suck.
+d1ae338e	sounds/vo/viper/viper_kill_bookworm_01.vsnd	small/dtw/greedy	Sorry, Rad.
+1e4b4b1d	sounds/vo/viper/viper_kill_bookworm_02.vsnd	small/dtw/greedy	Her brother was just like way more fun to hang out with.
+2195a028	sounds/vo/viper/viper_kill_bookworm_03.vsnd	small/dtw/greedy	Man, her brother was right. She is wound up tight.
+44b9059c	sounds/vo/viper/viper_kill_bookworm_04.vsnd	small/dtw/greedy	No one's that nice.
+3ed346d3	sounds/vo/viper/viper_kill_bookworm_05.vsnd	small/dtw/greedy	This is why I never trust someone that's read more than four books.
+68446d1f	sounds/vo/viper/viper_kill_chrono_01.vsnd	small/dtw/greedy	Stack the time, thief.
+957d4025	sounds/vo/viper/viper_kill_chrono_02.vsnd	small/dtw/greedy	Paradox is out of commission.
+64f06a47	sounds/vo/viper/viper_kill_chrono_03.vsnd	small/dtw/greedy	Yeah, I won't be seeing Paradox for a while.
+ef83684b	sounds/vo/viper/viper_kill_chrono_04.vsnd	small/dtw/greedy	You gotta say, she really makes the coat work.
+68788b13	sounds/vo/viper/viper_kill_chrono_05.vsnd	small/dtw/greedy	Okay, maybe next time you guys shouldn't kick me out of the Paradox Museum.
+fb56fa67	sounds/vo/viper/viper_kill_doorman_01.vsnd	small/dtw/greedy	I stopped the door, man.
+ed984773	sounds/vo/viper/viper_kill_doorman_02.vsnd	small/dtw/greedy	That's for kicking me out of the Baroness.
+c931ae56	sounds/vo/viper/viper_kill_doorman_03.vsnd	small/dtw/greedy	No more head games, doorman.
+81de92c5	sounds/vo/viper/viper_kill_doorman_04.vsnd	small/dtw/greedy	And I thought I got a kick out of messing with people.
+705ddffd	sounds/vo/viper/viper_kill_doorman_05.vsnd	small/dtw/greedy	He'll be back.
+57311103	sounds/vo/viper/viper_kill_drifter_01.vsnd	small/dtw/greedy	I stopped the drifter.
+0d71e559	sounds/vo/viper/viper_kill_drifter_02.vsnd	small/dtw/greedy	!" "The sooner that thing leaves New York, the better."
+f40be706	sounds/vo/viper/viper_kill_drifter_03.vsnd	small/dtw/greedy	Hey, to gov!
+991172d7	sounds/vo/viper/viper_kill_drifter_04.vsnd	small/dtw/greedy	I've seen scarier vampires in Kenosha.
+a6896d78	sounds/vo/viper/viper_kill_drifter_05.vsnd	small/dtw/greedy	Drifter's dead, you're welcome.
+b7608fc7	sounds/vo/viper/viper_kill_dynamo_01.vsnd	small/dtw/greedy	All your GED doesn't feel so fancy now, does it?
+1452729d	sounds/vo/viper/viper_kill_dynamo_02.vsnd	large-v3-turbo/beam5	You know what? I've never cared for teachers.
+1452729d	sounds/vo/viper/viper_kill_dynamo_02.vsnd	small/dtw/greedy	You know what, I've never cared for teachers.
+072f1e8a	sounds/vo/viper/viper_kill_dynamo_03.vsnd	small/dtw/greedy	Dynamo's down.
+0f4b18a8	sounds/vo/viper/viper_kill_dynamo_04.vsnd	small/dtw/greedy	I'm not waiting for you to do that weird black hole stuff.
+674e3786	sounds/vo/viper/viper_kill_dynamo_05.vsnd	small/dtw/greedy	Go grade papers or something.
+2aac75f7	sounds/vo/viper/viper_kill_familiar_01.vsnd	small/dtw/greedy	That kid never had a chance.
+a9deb08d	sounds/vo/viper/viper_kill_familiar_02.vsnd	small/dtw/greedy	Ah man, I gotta pick on kids more often.
+46aca8ae	sounds/vo/viper/viper_kill_familiar_03.vsnd	small/dtw/greedy	Rem's finished.
+a94f4c08	sounds/vo/viper/viper_kill_familiar_04.vsnd	small/dtw/greedy	Hey, you're lucky I let you keep the pillow, Rem.
+18219667	sounds/vo/viper/viper_kill_familiar_05.vsnd	small/dtw/greedy	You know, that kid would get eaten alive at Rikers.
+78173365	sounds/vo/viper/viper_kill_fencer_01.vsnd	small/dtw/greedy	Took down Apollo.
+41bffd99	sounds/vo/viper/viper_kill_fencer_02.vsnd	small/dtw/greedy	Rich kids are morons. I don't really, I don't know what to tell you.
+47d81272	sounds/vo/viper/viper_kill_fencer_03.vsnd	small/dtw/greedy	I gotta remember to hawk that sword after this.
+19851dfb	sounds/vo/viper/viper_kill_fencer_04.vsnd	small/dtw/greedy	Oh, you think you're better than me, Apollo?
+64153a65	sounds/vo/viper/viper_kill_fencer_05.vsnd	small/dtw/greedy	Easy there, Spencer the Fencer.
+24bbf764	sounds/vo/viper/viper_kill_forge_01.vsnd	small/dtw/greedy	Alright, well whatever she's making, she's overpaid.
+59579137	sounds/vo/viper/viper_kill_forge_02.vsnd	small/dtw/greedy	Oh, some genius she turned out to be.
+52be3639	sounds/vo/viper/viper_kill_forge_03.vsnd	small/dtw/greedy	Not your day, Mick G.
+7011cd59	sounds/vo/viper/viper_kill_forge_04.vsnd	small/dtw/greedy	Maggie Mack ain't shit.
+085def70	sounds/vo/viper/viper_kill_forge_05.vsnd	small/dtw/greedy	McGinnis, you aren't ready for someone like me.
+b4466c13	sounds/vo/viper/viper_kill_frank_01.vsnd	small/dtw/greedy	Jesus, that guy is depressing.
+133db223	sounds/vo/viper/viper_kill_frank_02.vsnd	small/dtw/greedy	Lighten up, Victor.
+1783df60	sounds/vo/viper/viper_kill_frank_03.vsnd	small/dtw/greedy	You're a shambling mass of flesh, boo-ho.
+ec4c2814	sounds/vo/viper/viper_kill_frank_04.vsnd	small/dtw/greedy	That guy thinks she's the only ones with problems here.
+fb7b3077	sounds/vo/viper/viper_kill_frank_05.vsnd	small/dtw/greedy	As far as I'm concerned, I added that sad bastard a favor.
+14660cf1	sounds/vo/viper/viper_kill_ghost_01.vsnd	small/dtw/greedy	Rich people, am I right?
+fa33fd26	sounds/vo/viper/viper_kill_ghost_02.vsnd	small/dtw/greedy	Kind of want to steal her earrings.
+f074aaae	sounds/vo/viper/viper_kill_ghost_03.vsnd	small/dtw/greedy	The hell is wrong with her arm?
+ddef2421	sounds/vo/viper/viper_kill_ghost_04.vsnd	small/dtw/greedy	Lady Geist is down!
+df17bee6	sounds/vo/viper/viper_kill_ghost_05.vsnd	small/dtw/greedy	Look out, guys.
+99f942f9	sounds/vo/viper/viper_kill_gigawatt_01.vsnd	small/dtw/greedy	Glad I'm walking away from that fight.
+60cb0c20	sounds/vo/viper/viper_kill_gigawatt_02.vsnd	small/dtw/greedy	!" "That guy was nuts
+eeaa606f	sounds/vo/viper/viper_kill_gigawatt_03.vsnd	small/dtw/greedy	Okay that guy was bad news.
+6fc588cb	sounds/vo/viper/viper_kill_gigawatt_04.vsnd	small/dtw/greedy	Seven won't be bothering us for a while.
+99899b8f	sounds/vo/viper/viper_kill_gigawatt_05.vsnd	small/dtw/greedy	I stopped seven.
+781d6264	sounds/vo/viper/viper_kill_haze_01.vsnd	small/dtw/greedy	I wasn't on the feds radar before I certainly am now
+3f9ae582	sounds/vo/viper/viper_kill_haze_02.vsnd	small/dtw/greedy	Not every day you get to kill a Sandman.
+022aeea0	sounds/vo/viper/viper_kill_haze_03.vsnd	small/dtw/greedy	I don't get why people are scared of her.
+658eff11	sounds/vo/viper/viper_kill_haze_04.vsnd	small/dtw/greedy	The fat thing bringing me down.
+b852414c	sounds/vo/viper/viper_kill_haze_05.vsnd	small/dtw/greedy	I took down Hayes.
+9404acc6	sounds/vo/viper/viper_kill_high_networth.vsnd	small/dtw/greedy	." "Money wasn't gonna save you from someone like me."
+cbffe32c	sounds/vo/viper/viper_kill_hornet_01.vsnd	small/dtw/greedy	I took out their sniper.
+7238fcbf	sounds/vo/viper/viper_kill_hornet_02.vsnd	small/dtw/greedy	- You got style, lady. I'm so sorry I had to kill you.
+de3ceaac	sounds/vo/viper/viper_kill_hornet_03.vsnd	small/dtw/greedy	Shane, you picked the wrong side 'cause it's like we could've been friends in a screwball comedy sort of way.
+743ce750	sounds/vo/viper/viper_kill_hornet_04.vsnd	small/dtw/greedy	You're good at killing people, Vendicta. I'm just great at it.
+f0809847	sounds/vo/viper/viper_kill_hornet_05.vsnd	small/dtw/greedy	Their sniper's dead.
+206d2000	sounds/vo/viper/viper_kill_inferno_01.vsnd	small/dtw/greedy	What happened to you, Inferness?
+6949075e	sounds/vo/viper/viper_kill_inferno_02.vsnd	small/dtw/greedy	Burn, you used to be the man in New York. Now look at you.
+569d1c2e	sounds/vo/viper/viper_kill_inferno_03.vsnd	small/dtw/greedy	I'm never ending up like you, Inferness.
+ee56e893	sounds/vo/viper/viper_kill_inferno_04.vsnd	small/dtw/greedy	They domesticated the hell out of you didn't they in Furnace?
+de397afe	sounds/vo/viper/viper_kill_inferno_05.vsnd	small/dtw/greedy	I see why you got out of the game. You lost all the steps.
+2029f917	sounds/vo/viper/viper_kill_kelvin_01.vsnd	small/dtw/greedy	I wonder if I could pull off a parka.
+311a95fd	sounds/vo/viper/viper_kill_kelvin_02.vsnd	small/dtw/greedy	Ice guy's dead.
+43151ea2	sounds/vo/viper/viper_kill_kelvin_03.vsnd	small/dtw/greedy	- You're a nice guy, Calvin, but nice don't really get you far.
+82b98095	sounds/vo/viper/viper_kill_kelvin_04.vsnd	small/dtw/greedy	Not a fan of the cold.
+010ccfab	sounds/vo/viper/viper_kill_kelvin_05.vsnd	small/dtw/greedy	Took down Calvin.
+921dddd9	sounds/vo/viper/viper_kill_krill_01.vsnd	small/dtw/greedy	Not personal, Mo.
+c322f37e	sounds/vo/viper/viper_kill_krill_02.vsnd	small/dtw/greedy	I still love you, Krill.
+c4eabe4e	sounds/vo/viper/viper_kill_krill_03.vsnd	small/dtw/greedy	Good try, boys.
+2466dead	sounds/vo/viper/viper_kill_krill_04.vsnd	small/dtw/greedy	Love you guys, but not enough to let you win.
+c3bb14db	sounds/vo/viper/viper_kill_krill_05.vsnd	small/dtw/greedy	I'll swing by their hover later to apologize, it'll be fine.
+b49e2be4	sounds/vo/viper/viper_kill_lash_01.vsnd	small/dtw/greedy	This is the best moment of my life.
+8fc20242	sounds/vo/viper/viper_kill_lash_02.vsnd	small/dtw/greedy	I love you.
+ba651714	sounds/vo/viper/viper_kill_lash_03.vsnd	small/dtw/greedy	He's awesome even when he dies.
+3b036116	sounds/vo/viper/viper_kill_lash_04.vsnd	small/dtw/greedy	Probably a bad time to ask for an autograph.
+406d9d78	sounds/vo/viper/viper_kill_lash_05.vsnd	small/dtw/greedy	I'm a big fan.
+e3ab8006	sounds/vo/viper/viper_kill_magician_01.vsnd	small/dtw/greedy	Sinclair's down.
+df396017	sounds/vo/viper/viper_kill_magician_02.vsnd	small/dtw/greedy	Save the bunny tricks for kids parties.
+d5739c51	sounds/vo/viper/viper_kill_magician_03.vsnd	small/dtw/greedy	Took out the magician.
+af7399ad	sounds/vo/viper/viper_kill_magician_04.vsnd	small/dtw/greedy	need to worry about Sinclair.
+b685bada	sounds/vo/viper/viper_kill_magician_05.vsnd	small/dtw/greedy	Then Claire's out of the picture.
+be3ac02d	sounds/vo/viper/viper_kill_mirage_01.vsnd	small/dtw/greedy	Dought with Mirage.
+a879c6f0	sounds/vo/viper/viper_kill_mirage_02.vsnd	small/dtw/greedy	That guy needs to lighten up.
+8ed76f6a	sounds/vo/viper/viper_kill_mirage_03.vsnd	small/dtw/greedy	Anything to stop that guy from yelling about the gin?
+b9f69989	sounds/vo/viper/viper_kill_mirage_04.vsnd	small/dtw/greedy	Inside voices, Mirage.
+27fe7836	sounds/vo/viper/viper_kill_mirage_05.vsnd	small/dtw/greedy	Took out Mirage.
+08f0e0ff	sounds/vo/viper/viper_kill_nano_01.vsnd	small/dtw/greedy	- Tuck down, Calico.
+c80dcf85	sounds/vo/viper/viper_kill_nano_02.vsnd	small/dtw/greedy	Yeah, no one likes a cat lady.
+2825e246	sounds/vo/viper/viper_kill_nano_03.vsnd	small/dtw/greedy	"Nob
+9647922d	sounds/vo/viper/viper_kill_nano_04.vsnd	small/dtw/greedy	Turns out $2 words can't stop a bullet.
+465c16fe	sounds/vo/viper/viper_kill_nano_05.vsnd	small/dtw/greedy	I'm just, I'm tired of you acting like you're better than me.
+6e266fa6	sounds/vo/viper/viper_kill_necro_01.vsnd	small/dtw/greedy	Love in the lich hand.
+643305b1	sounds/vo/viper/viper_kill_necro_02.vsnd	small/dtw/greedy	Stabbed graves.
+20006a80	sounds/vo/viper/viper_kill_necro_03.vsnd	small/dtw/greedy	Necromancers, they don't scare me, all right?
+946e531a	sounds/vo/viper/viper_kill_necro_04.vsnd	small/dtw/greedy	If the dead were so great, they wouldn't have died.
+9fa99160	sounds/vo/viper/viper_kill_necro_05.vsnd	small/dtw/greedy	God, I love slapping around on the Blackmore kids.
+13c3e680	sounds/vo/viper/viper_kill_operative_01.vsnd	small/dtw/greedy	Killed the spy.
+00c1f709	sounds/vo/viper/viper_kill_operative_02.vsnd	small/dtw/greedy	Raven's dead.
+d9852bab	sounds/vo/viper/viper_kill_operative_03.vsnd	small/dtw/greedy	Yeah, Raven won't be a problem.
+d08c75d0	sounds/vo/viper/viper_kill_operative_04.vsnd	small/dtw/greedy	Get out of New York.
+ff27de03	sounds/vo/viper/viper_kill_operative_05.vsnd	small/dtw/greedy	Okay, that guy was dangerous.
+7fe23bef	sounds/vo/viper/viper_kill_orion_01.vsnd	small/dtw/greedy	Sorry, Grandpa.
+6d63f3d2	sounds/vo/viper/viper_kill_orion_02.vsnd	small/dtw/greedy	Honestly, he probably only had like four months to live anyway.
+399e842e	sounds/vo/viper/viper_kill_orion_03.vsnd	small/dtw/greedy	Killed the Archer.
+5daa9957	sounds/vo/viper/viper_kill_orion_04.vsnd	small/dtw/greedy	Talon is down.
+50c26bdc	sounds/vo/viper/viper_kill_orion_05.vsnd	small/dtw/greedy	Gun beats bow, I'm shocked.
+dc8c98fb	sounds/vo/viper/viper_kill_priest_01.vsnd	small/dtw/greedy	Took out the Venator.
+16ac32f5	sounds/vo/viper/viper_kill_priest_02.vsnd	small/dtw/greedy	You know, you think the Vatican could afford better assassins?
+14b022e2	sounds/vo/viper/viper_kill_priest_03.vsnd	small/dtw/greedy	You're not stopping me, Venator.
+0f207218	sounds/vo/viper/viper_kill_priest_04.vsnd	small/dtw/greedy	What the hell did I do to get the Venator sent after me?
+06ba2cd3	sounds/vo/viper/viper_kill_priest_05.vsnd	small/dtw/greedy	Oh, I could listen to that guy read me the phone book. He is killing me. (laughs)
+69d752f4	sounds/vo/viper/viper_kill_punkgoat_01.vsnd	small/dtw/greedy	Hey, looking good, Billy.
+04ca7b22	sounds/vo/viper/viper_kill_punkgoat_02.vsnd	small/dtw/greedy	He's making that goat head work, I gotta say.
+ee27d71c	sounds/vo/viper/viper_kill_punkgoat_03.vsnd	small/dtw/greedy	Love to hate that guy.
+334fbdb7	sounds/vo/viper/viper_kill_punkgoat_04.vsnd	small/dtw/greedy	That's for never visiting me in Atlantic City.
+a1aad736	sounds/vo/viper/viper_kill_punkgoat_05.vsnd	small/dtw/greedy	Took out Billy.
+0970588f	sounds/vo/viper/viper_kill_shiv_01.vsnd	small/dtw/greedy	Ah, killing him seems like such a waste of a good pompadour.
+a84566f8	sounds/vo/viper/viper_kill_shiv_02.vsnd	small/dtw/greedy	Killed Shiff, which, you know, shouldn't surprise you guys, but probably does.
+29ba1f2f	sounds/vo/viper/viper_kill_shiv_03.vsnd	small/dtw/greedy	Oh, broke the pretty boy.
+18cb0578	sounds/vo/viper/viper_kill_shiv_04.vsnd	small/dtw/greedy	I like them better before he joined the Baxter Society.
+0b168f51	sounds/vo/viper/viper_kill_shiv_05.vsnd	small/dtw/greedy	Chef, buddy, why did you let those losers in the Baxter Society do to you?
+ab9846c2	sounds/vo/viper/viper_kill_synth_01.vsnd	small/dtw/greedy	Packet's not a problem.
+9b3e097c	sounds/vo/viper/viper_kill_synth_02.vsnd	small/dtw/greedy	What a waste of a perfectly good trust fund.
+af730a04	sounds/vo/viper/viper_kill_synth_03.vsnd	small/dtw/greedy	pocket spends five years in the gutter and all of a sudden wants to pretend like they're one of us. (laughs) No
+9606b774	sounds/vo/viper/viper_kill_synth_04.vsnd	small/dtw/greedy	I should try to hawk their case.
+9b2528b9	sounds/vo/viper/viper_kill_synth_05.vsnd	small/dtw/greedy	TOOK DOWN PACKET!
+692baeee	sounds/vo/viper/viper_kill_tengu_01.vsnd	small/dtw/greedy	Ivy, quit making life harder for the rest of us!
+33320612	sounds/vo/viper/viper_kill_tengu_02.vsnd	small/dtw/greedy	Savior of Spanish Harlem, man. I could've been the Savior of Spanish Harlem. Probably would've had to stop working for Mendoza to do it, but people can change.
+ed47f501	sounds/vo/viper/viper_kill_tengu_03.vsnd	small/dtw/greedy	Kill the gargoyle, you're welcome.
+9af0ce12	sounds/vo/viper/viper_kill_tengu_04.vsnd	small/dtw/greedy	Yeah, I don't think we're gonna be friends. It's just like real shame, because I bet she's too nice to remind people they owe her money.
+6c151428	sounds/vo/viper/viper_kill_tengu_05.vsnd	small/dtw/greedy	Man, I could have been the savior of Wisconsin Dells.
+4740d85a	sounds/vo/viper/viper_kill_unicorn_01.vsnd	large-v3-turbo/beam5	The guy's celeste.
+4740d85a	sounds/vo/viper/viper_kill_unicorn_01.vsnd	small/dtw/greedy	The guy's select.
+a4636092	sounds/vo/viper/viper_kill_unicorn_02.vsnd	small/dtw/greedy	No, she's competition.
+6609d5d1	sounds/vo/viper/viper_kill_unicorn_03.vsnd	small/dtw/greedy	She better keep her hands off Lash.
+acbd5eed	sounds/vo/viper/viper_kill_unicorn_04.vsnd	small/dtw/greedy	I kinda like her.
+05e63cbd	sounds/vo/viper/viper_kill_unicorn_05.vsnd	small/dtw/greedy	Unicorn's down.
+e5f20e6f	sounds/vo/viper/viper_kill_vampirebat_01.vsnd	small/dtw/greedy	Mina, hey, your clothes suck.
+2dad8984	sounds/vo/viper/viper_kill_vampirebat_02.vsnd	small/dtw/greedy	Killed the vampire.
+3be2f294	sounds/vo/viper/viper_kill_vampirebat_03.vsnd	small/dtw/greedy	Third rate socialite, fourth rate vampire.
+25f347d0	sounds/vo/viper/viper_kill_vampirebat_04.vsnd	small/dtw/greedy	Man, you crash fashion week one time and the next thing you know, the lady plots your death.
+de5cea28	sounds/vo/viper/viper_kill_vampirebat_05.vsnd	large-v3-turbo/beam5	Oh, I'd love to see her spend two weeks in Rikers. It'd be a hoot.
+de5cea28	sounds/vo/viper/viper_kill_vampirebat_05.vsnd	small/dtw/greedy	Oh, I'd love to see you spend two weeks in Rikers. Be a hoot.
+a12683f0	sounds/vo/viper/viper_kill_viscous_01.vsnd	small/dtw/greedy	I swear to God, that is the first tourist I have legitimate guilt about killing.
+bd6c203b	sounds/vo/viper/viper_kill_viscous_02.vsnd	small/dtw/greedy	Vizquez is a good guy. You know, he'll forgive me.
+12448ee2	sounds/vo/viper/viper_kill_viscous_03.vsnd	small/dtw/greedy	The thing I love about Viscous is he doesn't know better, so he'll definitely trust me later.
+47a992b6	sounds/vo/viper/viper_kill_viscous_04.vsnd	small/dtw/greedy	Goo Guy won't be bothering us for a while.
+ef499c2e	sounds/vo/viper/viper_kill_viscous_05.vsnd	small/dtw/greedy	That guy's like a babe in the woods, which on one hand is kind of sad, but on the other makes him incredibly easy to shoot.
+c81f8c80	sounds/vo/viper/viper_kill_warden_01.vsnd	small/dtw/greedy	Ducked down warden.
+6e4b10f1	sounds/vo/viper/viper_kill_warden_02.vsnd	small/dtw/greedy	Don't worry about Warden.
+057cc187	sounds/vo/viper/viper_kill_warden_03.vsnd	small/dtw/greedy	Geez, Lorda needs to take a nap or something.
+738aa052	sounds/vo/viper/viper_kill_warden_04.vsnd	small/dtw/greedy	Yeah, that guy was a lot.
+705d7675	sounds/vo/viper/viper_kill_warden_05.vsnd	small/dtw/greedy	Nothing, I'll be cracking a beer with that guy anytime soon.
+3667eb49	sounds/vo/viper/viper_kill_werewolf_01.vsnd	small/dtw/greedy	Lila, hey, you suck.
+c62d6a5e	sounds/vo/viper/viper_kill_werewolf_02.vsnd	small/dtw/greedy	Killed the werewolf.
+b8996398	sounds/vo/viper/viper_kill_werewolf_03.vsnd	small/dtw/greedy	You're never catching me, Selvry. You just gotta deal with it.
+a55b2eb7	sounds/vo/viper/viper_kill_werewolf_04.vsnd	small/dtw/greedy	Silver, you ate as tough as you think you are.
+3b977b24	sounds/vo/viper/viper_kill_werewolf_05.vsnd	small/dtw/greedy	Yeah, the lady needs to get off my ass.
+bbb6099e	sounds/vo/viper/viper_kill_wraith_01.vsnd	small/dtw/greedy	I don't think she's gonna be clearing my marker anytime soon.
+a7b98528	sounds/vo/viper/viper_kill_wraith_02.vsnd	small/dtw/greedy	Mendoza says hello.
+6b797058	sounds/vo/viper/viper_kill_wraith_03.vsnd	small/dtw/greedy	We're still cool, right, Raith?
+ad61e2a1	sounds/vo/viper/viper_kill_wraith_04.vsnd	small/dtw/greedy	Best dressed crime lord in New York hands down.
+0eb97848	sounds/vo/viper/viper_kill_wraith_05.vsnd	small/dtw/greedy	Look, she probably wanted me dead anyway, so it's not like I made things worse.
+917b9a1f	sounds/vo/viper/viper_kill_yamato_01.vsnd	small/dtw/greedy	Stop, Yamato.
+bb7ae7af	sounds/vo/viper/viper_kill_yamato_02.vsnd	small/dtw/greedy	Pissing off the seventh moon wasn't my best plan.
+2551c456	sounds/vo/viper/viper_kill_yamato_03.vsnd	small/dtw/greedy	Oh, I can't wait to use that sword to cut a robin.
+92a57ceb	sounds/vo/viper/viper_kill_yamato_04.vsnd	small/dtw/greedy	You know, I need to get in with the seventh moon. I bet there's a lot of growth opportunities there.
+73c1ef6b	sounds/vo/viper/viper_kill_yamato_05.vsnd	small/dtw/greedy	Oh, there's one scary bride.
+6cdaab9a	sounds/vo/viper/viper_killstreak_high_01.vsnd	small/dtw/greedy	I'm gonna mow you all down!
+a7ff748f	sounds/vo/viper/viper_killstreak_high_02.vsnd	small/dtw/greedy	Guys, why do you keep fighting me? You know what's gonna happen.
+06b4b91b	sounds/vo/viper/viper_killstreak_high_03.vsnd	small/dtw/greedy	I feel like Lash in a room full of bebops.
+1537aa0a	sounds/vo/viper/viper_killstreak_mid_01.vsnd	small/dtw/greedy	It's my time to shine, baby.
+dee007f3	sounds/vo/viper/viper_killstreak_mid_02.vsnd	small/dtw/greedy	Yeah, these guys ain't putting up much of a fight.
+34221120	sounds/vo/viper/viper_killstreak_mid_03.vsnd	small/dtw/greedy	This party ain't stopping anytime soon!
+b178853e	sounds/vo/viper/viper_killstreak_start_01.vsnd	small/dtw/greedy	The momentum's going my way.
+f1575c20	sounds/vo/viper/viper_killstreak_start_02.vsnd	small/dtw/greedy	Let's get this party started.
+b741fec3	sounds/vo/viper/viper_killstreak_start_03.vsnd	small/dtw/greedy	Oh, no one's getting in our way.
+3fdd2ae9	sounds/vo/viper/viper_killstreak_start_04.vsnd	small/dtw/greedy	Maybe now people will start taking me seriously.
+8e1d523e	sounds/vo/viper/viper_killstreak_start_05.vsnd	small/dtw/greedy	Just give up, baby. No one's better than V.
+020e7b27	sounds/vo/viper/viper_last_one_standing_01.vsnd	small/dtw/greedy	Of course, of course, I gotta rely on myself.
+ba9cc90e	sounds/vo/viper/viper_last_one_standing_02.vsnd	small/dtw/greedy	It's always me versus the world.
+d8d074c9	sounds/vo/viper/viper_last_one_standing_03.vsnd	small/dtw/greedy	I can take him, probably, maybe. I don't know, man, there's only one of me, so just have measured expectations, all right?
+6034700e	sounds/vo/viper/viper_leave_base_01.vsnd	small/dtw/greedy	Gotta get back out there.
+6085af97	sounds/vo/viper/viper_leave_base_02.vsnd	small/dtw/greedy	I'm not letting them have all the fun.
+b797429f	sounds/vo/viper/viper_leave_base_03.vsnd	small/dtw/greedy	Vee's coming to save the day, baby!
+97cc2fba	sounds/vo/viper/viper_leave_base_04.vsnd	small/dtw/greedy	Let's end this thing.
+2425b14f	sounds/vo/viper/viper_leave_base_05.vsnd	small/dtw/greedy	Time to finish the ritual.
+42a04c3f	sounds/vo/viper/viper_low_health_warning.vsnd	small/dtw/greedy	Gotta find a place to lay low.
+0baacfac	sounds/vo/viper/viper_match_start_bookworm_viper_convo01_02.vsnd	small/dtw/greedy	I prefer rolling papers, but you gotta go to war with what you got, you know?
+e461fa77	sounds/vo/viper/viper_match_start_bookworm_viper_convo02_01.vsnd	small/dtw/greedy	Aw, you killed it at Pole Palace last night.
+345b3677	sounds/vo/viper/viper_match_start_bookworm_viper_convo02_03.vsnd	small/dtw/greedy	Yeah, me neither.
+17b6ed6b	sounds/vo/viper/viper_match_start_bookworm_viper_convo02_05.vsnd	small/dtw/greedy	Cinnamon, come on, it's me.
+3112cdc0	sounds/vo/viper/viper_match_start_bookworm_viper_convo02_07.vsnd	small/dtw/greedy	Oh my God, I'm so sorry. I confused you with a very different librarian. (laughs)
+3c84a14c	sounds/vo/viper/viper_match_start_bookworm_viper_convo02_09.vsnd	small/dtw/greedy	You are too pure for this world, I kinda love it.
+5b6cd611	sounds/vo/viper/viper_match_start_bookworm_viper_convo03_01.vsnd	small/dtw/greedy	Hey, Red, if my PO comes lookin', I was with you last night.
+2d7c0fdd	sounds/vo/viper/viper_match_start_bookworm_viper_convo03_03.vsnd	large-v3-turbo/beam5	All right, that's why I need you to lie.
+2d7c0fdd	sounds/vo/viper/viper_match_start_bookworm_viper_convo03_03.vsnd	small/dtw/greedy	Why does Wayne need you to lie?
+3087b207	sounds/vo/viper/viper_match_start_bookworm_viper_convo03_05.vsnd	small/dtw/greedy	Correct, you're lying to a parole officer.
+81708712	sounds/vo/viper/viper_match_start_bookworm_viper_convo03_07.vsnd	large-v3-turbo/beam5	That's a real bebop move, right, I gotta say.
+81708712	sounds/vo/viper/viper_match_start_bookworm_viper_convo03_07.vsnd	small/dtw/greedy	That's a real bebop move, right, I gotta say.
+6cf77887	sounds/vo/viper/viper_match_start_doorman_viper_convo01_01.vsnd	small/dtw/greedy	Hey, Dormian, after the ritual, I just want you to know that I'm gonna rob the Baroness blind, but you see my right, so I'm just gonna let you go.
+0de6b925	sounds/vo/viper/viper_match_start_doorman_viper_convo01_03.vsnd	small/dtw/greedy	!" "Okay, well, that was not the reaction I was expecting
+593ca752	sounds/vo/viper/viper_match_start_doorman_viper_convo02_01.vsnd	small/dtw/greedy	"You look a little prim and proper, buddy."
+e85c8769	sounds/vo/viper/viper_match_start_doorman_viper_convo02_03.vsnd	small/dtw/greedy	How'd I do?
+40078eb2	sounds/vo/viper/viper_match_start_doorman_viper_convo02_05.vsnd	small/dtw/greedy	still got it.
+79a8f056	sounds/vo/viper/viper_match_start_doorman_viper_convo03_01.vsnd	small/dtw/greedy	You got some ritzy people staying at the Baroness, don't you?
+4387740a	sounds/vo/viper/viper_match_start_doorman_viper_convo03_03.vsnd	small/dtw/greedy	- All right, well, how about this? You give me a list of names, a housekeeping uniform, and a cloche, and you and I could be running off to Tahiti by the end of the week.
+095935c0	sounds/vo/viper/viper_match_start_drifter_viper_convo01_01.vsnd	small/dtw/greedy	- Oh, I can't believe I'm gonna get to murder people with you.
+63636d03	sounds/vo/viper/viper_match_start_drifter_viper_convo01_03.vsnd	small/dtw/greedy	- Yeah, it's 'cause they never did time in OKC. Buddy, you're a legend there. You're like the boogie man. As far as I'm concerned, this is like sitting next to Mozart on the piano bench while he plays Canon and D.
+bf98c6d2	sounds/vo/viper/viper_match_start_drifter_viper_convo01_05.vsnd	small/dtw/greedy	Yeah, him too, point still stands.
+4f33a8c3	sounds/vo/viper/viper_match_start_drifter_viper_convo02_01.vsnd	small/dtw/greedy	Whatcha doing after the ritual?
+7d72b60c	sounds/vo/viper/viper_match_start_drifter_viper_convo02_03.vsnd	small/dtw/greedy	You know, I was looking to get as far away from you as possible while you were still in a good mood, but if you're buying, I'm good for like a cocktail or two.
+29efbdc3	sounds/vo/viper/viper_match_start_drifter_viper_convo03_01.vsnd	small/dtw/greedy	Listen, I just need to get this out of the way, OK? I know we would make a good power couple, but I don't think I'm cut out to be with a vampire like long-term.
+b9b7e268	sounds/vo/viper/viper_match_start_drifter_viper_convo03_03.vsnd	small/dtw/greedy	I just wanted to let you down easy.
+ba39f045	sounds/vo/viper/viper_match_start_familiar_viper_convo01_01.vsnd	small/dtw/greedy	Hey kid, you ready to be an accessory?
+ee3313ef	sounds/vo/viper/viper_match_start_familiar_viper_convo01_03.vsnd	small/dtw/greedy	Yeah you are.
+c56966a0	sounds/vo/viper/viper_match_start_familiar_viper_convo02_02.vsnd	small/dtw/greedy	I mean, I'm not gonna lie to you, kid. We're not exactly great, but we are a lot of fun.
+48345ca6	sounds/vo/viper/viper_match_start_familiar_viper_convo03_01.vsnd	small/dtw/greedy	Two cigarettes for the pillow.
+9c79ac95	sounds/vo/viper/viper_match_start_familiar_viper_convo03_03.vsnd	small/dtw/greedy	You're in New York, baby. Who needs sleep?
+8a0926c7	sounds/vo/viper/viper_match_start_fencer_viper_convo01_01.vsnd	small/dtw/greedy	- Well, aren't you a little prince in need of a queen?
+997d77d0	sounds/vo/viper/viper_match_start_fencer_viper_convo01_03.vsnd	small/dtw/greedy	You're thinking about it.
+a2773262	sounds/vo/viper/viper_match_start_fencer_viper_convo01_05.vsnd	small/dtw/greedy	Listen, I don't mind you playing hard to get, okay? It's fine.
+389ccbe4	sounds/vo/viper/viper_match_start_fencer_viper_convo02_01.vsnd	small/dtw/greedy	Well, isn't this just the beginning of a storybook romance? A lady down under lock meets a handsome prince.
+e263306e	sounds/vo/viper/viper_match_start_fencer_viper_convo02_03.vsnd	small/dtw/greedy	I don't care, all right? I'm looking for money, not an intellectual equal.
+71e122d5	sounds/vo/viper/viper_match_start_fencer_viper_convo02_05.vsnd	small/dtw/greedy	- You have such a way with words. I love it.
+e8de4997	sounds/vo/viper/viper_match_start_fencer_viper_convo03_01.vsnd	small/dtw/greedy	*sigh
+6b943469	sounds/vo/viper/viper_match_start_fencer_viper_convo03_03.vsnd	small/dtw/greedy	Oh, I was just daydreaming about the future.
+f7d7398a	sounds/vo/viper/viper_match_start_fencer_viper_convo03_05.vsnd	small/dtw/greedy	"Oh, I have. I have. We get married. Right? I bump off your dad. You get the inheritance. Right? Then you have an accident. Three years later, when you're out, box-hunting or whatever. And then I'm living on easy street in Ixia
+0b23785e	sounds/vo/viper/viper_match_start_frank_viper_convo01_01.vsnd	small/dtw/greedy	God, I love a brooding man with issues.
+a55a4b1c	sounds/vo/viper/viper_match_start_frank_viper_convo01_03.vsnd	small/dtw/greedy	Hey, you wanna find a dark alley? You can flatter me against the wall.
+cfa15e34	sounds/vo/viper/viper_match_start_frank_viper_convo01_05.vsnd	large-v3-turbo/beam5	Okay, your loss. All right, I'm a catch.
+cfa15e34	sounds/vo/viper/viper_match_start_frank_viper_convo01_05.vsnd	small/dtw/greedy	I got your loss. All right, I'mma catch.
+a2212d77	sounds/vo/viper/viper_match_start_frank_viper_convo02_01.vsnd	small/dtw/greedy	You got it pretty sweet, Victor.
+515fb2e5	sounds/vo/viper/viper_match_start_frank_viper_convo02_03.vsnd	small/dtw/greedy	You know how great it would be to just switch out your hands anytime you need a new set of fingerprints?
+7c260208	sounds/vo/viper/viper_match_start_frank_viper_convo02_05.vsnd	small/dtw/greedy	Oh really? Oh that's lean.
+6b6639d2	sounds/vo/viper/viper_match_start_frank_viper_convo03_02.vsnd	small/dtw/greedy	Pfft, sure as hell ain't on my birth certificate.
+98ad0645	sounds/vo/viper/viper_match_start_frank_viper_convo03_04.vsnd	small/dtw/greedy	Probably, I don't know. What are you, a cop?
+81700fa3	sounds/vo/viper/viper_match_start_necro_viper_convo01_01.vsnd	small/dtw/greedy	Hey, shouldn't you be in class?
+f9d98e6b	sounds/vo/viper/viper_match_start_necro_viper_convo01_03.vsnd	small/dtw/greedy	I only broke out during a parole hearing.
+f1783eb5	sounds/vo/viper/viper_match_start_necro_viper_convo01_05.vsnd	small/dtw/greedy	- You're right, there was no parole hearing.
+48fe2126	sounds/vo/viper/viper_match_start_necro_viper_convo02_01.vsnd	small/dtw/greedy	How much is that hand worth?
+03d52566	sounds/vo/viper/viper_match_start_necro_viper_convo02_03.vsnd	small/dtw/greedy	Look at me, you say that now because I haven't threatened you.
+266db349	sounds/vo/viper/viper_match_start_necro_viper_convo02_05.vsnd	small/dtw/greedy	Man, it's good. It's good. You're tough. I like it. Seriously, though, I am gonna take that hand one way or another. The question is if you're still breathing, you know, when it's all said and done.
+1742f43f	sounds/vo/viper/viper_match_start_necro_viper_convo02_07.vsnd	small/dtw/greedy	Oh, for now, sure. And when I don't need you anymore, I'm gonna take your shit, and I'm gonna leave you for dead.
+9fd28be3	sounds/vo/viper/viper_match_start_necro_viper_convo03_01.vsnd	small/dtw/greedy	Nice jacket. Blackmore Academy?
+55689f51	sounds/vo/viper/viper_match_start_necro_viper_convo03_03.vsnd	small/dtw/greedy	Cool, so you got any friends with a single dad? Mary's fine too. It just takes a little more effort to bump off the old lady.
+cf022bce	sounds/vo/viper/viper_match_start_necro_viper_convo03_05.vsnd	small/dtw/greedy	I got lightened up Graves. Okay, it's not like I'm talking about killing your parents. I mean, we could talk about that too.
+71aed77e	sounds/vo/viper/viper_match_start_necro_viper_convo03_07.vsnd	small/dtw/greedy	- Okay, okay, okay, okay. Patricides off the table. All right, message received.
+5c9000b8	sounds/vo/viper/viper_match_start_priest_viper_convo01_01.vsnd	small/dtw/greedy	You know, I never thought I had a thing for like silver fox men of God, but then you show up with that whole assault rifle and the righteous indignation thing going on and I discover something new about myself.
+320e4ecd	sounds/vo/viper/viper_match_start_priest_viper_convo01_03.vsnd	small/dtw/greedy	How lucky for us.
+4bc8abc9	sounds/vo/viper/viper_match_start_priest_viper_convo02_01.vsnd	small/dtw/greedy	You plan on I'm praying for me, Venator.
+0296a0c6	sounds/vo/viper/viper_match_start_priest_viper_convo02_03.vsnd	small/dtw/greedy	That hurts.
+1c1775cb	sounds/vo/viper/viper_match_start_priest_viper_convo02_05.vsnd	small/dtw/greedy	That is true, I do not.
+28874cd5	sounds/vo/viper/viper_match_start_priest_viper_convo03_01.vsnd	small/dtw/greedy	"Hey, look at the holy man getting in the muck with the rest of us
+580f96de	sounds/vo/viper/viper_match_start_priest_viper_convo03_03.vsnd	small/dtw/greedy	Oh my God, tell me everything.
+a25942bf	sounds/vo/viper/viper_match_start_punkgoat_viper_convo01_02.vsnd	small/dtw/greedy	It's 'cause you never bothered to visit. If I didn't know better, I'd think you stopped caring.
+91cb4252	sounds/vo/viper/viper_match_start_punkgoat_viper_convo01_04.vsnd	small/dtw/greedy	You're looking good. Your jacket.
+d780faf6	sounds/vo/viper/viper_match_start_punkgoat_viper_convo01_06.vsnd	small/dtw/greedy	- I like it even better on the ground of a dark alley.
+73bbe47d	sounds/vo/viper/viper_match_start_punkgoat_viper_convo01_08.vsnd	small/dtw/greedy	You might have a call you lash.
+98d20b2a	sounds/vo/viper/viper_match_start_punkgoat_viper_convo02_02.vsnd	small/dtw/greedy	Now, you...
+d91c7d37	sounds/vo/viper/viper_match_start_punkgoat_viper_convo02_04.vsnd	small/dtw/greedy	Hey, people change.
+906c3b4c	sounds/vo/viper/viper_match_start_punkgoat_viper_convo03_02.vsnd	small/dtw/greedy	Yeah, I'm so glad to be working with you and not some of these other stiffs.
+ca241ec8	sounds/vo/viper/viper_match_start_unicorn_viper_convo01_01.vsnd	small/dtw/greedy	Hey, Celeste, you wanna be sister wives?
+5100c49c	sounds/vo/viper/viper_match_start_unicorn_viper_convo01_03.vsnd	small/dtw/greedy	Not yet, but the man of my dreams is right around the corner, and I'm just saying you could be part of it.
+320d2e1f	sounds/vo/viper/viper_match_start_unicorn_viper_convo02_01.vsnd	small/dtw/greedy	- Heard Lenny really stepped in it.
+a419c11a	sounds/vo/viper/viper_match_start_unicorn_viper_convo02_03.vsnd	small/dtw/greedy	- Okay, well, either you help out your friend or there's one last person I owe money to. So either way, it's a win-win for us.
+a4bb3774	sounds/vo/viper/viper_match_start_unicorn_viper_convo02_05.vsnd	small/dtw/greedy	I thought you were supposed to be like a positive person, see?
+f228cce6	sounds/vo/viper/viper_match_start_unicorn_viper_convo03_01.vsnd	small/dtw/greedy	- Hey Celeste, do you mind if I lay low at the side show until the heat's off me?
+2bab95bf	sounds/vo/viper/viper_match_start_unicorn_viper_convo03_03.vsnd	small/dtw/greedy	I mean, I don't have an exhaustive list.
+3bdcf5e9	sounds/vo/viper/viper_match_start_unicorn_viper_convo03_05.vsnd	small/dtw/greedy	Of course.
+20bd9e34	sounds/vo/viper/viper_match_start_vampirebat_viper_convo01_01.vsnd	small/dtw/greedy	Hey, Mina, nice purse.
+12dc4c3f	sounds/vo/viper/viper_match_start_vampirebat_viper_convo01_03.vsnd	small/dtw/greedy	It'll look better on me.
+cd1d6cc0	sounds/vo/viper/viper_match_start_vampirebat_viper_convo01_05.vsnd	small/dtw/greedy	Okay, let's try this. Give it to me or I'll stab you.
+cbb7ca91	sounds/vo/viper/viper_match_start_vampirebat_viper_convo01_07.vsnd	small/dtw/greedy	I know what happens next. I keep stabbing you until you're dead.
+94a49a59	sounds/vo/viper/viper_match_start_vampirebat_viper_convo01_09.vsnd	small/dtw/greedy	I hope promises, promises.
+ff9c52c4	sounds/vo/viper/viper_match_start_vampirebat_viper_convo02_01.vsnd	small/dtw/greedy	We should hang out more.
+0456be6d	sounds/vo/viper/viper_match_start_vampirebat_viper_convo02_03.vsnd	small/dtw/greedy	Okay, then anything would be more than, wouldn't it?
+b348914e	sounds/vo/viper/viper_match_start_vampirebat_viper_convo03_01.vsnd	small/dtw/greedy	." "Us girls gotta stick together, okay? So if you ever need me to cut up a model's face to send a message, just, you know, let me know
+8c6c7023	sounds/vo/viper/viper_match_start_vampirebat_viper_convo03_03.vsnd	small/dtw/greedy	You're welcome. And now that we're friends, can I have 20 bucks?
+822d0087	sounds/vo/viper/viper_match_start_vampirebat_viper_convo03_05.vsnd	small/dtw/greedy	Deal.
+ae3e6554	sounds/vo/viper/viper_match_start_viper_astro_convo01_01.vsnd	small/dtw/greedy	Hey, you're a cop, right?
+c3f4fb1c	sounds/vo/viper/viper_match_start_viper_astro_convo01_03.vsnd	small/dtw/greedy	Because you like the alarm, because you like being on a power trip.
+45142b9a	sounds/vo/viper/viper_match_start_viper_astro_convo01_05.vsnd	small/dtw/greedy	I'm just trying to figure out if we could be friends.
+2e7f24a0	sounds/vo/viper/viper_match_start_viper_astro_convo01_07.vsnd	small/dtw/greedy	Yeah, so we should not be friends.
+6ee2dbbf	sounds/vo/viper/viper_match_start_viper_astro_convo02_01.vsnd	small/dtw/greedy	You look familiar.
+46e393f7	sounds/vo/viper/viper_match_start_viper_astro_convo02_03.vsnd	small/dtw/greedy	Where from?
+bfa0b19a	sounds/vo/viper/viper_match_start_viper_astro_convo02_05.vsnd	small/dtw/greedy	No shit, you know I did a little time in Cook County.
+91b3d05d	sounds/vo/viper/viper_match_start_viper_astro_convo02_07.vsnd	small/dtw/greedy	Well, if you ever find yourself in the BG, pretend you don't know me. Okay, I don't want people knowing I'm tight with a cop.
+1cea41b3	sounds/vo/viper/viper_match_start_viper_astro_convo02_09.vsnd	small/dtw/greedy	Exactly.
+e2e665ae	sounds/vo/viper/viper_match_start_viper_astro_convo03_02.vsnd	small/dtw/greedy	Well, that's a little judgy.
+555ac0fd	sounds/vo/viper/viper_match_start_viper_astro_convo03_04.vsnd	small/dtw/greedy	No, I didn't say you were. I just said you're being needlessly hostile.
+ae75302b	sounds/vo/viper/viper_match_start_viper_astro_convo03_06.vsnd	small/dtw/greedy	Okay, sorry, you are really good at reading people because at first I was offended, but now I'm like kind of impressed.
+c9a98d7d	sounds/vo/viper/viper_match_start_viper_atlas_convo01_02.vsnd	small/dtw/greedy	Who lets anyone out of jail?
+0757d085	sounds/vo/viper/viper_match_start_viper_atlas_convo01_04.vsnd	small/dtw/greedy	We're gonna have a blast, Abe. Don't sweat it.
+a710675c	sounds/vo/viper/viper_match_start_viper_atlas_convo02_01.vsnd	small/dtw/greedy	You're looking good, Detective.
+68b6263b	sounds/vo/viper/viper_match_start_viper_atlas_convo02_03.vsnd	small/dtw/greedy	You suck.
+0bf57440	sounds/vo/viper/viper_match_start_viper_atlas_convo03_01.vsnd	small/dtw/greedy	Abe, you wanna meet up for a drink after this?
+03eb8153	sounds/vo/viper/viper_match_start_viper_atlas_convo03_03.vsnd	small/dtw/greedy	Am I by it? No, I'm not by, I'm a lady. Have some manners.
+99d65359	sounds/vo/viper/viper_match_start_viper_bebop_convo01_01.vsnd	small/dtw/greedy	You take care of an old lady, right?
+bd14e6cc	sounds/vo/viper/viper_match_start_viper_bebop_convo01_03.vsnd	small/dtw/greedy	You want me to, uh, move some of her medication?
+9f876c5b	sounds/vo/viper/viper_match_start_viper_bebop_convo01_05.vsnd	small/dtw/greedy	How did I get stuck working with the choir boy robot?
+214393fd	sounds/vo/viper/viper_match_start_viper_bebop_convo02_02.vsnd	small/dtw/greedy	Nah, I like to work up close.
+7e9ce102	sounds/vo/viper/viper_match_start_viper_bebop_convo03_02.vsnd	small/dtw/greedy	Yeah, me too.
+c4f89323	sounds/vo/viper/viper_match_start_viper_bebop_convo03_04.vsnd	small/dtw/greedy	Well, I mean, I killed my parole officer, so probably. That's a joke. I got jokes. He probably survived.
+eb5204a7	sounds/vo/viper/viper_match_start_viper_dynamo_convo01_01.vsnd	small/dtw/greedy	Hey, Professor, can I audit one of your classes?
+2e368fb8	sounds/vo/viper/viper_match_start_viper_dynamo_convo01_03.vsnd	small/dtw/greedy	Oh, I'm not. I just wanted to move product to your students.
+483c826b	sounds/vo/viper/viper_match_start_viper_dynamo_convo01_05.vsnd	small/dtw/greedy	I get it. I just want it to be respectful.
+b5a33f9c	sounds/vo/viper/viper_match_start_viper_dynamo_convo02_02.vsnd	small/dtw/greedy	Oh no, no, it really is.
+5c3089e2	sounds/vo/viper/viper_match_start_viper_dynamo_convo03_01.vsnd	large-v3-turbo/beam5	Hey, listen, by the way, I'm not trying to make this weird or anything, but you smell like key lime pie.
+5c3089e2	sounds/vo/viper/viper_match_start_viper_dynamo_convo03_01.vsnd	small/dtw/greedy	Hey listen, by the way, I'm not trying to make this weird or anything, but you smell like KeeLine Pie.
+88bb562b	sounds/vo/viper/viper_match_start_viper_dynamo_convo03_03.vsnd	small/dtw/greedy	Oh my god, that's like the sweetest thing ever. Okay, really quick, another question. She knows you don't have a mouth, so you can't eat the pie, right?
+9f234ffc	sounds/vo/viper/viper_match_start_viper_forge_convo01_01.vsnd	small/dtw/greedy	Hey, I like your gun.
+e4d2e166	sounds/vo/viper/viper_match_start_viper_forge_convo01_03.vsnd	small/dtw/greedy	Right, so that was actually your cue to give me your gun?
+6de2468e	sounds/vo/viper/viper_match_start_viper_forge_convo01_05.vsnd	small/dtw/greedy	Okay, what about afterwards?
+7f16285b	sounds/vo/viper/viper_match_start_viper_forge_convo01_07.vsnd	small/dtw/greedy	I can't believe that worked.
+ee4ac10e	sounds/vo/viper/viper_match_start_viper_forge_convo02_02.vsnd	small/dtw/greedy	I was just wondering how much I can get for all the stuff you're carrying.
+abe39cd8	sounds/vo/viper/viper_match_start_viper_forge_convo02_04.vsnd	small/dtw/greedy	No, but I do know a guy with a van that'll strip it down for scrap.
+45a02e0c	sounds/vo/viper/viper_match_start_viper_forge_convo02_06.vsnd	small/dtw/greedy	Hey, you wearing it ain't making me any money.
+36a08ff4	sounds/vo/viper/viper_match_start_viper_forge_convo03_01.vsnd	small/dtw/greedy	I wanna work for Fairfax Industries.
+280ad80a	sounds/vo/viper/viper_match_start_viper_forge_convo03_03.vsnd	small/dtw/greedy	I thought you guys had like a murder department.
+912790af	sounds/vo/viper/viper_match_start_viper_forge_convo03_05.vsnd	small/dtw/greedy	Yeah.
+a82df739	sounds/vo/viper/viper_match_start_viper_forge_convo03_07.vsnd	small/dtw/greedy	I really just wanted access to an expense account that I could abuse, you know what I mean?
+60ee3128	sounds/vo/viper/viper_match_start_viper_ghost_convo01_01.vsnd	small/dtw/greedy	"Hey, where can I get a pair of those earrings
+50d458ec	sounds/vo/viper/viper_match_start_viper_ghost_convo01_03.vsnd	small/dtw/greedy	Okay, so it's sounding like off your dead body.
+2faba7c2	sounds/vo/viper/viper_match_start_viper_ghost_convo01_05.vsnd	small/dtw/greedy	Lady, are you a moron? It's obviously a threat. After this ritual, I'm gonna mug the shit out of you.
+3e23e974	sounds/vo/viper/viper_match_start_viper_ghost_convo02_02.vsnd	small/dtw/greedy	You don't even know me.
+62e0e242	sounds/vo/viper/viper_match_start_viper_ghost_convo03_01.vsnd	small/dtw/greedy	- You got a son?
+4da88197	sounds/vo/viper/viper_match_start_viper_ghost_convo03_03.vsnd	small/dtw/greedy	'Cause I wanna marry into money, and like wait five years, and bump off my husband for the inheritance, 'cause this bird wasn't meant to be in a gilded cage, baby.
+ead4a224	sounds/vo/viper/viper_match_start_viper_gigawatt_convo01_01.vsnd	small/dtw/greedy	Well, aren't we a couple of ex-cons on the lam?
+3d7b2c22	sounds/vo/viper/viper_match_start_viper_gigawatt_convo01_03.vsnd	small/dtw/greedy	I'm Viper. Okay, worm's still in Cook County.
+b87999f6	sounds/vo/viper/viper_match_start_viper_gigawatt_convo02_01.vsnd	small/dtw/greedy	- Feds still trying to kill you?
+f989b196	sounds/vo/viper/viper_match_start_viper_gigawatt_convo02_03.vsnd	small/dtw/greedy	Hey listen, you need help getting out of the city? Let me know. I got people everywhere.
+d1a85a79	sounds/vo/viper/viper_match_start_viper_gigawatt_convo02_05.vsnd	small/dtw/greedy	What can I say? I am a surprisingly useful girl.
+975325fe	sounds/vo/viper/viper_match_start_viper_gigawatt_convo03_01.vsnd	small/dtw/greedy	Hey, can I ask you a personal question?
+454de19a	sounds/vo/viper/viper_match_start_viper_gigawatt_convo03_03.vsnd	small/dtw/greedy	Obviously, how do I get people to be scared of me like they're scared of you?
+06b429a3	sounds/vo/viper/viper_match_start_viper_gigawatt_convo03_05.vsnd	small/dtw/greedy	Hey, that is some cinnamon logic right there.
+97e221c6	sounds/vo/viper/viper_match_start_viper_gigawatt_convo03_07.vsnd	small/dtw/greedy	That's good. That's good. You know what? You need to make like a quote of the day calendar or something.
+20aeb576	sounds/vo/viper/viper_match_start_viper_haze_convo01_01.vsnd	small/dtw/greedy	So, the feds finally caught up with me.
+b5425fed	sounds/vo/viper/viper_match_start_viper_haze_convo01_03.vsnd	small/dtw/greedy	I'm a little hurt, but satisfied nonetheless.
+a8d6b277	sounds/vo/viper/viper_match_start_viper_haze_convo02_02.vsnd	small/dtw/greedy	Make poor life decisions.
+efdd175e	sounds/vo/viper/viper_match_start_viper_haze_convo02_04.vsnd	small/dtw/greedy	Fun, Hayes. Should be fun.
+c0cb126a	sounds/vo/viper/viper_match_start_viper_haze_convo03_01.vsnd	small/dtw/greedy	How do I get a sweet job like yours?
+9af0b3c9	sounds/vo/viper/viper_match_start_viper_haze_convo03_03.vsnd	small/dtw/greedy	Why not? You get to wear a cute little tie and murder people.
+d273f108	sounds/vo/viper/viper_match_start_viper_hornet_convo01_01.vsnd	small/dtw/greedy	So what's your deal, Venny?
+2fecad2b	sounds/vo/viper/viper_match_start_viper_hornet_convo01_03.vsnd	small/dtw/greedy	Well, what else am I gonna call you, Vindicta? Now pass.
+820d2cbe	sounds/vo/viper/viper_match_start_viper_hornet_convo01_05.vsnd	small/dtw/greedy	Well, your parents should have loved you more.
+2218fb66	sounds/vo/viper/viper_match_start_viper_hornet_convo02_02.vsnd	small/dtw/greedy	Oh, come on everyone loves lash.
+f1b433f2	sounds/vo/viper/viper_match_start_viper_hornet_convo02_04.vsnd	small/dtw/greedy	Don't believe Bebop's propaganda.
+3b7f0e60	sounds/vo/viper/viper_match_start_viper_hornet_convo03_02.vsnd	small/dtw/greedy	I got a gun. You got a gun, this baby writes itself.
+b28692fe	sounds/vo/viper/viper_match_start_viper_inferno_convo01_01.vsnd	small/dtw/greedy	"So, uh, what witch infernace am I getting today? Serial arsonist or master of the Shirley Temple
+876979cb	sounds/vo/viper/viper_match_start_viper_inferno_convo01_03.vsnd	small/dtw/greedy	Maybe bring some maraschino cherries to throw at him or you can stab him with the little cocktail umbrellas.
+80a227e9	sounds/vo/viper/viper_match_start_viper_inferno_convo01_05.vsnd	small/dtw/greedy	I don't want a better man. I want a crazy-ass firebug.
+f13fa10e	sounds/vo/viper/viper_match_start_viper_inferno_convo02_02.vsnd	small/dtw/greedy	- Yeah, you and Half the County, but you can't keep abroad like me down.
+8fc1485a	sounds/vo/viper/viper_match_start_viper_inferno_convo03_02.vsnd	small/dtw/greedy	Mendoza barely works for Mendoza anymore. That gargoyle really messed up his operation.
+4fcde073	sounds/vo/viper/viper_match_start_viper_inferno_convo03_04.vsnd	small/dtw/greedy	Jesus, you almost sound happy about it.
+c09054cd	sounds/vo/viper/viper_match_start_viper_inferno_convo03_06.vsnd	small/dtw/greedy	I guess some of us still have pride in our work. Burnamy wants to use the patron's wish to stab the shit out of Ivy.
+1e3e7b30	sounds/vo/viper/viper_match_start_viper_inferno_convo03_08.vsnd	small/dtw/greedy	Oh yeah, yeah, okay, kidnap the Arroyos. Use that to drag her out.
+00a3399d	sounds/vo/viper/viper_match_start_viper_inferno_convo03_10.vsnd	small/dtw/greedy	You know, you used to be cool, Fern.
+fd104582	sounds/vo/viper/viper_match_start_viper_kelvin_convo01_01.vsnd	small/dtw/greedy	Hey, you're that, uh, judgy corpse, right?
+53b11237	sounds/vo/viper/viper_match_start_viper_kelvin_convo01_03.vsnd	small/dtw/greedy	What'd you think about me?
+8ace01dc	sounds/vo/viper/viper_match_start_viper_kelvin_convo01_05.vsnd	small/dtw/greedy	- Okay, sounds pretty judgy.
+405c9e42	sounds/vo/viper/viper_match_start_viper_kelvin_convo02_01.vsnd	small/dtw/greedy	You got any liquid courage in that park of yours, you know, for when it gets cold?
+0f84a701	sounds/vo/viper/viper_match_start_viper_kelvin_convo02_03.vsnd	small/dtw/greedy	Neat, anyway, back to the whiskey question.
+d5537cd4	sounds/vo/viper/viper_match_start_viper_kelvin_convo02_05.vsnd	small/dtw/greedy	Out lame.
+1ef80df5	sounds/vo/viper/viper_match_start_viper_kelvin_convo03_01.vsnd	small/dtw/greedy	Hey Calvin, can you spot me some dull?
+2aaeefaa	sounds/vo/viper/viper_match_start_viper_kelvin_convo03_03.vsnd	small/dtw/greedy	'Cause I want 10 bucks and I feel like you probably have it.
+899d0e1e	sounds/vo/viper/viper_match_start_viper_kelvin_convo03_05.vsnd	small/dtw/greedy	Oh, you suck, Calvin.
+ded68129	sounds/vo/viper/viper_match_start_viper_krill_convo01_01.vsnd	small/dtw/greedy	Well, you boys are looking spry and healthy.
+532e273e	sounds/vo/viper/viper_match_start_viper_krill_convo01_03.vsnd	small/dtw/greedy	Oh, like I'm the first person to stab Mo.
+fbb39c3b	sounds/vo/viper/viper_match_start_viper_krill_convo01_05.vsnd	small/dtw/greedy	Your loss.
+0c9454a2	sounds/vo/viper/viper_match_start_viper_krill_convo02_01.vsnd	small/dtw/greedy	"Oh, Grill, I got an idea." "What if your little duo act becomes a trio
+af5001fc	sounds/vo/viper/viper_match_start_viper_krill_convo02_03.vsnd	small/dtw/greedy	I think bigger, we'd be the total package, right, you're the brains, mow's the muscle. And I'm,
+ff63cf5e	sounds/vo/viper/viper_match_start_viper_krill_convo02_05.vsnd	small/dtw/greedy	You know what I was gonna say the looks, but you know what? You are not wrong.
+1e7eb349	sounds/vo/viper/viper_match_start_viper_krill_convo03_01.vsnd	small/dtw/greedy	Hey girl, can you help me move some stuff?
+b0977c6a	sounds/vo/viper/viper_match_start_viper_krill_convo03_03.vsnd	small/dtw/greedy	Oh, that's because I was motivated by naked greed. Listen, it's not gonna happen again.
+cfae40f7	sounds/vo/viper/viper_match_start_viper_krill_convo03_05.vsnd	small/dtw/greedy	Way to pull a B-bop, Krill. Not cool.
+1cada7ee	sounds/vo/viper/viper_match_start_viper_lash_convo01_01.vsnd	small/dtw/greedy	I can't believe I'm here next to you.
+3cf58861	sounds/vo/viper/viper_match_start_viper_lash_convo01_03.vsnd	small/dtw/greedy	You smell even better when you're awake.
+2a44ea0e	sounds/vo/viper/viper_match_start_viper_lash_convo02_02.vsnd	small/dtw/greedy	Who do you want, Dad?
+a5219b42	sounds/vo/viper/viper_match_start_viper_lash_convo02_04.vsnd	small/dtw/greedy	Just making sure, 'cause I got two hands, a knife, and real bad impulse control. So what do you need?
+024caa75	sounds/vo/viper/viper_match_start_viper_lash_convo02_06.vsnd	small/dtw/greedy	Yeah, we are.
+013f7244	sounds/vo/viper/viper_match_start_viper_lash_convo03_01.vsnd	small/dtw/greedy	You get the letters I sent you when I was in jail?
+fc94951f	sounds/vo/viper/viper_match_start_viper_lash_convo03_03.vsnd	small/dtw/greedy	Yeah, well, you know, I'm sure you get a lot of fan mail, so I wanted to make sure they stood out.
+cb205aac	sounds/vo/viper/viper_match_start_viper_lash_convo03_05.vsnd	small/dtw/greedy	Bet you never thought we'd actually meet, though, huh?
+27cd8e5c	sounds/vo/viper/viper_match_start_viper_mirage_convo01_02.vsnd	small/dtw/greedy	Keep talking to me like that and I'm gonna lead you to a cheaper motel.
+b773b448	sounds/vo/viper/viper_match_start_viper_mirage_convo02_01.vsnd	small/dtw/greedy	Hey, why you got a girl in a bottle?
+7799c572	sounds/vo/viper/viper_match_start_viper_mirage_convo02_03.vsnd	small/dtw/greedy	What do you say I throw her into the Hudson so we can run off together?
+9ba91fa6	sounds/vo/viper/viper_match_start_viper_mirage_convo02_05.vsnd	small/dtw/greedy	Okay, you were no fun.
+f30abf68	sounds/vo/viper/viper_match_start_viper_mirage_convo03_01.vsnd	small/dtw/greedy	- I heard the Jinn want Wyoming.
+cd30b88e	sounds/vo/viper/viper_match_start_viper_mirage_convo03_03.vsnd	small/dtw/greedy	- You're just saying that 'cause you've never experienced the majesty of DeKalb.
+670c9922	sounds/vo/viper/viper_match_start_viper_mirage_convo03_05.vsnd	small/dtw/greedy	It'll grab your heart and never let it go.
+97de5590	sounds/vo/viper/viper_match_start_viper_nano_convo01_01.vsnd	small/dtw/greedy	It's nice to finally get to work with someone like me.
+0a467a5c	sounds/vo/viper/viper_match_start_viper_nano_convo01_03.vsnd	small/dtw/greedy	Come on, we're a couple of tough bras. We kill people for money.
+3c5b0d2b	sounds/vo/viper/viper_match_start_viper_nano_convo01_05.vsnd	small/dtw/greedy	Oh, you're sounding a little classist there, see?
+d1086961	sounds/vo/viper/viper_match_start_viper_nano_convo02_01.vsnd	small/dtw/greedy	You know when I was in the joint, I heard stories about you.
+73f61e31	sounds/vo/viper/viper_match_start_viper_nano_convo02_03.vsnd	large-v3-turbo/beam5	No, not New Jersey, Wisconsin. There's actually a lot of assassins in Wisconsin.
+73f61e31	sounds/vo/viper/viper_match_start_viper_nano_convo02_03.vsnd	small/dtw/greedy	No, not New Jersey, Wisconsin. There's actually a lot of assassins in Wisconsin.
+dca14d1d	sounds/vo/viper/viper_match_start_viper_nano_convo02_05.vsnd	small/dtw/greedy	Dave House is our chief in Milwaukee? I don't know. Point is Ward on Street is at Udu Sloppy work.
+57f138d7	sounds/vo/viper/viper_match_start_viper_nano_convo02_07.vsnd	small/dtw/greedy	There's something about it like a hit. And what bad, I don't remember all the details. Honestly, Wisconsin Hooch is top shelf.
+b5aabdb7	sounds/vo/viper/viper_match_start_viper_nano_convo03_01.vsnd	small/dtw/greedy	Three bucks for your cat.
+6d0343e5	sounds/vo/viper/viper_match_start_viper_nano_convo03_03.vsnd	small/dtw/greedy	Tell you what, I'll bump it up to a Chris Plinkin.
+a643ba36	sounds/vo/viper/viper_match_start_viper_nano_convo03_05.vsnd	small/dtw/greedy	You know what, I like the way you threaten people, see? We're gonna be best friends, I could tell.
+5646db60	sounds/vo/viper/viper_match_start_viper_orion_convo01_01.vsnd	small/dtw/greedy	I'm not trained in CPR, by the way.
+60fc18f3	sounds/vo/viper/viper_match_start_viper_orion_convo01_03.vsnd	small/dtw/greedy	?" "Like if you have a heart attack, you're gonna die, probably, 'cause I ain't helping ya."
+9b98c852	sounds/vo/viper/viper_match_start_viper_orion_convo01_05.vsnd	small/dtw/greedy	You got it.
+f9faeb0b	sounds/vo/viper/viper_match_start_viper_orion_convo02_02.vsnd	small/dtw/greedy	No, that's cool, because I'm not really looking to make friends with an old guy that carries a bow around Manhattan.
+4e1b56b0	sounds/vo/viper/viper_match_start_viper_orion_convo03_01.vsnd	small/dtw/greedy	How do you like to work?
+33d4f277	sounds/vo/viper/viper_match_start_viper_orion_convo03_03.vsnd	small/dtw/greedy	Yeah, that's not me.
+d2012535	sounds/vo/viper/viper_match_start_viper_paradox_convo01_01.vsnd	small/dtw/greedy	So what do I gotta do to earn the fancy jacket and the snow globe?
+d70462f3	sounds/vo/viper/viper_match_start_viper_paradox_convo01_03.vsnd	small/dtw/greedy	- Done and done.
+8d05d0a1	sounds/vo/viper/viper_match_start_viper_paradox_convo01_05.vsnd	small/dtw/greedy	Ah, I see what's going on. The first step is resisting the urge to stab you.
+d0e734f8	sounds/vo/viper/viper_match_start_viper_paradox_convo02_02.vsnd	small/dtw/greedy	Yeah, why is that?
+0029311d	sounds/vo/viper/viper_match_start_viper_paradox_convo02_04.vsnd	small/dtw/greedy	Heh, you're goddamn right I am.
+51f97762	sounds/vo/viper/viper_match_start_viper_paradox_convo03_01.vsnd	small/dtw/greedy	And the patron was smart contracting to master thieves.
+8b26c1b6	sounds/vo/viper/viper_match_start_viper_paradox_convo03_03.vsnd	small/dtw/greedy	Lady, anyone with decent cardio can run from the cops and not get caught. OK, escaping from lockdown, surrounded by guards. It takes talent. None of you paradox bozos ever had to show.
+969af06d	sounds/vo/viper/viper_match_start_viper_shiv_convo01_01.vsnd	small/dtw/greedy	Well, if it isn't the bad boy of the Bexar Society.
+c5de059d	sounds/vo/viper/viper_match_start_viper_shiv_convo01_03.vsnd	small/dtw/greedy	And that personally, but I am a big fan of your earlier work.
+e77138a6	sounds/vo/viper/viper_match_start_viper_shiv_convo02_01.vsnd	small/dtw/greedy	You know what they call me in Tuscola? Lady Shiv, yeah, 'cause my knife works just as good.
+7a2224be	sounds/vo/viper/viper_match_start_viper_shiv_convo02_03.vsnd	small/dtw/greedy	And I know fear of competition. He lived under a rock. He got great talent. Hand up your ass and pick one.
+e066520d	sounds/vo/viper/viper_match_start_viper_shiv_convo02_05.vsnd	small/dtw/greedy	Oh, mommy likes what she sees.
+bd02f0bd	sounds/vo/viper/viper_match_start_viper_shiv_convo03_01.vsnd	small/dtw/greedy	Hey, I don't wanna make this weird, but can I have one of your knives? I'm just like, I'm a big fan.
+1cf20bff	sounds/vo/viper/viper_match_start_viper_shiv_convo03_03.vsnd	small/dtw/greedy	Is the writer wrong answer stab someone?
+2f0310a9	sounds/vo/viper/viper_match_start_viper_shiv_convo03_05.vsnd	small/dtw/greedy	Okay, but maybe afterwards you can like hook me up.
+2e77a1d5	sounds/vo/viper/viper_match_start_viper_synth_convo01_01.vsnd	small/dtw/greedy	What's in the case?
+7161cec4	sounds/vo/viper/viper_match_start_viper_synth_convo01_03.vsnd	large-v3-turbo/beam5	Okay, you do know that makes me want to know more, right?
+7161cec4	sounds/vo/viper/viper_match_start_viper_synth_convo01_03.vsnd	small/dtw/greedy	Okay, you do know that makes me want it more, right?
+945531c0	sounds/vo/viper/viper_match_start_viper_synth_convo01_05.vsnd	small/dtw/greedy	." "Okay, now we're talking."
+b2cc7a95	sounds/vo/viper/viper_match_start_viper_synth_convo02_01.vsnd	small/dtw/greedy	!" "Hey, anyone ever tell you you look kind of like a grown-up version of the Greb Kid
+ccce76db	sounds/vo/viper/viper_match_start_viper_synth_convo02_03.vsnd	small/dtw/greedy	Seriously, you just carry around a frog. You can probably scam eight out of 10 people that it's you.
+998b7acc	sounds/vo/viper/viper_match_start_viper_synth_convo03_01.vsnd	small/dtw/greedy	So what's your deal, you Mo and Krill's pool boy?
+8c032da8	sounds/vo/viper/viper_match_start_viper_synth_convo03_03.vsnd	small/dtw/greedy	Rude?
+b50a9017	sounds/vo/viper/viper_match_start_viper_tengu_convo01_01.vsnd	small/dtw/greedy	Oh, look at that, everyone's favorite gargoyle showed up.
+c36e4c7a	sounds/vo/viper/viper_match_start_viper_tengu_convo01_03.vsnd	small/dtw/greedy	Yeah, probably.
+f15c562b	sounds/vo/viper/viper_match_start_viper_tengu_convo02_02.vsnd	small/dtw/greedy	- Ivy, I don't work for Mendoza.
+3ff08ea2	sounds/vo/viper/viper_match_start_viper_tengu_convo02_04.vsnd	small/dtw/greedy	It allegedly,
+bfc289ee	sounds/vo/viper/viper_match_start_viper_tengu_convo02_06.vsnd	small/dtw/greedy	Yeah, of 13 counts, the real number's like actually way more impressive.
+6af99926	sounds/vo/viper/viper_match_start_viper_tengu_convo02_08.vsnd	small/dtw/greedy	Oh, you're the one wanting to talk shopped, don't be mad at me!
+5c528276	sounds/vo/viper/viper_match_start_viper_tengu_convo03_01.vsnd	small/dtw/greedy	Well, if it isn't the loyal pet of the Arroyos...
+2db2db3b	sounds/vo/viper/viper_match_start_viper_tengu_convo03_03.vsnd	small/dtw/greedy	Oh no, no, no, they did stab me, but you can't keep a rod like me down.
+2480855d	sounds/vo/viper/viper_match_start_viper_tengu_convo03_05.vsnd	small/dtw/greedy	Yeah, I just wanna know how you feel about your sister working for Wraith.
+f365cefc	sounds/vo/viper/viper_match_start_viper_tengu_convo03_07.vsnd	small/dtw/greedy	- Oh my God, wait, you didn't know? (laughing) This is hilarious.
+fbdab477	sounds/vo/viper/viper_match_start_viper_tengu_convo03_09.vsnd	small/dtw/greedy	Sorry, I love hearing about family drama, but I'm not inserting myself in it unless a will's involved. So let's go shoot some people.
+fd8f27ed	sounds/vo/viper/viper_match_start_viper_viscous_convo01_01.vsnd	small/dtw/greedy	You seem nice.
+e2830e55	sounds/vo/viper/viper_match_start_viper_viscous_convo01_03.vsnd	small/dtw/greedy	You know what? I'm not even gonna take advantage of you. It'll be like my good deed for the month.
+9d6aff2c	sounds/vo/viper/viper_match_start_viper_viscous_convo02_02.vsnd	small/dtw/greedy	!" My mom didn't name me Viper. It's like a cool nickname, like Snake, or Cobra, or Copperhead.
+126c0ff0	sounds/vo/viper/viper_match_start_viper_viscous_convo02_04.vsnd	small/dtw/greedy	He's just the best ones.
+de13e619	sounds/vo/viper/viper_match_start_viper_viscous_convo02_06.vsnd	small/dtw/greedy	Oh, okay, I kinda like that. You got it, buddy.
+d756a296	sounds/vo/viper/viper_match_start_viper_viscous_convo03_01.vsnd	small/dtw/greedy	- Hey, Viscous, anytime you wanna put me in the cube, I'd appreciate it. And my skin dries out like it's nobody's business.
+983b398e	sounds/vo/viper/viper_match_start_viper_viscous_convo03_03.vsnd	small/dtw/greedy	Unless I'm stabbing someone, then please wait till I'm done.
+9b179b66	sounds/vo/viper/viper_match_start_viper_viscous_convo03_05.vsnd	small/dtw/greedy	You're just gonna cube whenever you want, aren't you?
+4d8133d0	sounds/vo/viper/viper_match_start_viper_wraith_convo01_02.vsnd	small/dtw/greedy	Oh, Melonzo? No. Who said that? Why'd you ask? She a friend of yours? I didn't know she was a friend of yours.
+c953c052	sounds/vo/viper/viper_match_start_viper_wraith_convo01_04.vsnd	small/dtw/greedy	Cool, yeah. No, I stabbed the hell out of her. Not a fan.
+5725e7f7	sounds/vo/viper/viper_match_start_viper_wraith_convo02_01.vsnd	small/dtw/greedy	Hey, if we survive this and you're looking to hire an enforcer, I'm your girl.
+600c366c	sounds/vo/viper/viper_match_start_viper_wraith_convo02_03.vsnd	small/dtw/greedy	Why? 'Cause I tried to rob one of your poker rooms that's like ancient history.
+44bbe737	sounds/vo/viper/viper_match_start_viper_wraith_convo02_05.vsnd	large-v3-turbo/beam5	You know what, I'll take it.
+44bbe737	sounds/vo/viper/viper_match_start_viper_wraith_convo02_05.vsnd	small/dtw/greedy	You know what, I'll take it.
+24f6b680	sounds/vo/viper/viper_match_start_viper_wraith_convo03_01.vsnd	small/dtw/greedy	So what, you wanna bet on how many bullets we go through?
+aa780526	sounds/vo/viper/viper_match_start_viper_wraith_convo03_03.vsnd	small/dtw/greedy	- Thousand Tons Great. Hey, Arraith, can I borrow a thousand bucks?
+e439789e	sounds/vo/viper/viper_match_start_werewolf_viper_convo01_01.vsnd	small/dtw/greedy	Oh my god, it's you.
+b911d375	sounds/vo/viper/viper_match_start_werewolf_viper_convo02_02.vsnd	small/dtw/greedy	- Yeah, I doubt that.
+dfff6ca4	sounds/vo/viper/viper_match_start_werewolf_viper_convo02_04.vsnd	small/dtw/greedy	Okay, so you want to die two seconds after the patron gives you what you want. That's your business. Okay, but I got things worth living for.
+c8d8492f	sounds/vo/viper/viper_match_start_werewolf_viper_convo02_06.vsnd	small/dtw/greedy	OK, not yet, but I will.
+d95e5e65	sounds/vo/viper/viper_match_start_werewolf_viper_convo03_01.vsnd	small/dtw/greedy	Good to see you, Lila.
+a3c3830b	sounds/vo/viper/viper_match_start_werewolf_viper_convo03_03.vsnd	large-v3-turbo/beam5	It's true. When I was locked up, I was really worried that you would die of cirrhosis before I got to stab you to death. But I guess the patrons can work miracles.
+a3c3830b	sounds/vo/viper/viper_match_start_werewolf_viper_convo03_03.vsnd	small/dtw/greedy	- Thanks, Joe. When I was locked up, I was really worried that you would die of cirrhosis before I got to a stab you to death. But I guess the patrons can work miracles.
+fe45556a	sounds/vo/viper/viper_match_start_yamato_viper_convo01_01.vsnd	small/dtw/greedy	Hey, I'm A. How you doing?
+2692b623	sounds/vo/viper/viper_match_start_yamato_viper_convo01_03.vsnd	small/dtw/greedy	Man, tough crowd.
+611c234f	sounds/vo/viper/viper_match_start_yamato_viper_convo02_01.vsnd	small/dtw/greedy	"Hey, you think I can get a job with the seventh moon
+8d0882ab	sounds/vo/viper/viper_match_start_yamato_viper_convo02_03.vsnd	small/dtw/greedy	Well, you are missing out.
+ce33e628	sounds/vo/viper/viper_match_start_yamato_viper_convo03_02.vsnd	small/dtw/greedy	I have been known on occasion to partake in their amenities.
+fdc77188	sounds/vo/viper/viper_match_start_yamato_viper_convo03_04.vsnd	large-v3-turbo/beam5	Hey, so, oh gosh, the ritual's about to start, so we're going to have to talk about this later.
+fdc77188	sounds/vo/viper/viper_match_start_yamato_viper_convo03_04.vsnd	small/dtw/greedy	Hey, so, oh gosh, the ritual's about to start, so we're just gonna, we're gonna have to talk about this later.
+a779e785	sounds/vo/viper/viper_melee_kill_01.vsnd	small/dtw/greedy	Take a nap.
+93aff73d	sounds/vo/viper/viper_melee_kill_02.vsnd	small/dtw/greedy	!" "Night night
+e4c61762	sounds/vo/viper/viper_melee_kill_03.vsnd	small/dtw/greedy	You're done.
+9ae750af	sounds/vo/viper/viper_melee_kill_04.vsnd	small/dtw/greedy	Pick the wrong fight, buddy.
+5ae80944	sounds/vo/viper/viper_melee_kill_05.vsnd	small/dtw/greedy	You got what was comin' to ya.
+42cbfeaa	sounds/vo/viper/viper_near_miss_01.vsnd	small/dtw/greedy	Almost had him.
+9011a59f	sounds/vo/viper/viper_near_miss_02.vsnd	small/dtw/greedy	Come back any time, pal!
+9817e473	sounds/vo/viper/viper_near_miss_03.vsnd	small/dtw/greedy	Why? I thought we were having fun!
+ad532960	sounds/vo/viper/viper_near_miss_04.vsnd	small/dtw/greedy	I'll be waiting.
+ce6c744f	sounds/vo/viper/viper_near_miss_05.vsnd	small/dtw/greedy	I was a matter, you don't wanna play with me no more.
+28c212ef	sounds/vo/viper/viper_outnumbered_01.vsnd	small/dtw/greedy	?" "I'm not planning on dying a hero
+9afe529d	sounds/vo/viper/viper_outnumbered_02.vsnd	small/dtw/greedy	Not liking those odds.
+3c24f6f7	sounds/vo/viper/viper_outnumbered_03.vsnd	small/dtw/greedy	Too many of them.
+3fe45143	sounds/vo/viper/viper_parry_01.vsnd	small/dtw/greedy	A big mistake.
+365a1352	sounds/vo/viper/viper_parry_02.vsnd	small/dtw/greedy	You walked into that, pal.
+156abeae	sounds/vo/viper/viper_parry_03.vsnd	small/dtw/greedy	Saw that coming a mile away.
+9fe13326	sounds/vo/viper/viper_pick_up_gold_01.vsnd	small/dtw/greedy	Oh hey, free souls!
+18275e23	sounds/vo/viper/viper_pick_up_gold_02.vsnd	small/dtw/greedy	Free money's free money!
+71e1a05a	sounds/vo/viper/viper_pick_up_gold_03.vsnd	small/dtw/greedy	- Well, looky here.
+952cad02	sounds/vo/viper/viper_pick_up_gold_04.vsnd	small/dtw/greedy	Picking that up.
+901a8e1c	sounds/vo/viper/viper_pick_up_gold_05.vsnd	small/dtw/greedy	Well, if it ain't my lucky day.
+57aed242	sounds/vo/viper/viper_pick_up_rejuv_01.vsnd	small/dtw/greedy	Picked up the rejuvenator.
+e93be430	sounds/vo/viper/viper_pick_up_rejuv_02.vsnd	small/dtw/greedy	We got the rejuve!
+14e2fd15	sounds/vo/viper/viper_pick_up_rejuv_03.vsnd	small/dtw/greedy	Let's get to work, boys and girls.
+0ef5e513	sounds/vo/viper/viper_revenge_kill.vsnd	small/dtw/greedy	You thought you were better than me, didn't you?
+7fb04f73	sounds/vo/viper/viper_see_enemy_metal_skin_01.vsnd	small/dtw/greedy	They got metal skid.
+bd1dc8b1	sounds/vo/viper/viper_see_enemy_metal_skin_02.vsnd	small/dtw/greedy	You can't shoot him!
+f883c572	sounds/vo/viper/viper_see_enemy_metal_skin_03.vsnd	small/dtw/greedy	Bullets ain't working!
+4b48e204	sounds/vo/viper/viper_select_01.vsnd	small/dtw/greedy	(laughs) How hard can summoning an elder god be?
+a627a298	sounds/vo/viper/viper_select_02.vsnd	small/dtw/greedy	Yeah, yeah, I'm a work in progress. Pick me.
+b0e48caf	sounds/vo/viper/viper_select_03.vsnd	small/dtw/greedy	Look, I'm not saying you need my help. I'm just saying, no, I actually am saying you need my help.
+ddcbb462	sounds/vo/viper/viper_select_04.vsnd	small/dtw/greedy	Ah, sometimes I think, man, it would be so fun to break out a lost whisper, and then I think V, that is a dumbass idea.
+12b7d8ca	sounds/vo/viper/viper_select_05.vsnd	small/dtw/greedy	I don't get why Wraith won't let me take out a marker. I paid it off once.
+bc1120fe	sounds/vo/viper/viper_select_06.vsnd	small/dtw/greedy	You ever get the feeling that something bad is gonna happen? Yeah, so I don't, that's why I end up in jail so much.
+d380ef33	sounds/vo/viper/viper_select_07.vsnd	small/dtw/greedy	Now I'm just gonna say it, Lash is awesome and he kicked Bebop's ass.
+7107bef9	sounds/vo/viper/viper_select_08.vsnd	small/dtw/greedy	Inferness used to be hard, now he's just a bitch, slinging Mary Pickford's to other bitches. Oh my God, don't tell him I said that.
+5850a70d	sounds/vo/viper/viper_select_09.vsnd	small/dtw/greedy	!" I knew a guy who owed the Seventh Moon a sea note. Or, uh, well, I knew a guy who owed the Seventh Moon a sea note. Yamato murdered the shit out of him.
+e06f9211	sounds/vo/viper/viper_select_10.vsnd	small/dtw/greedy	You want to know the best bars to get kicked out of I am your girl.
+ff1b8a77	sounds/vo/viper/viper_t1_shop_reminder_01.vsnd	small/dtw/greedy	I should buy a relic.
+fc7451c0	sounds/vo/viper/viper_t1_shop_reminder_02.vsnd	small/dtw/greedy	Need to check out the store.
+da139c2d	sounds/vo/viper/viper_t1_shop_reminder_03.vsnd	small/dtw/greedy	Time to buy a relic.
+fcbe48f2	sounds/vo/viper/viper_t2_shop_reminder_01.vsnd	small/dtw/greedy	I should pop by the shop.
+b19204f1	sounds/vo/viper/viper_t2_shop_reminder_02.vsnd	small/dtw/greedy	It's nice being able to afford something that's not a Lucy.
+fc474b5a	sounds/vo/viper/viper_t2_shop_reminder_03.vsnd	small/dtw/greedy	Might be time to go shopping.
+7f0dcc48	sounds/vo/viper/viper_t3_shop_reminder_01.vsnd	small/dtw/greedy	Well, I could afford something real nice.
+acb10f85	sounds/vo/viper/viper_t3_shop_reminder_02.vsnd	small/dtw/greedy	I bet I could get something good at the store.
+3e652ef8	sounds/vo/viper/viper_t3_shop_reminder_03.vsnd	small/dtw/greedy	Time to swing by the Curiosity Shop.
+eec637db	sounds/vo/viper/viper_t4_shop_reminder_01.vsnd	small/dtw/greedy	Aw man, I could get something nice and also not have to steal it.
+7d16136f	sounds/vo/viper/viper_t4_shop_reminder_02.vsnd	small/dtw/greedy	Gotta see what I can buy now.
+41098a68	sounds/vo/viper/viper_t4_shop_reminder_03.vsnd	large-v3-turbo/beam5	I'm rich, let's blow it all.
+41098a68	sounds/vo/viper/viper_t4_shop_reminder_03.vsnd	small/dtw/greedy	I'm rich. Let's blow it all.
+cc4b012c	sounds/vo/viper/viper_tower_got_denied_01.vsnd	small/dtw/greedy	Oh, who cares about a few souls?
+69c88608	sounds/vo/viper/viper_tower_got_denied_02.vsnd	small/dtw/greedy	We took the objective, that's all that matters.
+5a88f000	sounds/vo/viper/viper_tower_got_denied_03.vsnd	small/dtw/greedy	We're closer to completing the ritual.
+5d39858f	sounds/vo/viper/viper_tower_got_denied_04.vsnd	small/dtw/greedy	They ain't stopping us from summoning the patron.
+a180afe3	sounds/vo/viper/viper_tower_got_denied_05.vsnd	small/dtw/greedy	We're coming for their patron!
+39d99bea	sounds/vo/viper/viper_unselect_01.vsnd	small/dtw/greedy	Ah, whatever. I needed to make Pruno anyway.
+1d30b671	sounds/vo/viper/viper_unselect_02.vsnd	small/dtw/greedy	I can't help you. I gotta go hide from a loan shark, also some cops and another loan shark.
+7853036f	sounds/vo/viper/viper_unselect_03.vsnd	small/dtw/greedy	Look man, I'm gonna be honest with you someone in the patron sounds like a lot of work. I'm feeling lazy as hell today.
+9188a541	sounds/vo/viper/viper_unselect_04.vsnd	small/dtw/greedy	Go talk to Ivy, say it's a favor for the Arroyos, she'll help you.
+4aaa6ed8	sounds/vo/viper/viper_unselect_05.vsnd	small/dtw/greedy	You know what I'm good at not getting shot at today.
+5a3d0483	sounds/vo/viper/viper_unselect_06.vsnd	small/dtw/greedy	Think I'll just stick to crime.
+081f024e	sounds/vo/viper/viper_unselect_07.vsnd	small/dtw/greedy	I don't have the energy to lie today. I don't wanna help.
+3cd995dd	sounds/vo/viper/viper_unselect_08.vsnd	small/dtw/greedy	You didn't want my help anyway, I'm a degenerate.
+c6fc012d	sounds/vo/viper/viper_unselect_09.vsnd	small/dtw/greedy	No, I got a healthy desire to not get dead.
+1d46c855	sounds/vo/viper/viper_unselect_10.vsnd	small/dtw/greedy	Buddy, if you think I'm gonna go out in the maelstrom today, you're gonna be so disappointed.
+7e0991e9	sounds/vo/viper/viper_upgrade_power1_01.vsnd	small/dtw/greedy	Building shanks is like a meditative thing, you know?
+7957b026	sounds/vo/viper/viper_upgrade_power1_02.vsnd	small/dtw/greedy	And my PO thinks I don't have marketable skills
+57303218	sounds/vo/viper/viper_upgrade_power1_03.vsnd	small/dtw/greedy	Gotta love a good knife.
+f4b19df9	sounds/vo/viper/viper_upgrade_power1_04.vsnd	small/dtw/greedy	I never took the needlepoint like I did to a stabbing people.
+3086f6fd	sounds/vo/viper/viper_upgrade_power1_05.vsnd	small/dtw/greedy	Nothing flashy about it, but it works.
+a88cf2aa	sounds/vo/viper/viper_upgrade_power1_06.vsnd	small/dtw/greedy	Shifts like the filet mignon of blade work, you know? I'm more like the greasy spoon diner food that you get when you're hungover, but you never really wanna finish when you're sober. You know what I mean? Flood, but lovable.
+1bbe412d	sounds/vo/viper/viper_upgrade_power1_07.vsnd	small/dtw/greedy	Ready to sling some knives.
+a43e9567	sounds/vo/viper/viper_upgrade_power1_08.vsnd	small/dtw/greedy	You gotta find joy in the little things.
+ebb47212	sounds/vo/viper/viper_upgrade_power1_09.vsnd	small/dtw/greedy	This is so much fancier than the toothbrush/matress/spring combo I used to stick Molly Molenzo back on Long Island.
+76fb9be6	sounds/vo/viper/viper_upgrade_power1_10.vsnd	small/dtw/greedy	Sometimes you just gotta let it all out and like, "Ahh!" when you stab someone, you know what I'm saying.
+b194173a	sounds/vo/viper/viper_upgrade_power2_01.vsnd	small/dtw/greedy	Oh, what can I say? Poison is fun.
+31823b6a	sounds/vo/viper/viper_upgrade_power2_02.vsnd	small/dtw/greedy	- I mean, who hasn't tried to poison someone in Atlantic City, right? I'm right.
+d45e9267	sounds/vo/viper/viper_upgrade_power2_03.vsnd	small/dtw/greedy	Anyone who wants to complain about me using poison should come over to my place for drinks. They'll never whine about it again.
+7e16fd9a	sounds/vo/viper/viper_upgrade_power2_04.vsnd	small/dtw/greedy	Poison is awesome. It's like the slow cooker for murder.
+0bc4e22c	sounds/vo/viper/viper_upgrade_power2_05.vsnd	small/dtw/greedy	Yeah, I'm whipping up some good stuff today.
+6b5648c5	sounds/vo/viper/viper_upgrade_power2_06.vsnd	small/dtw/greedy	They're not even ready for what's coming their way.
+e3f7cbf2	sounds/vo/viper/viper_upgrade_power2_07.vsnd	small/dtw/greedy	I'm gonna mess some people up with this.
+ecc7fff7	sounds/vo/viper/viper_upgrade_power2_08.vsnd	small/dtw/greedy	No, I can't wait to try this on folks.
+86c574b3	sounds/vo/viper/viper_upgrade_power2_09.vsnd	small/dtw/greedy	I'm gonna be slinging more poison than my mom after she found out about the life insurance policy.
+cc4e05a7	sounds/vo/viper/viper_upgrade_power2_10.vsnd	small/dtw/greedy	I'm ready to ruin some people's day.
+a3858021	sounds/vo/viper/viper_upgrade_power3_01.vsnd	small/dtw/greedy	Gotta be slippery in this business.
+19383ad2	sounds/vo/viper/viper_upgrade_power3_02.vsnd	small/dtw/greedy	He's got me out of a lot of jams.
+166a72b8	sounds/vo/viper/viper_upgrade_power3_03.vsnd	small/dtw/greedy	Need to be able to get the hell out of there.
+dd3581b6	sounds/vo/viper/viper_upgrade_power3_04.vsnd	small/dtw/greedy	This is my bread and butter, baby.
+37a576de	sounds/vo/viper/viper_upgrade_power3_05.vsnd	small/dtw/greedy	Hey, this is why the patrons want me.
+d12a9d50	sounds/vo/viper/viper_upgrade_power3_06.vsnd	small/dtw/greedy	Slide in, pop, pop, hit Jezebel's up for an overpriced Manhattan to celebrate.
+2d7c51d9	sounds/vo/viper/viper_upgrade_power3_07.vsnd	small/dtw/greedy	Yeah, I'm looking forward to getting to work.
+e8c45fc6	sounds/vo/viper/viper_upgrade_power3_08.vsnd	small/dtw/greedy	The amount of copper I'm gonna be throwing down Broadway is absolutely stupid!
+5e2934b1	sounds/vo/viper/viper_upgrade_power3_09.vsnd	small/dtw/greedy	Buckle up kids, it's about to get exciting!
+68910d36	sounds/vo/viper/viper_upgrade_power3_10.vsnd	small/dtw/greedy	Play times here, baby!
+5ab7878c	sounds/vo/viper/viper_upgrade_power4_01.vsnd	small/dtw/greedy	Gorgon's gonna gorgon, you know what I'm sayin
+263beee1	sounds/vo/viper/viper_upgrade_power4_02.vsnd	small/dtw/greedy	I'm still working out the kinks, but I think this baby's gonna work.
+9c63d93b	sounds/vo/viper/viper_upgrade_power4_03.vsnd	small/dtw/greedy	Gotta be accurate with this baby.
+2c740e9a	sounds/vo/viper/viper_upgrade_power4_04.vsnd	small/dtw/greedy	I'm stepping out of my spray and pray comfort zone.
+d28bdb1a	sounds/vo/viper/viper_upgrade_power4_05.vsnd	small/dtw/greedy	I hope they bunch up!
+a3d7747d	sounds/vo/viper/viper_upgrade_power4_06.vsnd	small/dtw/greedy	- Hitting people with a rock always, it just makes me feel better.
+a14abe0c	sounds/vo/viper/viper_upgrade_power4_07.vsnd	small/dtw/greedy	I may not be able to spell "pentrification," but that ain't gonna matter after I turn him into a rock.
+4c368054	sounds/vo/viper/viper_upgrade_power4_08.vsnd	small/dtw/greedy	Gotta be able to make an impact.
+18a6f108	sounds/vo/viper/viper_upgrade_power4_09.vsnd	small/dtw/greedy	I'm looking forward to see how this plays out.
+641d6b2f	sounds/vo/viper/viper_upgrade_power4_10.vsnd	small/dtw/greedy	Time to throw stones, baby.
+ad87eca1	sounds/vo/viper/viper_use_ability_refresher_01.vsnd	small/dtw/greedy	Refreshing.
+e186c793	sounds/vo/viper/viper_use_ability_refresher_02.vsnd	small/dtw/greedy	Powers back.
+3c1eb088	sounds/vo/viper/viper_use_ability_refresher_03.vsnd	small/dtw/greedy	Ready to petrify those chomps.
+3941775c	sounds/vo/viper/viper_use_colossus_01.vsnd	small/dtw/greedy	Colossus!
+2d9e2450	sounds/vo/viper/viper_use_colossus_02.vsnd	small/dtw/greedy	I'm in the big time now.
+de23637d	sounds/vo/viper/viper_use_colossus_03.vsnd	small/dtw/greedy	Now we're talkin
+77ee23d5	sounds/vo/viper/viper_use_curse_01.vsnd	small/dtw/greedy	Curse!
+d906312d	sounds/vo/viper/viper_use_curse_02.vsnd	small/dtw/greedy	They're cursed!
+fefea79a	sounds/vo/viper/viper_use_curse_03.vsnd	small/dtw/greedy	I'll curse 'em!
+bba70662	sounds/vo/viper/viper_use_decay_01.vsnd	small/dtw/greedy	Decay!
+a4615012	sounds/vo/viper/viper_use_decay_02.vsnd	small/dtw/greedy	They ain't healing.
+fd04b4ac	sounds/vo/viper/viper_use_decay_03.vsnd	small/dtw/greedy	I softened them up.
+7a7370f2	sounds/vo/viper/viper_use_echo_shard_01.vsnd	small/dtw/greedy	Echo shard.
+75db21ff	sounds/vo/viper/viper_use_echo_shard_02.vsnd	small/dtw/greedy	Yo, let's do that again!
+835790be	sounds/vo/viper/viper_use_echo_shard_03.vsnd	small/dtw/greedy	Oh, you think I'm done?
+515201fa	sounds/vo/viper/viper_use_ice_blast_01.vsnd	small/dtw/greedy	Claw front!
+7d25f76f	sounds/vo/viper/viper_use_ice_blast_02.vsnd	small/dtw/greedy	Ice Blast!
+8c3c0b73	sounds/vo/viper/viper_use_ice_blast_03.vsnd	small/dtw/greedy	Drop an ice!
+8e0aa305	sounds/vo/viper/viper_use_metal_skin_01.vsnd	small/dtw/greedy	Metal skin!
+c4ed8e45	sounds/vo/viper/viper_use_metal_skin_02.vsnd	small/dtw/greedy	Let's dance!
+20c1de60	sounds/vo/viper/viper_use_metal_skin_03.vsnd	small/dtw/greedy	Bring on the bullets, baby!
+0ef112db	sounds/vo/viper/viper_use_phantom_strike_01.vsnd	small/dtw/greedy	Phantom Strike!
+8a241385	sounds/vo/viper/viper_use_phantom_strike_02.vsnd	large-v3-turbo/beam5	Going in!
+8a241385	sounds/vo/viper/viper_use_phantom_strike_02.vsnd	small/dtw/greedy	- Go ahead!
+92748461	sounds/vo/viper/viper_use_phantom_strike_03.vsnd	small/dtw/greedy	Getting in close.
+643cdf98	sounds/vo/viper/viper_use_power1_01.vsnd	small/dtw/greedy	Learn this trick in Jersey.
+eb0f1700	sounds/vo/viper/viper_use_power1_02.vsnd	small/dtw/greedy	Shiv's got nothing on me.
+b2c4bb96	sounds/vo/viper/viper_use_power1_03.vsnd	small/dtw/greedy	?" "Throw and shank
+4abbc8b6	sounds/vo/viper/viper_use_power1_04.vsnd	small/dtw/greedy	I'll stick 'em.
+9545f1ae	sounds/vo/viper/viper_use_power1_05.vsnd	small/dtw/greedy	Don't mess with me.
+da4da392	sounds/vo/viper/viper_use_power1_06.vsnd	small/dtw/greedy	Where you goin', pal?
+28ba5ba7	sounds/vo/viper/viper_use_power1_07.vsnd	small/dtw/greedy	"You wanna play, buddy
+74c8e949	sounds/vo/viper/viper_use_power1_08.vsnd	small/dtw/greedy	They're about to get got.
+43c16d11	sounds/vo/viper/viper_use_power1_09.vsnd	small/dtw/greedy	Sling a knife.
+facccde0	sounds/vo/viper/viper_use_power1_10.vsnd	small/dtw/greedy	!" "Try running now
+a7fc3f23	sounds/vo/viper/viper_use_power2_01.vsnd	small/dtw/greedy	They'll be dead soon.
+457b6176	sounds/vo/viper/viper_use_power2_02.vsnd	small/dtw/greedy	Your time's running out.
+a61484ba	sounds/vo/viper/viper_use_power2_03.vsnd	small/dtw/greedy	Let's see how you're feeling in a few seconds.
+f62c0e9f	sounds/vo/viper/viper_use_power2_04.vsnd	small/dtw/greedy	A Staten Island classic!
+aabf0a5e	sounds/vo/viper/viper_use_power2_05.vsnd	small/dtw/greedy	- Enjoy the venom.
+107384d7	sounds/vo/viper/viper_use_power2_06.vsnd	small/dtw/greedy	Have some pruno on the house.
+e782881d	sounds/vo/viper/viper_use_power2_07.vsnd	small/dtw/greedy	Drink up.
+b3cff9c4	sounds/vo/viper/viper_use_power2_08.vsnd	small/dtw/greedy	Need that venom to kick in.
+440a98fa	sounds/vo/viper/viper_use_power2_09.vsnd	small/dtw/greedy	For the love of God, just die!
+730c9ee5	sounds/vo/viper/viper_use_power2_10.vsnd	small/dtw/greedy	Right where I want ya.
+a9c43597	sounds/vo/viper/viper_use_power4_01.vsnd	small/dtw/greedy	I'll turn him to stone.
+8d837ae7	sounds/vo/viper/viper_use_power4_02.vsnd	small/dtw/greedy	Petrify!
+d743a9ab	sounds/vo/viper/viper_use_power4_03.vsnd	small/dtw/greedy	- Throwin' Bola!
+42fa8d5a	sounds/vo/viper/viper_use_power4_04.vsnd	small/dtw/greedy	This never gets old.
+675c5d9b	sounds/vo/viper/viper_use_power4_05.vsnd	small/dtw/greedy	All right, V. Don't screw this up.
+8b30b872	sounds/vo/viper/viper_use_power4_06.vsnd	small/dtw/greedy	This'll take him out.
+63d08182	sounds/vo/viper/viper_use_power4_07.vsnd	small/dtw/greedy	The all-gorgon special.
+51f8d0d5	sounds/vo/viper/viper_use_power4_08.vsnd	small/dtw/greedy	We're having fun now.
+4de22851	sounds/vo/viper/viper_use_power4_09.vsnd	small/dtw/greedy	You know they love this in Philly.
+f5c3c6aa	sounds/vo/viper/viper_use_power4_10.vsnd	small/dtw/greedy	Yeah, I don't fight fair.
+2e9cbbed	sounds/vo/viper/viper_use_shadow_weave_01.vsnd	small/dtw/greedy	Shadowweave!
+48b00dd9	sounds/vo/viper/viper_use_shadow_weave_02.vsnd	small/dtw/greedy	Time to get a little sneaky.
+15d7b5e0	sounds/vo/viper/viper_use_shadow_weave_03.vsnd	small/dtw/greedy	Oh, they'll never see this coming.
+581d1838	sounds/vo/viper/viper_use_silencer_01.vsnd	small/dtw/greedy	"Silence, sir
+cd218198	sounds/vo/viper/viper_use_silencer_02.vsnd	small/dtw/greedy	- I'll stop their powers.
+0227097d	sounds/vo/viper/viper_use_silencer_03.vsnd	small/dtw/greedy	I ain't worried about their powers.
+c8f274f8	sounds/vo/viper/viper_use_tech_purge_01.vsnd	small/dtw/greedy	Purging!
+da363e45	sounds/vo/viper/viper_use_tech_purge_02.vsnd	small/dtw/greedy	Chakin' it off!
+8d0f6707	sounds/vo/viper/viper_use_tech_purge_03.vsnd	small/dtw/greedy	I'm fine, I'm fine.
+f2cd7e42	sounds/vo/viper/viper_use_unstoppable_01.vsnd	small/dtw/greedy	I'm unstoppable!
+f1b9916e	sounds/vo/viper/viper_use_unstoppable_02.vsnd	small/dtw/greedy	- They can't stop me!
+4a57b5da	sounds/vo/viper/viper_use_unstoppable_03.vsnd	small/dtw/greedy	I'm not worried about a little magic.
+07edfa2e	sounds/vo/viper/viper_use_vampiric_burst_01.vsnd	small/dtw/greedy	Vampiric Burst!
+ab5f6cfb	sounds/vo/viper/viper_use_vampiric_burst_02.vsnd	small/dtw/greedy	Ready to open fire!
+0dfa3fec	sounds/vo/viper/viper_use_vampiric_burst_03.vsnd	small/dtw/greedy	." "Spray and pray, baby!"
