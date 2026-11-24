@@ -125,14 +125,10 @@ Wave 8:
 - [x] [009 forum csv](2026-11-24-000-vo-transcripts.kb/2026-11-24-009-forum-csv.md) (70a58e1): `redo data/vo/forum.csv`, 649 rows; 81 "no caption in game"; tokens checked against the English caption file
   - Before posting: the `note` column quotes the fix-up's `doubt` verbatim, with whisper jargon ("small: …; turbo: …") in 17 rows
 - [x] [010 caption fidelity pilot](2026-11-24-000-vo-transcripts.kb/2026-11-24-010-caption-fidelity-pilot.md) (953db4e): Vyper, 1717 captioned clips: 5 material (0.3%), 284 minor (mostly ad-libbed fillers and openers), 413 ASR errors, 1015 exact; coordinator spot-checked 25 judgments and agreed
+  - The owner's ear then found 11 "Calvin" lines filed as ASR errors (running gag): 16 material, 0.9%; held in `transcripts/caption-corrections.tsv`
 
-Candidates the owner raised 2026-11-24, not yet briefed. Order: the
-pilot, then 011 → 012, then 013 depending on 010's rate.
-- 011 caption mod: per-locale `citadel_generated_vo_<lang>.txt` holding
-  only our changed tokens, in the styling above, plus a unified diff per
-  locale against Valve's file, for Valve. Packed as one VPK at
-  `resource/localization/citadel_generated_vo/`, installed through
-  deadlock-mod-manager ("Add Local Mod"). Rebuilt by redo on every patch.
+Wave 9 (parallel; no whisper):
+- [ ] [011 caption mod](2026-11-24-000-vo-transcripts.kb/2026-11-24-011-caption-mod.md): a tokens-only caption file per locale, packed as one addon VPK, plus a unified diff per locale for Valve. Line break `<br>` (1050 uses in the game's English localization, no `<cr>`); the owner's in-game test confirms it rather than gating the unit.
   Findings from reading the manager (d0c8f78; nothing was run):
   - It installs VPKs into `citadel/addons/` and inserts `Game
     citadel/addons` ahead of `Game citadel`. A VPK there shadows the loose
@@ -149,18 +145,14 @@ pilot, then 011 → 012, then 013 depending on 010's rate.
     without the manager would blank every other caption. Manual installs
     already require editing `gameinfo.gi`, so the manager is the real
     path.
-  - Gated on an owner in-game test of a one-token mod: which line break
-    does the HUD render?
-- 012 locale translations: the bracketed translation in each of the 16
-  other locales, using each locale's own hero names, and labelled machine
-  translations.
-- 013 all-hero caption fidelity: 010's method over about 79k clips, run
-  overnight. Only below-threshold clips go to an LLM, so tokens scale with
-  the mismatch rate. Recommend dropping ([!DRAFT] 2026-11-24): at 0.3%
-  material on Vyper, the colourful hero the owner picked, about 79k clips
-  would yield about 240 material rows. At 010's cost (174k tokens for 1717
-  clips) that is about 8M tokens, and most of the rows would be nicknames
-  for heroes.
+- [ ] [012 locale translations](2026-11-24-000-vo-transcripts.kb/2026-11-24-012-locale-translations.md): `transcripts/locale-translations.tsv`, the bracketed translation in the 16 other locales; 011 falls back to English where a row is missing
+- [ ] [014 forum notes](2026-11-24-000-vo-transcripts.kb/2026-11-24-014-forum-notes.md): plain English in the CSV's `note`, in place of whisper model names
+
+Parked: 013 all-hero caption fidelity, 010's method over about 79k
+clips. English-caption corrections are lower priority and held apart
+(owner ruling, above). At Vyper's 0.9% that is about 700 material clips
+and about 8M tokens. Whisper is about 80% right on names, and in-joke
+names like "Calvin" need the owner's ear.
 
 For the owner, not a unit: every build re-provisions
 `data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream
