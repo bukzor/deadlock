@@ -21,7 +21,7 @@ Only clips whose English caption in `data/vo/lines.tsv` is
 "Speaks <language>": Yamato's 532 "Speaks Japanese", Ivy's (`tengu`) 34
 "Speaks spanish", and one "Speaks French" each for Lady Geist (`ghost`) and
 Bebop. Whisper is pinned to the caption's language. A hero with any such
-clip also brings her uncaptioned clips outside `emote/` (Yamato 11, Ivy 14,
+clip also brings its uncaptioned clips outside `emote/` (Yamato 11, Ivy 14,
 Lady Geist 33, Bebop 23: alternate takes and pings). Their language is
 detected, under a model id ending `/auto`, except Yamato's: hers are
 alternate takes of Japanese lines, pinned to `ja`. Lady Geist and Bebop
@@ -71,11 +71,13 @@ orthography a native reader of its language expects, and a
 
 ## The ASR job runs slowly, in the background
 
-- **Pinned:** `whisper-cli -l ja` with no detection pass and no prompt. The
+- **Pinned:** `whisper-cli -l <caption's language>` with no detection pass
+  and no prompt (detection only for the uncaptioned clips above). The
   bar is intelligible, not accurate (owner ruling), and the fix-up pass
   recovers the rest from context.
 - **Model and batching:** `ggml-small.bin` with
-  `-l ja -dtw small -nfa -bs 1 -bo 1`. Batches of about 10 clips stay
+  `-l <lang> -dtw small -nfa -bs 1 -bo 1`. A detected clip runs alone,
+  since whisper detects once per window. Batches of about 10 clips stay
   under 30 s, with 1 s of silence after each clip. Each batch is decoded
   to PCM with ffmpeg and split back into clips by DTW token time, because
   small merges neighbouring clips into one segment. A clip that comes back

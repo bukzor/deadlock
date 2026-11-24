@@ -111,7 +111,8 @@ Wave 6:
 - [x] [007 view doubt](2026-11-24-000-vo-transcripts.kb/2026-11-24-007-view-doubt.md) (340bbc5): `data/vo/japanese.tsv` shows the fix-up's `doubt`; 4 rows carry one
 
 Wave 7:
-- [ ] [008 other languages](2026-11-24-000-vo-transcripts.kb/2026-11-24-008-other-languages.md): the ASR language comes from the caption; the view is renamed to `data/vo/foreign.tsv`; Ivy, Lady Geist and Bebop are transcribed and fixed up
+- [x] [008 other languages](2026-11-24-000-vo-transcripts.kb/2026-11-24-008-other-languages.md) (50e7af0): `data/vo/foreign.tsv` with `lang`; 106 new clips (36 es/fr, 70 uncaptioned and detected, 69 of them English); 18 doubtful
+  - Ivy's `ping_attack_tengu` and `ping_can_heal_tengu` say "Tengu", her pre-rename name; Lady Geist and Ivy call Fathom "Slork"
 
 Wave 8:
 - [ ] [009 forum csv](2026-11-24-000-vo-transcripts.kb/2026-11-24-009-forum-csv.md): the CSV to publish
