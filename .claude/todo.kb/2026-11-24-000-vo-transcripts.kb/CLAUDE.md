@@ -61,7 +61,8 @@ copies them.
 - Run builds and checks in the foreground. Never end your turn waiting on a
   background job: if a sibling must land first, say so in your report and
   stop; the coordinator resumes you.
-- Scratch goes in the repo root's `trash/<unit-NNN>/` (gitignored).
+- Scratch goes in the repo root's `trash/vo-transcripts/<NNN>/` (gitignored;
+  bare `trash/<NNN>/` belongs to an earlier plan).
 - The brief (frontmatter inputs, Problem Statement) is the coordinator's;
   edit only your own sections, in place, ≤60 lines.
 - Timebox: 60 minutes. Past it, write the Final report with what you have
