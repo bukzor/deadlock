@@ -46,6 +46,7 @@ orthography a native reader of its language expects, and a
 | `transcripts/asr/<hero>.tsv` | `crc32 vsnd model text`, one row per clip and model | the ASR job | **yes** |
 | `transcripts/fixups.tsv` | `asr_text replacement translation doubt by` | the fix-up pass and the owner | **yes** |
 | `transcripts/caption-corrections.tsv` | `crc32 vsnd caption suggested doubt by`: English clips whose audio departs materially from a real caption | a judge pass and the owner's ear | **yes** |
+| `transcripts/locale-translations.tsv` | `translation locale text by`: each foreign.tsv `translation` in every non-English locale but the spoken one, for the caption mod's bracket line (machine translations) | a translation pass and the owner | **yes** |
 | `data/vo/foreign.tsv` | `hero event vsnd lang replacement translation doubt source`: the file to read | redo (join) | yes |
 
 ## Why this shape
