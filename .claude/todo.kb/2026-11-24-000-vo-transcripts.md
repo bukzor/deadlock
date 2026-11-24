@@ -51,7 +51,22 @@ Wave 2:
 - [ ] [003 vo lines](2026-11-24-000-vo-transcripts.kb/2026-11-24-003-vo-lines.md): a committed per-soundbite table: event, audio path and CRC, caption per locale
 
 Wave 3, briefed from the wave 1 and 2 findings:
-- [ ] 004 transcripts: ASR plus translation for the lines that ship no usable text, starting with Yamato. POC (`trash/vo-transcripts/poc/`, large-v3-turbo, 16 clips): the Japanese transcripts are excellent; the English ones mangle proper nouns ("Less down there" for Lash), so pass a hero-name `--prompt`; `-np` suppresses the language-probability line, so drop it; about 20 s wall per clip, flat from 4 to 12 threads: two encoder passes, 93% of the time. Layout, ledgers and the background runner are in `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md` (proposed). Tooling (owner-installed 2026-11-24): brew `whisper.cpp` 1.9.5 (`whisper-cli`) and `ffmpeg` 9.1; the model `ggml-large-v3` is fetched by redo into `data/tools/`. `whisper-cli` defaults to `-l en`, so pass `-l auto`. If its language probability is unusable, fall back to faster-whisper via a glibc uv tool. Record the toolchain in `environment.kb/toolchain.md`. The brief must also carry these routed items: VRF writes the stored MP3 unchanged, so 004 decodes it with ffmpeg; fix `formats.kb/asset-extensions.md`'s `vsnd_c -> wav`; 002's bulk clips are in `trash/vo-transcripts/002/bulk/`
+- [ ] 004 transcripts: ASR plus translation for the lines that ship no usable text, starting with Yamato
+  - Design: `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md` (proposed): layout, ledgers, background runner
+  - Tooling, owner-installed 2026-11-24: brew `whisper.cpp` 1.9.5 (`whisper-cli`) and `ffmpeg` 9.1
+    - The model is fetched by redo into `data/tools/whisper/`
+    - Record the toolchain in `environment.kb/toolchain.md`
+  - POC (`trash/vo-transcripts/poc/`, large-v3-turbo, 16 clips):
+    - The Japanese transcripts are excellent
+    - The English ones mangle proper nouns ("Less down there" for Lash): pass a hero-name `--prompt`
+    - `whisper-cli` defaults to `-l en`. Detect with `-dl`, then transcribe with `-l <detected>`
+    - The language probability prints only without `-np`
+    - whisper.cpp reads MP3 directly: no ffmpeg or WAV step needed
+    - About 20 s wall per clip, flat from 4 to 12 threads; two encoder passes are 93% of it
+    - Measure a quantized model (`q5_0`, `q8_0`) before the full run
+  - Routed from 002:
+    - Fix `formats.kb/asset-extensions.md`'s `vsnd_c -> wav`: VRF writes the stored MP3 unchanged
+    - 002's bulk clips are in `trash/vo-transcripts/002/bulk/`
 
 ## Success Criteria
 
