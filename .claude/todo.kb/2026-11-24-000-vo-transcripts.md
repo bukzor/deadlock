@@ -73,7 +73,7 @@ Wave 2:
   - Yamato: 1217 of 1806 clips have a real English caption, 532 read "Speaks Japanese", 57 have none
 
 Wave 3 (parallel with 003):
-- [ ] [004 asr probe](2026-11-24-000-vo-transcripts.kb/2026-11-24-004-asr-probe.md): batching, fastest intelligible model, uncaptioned clips, throughput layout, CRC stability
+- [x] [004 asr probe](2026-11-24-000-vo-transcripts.kb/2026-11-24-004-asr-probe.md) (9852738): `small` + DTW batching, 4×1 threads, about 7600 clips/h; CRC keying holds; findings in `docs/dev/environment.kb/whisper-asr.md`
 
 Design: `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md`
 (proposed; revised in e73f297 to the owner's rulings).
