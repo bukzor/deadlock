@@ -128,7 +128,7 @@ Wave 8:
   - The owner's ear then found 11 "Calvin" lines filed as ASR errors (running gag): 16 material, 0.9%; held in `transcripts/caption-corrections.tsv`
 
 Wave 9 (parallel; no whisper):
-- [ ] [011 caption mod](2026-11-24-000-vo-transcripts.kb/2026-11-24-011-caption-mod.md): a tokens-only caption file per locale, packed as one addon VPK, plus a unified diff per locale for Valve. Line break `<br>` (1050 uses in the game's English localization, no `<cr>`); the owner's in-game test confirms it rather than gating the unit.
+- [x] [011 caption mod](2026-11-24-000-vo-transcripts.kb/2026-11-24-011-caption-mod.md) (e727df7): `redo data/mod/vo-captions.vpk` (also in `all`), 17 locales × 649 tokens, 1.2 MB, VPK v2 via the `vpk` package; diffs in `data/mod/captions.d/`; owner's in-game test pending. Was: a tokens-only caption file per locale, packed as one addon VPK, plus a unified diff per locale for Valve. Line break `<br>` (1050 uses in the game's English localization, no `<cr>`); the owner's in-game test confirms it rather than gating the unit.
   Findings from reading the manager (d0c8f78; nothing was run):
   - It installs VPKs into `citadel/addons/` and inserts `Game
     citadel/addons` ahead of `Game citadel`. A VPK there shadows the loose
@@ -138,9 +138,10 @@ Wave 9 (parallel; no whisper):
   - Its localization overlay merges `resource/localization/**.txt` per
     token across mods, restores the tokens a mod omits, and skips tokens
     equal to the game's. That makes a tokens-only file safe under the
-    manager. A full-file copy would trip its warning at 50 or more changed
-    tokens, and after a patch it would pin Valve's old text for every
-    hero.
+    manager. After a patch, a full-file copy would pin Valve's old text
+    for every hero. Its notice at 50 or more changed tokens is information
+    only, and our tokens-only file trips it too (011's correction; see
+    `docs/dev/formats.kb/caption-mod.md`).
   - Tokens-only, not full-file ([!DRAFT] 2026-11-24): a manual install
     without the manager would blank every other caption. Manual installs
     already require editing `gameinfo.gi`, so the manager is the real

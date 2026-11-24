@@ -53,10 +53,13 @@
 /data/vo/*
 !/data/vo/*.do
 !/data/vo/lines.tsv
-!/data/vo/japanese.tsv
+!/data/vo/foreign.tsv
 !/data/vo/audio/
 /data/vo/audio/*
 !/data/vo/audio/*.do
+!/data/mod/
+/data/mod/*
+!/data/mod/*.do
 
 # redo's markers for the phony aggregator targets (all.do, clean.do)
 /all
