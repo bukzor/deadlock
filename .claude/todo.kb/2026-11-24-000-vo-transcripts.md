@@ -50,12 +50,14 @@ Wave 1 (parallel):
 Wave 2:
 - [ ] [003 vo lines](2026-11-24-000-vo-transcripts.kb/2026-11-24-003-vo-lines.md): a committed per-soundbite table: event, audio path and CRC, caption per locale
 
-Wave 3, briefed from the wave 1 and 2 findings:
-- [ ] 004 transcripts: ASR plus translation for the lines that ship no usable text, starting with Yamato
+Wave 3 (parallel with 003):
+- [ ] [004 asr probe](2026-11-24-000-vo-transcripts.kb/2026-11-24-004-asr-probe.md): batching, model, prompt, detection threshold, throughput layout, CRC stability
+
+Wave 4, briefed from 003 and 004:
+- [ ] 005 transcripts: ASR plus translation for the lines that ship no usable text, starting with Yamato
   - Design: `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md` (proposed): layout, ledgers, background runner
   - Tooling, owner-installed 2026-11-24: brew `whisper.cpp` 1.9.5 (`whisper-cli`) and `ffmpeg` 9.1
     - The model is fetched by redo into `data/tools/whisper/`
-    - Record the toolchain in `environment.kb/toolchain.md`
   - POC (`trash/vo-transcripts/poc/`, large-v3-turbo, 16 clips):
     - The Japanese transcripts are excellent
     - The English ones mangle proper nouns ("Less down there" for Lash): pass a hero-name `--prompt`
@@ -63,10 +65,7 @@ Wave 3, briefed from the wave 1 and 2 findings:
     - The language probability prints only without `-np`
     - whisper.cpp reads MP3 directly: no ffmpeg or WAV step needed
     - About 20 s wall per clip, flat from 4 to 12 threads; two encoder passes are 93% of it
-    - Measure a quantized model (`q5_0`, `q8_0`) before the full run
-  - Routed from 002:
-    - Fix `formats.kb/asset-extensions.md`'s `vsnd_c -> wav`: VRF writes the stored MP3 unchanged
-    - 002's bulk clips are in `trash/vo-transcripts/002/bulk/`
+  - 002's bulk clips are in `trash/vo-transcripts/002/bulk/`
 
 ## Success Criteria
 
