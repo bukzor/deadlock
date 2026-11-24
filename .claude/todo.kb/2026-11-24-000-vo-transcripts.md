@@ -82,7 +82,10 @@ Wave 4, after 004:
 - [x] [005 asr runner](2026-11-24-000-vo-transcripts.kb/2026-11-24-005-asr-runner.md) (1331565): the whole Yamato run, 543 clips in 290 s; `transcripts/asr/yamato.tsv`, `data/vo/japanese.tsv`, `bin/asr-start`
 
 Wave 5, once 005's first rows land:
-- [ ] [006 fixups](2026-11-24-000-vo-transcripts.kb/2026-11-24-006-fixups.md): a replacement and a translation per Japanese line; doubtful rows escalate to a stronger model, then to the owner
+- [x] [006 fixups](2026-11-24-000-vo-transcripts.kb/2026-11-24-006-fixups.md) (df9de9e): 543 clips with a replacement and a translation; 53 escalated to turbo; 4 still doubtful, for the owner
+
+Wave 6:
+- [ ] [007 view doubt](2026-11-24-000-vo-transcripts.kb/2026-11-24-007-view-doubt.md): `data/vo/japanese.tsv` shows the fix-up's `doubt`
 
 For the owner, not a unit: every build re-provisions
 `data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream
