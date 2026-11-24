@@ -121,12 +121,22 @@ what its caption says.
   possible where a mishearing overlaps it; turbo found such cases in 4 of
   the 10 doubtful ASR calls it rechecked (3 minor, 1 material), so the
   material rate could be up to about 0.6%.
-- **Vyper says "Calvin" in some of her Kelvin lines.** The owner
-  (2026-11-24): characters getting Kelvin's name wrong is a running gag.
-  Whisper can't tell the two names apart. The owner heard 3 of her 23
-  Kelvin clips: `kill_kelvin_05` "Took down Calvin!" (whisper: Calvin),
-  `ping_kelvin_dead` "Kelvin is dead." (whisper: Calvin), and
-  `ping_careful_kelvin_01` "Careful, Calvin." (whisper: Kelvin, an exact
-  match). So whisper's 12/10 split is noise. Exact matches on a name aren't
-  evidence either, and the rate stands at **at least 0.4% (7 of 1717)**
-  until the other 20 Kelvin clips are heard.
+- **Vyper says "Calvin" in 11 of her 23 Kelvin lines,** all captioned
+  "Kelvin". The owner (2026-11-24) says getting his name wrong is a running
+  gag, and heard all 23 clips:
+  - Calvin: every non-ping line (`ally_kelvin_killed_in_lane_01`,
+    `ally_kelvin_pass_on_zipline_01`, `kill_kelvin_03`, `kill_kelvin_05`,
+    `match_start_viper_kelvin_convo03_01`, `_05`) and the pings
+    `kelvin_above`, `kelvin_almost_respawn`, `kelvin_below`,
+    `kelvin_low_health`, `careful_kelvin_01`.
+  - Kelvin: the pings `can_heal_kelvin`, `careful_kelvin_02`, `_03`,
+    `check_on_kelvin`, `ignore_kelvin`, `kelvin_check_items`,
+    `kelvin_dead`, `kelvin_missing_01`, `see_kelvin_01`,
+    `ult_ready_kelvin`, `with_kelvin`.
+  - Ambiguous: `ping_attack_kelvin`.
+
+  Whisper `small` agreed with the owner's ear on 17 of the 21 clips where
+  it heard either name. So it is right about 80% of the time on this
+  vowel, but the agent judge had filed every "Calvin" as an ASR error.
+  Counting these 11, **0.9% (16 of 1717) of Vyper's captions misstate the
+  line.**
