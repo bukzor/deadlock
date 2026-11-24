@@ -1,8 +1,7 @@
 ---
 managed-by: Skill(llm-subtask)
 status: open
-blocked-by:
-  - .claude/todo.kb/2026-11-24-000-vo-transcripts.kb/2026-11-24-008-other-languages.md
+blocked-by: []
 required-reading:
   - .claude/todo.kb/2026-11-24-000-vo-transcripts.kb/CLAUDE.md
   - docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md
