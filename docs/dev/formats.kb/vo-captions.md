@@ -121,11 +121,12 @@ what its caption says.
   possible where a mishearing overlaps it; turbo found such cases in 4 of
   the 10 doubtful ASR calls it rechecked (3 minor, 1 material), so the
   material rate could be up to about 0.6%.
-- **"Calvin" is said, not misheard.** The owner (2026-11-24): characters
-  getting Kelvin's name wrong is a running gag. Whisper agrees: in the same
-  voice and model it hears "Calvin" in 12 of Vyper's 23 Kelvin clips
-  (every kill, convo and zipline line, plus some pings) and "Kelvin" in 10
-  (`careful_kelvin_*`, `see_kelvin_01` and other pings). A mishearing
-  wouldn't split like that. Those 12 were judged ASR errors above. Counted
-  as material, they raise the rate to **1.0% (17 of 1717)**, and the
-  agent judge's other "misheard name" calls are suspect in the same way.
+- **Vyper says "Calvin" in some of her Kelvin lines.** The owner
+  (2026-11-24): characters getting Kelvin's name wrong is a running gag.
+  Whisper can't tell the two names apart. The owner heard 3 of her 23
+  Kelvin clips: `kill_kelvin_05` "Took down Calvin!" (whisper: Calvin),
+  `ping_kelvin_dead` "Kelvin is dead." (whisper: Calvin), and
+  `ping_careful_kelvin_01` "Careful, Calvin." (whisper: Kelvin, an exact
+  match). So whisper's 12/10 split is noise. Exact matches on a name aren't
+  evidence either, and the rate stands at **at least 0.4% (7 of 1717)**
+  until the other 20 Kelvin clips are heard.
