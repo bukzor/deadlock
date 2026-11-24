@@ -38,14 +38,23 @@ English. So optimize for efficiency:
 - No proper-noun prompting is needed, as long as the output is reliably
   usable.
 
+The fix-up output ([!@bukzor] 2026-11-24): each "Speaks Japanese" clip gets
+two texts:
+- **replacement:** an accurate rendering of what is spoken, in Japanese.
+  Whether accented English is written in katakana is a style choice.
+- **translation:** English that tells English-speaking players what is
+  meant.
+
 Pipeline, per line (as settled by units 002 and 003):
 1. **The game's English caption,** when it is real. That covers every
    English-spoken clip. No other locale translates the Japanese lines, and
    the sound files embed no text.
 2. **ASR, then fix-up,** for the clips captioned "Speaks Japanese":
    whisper.cpp pinned to `-l ja`, on the cheapest setup whose output stays
-   intelligible. An agent then writes the English from the transcript, the
-   event name and the hero. ML output is not reproducible, so it is
+   intelligible. An agent then writes the replacement and the translation
+   from the transcript, the event name and the hero. Where context can't
+   settle the replacement (「OSIC」), it marks the row as doubtful, and only
+   those clips are rerun on a stronger model, or go to the owner. ML output is not reproducible, so it is
    committed as a ledger keyed by the clip's CRC32 and the model id, and
    only new or changed clips are rerun after a patch.
 
