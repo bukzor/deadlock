@@ -75,27 +75,24 @@ Wave 2:
 Wave 3 (parallel with 003):
 - [ ] [004 asr probe](2026-11-24-000-vo-transcripts.kb/2026-11-24-004-asr-probe.md): batching, fastest intelligible model, uncaptioned clips, throughput layout, CRC stability
 
-Wave 4, briefed from 003 and 004:
-- [ ] 005 transcripts: ASR plus translation for the "Speaks Japanese" clips, starting with Yamato
-  - Design: `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md` (proposed); update it to the scope below before briefing
-  - Scope: only clips whose English caption is "Speaks Japanese" (532 for Yamato). Everything else is English with a correct caption
-    - The language is known, so pass `-l ja` with no detection pass. That is one encoder pass, about half the POC's cost
-    - English ASR, prompting of any kind and the `p < 0.8` threshold all drop out of the design (owner ruling in the Problem Statement)
-  - Tooling, owner-installed 2026-11-24: brew `whisper.cpp` 1.9.5 (`whisper-cli`) and `ffmpeg` 9.1
-    - The model is fetched by redo into `data/tools/whisper/`
-  - POC (`trash/vo-transcripts/poc/`, large-v3-turbo, 16 clips):
-    - The Japanese transcripts are excellent
-    - whisper.cpp reads MP3 directly: no ffmpeg or WAV step needed
-    - About 20 s wall per clip with `-l auto` (two encoder passes, 93% of the time), flat from 4 to 12 threads
-  - 002's bulk clips are in `trash/vo-transcripts/002/bulk/`
-  - Routed from 003:
-    - Wire `data/vo/lines.tsv` into `data/all.do` (`committed` for `redo-adopt`, and `redo-ifchange`); until then plain `redo` skips it
-    - Every build re-provisions `data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream. This predates the plan; report it to the owner rather than fixing it here
+Design: `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md`
+(proposed; revised in e73f297 to the owner's rulings).
+
+Wave 4, after 004:
+- [ ] [005 asr runner](2026-11-24-000-vo-transcripts.kb/2026-11-24-005-asr-runner.md): audio, model and view targets, the `all.do` wiring, the ASR job; it starts the Yamato run in tmux and hands back
+
+Wave 5, once 005's first rows land:
+- [ ] [006 fixups](2026-11-24-000-vo-transcripts.kb/2026-11-24-006-fixups.md): a replacement and a translation per Japanese line; doubtful rows escalate to a stronger model, then to the owner
+
+For the owner, not a unit: every build re-provisions
+`data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream
+(found by 003; it predates the plan).
 
 ## Success Criteria
 
-- [ ] Every Yamato VO soundbite has a row with an English transcript and its
-  source (shipped caption, embedded text, or ASR model id)
+- [ ] Every "Speaks Japanese" Yamato clip has a replacement and a
+  translation in `data/vo/japanese.tsv`, or is listed for the owner as
+  doubtful
 - [ ] `redo` rebuilds everything except the ML outputs deterministically,
   and the ML outputs are cached by audio CRC32 and model id
 - [ ] `./bin/shell pytest` and `./bin/shell pyright` clean
