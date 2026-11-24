@@ -119,12 +119,29 @@ Wave 8:
 
 Candidates the owner raised 2026-11-24, not yet briefed. Order: the
 pilot, then 011 → 012, then 013 depending on 010's rate.
-- 011 caption mod: per-locale `citadel_generated_vo_<lang>.txt` (Valve's
-  current file with our lines substituted, in the styling above), plus a
-  unified diff per locale for Valve. Packed as an addon VPK for the mod
-  managers. Rebuilt by redo on every patch. Gated on an owner in-game test:
-  does an addon override the loose caption file, and which line break does
-  the HUD render?
+- 011 caption mod: per-locale `citadel_generated_vo_<lang>.txt` holding
+  only our changed tokens, in the styling above, plus a unified diff per
+  locale against Valve's file, for Valve. Packed as one VPK at
+  `resource/localization/citadel_generated_vo/`, installed through
+  deadlock-mod-manager ("Add Local Mod"). Rebuilt by redo on every patch.
+  Findings from reading the manager (d0c8f78; nothing was run):
+  - It installs VPKs into `citadel/addons/` and inserts `Game
+    citadel/addons` ahead of `Game citadel`. A VPK there shadows the loose
+    file wholesale ("a copy of a game file hides every game token it
+    lacks"). The `citadel_<lang>` folders outrank mods, but their paks hold
+    no localization (coordinator check: french, russian, schinese).
+  - Its localization overlay merges `resource/localization/**.txt` per
+    token across mods, restores the tokens a mod omits, and skips tokens
+    equal to the game's. That makes a tokens-only file safe under the
+    manager. A full-file copy would trip its warning at 50 or more changed
+    tokens, and after a patch it would pin Valve's old text for every
+    hero.
+  - Tokens-only, not full-file ([!DRAFT] 2026-11-24): a manual install
+    without the manager would blank every other caption. Manual installs
+    already require editing `gameinfo.gi`, so the manager is the real
+    path.
+  - Gated on an owner in-game test of a one-token mod: which line break
+    does the HUD render?
 - 012 locale translations: the bracketed translation in each of the 16
   other locales, using each locale's own hero names, and labelled machine
   translations.
