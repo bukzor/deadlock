@@ -117,7 +117,7 @@ Wave 7:
 Wave 8:
 - [x] [009 forum csv](2026-11-24-000-vo-transcripts.kb/2026-11-24-009-forum-csv.md) (70a58e1): `redo data/vo/forum.csv`, 649 rows; 81 "no caption in game"; tokens checked against the English caption file
   - Before posting: the `note` column quotes the fix-up's `doubt` verbatim, with whisper jargon ("small: …; turbo: …") in 17 rows
-- [ ] [010 caption fidelity pilot](2026-11-24-000-vo-transcripts.kb/2026-11-24-010-caption-fidelity-pilot.md): English ASR on Vyper; how often the audio departs from the caption (the owner's ad-lib theory)
+- [x] [010 caption fidelity pilot](2026-11-24-000-vo-transcripts.kb/2026-11-24-010-caption-fidelity-pilot.md) (953db4e): Vyper, 1717 captioned clips: 5 material (0.3%), 284 minor (mostly ad-libbed fillers and openers), 413 ASR errors, 1015 exact; coordinator spot-checked 25 judgments and agreed
 
 Candidates the owner raised 2026-11-24, not yet briefed. Order: the
 pilot, then 011 → 012, then 013 depending on 010's rate.
@@ -149,7 +149,10 @@ pilot, then 011 → 012, then 013 depending on 010's rate.
   translations.
 - 013 all-hero caption fidelity: 010's method over about 79k clips, run
   overnight. Only below-threshold clips go to an LLM, so tokens scale with
-  the mismatch rate.
+  the mismatch rate. Recommend dropping ([!DRAFT] 2026-11-24): at 0.3%
+  material on Vyper, the colourful hero the owner picked, about 79k clips
+  would yield roughly 200 material rows for about 2M tokens, and most of
+  those would be nicknames for heroes.
 
 For the owner, not a unit: every build re-provisions
 `data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream

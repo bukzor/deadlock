@@ -27,8 +27,11 @@ detected, under a model id ending `/auto`, except Yamato's: hers are
 alternate takes of Japanese lines, pinned to `ja`. Lady Geist and Bebop
 speak English with one French line each, and small pinned to `fr` or `es`
 translates English speech instead of transcribing it. Clips with a real
-caption are English, and the caption is already right. `emote/` holds only
-grunts. Each clip in scope gets two texts: a **replacement**, meaning accurate text in the
+caption are English, and the caption is almost always right (Vyper: 5 of
+1717 differ materially; `formats.kb/vo-captions.md`, Caption fidelity).
+The English mode (`vo_asr --english`, `-l en`) transcribes them only for
+that check. Its rows share the hero's ledger, and no fix-up is written for
+them. `emote/` holds only grunts. Each clip in scope gets two texts: a **replacement**, meaning accurate text in the
 orthography a native reader of its language expects, and a
 **translation**, meaning English that tells players what is meant.
 
