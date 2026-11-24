@@ -30,16 +30,24 @@ The owner's direction: when the data is in the game files but nothing
 extracts it yet, build the extraction as we go, starting with one generic
 step that explodes files from the VPKs.
 
-Pipeline, in order of preference per line:
-1. **Text the game ships.** Another locale's caption, or word or phoneme
-   data embedded in the `vsnd_c`. This is deterministic and free. Units 002
-   and 003 find out whether any of it exists.
-2. **ASR.** faster-whisper large-v3 on the CPU, per clip, detecting the
-   language (Japanese or English). Japanese lines are transcribed, then
-   translated into English by an agent with the hero's context, which beats
-   Whisper's own `translate` task. ML output is not reproducible, so it is
-   committed as data keyed by the audio's CRC32 and the model id, and only
-   new or changed clips are rerun after a patch.
+The ASR bar ([!@bukzor] 2026-11-24): ASR output must be *intelligible*, not
+accurate. A later fix-up pass, with the audio's context, turns it into good
+English. So optimize for efficiency:
+- Pinning every clip to Japanese is fine, even though some 5 to 10% of the
+  "Speaks Japanese" clips are probably English.
+- No proper-noun prompting is needed, as long as the output is reliably
+  usable.
+
+Pipeline, per line (as settled by units 002 and 003):
+1. **The game's English caption,** when it is real. That covers every
+   English-spoken clip. No other locale translates the Japanese lines, and
+   the sound files embed no text.
+2. **ASR, then fix-up,** for the clips captioned "Speaks Japanese":
+   whisper.cpp pinned to `-l ja`, on the cheapest setup whose output stays
+   intelligible. An agent then writes the English from the transcript, the
+   event name and the hero. ML output is not reproducible, so it is
+   committed as a ledger keyed by the clip's CRC32 and the model id, and
+   only new or changed clips are rerun after a patch.
 
 ## Waves
 
@@ -53,14 +61,14 @@ Wave 2:
   - Yamato: 1217 of 1806 clips have a real English caption, 532 read "Speaks Japanese", 57 have none
 
 Wave 3 (parallel with 003):
-- [ ] [004 asr probe](2026-11-24-000-vo-transcripts.kb/2026-11-24-004-asr-probe.md): batching, model, whether the caption is a reliable language label, Japanese prompt, throughput layout, CRC stability
+- [ ] [004 asr probe](2026-11-24-000-vo-transcripts.kb/2026-11-24-004-asr-probe.md): batching, fastest intelligible model, uncaptioned clips, throughput layout, CRC stability
 
 Wave 4, briefed from 003 and 004:
 - [ ] 005 transcripts: ASR plus translation for the "Speaks Japanese" clips, starting with Yamato
   - Design: `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md` (proposed); update it to the scope below before briefing
   - Scope: only clips whose English caption is "Speaks Japanese" (532 for Yamato). Everything else is English with a correct caption
     - The language is known, so pass `-l ja` with no detection pass. That is one encoder pass, about half the POC's cost
-    - English ASR, prompts for English proper nouns and the `p < 0.8` threshold all drop out of the design
+    - English ASR, prompting of any kind and the `p < 0.8` threshold all drop out of the design (owner ruling in the Problem Statement)
   - Tooling, owner-installed 2026-11-24: brew `whisper.cpp` 1.9.5 (`whisper-cli`) and `ffmpeg` 9.1
     - The model is fetched by redo into `data/tools/whisper/`
   - POC (`trash/vo-transcripts/poc/`, large-v3-turbo, 16 clips):
