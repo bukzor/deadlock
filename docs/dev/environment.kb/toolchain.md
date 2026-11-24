@@ -18,5 +18,10 @@
   Upstream warns CLI flags aren't stable across releases — if extraction breaks
   after a bump, check `--help` against `s2v.py`.
 
+- **ASR and audio:** brew `whisper.cpp` 1.9.6 (`whisper-cli`, CPU only) and
+  `ffmpeg` 9.1, both owner-installed, unpinned, on `PATH` via
+  `/opt/homebrew/bin`. GGML models are separate downloads. Behaviour and
+  speeds on this host are in `whisper-asr.md`.
+
 External library deps (`vpk`, `keyvalues3`) are pinned in `uv.lock`; the
 reasoning for each is in `../decisions.kb/reuse-existing-parsers.md`.

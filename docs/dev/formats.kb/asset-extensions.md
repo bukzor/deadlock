@@ -24,4 +24,5 @@ generated manifest under `data/` as authoritative for any given version.
 | `vnmskel_c` / `vnmvar_c` | animation skeleton / variables | ~50 each |
 
 `vdata_c` is the highest-value target for understanding mechanics. Asset viewing
-targets `vtex_c` (→png), `vmdl_c` (→glTF), `vsnd_c` (→wav).
+targets `vtex_c` (→png), `vmdl_c` (→glTF), `vsnd_c` (→mp3: VRF writes out the
+stored MP3 unchanged, see `vsnd.md`).
