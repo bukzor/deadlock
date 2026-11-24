@@ -27,9 +27,20 @@ same treatment as Yamato's Japanese clips.
    whose caption matches "Speaks <language>" (case-insensitive), with
    whisper's `-l` taken from that language (ja, es, fr). Keep the existing
    uncaptioned-clip rule, generalised: a hero's uncaptioned non-`emote/`
-   clips are in scope when that hero has any "Speaks …" clip, and they take
-   that hero's language. The model id stays as it is: re-running Yamato
-   must find 0 pending.
+   clips are in scope when that hero has any "Speaks …" clip. The model id
+   stays as it is: re-running Yamato must find 0 pending.
+   **Amended mid-run (coordinator):** uncaptioned clips must not take the
+   hero's foreign language. Lady Geist and Bebop speak English, with one
+   French line each, so pinning their 33 and 23 uncaptioned clips to `fr`
+   was the coordinator's error. For tengu, ghost and bebop, decode
+   uncaptioned clips with whisper's language detection (`-l auto`, or `-dl`
+   followed by `-l <detected>`). Use a model id that says so, so the
+   French- and Spanish-pinned rows for those clips are superseded rather
+   than mixed in; drop the superseded rows from the ledger. Yamato's
+   uncaptioned rows stay as they are (pinned `ja`, already fixed up). Their
+   fix-ups follow the same rules: an English clip's replacement is the
+   English as heard, and its translation repeats it. These clips have no
+   caption today, so the suggested text is useful in its own right.
 2. **Rename the view** from `data/vo/japanese.tsv` to `data/vo/foreign.tsv`,
    because it now holds three languages. Add a `lang` column. Update its
    `.do`, `all.do`, the repo `CLAUDE.md` clause, and the design doc's
@@ -53,7 +64,23 @@ file.
 
 ## Steps
 
+- [x] Scope and `-l` from the caption (`vo_asr_ledger`, `vo_asr_batch`, `vo_asr`); tests
+- [x] View renamed to `data/vo/foreign.tsv` with `lang`; `.do`, `all.do`, `CLAUDE.md`, design doc
+- [x] ASR runs: tengu 48, ghost 34, bebop 24 clips on small; Yamato 0 pending
+- [~] Fix-ups for the new rows; escalate doubtful to turbo
+- [ ] Rebuild view; pytest, pyright; commit
+
 ## Decisions
+
+- **`Clip` carries `lang`;** a hero speaks one language (asserted), so a
+  batch has one `-l`. The caption must match "Speaks <language>" whole:
+  atlas's "Uhhhh <speaks japanese>" stays out.
+- **Every uncaptioned clip is escalated to turbo.** The generalised rule
+  pulls in 70 uncaptioned clips (Ivy 14, Lady Geist 33, Bebop 23), almost
+  all English pings and alt takes. small under `-l fr`/`-l es` *translates*
+  English ("On va enlever Calico !"); turbo writes it as English ("Let's
+  take out Calico."), as it did under `-l ja`. So turbo is the fix-up's
+  source for them, and the replacement is the English spoken.
 
 ## Open Questions
 
