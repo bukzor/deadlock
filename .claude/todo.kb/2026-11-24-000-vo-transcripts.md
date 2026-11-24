@@ -115,7 +115,8 @@ Wave 7:
   - Ivy's `ping_attack_tengu` and `ping_can_heal_tengu` say "Tengu", her pre-rename name; Lady Geist and Ivy call Fathom "Slork"
 
 Wave 8:
-- [ ] [009 forum csv](2026-11-24-000-vo-transcripts.kb/2026-11-24-009-forum-csv.md): the CSV to publish
+- [x] [009 forum csv](2026-11-24-000-vo-transcripts.kb/2026-11-24-009-forum-csv.md) (70a58e1): `redo data/vo/forum.csv`, 649 rows; 81 "no caption in game"; tokens checked against the English caption file
+  - Before posting: the `note` column quotes the fix-up's `doubt` verbatim, with whisper jargon ("small: …; turbo: …") in 22 rows
 - [ ] [010 caption fidelity pilot](2026-11-24-000-vo-transcripts.kb/2026-11-24-010-caption-fidelity-pilot.md): English ASR on Vyper; how often the audio departs from the caption (the owner's ad-lib theory)
 
 Candidates the owner raised 2026-11-24, not yet briefed. Order: the
