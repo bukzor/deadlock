@@ -9,6 +9,11 @@ Models are the GGML files from `huggingface.co/ggerganov/whisper.cpp`.
 
 - `whisper-cli` reads MP3 directly. ffmpeg is needed only to concatenate
   clips for batching.
+- brew's `whisper-cli` is an OpenMP build, and `-t N` alone doesn't bound
+  its threads. At `-t 4`, one clip ran about 12 threads (4.7 s wall,
+  32.6 s user). With `OMP_NUM_THREADS=4` it took 3.0 s wall and 10.2 s
+  user. At `-t 1`, user time equals wall time either way. So set
+  `OMP_NUM_THREADS` to the `-t` value, as `vo_asr_batch.transcribe` does.
 - The default language is `en`. `-l ja` pins Japanese. Under `-l ja`,
   large-v3-turbo f16 still writes English speech as English. `small` and
   `medium` write it as katakana ("ラッシュダウンデル!" for "Lash, down
@@ -96,6 +101,9 @@ foreground `pytest` run during each layout ([asr-layout]):
 
 - Threads scale badly: four 1-thread processes do 2.3 times the work of
   one 4-thread process.
+- These layouts ran without `OMP_NUM_THREADS` (see Tool behaviour), so the
+  1 × 4 row was probably oversubscribed and understates what 4 bounded
+  threads can do. 2 × 2 wasn't checked. The 4 × 1 rows are unaffected.
 - `pytest` takes 12.3 s on an idle machine. The load average was already
   about 6 from other sessions, so this run can't attribute load to the job.
 - Four turbo processes hold four copies of a 1.6 GB model in 7 GiB of RAM.

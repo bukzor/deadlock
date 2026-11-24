@@ -1,4 +1,5 @@
 crc32	vsnd	model	text
+a45cf8f4	sounds/vo/yamato/ping/yamato_ping_no_teamfight.vsnd	large-v3-turbo/beam5	I'm not ready for team fight.
 a45cf8f4	sounds/vo/yamato/ping/yamato_ping_no_teamfight.vsnd	small/dtw/greedy	(アルバム) I'm not ready for team fight.
 f3842dc0	sounds/vo/yamato/ping/yamato_ping_post_game_01.vsnd	small/dtw/greedy	役立たずではなかったな。
 febbf1bf	sounds/vo/yamato/ping/yamato_ping_post_game_02.vsnd	small/dtw/greedy	全ては兄のために
@@ -11,6 +12,7 @@ f5eb6cdf	sounds/vo/yamato/ping/yamato_ping_pre_game_02.vsnd	small/dtw/greedy	コ
 e26fc57a	sounds/vo/yamato/ping/yamato_ping_pre_game_04.vsnd	small/dtw/greedy	時期にセブンスムーンがニューヨークを牛尻だろう
 f2d8f60d	sounds/vo/yamato/ping/yamato_ping_pre_game_05.vsnd	small/dtw/greedy	山と。私の勝利はあなたのものだ。
 cd2c89fb	sounds/vo/yamato/ping/yamato_ping_pre_game_06.vsnd	small/dtw/greedy	私の邪魔をするものは必ず死ぬ。
+3942f0ab	sounds/vo/yamato/ping/yamato_ping_priest_almost_respawn.vsnd	large-v3-turbo/beam5	Benito is almost back.
 3942f0ab	sounds/vo/yamato/ping/yamato_ping_priest_almost_respawn.vsnd	small/dtw/greedy	Benitize is almost back!
 8fb5eea8	sounds/vo/yamato/yamato_ally_astro_bounce_pad_01.vsnd	small/dtw/greedy	ホリデイが残したものか。
 24bb9502	sounds/vo/yamato/yamato_ally_astro_bounce_pad_02.vsnd	small/dtw/greedy	使わせてもらお
@@ -22,6 +24,7 @@ fc85e24b	sounds/vo/yamato/yamato_ally_astro_lasso_victim_03.vsnd	small/dtw/greed
 a8caddde	sounds/vo/yamato/yamato_ally_atlas_unkillable_01.vsnd	small/dtw/greedy	あの悪魔は何かに取り付かれているのか。
 ef63864e	sounds/vo/yamato/yamato_ally_atlas_unkillable_02.vsnd	small/dtw/greedy	奴らにエイブラムスは倒せ
 34c6df3c	sounds/vo/yamato/yamato_ally_atlas_unkillable_03.vsnd	small/dtw/greedy	あの軽児はなかなかタフだな。
+63f9cb9a	sounds/vo/yamato/yamato_ally_bebop_far_hook_03.vsnd	large-v3-turbo/beam5	さあ、仕置きの時間だ。
 63f9cb9a	sounds/vo/yamato/yamato_ally_bebop_far_hook_03.vsnd	small/dtw/greedy	さあ、しおきの時間だ。
 6fd3ec11	sounds/vo/yamato/yamato_ally_bebop_uppercut_towards_boss_01.vsnd	small/dtw/greedy	容赦ないな、あの機会は。
 8f4659dd	sounds/vo/yamato/yamato_ally_bebop_uppercut_towards_boss_02.vsnd	small/dtw/greedy	リバップの戦い方には交換が持てるな。
@@ -29,7 +32,9 @@ ef63864e	sounds/vo/yamato/yamato_ally_atlas_unkillable_02.vsnd	small/dtw/greedy	
 477c94e3	sounds/vo/yamato/yamato_ally_chrono_swap_to_boss_01.vsnd	small/dtw/greedy	こきみよい占術だ。
 f99ad5e8	sounds/vo/yamato/yamato_ally_chrono_swap_to_boss_03.vsnd	small/dtw/greedy	勝利への周年を感じるな。
 2196dd83	sounds/vo/yamato/yamato_ally_forge_clutch_heal_03.vsnd	small/dtw/greedy	危ないところだったな。
+d7173d19	sounds/vo/yamato/yamato_ally_forge_wall_stun_kill_02.vsnd	large-v3-turbo/beam5	フェアファックスの重木も役に立つではないか。
 d7173d19	sounds/vo/yamato/yamato_ally_forge_wall_stun_kill_02.vsnd	small/dtw/greedy	フェアファックスの重獄も役に立つではないか
+47e40480	sounds/vo/yamato/yamato_ally_forge_wall_stun_kill_03.vsnd	large-v3-turbo/beam5	彼女は戦士の本能を備えている。
 47e40480	sounds/vo/yamato/yamato_ally_forge_wall_stun_kill_03.vsnd	small/dtw/greedy	彼女は先手の本能を備えている。
 15316bd2	sounds/vo/yamato/yamato_ally_ghost_see_big_swap_01.vsnd	small/dtw/greedy	完全にふいをついたな。
 c7154b77	sounds/vo/yamato/yamato_ally_ghost_see_big_swap_03.vsnd	small/dtw/greedy	飛んで火にいる夏の虫だ。
@@ -37,6 +42,7 @@ c7154b77	sounds/vo/yamato/yamato_ally_ghost_see_big_swap_03.vsnd	small/dtw/greed
 bef33b3f	sounds/vo/yamato/yamato_ally_gigawatt_multi_kill_ult_02.vsnd	small/dtw/greedy	大した者だ
 8e744b2f	sounds/vo/yamato/yamato_ally_gigawatt_multi_kill_ult_03.vsnd	small/dtw/greedy	これほどの力が存在したとは。
 98f60ae8	sounds/vo/yamato/yamato_ally_haze_big_ult_01.vsnd	small/dtw/greedy	なんと!
+b453b75c	sounds/vo/yamato/yamato_ally_haze_big_ult_02.vsnd	large-v3-turbo/beam5	これがスイマの力か。
 b453b75c	sounds/vo/yamato/yamato_ally_haze_big_ult_02.vsnd	small/dtw/greedy	これがスイマの力か
 fbbb11b5	sounds/vo/yamato/yamato_ally_haze_big_ult_03.vsnd	small/dtw/greedy	美しい女だな。そして恐ろしくもある。
 5be309d4	sounds/vo/yamato/yamato_ally_haze_interrupt_with_finesse_02.vsnd	small/dtw/greedy	スイマが味方で助かった。
@@ -55,10 +61,13 @@ b575767d	sounds/vo/yamato/yamato_ally_orion_missile_stops_ult_03.vsnd	small/dtw/
 e05466a5	sounds/vo/yamato/yamato_ally_shiv_unkillable_02.vsnd	small/dtw/greedy	支部は容赦ないな
 5cda21e9	sounds/vo/yamato/yamato_ally_shiv_unkillable_03.vsnd	small/dtw/greedy	まったくタフな男だ。
 7f772e74	sounds/vo/yamato/yamato_ally_tengu_take_objective_with_teather_02.vsnd	small/dtw/greedy	ガーゴイルも少しは役に立つようだな
+1ab98b2d	sounds/vo/yamato/yamato_ally_tengu_take_objective_with_teather_03.vsnd	large-v3-turbo/beam5	思ったよりも機能してるな
 1ab98b2d	sounds/vo/yamato/yamato_ally_tengu_take_objective_with_teather_03.vsnd	small/dtw/greedy	思ったよりも機能してるな。
 01ba0abe	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_01.vsnd	small/dtw/greedy	スライム男にも存在価値があったというわけか
+1f48d237	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_02.vsnd	large-v3-turbo/beam5	この安らぎ。
 1f48d237	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_02.vsnd	small/dtw/greedy	このヤスラギ。
 4ab400b0	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_03.vsnd	small/dtw/greedy	やるじゃないかビスカス。
+f8602179	sounds/vo/yamato/yamato_ally_warden_big_ult_01.vsnd	large-v3-turbo/beam5	ウォーデンは野党に値するな
 f8602179	sounds/vo/yamato/yamato_ally_warden_big_ult_01.vsnd	small/dtw/greedy	王殿は野党に値するな。
 4a41f6cb	sounds/vo/yamato/yamato_ally_warden_big_ult_02.vsnd	small/dtw/greedy	まったく危険な男だな。
 d05e22b4	sounds/vo/yamato/yamato_ally_wraith_kill_in_lift_03.vsnd	small/dtw/greedy	彼女を見くびっていたかもしれんな。
@@ -100,6 +109,7 @@ c3d49a86	sounds/vo/yamato/yamato_enemy_chrono_kill_post_swap_02.vsnd	small/dtw/g
 4fd7e2a6	sounds/vo/yamato/yamato_enemy_forge_destroy_turrets_01.vsnd	small/dtw/greedy	今いましい機械め。
 d5acf063	sounds/vo/yamato/yamato_enemy_forge_destroy_turrets_02.vsnd	small/dtw/greedy	一体どれだけ破壊すればいいのだ
 10c05ed1	sounds/vo/yamato/yamato_enemy_forge_destroy_turrets_03.vsnd	small/dtw/greedy	あの女のいらぬ発明だな。
+7ad3f18b	sounds/vo/yamato/yamato_enemy_gets_rejuv_01.vsnd	large-v3-turbo/beam5	臆病者どもがリジュベネーターを手にしたか。
 7ad3f18b	sounds/vo/yamato/yamato_enemy_gets_rejuv_01.vsnd	small/dtw/greedy	お首を者どもがリジベネーターを手にしたか
 40520071	sounds/vo/yamato/yamato_enemy_gets_rejuv_02.vsnd	small/dtw/greedy	奴らがリジュメネーターを手にしたか無駄なことだ!
 1df5b264	sounds/vo/yamato/yamato_enemy_gets_rejuv_03.vsnd	small/dtw/greedy	奴らがリジュメネーターを手にしたか、ならば二度殺せるな。
@@ -126,6 +136,7 @@ b196f0a7	sounds/vo/yamato/yamato_enemy_shiv_unkillable_01_alt_01.vsnd	small/dtw/
 98b80c3b	sounds/vo/yamato/yamato_enemy_tengu_flies_away_02.vsnd	small/dtw/greedy	逃がさんぞ、アイビー!
 db16d9cd	sounds/vo/yamato/yamato_enemy_tengu_flies_away_03.vsnd	small/dtw/greedy	私から逃げ続けることはできんぞ
 921a1b66	sounds/vo/yamato/yamato_enemy_wraith_lifts_01.vsnd	small/dtw/greedy	やめろレイス!
+041ae683	sounds/vo/yamato/yamato_enemy_wraith_lifts_02.vsnd	large-v3-turbo/beam5	殺せ!
 041ae683	sounds/vo/yamato/yamato_enemy_wraith_lifts_02.vsnd	small/dtw/greedy	滅せ!
 2020a1a9	sounds/vo/yamato/yamato_enemy_wraith_lifts_03.vsnd	small/dtw/greedy	許さんぞ、レイス!
 f85ca883	sounds/vo/yamato/yamato_hunt_01.vsnd	small/dtw/greedy	どこに行った?
@@ -133,6 +144,7 @@ f85ca883	sounds/vo/yamato/yamato_hunt_01.vsnd	small/dtw/greedy	どこに行っ�
 60d46f26	sounds/vo/yamato/yamato_interrupt_01.vsnd	small/dtw/greedy	残念だったな。
 6a7e9ed4	sounds/vo/yamato/yamato_interrupt_02.vsnd	small/dtw/greedy	させるか。
 868dd14a	sounds/vo/yamato/yamato_interrupt_03.vsnd	small/dtw/greedy	無駄だ
+4167cd46	sounds/vo/yamato/yamato_interrupt_04.vsnd	large-v3-turbo/beam5	そうはいかん。
 4167cd46	sounds/vo/yamato/yamato_interrupt_04.vsnd	small/dtw/greedy	そうはいか
 b1319a40	sounds/vo/yamato/yamato_kill_anyhero_01.vsnd	small/dtw/greedy	造作もないな。
 001b7b6e	sounds/vo/yamato/yamato_kill_anyhero_02.vsnd	small/dtw/greedy	弱すぎる!
@@ -140,6 +152,7 @@ b1319a40	sounds/vo/yamato/yamato_kill_anyhero_01.vsnd	small/dtw/greedy	造作も
 3656fdb1	sounds/vo/yamato/yamato_kill_anyhero_04.vsnd	small/dtw/greedy	次は誰だ?
 0a48fcd4	sounds/vo/yamato/yamato_kill_anyhero_05.vsnd	small/dtw/greedy	セベンスムーに立てつくものはこうなるのさ。
 0376449c	sounds/vo/yamato/yamato_kill_anyhero_06.vsnd	small/dtw/greedy	私を止めるのは不可能だ
+4a047371	sounds/vo/yamato/yamato_kill_anyhero_07.vsnd	large-v3-turbo/beam5	儀式の完成を邪魔する者には死あるのみ。
 4a047371	sounds/vo/yamato/yamato_kill_anyhero_07.vsnd	small/dtw/greedy	儀式の関税を邪魔する者には死あるのみ。
 bb6c4296	sounds/vo/yamato/yamato_kill_anyhero_08.vsnd	small/dtw/greedy	私に敵対する者は誰であれ死ぬ
 d825cd81	sounds/vo/yamato/yamato_kill_anyhero_09.vsnd	small/dtw/greedy	また一人片付いたな
@@ -156,6 +169,7 @@ e96c1632	sounds/vo/yamato/yamato_kill_astro_03.vsnd	small/dtw/greedy	ホリで�
 f8341b84	sounds/vo/yamato/yamato_kill_astro_05.vsnd	small/dtw/greedy	セーブンスムーンは宝を超越した存在なのだ。
 f876c4c7	sounds/vo/yamato/yamato_kill_atlas_01.vsnd	small/dtw/greedy	我が刀にイクシアンの血を吸わせてやる。
 ff3ce696	sounds/vo/yamato/yamato_kill_atlas_02.vsnd	small/dtw/greedy	So long detective
+6c192fac	sounds/vo/yamato/yamato_kill_atlas_02_alt_01.vsnd	large-v3-turbo/beam5	So long, Detective.
 6c192fac	sounds/vo/yamato/yamato_kill_atlas_02_alt_01.vsnd	small/dtw/greedy	ソーロン・ディテクテム。
 298b3f80	sounds/vo/yamato/yamato_kill_atlas_03.vsnd	small/dtw/greedy	見かけ倒しもいいとこだな
 e56a8bf1	sounds/vo/yamato/yamato_kill_atlas_04.vsnd	small/dtw/greedy	青木悪魔は死んだ。
@@ -165,6 +179,7 @@ e56a8bf1	sounds/vo/yamato/yamato_kill_atlas_04.vsnd	small/dtw/greedy	青木悪�
 f5f457eb	sounds/vo/yamato/yamato_kill_baba_03.vsnd	small/dtw/greedy	ホロかな追い漏れだったな。
 54fc287e	sounds/vo/yamato/yamato_kill_baba_04.vsnd	small/dtw/greedy	お前の時代は終わった
 ae3de278	sounds/vo/yamato/yamato_kill_baba_05.vsnd	small/dtw/greedy	死ね、魔女め。
+c21d7a4d	sounds/vo/yamato/yamato_kill_bebop_01.vsnd	large-v3-turbo/beam5	I won't lose to scrap metal!
 c21d7a4d	sounds/vo/yamato/yamato_kill_bebop_01.vsnd	small/dtw/greedy	I want to lose to scrap metal.
 dc19c509	sounds/vo/yamato/yamato_kill_bebop_02.vsnd	small/dtw/greedy	糸の切れた操り人形とはこのことだな
 e7677e47	sounds/vo/yamato/yamato_kill_bebop_03.vsnd	small/dtw/greedy	100年早かったな、ビーバップ。
@@ -180,10 +195,12 @@ dc0ac9c2	sounds/vo/yamato/yamato_kill_chessmaster_02.vsnd	small/dtw/greedy	遊�
 86c00ada	sounds/vo/yamato/yamato_kill_chessmaster_03.vsnd	small/dtw/greedy	チェスの達人は仕留めた
 fa69c264	sounds/vo/yamato/yamato_kill_chessmaster_04.vsnd	small/dtw/greedy	年の甲も大したことはないな。
 e4d16fac	sounds/vo/yamato/yamato_kill_chessmaster_04_alt_01.vsnd	small/dtw/greedy	年の甲も大したことはないな。
+b5a275a8	sounds/vo/yamato/yamato_kill_chessmaster_05.vsnd	large-v3-turbo/beam5	ソロモンを真っ二つにしてやった。
 b5a275a8	sounds/vo/yamato/yamato_kill_chessmaster_05.vsnd	small/dtw/greedy	ンそろもおまっ二つにしてやった
 f07f2d2b	sounds/vo/yamato/yamato_kill_chrono_01.vsnd	small/dtw/greedy	ん こいつは遊びじゃないのでなパラドックス
 b64cd605	sounds/vo/yamato/yamato_kill_chrono_02.vsnd	small/dtw/greedy	パラドックスこれまでだ。
 390b86c6	sounds/vo/yamato/yamato_kill_chrono_03.vsnd	small/dtw/greedy	子供が調子に乗るからこうなるのだ。
+04368808	sounds/vo/yamato/yamato_kill_chrono_04.vsnd	large-v3-turbo/beam5	セブンスムーンの前ではパラドックスなど赤子同然だ
 04368808	sounds/vo/yamato/yamato_kill_chrono_04.vsnd	small/dtw/greedy	セブンスムーンの前ではパラドックスなど 墓後同然だ
 421b704c	sounds/vo/yamato/yamato_kill_chrono_05.vsnd	small/dtw/greedy	自分で思うほど賢くはなかったようだな。
 cf9630a3	sounds/vo/yamato/yamato_kill_deadpack_01.vsnd	small/dtw/greedy	ん。「だまれ!」
@@ -195,6 +212,7 @@ ac6bd6cb	sounds/vo/yamato/yamato_kill_doorman_01.vsnd	small/dtw/greedy	接客に
 cb85ab72	sounds/vo/yamato/yamato_kill_doorman_02.vsnd	small/dtw/greedy	お前の出る幕じゃない。
 8d9a5331	sounds/vo/yamato/yamato_kill_doorman_03.vsnd	small/dtw/greedy	バロネスは私が炎上させてやる。
 9420cc93	sounds/vo/yamato/yamato_kill_doorman_04.vsnd	small/dtw/greedy	ハソビは終わりだ。
+349df325	sounds/vo/yamato/yamato_kill_doorman_05.vsnd	large-v3-turbo/beam5	逆しらに振る舞う者の末路だな
 349df325	sounds/vo/yamato/yamato_kill_doorman_05.vsnd	small/dtw/greedy	サカシラに振る舞う者の末路だな。
 46115e4a	sounds/vo/yamato/yamato_kill_drifter_01.vsnd	small/dtw/greedy	死ね、怪物め。
 248e39b6	sounds/vo/yamato/yamato_kill_drifter_02.vsnd	small/dtw/greedy	お前の獲物にはならん、ドリフター。
@@ -225,6 +243,7 @@ a5b7b43f	sounds/vo/yamato/yamato_kill_frank_02.vsnd	small/dtw/greedy	(アルバ�
 00be9ab7	sounds/vo/yamato/yamato_kill_frank_03.vsnd	small/dtw/greedy	見ているだけで無静が走るな
 d00a2b09	sounds/vo/yamato/yamato_kill_frank_04.vsnd	small/dtw/greedy	奴にこの世界を歩く四角はない。
 30287fdd	sounds/vo/yamato/yamato_kill_frank_05.vsnd	small/dtw/greedy	何度かかってこようと結果は同じだ。
+3ca0a327	sounds/vo/yamato/yamato_kill_ghost_01.vsnd	large-v3-turbo/beam5	あの腕は私がいただこう。
 3ca0a327	sounds/vo/yamato/yamato_kill_ghost_01.vsnd	small/dtw/greedy	あの腕は私がいただこう。
 2a504c17	sounds/vo/yamato/yamato_kill_ghost_02.vsnd	small/dtw/greedy	オースキーパーの守りも及ばなかったようだなガイスト
 67cf02cc	sounds/vo/yamato/yamato_kill_ghost_03.vsnd	small/dtw/greedy	身のほど重い知っただろう。
@@ -232,6 +251,7 @@ b5b89282	sounds/vo/yamato/yamato_kill_ghost_04.vsnd	small/dtw/greedy	もっと�
 dfaa53cd	sounds/vo/yamato/yamato_kill_ghost_05.vsnd	small/dtw/greedy	カーネのもうじゃめが
 41086697	sounds/vo/yamato/yamato_kill_gigawatt_01.vsnd	small/dtw/greedy	お前の力などセブンスムーンの前では無に等しい?
 5507a252	sounds/vo/yamato/yamato_kill_gigawatt_02.vsnd	small/dtw/greedy	お前のようなものが恐れられているのか
+359e2b5d	sounds/vo/yamato/yamato_kill_gigawatt_03.vsnd	large-v3-turbo/beam5	妄想のなれの果てだな。
 359e2b5d	sounds/vo/yamato/yamato_kill_gigawatt_03.vsnd	small/dtw/greedy	妄想の慣れの果てだな。
 a19b24bb	sounds/vo/yamato/yamato_kill_gigawatt_04.vsnd	small/dtw/greedy	お前を捕獲した者の仕事は私が完成しよう。
 12916a14	sounds/vo/yamato/yamato_kill_gigawatt_05.vsnd	small/dtw/greedy	セブン、お前の力はこんなものか。
@@ -240,7 +260,9 @@ a19b24bb	sounds/vo/yamato/yamato_kill_gigawatt_04.vsnd	small/dtw/greedy	お前�
 f56bd842	sounds/vo/yamato/yamato_kill_haze_03.vsnd	small/dtw/greedy	セブンスムーンに逆らうものはこうなるのさ。
 009f2b4d	sounds/vo/yamato/yamato_kill_haze_04.vsnd	small/dtw/greedy	見の程お湧きまえることだな
 6363ee69	sounds/vo/yamato/yamato_kill_haze_05.vsnd	small/dtw/greedy	魂いなき技など脅威ではない。
+9c3c3461	sounds/vo/yamato/yamato_kill_high_networth.vsnd	large-v3-turbo/beam5	お前が積み上げた数字に意味などない。
 9c3c3461	sounds/vo/yamato/yamato_kill_high_networth.vsnd	small/dtw/greedy	お前が積み上げた数字に意味などない
+3e26e60e	sounds/vo/yamato/yamato_kill_hornet_01.vsnd	large-v3-turbo/beam5	成仏するがいい
 3e26e60e	sounds/vo/yamato/yamato_kill_hornet_01.vsnd	small/dtw/greedy	上物するがいい
 dd172d4c	sounds/vo/yamato/yamato_kill_hornet_02.vsnd	small/dtw/greedy	阻撃師を仕留めた
 c7a97db3	sounds/vo/yamato/yamato_kill_hornet_03.vsnd	small/dtw/greedy	私を標的にしたのが間違いだったな。
@@ -258,10 +280,13 @@ f0875e89	sounds/vo/yamato/yamato_kill_kelvin_04.vsnd	small/dtw/greedy	世に聞�
 be167d61	sounds/vo/yamato/yamato_kill_kelvin_05.vsnd	small/dtw/greedy	あの濃天気な男にはうんざりだ
 9328f51f	sounds/vo/yamato/yamato_kill_krill_01.vsnd	small/dtw/greedy	デカイホーはコートにして、小さいホーは帽子にでもするか。
 41025a8a	sounds/vo/yamato/yamato_kill_krill_02.vsnd	small/dtw/greedy	おぞましい奴らめ!
+724888e6	sounds/vo/yamato/yamato_kill_krill_03.vsnd	large-v3-turbo/beam5	ワーメン
 724888e6	sounds/vo/yamato/yamato_kill_krill_03.vsnd	small/dtw/greedy	バーメン
+ae953a7b	sounds/vo/yamato/yamato_kill_krill_04.vsnd	large-v3-turbo/beam5	腕力に頼ったのが間違いだったな。
 ae953a7b	sounds/vo/yamato/yamato_kill_krill_04.vsnd	small/dtw/greedy	万力に頼ったのが間違いだったな。
 98e2bd8a	sounds/vo/yamato/yamato_kill_krill_05.vsnd	small/dtw/greedy	私はネズミなど恐れん。
 12b226db	sounds/vo/yamato/yamato_kill_lash_01.vsnd	small/dtw/greedy	バカなアメリカ人命
+e5a745ef	sounds/vo/yamato/yamato_kill_lash_01_alt_01.vsnd	large-v3-turbo/beam5	アッスホ
 e5a745ef	sounds/vo/yamato/yamato_kill_lash_01_alt_01.vsnd	small/dtw/greedy	アソー!
 8844a1cf	sounds/vo/yamato/yamato_kill_lash_02.vsnd	small/dtw/greedy	アメリカの豪満さが招いたむくいだ
 5af49517	sounds/vo/yamato/yamato_kill_lash_03.vsnd	small/dtw/greedy	親のしつけが甘かったようだな。
@@ -269,15 +294,19 @@ e5a745ef	sounds/vo/yamato/yamato_kill_lash_01_alt_01.vsnd	small/dtw/greedy	ア�
 4831d5d0	sounds/vo/yamato/yamato_kill_lash_05.vsnd	small/dtw/greedy	よくもあそこまでごおまになれるものだ。
 5f96acbd	sounds/vo/yamato/yamato_kill_magician_01.vsnd	small/dtw/greedy	マジシャンを仕留めた。
 89417293	sounds/vo/yamato/yamato_kill_magician_02.vsnd	small/dtw/greedy	その魔法は弱すぎ
+3267f5ee	sounds/vo/yamato/yamato_kill_magician_03.vsnd	large-v3-turbo/beam5	その絆を汚すとはな。
 3267f5ee	sounds/vo/yamato/yamato_kill_magician_03.vsnd	small/dtw/greedy	その絆を削すとはな。
 40d1c0cc	sounds/vo/yamato/yamato_kill_magician_04.vsnd	small/dtw/greedy	これで苦しみも終わりだ!
+97cd1c3f	sounds/vo/yamato/yamato_kill_magician_05.vsnd	large-v3-turbo/beam5	お前は献身というものを何も知らん。
 97cd1c3f	sounds/vo/yamato/yamato_kill_magician_05.vsnd	small/dtw/greedy	お前はケンシンというものを何もしな。
+96d0ec5b	sounds/vo/yamato/yamato_kill_mirage_01.vsnd	large-v3-turbo/beam5	雇われ人に用などない
 96d0ec5b	sounds/vo/yamato/yamato_kill_mirage_01.vsnd	small/dtw/greedy	やとアレビトにようなどない。
 1e667e47	sounds/vo/yamato/yamato_kill_mirage_02.vsnd	small/dtw/greedy	大したボディガードだな。
 64319f5f	sounds/vo/yamato/yamato_kill_mirage_03.vsnd	small/dtw/greedy	なんならナシャラを私の下僕としてやるか。
 93262d59	sounds/vo/yamato/yamato_kill_mirage_04.vsnd	small/dtw/greedy	神を守る。己の身も守れぬお前がか。
 afa39563	sounds/vo/yamato/yamato_kill_mirage_05.vsnd	small/dtw/greedy	役立たずだった兄のボディガードを思い出すな。
 7cc439a8	sounds/vo/yamato/yamato_kill_nano_01.vsnd	small/dtw/greedy	キャリコ、お前などは私の相手ではない。
+fa3dc14d	sounds/vo/yamato/yamato_kill_nano_02.vsnd	large-v3-turbo/beam5	お前の根担など元より承知だ。
 fa3dc14d	sounds/vo/yamato/yamato_kill_nano_02.vsnd	small/dtw/greedy	お前の困難など元より承知だ。
 1115ebaa	sounds/vo/yamato/yamato_kill_nano_03.vsnd	small/dtw/greedy	いまいましい猫目。
 8bd6be02	sounds/vo/yamato/yamato_kill_nano_04.vsnd	small/dtw/greedy	セブンスムーンに逆らったのが運の月だったな
@@ -304,7 +333,9 @@ a49e92b5	sounds/vo/yamato/yamato_kill_priest_05.vsnd	small/dtw/greedy	(アルバ
 ea6163b0	sounds/vo/yamato/yamato_kill_punkgoat_01.vsnd	small/dtw/greedy	愚かなアメリカ人命。
 f6effe95	sounds/vo/yamato/yamato_kill_punkgoat_03.vsnd	small/dtw/greedy	矢義を処理した。
 b5595cbf	sounds/vo/yamato/yamato_kill_punkgoat_04.vsnd	small/dtw/greedy	うっと惜しい男だ
+8993eabc	sounds/vo/yamato/yamato_kill_punkgoat_05.vsnd	large-v3-turbo/beam5	おぞましい野獣め。
 8993eabc	sounds/vo/yamato/yamato_kill_punkgoat_05.vsnd	small/dtw/greedy	おぞましい矢住め
+b6ac38d1	sounds/vo/yamato/yamato_kill_ratking_01.vsnd	large-v3-turbo/beam5	死ねえ、ガイジュウメン
 b6ac38d1	sounds/vo/yamato/yamato_kill_ratking_01.vsnd	small/dtw/greedy	死ねえ!怪獣名!
 54b688d4	sounds/vo/yamato/yamato_kill_ratking_02.vsnd	small/dtw/greedy	怪我らわしいネズミメ
 963cab76	sounds/vo/yamato/yamato_kill_ratking_03.vsnd	small/dtw/greedy	ネズミは嫌いだ。
@@ -313,6 +344,7 @@ b6ac38d1	sounds/vo/yamato/yamato_kill_ratking_01.vsnd	small/dtw/greedy	死ねえ
 78bd8025	sounds/vo/yamato/yamato_kill_shiv_01.vsnd	small/dtw/greedy	自分の本質を見誤ったな、シブ。
 b121c157	sounds/vo/yamato/yamato_kill_shiv_02.vsnd	small/dtw/greedy	いつまでヒーローきどりを続けるつもりだ。
 d7dfafa9	sounds/vo/yamato/yamato_kill_shiv_03.vsnd	small/dtw/greedy	自分の本書からは逃れられても私からは逃れられん
+330ec0a0	sounds/vo/yamato/yamato_kill_shiv_04.vsnd	large-v3-turbo/beam5	ナイスヘア
 330ec0a0	sounds/vo/yamato/yamato_kill_shiv_04.vsnd	small/dtw/greedy	ナイスヘア。
 82881da9	sounds/vo/yamato/yamato_kill_shiv_05.vsnd	small/dtw/greedy	ナイフで刀に勝てると思ったか
 b0fced66	sounds/vo/yamato/yamato_kill_synth_01.vsnd	small/dtw/greedy	愚かな若層女が。
@@ -321,12 +353,15 @@ b0fced66	sounds/vo/yamato/yamato_kill_synth_01.vsnd	small/dtw/greedy	愚かな�
 9772da37	sounds/vo/yamato/yamato_kill_synth_04.vsnd	small/dtw/greedy	あのケースをいただきたいな。
 b2f453b5	sounds/vo/yamato/yamato_kill_synth_05.vsnd	small/dtw/greedy	ポケット お前のケースをよこせ
 80b34675	sounds/vo/yamato/yamato_kill_tengu_01.vsnd	small/dtw/greedy	ガーゴイルを仕留めた
+67c53f5c	sounds/vo/yamato/yamato_kill_tengu_02.vsnd	large-v3-turbo/beam5	面倒さを片付けてくれたことには感謝するぞ。
 67c53f5c	sounds/vo/yamato/yamato_kill_tengu_02.vsnd	small/dtw/greedy	面倒さを片付けてくれたことには感謝するぞ。
 3d2bc526	sounds/vo/yamato/yamato_kill_tengu_03.vsnd	small/dtw/greedy	次はスパニッシュハーレムをいただくとしようお前のブレーサの見返りとしてな
+2d99caf0	sounds/vo/yamato/yamato_kill_tengu_04.vsnd	large-v3-turbo/beam5	こんな奴が面倒さを止められるなら、ニューヨークの制圧も難しくないな。
 2d99caf0	sounds/vo/yamato/yamato_kill_tengu_04.vsnd	small/dtw/greedy	こんなやつが面倒さを止められるなら、ニューヨークの制圧も難しくないな。
 9be464d6	sounds/vo/yamato/yamato_kill_tengu_05.vsnd	small/dtw/greedy	こんな奴のどこが恐ろしいというのだ
 b1f3ba58	sounds/vo/yamato/yamato_kill_unicorn_01.vsnd	small/dtw/greedy	っ!おさましい怪物女が。
 4c3d8007	sounds/vo/yamato/yamato_kill_unicorn_02.vsnd	small/dtw/greedy	これは余響ではない現実の戦いだ
+3781416d	sounds/vo/yamato/yamato_kill_unicorn_03.vsnd	large-v3-turbo/beam5	火遊びは終わりだ。
 3781416d	sounds/vo/yamato/yamato_kill_unicorn_03.vsnd	small/dtw/greedy	日遊びは終わりだ。
 7b5cbee2	sounds/vo/yamato/yamato_kill_unicorn_04.vsnd	small/dtw/greedy	偽善者め。
 6cdd3e9b	sounds/vo/yamato/yamato_kill_unicorn_05.vsnd	small/dtw/greedy	サーカスに戻るがいい。
@@ -335,25 +370,30 @@ b1f3ba58	sounds/vo/yamato/yamato_kill_unicorn_01.vsnd	small/dtw/greedy	っ!お�
 c028596c	sounds/vo/yamato/yamato_kill_vampirebat_03.vsnd	small/dtw/greedy	小娘が。
 35b21216	sounds/vo/yamato/yamato_kill_vampirebat_04.vsnd	small/dtw/greedy	今々しい休結決め。
 093e690a	sounds/vo/yamato/yamato_kill_vampirebat_05.vsnd	small/dtw/greedy	一族の恥ずさらしだな。
+dfa0ea00	sounds/vo/yamato/yamato_kill_viper_01.vsnd	large-v3-turbo/beam5	惨めな女だ。
 dfa0ea00	sounds/vo/yamato/yamato_kill_viper_01.vsnd	small/dtw/greedy	虹目な女だ
 d990a362	sounds/vo/yamato/yamato_kill_viper_02.vsnd	small/dtw/greedy	こんな女と組むものの気が知れんな(音楽)
 6d305899	sounds/vo/yamato/yamato_kill_viper_03.vsnd	small/dtw/greedy	ゲードの名にふさわしい女だ。
 40a8dcbc	sounds/vo/yamato/yamato_kill_viper_04.vsnd	small/dtw/greedy	抑制を知らぬくずめが!
 67096f8a	sounds/vo/yamato/yamato_kill_viper_05.vsnd	small/dtw/greedy	バイパーよ、もともとお前に勝ち目などなかったのだ。
+a25277b2	sounds/vo/yamato/yamato_kill_viscous_01.vsnd	large-v3-turbo/beam5	くっ
 a25277b2	sounds/vo/yamato/yamato_kill_viscous_01.vsnd	small/dtw/greedy	くっ!
 2c03bebe	sounds/vo/yamato/yamato_kill_viscous_02.vsnd	small/dtw/greedy	全くオズマシイヤツだな
 ff8ff2f9	sounds/vo/yamato/yamato_kill_viscous_03.vsnd	small/dtw/greedy	全く機会な存在だ
 7e9411c6	sounds/vo/yamato/yamato_kill_viscous_04.vsnd	small/dtw/greedy	なんなんだあれは。
+b90145c4	sounds/vo/yamato/yamato_kill_viscous_05.vsnd	large-v3-turbo/beam5	簡易な生き物だ。
 b90145c4	sounds/vo/yamato/yamato_kill_viscous_05.vsnd	small/dtw/greedy	ガイナ生き物だ。
 25f3def2	sounds/vo/yamato/yamato_kill_warden_01.vsnd	small/dtw/greedy	お前に私は止められんさ、ボーデン。
 4e060ef3	sounds/vo/yamato/yamato_kill_warden_02.vsnd	small/dtw/greedy	私は決してくっしないぞウォーデン
 b083d56b	sounds/vo/yamato/yamato_kill_warden_03.vsnd	small/dtw/greedy	なんでも思う通りに行くと思うな。
 e73f6b47	sounds/vo/yamato/yamato_kill_warden_04.vsnd	small/dtw/greedy	私はお前など恐れんぞウォーデン。
+f116db29	sounds/vo/yamato/yamato_kill_warden_05.vsnd	large-v3-turbo/beam5	狂信者の末路だ。
 f116db29	sounds/vo/yamato/yamato_kill_warden_05.vsnd	small/dtw/greedy	共心者の末路だ
 219ecd69	sounds/vo/yamato/yamato_kill_werewolf_01.vsnd	small/dtw/greedy	獣を仕留めた。
 030dc7e3	sounds/vo/yamato/yamato_kill_werewolf_03.vsnd	small/dtw/greedy	どうしようもない女だな
 6f337c86	sounds/vo/yamato/yamato_kill_werewolf_04.vsnd	small/dtw/greedy	ウェアウルフを排除した。
 d99ccbd1	sounds/vo/yamato/yamato_kill_wraith_01.vsnd	small/dtw/greedy	これでニューヨークは私のものだ
+955e39e0	sounds/vo/yamato/yamato_kill_wraith_02.vsnd	large-v3-turbo/beam5	Livetown Race
 955e39e0	sounds/vo/yamato/yamato_kill_wraith_02.vsnd	small/dtw/greedy	リーブタウン・レイス。
 2a01da4d	sounds/vo/yamato/yamato_kill_wraith_03.vsnd	small/dtw/greedy	小線私の相手ではなかったな
 13b6abd0	sounds/vo/yamato/yamato_kill_wraith_04.vsnd	small/dtw/greedy	私のような相手とは戦ったことがなかったようだな。
@@ -365,6 +405,7 @@ e74d91c9	sounds/vo/yamato/yamato_kill_wrecker_04.vsnd	small/dtw/greedy	簡単な
 a83ad323	sounds/vo/yamato/yamato_kill_wrecker_05.vsnd	small/dtw/greedy	育士屋のブッチャーを片付けた。
 205a7094	sounds/vo/yamato/yamato_killstreak_high_02.vsnd	small/dtw/greedy	私はヤマトの名をこの世界に刻む。
 3a90d787	sounds/vo/yamato/yamato_killstreak_mid_02.vsnd	small/dtw/greedy	なさけは駆けん。
+6e0bea38	sounds/vo/yamato/yamato_killstreak_mid_03.vsnd	large-v3-turbo/beam5	無力な子羊が
 6e0bea38	sounds/vo/yamato/yamato_killstreak_mid_03.vsnd	small/dtw/greedy	無力な個室次が。
 d3e03330	sounds/vo/yamato/yamato_killstreak_start_01.vsnd	small/dtw/greedy	全く歯応えがないな
 baa25a9c	sounds/vo/yamato/yamato_killstreak_start_02.vsnd	small/dtw/greedy	全員仕留めてやる一人ずつ順番にな
@@ -372,14 +413,17 @@ baa25a9c	sounds/vo/yamato/yamato_killstreak_start_02.vsnd	small/dtw/greedy	全�
 1bcd9995	sounds/vo/yamato/yamato_killstreak_start_04.vsnd	small/dtw/greedy	私から逃れることはできん。
 a44ee929	sounds/vo/yamato/yamato_last_one_standing_01.vsnd	small/dtw/greedy	私は何者も恐れない。
 087eb879	sounds/vo/yamato/yamato_last_one_standing_02.vsnd	small/dtw/greedy	私は勝つどんな状況でもな。
+c9fcfe75	sounds/vo/yamato/yamato_last_one_standing_03.vsnd	large-v3-turbo/beam5	全員吐いてをしてやる
 c9fcfe75	sounds/vo/yamato/yamato_last_one_standing_03.vsnd	small/dtw/greedy	全員拝手をしてやる。
 697cdc35	sounds/vo/yamato/yamato_leave_base_01.vsnd	small/dtw/greedy	終わらせてやる!
 a7150234	sounds/vo/yamato/yamato_leave_base_02.vsnd	small/dtw/greedy	セブンスムーンの大統を見届けよ。
+0d3b44fc	sounds/vo/yamato/yamato_leave_base_03.vsnd	large-v3-turbo/beam5	奴らに破滅をもたらしてやる
 0d3b44fc	sounds/vo/yamato/yamato_leave_base_03.vsnd	small/dtw/greedy	奴らには滅をもたらしてやる
 ab01f05f	sounds/vo/yamato/yamato_leave_base_04.vsnd	small/dtw/greedy	私の戦いは私自身で蹴りをつける。
 fd2e0563	sounds/vo/yamato/yamato_leave_base_05.vsnd	small/dtw/greedy	パトロンを召喚するぞ!
 38908226	sounds/vo/yamato/yamato_match_start_yamato_astro_convo01_01.vsnd	small/dtw/greedy	まさか警察の犬と協力することになるとはな、
 6eec0a27	sounds/vo/yamato/yamato_match_start_yamato_astro_convo02_01.vsnd	small/dtw/greedy	あんたがマーフィの女か。
+f246c682	sounds/vo/yamato/yamato_match_start_yamato_atlas_convo01_02.vsnd	large-v3-turbo/beam5	ああ、こいつ話しかけてくる。
 f246c682	sounds/vo/yamato/yamato_match_start_yamato_atlas_convo01_02.vsnd	small/dtw/greedy	ああ、こいつ話しかけてくる。
 7ec8c2be	sounds/vo/yamato/yamato_match_start_yamato_atlas_convo03_02.vsnd	small/dtw/greedy	それしか知らないんだろ。
 929307d2	sounds/vo/yamato/yamato_match_start_yamato_bebop_convo02_01.vsnd	small/dtw/greedy	やつが噂の殺力マシンか。
@@ -388,6 +432,7 @@ dd368dd7	sounds/vo/yamato/yamato_match_start_yamato_bebop_convo02_03.vsnd	small/
 bd0e40c3	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo01_03.vsnd	small/dtw/greedy	どうせわかってないんだろう
 af53738f	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo01_05.vsnd	small/dtw/greedy	まったく。
 44fc3bde	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo02_01.vsnd	small/dtw/greedy	お前のエゴが招いた結果だ。
+b0c5a2e4	sounds/vo/yamato/yamato_match_start_yamato_ghost_convo02_01.vsnd	large-v3-turbo/beam5	なんだその腕は。
 b0c5a2e4	sounds/vo/yamato/yamato_match_start_yamato_ghost_convo02_01.vsnd	small/dtw/greedy	なんだその腕は。
 499b61b6	sounds/vo/yamato/yamato_match_start_yamato_inferno_convo01_01.vsnd	small/dtw/greedy	こいつは五分もてば奇跡だな。
 8cd2646a	sounds/vo/yamato/yamato_match_start_yamato_nano_convo02_03.vsnd	small/dtw/greedy	なんでもない忘れろ
@@ -411,6 +456,7 @@ e2d26746	sounds/vo/yamato/yamato_pick_up_gold_03.vsnd	small/dtw/greedy	ソール
 a6e47672	sounds/vo/yamato/yamato_pick_up_gold_05.vsnd	small/dtw/greedy	こいつはセブンスムーンにキスべきもの。
 59b40b98	sounds/vo/yamato/yamato_select_01.vsnd	small/dtw/greedy	容赦はしない。
 32c560f9	sounds/vo/yamato/yamato_select_02.vsnd	small/dtw/greedy	私はアニよりこの名を受け継いだ。
+3d3c3c70	sounds/vo/yamato/yamato_select_03-imported.vsnd	large-v3-turbo/beam5	I wasn't born with this name, but I'll do my best to live up to it.
 3d3c3c70	sounds/vo/yamato/yamato_select_03-imported.vsnd	small/dtw/greedy	I wasn't born with this namebut I'll do my best to live up to it
 d2bfe8e7	sounds/vo/yamato/yamato_select_03.vsnd	small/dtw/greedy	私は訳あってこの名を得た。決して汚すことのできぬこの名を。
 ae4cc808	sounds/vo/yamato/yamato_select_04.vsnd	small/dtw/greedy	私が死ねばこの方のは別のものが受け継ぐだろう。私がそうしたようにな。
@@ -438,6 +484,7 @@ d6eb0268	sounds/vo/yamato/yamato_unselect_10.vsnd	small/dtw/greedy	残念だな
 fc5afe70	sounds/vo/yamato/yamato_upgrade_power1_01.vsnd	small/dtw/greedy	(ページ)これで更なる死が呼び込まれよう。
 6c9b654e	sounds/vo/yamato/yamato_upgrade_power1_02.vsnd	small/dtw/greedy	切り裂いてやろうではないか。
 139bd366	sounds/vo/yamato/yamato_upgrade_power1_03.vsnd	small/dtw/greedy	剣は食杯に過ぎん。私の意思こそが真の武器となろう。
+a5947850	sounds/vo/yamato/yamato_upgrade_power1_04.vsnd	large-v3-turbo/beam5	この切れ味に奴らは恐れおののくこととなろう。
 a5947850	sounds/vo/yamato/yamato_upgrade_power1_04.vsnd	small/dtw/greedy	(アルバム) このキレアジに奴らは恐れを呪くこととなろう。
 b6b84a9b	sounds/vo/yamato/yamato_upgrade_power1_05.vsnd	small/dtw/greedy	距離を取ったところで無駄ということを教えてやろう。
 a94c3111	sounds/vo/yamato/yamato_upgrade_power1_06.vsnd	small/dtw/greedy	兄よ、先決をあなたに捧げよう。
@@ -455,6 +502,7 @@ daa0ea92	sounds/vo/yamato/yamato_upgrade_power2_07.vsnd	small/dtw/greedy	天候�
 60ea7dd7	sounds/vo/yamato/yamato_upgrade_power2_08.vsnd	small/dtw/greedy	奴らにこの動きは捉えきれまい。
 1bffc694	sounds/vo/yamato/yamato_upgrade_power2_09.vsnd	small/dtw/greedy	これで敵を逃すこともないな。
 d0227533	sounds/vo/yamato/yamato_upgrade_power2_10.vsnd	small/dtw/greedy	距離を詰めるのに有用だな。
+f331b45e	sounds/vo/yamato/yamato_upgrade_power3_01.vsnd	large-v3-turbo/beam5	奴らの血をこの力と変えよう。
 f331b45e	sounds/vo/yamato/yamato_upgrade_power3_01.vsnd	small/dtw/greedy	やつらの血をこの力と変えよう。
 4f07799b	sounds/vo/yamato/yamato_upgrade_power3_02.vsnd	small/dtw/greedy	やつらの命が私を再生させる。
 4d74e0d4	sounds/vo/yamato/yamato_upgrade_power3_03.vsnd	small/dtw/greedy	私は戦う昼むことなくな
@@ -474,6 +522,7 @@ e6c220a0	sounds/vo/yamato/yamato_upgrade_power4_02.vsnd	small/dtw/greedy	こい�
 f78a79e1	sounds/vo/yamato/yamato_upgrade_power4_07.vsnd	small/dtw/greedy	死が奴らにもたらされるだろう。
 40f8c631	sounds/vo/yamato/yamato_upgrade_power4_08.vsnd	small/dtw/greedy	こんなところで死ぬわけにはいかん!
 7d30f840	sounds/vo/yamato/yamato_upgrade_power4_09.vsnd	small/dtw/greedy	影と貸した私に恐怖するがいい。
+3034e01f	sounds/vo/yamato/yamato_upgrade_power4_10.vsnd	large-v3-turbo/beam5	まことの戦いが始まるな
 3034e01f	sounds/vo/yamato/yamato_upgrade_power4_10.vsnd	small/dtw/greedy	真言の戦いが始まるな。
 fb4e906c	sounds/vo/yamato/yamato_use_ability_refresher_02.vsnd	small/dtw/greedy	まだ終わってはいない
 196131c5	sounds/vo/yamato/yamato_use_ability_refresher_03.vsnd	small/dtw/greedy	セブンスムーンを怒らせるとどうなるか教えてやる。
@@ -493,10 +542,12 @@ aac81a60	sounds/vo/yamato/yamato_use_phantom_strike_03.vsnd	small/dtw/greedy	距
 995cf99c	sounds/vo/yamato/yamato_use_power1_01.vsnd	small/dtw/greedy	パワースラッシュ!
 9920fc22	sounds/vo/yamato/yamato_use_power1_01_alt_01.vsnd	small/dtw/greedy	パワースラッシュ!
 f18e6f65	sounds/vo/yamato/yamato_use_power1_02.vsnd	small/dtw/greedy	途切すませ。
+7968730a	sounds/vo/yamato/yamato_use_power1_03.vsnd	large-v3-turbo/beam5	高まれ!
 7968730a	sounds/vo/yamato/yamato_use_power1_03.vsnd	small/dtw/greedy	高まれ!
 648862ae	sounds/vo/yamato/yamato_use_power1_04.vsnd	small/dtw/greedy	切り伏せてやる!
 c3896790	sounds/vo/yamato/yamato_use_power1_05.vsnd	small/dtw/greedy	構えよし。
 db4f2736	sounds/vo/yamato/yamato_use_power1_06.vsnd	small/dtw/greedy	よし行くぞ
+3f5b5373	sounds/vo/yamato/yamato_use_power1_07.vsnd	large-v3-turbo/beam5	私を見るがいい
 3f5b5373	sounds/vo/yamato/yamato_use_power1_07.vsnd	small/dtw/greedy	私を見るかいい!
 850568e0	sounds/vo/yamato/yamato_use_power1_08.vsnd	small/dtw/greedy	一頭両断にしてやる
 c34e2696	sounds/vo/yamato/yamato_use_power1_09.vsnd	small/dtw/greedy	死ねえ!
@@ -527,6 +578,7 @@ ce4576d6	sounds/vo/yamato/yamato_use_power3_07.vsnd	small/dtw/greedy	邪魔を�
 004f234d	sounds/vo/yamato/yamato_use_power4_04.vsnd	small/dtw/greedy	セブンスムーンはここでは終わらん!
 7b329a4d	sounds/vo/yamato/yamato_use_power4_05.vsnd	small/dtw/greedy	影よ私を守れ!
 aa6150cb	sounds/vo/yamato/yamato_use_power4_06.vsnd	small/dtw/greedy	覚悟するがいい?
+ac7c1cb0	sounds/vo/yamato/yamato_use_power4_06_02.vsnd	large-v3-turbo/beam5	あ、そしてあなたは私を止められると思ったのですか。
 ac7c1cb0	sounds/vo/yamato/yamato_use_power4_06_02.vsnd	small/dtw/greedy	あはは、そしてあなたは私を止められると思ったのですか。
 d48a0609	sounds/vo/yamato/yamato_use_power4_07.vsnd	small/dtw/greedy	死をもたらしてやろう
 487f7816	sounds/vo/yamato/yamato_use_power4_08.vsnd	small/dtw/greedy	お前の命運は定まった。
@@ -537,6 +589,7 @@ ba1297c9	sounds/vo/yamato/yamato_use_power4_10.vsnd	small/dtw/greedy	これぞ�
 52ca6d0e	sounds/vo/yamato/yamato_use_silencer_02.vsnd	small/dtw/greedy	魔法を阻害してやる。
 379fcf53	sounds/vo/yamato/yamato_use_silencer_03.vsnd	small/dtw/greedy	やつらの力を弱体化させる!
 271b13ba	sounds/vo/yamato/yamato_use_tech_purge_02.vsnd	small/dtw/greedy	まだまだこれからだ!
+a5ffa277	sounds/vo/yamato/yamato_use_tech_purge_03.vsnd	large-v3-turbo/beam5	気を高めろ!
 a5ffa277	sounds/vo/yamato/yamato_use_tech_purge_03.vsnd	small/dtw/greedy	(アルバム) 気を高めろ!
 3ccb9c19	sounds/vo/yamato/yamato_use_unstoppable_02.vsnd	small/dtw/greedy	私を止めることはできん!
 2351a85a	sounds/vo/yamato/yamato_use_unstoppable_03.vsnd	small/dtw/greedy	私は魔法など恐れん。

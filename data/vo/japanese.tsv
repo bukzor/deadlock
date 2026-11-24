@@ -1,544 +1,544 @@
 hero	event	vsnd	replacement	translation	source
-yamato	yamato_ally_astro_bounce_pad_01_hero_3d	sounds/vo/yamato/yamato_ally_astro_bounce_pad_01.vsnd	ホリデイが残したものか。		small/dtw/greedy
-yamato	yamato_ally_astro_bounce_pad_02_hero_3d	sounds/vo/yamato/yamato_ally_astro_bounce_pad_02.vsnd	使わせてもらお		small/dtw/greedy
-yamato	yamato_ally_astro_bounce_pad_03_alt_01_hero_3d	sounds/vo/yamato/yamato_ally_astro_bounce_pad_03_alt_01.vsnd	ハハ!		small/dtw/greedy
-yamato	yamato_ally_astro_lasso_victim_01_hero_3d	sounds/vo/yamato/yamato_ally_astro_lasso_victim_01.vsnd	彼女は雇う価値がありそうだ。		small/dtw/greedy
-yamato	yamato_ally_astro_lasso_victim_02_hero_3d	sounds/vo/yamato/yamato_ally_astro_lasso_victim_02.vsnd	役に立ちそうな女だな。		small/dtw/greedy
-yamato	yamato_ally_astro_lasso_victim_03_hero_3d	sounds/vo/yamato/yamato_ally_astro_lasso_victim_03.vsnd	ホリデーもなかなかやるな。		small/dtw/greedy
-yamato	yamato_ally_atlas_big_stun_03_hero_3d	sounds/vo/yamato/yamato_ally_atlas_big_stun_03.vsnd	大した突進力だな		small/dtw/greedy
-yamato	yamato_ally_atlas_unkillable_01_hero_3d	sounds/vo/yamato/yamato_ally_atlas_unkillable_01.vsnd	あの悪魔は何かに取り付かれているのか。		small/dtw/greedy
-yamato	yamato_ally_atlas_unkillable_02_hero_3d	sounds/vo/yamato/yamato_ally_atlas_unkillable_02.vsnd	奴らにエイブラムスは倒せ		small/dtw/greedy
-yamato	yamato_ally_atlas_unkillable_03_hero_3d	sounds/vo/yamato/yamato_ally_atlas_unkillable_03.vsnd	あの軽児はなかなかタフだな。		small/dtw/greedy
-yamato	yamato_ally_bebop_far_hook_03_hero_3d	sounds/vo/yamato/yamato_ally_bebop_far_hook_03.vsnd	さあ、しおきの時間だ。		small/dtw/greedy
-yamato	yamato_ally_bebop_uppercut_towards_boss_01_hero_3d	sounds/vo/yamato/yamato_ally_bebop_uppercut_towards_boss_01.vsnd	容赦ないな、あの機会は。		small/dtw/greedy
-yamato	yamato_ally_bebop_uppercut_towards_boss_02_hero_3d	sounds/vo/yamato/yamato_ally_bebop_uppercut_towards_boss_02.vsnd	リバップの戦い方には交換が持てるな。		small/dtw/greedy
-yamato	yamato_ally_bebop_uppercut_towards_boss_03_hero_3d	sounds/vo/yamato/yamato_ally_bebop_uppercut_towards_boss_03.vsnd	対した機会だな		small/dtw/greedy
-yamato	yamato_ally_chrono_swap_to_boss_01_hero_3d	sounds/vo/yamato/yamato_ally_chrono_swap_to_boss_01.vsnd	こきみよい占術だ。		small/dtw/greedy
-yamato	yamato_ally_chrono_swap_to_boss_03_hero_3d	sounds/vo/yamato/yamato_ally_chrono_swap_to_boss_03.vsnd	勝利への周年を感じるな。		small/dtw/greedy
-yamato	yamato_ally_forge_clutch_heal_03_hero_3d	sounds/vo/yamato/yamato_ally_forge_clutch_heal_03.vsnd	危ないところだったな。		small/dtw/greedy
-yamato	yamato_ally_forge_wall_stun_kill_02_hero_3d	sounds/vo/yamato/yamato_ally_forge_wall_stun_kill_02.vsnd	フェアファックスの重獄も役に立つではないか		small/dtw/greedy
-yamato	yamato_ally_forge_wall_stun_kill_03_hero_3d	sounds/vo/yamato/yamato_ally_forge_wall_stun_kill_03.vsnd	彼女は先手の本能を備えている。		small/dtw/greedy
-yamato	yamato_ally_ghost_see_big_swap_01_hero_3d	sounds/vo/yamato/yamato_ally_ghost_see_big_swap_01.vsnd	完全にふいをついたな。		small/dtw/greedy
-yamato	yamato_ally_ghost_see_big_swap_03_hero_3d	sounds/vo/yamato/yamato_ally_ghost_see_big_swap_03.vsnd	飛んで火にいる夏の虫だ。		small/dtw/greedy
-yamato	yamato_ally_gigawatt_multi_kill_ult_01_hero_3d	sounds/vo/yamato/yamato_ally_gigawatt_multi_kill_ult_01.vsnd	噂にたがわぬ力だな。		small/dtw/greedy
-yamato	yamato_ally_gigawatt_multi_kill_ult_02_hero_3d	sounds/vo/yamato/yamato_ally_gigawatt_multi_kill_ult_02.vsnd	大した者だ		small/dtw/greedy
-yamato	yamato_ally_gigawatt_multi_kill_ult_03_hero_3d	sounds/vo/yamato/yamato_ally_gigawatt_multi_kill_ult_03.vsnd	これほどの力が存在したとは。		small/dtw/greedy
-yamato	yamato_ally_haze_big_ult_01_hero_3d	sounds/vo/yamato/yamato_ally_haze_big_ult_01.vsnd	なんと!		small/dtw/greedy
-yamato	yamato_ally_haze_big_ult_02_hero_3d	sounds/vo/yamato/yamato_ally_haze_big_ult_02.vsnd	これがスイマの力か		small/dtw/greedy
-yamato	yamato_ally_haze_big_ult_03_hero_3d	sounds/vo/yamato/yamato_ally_haze_big_ult_03.vsnd	美しい女だな。そして恐ろしくもある。		small/dtw/greedy
-yamato	yamato_ally_haze_interrupt_with_finesse_02_hero_3d	sounds/vo/yamato/yamato_ally_haze_interrupt_with_finesse_02.vsnd	スイマが味方で助かった。		small/dtw/greedy
-yamato	yamato_ally_haze_interrupt_with_finesse_03_hero_3d	sounds/vo/yamato/yamato_ally_haze_interrupt_with_finesse_03.vsnd	(明) 今日晩通りの腕前だな。		small/dtw/greedy
-yamato	yamato_ally_hornet_far_snipe_03_hero_3d	sounds/vo/yamato/yamato_ally_hornet_far_snipe_03.vsnd	いい腕をしているな。		small/dtw/greedy
-yamato	yamato_ally_inferno_burns_down_objective_03_hero_3d	sounds/vo/yamato/yamato_ally_inferno_burns_down_objective_03.vsnd	火も使いようだな。		small/dtw/greedy
-yamato	yamato_ally_lash_see_massive_stomp_02_hero_3d	sounds/vo/yamato/yamato_ally_lash_see_massive_stomp_02.vsnd	彼の冷酷さには目を見張るものがあるな。		small/dtw/greedy
-yamato	yamato_ally_lash_see_massive_stomp_03_hero_3d	sounds/vo/yamato/yamato_ally_lash_see_massive_stomp_03.vsnd	どこからともなく現れたな。		small/dtw/greedy
-yamato	yamato_ally_orion_far_shot_02_hero_3d	sounds/vo/yamato/yamato_ally_orion_far_shot_02.vsnd	あの老人、なかなかやるな。		small/dtw/greedy
-yamato	yamato_ally_orion_far_shot_03_hero_3d	sounds/vo/yamato/yamato_ally_orion_far_shot_03.vsnd	まだ驚えていないようだな。		small/dtw/greedy
-yamato	yamato_ally_orion_missile_stops_ult_02_hero_3d	sounds/vo/yamato/yamato_ally_orion_missile_stops_ult_02.vsnd	タロンに感謝だな。		small/dtw/greedy
-yamato	yamato_ally_orion_missile_stops_ult_03_hero_3d	sounds/vo/yamato/yamato_ally_orion_missile_stops_ult_03.vsnd	エンゴに感謝するタロ		small/dtw/greedy
-yamato	yamato_ally_shiv_multikill_02_hero_3d	sounds/vo/yamato/yamato_ally_shiv_multikill_02.vsnd	やるな		small/dtw/greedy
-yamato	yamato_ally_shiv_multikill_03_hero_3d	sounds/vo/yamato/yamato_ally_shiv_multikill_03.vsnd	やるじゃないか、シブ。		small/dtw/greedy
-yamato	yamato_ally_shiv_unkillable_01_hero_3d	sounds/vo/yamato/yamato_ally_shiv_unkillable_01.vsnd	奴らに渋は殺せん		small/dtw/greedy
-yamato	yamato_ally_shiv_unkillable_02_hero_3d	sounds/vo/yamato/yamato_ally_shiv_unkillable_02.vsnd	支部は容赦ないな		small/dtw/greedy
-yamato	yamato_ally_shiv_unkillable_03_hero_3d	sounds/vo/yamato/yamato_ally_shiv_unkillable_03.vsnd	まったくタフな男だ。		small/dtw/greedy
-yamato	yamato_ally_tengu_take_objective_with_teather_02_hero_3d	sounds/vo/yamato/yamato_ally_tengu_take_objective_with_teather_02.vsnd	ガーゴイルも少しは役に立つようだな		small/dtw/greedy
-yamato	yamato_ally_tengu_take_objective_with_teather_03_hero_3d	sounds/vo/yamato/yamato_ally_tengu_take_objective_with_teather_03.vsnd	思ったよりも機能してるな。		small/dtw/greedy
-yamato	yamato_ally_viscous_clutch_cube_01_hero_3d	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_01.vsnd	スライム男にも存在価値があったというわけか		small/dtw/greedy
-yamato	yamato_ally_viscous_clutch_cube_02_hero_3d	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_02.vsnd	このヤスラギ。		small/dtw/greedy
-yamato	yamato_ally_viscous_clutch_cube_03_hero_3d	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_03.vsnd	やるじゃないかビスカス。		small/dtw/greedy
-yamato	yamato_ally_warden_big_ult_01_hero_3d	sounds/vo/yamato/yamato_ally_warden_big_ult_01.vsnd	王殿は野党に値するな。		small/dtw/greedy
-yamato	yamato_ally_warden_big_ult_02_hero_3d	sounds/vo/yamato/yamato_ally_warden_big_ult_02.vsnd	まったく危険な男だな。		small/dtw/greedy
-yamato	yamato_ally_wraith_kill_in_lift_03_hero_3d	sounds/vo/yamato/yamato_ally_wraith_kill_in_lift_03.vsnd	彼女を見くびっていたかもしれんな。		small/dtw/greedy
-yamato	yamato_ally_wraith_killed_in_lane_01_hero_3d	sounds/vo/yamato/yamato_ally_wraith_killed_in_lane_01.vsnd	レイスがやられたか。まあ、いずれこの手でしとめようと思っていた女だ。		small/dtw/greedy
-yamato	yamato_close_call_01_hero_3d	sounds/vo/yamato/yamato_close_call_01.vsnd	危ないところだった。		small/dtw/greedy
-yamato	yamato_close_call_02_hero_3d	sounds/vo/yamato/yamato_close_call_02.vsnd	私を殺せるとでも。		small/dtw/greedy
-yamato	yamato_close_call_03_hero_3d	sounds/vo/yamato/yamato_close_call_03.vsnd	兄の魂が私を守ってくれた。		small/dtw/greedy
-yamato	yamato_close_call_04_hero_3d	sounds/vo/yamato/yamato_close_call_04.vsnd	ありがとう山と。		small/dtw/greedy
-yamato	yamato_close_call_05_hero_3d	sounds/vo/yamato/yamato_close_call_05.vsnd	まだ死ぬわけには行かんのだ。		small/dtw/greedy
-yamato	yamato_desperation_power1_01_ability_3d	sounds/vo/yamato/yamato_desperation_power1_01.vsnd	仕留めてやる。		small/dtw/greedy
-yamato	yamato_desperation_power1_02_ability_3d	sounds/vo/yamato/yamato_desperation_power1_02.vsnd	やられてたまるか!		small/dtw/greedy
-yamato	yamato_desperation_power1_03_ability_3d	sounds/vo/yamato/yamato_desperation_power1_03.vsnd	まだ終わってはいないぞ!		small/dtw/greedy
-yamato	yamato_desperation_power1_04_ability_3d	sounds/vo/yamato/yamato_desperation_power1_04.vsnd	終わらせてやる!		small/dtw/greedy
-yamato	yamato_desperation_power1_05_ability_3d	sounds/vo/yamato/yamato_desperation_power1_05.vsnd	う。ここがお前の墓場だ!		small/dtw/greedy
-yamato	yamato_desperation_power2_01_ability_3d	sounds/vo/yamato/yamato_desperation_power2_01.vsnd	(ページ)私が止める!		small/dtw/greedy
-yamato	yamato_desperation_power2_02_ability_3d	sounds/vo/yamato/yamato_desperation_power2_02.vsnd	行くぞ!		small/dtw/greedy
-yamato	yamato_desperation_power2_03_ability_3d	sounds/vo/yamato/yamato_desperation_power2_03.vsnd	逃がしはしないぞ!		small/dtw/greedy
-yamato	yamato_desperation_power2_04_ability_3d	sounds/vo/yamato/yamato_desperation_power2_04.vsnd	まだ終わってはいない!		small/dtw/greedy
-yamato	yamato_desperation_power2_05_ability_3d	sounds/vo/yamato/yamato_desperation_power2_05.vsnd	片付けてやる!		small/dtw/greedy
-yamato	yamato_desperation_power3_01_ability_3d	sounds/vo/yamato/yamato_desperation_power3_01.vsnd	私はまだ生きているぞ!		small/dtw/greedy
-yamato	yamato_desperation_power3_02_ability_3d	sounds/vo/yamato/yamato_desperation_power3_02.vsnd	まだ終わってはいない!		small/dtw/greedy
-yamato	yamato_desperation_power3_03_ability_3d	sounds/vo/yamato/yamato_desperation_power3_03.vsnd	まだ正気はある。		small/dtw/greedy
-yamato	yamato_desperation_power3_04_ability_3d	sounds/vo/yamato/yamato_desperation_power3_04.vsnd	くたばるがいい!		small/dtw/greedy
-yamato	yamato_desperation_power3_05_ability_3d	sounds/vo/yamato/yamato_desperation_power3_05.vsnd	開けてたまるか!		small/dtw/greedy
-yamato	yamato_desperation_power4_01_ult_3d	sounds/vo/yamato/yamato_desperation_power4_01.vsnd	私はまだ死ねぬ!		small/dtw/greedy
-yamato	yamato_desperation_power4_02_ult_3d	sounds/vo/yamato/yamato_desperation_power4_02.vsnd	兄よ私に力をくれ		small/dtw/greedy
-yamato	yamato_desperation_power4_03_ult_3d	sounds/vo/yamato/yamato_desperation_power4_03.vsnd	ケリをつけてやる!		small/dtw/greedy
-yamato	yamato_desperation_power4_04_ult_3d	sounds/vo/yamato/yamato_desperation_power4_04.vsnd	私はセブンスムーンの名を背負っているのだ!		small/dtw/greedy
-yamato	yamato_desperation_power4_05_ult_3d	sounds/vo/yamato/yamato_desperation_power4_05.vsnd	ニューヨークは私のものだ!		small/dtw/greedy
-yamato	yamato_end_streak_hero_3d	sounds/vo/yamato/yamato_end_streak.vsnd	己の力を可信していたようだな		small/dtw/greedy
-yamato	yamato_enemy_astro_bounce_escape_02_hero_3d	sounds/vo/yamato/yamato_enemy_astro_bounce_escape_02.vsnd	保安感が逃げるとはな。		small/dtw/greedy
-yamato	yamato_enemy_astro_lassoed_01_hero_3d	sounds/vo/yamato/yamato_enemy_astro_lassoed_01.vsnd	くそ、ホリデーめ。		small/dtw/greedy
-yamato	yamato_enemy_astro_lassoed_03_hero_3d	sounds/vo/yamato/yamato_enemy_astro_lassoed_03.vsnd	許さんぞ、ホリデー!		small/dtw/greedy
-yamato	yamato_enemy_bebop_hooked_02_hero_3d	sounds/vo/yamato/yamato_enemy_bebop_hooked_02.vsnd	取りみ出すな。		small/dtw/greedy
-yamato	yamato_enemy_bebop_hooked_03_hero_3d	sounds/vo/yamato/yamato_enemy_bebop_hooked_03.vsnd	考えろ、考えるんだ。		small/dtw/greedy
-yamato	yamato_enemy_chrono_kill_post_swap_01_hero_3d	sounds/vo/yamato/yamato_enemy_chrono_kill_post_swap_01.vsnd	お前の力はこんなものかパラドックス。		small/dtw/greedy
-yamato	yamato_enemy_chrono_kill_post_swap_02_hero_3d	sounds/vo/yamato/yamato_enemy_chrono_kill_post_swap_02.vsnd	出亡したぞパラドックス。		small/dtw/greedy
-yamato	yamato_enemy_chrono_kill_post_swap_03_hero_3d	sounds/vo/yamato/yamato_enemy_chrono_kill_post_swap_03.vsnd	見じめだなパラドックス		small/dtw/greedy
-yamato	yamato_enemy_forge_destroy_turrets_01_hero_3d	sounds/vo/yamato/yamato_enemy_forge_destroy_turrets_01.vsnd	今いましい機械め。		small/dtw/greedy
-yamato	yamato_enemy_forge_destroy_turrets_02_hero_3d	sounds/vo/yamato/yamato_enemy_forge_destroy_turrets_02.vsnd	一体どれだけ破壊すればいいのだ		small/dtw/greedy
-yamato	yamato_enemy_forge_destroy_turrets_03_hero_3d	sounds/vo/yamato/yamato_enemy_forge_destroy_turrets_03.vsnd	あの女のいらぬ発明だな。		small/dtw/greedy
-yamato	yamato_enemy_gets_rejuv_01_hero_3d	sounds/vo/yamato/yamato_enemy_gets_rejuv_01.vsnd	お首を者どもがリジベネーターを手にしたか		small/dtw/greedy
-yamato	yamato_enemy_gets_rejuv_02_hero_3d	sounds/vo/yamato/yamato_enemy_gets_rejuv_02.vsnd	奴らがリジュメネーターを手にしたか無駄なことだ!		small/dtw/greedy
-yamato	yamato_enemy_gets_rejuv_03_hero_3d	sounds/vo/yamato/yamato_enemy_gets_rejuv_03.vsnd	奴らがリジュメネーターを手にしたか、ならば二度殺せるな。		small/dtw/greedy
-yamato	yamato_enemy_haze_kill_when_invisible_01_hero_3d	sounds/vo/yamato/yamato_enemy_haze_kill_when_invisible_01.vsnd	私から隠れることはできんぞヘイズ		small/dtw/greedy
-yamato	yamato_enemy_haze_kill_when_invisible_02_hero_3d	sounds/vo/yamato/yamato_enemy_haze_kill_when_invisible_02.vsnd	私から逃げられると思ったか。		small/dtw/greedy
-yamato	yamato_enemy_haze_kill_when_invisible_03_hero_3d	sounds/vo/yamato/yamato_enemy_haze_kill_when_invisible_03.vsnd	ー 甘かったな		small/dtw/greedy
-yamato	yamato_enemy_hornet_killed_mid_air_02_hero_3d	sounds/vo/yamato/yamato_enemy_hornet_killed_mid_air_02.vsnd	彼女ごときに私を殺すことはできん。		small/dtw/greedy
-yamato	yamato_enemy_hornet_killed_mid_air_03_hero_3d	sounds/vo/yamato/yamato_enemy_hornet_killed_mid_air_03.vsnd	誰も私を殺すことはできん		small/dtw/greedy
-yamato	yamato_enemy_inferno_killed_mid_ult_01_hero_3d	sounds/vo/yamato/yamato_enemy_inferno_killed_mid_ult_01.vsnd	愚かなバーテンダーめ。		small/dtw/greedy
-yamato	yamato_enemy_inferno_killed_mid_ult_02_hero_3d	sounds/vo/yamato/yamato_enemy_inferno_killed_mid_ult_02.vsnd	私を舐めるとこうなるのだ。		small/dtw/greedy
-yamato	yamato_enemy_inferno_killed_mid_ult_03_hero_3d	sounds/vo/yamato/yamato_enemy_inferno_killed_mid_ult_03.vsnd	お前に私は燃やせん。		small/dtw/greedy
-yamato	yamato_enemy_kelvin_kill_on_ice_path_01_hero_3d	sounds/vo/yamato/yamato_enemy_kelvin_kill_on_ice_path_01.vsnd	表情でのお遊びは終わりだ		small/dtw/greedy
-yamato	yamato_enemy_kelvin_kill_on_ice_path_02_hero_3d	sounds/vo/yamato/yamato_enemy_kelvin_kill_on_ice_path_02.vsnd	私から逃げることは不可能だ。		small/dtw/greedy
-yamato	yamato_enemy_krill_grabbed_01_hero_3d	sounds/vo/yamato/yamato_enemy_krill_grabbed_01.vsnd	許さんぞクリル		small/dtw/greedy
-yamato	yamato_enemy_krill_grabbed_02_hero_3d	sounds/vo/yamato/yamato_enemy_krill_grabbed_02.vsnd	話せ!		small/dtw/greedy
-yamato	yamato_enemy_krill_grabbed_03_hero_3d	sounds/vo/yamato/yamato_enemy_krill_grabbed_03.vsnd	だりとも始末してやる!		small/dtw/greedy
-yamato	yamato_enemy_lash_mid_air_kill_01_hero_3d	sounds/vo/yamato/yamato_enemy_lash_mid_air_kill_01.vsnd	簡単すぎる。		small/dtw/greedy
-yamato	yamato_enemy_lash_mid_air_kill_02_hero_3d	sounds/vo/yamato/yamato_enemy_lash_mid_air_kill_02.vsnd	口ほどにもない。		small/dtw/greedy
-yamato	yamato_enemy_lash_mid_air_kill_03_hero_3d	sounds/vo/yamato/yamato_enemy_lash_mid_air_kill_03.vsnd	この程度なのか?		small/dtw/greedy
-yamato	yamato_enemy_orion_see_missile_01_hero_3d	sounds/vo/yamato/yamato_enemy_orion_see_missile_01.vsnd	袋に気をつけろ!		small/dtw/greedy
-yamato	yamato_enemy_shiv_unkillable_01_alt_01_hero_3d	sounds/vo/yamato/yamato_enemy_shiv_unkillable_01_alt_01.vsnd	なぜ知らないのだ!		small/dtw/greedy
-yamato	yamato_enemy_shiv_unkillable_01_hero_3d	sounds/vo/yamato/yamato_enemy_shiv_unkillable_01.vsnd	なぜ死なないのだ!		small/dtw/greedy
-yamato	yamato_enemy_tengu_flies_away_01_hero_3d	sounds/vo/yamato/yamato_enemy_tengu_flies_away_01.vsnd	その翼を切り落としてやる!		small/dtw/greedy
-yamato	yamato_enemy_tengu_flies_away_02_hero_3d	sounds/vo/yamato/yamato_enemy_tengu_flies_away_02.vsnd	逃がさんぞ、アイビー!		small/dtw/greedy
-yamato	yamato_enemy_tengu_flies_away_03_hero_3d	sounds/vo/yamato/yamato_enemy_tengu_flies_away_03.vsnd	私から逃げ続けることはできんぞ		small/dtw/greedy
-yamato	yamato_enemy_wraith_lifts_01_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_01.vsnd	やめろレイス!		small/dtw/greedy
-yamato	yamato_enemy_wraith_lifts_02_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_02.vsnd	滅せ!		small/dtw/greedy
-yamato	yamato_enemy_wraith_lifts_03_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_03.vsnd	許さんぞ、レイス!		small/dtw/greedy
-yamato	yamato_hunt_01_hero_3d	sounds/vo/yamato/yamato_hunt_01.vsnd	どこに行った?		small/dtw/greedy
-yamato	yamato_hunt_03_hero_3d	sounds/vo/yamato/yamato_hunt_03.vsnd	隠れても無駄だ		small/dtw/greedy
-yamato	yamato_interrupt_01_hero_3d	sounds/vo/yamato/yamato_interrupt_01.vsnd	残念だったな。		small/dtw/greedy
-yamato	yamato_interrupt_02_hero_3d	sounds/vo/yamato/yamato_interrupt_02.vsnd	させるか。		small/dtw/greedy
-yamato	yamato_interrupt_03_hero_3d	sounds/vo/yamato/yamato_interrupt_03.vsnd	無駄だ		small/dtw/greedy
-yamato	yamato_interrupt_04_hero_3d	sounds/vo/yamato/yamato_interrupt_04.vsnd	そうはいか		small/dtw/greedy
-yamato	yamato_kill_anyhero_01_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_01.vsnd	造作もないな。		small/dtw/greedy
-yamato	yamato_kill_anyhero_02_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_02.vsnd	弱すぎる!		small/dtw/greedy
-yamato	yamato_kill_anyhero_03_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_03.vsnd	まだいけるな。		small/dtw/greedy
-yamato	yamato_kill_anyhero_04_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_04.vsnd	次は誰だ?		small/dtw/greedy
-yamato	yamato_kill_anyhero_05_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_05.vsnd	セベンスムーに立てつくものはこうなるのさ。		small/dtw/greedy
-yamato	yamato_kill_anyhero_06_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_06.vsnd	私を止めるのは不可能だ		small/dtw/greedy
-yamato	yamato_kill_anyhero_07_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_07.vsnd	儀式の関税を邪魔する者には死あるのみ。		small/dtw/greedy
-yamato	yamato_kill_anyhero_08_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_08.vsnd	私に敵対する者は誰であれ死ぬ		small/dtw/greedy
-yamato	yamato_kill_anyhero_09_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_09.vsnd	また一人片付いたな		small/dtw/greedy
-yamato	yamato_kill_anyhero_10_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_10.vsnd	私に勝てるとでも思ったか!		small/dtw/greedy
-yamato	yamato_kill_artist_01_hero_3d	sounds/vo/yamato/yamato_kill_artist_01.vsnd	ホロかな小娘だ。		small/dtw/greedy
-yamato	yamato_kill_artist_02_hero_3d	sounds/vo/yamato/yamato_kill_artist_02.vsnd	次はまともな武器を持ってこえ。		small/dtw/greedy
-yamato	yamato_kill_artist_03_hero_3d	sounds/vo/yamato/yamato_kill_artist_03.vsnd	親元へ張って帰れ、小娘。		small/dtw/greedy
-yamato	yamato_kill_artist_04_hero_3d	sounds/vo/yamato/yamato_kill_artist_04.vsnd	生生きな小娘だ。		small/dtw/greedy
-yamato	yamato_kill_artist_05_hero_3d	sounds/vo/yamato/yamato_kill_artist_05.vsnd	ここはお前のいる場所ではない。		small/dtw/greedy
-yamato	yamato_kill_astro_01_hero_3d	sounds/vo/yamato/yamato_kill_astro_01.vsnd	体制のイヌメ!		small/dtw/greedy
-yamato	yamato_kill_astro_02_hero_3d	sounds/vo/yamato/yamato_kill_astro_02.vsnd	私を法で捌けると思うな。		small/dtw/greedy
-yamato	yamato_kill_astro_03_hero_3d	sounds/vo/yamato/yamato_kill_astro_03.vsnd	ホリで、私の邪魔をするな」		small/dtw/greedy
-yamato	yamato_kill_astro_04_hero_3d	sounds/vo/yamato/yamato_kill_astro_04.vsnd	学ばんな、こいつらは。		small/dtw/greedy
-yamato	yamato_kill_astro_05_hero_3d	sounds/vo/yamato/yamato_kill_astro_05.vsnd	セーブンスムーンは宝を超越した存在なのだ。		small/dtw/greedy
-yamato	yamato_kill_atlas_01_hero_3d	sounds/vo/yamato/yamato_kill_atlas_01.vsnd	我が刀にイクシアンの血を吸わせてやる。		small/dtw/greedy
-yamato	yamato_kill_atlas_02_alt_01_hero_3d	sounds/vo/yamato/yamato_kill_atlas_02_alt_01.vsnd	ソーロン・ディテクテム。		small/dtw/greedy
-yamato	yamato_kill_atlas_02_hero_3d	sounds/vo/yamato/yamato_kill_atlas_02.vsnd	So long detective		small/dtw/greedy
-yamato	yamato_kill_atlas_03_hero_3d	sounds/vo/yamato/yamato_kill_atlas_03.vsnd	見かけ倒しもいいとこだな		small/dtw/greedy
-yamato	yamato_kill_atlas_04_hero_3d	sounds/vo/yamato/yamato_kill_atlas_04.vsnd	青木悪魔は死んだ。		small/dtw/greedy
-yamato	yamato_kill_atlas_05_hero_3d	sounds/vo/yamato/yamato_kill_atlas_05.vsnd	全く厄介なやつだ。		small/dtw/greedy
-yamato	yamato_kill_baba_01_hero_3d	sounds/vo/yamato/yamato_kill_baba_01.vsnd	置いたものは新たなものに道を譲るものだ。		small/dtw/greedy
-yamato	yamato_kill_baba_02_hero_3d	sounds/vo/yamato/yamato_kill_baba_02.vsnd	老婆の時代も終わりだ。		small/dtw/greedy
-yamato	yamato_kill_baba_03_hero_3d	sounds/vo/yamato/yamato_kill_baba_03.vsnd	ホロかな追い漏れだったな。		small/dtw/greedy
-yamato	yamato_kill_baba_04_hero_3d	sounds/vo/yamato/yamato_kill_baba_04.vsnd	お前の時代は終わった		small/dtw/greedy
-yamato	yamato_kill_baba_05_hero_3d	sounds/vo/yamato/yamato_kill_baba_05.vsnd	死ね、魔女め。		small/dtw/greedy
-yamato	yamato_kill_bebop_01_hero_3d	sounds/vo/yamato/yamato_kill_bebop_01.vsnd	I want to lose to scrap metal.		small/dtw/greedy
-yamato	yamato_kill_bebop_02_hero_3d	sounds/vo/yamato/yamato_kill_bebop_02.vsnd	糸の切れた操り人形とはこのことだな		small/dtw/greedy
-yamato	yamato_kill_bebop_03_hero_3d	sounds/vo/yamato/yamato_kill_bebop_03.vsnd	100年早かったな、ビーバップ。		small/dtw/greedy
-yamato	yamato_kill_bebop_04_hero_3d	sounds/vo/yamato/yamato_kill_bebop_04.vsnd	機械の割には頑張ったじゃないか		small/dtw/greedy
-yamato	yamato_kill_bebop_05_hero_3d	sounds/vo/yamato/yamato_kill_bebop_05.vsnd	手つくずに私が倒せるとでも		small/dtw/greedy
-yamato	yamato_kill_bookworm_01_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_01.vsnd	証拠にこもっていればよかったもの。		small/dtw/greedy
-yamato	yamato_kill_bookworm_02_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_02.vsnd	お前の物語はここで終わりだページ。		small/dtw/greedy
-yamato	yamato_kill_bookworm_03_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_03.vsnd	悪く思うな。		small/dtw/greedy
-yamato	yamato_kill_bookworm_04_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_04.vsnd	殺すには惜しい存在だったがな。		small/dtw/greedy
-yamato	yamato_kill_bookworm_05_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_05.vsnd	る 戦いに向かぬものが出てくればこうなるのだ		small/dtw/greedy
-yamato	yamato_kill_chessmaster_01_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_01.vsnd	ドケ、おいぼれ。		small/dtw/greedy
-yamato	yamato_kill_chessmaster_02_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_02.vsnd	遊びに付き合う暇はない		small/dtw/greedy
-yamato	yamato_kill_chessmaster_03_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_03.vsnd	チェスの達人は仕留めた		small/dtw/greedy
-yamato	yamato_kill_chessmaster_04_alt_01_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_04_alt_01.vsnd	年の甲も大したことはないな。		small/dtw/greedy
-yamato	yamato_kill_chessmaster_04_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_04.vsnd	年の甲も大したことはないな。		small/dtw/greedy
-yamato	yamato_kill_chessmaster_05_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_05.vsnd	ンそろもおまっ二つにしてやった		small/dtw/greedy
-yamato	yamato_kill_chrono_01_hero_3d	sounds/vo/yamato/yamato_kill_chrono_01.vsnd	ん こいつは遊びじゃないのでなパラドックス		small/dtw/greedy
-yamato	yamato_kill_chrono_02_hero_3d	sounds/vo/yamato/yamato_kill_chrono_02.vsnd	パラドックスこれまでだ。		small/dtw/greedy
-yamato	yamato_kill_chrono_03_hero_3d	sounds/vo/yamato/yamato_kill_chrono_03.vsnd	子供が調子に乗るからこうなるのだ。		small/dtw/greedy
-yamato	yamato_kill_chrono_04_hero_3d	sounds/vo/yamato/yamato_kill_chrono_04.vsnd	セブンスムーンの前ではパラドックスなど 墓後同然だ		small/dtw/greedy
-yamato	yamato_kill_chrono_05_hero_3d	sounds/vo/yamato/yamato_kill_chrono_05.vsnd	自分で思うほど賢くはなかったようだな。		small/dtw/greedy
-yamato	yamato_kill_deadpack_01_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_01.vsnd	ん。「だまれ!」		small/dtw/greedy
-yamato	yamato_kill_deadpack_02_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_02.vsnd	死人は黙っていろ!		small/dtw/greedy
-yamato	yamato_kill_deadpack_03_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_03.vsnd	そのまま死んでいろ、おろか者めが!		small/dtw/greedy
-yamato	yamato_kill_deadpack_04_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_04.vsnd	そんながらくた何の役にも立た		small/dtw/greedy
-yamato	yamato_kill_deadpack_05_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_05.vsnd	フェアファックスインダストリーズごときに私の邪魔はさせん!		small/dtw/greedy
-yamato	yamato_kill_doorman_01_hero_3d	sounds/vo/yamato/yamato_kill_doorman_01.vsnd	接客に手していればよかったものを。		small/dtw/greedy
-yamato	yamato_kill_doorman_02_hero_3d	sounds/vo/yamato/yamato_kill_doorman_02.vsnd	お前の出る幕じゃない。		small/dtw/greedy
-yamato	yamato_kill_doorman_03_hero_3d	sounds/vo/yamato/yamato_kill_doorman_03.vsnd	バロネスは私が炎上させてやる。		small/dtw/greedy
-yamato	yamato_kill_doorman_04_hero_3d	sounds/vo/yamato/yamato_kill_doorman_04.vsnd	ハソビは終わりだ。		small/dtw/greedy
-yamato	yamato_kill_doorman_05_hero_3d	sounds/vo/yamato/yamato_kill_doorman_05.vsnd	サカシラに振る舞う者の末路だな。		small/dtw/greedy
-yamato	yamato_kill_drifter_01_hero_3d	sounds/vo/yamato/yamato_kill_drifter_01.vsnd	死ね、怪物め。		small/dtw/greedy
-yamato	yamato_kill_drifter_02_hero_3d	sounds/vo/yamato/yamato_kill_drifter_02.vsnd	お前の獲物にはならん、ドリフター。		small/dtw/greedy
-yamato	yamato_kill_drifter_03_hero_3d	sounds/vo/yamato/yamato_kill_drifter_03.vsnd	薄汚れた吸血決め。		small/dtw/greedy
-yamato	yamato_kill_drifter_04_hero_3d	sounds/vo/yamato/yamato_kill_drifter_04.vsnd	(ページ)イニシエの化け者目が。		small/dtw/greedy
-yamato	yamato_kill_drifter_05_hero_3d	sounds/vo/yamato/yamato_kill_drifter_05.vsnd	強い男だったが、私の敵ではない。		small/dtw/greedy
-yamato	yamato_kill_dynamo_01_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_01.vsnd	学者ごときに私を止められるとでも		small/dtw/greedy
-yamato	yamato_kill_dynamo_02_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_02.vsnd	教師としてはわからんが、戦士としては三流だな。		small/dtw/greedy
-yamato	yamato_kill_dynamo_03_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_03.vsnd	けだかき男も死ねばただのしかばねだ。		small/dtw/greedy
-yamato	yamato_kill_dynamo_04_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_04.vsnd	お前には戦場より教室がおに合いだ。		small/dtw/greedy
-yamato	yamato_kill_dynamo_05_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_05.vsnd	愚かな選択をしたな大名も。		small/dtw/greedy
-yamato	yamato_kill_familiar_01_hero_3d	sounds/vo/yamato/yamato_kill_familiar_01.vsnd	化け物目が		small/dtw/greedy
-yamato	yamato_kill_familiar_02_hero_3d	sounds/vo/yamato/yamato_kill_familiar_02.vsnd	血に浮えた獣目。		small/dtw/greedy
-yamato	yamato_kill_familiar_03_hero_3d	sounds/vo/yamato/yamato_kill_familiar_03.vsnd	獣を苦所した。		small/dtw/greedy
-yamato	yamato_kill_familiar_04_hero_3d	sounds/vo/yamato/yamato_kill_familiar_04.vsnd	やつらのペットを仕留めた。		small/dtw/greedy
-yamato	yamato_kill_familiar_05_hero_3d	sounds/vo/yamato/yamato_kill_familiar_05.vsnd	片づいたな。		small/dtw/greedy
-yamato	yamato_kill_fencer_01_hero_3d	sounds/vo/yamato/yamato_kill_fencer_01.vsnd	まだまだ修練が足りんな、こぞ。		small/dtw/greedy
-yamato	yamato_kill_fencer_02_hero_3d	sounds/vo/yamato/yamato_kill_fencer_02.vsnd	数字は悪くなかったがな。		small/dtw/greedy
-yamato	yamato_kill_fencer_03_hero_3d	sounds/vo/yamato/yamato_kill_fencer_03.vsnd	若さゆえの豪満というやつだな		small/dtw/greedy
-yamato	yamato_kill_fencer_05_hero_3d	sounds/vo/yamato/yamato_kill_fencer_05.vsnd	私に破れるのは恥ではない。		small/dtw/greedy
-yamato	yamato_kill_forge_01_hero_3d	sounds/vo/yamato/yamato_kill_forge_01.vsnd	さっさと工場に帰るがいい。(アルバム)		small/dtw/greedy
-yamato	yamato_kill_forge_02_hero_3d	sounds/vo/yamato/yamato_kill_forge_02.vsnd	お前など私の相手ではない、マク・ギニス。		small/dtw/greedy
-yamato	yamato_kill_forge_03_hero_3d	sounds/vo/yamato/yamato_kill_forge_03.vsnd	科学技術だけでは過転ということだ		small/dtw/greedy
-yamato	yamato_kill_forge_04_hero_3d	sounds/vo/yamato/yamato_kill_forge_04.vsnd	横たわり血を流すがいい		small/dtw/greedy
-yamato	yamato_kill_forge_05_hero_3d	sounds/vo/yamato/yamato_kill_forge_05.vsnd	自らの発明品に依存しすぎたようだな		small/dtw/greedy
-yamato	yamato_kill_frank_01_hero_3d	sounds/vo/yamato/yamato_kill_frank_01.vsnd	オゾマ式やからめが		small/dtw/greedy
-yamato	yamato_kill_frank_02_hero_3d	sounds/vo/yamato/yamato_kill_frank_02.vsnd	(アルバム) 異業の者を排除した。		small/dtw/greedy
-yamato	yamato_kill_frank_03_hero_3d	sounds/vo/yamato/yamato_kill_frank_03.vsnd	見ているだけで無静が走るな		small/dtw/greedy
-yamato	yamato_kill_frank_04_hero_3d	sounds/vo/yamato/yamato_kill_frank_04.vsnd	奴にこの世界を歩く四角はない。		small/dtw/greedy
-yamato	yamato_kill_frank_05_hero_3d	sounds/vo/yamato/yamato_kill_frank_05.vsnd	何度かかってこようと結果は同じだ。		small/dtw/greedy
-yamato	yamato_kill_ghost_01_hero_3d	sounds/vo/yamato/yamato_kill_ghost_01.vsnd	あの腕は私がいただこう。		small/dtw/greedy
-yamato	yamato_kill_ghost_02_hero_3d	sounds/vo/yamato/yamato_kill_ghost_02.vsnd	オースキーパーの守りも及ばなかったようだなガイスト		small/dtw/greedy
-yamato	yamato_kill_ghost_03_hero_3d	sounds/vo/yamato/yamato_kill_ghost_03.vsnd	身のほど重い知っただろう。		small/dtw/greedy
-yamato	yamato_kill_ghost_04_hero_3d	sounds/vo/yamato/yamato_kill_ghost_04.vsnd	もっと前に死ぬべきだった女だ。		small/dtw/greedy
-yamato	yamato_kill_ghost_05_hero_3d	sounds/vo/yamato/yamato_kill_ghost_05.vsnd	カーネのもうじゃめが		small/dtw/greedy
-yamato	yamato_kill_gigawatt_01_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_01.vsnd	お前の力などセブンスムーンの前では無に等しい?		small/dtw/greedy
-yamato	yamato_kill_gigawatt_02_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_02.vsnd	お前のようなものが恐れられているのか		small/dtw/greedy
-yamato	yamato_kill_gigawatt_03_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_03.vsnd	妄想の慣れの果てだな。		small/dtw/greedy
-yamato	yamato_kill_gigawatt_04_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_04.vsnd	お前を捕獲した者の仕事は私が完成しよう。		small/dtw/greedy
-yamato	yamato_kill_gigawatt_05_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_05.vsnd	セブン、お前の力はこんなものか。		small/dtw/greedy
-yamato	yamato_kill_haze_01_hero_3d	sounds/vo/yamato/yamato_kill_haze_01.vsnd	私がOSICなど恐れると思ったか		small/dtw/greedy
-yamato	yamato_kill_haze_02_hero_3d	sounds/vo/yamato/yamato_kill_haze_02.vsnd	アメリカのアンサッシャーの技能はこの程度か。		small/dtw/greedy
-yamato	yamato_kill_haze_03_hero_3d	sounds/vo/yamato/yamato_kill_haze_03.vsnd	セブンスムーンに逆らうものはこうなるのさ。		small/dtw/greedy
-yamato	yamato_kill_haze_04_hero_3d	sounds/vo/yamato/yamato_kill_haze_04.vsnd	見の程お湧きまえることだな		small/dtw/greedy
-yamato	yamato_kill_haze_05_hero_3d	sounds/vo/yamato/yamato_kill_haze_05.vsnd	魂いなき技など脅威ではない。		small/dtw/greedy
-yamato	yamato_kill_high_networth_hero_3d	sounds/vo/yamato/yamato_kill_high_networth.vsnd	お前が積み上げた数字に意味などない		small/dtw/greedy
-yamato	yamato_kill_hornet_01_hero_3d	sounds/vo/yamato/yamato_kill_hornet_01.vsnd	上物するがいい		small/dtw/greedy
-yamato	yamato_kill_hornet_02_hero_3d	sounds/vo/yamato/yamato_kill_hornet_02.vsnd	阻撃師を仕留めた		small/dtw/greedy
-yamato	yamato_kill_hornet_03_hero_3d	sounds/vo/yamato/yamato_kill_hornet_03.vsnd	私を標的にしたのが間違いだったな。		small/dtw/greedy
-yamato	yamato_kill_hornet_04_hero_3d	sounds/vo/yamato/yamato_kill_hornet_04.vsnd	靴くらい履いたらどうだ		small/dtw/greedy
-yamato	yamato_kill_hornet_05_hero_3d	sounds/vo/yamato/yamato_kill_hornet_05.vsnd	殺すには惜しい存在だったな。		small/dtw/greedy
-yamato	yamato_kill_inferno_01_hero_3d	sounds/vo/yamato/yamato_kill_inferno_01.vsnd	パーテンダーなどに負けるわけにはいかん		small/dtw/greedy
-yamato	yamato_kill_inferno_02_hero_3d	sounds/vo/yamato/yamato_kill_inferno_02.vsnd	延拠したままでいればよかったもの		small/dtw/greedy
-yamato	yamato_kill_inferno_03_hero_3d	sounds/vo/yamato/yamato_kill_inferno_03.vsnd	お前が戦う武器相手は私じゃないインフェルナス。		small/dtw/greedy
-yamato	yamato_kill_inferno_04_hero_3d	sounds/vo/yamato/yamato_kill_inferno_04.vsnd	こいつが終わったら、やつのバーも焼き払ってやる。		small/dtw/greedy
-yamato	yamato_kill_inferno_05_hero_3d	sounds/vo/yamato/yamato_kill_inferno_05.vsnd	力の差を重い知ったか。		small/dtw/greedy
-yamato	yamato_kill_kelvin_01_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_01.vsnd	お前は死体のままでいるのが大似合いだ、ケルビン。		small/dtw/greedy
-yamato	yamato_kill_kelvin_02_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_02.vsnd	死者の世界に帰るがいい		small/dtw/greedy
-yamato	yamato_kill_kelvin_03_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_03.vsnd	奴の旅はここで終わりだ。		small/dtw/greedy
-yamato	yamato_kill_kelvin_04_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_04.vsnd	世に聞こえた英雄とて実体は初戦こんなものだ		small/dtw/greedy
-yamato	yamato_kill_kelvin_05_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_05.vsnd	あの濃天気な男にはうんざりだ		small/dtw/greedy
-yamato	yamato_kill_krill_01_hero_3d	sounds/vo/yamato/yamato_kill_krill_01.vsnd	デカイホーはコートにして、小さいホーは帽子にでもするか。		small/dtw/greedy
-yamato	yamato_kill_krill_02_hero_3d	sounds/vo/yamato/yamato_kill_krill_02.vsnd	おぞましい奴らめ!		small/dtw/greedy
-yamato	yamato_kill_krill_03_hero_3d	sounds/vo/yamato/yamato_kill_krill_03.vsnd	バーメン		small/dtw/greedy
-yamato	yamato_kill_krill_04_hero_3d	sounds/vo/yamato/yamato_kill_krill_04.vsnd	万力に頼ったのが間違いだったな。		small/dtw/greedy
-yamato	yamato_kill_krill_05_hero_3d	sounds/vo/yamato/yamato_kill_krill_05.vsnd	私はネズミなど恐れん。		small/dtw/greedy
-yamato	yamato_kill_lash_01_alt_01_hero_3d	sounds/vo/yamato/yamato_kill_lash_01_alt_01.vsnd	アソー!		small/dtw/greedy
-yamato	yamato_kill_lash_01_hero_3d	sounds/vo/yamato/yamato_kill_lash_01.vsnd	バカなアメリカ人命		small/dtw/greedy
-yamato	yamato_kill_lash_02_hero_3d	sounds/vo/yamato/yamato_kill_lash_02.vsnd	アメリカの豪満さが招いたむくいだ		small/dtw/greedy
-yamato	yamato_kill_lash_03_hero_3d	sounds/vo/yamato/yamato_kill_lash_03.vsnd	親のしつけが甘かったようだな。		small/dtw/greedy
-yamato	yamato_kill_lash_04_hero_3d	sounds/vo/yamato/yamato_kill_lash_04.vsnd	ラッシュ、あわれだな。		small/dtw/greedy
-yamato	yamato_kill_lash_05_hero_3d	sounds/vo/yamato/yamato_kill_lash_05.vsnd	よくもあそこまでごおまになれるものだ。		small/dtw/greedy
-yamato	yamato_kill_magician_01_hero_3d	sounds/vo/yamato/yamato_kill_magician_01.vsnd	マジシャンを仕留めた。		small/dtw/greedy
-yamato	yamato_kill_magician_02_hero_3d	sounds/vo/yamato/yamato_kill_magician_02.vsnd	その魔法は弱すぎ		small/dtw/greedy
-yamato	yamato_kill_magician_03_hero_3d	sounds/vo/yamato/yamato_kill_magician_03.vsnd	その絆を削すとはな。		small/dtw/greedy
-yamato	yamato_kill_magician_04_hero_3d	sounds/vo/yamato/yamato_kill_magician_04.vsnd	これで苦しみも終わりだ!		small/dtw/greedy
-yamato	yamato_kill_magician_05_hero_3d	sounds/vo/yamato/yamato_kill_magician_05.vsnd	お前はケンシンというものを何もしな。		small/dtw/greedy
-yamato	yamato_kill_mirage_01_hero_3d	sounds/vo/yamato/yamato_kill_mirage_01.vsnd	やとアレビトにようなどない。		small/dtw/greedy
-yamato	yamato_kill_mirage_02_hero_3d	sounds/vo/yamato/yamato_kill_mirage_02.vsnd	大したボディガードだな。		small/dtw/greedy
-yamato	yamato_kill_mirage_03_hero_3d	sounds/vo/yamato/yamato_kill_mirage_03.vsnd	なんならナシャラを私の下僕としてやるか。		small/dtw/greedy
-yamato	yamato_kill_mirage_04_hero_3d	sounds/vo/yamato/yamato_kill_mirage_04.vsnd	神を守る。己の身も守れぬお前がか。		small/dtw/greedy
-yamato	yamato_kill_mirage_05_hero_3d	sounds/vo/yamato/yamato_kill_mirage_05.vsnd	役立たずだった兄のボディガードを思い出すな。		small/dtw/greedy
-yamato	yamato_kill_nano_01_hero_3d	sounds/vo/yamato/yamato_kill_nano_01.vsnd	キャリコ、お前などは私の相手ではない。		small/dtw/greedy
-yamato	yamato_kill_nano_02_hero_3d	sounds/vo/yamato/yamato_kill_nano_02.vsnd	お前の困難など元より承知だ。		small/dtw/greedy
-yamato	yamato_kill_nano_03_hero_3d	sounds/vo/yamato/yamato_kill_nano_03.vsnd	いまいましい猫目。		small/dtw/greedy
-yamato	yamato_kill_nano_04_hero_3d	sounds/vo/yamato/yamato_kill_nano_04.vsnd	セブンスムーンに逆らったのが運の月だったな		small/dtw/greedy
-yamato	yamato_kill_nano_05_hero_3d	sounds/vo/yamato/yamato_kill_nano_05.vsnd	はっ、何が地上で最も危険な女だ。		small/dtw/greedy
-yamato	yamato_kill_necro_01_hero_3d	sounds/vo/yamato/yamato_kill_necro_01.vsnd	終わりだ		small/dtw/greedy
-yamato	yamato_kill_necro_02_hero_3d	sounds/vo/yamato/yamato_kill_necro_02.vsnd	お前は自分が何に手を出したのかもわかっていない		small/dtw/greedy
-yamato	yamato_kill_necro_04_hero_3d	sounds/vo/yamato/yamato_kill_necro_04.vsnd	死者の記憶を怪我すなどとは。		small/dtw/greedy
-yamato	yamato_kill_necro_05_hero_3d	sounds/vo/yamato/yamato_kill_necro_05.vsnd	朝赤な小娘が。		small/dtw/greedy
-yamato	yamato_kill_nurse_01_hero_3d	sounds/vo/yamato/yamato_kill_nurse_01.vsnd	勘違いも花裸だしいなハロ		small/dtw/greedy
-yamato	yamato_kill_nurse_02_hero_3d	sounds/vo/yamato/yamato_kill_nurse_02.vsnd	敵の治療薬は仕留めた。		small/dtw/greedy
-yamato	yamato_kill_nurse_03_hero_3d	sounds/vo/yamato/yamato_kill_nurse_03.vsnd	ハローはキリ捨てた。		small/dtw/greedy
-yamato	yamato_kill_nurse_04_hero_3d	sounds/vo/yamato/yamato_kill_nurse_04.vsnd	大した看護師ではなかったな。		small/dtw/greedy
-yamato	yamato_kill_nurse_05_hero_3d	sounds/vo/yamato/yamato_kill_nurse_05.vsnd	これで敵の援護はなくなった。		small/dtw/greedy
-yamato	yamato_kill_orion_01_hero_3d	sounds/vo/yamato/yamato_kill_orion_01.vsnd	ん。老人を倒すことに喜びは感じないな。		small/dtw/greedy
-yamato	yamato_kill_orion_02_hero_3d	sounds/vo/yamato/yamato_kill_orion_02.vsnd	敵ながら見上げた戦士だ。		small/dtw/greedy
-yamato	yamato_kill_orion_03_hero_3d	sounds/vo/yamato/yamato_kill_orion_03.vsnd	老人とは思えぬ強人差だったな。		small/dtw/greedy
-yamato	yamato_kill_orion_04_hero_3d	sounds/vo/yamato/yamato_kill_orion_04.vsnd	ヤスラカに眠るがいい		small/dtw/greedy
-yamato	yamato_kill_orion_05_hero_3d	sounds/vo/yamato/yamato_kill_orion_05.vsnd	これは彼が望んだしだ。		small/dtw/greedy
-yamato	yamato_kill_priest_01_hero_3d	sounds/vo/yamato/yamato_kill_priest_01.vsnd	信じるものを間違えたな。		small/dtw/greedy
-yamato	yamato_kill_priest_02_hero_3d	sounds/vo/yamato/yamato_kill_priest_02.vsnd	強心じゃめ。		small/dtw/greedy
-yamato	yamato_kill_priest_03_hero_3d	sounds/vo/yamato/yamato_kill_priest_03.vsnd	バチカンの力はこの程度か。「		small/dtw/greedy
-yamato	yamato_kill_priest_04_hero_3d	sounds/vo/yamato/yamato_kill_priest_04.vsnd	私に勝つことなど不可能なのだ。		small/dtw/greedy
-yamato	yamato_kill_priest_05_hero_3d	sounds/vo/yamato/yamato_kill_priest_05.vsnd	(アルバム) 己を見誤ったな。		small/dtw/greedy
-yamato	yamato_kill_punkgoat_01_hero_3d	sounds/vo/yamato/yamato_kill_punkgoat_01.vsnd	愚かなアメリカ人命。		small/dtw/greedy
-yamato	yamato_kill_punkgoat_03_hero_3d	sounds/vo/yamato/yamato_kill_punkgoat_03.vsnd	矢義を処理した。		small/dtw/greedy
-yamato	yamato_kill_punkgoat_04_hero_3d	sounds/vo/yamato/yamato_kill_punkgoat_04.vsnd	うっと惜しい男だ		small/dtw/greedy
-yamato	yamato_kill_punkgoat_05_hero_3d	sounds/vo/yamato/yamato_kill_punkgoat_05.vsnd	おぞましい矢住め		small/dtw/greedy
-yamato	yamato_kill_ratking_01_hero_3d	sounds/vo/yamato/yamato_kill_ratking_01.vsnd	死ねえ!怪獣名!		small/dtw/greedy
-yamato	yamato_kill_ratking_02_hero_3d	sounds/vo/yamato/yamato_kill_ratking_02.vsnd	怪我らわしいネズミメ		small/dtw/greedy
-yamato	yamato_kill_ratking_03_hero_3d	sounds/vo/yamato/yamato_kill_ratking_03.vsnd	ネズミは嫌いだ。		small/dtw/greedy
-yamato	yamato_kill_ratking_04_hero_3d	sounds/vo/yamato/yamato_kill_ratking_04.vsnd	ロングアイランドはセブンスムーンのものだ、お前のものではない。		small/dtw/greedy
-yamato	yamato_kill_ratking_05_hero_3d	sounds/vo/yamato/yamato_kill_ratking_05.vsnd	テシタドももうお前を救ってはくれんぞ。		small/dtw/greedy
-yamato	yamato_kill_shiv_01_hero_3d	sounds/vo/yamato/yamato_kill_shiv_01.vsnd	自分の本質を見誤ったな、シブ。		small/dtw/greedy
-yamato	yamato_kill_shiv_02_hero_3d	sounds/vo/yamato/yamato_kill_shiv_02.vsnd	いつまでヒーローきどりを続けるつもりだ。		small/dtw/greedy
-yamato	yamato_kill_shiv_03_hero_3d	sounds/vo/yamato/yamato_kill_shiv_03.vsnd	自分の本書からは逃れられても私からは逃れられん		small/dtw/greedy
-yamato	yamato_kill_shiv_04_hero_3d	sounds/vo/yamato/yamato_kill_shiv_04.vsnd	ナイスヘア。		small/dtw/greedy
-yamato	yamato_kill_shiv_05_hero_3d	sounds/vo/yamato/yamato_kill_shiv_05.vsnd	ナイフで刀に勝てると思ったか		small/dtw/greedy
-yamato	yamato_kill_synth_01_hero_3d	sounds/vo/yamato/yamato_kill_synth_01.vsnd	愚かな若層女が。		small/dtw/greedy
-yamato	yamato_kill_synth_02_hero_3d	sounds/vo/yamato/yamato_kill_synth_02.vsnd	お前が感動されたのも当然だな。		small/dtw/greedy
-yamato	yamato_kill_synth_03_hero_3d	sounds/vo/yamato/yamato_kill_synth_03.vsnd	過去にとらわれすぎなのだ		small/dtw/greedy
-yamato	yamato_kill_synth_04_hero_3d	sounds/vo/yamato/yamato_kill_synth_04.vsnd	あのケースをいただきたいな。		small/dtw/greedy
-yamato	yamato_kill_synth_05_hero_3d	sounds/vo/yamato/yamato_kill_synth_05.vsnd	ポケット お前のケースをよこせ		small/dtw/greedy
-yamato	yamato_kill_tengu_01_hero_3d	sounds/vo/yamato/yamato_kill_tengu_01.vsnd	ガーゴイルを仕留めた		small/dtw/greedy
-yamato	yamato_kill_tengu_02_hero_3d	sounds/vo/yamato/yamato_kill_tengu_02.vsnd	面倒さを片付けてくれたことには感謝するぞ。		small/dtw/greedy
-yamato	yamato_kill_tengu_03_hero_3d	sounds/vo/yamato/yamato_kill_tengu_03.vsnd	次はスパニッシュハーレムをいただくとしようお前のブレーサの見返りとしてな		small/dtw/greedy
-yamato	yamato_kill_tengu_04_hero_3d	sounds/vo/yamato/yamato_kill_tengu_04.vsnd	こんなやつが面倒さを止められるなら、ニューヨークの制圧も難しくないな。		small/dtw/greedy
-yamato	yamato_kill_tengu_05_hero_3d	sounds/vo/yamato/yamato_kill_tengu_05.vsnd	こんな奴のどこが恐ろしいというのだ		small/dtw/greedy
-yamato	yamato_kill_unicorn_01_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_01.vsnd	っ!おさましい怪物女が。		small/dtw/greedy
-yamato	yamato_kill_unicorn_02_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_02.vsnd	これは余響ではない現実の戦いだ		small/dtw/greedy
-yamato	yamato_kill_unicorn_03_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_03.vsnd	日遊びは終わりだ。		small/dtw/greedy
-yamato	yamato_kill_unicorn_04_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_04.vsnd	偽善者め。		small/dtw/greedy
-yamato	yamato_kill_unicorn_05_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_05.vsnd	サーカスに戻るがいい。		small/dtw/greedy
-yamato	yamato_kill_vampirebat_01_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_01.vsnd	こなまいきな子供目が。		small/dtw/greedy
-yamato	yamato_kill_vampirebat_02_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_02.vsnd	身のほどを知るがいい		small/dtw/greedy
-yamato	yamato_kill_vampirebat_03_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_03.vsnd	小娘が。		small/dtw/greedy
-yamato	yamato_kill_vampirebat_04_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_04.vsnd	今々しい休結決め。		small/dtw/greedy
-yamato	yamato_kill_vampirebat_05_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_05.vsnd	一族の恥ずさらしだな。		small/dtw/greedy
-yamato	yamato_kill_viper_01_hero_3d	sounds/vo/yamato/yamato_kill_viper_01.vsnd	虹目な女だ		small/dtw/greedy
-yamato	yamato_kill_viper_02_hero_3d	sounds/vo/yamato/yamato_kill_viper_02.vsnd	こんな女と組むものの気が知れんな(音楽)		small/dtw/greedy
-yamato	yamato_kill_viper_03_hero_3d	sounds/vo/yamato/yamato_kill_viper_03.vsnd	ゲードの名にふさわしい女だ。		small/dtw/greedy
-yamato	yamato_kill_viper_04_hero_3d	sounds/vo/yamato/yamato_kill_viper_04.vsnd	抑制を知らぬくずめが!		small/dtw/greedy
-yamato	yamato_kill_viper_05_hero_3d	sounds/vo/yamato/yamato_kill_viper_05.vsnd	バイパーよ、もともとお前に勝ち目などなかったのだ。		small/dtw/greedy
-yamato	yamato_kill_viscous_01_hero_3d	sounds/vo/yamato/yamato_kill_viscous_01.vsnd	くっ!		small/dtw/greedy
-yamato	yamato_kill_viscous_02_hero_3d	sounds/vo/yamato/yamato_kill_viscous_02.vsnd	全くオズマシイヤツだな		small/dtw/greedy
-yamato	yamato_kill_viscous_03_hero_3d	sounds/vo/yamato/yamato_kill_viscous_03.vsnd	全く機会な存在だ		small/dtw/greedy
-yamato	yamato_kill_viscous_04_hero_3d	sounds/vo/yamato/yamato_kill_viscous_04.vsnd	なんなんだあれは。		small/dtw/greedy
-yamato	yamato_kill_viscous_05_hero_3d	sounds/vo/yamato/yamato_kill_viscous_05.vsnd	ガイナ生き物だ。		small/dtw/greedy
-yamato	yamato_kill_warden_01_hero_3d	sounds/vo/yamato/yamato_kill_warden_01.vsnd	お前に私は止められんさ、ボーデン。		small/dtw/greedy
-yamato	yamato_kill_warden_02_hero_3d	sounds/vo/yamato/yamato_kill_warden_02.vsnd	私は決してくっしないぞウォーデン		small/dtw/greedy
-yamato	yamato_kill_warden_03_hero_3d	sounds/vo/yamato/yamato_kill_warden_03.vsnd	なんでも思う通りに行くと思うな。		small/dtw/greedy
-yamato	yamato_kill_warden_04_hero_3d	sounds/vo/yamato/yamato_kill_warden_04.vsnd	私はお前など恐れんぞウォーデン。		small/dtw/greedy
-yamato	yamato_kill_warden_05_hero_3d	sounds/vo/yamato/yamato_kill_warden_05.vsnd	共心者の末路だ		small/dtw/greedy
-yamato	yamato_kill_werewolf_01_hero_3d	sounds/vo/yamato/yamato_kill_werewolf_01.vsnd	獣を仕留めた。		small/dtw/greedy
-yamato	yamato_kill_werewolf_03_hero_3d	sounds/vo/yamato/yamato_kill_werewolf_03.vsnd	どうしようもない女だな		small/dtw/greedy
-yamato	yamato_kill_werewolf_04_hero_3d	sounds/vo/yamato/yamato_kill_werewolf_04.vsnd	ウェアウルフを排除した。		small/dtw/greedy
-yamato	yamato_kill_wraith_01_hero_3d	sounds/vo/yamato/yamato_kill_wraith_01.vsnd	これでニューヨークは私のものだ		small/dtw/greedy
-yamato	yamato_kill_wraith_02_hero_3d	sounds/vo/yamato/yamato_kill_wraith_02.vsnd	リーブタウン・レイス。		small/dtw/greedy
-yamato	yamato_kill_wraith_03_hero_3d	sounds/vo/yamato/yamato_kill_wraith_03.vsnd	小線私の相手ではなかったな		small/dtw/greedy
-yamato	yamato_kill_wraith_04_hero_3d	sounds/vo/yamato/yamato_kill_wraith_04.vsnd	私のような相手とは戦ったことがなかったようだな。		small/dtw/greedy
-yamato	yamato_kill_wraith_05_hero_3d	sounds/vo/yamato/yamato_kill_wraith_05.vsnd	お前のビジネスはセーブンスムーンがいただこう		small/dtw/greedy
-yamato	yamato_kill_wrecker_01_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_01.vsnd	死ねえ怪物め!		small/dtw/greedy
-yamato	yamato_kill_wrecker_02_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_02.vsnd	仕留めたぞ。		small/dtw/greedy
-yamato	yamato_kill_wrecker_03_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_03.vsnd	どうにか無事に切り抜けられたな		small/dtw/greedy
-yamato	yamato_kill_wrecker_04_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_04.vsnd	簡単な相手ではなかった。		small/dtw/greedy
-yamato	yamato_kill_wrecker_05_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_05.vsnd	育士屋のブッチャーを片付けた。		small/dtw/greedy
-yamato	yamato_killstreak_high_02_hero_announcer	sounds/vo/yamato/yamato_killstreak_high_02.vsnd	私はヤマトの名をこの世界に刻む。		small/dtw/greedy
-yamato	yamato_killstreak_mid_02_hero_announcer	sounds/vo/yamato/yamato_killstreak_mid_02.vsnd	なさけは駆けん。		small/dtw/greedy
-yamato	yamato_killstreak_mid_03_hero_announcer	sounds/vo/yamato/yamato_killstreak_mid_03.vsnd	無力な個室次が。		small/dtw/greedy
-yamato	yamato_killstreak_start_01_hero_announcer	sounds/vo/yamato/yamato_killstreak_start_01.vsnd	全く歯応えがないな		small/dtw/greedy
-yamato	yamato_killstreak_start_02_hero_announcer	sounds/vo/yamato/yamato_killstreak_start_02.vsnd	全員仕留めてやる一人ずつ順番にな		small/dtw/greedy
-yamato	yamato_killstreak_start_03_hero_announcer	sounds/vo/yamato/yamato_killstreak_start_03.vsnd	何人たりともセブンスムーンの手からは逃れられん。		small/dtw/greedy
-yamato	yamato_killstreak_start_04_hero_announcer	sounds/vo/yamato/yamato_killstreak_start_04.vsnd	私から逃れることはできん。		small/dtw/greedy
-yamato	yamato_last_one_standing_01_hero_3d	sounds/vo/yamato/yamato_last_one_standing_01.vsnd	私は何者も恐れない。		small/dtw/greedy
-yamato	yamato_last_one_standing_02_hero_3d	sounds/vo/yamato/yamato_last_one_standing_02.vsnd	私は勝つどんな状況でもな。		small/dtw/greedy
-yamato	yamato_last_one_standing_03_hero_3d	sounds/vo/yamato/yamato_last_one_standing_03.vsnd	全員拝手をしてやる。		small/dtw/greedy
-yamato	yamato_leave_base_01_hero_3d	sounds/vo/yamato/yamato_leave_base_01.vsnd	終わらせてやる!		small/dtw/greedy
-yamato	yamato_leave_base_02_hero_3d	sounds/vo/yamato/yamato_leave_base_02.vsnd	セブンスムーンの大統を見届けよ。		small/dtw/greedy
-yamato	yamato_leave_base_03_hero_3d	sounds/vo/yamato/yamato_leave_base_03.vsnd	奴らには滅をもたらしてやる		small/dtw/greedy
-yamato	yamato_leave_base_04_hero_3d	sounds/vo/yamato/yamato_leave_base_04.vsnd	私の戦いは私自身で蹴りをつける。		small/dtw/greedy
-yamato	yamato_leave_base_05_hero_3d	sounds/vo/yamato/yamato_leave_base_05.vsnd	パトロンを召喚するぞ!		small/dtw/greedy
-yamato	yamato_match_start_yamato_astro_convo01_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_astro_convo01_01.vsnd	まさか警察の犬と協力することになるとはな、		small/dtw/greedy
-yamato	yamato_match_start_yamato_astro_convo02_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_astro_convo02_01.vsnd	あんたがマーフィの女か。		small/dtw/greedy
-yamato	yamato_match_start_yamato_atlas_convo01_02_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_atlas_convo01_02.vsnd	ああ、こいつ話しかけてくる。		small/dtw/greedy
-yamato	yamato_match_start_yamato_atlas_convo03_02_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_atlas_convo03_02.vsnd	それしか知らないんだろ。		small/dtw/greedy
-yamato	yamato_match_start_yamato_bebop_convo02_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_bebop_convo02_01.vsnd	やつが噂の殺力マシンか。		small/dtw/greedy
-yamato	yamato_match_start_yamato_bebop_convo02_03_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_bebop_convo02_03.vsnd	だろうな(音楽)		small/dtw/greedy
-yamato	yamato_match_start_yamato_dynamo_convo01_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo01_01.vsnd	計画を立てなくては、		small/dtw/greedy
-yamato	yamato_match_start_yamato_dynamo_convo01_03_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo01_03.vsnd	どうせわかってないんだろう		small/dtw/greedy
-yamato	yamato_match_start_yamato_dynamo_convo01_05_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo01_05.vsnd	まったく。		small/dtw/greedy
-yamato	yamato_match_start_yamato_dynamo_convo02_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo02_01.vsnd	お前のエゴが招いた結果だ。		small/dtw/greedy
-yamato	yamato_match_start_yamato_ghost_convo02_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_ghost_convo02_01.vsnd	なんだその腕は。		small/dtw/greedy
-yamato	yamato_match_start_yamato_inferno_convo01_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_inferno_convo01_01.vsnd	こいつは五分もてば奇跡だな。		small/dtw/greedy
-yamato	yamato_match_start_yamato_nano_convo02_03_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_nano_convo02_03.vsnd	なんでもない忘れろ		small/dtw/greedy
-yamato	yamato_match_start_yamato_tengu_convo03_02_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_tengu_convo03_02.vsnd	お前の見素晴らしい街など興味はなかったが、この手に収めるのも悪くはないかもしれんな。		small/dtw/greedy
-yamato	yamato_melee_kill_01_hero_3d	sounds/vo/yamato/yamato_melee_kill_01.vsnd	そこで寝ていろ。		small/dtw/greedy
-yamato	yamato_melee_kill_02_hero_3d	sounds/vo/yamato/yamato_melee_kill_02.vsnd	愚か者目		small/dtw/greedy
-yamato	yamato_melee_kill_03_hero_3d	sounds/vo/yamato/yamato_melee_kill_03.vsnd	相手が悪かったな		small/dtw/greedy
-yamato	yamato_melee_kill_04_hero_3d	sounds/vo/yamato/yamato_melee_kill_04.vsnd	私に勝てるものなどいない。		small/dtw/greedy
-yamato	yamato_melee_kill_05_hero_3d	sounds/vo/yamato/yamato_melee_kill_05.vsnd	期待外れだな		small/dtw/greedy
-yamato	yamato_near_miss_01_hero_3d	sounds/vo/yamato/yamato_near_miss_01.vsnd	命びろいしたな。		small/dtw/greedy
-yamato	yamato_near_miss_02_hero_3d	sounds/vo/yamato/yamato_near_miss_02.vsnd	次は逃がさん。		small/dtw/greedy
-yamato	yamato_near_miss_04_hero_3d	sounds/vo/yamato/yamato_near_miss_04.vsnd	逃げるな、臆病者。		small/dtw/greedy
-yamato	yamato_near_miss_05_hero_3d	sounds/vo/yamato/yamato_near_miss_05.vsnd	次は仕留める		small/dtw/greedy
-yamato	yamato_parry_01_alt_01_hero_3d	sounds/vo/yamato/yamato_parry_01_alt_01.vsnd	は		small/dtw/greedy
-yamato	yamato_parry_02_hero_3d	sounds/vo/yamato/yamato_parry_02.vsnd	なんだと。		small/dtw/greedy
-yamato	yamato_parry_03_hero_3d	sounds/vo/yamato/yamato_parry_03.vsnd	こしゃくな!		small/dtw/greedy
-yamato	yamato_pick_up_gold_01_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_01.vsnd	いただいておこう。		small/dtw/greedy
-yamato	yamato_pick_up_gold_02_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_02.vsnd	こいつはセベンスムーンがいただく。		small/dtw/greedy
-yamato	yamato_pick_up_gold_03_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_03.vsnd	ソールはいただく		small/dtw/greedy
-yamato	yamato_pick_up_gold_04_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_04.vsnd	こいつは私のものだ。		small/dtw/greedy
-yamato	yamato_pick_up_gold_05_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_05.vsnd	こいつはセブンスムーンにキスべきもの。		small/dtw/greedy
-yamato	yamato_ping_no_teamfight_ping_2d	sounds/vo/yamato/ping/yamato_ping_no_teamfight.vsnd	(アルバム) I'm not ready for team fight.		small/dtw/greedy
-yamato	yamato_ping_post_game_01_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_01.vsnd	役立たずではなかったな。		small/dtw/greedy
-yamato	yamato_ping_post_game_02_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_02.vsnd	全ては兄のために		small/dtw/greedy
-yamato	yamato_ping_post_game_03_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_03.vsnd	(ページ)ヤツらは弱かったな。		small/dtw/greedy
-yamato	yamato_ping_post_game_04_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_04.vsnd	(ページ)当然の結果だ。		small/dtw/greedy
-yamato	yamato_ping_post_game_05_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_05.vsnd	容赦はしなかったぞ。		small/dtw/greedy
-yamato	yamato_ping_pre_game_01_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_01.vsnd	時期に彼らは私にひれ伏すだろう。		small/dtw/greedy
-yamato	yamato_ping_pre_game_02_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_02.vsnd	コイツらは役立たずじゃないといいが。		small/dtw/greedy
-yamato	yamato_ping_pre_game_03_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_03.vsnd	私がチームを勝利に導こう。		small/dtw/greedy
-yamato	yamato_ping_pre_game_04_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_04.vsnd	時期にセブンスムーンがニューヨークを牛尻だろう		small/dtw/greedy
-yamato	yamato_ping_pre_game_05_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_05.vsnd	山と。私の勝利はあなたのものだ。		small/dtw/greedy
-yamato	yamato_ping_pre_game_06_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_06.vsnd	私の邪魔をするものは必ず死ぬ。		small/dtw/greedy
-yamato	yamato_ping_priest_almost_respawn_ping_2d	sounds/vo/yamato/ping/yamato_ping_priest_almost_respawn.vsnd	Benitize is almost back!		small/dtw/greedy
-yamato	yamato_select_01_hero_3d	sounds/vo/yamato/yamato_select_01.vsnd	容赦はしない。		small/dtw/greedy
-yamato	yamato_select_02_hero_3d	sounds/vo/yamato/yamato_select_02.vsnd	私はアニよりこの名を受け継いだ。		small/dtw/greedy
-yamato	yamato_select_03-imported_hero_3d	sounds/vo/yamato/yamato_select_03-imported.vsnd	I wasn't born with this namebut I'll do my best to live up to it		small/dtw/greedy
-yamato	yamato_select_03_hero_3d	sounds/vo/yamato/yamato_select_03.vsnd	私は訳あってこの名を得た。決して汚すことのできぬこの名を。		small/dtw/greedy
-yamato	yamato_select_04_hero_3d	sounds/vo/yamato/yamato_select_04.vsnd	私が死ねばこの方のは別のものが受け継ぐだろう。私がそうしたようにな。		small/dtw/greedy
-yamato	yamato_select_05_hero_3d	sounds/vo/yamato/yamato_select_05.vsnd	立ち下がる者は誰であれ、キリステル。「		small/dtw/greedy
-yamato	yamato_select_06_hero_3d	sounds/vo/yamato/yamato_select_06.vsnd	ついてこい、私が勝利に導いてやる。		small/dtw/greedy
-yamato	yamato_select_07_hero_3d	sounds/vo/yamato/yamato_select_07.vsnd	しかばねの山を気づいてみせよう。		small/dtw/greedy
-yamato	yamato_select_08_hero_3d	sounds/vo/yamato/yamato_select_08.vsnd	ニューヨークはセブンスムーンの主中にキスだろ。		small/dtw/greedy
-yamato	yamato_select_09_hero_3d	sounds/vo/yamato/yamato_select_09.vsnd	兄にこの光景を見せてやりたかった		small/dtw/greedy
-yamato	yamato_select_10_hero_3d	sounds/vo/yamato/yamato_select_10.vsnd	兄を見ていてくれ。すぐにあなたの夢は現実となる。		small/dtw/greedy
-yamato	yamato_tower_got_denied_01_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_01.vsnd	そもそもソールは目的ではない		small/dtw/greedy
-yamato	yamato_tower_got_denied_02_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_02.vsnd	目的は達成した。		small/dtw/greedy
-yamato	yamato_tower_got_denied_03_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_03.vsnd	また一つ目標達成だ		small/dtw/greedy
-yamato	yamato_tower_got_denied_04_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_04.vsnd	勝利が近づいたな		small/dtw/greedy
-yamato	yamato_tower_got_denied_05_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_05.vsnd	また一つ目標を攻略した(笑)		small/dtw/greedy
-yamato	yamato_unselect_01_hero_3d	sounds/vo/yamato/yamato_unselect_01.vsnd	遅かれ早かれ気付くことになるさ、お前にはセブンスムーンの力が必要だということをな。		small/dtw/greedy
-yamato	yamato_unselect_02_hero_3d	sounds/vo/yamato/yamato_unselect_02.vsnd	私も暇ではないのでな。		small/dtw/greedy
-yamato	yamato_unselect_03_hero_3d	sounds/vo/yamato/yamato_unselect_03.vsnd	いいだろう		small/dtw/greedy
-yamato	yamato_unselect_04_hero_3d	sounds/vo/yamato/yamato_unselect_04.vsnd	後悔するなよ。		small/dtw/greedy
-yamato	yamato_unselect_05_hero_3d	sounds/vo/yamato/yamato_unselect_05.vsnd	覚悟が定まったらまた声をかけるがいい		small/dtw/greedy
-yamato	yamato_unselect_06_hero_3d	sounds/vo/yamato/yamato_unselect_06.vsnd	投げかわしいな。		small/dtw/greedy
-yamato	yamato_unselect_07_hero_3d	sounds/vo/yamato/yamato_unselect_07.vsnd	愚かな決断だが好きにするがいいさ		small/dtw/greedy
-yamato	yamato_unselect_08_hero_3d	sounds/vo/yamato/yamato_unselect_08.vsnd	セブンスムーンの助けを拒絶するとはな。		small/dtw/greedy
-yamato	yamato_unselect_09_hero_3d	sounds/vo/yamato/yamato_unselect_09.vsnd	血を見るのはまたの機会、ということか。		small/dtw/greedy
-yamato	yamato_unselect_10_hero_3d	sounds/vo/yamato/yamato_unselect_10.vsnd	残念だな		small/dtw/greedy
-yamato	yamato_upgrade_power1_01_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_01.vsnd	(ページ)これで更なる死が呼び込まれよう。		small/dtw/greedy
-yamato	yamato_upgrade_power1_02_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_02.vsnd	切り裂いてやろうではないか。		small/dtw/greedy
-yamato	yamato_upgrade_power1_03_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_03.vsnd	剣は食杯に過ぎん。私の意思こそが真の武器となろう。		small/dtw/greedy
-yamato	yamato_upgrade_power1_04_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_04.vsnd	(アルバム) このキレアジに奴らは恐れを呪くこととなろう。		small/dtw/greedy
-yamato	yamato_upgrade_power1_05_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_05.vsnd	距離を取ったところで無駄ということを教えてやろう。		small/dtw/greedy
-yamato	yamato_upgrade_power1_06_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_06.vsnd	兄よ、先決をあなたに捧げよう。		small/dtw/greedy
-yamato	yamato_upgrade_power1_07_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_07.vsnd	全員切り捨ててやる。		small/dtw/greedy
-yamato	yamato_upgrade_power1_08_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_08.vsnd	この技にもようやく収縮したか。		small/dtw/greedy
-yamato	yamato_upgrade_power1_09_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_09.vsnd	刀が血を求めている。		small/dtw/greedy
-yamato	yamato_upgrade_power1_10_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_10.vsnd	この刀の乾きを満たしてやらねばな。		small/dtw/greedy
-yamato	yamato_upgrade_power2_01_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_01.vsnd	誰も私からは逃れられん		small/dtw/greedy
-yamato	yamato_upgrade_power2_02_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_02.vsnd	獲物は逃がさん、絶対にな。		small/dtw/greedy
-yamato	yamato_upgrade_power2_03_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_03.vsnd	逃げたところで連中に待つのは死のみだ。		small/dtw/greedy
-yamato	yamato_upgrade_power2_04_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_04.vsnd	一人とて逃すわけには行かないからな		small/dtw/greedy
-yamato	yamato_upgrade_power2_05_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_05.vsnd	誰も私の小額からは逃れられん。		small/dtw/greedy
-yamato	yamato_upgrade_power2_06_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_06.vsnd	距離を詰めて仕留めてやる。		small/dtw/greedy
-yamato	yamato_upgrade_power2_07_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_07.vsnd	天候せっかの技というものを見せてやろ		small/dtw/greedy
-yamato	yamato_upgrade_power2_08_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_08.vsnd	奴らにこの動きは捉えきれまい。		small/dtw/greedy
-yamato	yamato_upgrade_power2_09_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_09.vsnd	これで敵を逃すこともないな。		small/dtw/greedy
-yamato	yamato_upgrade_power2_10_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_10.vsnd	距離を詰めるのに有用だな。		small/dtw/greedy
-yamato	yamato_upgrade_power3_01_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_01.vsnd	やつらの血をこの力と変えよう。		small/dtw/greedy
-yamato	yamato_upgrade_power3_02_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_02.vsnd	やつらの命が私を再生させる。		small/dtw/greedy
-yamato	yamato_upgrade_power3_03_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_03.vsnd	私は戦う昼むことなくな		small/dtw/greedy
-yamato	yamato_upgrade_power3_04_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_04.vsnd	私はくしない。		small/dtw/greedy
-yamato	yamato_upgrade_power3_05_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_05.vsnd	この命、尽きるまで戦おう		small/dtw/greedy
-yamato	yamato_upgrade_power3_06_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_06.vsnd	兄よ、私を守ってくれ。		small/dtw/greedy
-yamato	yamato_upgrade_power3_07_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_07.vsnd	何人足りとも私の心を折ることはできん		small/dtw/greedy
-yamato	yamato_upgrade_power3_08_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_08.vsnd	生き残るのは私だ。		small/dtw/greedy
-yamato	yamato_upgrade_power3_09_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_09.vsnd	もはや私の戦いを止めるものは何もない。		small/dtw/greedy
-yamato	yamato_upgrade_power3_10_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_10.vsnd	最後に立っているのはこの私だ。		small/dtw/greedy
-yamato	yamato_upgrade_power4_01_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_01.vsnd	どれだけ追い込まれようとも、 最後に勝つのは私だ。		small/dtw/greedy
-yamato	yamato_upgrade_power4_02_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_02.vsnd	こいつが騎士改正の一手となろう。		small/dtw/greedy
-yamato	yamato_upgrade_power4_03_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_03.vsnd	私の一族は大々視線をくぐり抜けてきた。		small/dtw/greedy
-yamato	yamato_upgrade_power4_04_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_04.vsnd	そう簡単に私を殺せると思うな。		small/dtw/greedy
-yamato	yamato_upgrade_power4_05_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_05.vsnd	兄が私を勝利へと導くだろう。		small/dtw/greedy
-yamato	yamato_upgrade_power4_06_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_06.vsnd	セブンスムーンの怒りを思い知らせてやろう。		small/dtw/greedy
-yamato	yamato_upgrade_power4_07_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_07.vsnd	死が奴らにもたらされるだろう。		small/dtw/greedy
-yamato	yamato_upgrade_power4_08_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_08.vsnd	こんなところで死ぬわけにはいかん!		small/dtw/greedy
-yamato	yamato_upgrade_power4_09_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_09.vsnd	影と貸した私に恐怖するがいい。		small/dtw/greedy
-yamato	yamato_upgrade_power4_10_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_10.vsnd	真言の戦いが始まるな。		small/dtw/greedy
-yamato	yamato_use_ability_refresher_02_ability_3d	sounds/vo/yamato/yamato_use_ability_refresher_02.vsnd	まだ終わってはいない		small/dtw/greedy
-yamato	yamato_use_ability_refresher_03_ability_3d	sounds/vo/yamato/yamato_use_ability_refresher_03.vsnd	セブンスムーンを怒らせるとどうなるか教えてやる。		small/dtw/greedy
-yamato	yamato_use_colossus_03_ability_3d	sounds/vo/yamato/yamato_use_colossus_03.vsnd	切り捨ててやる!		small/dtw/greedy
-yamato	yamato_use_curse_02_ability_3d	sounds/vo/yamato/yamato_use_curse_02.vsnd	呪ってやろう」		small/dtw/greedy
-yamato	yamato_use_curse_03_ability_3d	sounds/vo/yamato/yamato_use_curse_03.vsnd	呪われるがいい。		small/dtw/greedy
-yamato	yamato_use_decay_02_ability_3d	sounds/vo/yamato/yamato_use_decay_02.vsnd	不食させてやる		small/dtw/greedy
-yamato	yamato_use_decay_03_ability_3d	sounds/vo/yamato/yamato_use_decay_03.vsnd	回復を阻害してやる		small/dtw/greedy
-yamato	yamato_use_echo_shard_02_ability_3d	sounds/vo/yamato/yamato_use_echo_shard_02.vsnd	よし、もう一度だ。		small/dtw/greedy
-yamato	yamato_use_echo_shard_03_ability_3d	sounds/vo/yamato/yamato_use_echo_shard_03.vsnd	力が戻った		small/dtw/greedy
-yamato	yamato_use_ice_blast_02_ability_3d	sounds/vo/yamato/yamato_use_ice_blast_02.vsnd	アイスブラスト		small/dtw/greedy
-yamato	yamato_use_ice_blast_03_ability_3d	sounds/vo/yamato/yamato_use_ice_blast_03.vsnd	氷を召喚する		small/dtw/greedy
-yamato	yamato_use_metal_skin_02_ability_3d	sounds/vo/yamato/yamato_use_metal_skin_02.vsnd	メタルスキン。		small/dtw/greedy
-yamato	yamato_use_metal_skin_03_ability_3d	sounds/vo/yamato/yamato_use_metal_skin_03.vsnd	私に重断は帰還。		small/dtw/greedy
-yamato	yamato_use_phantom_strike_02_ability_3d	sounds/vo/yamato/yamato_use_phantom_strike_02.vsnd	ファンコムストライク		small/dtw/greedy
-yamato	yamato_use_phantom_strike_03_ability_3d	sounds/vo/yamato/yamato_use_phantom_strike_03.vsnd	距離を詰める!		small/dtw/greedy
-yamato	yamato_use_power1_01_ability_3d	sounds/vo/yamato/yamato_use_power1_01.vsnd	パワースラッシュ!		small/dtw/greedy
-yamato	yamato_use_power1_01_alt_01_ability_3d	sounds/vo/yamato/yamato_use_power1_01_alt_01.vsnd	パワースラッシュ!		small/dtw/greedy
-yamato	yamato_use_power1_02_ability_3d	sounds/vo/yamato/yamato_use_power1_02.vsnd	途切すませ。		small/dtw/greedy
-yamato	yamato_use_power1_03_ability_3d	sounds/vo/yamato/yamato_use_power1_03.vsnd	高まれ!		small/dtw/greedy
-yamato	yamato_use_power1_04_ability_3d	sounds/vo/yamato/yamato_use_power1_04.vsnd	切り伏せてやる!		small/dtw/greedy
-yamato	yamato_use_power1_05_ability_3d	sounds/vo/yamato/yamato_use_power1_05.vsnd	構えよし。		small/dtw/greedy
-yamato	yamato_use_power1_06_ability_3d	sounds/vo/yamato/yamato_use_power1_06.vsnd	よし行くぞ		small/dtw/greedy
-yamato	yamato_use_power1_07_ability_3d	sounds/vo/yamato/yamato_use_power1_07.vsnd	私を見るかいい!		small/dtw/greedy
-yamato	yamato_use_power1_08_ability_3d	sounds/vo/yamato/yamato_use_power1_08.vsnd	一頭両断にしてやる		small/dtw/greedy
-yamato	yamato_use_power1_09_ability_3d	sounds/vo/yamato/yamato_use_power1_09.vsnd	死ねえ!		small/dtw/greedy
-yamato	yamato_use_power1_10_ability_3d	sounds/vo/yamato/yamato_use_power1_10.vsnd	もらったな。		small/dtw/greedy
-yamato	yamato_use_power2_01_ability_3d	sounds/vo/yamato/yamato_use_power2_01.vsnd	覚悟しろ!		small/dtw/greedy
-yamato	yamato_use_power2_02_ability_3d	sounds/vo/yamato/yamato_use_power2_02.vsnd	隠れても無駄だ!		small/dtw/greedy
-yamato	yamato_use_power2_03_ability_3d	sounds/vo/yamato/yamato_use_power2_03.vsnd	(アルバム) 食らえ!		small/dtw/greedy
-yamato	yamato_use_power2_04_ability_3d	sounds/vo/yamato/yamato_use_power2_04.vsnd	今だ!		small/dtw/greedy
-yamato	yamato_use_power2_05_ability_3d	sounds/vo/yamato/yamato_use_power2_05.vsnd	突撃あるのみ!		small/dtw/greedy
-yamato	yamato_use_power2_06_ability_3d	sounds/vo/yamato/yamato_use_power2_06.vsnd	逃がしはしないぞ!		small/dtw/greedy
-yamato	yamato_use_power2_07_ability_3d	sounds/vo/yamato/yamato_use_power2_07.vsnd	つらぬいてやる!		small/dtw/greedy
-yamato	yamato_use_power2_08_ability_3d	sounds/vo/yamato/yamato_use_power2_08.vsnd	捉えた!		small/dtw/greedy
-yamato	yamato_use_power2_09_ability_3d	sounds/vo/yamato/yamato_use_power2_09.vsnd	プライングストライク!		small/dtw/greedy
-yamato	yamato_use_power2_10_ability_3d	sounds/vo/yamato/yamato_use_power2_10.vsnd	定めを受け入れろ。		small/dtw/greedy
-yamato	yamato_use_power3_01_ability_3d	sounds/vo/yamato/yamato_use_power3_01.vsnd	情けは過剣		small/dtw/greedy
-yamato	yamato_use_power3_02_ability_3d	sounds/vo/yamato/yamato_use_power3_02.vsnd	用者はしないぞ!		small/dtw/greedy
-yamato	yamato_use_power3_03_ability_3d	sounds/vo/yamato/yamato_use_power3_03.vsnd	切り裂いてやる!		small/dtw/greedy
-yamato	yamato_use_power3_04_ability_3d	sounds/vo/yamato/yamato_use_power3_04.vsnd	クリムさんスラッシュ!		small/dtw/greedy
-yamato	yamato_use_power3_05_ability_3d	sounds/vo/yamato/yamato_use_power3_05.vsnd	(アルバム) その命もらった!		small/dtw/greedy
-yamato	yamato_use_power3_06_ability_3d	sounds/vo/yamato/yamato_use_power3_06.vsnd	やられてたまるか!		small/dtw/greedy
-yamato	yamato_use_power3_07_ability_3d	sounds/vo/yamato/yamato_use_power3_07.vsnd	邪魔をするな!		small/dtw/greedy
-yamato	yamato_use_power3_08_ability_3d	sounds/vo/yamato/yamato_use_power3_08.vsnd	私は戦い続ける!		small/dtw/greedy
-yamato	yamato_use_power3_09_ability_3d	sounds/vo/yamato/yamato_use_power3_09.vsnd	お前に私は殺せん!		small/dtw/greedy
-yamato	yamato_use_power3_10_ability_3d	sounds/vo/yamato/yamato_use_power3_10.vsnd	私は勝つ!		small/dtw/greedy
-yamato	yamato_use_power4_01_ult_3d	sounds/vo/yamato/yamato_use_power4_01.vsnd	我らが一族の力を思いっしれ!		small/dtw/greedy
-yamato	yamato_use_power4_02_ult_3d	sounds/vo/yamato/yamato_use_power4_02.vsnd	これがセブンスムーンの力だ!		small/dtw/greedy
-yamato	yamato_use_power4_03_ult_3d	sounds/vo/yamato/yamato_use_power4_03.vsnd	私を止められるとでも思ったか。		small/dtw/greedy
-yamato	yamato_use_power4_04_ult_3d	sounds/vo/yamato/yamato_use_power4_04.vsnd	セブンスムーンはここでは終わらん!		small/dtw/greedy
-yamato	yamato_use_power4_05_ult_3d	sounds/vo/yamato/yamato_use_power4_05.vsnd	影よ私を守れ!		small/dtw/greedy
-yamato	yamato_use_power4_06_02_ult_3d	sounds/vo/yamato/yamato_use_power4_06_02.vsnd	あはは、そしてあなたは私を止められると思ったのですか。		small/dtw/greedy
-yamato	yamato_use_power4_06_ult_3d	sounds/vo/yamato/yamato_use_power4_06.vsnd	覚悟するがいい?		small/dtw/greedy
-yamato	yamato_use_power4_07_ult_3d	sounds/vo/yamato/yamato_use_power4_07.vsnd	死をもたらしてやろう		small/dtw/greedy
-yamato	yamato_use_power4_08_ult_3d	sounds/vo/yamato/yamato_use_power4_08.vsnd	お前の命運は定まった。		small/dtw/greedy
-yamato	yamato_use_power4_09_ult_3d	sounds/vo/yamato/yamato_use_power4_09.vsnd	影を殺すことはできん		small/dtw/greedy
-yamato	yamato_use_power4_10_ult_3d	sounds/vo/yamato/yamato_use_power4_10.vsnd	これぞセブンスムーンに与えられし力。		small/dtw/greedy
-yamato	yamato_use_shadow_weave_02_ability_3d	sounds/vo/yamato/yamato_use_shadow_weave_02.vsnd	影にどうかする		small/dtw/greedy
-yamato	yamato_use_shadow_weave_03_ability_3d	sounds/vo/yamato/yamato_use_shadow_weave_03.vsnd	影よ、私を隠せ!		small/dtw/greedy
-yamato	yamato_use_silencer_02_ability_3d	sounds/vo/yamato/yamato_use_silencer_02.vsnd	魔法を阻害してやる。		small/dtw/greedy
-yamato	yamato_use_silencer_03_ability_3d	sounds/vo/yamato/yamato_use_silencer_03.vsnd	やつらの力を弱体化させる!		small/dtw/greedy
-yamato	yamato_use_tech_purge_02_ability_3d	sounds/vo/yamato/yamato_use_tech_purge_02.vsnd	まだまだこれからだ!		small/dtw/greedy
-yamato	yamato_use_tech_purge_03_ability_3d	sounds/vo/yamato/yamato_use_tech_purge_03.vsnd	(アルバム) 気を高めろ!		small/dtw/greedy
-yamato	yamato_use_unstoppable_02_ability_3d	sounds/vo/yamato/yamato_use_unstoppable_02.vsnd	私を止めることはできん!		small/dtw/greedy
-yamato	yamato_use_unstoppable_03_ability_3d	sounds/vo/yamato/yamato_use_unstoppable_03.vsnd	私は魔法など恐れん。		small/dtw/greedy
-yamato	yamato_use_vampiric_burst_02_ability_3d	sounds/vo/yamato/yamato_use_vampiric_burst_02.vsnd	血を奪ってやる。		small/dtw/greedy
-yamato	yamato_use_vampiric_burst_03_ability_3d	sounds/vo/yamato/yamato_use_vampiric_burst_03.vsnd	奴らの血を私のものとしよう		small/dtw/greedy
+yamato	yamato_ally_astro_bounce_pad_01_hero_3d	sounds/vo/yamato/yamato_ally_astro_bounce_pad_01.vsnd	ホリデイが残したものか。	Something Holliday left behind?	claude-fable-5-2
+yamato	yamato_ally_astro_bounce_pad_02_hero_3d	sounds/vo/yamato/yamato_ally_astro_bounce_pad_02.vsnd	使わせてもらおう。	I'll make use of it.	claude-fable-5-2
+yamato	yamato_ally_astro_bounce_pad_03_alt_01_hero_3d	sounds/vo/yamato/yamato_ally_astro_bounce_pad_03_alt_01.vsnd	ハハ！	Ha ha!	claude-fable-5-2
+yamato	yamato_ally_astro_lasso_victim_01_hero_3d	sounds/vo/yamato/yamato_ally_astro_lasso_victim_01.vsnd	彼女は雇う価値がありそうだ。	She might be worth hiring.	claude-fable-5-2
+yamato	yamato_ally_astro_lasso_victim_02_hero_3d	sounds/vo/yamato/yamato_ally_astro_lasso_victim_02.vsnd	役に立ちそうな女だな。	That woman could prove useful.	claude-fable-5-2
+yamato	yamato_ally_astro_lasso_victim_03_hero_3d	sounds/vo/yamato/yamato_ally_astro_lasso_victim_03.vsnd	ホリデイもなかなかやるな。	Holliday's not bad at all.	claude-fable-5-2
+yamato	yamato_ally_atlas_big_stun_03_hero_3d	sounds/vo/yamato/yamato_ally_atlas_big_stun_03.vsnd	大した突進力だな。	That's quite a charge.	claude-fable-5-2
+yamato	yamato_ally_atlas_unkillable_01_hero_3d	sounds/vo/yamato/yamato_ally_atlas_unkillable_01.vsnd	あの悪魔は何かに取り憑かれているのか。	Is that devil possessed by something?	claude-fable-5-2
+yamato	yamato_ally_atlas_unkillable_02_hero_3d	sounds/vo/yamato/yamato_ally_atlas_unkillable_02.vsnd	奴らにエイブラムスは倒せん。	They can't bring Abrams down.	claude-fable-5-2
+yamato	yamato_ally_atlas_unkillable_03_hero_3d	sounds/vo/yamato/yamato_ally_atlas_unkillable_03.vsnd	あの刑事はなかなかタフだな。	That detective is a tough one.	claude-fable-5-2
+yamato	yamato_ally_bebop_far_hook_03_hero_3d	sounds/vo/yamato/yamato_ally_bebop_far_hook_03.vsnd	さあ、仕置きの時間だ。	Now, time for punishment.	claude-fable-5-2
+yamato	yamato_ally_bebop_uppercut_towards_boss_01_hero_3d	sounds/vo/yamato/yamato_ally_bebop_uppercut_towards_boss_01.vsnd	容赦ないな、あの機械は。	Merciless, that machine.	claude-fable-5-2
+yamato	yamato_ally_bebop_uppercut_towards_boss_02_hero_3d	sounds/vo/yamato/yamato_ally_bebop_uppercut_towards_boss_02.vsnd	ビバップの戦い方には好感が持てるな。	I like the way Bebop fights.	claude-fable-5-2
+yamato	yamato_ally_bebop_uppercut_towards_boss_03_hero_3d	sounds/vo/yamato/yamato_ally_bebop_uppercut_towards_boss_03.vsnd	大した機械だな。	Quite a machine.	claude-fable-5-2
+yamato	yamato_ally_chrono_swap_to_boss_01_hero_3d	sounds/vo/yamato/yamato_ally_chrono_swap_to_boss_01.vsnd	小気味よい戦術だ。	A neat piece of tactics.	claude-fable-5-2
+yamato	yamato_ally_chrono_swap_to_boss_03_hero_3d	sounds/vo/yamato/yamato_ally_chrono_swap_to_boss_03.vsnd	勝利への執念を感じるな。	I can feel her obsession with winning.	claude-fable-5-2
+yamato	yamato_ally_forge_clutch_heal_03_hero_3d	sounds/vo/yamato/yamato_ally_forge_clutch_heal_03.vsnd	危ないところだったな。	That was a close one.	claude-fable-5-2
+yamato	yamato_ally_forge_wall_stun_kill_02_hero_3d	sounds/vo/yamato/yamato_ally_forge_wall_stun_kill_02.vsnd	フェアファックスの従僕も役に立つではないか。	So Fairfax's servant has her uses after all.	claude-fable-5-2
+yamato	yamato_ally_forge_wall_stun_kill_03_hero_3d	sounds/vo/yamato/yamato_ally_forge_wall_stun_kill_03.vsnd	彼女は戦士の本能を備えている。	She has a warrior's instincts.	claude-fable-5-2
+yamato	yamato_ally_ghost_see_big_swap_01_hero_3d	sounds/vo/yamato/yamato_ally_ghost_see_big_swap_01.vsnd	完全に不意を突いたな。	Caught them completely off guard.	claude-fable-5-2
+yamato	yamato_ally_ghost_see_big_swap_03_hero_3d	sounds/vo/yamato/yamato_ally_ghost_see_big_swap_03.vsnd	飛んで火に入る夏の虫だ。	Like moths to a flame.	claude-fable-5-2
+yamato	yamato_ally_gigawatt_multi_kill_ult_01_hero_3d	sounds/vo/yamato/yamato_ally_gigawatt_multi_kill_ult_01.vsnd	噂に違わぬ力だな。	His power lives up to the rumors.	claude-fable-5-2
+yamato	yamato_ally_gigawatt_multi_kill_ult_02_hero_3d	sounds/vo/yamato/yamato_ally_gigawatt_multi_kill_ult_02.vsnd	大したものだ。	Impressive.	claude-fable-5-2
+yamato	yamato_ally_gigawatt_multi_kill_ult_03_hero_3d	sounds/vo/yamato/yamato_ally_gigawatt_multi_kill_ult_03.vsnd	これほどの力が存在したとは。	To think such power existed.	claude-fable-5-2
+yamato	yamato_ally_haze_big_ult_01_hero_3d	sounds/vo/yamato/yamato_ally_haze_big_ult_01.vsnd	なんと！	Incredible!	claude-fable-5-2
+yamato	yamato_ally_haze_big_ult_02_hero_3d	sounds/vo/yamato/yamato_ally_haze_big_ult_02.vsnd	これが睡魔の力か。	So this is a Sandman's power.	claude-fable-5-2
+yamato	yamato_ally_haze_big_ult_03_hero_3d	sounds/vo/yamato/yamato_ally_haze_big_ult_03.vsnd	美しい女だな。そして恐ろしくもある。	A beautiful woman. And a frightening one.	claude-fable-5-2
+yamato	yamato_ally_haze_interrupt_with_finesse_02_hero_3d	sounds/vo/yamato/yamato_ally_haze_interrupt_with_finesse_02.vsnd	睡魔が味方で助かった。	Glad the Sandman is on our side.	claude-fable-5-2
+yamato	yamato_ally_haze_interrupt_with_finesse_03_hero_3d	sounds/vo/yamato/yamato_ally_haze_interrupt_with_finesse_03.vsnd	評判通りの腕前だな。	Her skill lives up to her reputation.	claude-fable-5-2
+yamato	yamato_ally_hornet_far_snipe_03_hero_3d	sounds/vo/yamato/yamato_ally_hornet_far_snipe_03.vsnd	いい腕をしているな。	She's a fine shot.	claude-fable-5-2
+yamato	yamato_ally_inferno_burns_down_objective_03_hero_3d	sounds/vo/yamato/yamato_ally_inferno_burns_down_objective_03.vsnd	火も使いようだな。	Even fire has its uses.	claude-fable-5-2
+yamato	yamato_ally_lash_see_massive_stomp_02_hero_3d	sounds/vo/yamato/yamato_ally_lash_see_massive_stomp_02.vsnd	彼の冷酷さには目を見張るものがあるな。	His ruthlessness is something to behold.	claude-fable-5-2
+yamato	yamato_ally_lash_see_massive_stomp_03_hero_3d	sounds/vo/yamato/yamato_ally_lash_see_massive_stomp_03.vsnd	どこからともなく現れたな。	He came out of nowhere.	claude-fable-5-2
+yamato	yamato_ally_orion_far_shot_02_hero_3d	sounds/vo/yamato/yamato_ally_orion_far_shot_02.vsnd	あの老人、なかなかやるな。	That old man's not bad.	claude-fable-5-2
+yamato	yamato_ally_orion_far_shot_03_hero_3d	sounds/vo/yamato/yamato_ally_orion_far_shot_03.vsnd	まだ衰えていないようだな。	Seems he hasn't lost his edge yet.	claude-fable-5-2
+yamato	yamato_ally_orion_missile_stops_ult_02_hero_3d	sounds/vo/yamato/yamato_ally_orion_missile_stops_ult_02.vsnd	タロンに感謝だな。	I owe Talon my thanks.	claude-fable-5-2
+yamato	yamato_ally_orion_missile_stops_ult_03_hero_3d	sounds/vo/yamato/yamato_ally_orion_missile_stops_ult_03.vsnd	援護に感謝する、タロン。	Thanks for the cover, Talon.	claude-fable-5-2
+yamato	yamato_ally_shiv_multikill_02_hero_3d	sounds/vo/yamato/yamato_ally_shiv_multikill_02.vsnd	やるな。	Not bad.	claude-fable-5-2
+yamato	yamato_ally_shiv_multikill_03_hero_3d	sounds/vo/yamato/yamato_ally_shiv_multikill_03.vsnd	やるじゃないか、シヴ。	Well done, Shiv.	claude-fable-5-2
+yamato	yamato_ally_shiv_unkillable_01_hero_3d	sounds/vo/yamato/yamato_ally_shiv_unkillable_01.vsnd	奴らにシヴは殺せん。	They can't kill Shiv.	claude-fable-5-2
+yamato	yamato_ally_shiv_unkillable_02_hero_3d	sounds/vo/yamato/yamato_ally_shiv_unkillable_02.vsnd	シヴは容赦ないな。	Shiv shows no mercy.	claude-fable-5-2
+yamato	yamato_ally_shiv_unkillable_03_hero_3d	sounds/vo/yamato/yamato_ally_shiv_unkillable_03.vsnd	まったくタフな男だ。	What a tough man.	claude-fable-5-2
+yamato	yamato_ally_tengu_take_objective_with_teather_02_hero_3d	sounds/vo/yamato/yamato_ally_tengu_take_objective_with_teather_02.vsnd	ガーゴイルも少しは役に立つようだな。	So the gargoyle is of some use after all.	claude-fable-5-2
+yamato	yamato_ally_tengu_take_objective_with_teather_03_hero_3d	sounds/vo/yamato/yamato_ally_tengu_take_objective_with_teather_03.vsnd	思ったよりも機能してるな。	That works better than I expected.	claude-fable-5-2
+yamato	yamato_ally_viscous_clutch_cube_01_hero_3d	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_01.vsnd	スライム男にも存在価値があったというわけか。	So the slime man has a reason to exist after all.	claude-fable-5-2
+yamato	yamato_ally_viscous_clutch_cube_02_hero_3d	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_02.vsnd	この安らぎ。	Such tranquility.	claude-fable-5-2
+yamato	yamato_ally_viscous_clutch_cube_03_hero_3d	sounds/vo/yamato/yamato_ally_viscous_clutch_cube_03.vsnd	やるじゃないか、ヴィスカス。	Well done, Viscous.	claude-fable-5-2
+yamato	yamato_ally_warden_big_ult_01_hero_3d	sounds/vo/yamato/yamato_ally_warden_big_ult_01.vsnd	ウォーデンは雇うに値するな。	Warden would be worth hiring.	claude-fable-5-2
+yamato	yamato_ally_warden_big_ult_02_hero_3d	sounds/vo/yamato/yamato_ally_warden_big_ult_02.vsnd	まったく危険な男だな。	A truly dangerous man.	claude-fable-5-2
+yamato	yamato_ally_wraith_kill_in_lift_03_hero_3d	sounds/vo/yamato/yamato_ally_wraith_kill_in_lift_03.vsnd	彼女を見くびっていたかもしれんな。	I may have underestimated her.	claude-fable-5-2
+yamato	yamato_ally_wraith_killed_in_lane_01_hero_3d	sounds/vo/yamato/yamato_ally_wraith_killed_in_lane_01.vsnd	レイスがやられたか。まあ、いずれこの手で仕留めようと思っていた女だ。	So Wraith is down. Well, I meant to finish her off myself sooner or later.	claude-fable-5-2
+yamato	yamato_close_call_01_hero_3d	sounds/vo/yamato/yamato_close_call_01.vsnd	危ないところだった。	That was close.	claude-fable-5-2
+yamato	yamato_close_call_02_hero_3d	sounds/vo/yamato/yamato_close_call_02.vsnd	私を殺せるとでも？	You think you can kill me?	claude-fable-5-2
+yamato	yamato_close_call_03_hero_3d	sounds/vo/yamato/yamato_close_call_03.vsnd	兄の魂が私を守ってくれた。	My brother's spirit protected me.	claude-fable-5-2
+yamato	yamato_close_call_04_hero_3d	sounds/vo/yamato/yamato_close_call_04.vsnd	ありがとう、ヤマト。	Thank you, Yamato.	claude-fable-5-2
+yamato	yamato_close_call_05_hero_3d	sounds/vo/yamato/yamato_close_call_05.vsnd	まだ死ぬわけにはいかんのだ。	I cannot die yet.	claude-fable-5-2
+yamato	yamato_desperation_power1_01_ability_3d	sounds/vo/yamato/yamato_desperation_power1_01.vsnd	仕留めてやる。	I'll finish you.	claude-fable-5-2
+yamato	yamato_desperation_power1_02_ability_3d	sounds/vo/yamato/yamato_desperation_power1_02.vsnd	やられてたまるか！	I won't go down like this!	claude-fable-5-2
+yamato	yamato_desperation_power1_03_ability_3d	sounds/vo/yamato/yamato_desperation_power1_03.vsnd	まだ終わってはいないぞ！	This isn't over yet!	claude-fable-5-2
+yamato	yamato_desperation_power1_04_ability_3d	sounds/vo/yamato/yamato_desperation_power1_04.vsnd	終わらせてやる！	I'll end this!	claude-fable-5-2
+yamato	yamato_desperation_power1_05_ability_3d	sounds/vo/yamato/yamato_desperation_power1_05.vsnd	ここがお前の墓場だ！	This is your grave!	claude-fable-5-2
+yamato	yamato_desperation_power2_01_ability_3d	sounds/vo/yamato/yamato_desperation_power2_01.vsnd	私が止める！	I will stop you!	claude-fable-5-2
+yamato	yamato_desperation_power2_02_ability_3d	sounds/vo/yamato/yamato_desperation_power2_02.vsnd	行くぞ！	Here I come!	claude-fable-5-2
+yamato	yamato_desperation_power2_03_ability_3d	sounds/vo/yamato/yamato_desperation_power2_03.vsnd	逃がしはしないぞ！	You won't get away!	claude-fable-5-2
+yamato	yamato_desperation_power2_04_ability_3d	sounds/vo/yamato/yamato_desperation_power2_04.vsnd	まだ終わってはいない！	It's not over yet!	claude-fable-5-2
+yamato	yamato_desperation_power2_05_ability_3d	sounds/vo/yamato/yamato_desperation_power2_05.vsnd	片付けてやる！	I'll finish you off!	claude-fable-5-2
+yamato	yamato_desperation_power3_01_ability_3d	sounds/vo/yamato/yamato_desperation_power3_01.vsnd	私はまだ生きているぞ！	I'm still alive!	claude-fable-5-2
+yamato	yamato_desperation_power3_02_ability_3d	sounds/vo/yamato/yamato_desperation_power3_02.vsnd	まだ終わってはいない！	It's not over yet!	claude-fable-5-2
+yamato	yamato_desperation_power3_03_ability_3d	sounds/vo/yamato/yamato_desperation_power3_03.vsnd	まだ勝機はある。	I can still win this.	claude-fable-5-2
+yamato	yamato_desperation_power3_04_ability_3d	sounds/vo/yamato/yamato_desperation_power3_04.vsnd	くたばるがいい！	Drop dead!	claude-fable-5-2
+yamato	yamato_desperation_power3_05_ability_3d	sounds/vo/yamato/yamato_desperation_power3_05.vsnd	負けてたまるか！	I refuse to lose!	claude-fable-5-2
+yamato	yamato_desperation_power4_01_ult_3d	sounds/vo/yamato/yamato_desperation_power4_01.vsnd	私はまだ死ねぬ！	I cannot die yet!	claude-fable-5-2
+yamato	yamato_desperation_power4_02_ult_3d	sounds/vo/yamato/yamato_desperation_power4_02.vsnd	兄よ、私に力をくれ。	Brother, give me strength.	claude-fable-5-2
+yamato	yamato_desperation_power4_03_ult_3d	sounds/vo/yamato/yamato_desperation_power4_03.vsnd	ケリをつけてやる！	I'll settle this!	claude-fable-5-2
+yamato	yamato_desperation_power4_04_ult_3d	sounds/vo/yamato/yamato_desperation_power4_04.vsnd	私はセブンスムーンの名を背負っているのだ！	I carry the name of the 7th Moon!	claude-fable-5-2
+yamato	yamato_desperation_power4_05_ult_3d	sounds/vo/yamato/yamato_desperation_power4_05.vsnd	ニューヨークは私のものだ！	New York is mine!	claude-fable-5-2
+yamato	yamato_end_streak_hero_3d	sounds/vo/yamato/yamato_end_streak.vsnd	己の力を過信していたようだな。	It seems you overestimated your own strength.	claude-fable-5-2
+yamato	yamato_enemy_astro_bounce_escape_02_hero_3d	sounds/vo/yamato/yamato_enemy_astro_bounce_escape_02.vsnd	保安官が逃げるとはな。	A sheriff, running away.	claude-fable-5-2
+yamato	yamato_enemy_astro_lassoed_01_hero_3d	sounds/vo/yamato/yamato_enemy_astro_lassoed_01.vsnd	くそ、ホリデイめ。	Damn you, Holliday.	claude-fable-5-2
+yamato	yamato_enemy_astro_lassoed_03_hero_3d	sounds/vo/yamato/yamato_enemy_astro_lassoed_03.vsnd	許さんぞ、ホリデイ！	You'll pay for this, Holliday!	claude-fable-5-2
+yamato	yamato_enemy_bebop_hooked_02_hero_3d	sounds/vo/yamato/yamato_enemy_bebop_hooked_02.vsnd	取り乱すな。	Keep your composure.	claude-fable-5-2
+yamato	yamato_enemy_bebop_hooked_03_hero_3d	sounds/vo/yamato/yamato_enemy_bebop_hooked_03.vsnd	考えろ、考えるんだ。	Think. Think!	claude-fable-5-2
+yamato	yamato_enemy_chrono_kill_post_swap_01_hero_3d	sounds/vo/yamato/yamato_enemy_chrono_kill_post_swap_01.vsnd	お前の力はこんなものか、パラドックス。	Is this all you've got, Paradox?	claude-fable-5-2
+yamato	yamato_enemy_chrono_kill_post_swap_02_hero_3d	sounds/vo/yamato/yamato_enemy_chrono_kill_post_swap_02.vsnd	失望したぞ、パラドックス。	You disappoint me, Paradox.	claude-fable-5-2
+yamato	yamato_enemy_chrono_kill_post_swap_03_hero_3d	sounds/vo/yamato/yamato_enemy_chrono_kill_post_swap_03.vsnd	惨めだな、パラドックス。	Pathetic, Paradox.	claude-fable-5-2
+yamato	yamato_enemy_forge_destroy_turrets_01_hero_3d	sounds/vo/yamato/yamato_enemy_forge_destroy_turrets_01.vsnd	忌々しい機械め。	Accursed machines.	claude-fable-5-2
+yamato	yamato_enemy_forge_destroy_turrets_02_hero_3d	sounds/vo/yamato/yamato_enemy_forge_destroy_turrets_02.vsnd	一体どれだけ破壊すればいいのだ。	Just how many of these must I destroy?	claude-fable-5-2
+yamato	yamato_enemy_forge_destroy_turrets_03_hero_3d	sounds/vo/yamato/yamato_enemy_forge_destroy_turrets_03.vsnd	あの女の要らぬ発明だな。	That woman's needless inventions.	claude-fable-5-2
+yamato	yamato_enemy_gets_rejuv_01_hero_3d	sounds/vo/yamato/yamato_enemy_gets_rejuv_01.vsnd	臆病者どもがリジュベネーターを手にしたか。	So the cowards have the Rejuvenator.	claude-fable-5-2
+yamato	yamato_enemy_gets_rejuv_02_hero_3d	sounds/vo/yamato/yamato_enemy_gets_rejuv_02.vsnd	奴らがリジュベネーターを手にしたか。無駄なことだ！	So they have the Rejuvenator. It won't help them!	claude-fable-5-2
+yamato	yamato_enemy_gets_rejuv_03_hero_3d	sounds/vo/yamato/yamato_enemy_gets_rejuv_03.vsnd	奴らがリジュベネーターを手にしたか。ならば二度殺せるな。	So they have the Rejuvenator. Then I get to kill them twice.	claude-fable-5-2
+yamato	yamato_enemy_haze_kill_when_invisible_01_hero_3d	sounds/vo/yamato/yamato_enemy_haze_kill_when_invisible_01.vsnd	私から隠れることはできんぞ、ヘイズ。	You can't hide from me, Haze.	claude-fable-5-2
+yamato	yamato_enemy_haze_kill_when_invisible_02_hero_3d	sounds/vo/yamato/yamato_enemy_haze_kill_when_invisible_02.vsnd	私から逃げられると思ったか。	Did you think you could escape me?	claude-fable-5-2
+yamato	yamato_enemy_haze_kill_when_invisible_03_hero_3d	sounds/vo/yamato/yamato_enemy_haze_kill_when_invisible_03.vsnd	甘かったな。	You were naive.	claude-fable-5-2
+yamato	yamato_enemy_hornet_killed_mid_air_02_hero_3d	sounds/vo/yamato/yamato_enemy_hornet_killed_mid_air_02.vsnd	彼女ごときに私を殺すことはできん。	The likes of her cannot kill me.	claude-fable-5-2
+yamato	yamato_enemy_hornet_killed_mid_air_03_hero_3d	sounds/vo/yamato/yamato_enemy_hornet_killed_mid_air_03.vsnd	誰も私を殺すことはできん。	No one can kill me.	claude-fable-5-2
+yamato	yamato_enemy_inferno_killed_mid_ult_01_hero_3d	sounds/vo/yamato/yamato_enemy_inferno_killed_mid_ult_01.vsnd	愚かなバーテンダーめ。	Foolish bartender.	claude-fable-5-2
+yamato	yamato_enemy_inferno_killed_mid_ult_02_hero_3d	sounds/vo/yamato/yamato_enemy_inferno_killed_mid_ult_02.vsnd	私を舐めるとこうなるのだ。	This is what happens when you underestimate me.	claude-fable-5-2
+yamato	yamato_enemy_inferno_killed_mid_ult_03_hero_3d	sounds/vo/yamato/yamato_enemy_inferno_killed_mid_ult_03.vsnd	お前に私は燃やせん。	You can't burn me.	claude-fable-5-2
+yamato	yamato_enemy_kelvin_kill_on_ice_path_01_hero_3d	sounds/vo/yamato/yamato_enemy_kelvin_kill_on_ice_path_01.vsnd	氷上でのお遊びは終わりだ。	Your playtime on the ice is over.	claude-fable-5-2
+yamato	yamato_enemy_kelvin_kill_on_ice_path_02_hero_3d	sounds/vo/yamato/yamato_enemy_kelvin_kill_on_ice_path_02.vsnd	私から逃げることは不可能だ。	Escaping me is impossible.	claude-fable-5-2
+yamato	yamato_enemy_krill_grabbed_01_hero_3d	sounds/vo/yamato/yamato_enemy_krill_grabbed_01.vsnd	許さんぞ、クリル！	You'll pay for this, Krill!	claude-fable-5-2
+yamato	yamato_enemy_krill_grabbed_02_hero_3d	sounds/vo/yamato/yamato_enemy_krill_grabbed_02.vsnd	放せ！	Let go of me!	claude-fable-5-2
+yamato	yamato_enemy_krill_grabbed_03_hero_3d	sounds/vo/yamato/yamato_enemy_krill_grabbed_03.vsnd	二人とも始末してやる！	I'll dispose of you both!	claude-fable-5-2
+yamato	yamato_enemy_lash_mid_air_kill_01_hero_3d	sounds/vo/yamato/yamato_enemy_lash_mid_air_kill_01.vsnd	簡単すぎる。	Too easy.	claude-fable-5-2
+yamato	yamato_enemy_lash_mid_air_kill_02_hero_3d	sounds/vo/yamato/yamato_enemy_lash_mid_air_kill_02.vsnd	口ほどにもない。	All talk.	claude-fable-5-2
+yamato	yamato_enemy_lash_mid_air_kill_03_hero_3d	sounds/vo/yamato/yamato_enemy_lash_mid_air_kill_03.vsnd	この程度なのか？	Is that all?	claude-fable-5-2
+yamato	yamato_enemy_orion_see_missile_01_hero_3d	sounds/vo/yamato/yamato_enemy_orion_see_missile_01.vsnd	フクロウに気をつけろ！	Watch out for the owl!	claude-fable-5-2
+yamato	yamato_enemy_shiv_unkillable_01_alt_01_hero_3d	sounds/vo/yamato/yamato_enemy_shiv_unkillable_01_alt_01.vsnd	なぜ死なないのだ！	Why won't he die!	claude-fable-5-2
+yamato	yamato_enemy_shiv_unkillable_01_hero_3d	sounds/vo/yamato/yamato_enemy_shiv_unkillable_01.vsnd	なぜ死なないのだ！	Why won't he die!	claude-fable-5-2
+yamato	yamato_enemy_tengu_flies_away_01_hero_3d	sounds/vo/yamato/yamato_enemy_tengu_flies_away_01.vsnd	その翼を切り落としてやる！	I'll cut those wings off!	claude-fable-5-2
+yamato	yamato_enemy_tengu_flies_away_02_hero_3d	sounds/vo/yamato/yamato_enemy_tengu_flies_away_02.vsnd	逃がさんぞ、アイビー！	You won't get away, Ivy!	claude-fable-5-2
+yamato	yamato_enemy_tengu_flies_away_03_hero_3d	sounds/vo/yamato/yamato_enemy_tengu_flies_away_03.vsnd	私から逃げ続けることはできんぞ。	You can't keep running from me.	claude-fable-5-2
+yamato	yamato_enemy_wraith_lifts_01_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_01.vsnd	やめろ、レイス！	Stop it, Wraith!	claude-fable-5-2
+yamato	yamato_enemy_wraith_lifts_02_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_02.vsnd	下ろせ！	Put me down!	claude-fable-5-2
+yamato	yamato_enemy_wraith_lifts_03_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_03.vsnd	許さんぞ、レイス！	You'll pay for this, Wraith!	claude-fable-5-2
+yamato	yamato_hunt_01_hero_3d	sounds/vo/yamato/yamato_hunt_01.vsnd	どこに行った？	Where did you go?	claude-fable-5-2
+yamato	yamato_hunt_03_hero_3d	sounds/vo/yamato/yamato_hunt_03.vsnd	隠れても無駄だ。	Hiding is useless.	claude-fable-5-2
+yamato	yamato_interrupt_01_hero_3d	sounds/vo/yamato/yamato_interrupt_01.vsnd	残念だったな。	Too bad.	claude-fable-5-2
+yamato	yamato_interrupt_02_hero_3d	sounds/vo/yamato/yamato_interrupt_02.vsnd	させるか。	As if I'd let you.	claude-fable-5-2
+yamato	yamato_interrupt_03_hero_3d	sounds/vo/yamato/yamato_interrupt_03.vsnd	無駄だ。	Useless.	claude-fable-5-2
+yamato	yamato_interrupt_04_hero_3d	sounds/vo/yamato/yamato_interrupt_04.vsnd	そうはいかん。	Not so fast.	claude-fable-5-2
+yamato	yamato_kill_anyhero_01_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_01.vsnd	造作もないな。	No trouble at all.	claude-fable-5-2
+yamato	yamato_kill_anyhero_02_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_02.vsnd	弱すぎる！	Too weak!	claude-fable-5-2
+yamato	yamato_kill_anyhero_03_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_03.vsnd	まだいけるな。	I can keep going.	claude-fable-5-2
+yamato	yamato_kill_anyhero_04_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_04.vsnd	次は誰だ？	Who's next?	claude-fable-5-2
+yamato	yamato_kill_anyhero_05_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_05.vsnd	セブンスムーンに盾突く者はこうなるのさ。	This is what happens to those who defy the 7th Moon.	claude-fable-5-2
+yamato	yamato_kill_anyhero_06_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_06.vsnd	私を止めるのは不可能だ。	Stopping me is impossible.	claude-fable-5-2
+yamato	yamato_kill_anyhero_07_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_07.vsnd	儀式の完成を邪魔する者には死あるのみ。	Only death awaits those who obstruct the ritual's completion.	claude-fable-5-2
+yamato	yamato_kill_anyhero_08_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_08.vsnd	私に敵対する者は誰であれ死ぬ。	Anyone who opposes me dies.	claude-fable-5-2
+yamato	yamato_kill_anyhero_09_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_09.vsnd	また一人片付いたな。	Another one dealt with.	claude-fable-5-2
+yamato	yamato_kill_anyhero_10_hero_3d	sounds/vo/yamato/yamato_kill_anyhero_10.vsnd	私に勝てるとでも思ったか！	Did you really think you could beat me!	claude-fable-5-2
+yamato	yamato_kill_artist_01_hero_3d	sounds/vo/yamato/yamato_kill_artist_01.vsnd	愚かな小娘だ。	Foolish little girl.	claude-fable-5-2
+yamato	yamato_kill_artist_02_hero_3d	sounds/vo/yamato/yamato_kill_artist_02.vsnd	次はまともな武器を持ってこい。	Next time, bring a proper weapon.	claude-fable-5-2
+yamato	yamato_kill_artist_03_hero_3d	sounds/vo/yamato/yamato_kill_artist_03.vsnd	親元へ這って帰れ、小娘。	Crawl back to your parents, little girl.	claude-fable-5-2
+yamato	yamato_kill_artist_04_hero_3d	sounds/vo/yamato/yamato_kill_artist_04.vsnd	生意気な小娘だ。	Impudent little girl.	claude-fable-5-2
+yamato	yamato_kill_artist_05_hero_3d	sounds/vo/yamato/yamato_kill_artist_05.vsnd	ここはお前のいる場所ではない。	You don't belong here.	claude-fable-5-2
+yamato	yamato_kill_astro_01_hero_3d	sounds/vo/yamato/yamato_kill_astro_01.vsnd	体制の犬め！	Dog of the establishment!	claude-fable-5-2
+yamato	yamato_kill_astro_02_hero_3d	sounds/vo/yamato/yamato_kill_astro_02.vsnd	私を法で裁けると思うな。	Don't think the law can judge me.	claude-fable-5-2
+yamato	yamato_kill_astro_03_hero_3d	sounds/vo/yamato/yamato_kill_astro_03.vsnd	ホリデイ、私の邪魔をするな。	Holliday, stay out of my way.	claude-fable-5-2
+yamato	yamato_kill_astro_04_hero_3d	sounds/vo/yamato/yamato_kill_astro_04.vsnd	学ばんな、こいつらは。	They never learn, these people.	claude-fable-5-2
+yamato	yamato_kill_astro_05_hero_3d	sounds/vo/yamato/yamato_kill_astro_05.vsnd	セブンスムーンは法を超越した存在なのだ。	The 7th Moon is above the law.	claude-fable-5-2
+yamato	yamato_kill_atlas_01_hero_3d	sounds/vo/yamato/yamato_kill_atlas_01.vsnd	我が刀にイクシアンの血を吸わせてやる。	I'll let my blade drink Ixian blood.	claude-fable-5-2
+yamato	yamato_kill_atlas_02_alt_01_hero_3d	sounds/vo/yamato/yamato_kill_atlas_02_alt_01.vsnd	So long, Detective.	So long, Detective.	claude-fable-5-2
+yamato	yamato_kill_atlas_02_hero_3d	sounds/vo/yamato/yamato_kill_atlas_02.vsnd	So long, Detective.	So long, Detective.	claude-fable-5-2
+yamato	yamato_kill_atlas_03_hero_3d	sounds/vo/yamato/yamato_kill_atlas_03.vsnd	見かけ倒しもいいとこだな。	All show and no substance.	claude-fable-5-2
+yamato	yamato_kill_atlas_04_hero_3d	sounds/vo/yamato/yamato_kill_atlas_04.vsnd	青き悪魔は死んだ。	The blue devil is dead.	claude-fable-5-2
+yamato	yamato_kill_atlas_05_hero_3d	sounds/vo/yamato/yamato_kill_atlas_05.vsnd	まったく厄介なやつだ。	What a troublesome one.	claude-fable-5-2
+yamato	yamato_kill_baba_01_hero_3d	sounds/vo/yamato/yamato_kill_baba_01.vsnd	老いた者は新たな者に道を譲るものだ。	The old must make way for the new.	claude-fable-5-2
+yamato	yamato_kill_baba_02_hero_3d	sounds/vo/yamato/yamato_kill_baba_02.vsnd	老婆の時代も終わりだ。	The old woman's era is over.	claude-fable-5-2
+yamato	yamato_kill_baba_03_hero_3d	sounds/vo/yamato/yamato_kill_baba_03.vsnd	愚かな老いぼれだったな。	She was a foolish old relic.	claude-fable-5-2
+yamato	yamato_kill_baba_04_hero_3d	sounds/vo/yamato/yamato_kill_baba_04.vsnd	お前の時代は終わった。	Your time is over.	claude-fable-5-2
+yamato	yamato_kill_baba_05_hero_3d	sounds/vo/yamato/yamato_kill_baba_05.vsnd	死ね、魔女め。	Die, witch.	claude-fable-5-2
+yamato	yamato_kill_bebop_01_hero_3d	sounds/vo/yamato/yamato_kill_bebop_01.vsnd	I won't lose to scrap metal.	I won't lose to scrap metal.	claude-fable-5-2
+yamato	yamato_kill_bebop_02_hero_3d	sounds/vo/yamato/yamato_kill_bebop_02.vsnd	糸の切れた操り人形とはこのことだな。	A puppet with its strings cut. That's exactly what this is.	claude-fable-5-2
+yamato	yamato_kill_bebop_03_hero_3d	sounds/vo/yamato/yamato_kill_bebop_03.vsnd	百年早かったな、ビバップ。	You were a hundred years too early to face me, Bebop.	claude-fable-5-2
+yamato	yamato_kill_bebop_04_hero_3d	sounds/vo/yamato/yamato_kill_bebop_04.vsnd	機械の割には頑張ったじゃないか。	You did well, for a machine.	claude-fable-5-2
+yamato	yamato_kill_bebop_05_hero_3d	sounds/vo/yamato/yamato_kill_bebop_05.vsnd	鉄くずに私が倒せるとでも？	Did you think scrap iron could bring me down?	claude-fable-5-2
+yamato	yamato_kill_bookworm_01_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_01.vsnd	書庫にこもっていればよかったものを。	You should have stayed shut away in your library.	claude-fable-5-2
+yamato	yamato_kill_bookworm_02_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_02.vsnd	お前の物語はここで終わりだ、ペイジ。	Your story ends here, Paige.	claude-fable-5-2
+yamato	yamato_kill_bookworm_03_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_03.vsnd	悪く思うな。	No hard feelings.	claude-fable-5-2
+yamato	yamato_kill_bookworm_04_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_04.vsnd	殺すには惜しい存在だったがな。	Though she was almost too good to kill.	claude-fable-5-2
+yamato	yamato_kill_bookworm_05_hero_3d	sounds/vo/yamato/yamato_kill_bookworm_05.vsnd	戦いに向かぬ者が出てくればこうなるのだ。	This is what happens when those unfit for battle step forward.	claude-fable-5-2
+yamato	yamato_kill_chessmaster_01_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_01.vsnd	どけ、老いぼれ。	Out of my way, old man.	claude-fable-5-2
+yamato	yamato_kill_chessmaster_02_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_02.vsnd	遊びに付き合う暇はない。	I have no time for games.	claude-fable-5-2
+yamato	yamato_kill_chessmaster_03_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_03.vsnd	チェスの達人は仕留めた。	The chess master is down.	claude-fable-5-2
+yamato	yamato_kill_chessmaster_04_alt_01_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_04_alt_01.vsnd	年の功も大したことはないな。	So much for the wisdom of age.	claude-fable-5-2
+yamato	yamato_kill_chessmaster_04_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_04.vsnd	年の功も大したことはないな。	So much for the wisdom of age.	claude-fable-5-2
+yamato	yamato_kill_chessmaster_05_hero_3d	sounds/vo/yamato/yamato_kill_chessmaster_05.vsnd	ソロモンを真っ二つにしてやった。	I cut Solomon clean in two.	claude-fable-5-2
+yamato	yamato_kill_chrono_01_hero_3d	sounds/vo/yamato/yamato_kill_chrono_01.vsnd	こいつは遊びじゃないのでな、パラドックス。	This is no game, Paradox.	claude-fable-5-2
+yamato	yamato_kill_chrono_02_hero_3d	sounds/vo/yamato/yamato_kill_chrono_02.vsnd	パラドックス、これまでだ。	Paradox, this is the end.	claude-fable-5-2
+yamato	yamato_kill_chrono_03_hero_3d	sounds/vo/yamato/yamato_kill_chrono_03.vsnd	子供が調子に乗るからこうなるのだ。	This is what happens when a child gets carried away.	claude-fable-5-2
+yamato	yamato_kill_chrono_04_hero_3d	sounds/vo/yamato/yamato_kill_chrono_04.vsnd	セブンスムーンの前ではパラドックスなど赤子同然だ。	Before the 7th Moon, Paradox is no more than an infant.	claude-fable-5-2
+yamato	yamato_kill_chrono_05_hero_3d	sounds/vo/yamato/yamato_kill_chrono_05.vsnd	自分で思うほど賢くはなかったようだな。	Seems you weren't as clever as you thought.	claude-fable-5-2
+yamato	yamato_kill_deadpack_01_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_01.vsnd	黙れ！	Silence!	claude-fable-5-2
+yamato	yamato_kill_deadpack_02_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_02.vsnd	死人は黙っていろ！	The dead should stay silent!	claude-fable-5-2
+yamato	yamato_kill_deadpack_03_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_03.vsnd	そのまま死んでいろ、愚か者めが！	Stay dead, you fool!	claude-fable-5-2
+yamato	yamato_kill_deadpack_04_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_04.vsnd	そんながらくた、何の役にも立たん。	That junk is no use at all.	claude-fable-5-2
+yamato	yamato_kill_deadpack_05_hero_3d	sounds/vo/yamato/yamato_kill_deadpack_05.vsnd	フェアファックス・インダストリーズごときに私の邪魔はさせん！	I won't let the likes of Fairfax Industries stand in my way!	claude-fable-5-2
+yamato	yamato_kill_doorman_01_hero_3d	sounds/vo/yamato/yamato_kill_doorman_01.vsnd	接客に徹していればよかったものを。	You should have stuck to waiting on guests.	claude-fable-5-2
+yamato	yamato_kill_doorman_02_hero_3d	sounds/vo/yamato/yamato_kill_doorman_02.vsnd	お前の出る幕じゃない。	This is no place for you.	claude-fable-5-2
+yamato	yamato_kill_doorman_03_hero_3d	sounds/vo/yamato/yamato_kill_doorman_03.vsnd	バロネスは私が炎上させてやる。	I'll set the Baroness ablaze myself.	claude-fable-5-2
+yamato	yamato_kill_doorman_04_hero_3d	sounds/vo/yamato/yamato_kill_doorman_04.vsnd	遊びは終わりだ。	Playtime is over.	claude-fable-5-2
+yamato	yamato_kill_doorman_05_hero_3d	sounds/vo/yamato/yamato_kill_doorman_05.vsnd	賢しらに振る舞う者の末路だな。	Such is the fate of those who act too clever.	claude-fable-5-2
+yamato	yamato_kill_drifter_01_hero_3d	sounds/vo/yamato/yamato_kill_drifter_01.vsnd	死ね、怪物め。	Die, monster.	claude-fable-5-2
+yamato	yamato_kill_drifter_02_hero_3d	sounds/vo/yamato/yamato_kill_drifter_02.vsnd	お前の獲物にはならん、ドリフター。	I won't be your prey, Drifter.	claude-fable-5-2
+yamato	yamato_kill_drifter_03_hero_3d	sounds/vo/yamato/yamato_kill_drifter_03.vsnd	薄汚れた吸血鬼め。	Filthy vampire.	claude-fable-5-2
+yamato	yamato_kill_drifter_04_hero_3d	sounds/vo/yamato/yamato_kill_drifter_04.vsnd	古の化け物めが。	Ancient monster.	claude-fable-5-2
+yamato	yamato_kill_drifter_05_hero_3d	sounds/vo/yamato/yamato_kill_drifter_05.vsnd	強い男だったが、私の敵ではない。	He was strong, but no match for me.	claude-fable-5-2
+yamato	yamato_kill_dynamo_01_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_01.vsnd	学者ごときに私を止められるとでも？	Did you think a mere scholar could stop me?	claude-fable-5-2
+yamato	yamato_kill_dynamo_02_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_02.vsnd	教師としてはわからんが、戦士としては三流だな。	I can't speak for him as a teacher, but as a warrior he's third-rate.	claude-fable-5-2
+yamato	yamato_kill_dynamo_03_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_03.vsnd	気高き男も死ねばただの屍だ。	Even a noble man is just a corpse once he's dead.	claude-fable-5-2
+yamato	yamato_kill_dynamo_04_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_04.vsnd	お前には戦場より教室がお似合いだ。	A classroom suits you better than a battlefield.	claude-fable-5-2
+yamato	yamato_kill_dynamo_05_hero_3d	sounds/vo/yamato/yamato_kill_dynamo_05.vsnd	愚かな選択をしたな、ダイナモ。	You made a foolish choice, Dynamo.	claude-fable-5-2
+yamato	yamato_kill_familiar_01_hero_3d	sounds/vo/yamato/yamato_kill_familiar_01.vsnd	化け物めが。	Monster.	claude-fable-5-2
+yamato	yamato_kill_familiar_02_hero_3d	sounds/vo/yamato/yamato_kill_familiar_02.vsnd	血に飢えた獣め。	Bloodthirsty beast.	claude-fable-5-2
+yamato	yamato_kill_familiar_03_hero_3d	sounds/vo/yamato/yamato_kill_familiar_03.vsnd	獣を駆除した。	The beast has been exterminated.	claude-fable-5-2
+yamato	yamato_kill_familiar_04_hero_3d	sounds/vo/yamato/yamato_kill_familiar_04.vsnd	奴らのペットを仕留めた。	I took out their pet.	claude-fable-5-2
+yamato	yamato_kill_familiar_05_hero_3d	sounds/vo/yamato/yamato_kill_familiar_05.vsnd	片付いたな。	That's dealt with.	claude-fable-5-2
+yamato	yamato_kill_fencer_01_hero_3d	sounds/vo/yamato/yamato_kill_fencer_01.vsnd	まだまだ修練が足りんな、小僧。	You still need far more training, boy.	claude-fable-5-2
+yamato	yamato_kill_fencer_02_hero_3d	sounds/vo/yamato/yamato_kill_fencer_02.vsnd	筋は悪くなかったがな。	Though you did have some talent.	claude-fable-5-2
+yamato	yamato_kill_fencer_03_hero_3d	sounds/vo/yamato/yamato_kill_fencer_03.vsnd	若さゆえの傲慢というやつだな。	The arrogance of youth, as they say.	claude-fable-5-2
+yamato	yamato_kill_fencer_05_hero_3d	sounds/vo/yamato/yamato_kill_fencer_05.vsnd	私に敗れるのは恥ではない。	There's no shame in losing to me.	claude-fable-5-2
+yamato	yamato_kill_forge_01_hero_3d	sounds/vo/yamato/yamato_kill_forge_01.vsnd	さっさと工場に帰るがいい。	Hurry back to your factory.	claude-fable-5-2
+yamato	yamato_kill_forge_02_hero_3d	sounds/vo/yamato/yamato_kill_forge_02.vsnd	お前など私の相手ではない、マクギニス。	You're no match for me, McGinnis.	claude-fable-5-2
+yamato	yamato_kill_forge_03_hero_3d	sounds/vo/yamato/yamato_kill_forge_03.vsnd	科学技術だけでは勝てんということだ。	It means technology alone can't win.	claude-fable-5-2
+yamato	yamato_kill_forge_04_hero_3d	sounds/vo/yamato/yamato_kill_forge_04.vsnd	横たわり血を流すがいい。	Lie there and bleed.	claude-fable-5-2
+yamato	yamato_kill_forge_05_hero_3d	sounds/vo/yamato/yamato_kill_forge_05.vsnd	自らの発明品に依存しすぎたようだな。	It seems you relied too much on your own inventions.	claude-fable-5-2
+yamato	yamato_kill_frank_01_hero_3d	sounds/vo/yamato/yamato_kill_frank_01.vsnd	おぞましき輩めが。	Loathsome wretch.	claude-fable-5-2
+yamato	yamato_kill_frank_02_hero_3d	sounds/vo/yamato/yamato_kill_frank_02.vsnd	異形の者を排除した。	The misshapen one has been eliminated.	claude-fable-5-2
+yamato	yamato_kill_frank_03_hero_3d	sounds/vo/yamato/yamato_kill_frank_03.vsnd	見ているだけで虫唾が走るな。	Just looking at him makes my skin crawl.	claude-fable-5-2
+yamato	yamato_kill_frank_04_hero_3d	sounds/vo/yamato/yamato_kill_frank_04.vsnd	奴にこの世界を歩く資格はない。	He has no right to walk this world.	claude-fable-5-2
+yamato	yamato_kill_frank_05_hero_3d	sounds/vo/yamato/yamato_kill_frank_05.vsnd	何度かかってこようと結果は同じだ。	Come at me as often as you like. The result will be the same.	claude-fable-5-2
+yamato	yamato_kill_ghost_01_hero_3d	sounds/vo/yamato/yamato_kill_ghost_01.vsnd	あの腕は私がいただこう。	I'll be taking that arm.	claude-fable-5-2
+yamato	yamato_kill_ghost_02_hero_3d	sounds/vo/yamato/yamato_kill_ghost_02.vsnd	オースキーパーの守りも及ばなかったようだな、ガイスト。	It seems even Oathkeeper's protection wasn't enough, Geist.	claude-fable-5-2
+yamato	yamato_kill_ghost_03_hero_3d	sounds/vo/yamato/yamato_kill_ghost_03.vsnd	身の程を思い知っただろう。	Now you know your place.	claude-fable-5-2
+yamato	yamato_kill_ghost_04_hero_3d	sounds/vo/yamato/yamato_kill_ghost_04.vsnd	もっと前に死ぬべきだった女だ。	A woman who should have died long ago.	claude-fable-5-2
+yamato	yamato_kill_ghost_05_hero_3d	sounds/vo/yamato/yamato_kill_ghost_05.vsnd	金の亡者めが。	Money-grubbing wretch.	claude-fable-5-2
+yamato	yamato_kill_gigawatt_01_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_01.vsnd	お前の力などセブンスムーンの前では無に等しい。	Your power is nothing before the 7th Moon.	claude-fable-5-2
+yamato	yamato_kill_gigawatt_02_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_02.vsnd	お前のような者が恐れられているのか。	So one such as you is what people fear?	claude-fable-5-2
+yamato	yamato_kill_gigawatt_03_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_03.vsnd	妄想の成れの果てだな。	The sorry end of a delusion.	claude-fable-5-2
+yamato	yamato_kill_gigawatt_04_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_04.vsnd	お前を捕獲した者の仕事は私が完成しよう。	I'll finish the work of those who captured you.	claude-fable-5-2
+yamato	yamato_kill_gigawatt_05_hero_3d	sounds/vo/yamato/yamato_kill_gigawatt_05.vsnd	セブン、お前の力はこんなものか。	Seven, is this all your power amounts to?	claude-fable-5-2
+yamato	yamato_kill_haze_01_hero_3d	sounds/vo/yamato/yamato_kill_haze_01.vsnd	私がOSICなど恐れると思ったか。	Did you think I would fear the OSIC?	claude-fable-5-2
+yamato	yamato_kill_haze_02_hero_3d	sounds/vo/yamato/yamato_kill_haze_02.vsnd	アメリカの暗殺者の技能はこの程度か。	Is this the extent of an American assassin's skill?	claude-fable-5-2
+yamato	yamato_kill_haze_03_hero_3d	sounds/vo/yamato/yamato_kill_haze_03.vsnd	セブンスムーンに逆らう者はこうなるのさ。	This is what happens to those who defy the 7th Moon.	claude-fable-5-2
+yamato	yamato_kill_haze_04_hero_3d	sounds/vo/yamato/yamato_kill_haze_04.vsnd	身の程をわきまえることだな。	Learn your place.	claude-fable-5-2
+yamato	yamato_kill_haze_05_hero_3d	sounds/vo/yamato/yamato_kill_haze_05.vsnd	魂なき技など脅威ではない。	Technique without soul is no threat.	claude-fable-5-2
+yamato	yamato_kill_high_networth_hero_3d	sounds/vo/yamato/yamato_kill_high_networth.vsnd	お前が積み上げた数字に意味などない。	The numbers you piled up mean nothing.	claude-fable-5-2
+yamato	yamato_kill_hornet_01_hero_3d	sounds/vo/yamato/yamato_kill_hornet_01.vsnd	成仏するがいい。	Move on to the afterlife.	claude-fable-5-2
+yamato	yamato_kill_hornet_02_hero_3d	sounds/vo/yamato/yamato_kill_hornet_02.vsnd	狙撃手を仕留めた。	I took out the sniper.	claude-fable-5-2
+yamato	yamato_kill_hornet_03_hero_3d	sounds/vo/yamato/yamato_kill_hornet_03.vsnd	私を標的にしたのが間違いだったな。	Making me your target was your mistake.	claude-fable-5-2
+yamato	yamato_kill_hornet_04_hero_3d	sounds/vo/yamato/yamato_kill_hornet_04.vsnd	靴くらい履いたらどうだ。	You could at least wear shoes.	claude-fable-5-2
+yamato	yamato_kill_hornet_05_hero_3d	sounds/vo/yamato/yamato_kill_hornet_05.vsnd	殺すには惜しい存在だったな。	She was almost too good to kill.	claude-fable-5-2
+yamato	yamato_kill_inferno_01_hero_3d	sounds/vo/yamato/yamato_kill_inferno_01.vsnd	バーテンダーなどに負けるわけにはいかん。	I can't lose to a mere bartender.	claude-fable-5-2
+yamato	yamato_kill_inferno_02_hero_3d	sounds/vo/yamato/yamato_kill_inferno_02.vsnd	隠居したままでいればよかったものを。	You should have stayed retired.	claude-fable-5-2
+yamato	yamato_kill_inferno_03_hero_3d	sounds/vo/yamato/yamato_kill_inferno_03.vsnd	お前が戦うべき相手は私じゃない、インファーナス。	I'm not the one you should be fighting, Infernus.	claude-fable-5-2
+yamato	yamato_kill_inferno_04_hero_3d	sounds/vo/yamato/yamato_kill_inferno_04.vsnd	こいつが終わったら、奴のバーも焼き払ってやる。	When this is over, I'll burn his bar down too.	claude-fable-5-2
+yamato	yamato_kill_inferno_05_hero_3d	sounds/vo/yamato/yamato_kill_inferno_05.vsnd	力の差を思い知ったか。	Now do you see the gap between us?	claude-fable-5-2
+yamato	yamato_kill_kelvin_01_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_01.vsnd	お前は死体のままでいるのがお似合いだ、ケルビン。	Staying a corpse suits you, Kelvin.	claude-fable-5-2
+yamato	yamato_kill_kelvin_02_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_02.vsnd	死者の世界に帰るがいい。	Go back to the world of the dead.	claude-fable-5-2
+yamato	yamato_kill_kelvin_03_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_03.vsnd	奴の旅はここで終わりだ。	His journey ends here.	claude-fable-5-2
+yamato	yamato_kill_kelvin_04_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_04.vsnd	世に聞こえた英雄とて、実態は所詮こんなものだ。	Even a world-famous hero is, in the end, no more than this.	claude-fable-5-2
+yamato	yamato_kill_kelvin_05_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_05.vsnd	あの能天気な男にはうんざりだ。	I'm sick of that happy-go-lucky man.	claude-fable-5-2
+yamato	yamato_kill_krill_01_hero_3d	sounds/vo/yamato/yamato_kill_krill_01.vsnd	でかい方はコートにして、小さい方は帽子にでもするか。	I'll make the big one into a coat, and maybe the small one into a hat.	claude-fable-5-2
+yamato	yamato_kill_krill_02_hero_3d	sounds/vo/yamato/yamato_kill_krill_02.vsnd	おぞましい奴らめ！	Loathsome creatures!	claude-fable-5-2
+yamato	yamato_kill_krill_03_hero_3d	sounds/vo/yamato/yamato_kill_krill_03.vsnd	Vermin.	Vermin.	claude-fable-5-2
+yamato	yamato_kill_krill_04_hero_3d	sounds/vo/yamato/yamato_kill_krill_04.vsnd	腕力に頼ったのが間違いだったな。	Relying on brute strength was your mistake.	claude-fable-5-2
+yamato	yamato_kill_krill_05_hero_3d	sounds/vo/yamato/yamato_kill_krill_05.vsnd	私はネズミなど恐れん。	I'm not afraid of rats.	claude-fable-5-2
+yamato	yamato_kill_lash_01_alt_01_hero_3d	sounds/vo/yamato/yamato_kill_lash_01_alt_01.vsnd	Asshole!	Asshole!	claude-fable-5-2
+yamato	yamato_kill_lash_01_hero_3d	sounds/vo/yamato/yamato_kill_lash_01.vsnd	馬鹿なアメリカ人め。	Stupid American.	claude-fable-5-2
+yamato	yamato_kill_lash_02_hero_3d	sounds/vo/yamato/yamato_kill_lash_02.vsnd	アメリカの傲慢さが招いた報いだ。	This is what American arrogance earns.	claude-fable-5-2
+yamato	yamato_kill_lash_03_hero_3d	sounds/vo/yamato/yamato_kill_lash_03.vsnd	親のしつけが甘かったようだな。	Seems your parents went easy on the discipline.	claude-fable-5-2
+yamato	yamato_kill_lash_04_hero_3d	sounds/vo/yamato/yamato_kill_lash_04.vsnd	ラッシュ、哀れだな。	Lash. How pitiful.	claude-fable-5-2
+yamato	yamato_kill_lash_05_hero_3d	sounds/vo/yamato/yamato_kill_lash_05.vsnd	よくもあそこまで傲慢になれるものだ。	How does anyone get that arrogant?	claude-fable-5-2
+yamato	yamato_kill_magician_01_hero_3d	sounds/vo/yamato/yamato_kill_magician_01.vsnd	マジシャンを仕留めた。	I took out the magician.	claude-fable-5-2
+yamato	yamato_kill_magician_02_hero_3d	sounds/vo/yamato/yamato_kill_magician_02.vsnd	その魔法は弱すぎる。	That magic is far too weak.	claude-fable-5-2
+yamato	yamato_kill_magician_03_hero_3d	sounds/vo/yamato/yamato_kill_magician_03.vsnd	その絆を汚すとはな。	To think you would defile that bond.	claude-fable-5-2
+yamato	yamato_kill_magician_04_hero_3d	sounds/vo/yamato/yamato_kill_magician_04.vsnd	これで苦しみも終わりだ！	Now your suffering is over!	claude-fable-5-2
+yamato	yamato_kill_magician_05_hero_3d	sounds/vo/yamato/yamato_kill_magician_05.vsnd	お前は献身というものを何も知らん。	You know nothing of devotion.	claude-fable-5-2
+yamato	yamato_kill_mirage_01_hero_3d	sounds/vo/yamato/yamato_kill_mirage_01.vsnd	雇われ人に用などない。	I have no business with a hireling.	claude-fable-5-2
+yamato	yamato_kill_mirage_02_hero_3d	sounds/vo/yamato/yamato_kill_mirage_02.vsnd	大したボディガードだな。	Some bodyguard.	claude-fable-5-2
+yamato	yamato_kill_mirage_03_hero_3d	sounds/vo/yamato/yamato_kill_mirage_03.vsnd	なんならナシャラを私の下僕としてやるか。	Perhaps I'll make Nashala my servant.	claude-fable-5-2
+yamato	yamato_kill_mirage_04_hero_3d	sounds/vo/yamato/yamato_kill_mirage_04.vsnd	神を守る？己の身も守れぬお前がか。	Protect a god? You, who can't even protect yourself?	claude-fable-5-2
+yamato	yamato_kill_mirage_05_hero_3d	sounds/vo/yamato/yamato_kill_mirage_05.vsnd	役立たずだった兄のボディガードを思い出すな。	You remind me of my brother's useless bodyguards.	claude-fable-5-2
+yamato	yamato_kill_nano_01_hero_3d	sounds/vo/yamato/yamato_kill_nano_01.vsnd	キャリコ、お前などは私の相手ではない。	Calico, you're no match for me.	claude-fable-5-2
+yamato	yamato_kill_nano_02_hero_3d	sounds/vo/yamato/yamato_kill_nano_02.vsnd	お前の魂胆など元より承知だ。	I knew what you were scheming from the start.	claude-fable-5-2
+yamato	yamato_kill_nano_03_hero_3d	sounds/vo/yamato/yamato_kill_nano_03.vsnd	忌々しい猫め。	Accursed cat.	claude-fable-5-2
+yamato	yamato_kill_nano_04_hero_3d	sounds/vo/yamato/yamato_kill_nano_04.vsnd	セブンスムーンに逆らったのが運の尽きだったな。	Your luck ran out the moment you defied the 7th Moon.	claude-fable-5-2
+yamato	yamato_kill_nano_05_hero_3d	sounds/vo/yamato/yamato_kill_nano_05.vsnd	はっ、何が地上で最も危険な女だ。	Hah. "The most dangerous woman on Earth," indeed.	claude-fable-5-2
+yamato	yamato_kill_necro_01_hero_3d	sounds/vo/yamato/yamato_kill_necro_01.vsnd	終わりだ。	It's over.	claude-fable-5-2
+yamato	yamato_kill_necro_02_hero_3d	sounds/vo/yamato/yamato_kill_necro_02.vsnd	お前は自分が何に手を出したのかも分かっていない。	You don't even understand what you've meddled with.	claude-fable-5-2
+yamato	yamato_kill_necro_04_hero_3d	sounds/vo/yamato/yamato_kill_necro_04.vsnd	死者の記憶を汚すなどとは。	To defile the memories of the dead...	claude-fable-5-2
+yamato	yamato_kill_necro_05_hero_3d	sounds/vo/yamato/yamato_kill_necro_05.vsnd	浅はかな小娘が。	Shallow little girl.	claude-fable-5-2
+yamato	yamato_kill_nurse_01_hero_3d	sounds/vo/yamato/yamato_kill_nurse_01.vsnd	勘違いも甚だしいな、ハロウ。	You are gravely mistaken, Harrow.	claude-fable-5-2
+yamato	yamato_kill_nurse_02_hero_3d	sounds/vo/yamato/yamato_kill_nurse_02.vsnd	敵の治療役は仕留めた。	The enemy's healer is down.	claude-fable-5-2
+yamato	yamato_kill_nurse_03_hero_3d	sounds/vo/yamato/yamato_kill_nurse_03.vsnd	ハロウは斬り捨てた。	I cut Harrow down.	claude-fable-5-2
+yamato	yamato_kill_nurse_04_hero_3d	sounds/vo/yamato/yamato_kill_nurse_04.vsnd	大した看護師ではなかったな。	Not much of a nurse.	claude-fable-5-2
+yamato	yamato_kill_nurse_05_hero_3d	sounds/vo/yamato/yamato_kill_nurse_05.vsnd	これで敵の援護はなくなった。	Now the enemy has lost their support.	claude-fable-5-2
+yamato	yamato_kill_orion_01_hero_3d	sounds/vo/yamato/yamato_kill_orion_01.vsnd	老人を倒すことに喜びは感じないな。	I take no joy in striking down an old man.	claude-fable-5-2
+yamato	yamato_kill_orion_02_hero_3d	sounds/vo/yamato/yamato_kill_orion_02.vsnd	敵ながら見上げた戦士だ。	An admirable warrior, enemy though he was.	claude-fable-5-2
+yamato	yamato_kill_orion_03_hero_3d	sounds/vo/yamato/yamato_kill_orion_03.vsnd	老人とは思えぬ強靭さだったな。	Remarkably tough for an old man.	claude-fable-5-2
+yamato	yamato_kill_orion_04_hero_3d	sounds/vo/yamato/yamato_kill_orion_04.vsnd	安らかに眠るがいい。	Rest in peace.	claude-fable-5-2
+yamato	yamato_kill_orion_05_hero_3d	sounds/vo/yamato/yamato_kill_orion_05.vsnd	これは彼が望んだ死だ。	This is the death he wished for.	claude-fable-5-2
+yamato	yamato_kill_priest_01_hero_3d	sounds/vo/yamato/yamato_kill_priest_01.vsnd	信じるものを間違えたな。	You put your faith in the wrong thing.	claude-fable-5-2
+yamato	yamato_kill_priest_02_hero_3d	sounds/vo/yamato/yamato_kill_priest_02.vsnd	狂信者め。	Fanatic.	claude-fable-5-2
+yamato	yamato_kill_priest_03_hero_3d	sounds/vo/yamato/yamato_kill_priest_03.vsnd	バチカンの力はこの程度か。	Is this all the Vatican's power amounts to?	claude-fable-5-2
+yamato	yamato_kill_priest_04_hero_3d	sounds/vo/yamato/yamato_kill_priest_04.vsnd	私に勝つことなど不可能なのだ。	Defeating me is impossible.	claude-fable-5-2
+yamato	yamato_kill_priest_05_hero_3d	sounds/vo/yamato/yamato_kill_priest_05.vsnd	己を見誤ったな。	You misjudged yourself.	claude-fable-5-2
+yamato	yamato_kill_punkgoat_01_hero_3d	sounds/vo/yamato/yamato_kill_punkgoat_01.vsnd	愚かなアメリカ人め。	Foolish American.	claude-fable-5-2
+yamato	yamato_kill_punkgoat_03_hero_3d	sounds/vo/yamato/yamato_kill_punkgoat_03.vsnd	ヤギを処理した。	The goat has been dealt with.	claude-fable-5-2
+yamato	yamato_kill_punkgoat_04_hero_3d	sounds/vo/yamato/yamato_kill_punkgoat_04.vsnd	鬱陶しい男だ。	What an irritating man.	claude-fable-5-2
+yamato	yamato_kill_punkgoat_05_hero_3d	sounds/vo/yamato/yamato_kill_punkgoat_05.vsnd	おぞましい野獣め。	Loathsome beast.	claude-fable-5-2
+yamato	yamato_kill_ratking_01_hero_3d	sounds/vo/yamato/yamato_kill_ratking_01.vsnd	死ねえ、害獣め！	Die, vermin!	claude-fable-5-2
+yamato	yamato_kill_ratking_02_hero_3d	sounds/vo/yamato/yamato_kill_ratking_02.vsnd	汚らわしいネズミめ。	Filthy rat.	claude-fable-5-2
+yamato	yamato_kill_ratking_03_hero_3d	sounds/vo/yamato/yamato_kill_ratking_03.vsnd	ネズミは嫌いだ。	I hate rats.	claude-fable-5-2
+yamato	yamato_kill_ratking_04_hero_3d	sounds/vo/yamato/yamato_kill_ratking_04.vsnd	ロングアイランドはセブンスムーンのものだ、お前のものではない。	Long Island belongs to the 7th Moon, not to you.	claude-fable-5-2
+yamato	yamato_kill_ratking_05_hero_3d	sounds/vo/yamato/yamato_kill_ratking_05.vsnd	手下どもも、もうお前を救ってはくれんぞ。	Your underlings can't save you anymore.	claude-fable-5-2
+yamato	yamato_kill_shiv_01_hero_3d	sounds/vo/yamato/yamato_kill_shiv_01.vsnd	自分の本質を見誤ったな、シヴ。	You misjudged your own nature, Shiv.	claude-fable-5-2
+yamato	yamato_kill_shiv_02_hero_3d	sounds/vo/yamato/yamato_kill_shiv_02.vsnd	いつまでヒーロー気取りを続けるつもりだ。	How long do you intend to keep playing the hero?	claude-fable-5-2
+yamato	yamato_kill_shiv_03_hero_3d	sounds/vo/yamato/yamato_kill_shiv_03.vsnd	自分の本性からは逃れられても、私からは逃れられん。	You may escape your own nature, but you can't escape me.	claude-fable-5-2
+yamato	yamato_kill_shiv_04_hero_3d	sounds/vo/yamato/yamato_kill_shiv_04.vsnd	ナイスヘア。	Nice hair.	claude-fable-5-2
+yamato	yamato_kill_shiv_05_hero_3d	sounds/vo/yamato/yamato_kill_shiv_05.vsnd	ナイフで刀に勝てると思ったか。	Did you think a knife could beat a katana?	claude-fable-5-2
+yamato	yamato_kill_synth_01_hero_3d	sounds/vo/yamato/yamato_kill_synth_01.vsnd	愚かな若造めが。	Foolish youngster.	claude-fable-5-2
+yamato	yamato_kill_synth_02_hero_3d	sounds/vo/yamato/yamato_kill_synth_02.vsnd	お前が勘当されたのも当然だな。	No wonder you were disowned.	claude-fable-5-2
+yamato	yamato_kill_synth_03_hero_3d	sounds/vo/yamato/yamato_kill_synth_03.vsnd	過去にとらわれすぎなのだ。	You're too caught up in the past.	claude-fable-5-2
+yamato	yamato_kill_synth_04_hero_3d	sounds/vo/yamato/yamato_kill_synth_04.vsnd	あのケースをいただきたいな。	I'd like to have that case.	claude-fable-5-2
+yamato	yamato_kill_synth_05_hero_3d	sounds/vo/yamato/yamato_kill_synth_05.vsnd	ポケット、お前のケースをよこせ。	Pocket, hand over your case.	claude-fable-5-2
+yamato	yamato_kill_tengu_01_hero_3d	sounds/vo/yamato/yamato_kill_tengu_01.vsnd	ガーゴイルを仕留めた。	I took out the gargoyle.	claude-fable-5-2
+yamato	yamato_kill_tengu_02_hero_3d	sounds/vo/yamato/yamato_kill_tengu_02.vsnd	メンドーサを片付けてくれたことには感謝するぞ。	I do thank you for getting rid of Mendoza.	claude-fable-5-2
+yamato	yamato_kill_tengu_03_hero_3d	sounds/vo/yamato/yamato_kill_tengu_03.vsnd	次はスパニッシュ・ハーレムをいただくとしよう。お前の無礼さの見返りとしてな。	Next I'll take Spanish Harlem. As payment for your insolence.	claude-fable-5-2
+yamato	yamato_kill_tengu_04_hero_3d	sounds/vo/yamato/yamato_kill_tengu_04.vsnd	こんな奴がメンドーサを止められるなら、ニューヨークの制圧も難しくないな。	If a creature like this could stop Mendoza, taking New York won't be hard.	claude-fable-5-2
+yamato	yamato_kill_tengu_05_hero_3d	sounds/vo/yamato/yamato_kill_tengu_05.vsnd	こんな奴のどこが恐ろしいというのだ。	What is there to fear in a creature like this?	claude-fable-5-2
+yamato	yamato_kill_unicorn_01_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_01.vsnd	おぞましい怪物女が。	Loathsome monster of a woman.	claude-fable-5-2
+yamato	yamato_kill_unicorn_02_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_02.vsnd	これは余興ではない。現実の戦いだ。	This is no sideshow. This is a real fight.	claude-fable-5-2
+yamato	yamato_kill_unicorn_03_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_03.vsnd	火遊びは終わりだ。	Your playing with fire is over.	claude-fable-5-2
+yamato	yamato_kill_unicorn_04_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_04.vsnd	偽善者め。	Hypocrite.	claude-fable-5-2
+yamato	yamato_kill_unicorn_05_hero_3d	sounds/vo/yamato/yamato_kill_unicorn_05.vsnd	サーカスに戻るがいい。	Go back to the circus.	claude-fable-5-2
+yamato	yamato_kill_vampirebat_01_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_01.vsnd	小生意気な子供めが。	Cheeky child.	claude-fable-5-2
+yamato	yamato_kill_vampirebat_02_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_02.vsnd	身の程を知るがいい。	Know your place.	claude-fable-5-2
+yamato	yamato_kill_vampirebat_03_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_03.vsnd	小娘が。	Little girl.	claude-fable-5-2
+yamato	yamato_kill_vampirebat_04_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_04.vsnd	忌々しい吸血鬼め。	Accursed vampire.	claude-fable-5-2
+yamato	yamato_kill_vampirebat_05_hero_3d	sounds/vo/yamato/yamato_kill_vampirebat_05.vsnd	一族の恥さらしだな。	A disgrace to your family.	claude-fable-5-2
+yamato	yamato_kill_viper_01_hero_3d	sounds/vo/yamato/yamato_kill_viper_01.vsnd	惨めな女だ。	A pitiful woman.	claude-fable-5-2
+yamato	yamato_kill_viper_02_hero_3d	sounds/vo/yamato/yamato_kill_viper_02.vsnd	こんな女と組む者の気が知れんな。	I can't imagine who would work with a woman like this.	claude-fable-5-2
+yamato	yamato_kill_viper_03_hero_3d	sounds/vo/yamato/yamato_kill_viper_03.vsnd	外道の名にふさわしい女だ。	A woman worthy of being called a fiend.	claude-fable-5-2
+yamato	yamato_kill_viper_04_hero_3d	sounds/vo/yamato/yamato_kill_viper_04.vsnd	抑制を知らぬ屑めが！	Trash who knows no restraint!	claude-fable-5-2
+yamato	yamato_kill_viper_05_hero_3d	sounds/vo/yamato/yamato_kill_viper_05.vsnd	ヴァイパーよ、もともとお前に勝ち目などなかったのだ。	Vyper, you never had a chance to begin with.	claude-fable-5-2
+yamato	yamato_kill_viscous_01_hero_3d	sounds/vo/yamato/yamato_kill_viscous_01.vsnd	くっ！	Ugh!	claude-fable-5-2
+yamato	yamato_kill_viscous_02_hero_3d	sounds/vo/yamato/yamato_kill_viscous_02.vsnd	まったくおぞましい奴だな。	What a truly loathsome creature.	claude-fable-5-2
+yamato	yamato_kill_viscous_03_hero_3d	sounds/vo/yamato/yamato_kill_viscous_03.vsnd	まったく奇怪な存在だ。	A truly bizarre being.	claude-fable-5-2
+yamato	yamato_kill_viscous_04_hero_3d	sounds/vo/yamato/yamato_kill_viscous_04.vsnd	なんなんだあれは。	What on earth is that thing?	claude-fable-5-2
+yamato	yamato_kill_viscous_05_hero_3d	sounds/vo/yamato/yamato_kill_viscous_05.vsnd	不快な生き物だ。	A repulsive creature.	claude-fable-5-2
+yamato	yamato_kill_warden_01_hero_3d	sounds/vo/yamato/yamato_kill_warden_01.vsnd	お前に私は止められんさ、ウォーデン。	You can't stop me, Warden.	claude-fable-5-2
+yamato	yamato_kill_warden_02_hero_3d	sounds/vo/yamato/yamato_kill_warden_02.vsnd	私は決して屈しないぞ、ウォーデン。	I will never yield, Warden.	claude-fable-5-2
+yamato	yamato_kill_warden_03_hero_3d	sounds/vo/yamato/yamato_kill_warden_03.vsnd	なんでも思う通りに行くと思うな。	Don't think everything goes the way you want.	claude-fable-5-2
+yamato	yamato_kill_warden_04_hero_3d	sounds/vo/yamato/yamato_kill_warden_04.vsnd	私はお前など恐れんぞ、ウォーデン。	I don't fear you, Warden.	claude-fable-5-2
+yamato	yamato_kill_warden_05_hero_3d	sounds/vo/yamato/yamato_kill_warden_05.vsnd	狂信者の末路だ。	The fate of a fanatic.	claude-fable-5-2
+yamato	yamato_kill_werewolf_01_hero_3d	sounds/vo/yamato/yamato_kill_werewolf_01.vsnd	獣を仕留めた。	The beast is down.	claude-fable-5-2
+yamato	yamato_kill_werewolf_03_hero_3d	sounds/vo/yamato/yamato_kill_werewolf_03.vsnd	どうしようもない女だな。	A hopeless woman.	claude-fable-5-2
+yamato	yamato_kill_werewolf_04_hero_3d	sounds/vo/yamato/yamato_kill_werewolf_04.vsnd	ウェアウルフを排除した。	The werewolf has been eliminated.	claude-fable-5-2
+yamato	yamato_kill_wraith_01_hero_3d	sounds/vo/yamato/yamato_kill_wraith_01.vsnd	これでニューヨークは私のものだ。	With this, New York is mine.	claude-fable-5-2
+yamato	yamato_kill_wraith_02_hero_3d	sounds/vo/yamato/yamato_kill_wraith_02.vsnd	Leave town, Wraith.	Leave town, Wraith.	claude-fable-5-2
+yamato	yamato_kill_wraith_03_hero_3d	sounds/vo/yamato/yamato_kill_wraith_03.vsnd	所詮、私の相手ではなかったな。	In the end, you were no match for me.	claude-fable-5-2
+yamato	yamato_kill_wraith_04_hero_3d	sounds/vo/yamato/yamato_kill_wraith_04.vsnd	私のような相手とは戦ったことがなかったようだな。	It seems you had never fought anyone like me.	claude-fable-5-2
+yamato	yamato_kill_wraith_05_hero_3d	sounds/vo/yamato/yamato_kill_wraith_05.vsnd	お前のビジネスはセブンスムーンがいただこう。	The 7th Moon will be taking over your business.	claude-fable-5-2
+yamato	yamato_kill_wrecker_01_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_01.vsnd	死ねえ、怪物め！	Die, monster!	claude-fable-5-2
+yamato	yamato_kill_wrecker_02_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_02.vsnd	仕留めたぞ。	Got him.	claude-fable-5-2
+yamato	yamato_kill_wrecker_03_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_03.vsnd	どうにか無事に切り抜けられたな。	Somehow I made it through in one piece.	claude-fable-5-2
+yamato	yamato_kill_wrecker_04_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_04.vsnd	簡単な相手ではなかった。	He was no easy opponent.	claude-fable-5-2
+yamato	yamato_kill_wrecker_05_hero_3d	sounds/vo/yamato/yamato_kill_wrecker_05.vsnd	イクシアのブッチャーを片付けた。	The Butcher of Ixia is dealt with.	claude-fable-5-2
+yamato	yamato_killstreak_high_02_hero_announcer	sounds/vo/yamato/yamato_killstreak_high_02.vsnd	私はヤマトの名をこの世界に刻む。	I will carve the name Yamato into this world.	claude-fable-5-2
+yamato	yamato_killstreak_mid_02_hero_announcer	sounds/vo/yamato/yamato_killstreak_mid_02.vsnd	情けはかけん。	I show no mercy.	claude-fable-5-2
+yamato	yamato_killstreak_mid_03_hero_announcer	sounds/vo/yamato/yamato_killstreak_mid_03.vsnd	無力な子羊が。	Helpless lambs.	claude-fable-5-2
+yamato	yamato_killstreak_start_01_hero_announcer	sounds/vo/yamato/yamato_killstreak_start_01.vsnd	まったく歯応えがないな。	No challenge at all.	claude-fable-5-2
+yamato	yamato_killstreak_start_02_hero_announcer	sounds/vo/yamato/yamato_killstreak_start_02.vsnd	全員仕留めてやる。一人ずつ順番にな。	I'll take down every one of you. One at a time, in order.	claude-fable-5-2
+yamato	yamato_killstreak_start_03_hero_announcer	sounds/vo/yamato/yamato_killstreak_start_03.vsnd	何人たりともセブンスムーンの手からは逃れられん。	No one escapes the grasp of the 7th Moon.	claude-fable-5-2
+yamato	yamato_killstreak_start_04_hero_announcer	sounds/vo/yamato/yamato_killstreak_start_04.vsnd	私から逃れることはできん。	You cannot escape me.	claude-fable-5-2
+yamato	yamato_last_one_standing_01_hero_3d	sounds/vo/yamato/yamato_last_one_standing_01.vsnd	私は何者も恐れない。	I fear no one.	claude-fable-5-2
+yamato	yamato_last_one_standing_02_hero_3d	sounds/vo/yamato/yamato_last_one_standing_02.vsnd	私は勝つ。どんな状況でもな。	I win. Whatever the situation.	claude-fable-5-2
+yamato	yamato_last_one_standing_03_hero_3d	sounds/vo/yamato/yamato_last_one_standing_03.vsnd	全員相手をしてやる。	I'll take on all of you.	claude-fable-5-2
+yamato	yamato_leave_base_01_hero_3d	sounds/vo/yamato/yamato_leave_base_01.vsnd	終わらせてやる！	I'll end this!	claude-fable-5-2
+yamato	yamato_leave_base_02_hero_3d	sounds/vo/yamato/yamato_leave_base_02.vsnd	セブンスムーンの台頭を見届けよ。	Witness the rise of the 7th Moon.	claude-fable-5-2
+yamato	yamato_leave_base_03_hero_3d	sounds/vo/yamato/yamato_leave_base_03.vsnd	奴らには破滅をもたらしてやる。	I will bring them ruin.	claude-fable-5-2
+yamato	yamato_leave_base_04_hero_3d	sounds/vo/yamato/yamato_leave_base_04.vsnd	私の戦いは私自身でけりをつける。	I'll settle my fight myself.	claude-fable-5-2
+yamato	yamato_leave_base_05_hero_3d	sounds/vo/yamato/yamato_leave_base_05.vsnd	パトロンを召喚するぞ！	We will summon the Patron!	claude-fable-5-2
+yamato	yamato_match_start_yamato_astro_convo01_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_astro_convo01_01.vsnd	まさか警察の犬と協力することになるとはな。	To think I'd end up working with a police dog.	claude-fable-5-2
+yamato	yamato_match_start_yamato_astro_convo02_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_astro_convo02_01.vsnd	あんたがマーフィーの女か。	So you're Murphy's woman.	claude-fable-5-2
+yamato	yamato_match_start_yamato_atlas_convo01_02_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_atlas_convo01_02.vsnd	ああ、こいつ話しかけてくる。	Ugh, he's talking to me.	claude-fable-5-2
+yamato	yamato_match_start_yamato_atlas_convo03_02_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_atlas_convo03_02.vsnd	それしか知らないんだろ。	I bet that's the only word you know.	claude-fable-5-2
+yamato	yamato_match_start_yamato_bebop_convo02_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_bebop_convo02_01.vsnd	奴が噂の殺戮マシンか。	So he's the killing machine I've heard about.	claude-fable-5-2
+yamato	yamato_match_start_yamato_bebop_convo02_03_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_bebop_convo02_03.vsnd	だろうな。	I figured.	claude-fable-5-2
+yamato	yamato_match_start_yamato_dynamo_convo01_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo01_01.vsnd	計画を立てなくては。	We need to make a plan.	claude-fable-5-2
+yamato	yamato_match_start_yamato_dynamo_convo01_03_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo01_03.vsnd	どうせ分かってないんだろう。	You don't understand a word of this, do you.	claude-fable-5-2
+yamato	yamato_match_start_yamato_dynamo_convo01_05_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo01_05.vsnd	まったく。	Honestly.	claude-fable-5-2
+yamato	yamato_match_start_yamato_dynamo_convo02_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_dynamo_convo02_01.vsnd	お前のエゴが招いた結果だ。	This is what your ego has brought about.	claude-fable-5-2
+yamato	yamato_match_start_yamato_ghost_convo02_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_ghost_convo02_01.vsnd	なんだその腕は。	What's with that arm?	claude-fable-5-2
+yamato	yamato_match_start_yamato_inferno_convo01_01_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_inferno_convo01_01.vsnd	こいつは五分もてば奇跡だな。	It'll be a miracle if this one lasts five minutes.	claude-fable-5-2
+yamato	yamato_match_start_yamato_nano_convo02_03_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_nano_convo02_03.vsnd	なんでもない、忘れろ。	It's nothing. Forget it.	claude-fable-5-2
+yamato	yamato_match_start_yamato_tengu_convo03_02_hero_zipline_3d	sounds/vo/yamato/yamato_match_start_yamato_tengu_convo03_02.vsnd	お前のみすぼらしい街など興味はなかったが、この手に収めるのも悪くはないかもしれんな。	I had no interest in your shabby little neighborhood, but perhaps taking it for myself wouldn't be so bad.	claude-fable-5-2
+yamato	yamato_melee_kill_01_hero_3d	sounds/vo/yamato/yamato_melee_kill_01.vsnd	そこで寝ていろ。	Stay down.	claude-fable-5-2
+yamato	yamato_melee_kill_02_hero_3d	sounds/vo/yamato/yamato_melee_kill_02.vsnd	愚か者め。	Fool.	claude-fable-5-2
+yamato	yamato_melee_kill_03_hero_3d	sounds/vo/yamato/yamato_melee_kill_03.vsnd	相手が悪かったな。	You picked the wrong opponent.	claude-fable-5-2
+yamato	yamato_melee_kill_04_hero_3d	sounds/vo/yamato/yamato_melee_kill_04.vsnd	私に勝てる者などいない。	No one can defeat me.	claude-fable-5-2
+yamato	yamato_melee_kill_05_hero_3d	sounds/vo/yamato/yamato_melee_kill_05.vsnd	期待外れだな。	A disappointment.	claude-fable-5-2
+yamato	yamato_near_miss_01_hero_3d	sounds/vo/yamato/yamato_near_miss_01.vsnd	命拾いしたな。	You got away with your life.	claude-fable-5-2
+yamato	yamato_near_miss_02_hero_3d	sounds/vo/yamato/yamato_near_miss_02.vsnd	次は逃がさん。	Next time you won't get away.	claude-fable-5-2
+yamato	yamato_near_miss_04_hero_3d	sounds/vo/yamato/yamato_near_miss_04.vsnd	逃げるな、臆病者。	Don't run, coward.	claude-fable-5-2
+yamato	yamato_near_miss_05_hero_3d	sounds/vo/yamato/yamato_near_miss_05.vsnd	次は仕留める。	Next time I finish you.	claude-fable-5-2
+yamato	yamato_parry_01_alt_01_hero_3d	sounds/vo/yamato/yamato_parry_01_alt_01.vsnd	はっ！	Ha!	claude-fable-5-2
+yamato	yamato_parry_02_hero_3d	sounds/vo/yamato/yamato_parry_02.vsnd	なんだと。	What?!	claude-fable-5-2
+yamato	yamato_parry_03_hero_3d	sounds/vo/yamato/yamato_parry_03.vsnd	小癪な！	Insolent!	claude-fable-5-2
+yamato	yamato_pick_up_gold_01_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_01.vsnd	いただいておこう。	I'll take that.	claude-fable-5-2
+yamato	yamato_pick_up_gold_02_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_02.vsnd	こいつはセブンスムーンがいただく。	The 7th Moon will take this.	claude-fable-5-2
+yamato	yamato_pick_up_gold_03_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_03.vsnd	ソウルはいただく。	I'll take the souls.	claude-fable-5-2
+yamato	yamato_pick_up_gold_04_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_04.vsnd	こいつは私のものだ。	This is mine.	claude-fable-5-2
+yamato	yamato_pick_up_gold_05_hero_3d	sounds/vo/yamato/yamato_pick_up_gold_05.vsnd	こいつはセブンスムーンに帰すべきもの。	This rightfully belongs to the 7th Moon.	claude-fable-5-2
+yamato	yamato_ping_no_teamfight_ping_2d	sounds/vo/yamato/ping/yamato_ping_no_teamfight.vsnd	I'm not ready for team fight.	I'm not ready for a team fight.	claude-fable-5-2
+yamato	yamato_ping_post_game_01_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_01.vsnd	役立たずではなかったな。	You weren't useless after all.	claude-fable-5-2
+yamato	yamato_ping_post_game_02_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_02.vsnd	全ては兄のために。	All for my brother.	claude-fable-5-2
+yamato	yamato_ping_post_game_03_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_03.vsnd	奴らは弱かったな。	They were weak.	claude-fable-5-2
+yamato	yamato_ping_post_game_04_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_04.vsnd	当然の結果だ。	The result was never in doubt.	claude-fable-5-2
+yamato	yamato_ping_post_game_05_ping_2d	sounds/vo/yamato/ping/yamato_ping_post_game_05.vsnd	容赦はしなかったぞ。	I showed them no mercy.	claude-fable-5-2
+yamato	yamato_ping_pre_game_01_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_01.vsnd	じきに彼らは私にひれ伏すだろう。	Soon they will bow before me.	claude-fable-5-2
+yamato	yamato_ping_pre_game_02_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_02.vsnd	こいつらは役立たずじゃないといいが。	I hope this lot isn't useless.	claude-fable-5-2
+yamato	yamato_ping_pre_game_03_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_03.vsnd	私がチームを勝利に導こう。	I will lead this team to victory.	claude-fable-5-2
+yamato	yamato_ping_pre_game_04_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_04.vsnd	じきにセブンスムーンがニューヨークを牛耳るだろう。	Soon the 7th Moon will run New York.	claude-fable-5-2
+yamato	yamato_ping_pre_game_05_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_05.vsnd	ヤマト。私の勝利はあなたのものだ。	Yamato. My victory is yours.	claude-fable-5-2
+yamato	yamato_ping_pre_game_06_ping_2d	sounds/vo/yamato/ping/yamato_ping_pre_game_06.vsnd	私の邪魔をする者は必ず死ぬ。	Anyone who gets in my way dies.	claude-fable-5-2
+yamato	yamato_ping_priest_almost_respawn_ping_2d	sounds/vo/yamato/ping/yamato_ping_priest_almost_respawn.vsnd	Venator is almost back!	Venator is almost back!	claude-fable-5-2
+yamato	yamato_select_01_hero_3d	sounds/vo/yamato/yamato_select_01.vsnd	容赦はしない。	I will show no mercy.	claude-fable-5-2
+yamato	yamato_select_02_hero_3d	sounds/vo/yamato/yamato_select_02.vsnd	私は兄よりこの名を受け継いだ。	I inherited this name from my brother.	claude-fable-5-2
+yamato	yamato_select_03-imported_hero_3d	sounds/vo/yamato/yamato_select_03-imported.vsnd	I wasn't born with this name, but I'll do my best to live up to it.	I wasn't born with this name, but I'll do my best to live up to it.	claude-fable-5-2
+yamato	yamato_select_03_hero_3d	sounds/vo/yamato/yamato_select_03.vsnd	私は訳あってこの名を得た。決して汚すことのできぬこの名を。	I came by this name for a reason. A name I must never tarnish.	claude-fable-5-2
+yamato	yamato_select_04_hero_3d	sounds/vo/yamato/yamato_select_04.vsnd	私が死ねばこの刀は別の者が受け継ぐだろう。私がそうしたようにな。	If I die, another will inherit this sword. Just as I did.	claude-fable-5-2
+yamato	yamato_select_05_hero_3d	sounds/vo/yamato/yamato_select_05.vsnd	立ちふさがる者は誰であれ、斬り捨てる。	Whoever stands in my way, I will cut down.	claude-fable-5-2
+yamato	yamato_select_06_hero_3d	sounds/vo/yamato/yamato_select_06.vsnd	ついてこい、私が勝利に導いてやる。	Follow me. I'll lead you to victory.	claude-fable-5-2
+yamato	yamato_select_07_hero_3d	sounds/vo/yamato/yamato_select_07.vsnd	屍の山を築いてみせよう。	I'll build you a mountain of corpses.	claude-fable-5-2
+yamato	yamato_select_08_hero_3d	sounds/vo/yamato/yamato_select_08.vsnd	ニューヨークはセブンスムーンの手中に帰すだろう。	New York will fall into the hands of the 7th Moon.	claude-fable-5-2
+yamato	yamato_select_09_hero_3d	sounds/vo/yamato/yamato_select_09.vsnd	兄にこの光景を見せてやりたかった。	I wish I could have shown my brother this sight.	claude-fable-5-2
+yamato	yamato_select_10_hero_3d	sounds/vo/yamato/yamato_select_10.vsnd	兄よ、見ていてくれ。すぐにあなたの夢は現実となる。	Brother, watch over me. Soon your dream will become reality.	claude-fable-5-2
+yamato	yamato_tower_got_denied_01_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_01.vsnd	そもそもソウルは目的ではない。	Souls were never the objective anyway.	claude-fable-5-2
+yamato	yamato_tower_got_denied_02_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_02.vsnd	目的は達成した。	Objective achieved.	claude-fable-5-2
+yamato	yamato_tower_got_denied_03_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_03.vsnd	また一つ目標達成だ。	Another objective accomplished.	claude-fable-5-2
+yamato	yamato_tower_got_denied_04_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_04.vsnd	勝利が近づいたな。	Victory draws nearer.	claude-fable-5-2
+yamato	yamato_tower_got_denied_05_hero_3d	sounds/vo/yamato/yamato_tower_got_denied_05.vsnd	また一つ目標を攻略した。	Another objective taken.	claude-fable-5-2
+yamato	yamato_unselect_01_hero_3d	sounds/vo/yamato/yamato_unselect_01.vsnd	遅かれ早かれ気付くことになるさ、お前にはセブンスムーンの力が必要だということをな。	Sooner or later you'll realize it: you need the power of the 7th Moon.	claude-fable-5-2
+yamato	yamato_unselect_02_hero_3d	sounds/vo/yamato/yamato_unselect_02.vsnd	私も暇ではないのでな。	I don't have time to waste either.	claude-fable-5-2
+yamato	yamato_unselect_03_hero_3d	sounds/vo/yamato/yamato_unselect_03.vsnd	いいだろう。	Very well.	claude-fable-5-2
+yamato	yamato_unselect_04_hero_3d	sounds/vo/yamato/yamato_unselect_04.vsnd	後悔するなよ。	Don't come to regret this.	claude-fable-5-2
+yamato	yamato_unselect_05_hero_3d	sounds/vo/yamato/yamato_unselect_05.vsnd	覚悟が定まったらまた声をかけるがいい。	Call on me again once your resolve is firm.	claude-fable-5-2
+yamato	yamato_unselect_06_hero_3d	sounds/vo/yamato/yamato_unselect_06.vsnd	嘆かわしいな。	How deplorable.	claude-fable-5-2
+yamato	yamato_unselect_07_hero_3d	sounds/vo/yamato/yamato_unselect_07.vsnd	愚かな決断だが、好きにするがいいさ。	A foolish decision, but do as you please.	claude-fable-5-2
+yamato	yamato_unselect_08_hero_3d	sounds/vo/yamato/yamato_unselect_08.vsnd	セブンスムーンの助けを拒絶するとはな。	To think you would refuse the 7th Moon's help.	claude-fable-5-2
+yamato	yamato_unselect_09_hero_3d	sounds/vo/yamato/yamato_unselect_09.vsnd	血を見るのはまたの機会、ということか。	So the bloodshed waits for another day.	claude-fable-5-2
+yamato	yamato_unselect_10_hero_3d	sounds/vo/yamato/yamato_unselect_10.vsnd	残念だな。	A pity.	claude-fable-5-2
+yamato	yamato_upgrade_power1_01_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_01.vsnd	これでさらなる死が呼び込まれよう。	This will invite still more death.	claude-fable-5-2
+yamato	yamato_upgrade_power1_02_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_02.vsnd	切り裂いてやろうではないか。	Let us carve them up, shall we.	claude-fable-5-2
+yamato	yamato_upgrade_power1_03_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_03.vsnd	剣は触媒に過ぎん。私の意志こそが真の武器となろう。	The sword is only a catalyst. My will shall be the true weapon.	claude-fable-5-2
+yamato	yamato_upgrade_power1_04_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_04.vsnd	この切れ味に奴らは恐れおののくこととなろう。	They will tremble in fear at the keenness of this edge.	claude-fable-5-2
+yamato	yamato_upgrade_power1_05_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_05.vsnd	距離を取ったところで無駄ということを教えてやろう。	I'll teach them that keeping their distance is pointless.	claude-fable-5-2
+yamato	yamato_upgrade_power1_06_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_06.vsnd	兄よ、鮮血をあなたに捧げよう。	Brother, I offer you fresh blood.	claude-fable-5-2
+yamato	yamato_upgrade_power1_07_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_07.vsnd	全員斬り捨ててやる。	I'll cut every one of them down.	claude-fable-5-2
+yamato	yamato_upgrade_power1_08_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_08.vsnd	この技にもようやく習熟したか。	At last I've mastered this technique too.	claude-fable-5-2
+yamato	yamato_upgrade_power1_09_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_09.vsnd	刀が血を求めている。	My blade thirsts for blood.	claude-fable-5-2
+yamato	yamato_upgrade_power1_10_hero_3d	sounds/vo/yamato/yamato_upgrade_power1_10.vsnd	この刀の渇きを満たしてやらねばな。	I must quench this blade's thirst.	claude-fable-5-2
+yamato	yamato_upgrade_power2_01_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_01.vsnd	誰も私からは逃れられん。	No one escapes me.	claude-fable-5-2
+yamato	yamato_upgrade_power2_02_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_02.vsnd	獲物は逃がさん、絶対にな。	I never let my prey escape. Never.	claude-fable-5-2
+yamato	yamato_upgrade_power2_03_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_03.vsnd	逃げたところで連中に待つのは死のみだ。	Even if they run, only death awaits them.	claude-fable-5-2
+yamato	yamato_upgrade_power2_04_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_04.vsnd	一人とて逃すわけにはいかないからな。	I can't let even one of them escape, after all.	claude-fable-5-2
+yamato	yamato_upgrade_power2_05_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_05.vsnd	誰も私の掌握からは逃れられん。	No one escapes my grasp.	claude-fable-5-2
+yamato	yamato_upgrade_power2_06_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_06.vsnd	距離を詰めて仕留めてやる。	I'll close the distance and finish them.	claude-fable-5-2
+yamato	yamato_upgrade_power2_07_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_07.vsnd	電光石火の技というものを見せてやろう。	I'll show them what a lightning-fast technique looks like.	claude-fable-5-2
+yamato	yamato_upgrade_power2_08_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_08.vsnd	奴らにこの動きは捉えきれまい。	They'll never keep up with this movement.	claude-fable-5-2
+yamato	yamato_upgrade_power2_09_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_09.vsnd	これで敵を逃すこともないな。	Now no enemy will slip away.	claude-fable-5-2
+yamato	yamato_upgrade_power2_10_hero_3d	sounds/vo/yamato/yamato_upgrade_power2_10.vsnd	距離を詰めるのに有用だな。	Useful for closing the distance.	claude-fable-5-2
+yamato	yamato_upgrade_power3_01_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_01.vsnd	奴らの血をこの力と変えよう。	I will turn their blood into this power.	claude-fable-5-2
+yamato	yamato_upgrade_power3_02_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_02.vsnd	奴らの命が私を再生させる。	Their lives will restore me.	claude-fable-5-2
+yamato	yamato_upgrade_power3_03_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_03.vsnd	私は戦う。怯むことなくな。	I fight on. Without flinching.	claude-fable-5-2
+yamato	yamato_upgrade_power3_04_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_04.vsnd	私は屈しない。	I will not yield.	claude-fable-5-2
+yamato	yamato_upgrade_power3_05_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_05.vsnd	この命、尽きるまで戦おう。	I will fight until this life is spent.	claude-fable-5-2
+yamato	yamato_upgrade_power3_06_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_06.vsnd	兄よ、私を守ってくれ。	Brother, protect me.	claude-fable-5-2
+yamato	yamato_upgrade_power3_07_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_07.vsnd	何人たりとも私の心を折ることはできん。	No one can break my spirit.	claude-fable-5-2
+yamato	yamato_upgrade_power3_08_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_08.vsnd	生き残るのは私だ。	I'll be the one who survives.	claude-fable-5-2
+yamato	yamato_upgrade_power3_09_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_09.vsnd	もはや私の戦いを止めるものは何もない。	Nothing can stop my fight now.	claude-fable-5-2
+yamato	yamato_upgrade_power3_10_hero_3d	sounds/vo/yamato/yamato_upgrade_power3_10.vsnd	最後に立っているのはこの私だ。	The last one standing will be me.	claude-fable-5-2
+yamato	yamato_upgrade_power4_01_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_01.vsnd	どれだけ追い込まれようとも、最後に勝つのは私だ。	However hard I'm pressed, I win in the end.	claude-fable-5-2
+yamato	yamato_upgrade_power4_02_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_02.vsnd	こいつが起死回生の一手となろう。	This will be the move that brings me back from the brink.	claude-fable-5-2
+yamato	yamato_upgrade_power4_03_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_03.vsnd	私の一族は代々死線をくぐり抜けてきた。	For generations my family has walked through the jaws of death.	claude-fable-5-2
+yamato	yamato_upgrade_power4_04_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_04.vsnd	そう簡単に私を殺せると思うな。	Don't think I can be killed so easily.	claude-fable-5-2
+yamato	yamato_upgrade_power4_05_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_05.vsnd	兄が私を勝利へと導くだろう。	My brother will guide me to victory.	claude-fable-5-2
+yamato	yamato_upgrade_power4_06_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_06.vsnd	セブンスムーンの怒りを思い知らせてやろう。	I'll make them feel the wrath of the 7th Moon.	claude-fable-5-2
+yamato	yamato_upgrade_power4_07_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_07.vsnd	死が奴らにもたらされるだろう。	Death will be brought upon them.	claude-fable-5-2
+yamato	yamato_upgrade_power4_08_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_08.vsnd	こんなところで死ぬわけにはいかん！	I cannot die in a place like this!	claude-fable-5-2
+yamato	yamato_upgrade_power4_09_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_09.vsnd	影と化した私に恐怖するがいい。	Fear me, now that I have become shadow.	claude-fable-5-2
+yamato	yamato_upgrade_power4_10_hero_3d	sounds/vo/yamato/yamato_upgrade_power4_10.vsnd	真の戦いが始まるな。	Now the true battle begins.	claude-fable-5-2
+yamato	yamato_use_ability_refresher_02_ability_3d	sounds/vo/yamato/yamato_use_ability_refresher_02.vsnd	まだ終わってはいない。	It's not over yet.	claude-fable-5-2
+yamato	yamato_use_ability_refresher_03_ability_3d	sounds/vo/yamato/yamato_use_ability_refresher_03.vsnd	セブンスムーンを怒らせるとどうなるか教えてやる。	I'll show you what happens when you anger the 7th Moon.	claude-fable-5-2
+yamato	yamato_use_colossus_03_ability_3d	sounds/vo/yamato/yamato_use_colossus_03.vsnd	斬り捨ててやる！	I'll cut you down!	claude-fable-5-2
+yamato	yamato_use_curse_02_ability_3d	sounds/vo/yamato/yamato_use_curse_02.vsnd	呪ってやろう。	I'll curse you.	claude-fable-5-2
+yamato	yamato_use_curse_03_ability_3d	sounds/vo/yamato/yamato_use_curse_03.vsnd	呪われるがいい。	Be cursed.	claude-fable-5-2
+yamato	yamato_use_decay_02_ability_3d	sounds/vo/yamato/yamato_use_decay_02.vsnd	腐食させてやる。	I'll make you rot.	claude-fable-5-2
+yamato	yamato_use_decay_03_ability_3d	sounds/vo/yamato/yamato_use_decay_03.vsnd	回復を阻害してやる。	I'll cut off your healing.	claude-fable-5-2
+yamato	yamato_use_echo_shard_02_ability_3d	sounds/vo/yamato/yamato_use_echo_shard_02.vsnd	よし、もう一度だ。	Good. Once more.	claude-fable-5-2
+yamato	yamato_use_echo_shard_03_ability_3d	sounds/vo/yamato/yamato_use_echo_shard_03.vsnd	力が戻った。	My power has returned.	claude-fable-5-2
+yamato	yamato_use_ice_blast_02_ability_3d	sounds/vo/yamato/yamato_use_ice_blast_02.vsnd	アイスブラスト！	Ice Blast!	claude-fable-5-2
+yamato	yamato_use_ice_blast_03_ability_3d	sounds/vo/yamato/yamato_use_ice_blast_03.vsnd	氷を召喚する。	I summon ice.	claude-fable-5-2
+yamato	yamato_use_metal_skin_02_ability_3d	sounds/vo/yamato/yamato_use_metal_skin_02.vsnd	メタルスキン。	Metal Skin.	claude-fable-5-2
+yamato	yamato_use_metal_skin_03_ability_3d	sounds/vo/yamato/yamato_use_metal_skin_03.vsnd	私に銃弾は効かん。	Bullets don't work on me.	claude-fable-5-2
+yamato	yamato_use_phantom_strike_02_ability_3d	sounds/vo/yamato/yamato_use_phantom_strike_02.vsnd	ファントムストライク！	Phantom Strike!	claude-fable-5-2
+yamato	yamato_use_phantom_strike_03_ability_3d	sounds/vo/yamato/yamato_use_phantom_strike_03.vsnd	距離を詰める！	Closing the distance!	claude-fable-5-2
+yamato	yamato_use_power1_01_ability_3d	sounds/vo/yamato/yamato_use_power1_01.vsnd	パワースラッシュ！	Power Slash!	claude-fable-5-2
+yamato	yamato_use_power1_01_alt_01_ability_3d	sounds/vo/yamato/yamato_use_power1_01_alt_01.vsnd	パワースラッシュ！	Power Slash!	claude-fable-5-2
+yamato	yamato_use_power1_02_ability_3d	sounds/vo/yamato/yamato_use_power1_02.vsnd	研ぎ澄ませ。	Hone the edge.	claude-fable-5-2
+yamato	yamato_use_power1_03_ability_3d	sounds/vo/yamato/yamato_use_power1_03.vsnd	高まれ！	Rise!	claude-fable-5-2
+yamato	yamato_use_power1_04_ability_3d	sounds/vo/yamato/yamato_use_power1_04.vsnd	斬り伏せてやる！	I'll cut you down!	claude-fable-5-2
+yamato	yamato_use_power1_05_ability_3d	sounds/vo/yamato/yamato_use_power1_05.vsnd	構えよし。	Stance set.	claude-fable-5-2
+yamato	yamato_use_power1_06_ability_3d	sounds/vo/yamato/yamato_use_power1_06.vsnd	よし、行くぞ。	Right. Here I go.	claude-fable-5-2
+yamato	yamato_use_power1_07_ability_3d	sounds/vo/yamato/yamato_use_power1_07.vsnd	私を見るがいい！	Behold me!	claude-fable-5-2
+yamato	yamato_use_power1_08_ability_3d	sounds/vo/yamato/yamato_use_power1_08.vsnd	一刀両断にしてやる。	I'll cleave you in two with one stroke.	claude-fable-5-2
+yamato	yamato_use_power1_09_ability_3d	sounds/vo/yamato/yamato_use_power1_09.vsnd	死ねえ！	Die!	claude-fable-5-2
+yamato	yamato_use_power1_10_ability_3d	sounds/vo/yamato/yamato_use_power1_10.vsnd	もらったな。	Got you.	claude-fable-5-2
+yamato	yamato_use_power2_01_ability_3d	sounds/vo/yamato/yamato_use_power2_01.vsnd	覚悟しろ！	Prepare yourself!	claude-fable-5-2
+yamato	yamato_use_power2_02_ability_3d	sounds/vo/yamato/yamato_use_power2_02.vsnd	隠れても無駄だ！	Hiding is useless!	claude-fable-5-2
+yamato	yamato_use_power2_03_ability_3d	sounds/vo/yamato/yamato_use_power2_03.vsnd	食らえ！	Take this!	claude-fable-5-2
+yamato	yamato_use_power2_04_ability_3d	sounds/vo/yamato/yamato_use_power2_04.vsnd	今だ！	Now!	claude-fable-5-2
+yamato	yamato_use_power2_05_ability_3d	sounds/vo/yamato/yamato_use_power2_05.vsnd	突撃あるのみ！	Nothing to do but charge!	claude-fable-5-2
+yamato	yamato_use_power2_06_ability_3d	sounds/vo/yamato/yamato_use_power2_06.vsnd	逃がしはしないぞ！	You won't get away!	claude-fable-5-2
+yamato	yamato_use_power2_07_ability_3d	sounds/vo/yamato/yamato_use_power2_07.vsnd	貫いてやる！	I'll run you through!	claude-fable-5-2
+yamato	yamato_use_power2_08_ability_3d	sounds/vo/yamato/yamato_use_power2_08.vsnd	捉えた！	Got you!	claude-fable-5-2
+yamato	yamato_use_power2_09_ability_3d	sounds/vo/yamato/yamato_use_power2_09.vsnd	フライングストライク！	Flying Strike!	claude-fable-5-2
+yamato	yamato_use_power2_10_ability_3d	sounds/vo/yamato/yamato_use_power2_10.vsnd	定めを受け入れろ。	Accept your fate.	claude-fable-5-2
+yamato	yamato_use_power3_01_ability_3d	sounds/vo/yamato/yamato_use_power3_01.vsnd	情けはかけん。	I show no mercy.	claude-fable-5-2
+yamato	yamato_use_power3_02_ability_3d	sounds/vo/yamato/yamato_use_power3_02.vsnd	容赦はしないぞ！	I'll show no mercy!	claude-fable-5-2
+yamato	yamato_use_power3_03_ability_3d	sounds/vo/yamato/yamato_use_power3_03.vsnd	切り裂いてやる！	I'll tear you apart!	claude-fable-5-2
+yamato	yamato_use_power3_04_ability_3d	sounds/vo/yamato/yamato_use_power3_04.vsnd	クリムゾンスラッシュ！	Crimson Slash!	claude-fable-5-2
+yamato	yamato_use_power3_05_ability_3d	sounds/vo/yamato/yamato_use_power3_05.vsnd	その命もらった！	Your life is mine!	claude-fable-5-2
+yamato	yamato_use_power3_06_ability_3d	sounds/vo/yamato/yamato_use_power3_06.vsnd	やられてたまるか！	I won't go down like this!	claude-fable-5-2
+yamato	yamato_use_power3_07_ability_3d	sounds/vo/yamato/yamato_use_power3_07.vsnd	邪魔をするな！	Out of my way!	claude-fable-5-2
+yamato	yamato_use_power3_08_ability_3d	sounds/vo/yamato/yamato_use_power3_08.vsnd	私は戦い続ける！	I will keep fighting!	claude-fable-5-2
+yamato	yamato_use_power3_09_ability_3d	sounds/vo/yamato/yamato_use_power3_09.vsnd	お前に私は殺せん！	You can't kill me!	claude-fable-5-2
+yamato	yamato_use_power3_10_ability_3d	sounds/vo/yamato/yamato_use_power3_10.vsnd	私は勝つ！	I will win!	claude-fable-5-2
+yamato	yamato_use_power4_01_ult_3d	sounds/vo/yamato/yamato_use_power4_01.vsnd	我らが一族の力を思い知れ！	Know the power of our clan!	claude-fable-5-2
+yamato	yamato_use_power4_02_ult_3d	sounds/vo/yamato/yamato_use_power4_02.vsnd	これがセブンスムーンの力だ！	This is the power of the 7th Moon!	claude-fable-5-2
+yamato	yamato_use_power4_03_ult_3d	sounds/vo/yamato/yamato_use_power4_03.vsnd	私を止められるとでも思ったか。	Did you think you could stop me?	claude-fable-5-2
+yamato	yamato_use_power4_04_ult_3d	sounds/vo/yamato/yamato_use_power4_04.vsnd	セブンスムーンはここでは終わらん！	The 7th Moon does not end here!	claude-fable-5-2
+yamato	yamato_use_power4_05_ult_3d	sounds/vo/yamato/yamato_use_power4_05.vsnd	影よ、私を守れ！	Shadows, protect me!	claude-fable-5-2
+yamato	yamato_use_power4_06_02_ult_3d	sounds/vo/yamato/yamato_use_power4_06_02.vsnd	あはは、そしてあなたは私を止められると思ったのですか。	Ha ha, and you thought you could stop me?	claude-fable-5-2
+yamato	yamato_use_power4_06_ult_3d	sounds/vo/yamato/yamato_use_power4_06.vsnd	覚悟するがいい！	Prepare yourselves!	claude-fable-5-2
+yamato	yamato_use_power4_07_ult_3d	sounds/vo/yamato/yamato_use_power4_07.vsnd	死をもたらしてやろう。	I will bring you death.	claude-fable-5-2
+yamato	yamato_use_power4_08_ult_3d	sounds/vo/yamato/yamato_use_power4_08.vsnd	お前の命運は定まった。	Your fate is sealed.	claude-fable-5-2
+yamato	yamato_use_power4_09_ult_3d	sounds/vo/yamato/yamato_use_power4_09.vsnd	影を殺すことはできん。	You cannot kill a shadow.	claude-fable-5-2
+yamato	yamato_use_power4_10_ult_3d	sounds/vo/yamato/yamato_use_power4_10.vsnd	これぞセブンスムーンに与えられし力。	This is the power granted to the 7th Moon.	claude-fable-5-2
+yamato	yamato_use_shadow_weave_02_ability_3d	sounds/vo/yamato/yamato_use_shadow_weave_02.vsnd	影に同化する。	I become one with the shadows.	claude-fable-5-2
+yamato	yamato_use_shadow_weave_03_ability_3d	sounds/vo/yamato/yamato_use_shadow_weave_03.vsnd	影よ、私を隠せ！	Shadows, conceal me!	claude-fable-5-2
+yamato	yamato_use_silencer_02_ability_3d	sounds/vo/yamato/yamato_use_silencer_02.vsnd	魔法を阻害してやる。	I'll block your magic.	claude-fable-5-2
+yamato	yamato_use_silencer_03_ability_3d	sounds/vo/yamato/yamato_use_silencer_03.vsnd	奴らの力を弱体化させる！	I'll weaken their power!	claude-fable-5-2
+yamato	yamato_use_tech_purge_02_ability_3d	sounds/vo/yamato/yamato_use_tech_purge_02.vsnd	まだまだこれからだ！	I'm only getting started!	claude-fable-5-2
+yamato	yamato_use_tech_purge_03_ability_3d	sounds/vo/yamato/yamato_use_tech_purge_03.vsnd	気を高めろ！	Focus your spirit!	claude-fable-5-2
+yamato	yamato_use_unstoppable_02_ability_3d	sounds/vo/yamato/yamato_use_unstoppable_02.vsnd	私を止めることはできん！	You cannot stop me!	claude-fable-5-2
+yamato	yamato_use_unstoppable_03_ability_3d	sounds/vo/yamato/yamato_use_unstoppable_03.vsnd	私は魔法など恐れん。	I have no fear of magic.	claude-fable-5-2
+yamato	yamato_use_vampiric_burst_02_ability_3d	sounds/vo/yamato/yamato_use_vampiric_burst_02.vsnd	血を奪ってやる。	I'll take your blood.	claude-fable-5-2
+yamato	yamato_use_vampiric_burst_03_ability_3d	sounds/vo/yamato/yamato_use_vampiric_burst_03.vsnd	奴らの血を私のものとしよう。	I'll make their blood my own.	claude-fable-5-2
