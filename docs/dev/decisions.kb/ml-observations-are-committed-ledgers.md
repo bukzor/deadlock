@@ -45,6 +45,7 @@ orthography a native reader of its language expects, and a
 | `data/tools/whisper/<model>.bin` | the GGML model, fetched | redo | no |
 | `transcripts/asr/<hero>.tsv` | `crc32 vsnd model text`, one row per clip and model | the ASR job | **yes** |
 | `transcripts/fixups.tsv` | `asr_text replacement translation doubt by` | the fix-up pass and the owner | **yes** |
+| `transcripts/caption-corrections.tsv` | `crc32 vsnd caption suggested doubt by`: English clips whose audio departs materially from a real caption | a judge pass and the owner's ear | **yes** |
 | `data/vo/foreign.tsv` | `hero event vsnd lang replacement translation doubt source`: the file to read | redo (join) | yes |
 
 ## Why this shape

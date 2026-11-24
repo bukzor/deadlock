@@ -66,6 +66,13 @@ locale for Yamato), the bracket line is dropped. English-spoken lines that
 were mislabelled (「Vermin.」) are just the English, with a bracketed
 translation in the other locales.
 
+English-caption corrections ([!@bukzor] 2026-11-24): "certainly of a
+lower priority". Wrong English captions, such as Vyper's "Calvin" or her
+nicknames for heroes, are held apart from the "Speaks <language>" work, so
+that they can later be included or left out, and combined or kept
+separate. They live in `transcripts/caption-corrections.tsv`, and no
+artifact consumes them yet.
+
 The forum artifact ([!@bukzor] 2026-11-24): a CSV the owner will publish
 on the Deadlock forum, one row per clip, with the current caption and the
 suggested text and translation. The coordinator recommended the columns

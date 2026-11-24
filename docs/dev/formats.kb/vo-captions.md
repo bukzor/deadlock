@@ -140,3 +140,5 @@ what its caption says.
   vowel, but the agent judge had filed every "Calvin" as an ASR error.
   Counting these 11, **0.9% (16 of 1717) of Vyper's captions misstate the
   line.**
+- **The 16, plus the ambiguous one, are recorded** in
+  `transcripts/caption-corrections.tsv`.
