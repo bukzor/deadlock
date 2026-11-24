@@ -110,7 +110,7 @@ what its caption says.
   models, the least certain of the five).
 - **ASR errors cluster in pings,** not in a score band: 263 of the 282
   flagged ping clips are misheard hero or ability names (Hayes, Inferness,
-  Calvin, alt for ult). Scores of 0.4 to 0.8 are mostly ASR errors and
+  alt for ult). Scores of 0.4 to 0.8 are mostly ASR errors and
   0.9 and above mostly fillers, but one material clip scored 0.91, so no
   threshold below 1.0 is safe.
 - **Caveats:** one hero, one judge (an agent, no listening). Turbo
@@ -121,3 +121,11 @@ what its caption says.
   possible where a mishearing overlaps it; turbo found such cases in 4 of
   the 10 doubtful ASR calls it rechecked (3 minor, 1 material), so the
   material rate could be up to about 0.6%.
+- **"Calvin" is said, not misheard.** The owner (2026-11-24): characters
+  getting Kelvin's name wrong is a running gag. Whisper agrees: in the same
+  voice and model it hears "Calvin" in 12 of Vyper's 23 Kelvin clips
+  (every kill, convo and zipline line, plus some pings) and "Kelvin" in 10
+  (`careful_kelvin_*`, `see_kelvin_01` and other pings). A mishearing
+  wouldn't split like that. Those 12 were judged ASR errors above. Counted
+  as material, they raise the rate to **1.0% (17 of 1717)**, and the
+  agent judge's other "misheard name" calls are suspect in the same way.
