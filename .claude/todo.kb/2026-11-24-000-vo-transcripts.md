@@ -151,8 +151,9 @@ pilot, then 011 → 012, then 013 depending on 010's rate.
   overnight. Only below-threshold clips go to an LLM, so tokens scale with
   the mismatch rate. Recommend dropping ([!DRAFT] 2026-11-24): at 0.3%
   material on Vyper, the colourful hero the owner picked, about 79k clips
-  would yield roughly 200 material rows for about 2M tokens, and most of
-  those would be nicknames for heroes.
+  would yield about 240 material rows. At 010's cost (174k tokens for 1717
+  clips) that is about 8M tokens, and most of the rows would be nicknames
+  for heroes.
 
 For the owner, not a unit: every build re-provisions
 `data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream
