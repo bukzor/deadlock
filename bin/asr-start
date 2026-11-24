@@ -1,0 +1,32 @@
+#!/bin/bash
+# usage: bin/asr-start [HERO]   (default: yamato)
+# Build the ASR job's inputs with redo, then start the job
+# (bukzor_deadlock.vo_asr HERO small) detached, in tmux session `asr`, so it
+# survives a closed terminal or a crashed Claude session.
+#   watch:  tmux attach -t asr   (detach: C-b d), or wc -l transcripts/asr/*.tsv
+#   stop:   tmux kill-session -t asr   (kill-safe: run this again to resume)
+# The pane stays open after the job ends, showing how it exited; kill the
+# session before starting another.
+set -euo pipefail
+shopt -s failglob
+export DEBUG="${DEBUG:-0}"
+
+onerror() {
+  error="$?"
+  echo >&2 "ERROR($error)"
+  exit "$error"
+}
+trap onerror ERR
+
+if (( DEBUG > 0 )); then
+  set -x
+fi
+
+hero=${1:-yamato}
+root=$(dirname "$(dirname "$(readlink -f "$0")")")
+cd "$root"
+
+./bin/shell redo-ifchange data/vo/lines.tsv "data/vo/audio/$hero.d" data/tools/whisper/ggml-small.bin
+tmux new-session -d -s asr -c "$root" "./bin/shell python -m bukzor_deadlock.vo_asr $hero small" \; \
+  set-option -t asr remain-on-exit on
+echo >&2 "started: tmux attach -t asr"

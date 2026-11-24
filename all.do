@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build all generated data: the committed, transformative TSV views
-# (gamedata.tsv/, dlls/<facet>.tsv), the build stamp (deadlock-version.json),
-# and the VRF release record (tools/vrf-release.json, rechecked daily), plus the
+# (gamedata.tsv/, dlls/<facet>.tsv, vo/lines.tsv, vo/japanese.tsv), the build
+# stamp (deadlock-version.json), and the VRF release record (tools/vrf-release.json, rechecked daily), plus the
 # local intermediates they derive from (extraction, gamedata.json/,
 # manifest.jsonl, the per-DLL documents — gitignored, near-verbatim Valve data),
 # the checks that fail the build if the DLL scan reads garbage (dlls.check/),
@@ -12,7 +12,7 @@
 set -euo pipefail
 
 views=(levels heroes items abilities ability_profiles item_bonuses ability_upgrades)
-committed=(data/deadlock-version.json data/tools/vrf-release.json)
+committed=(data/deadlock-version.json data/tools/vrf-release.json data/vo/lines.tsv data/vo/japanese.tsv)
 # each view is a sparse X.tsv plus its X.defaults.tsv (absent when empty)
 for view in "${views[@]}"; do
   committed+=("data/gamedata.tsv/$view.tsv" "data/gamedata.tsv/$view.defaults.tsv")

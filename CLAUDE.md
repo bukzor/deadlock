@@ -28,7 +28,9 @@ binary, to: diff patch changes precisely, understand game mechanics from data
   name): `data/gamedata.tsv/` for hero/item/ability stats, `data/dlls/*.tsv` for
   the DLLs — `convars.tsv`/`concommands.tsv` hold every declaration's type,
   default, range, flags and help; `data/vo/lines.tsv` for each hero voice
-  clip's event, audio path, CRC32 and English caption. `data/convars.md`, `data/concommands.md` and
+  clip's event, audio path, CRC32 and English caption; `data/vo/japanese.tsv`
+  for what each Japanese-speaking clip says (replacement Japanese, English
+  translation, and its source). `data/convars.md`, `data/concommands.md` and
   `data/dlls/load.tree.txt` render the same rows for humans (local, built by
   `redo`); the per-DLL JSON documents hold nothing the TSVs don't.
 - Generated output goes under `data/` and is regenerated with `redo`. Only the
