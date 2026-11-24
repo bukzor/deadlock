@@ -79,7 +79,7 @@ Design: `docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md`
 (proposed; revised in e73f297 to the owner's rulings).
 
 Wave 4, after 004:
-- [ ] [005 asr runner](2026-11-24-000-vo-transcripts.kb/2026-11-24-005-asr-runner.md): audio, model and view targets, the `all.do` wiring, the ASR job; it starts the Yamato run in tmux and hands back
+- [x] [005 asr runner](2026-11-24-000-vo-transcripts.kb/2026-11-24-005-asr-runner.md) (1331565): the whole Yamato run, 543 clips in 290 s; `transcripts/asr/yamato.tsv`, `data/vo/japanese.tsv`, `bin/asr-start`
 
 Wave 5, once 005's first rows land:
 - [ ] [006 fixups](2026-11-24-000-vo-transcripts.kb/2026-11-24-006-fixups.md): a replacement and a translation per Japanese line; doubtful rows escalate to a stronger model, then to the owner
