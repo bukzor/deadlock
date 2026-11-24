@@ -41,6 +41,13 @@ copies them.
   none, the Final report is its home; name the gap in Open Questions.
 - An interface you produce is documented where it is defined (docstrings,
   types, the `.do` header), not restated in your report.
+- **Disk:** `/` is a growable virtual disk stored on C:
+  (`.../AlpineWSL_.../LocalState/ext4.vhdx`), so `df /` overstates the
+  space. The real limit is `df /mnt/c`. Running C: out of space crashes
+  the whole session, which happened on 2026-11-24 with 26 GB of explode.
+  Deleting files doesn't shrink the vhdx. Before any write over about
+  1 GB, estimate its size (for a VPK, sum the index's entry sizes) and keep
+  at least 20 GB free on C:.
 - Read the install in place; never write under `$DEADLOCK_HOME`. It is a
   Windows drive seen through WSL (9P), so reads are slow: measure before you
   bulk-copy.
