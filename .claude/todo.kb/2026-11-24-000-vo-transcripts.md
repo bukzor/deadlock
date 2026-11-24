@@ -146,7 +146,7 @@ Wave 9 (parallel; no whisper):
     already require editing `gameinfo.gi`, so the manager is the real
     path.
 - [ ] [012 locale translations](2026-11-24-000-vo-transcripts.kb/2026-11-24-012-locale-translations.md): `transcripts/locale-translations.tsv`, the bracketed translation in the 16 other locales; 011 falls back to English where a row is missing
-- [ ] [014 forum notes](2026-11-24-000-vo-transcripts.kb/2026-11-24-014-forum-notes.md): plain English in the CSV's `note`, in place of whisper model names
+- [x] [014 forum notes](2026-11-24-000-vo-transcripts.kb/2026-11-24-014-forum-notes.md) (b4a578c): 17 notes now read "Unsure: speech recognition heard …; a larger speech model heard …"; the unit didn't commit, so the coordinator did
 
 Parked: 013 all-hero caption fidelity, 010's method over about 79k
 clips. English-caption corrections are lower priority and held apart
