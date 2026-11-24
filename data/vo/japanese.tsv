@@ -113,7 +113,7 @@ yamato	yamato_enemy_tengu_flies_away_01_hero_3d	sounds/vo/yamato/yamato_enemy_te
 yamato	yamato_enemy_tengu_flies_away_02_hero_3d	sounds/vo/yamato/yamato_enemy_tengu_flies_away_02.vsnd	逃がさんぞ、アイビー！	You won't get away, Ivy!		claude-fable-5-2
 yamato	yamato_enemy_tengu_flies_away_03_hero_3d	sounds/vo/yamato/yamato_enemy_tengu_flies_away_03.vsnd	私から逃げ続けることはできんぞ。	You can't keep running from me.		claude-fable-5-2
 yamato	yamato_enemy_wraith_lifts_01_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_01.vsnd	やめろ、レイス！	Stop it, Wraith!		claude-fable-5-2
-yamato	yamato_enemy_wraith_lifts_02_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_02.vsnd	下ろせ！	Put me down!	small heard 滅せ and turbo 殺せ (korose); 下ろせ (orose) fits being lifted, but neither model wrote it	claude-fable-5-2
+yamato	yamato_enemy_wraith_lifts_02_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_02.vsnd	殺せ！	Go on, kill me!		@bukzor
 yamato	yamato_enemy_wraith_lifts_03_hero_3d	sounds/vo/yamato/yamato_enemy_wraith_lifts_03.vsnd	許さんぞ、レイス！	You'll pay for this, Wraith!		claude-fable-5-2
 yamato	yamato_hunt_01_hero_3d	sounds/vo/yamato/yamato_hunt_01.vsnd	どこに行った？	Where did you go?		claude-fable-5-2
 yamato	yamato_hunt_03_hero_3d	sounds/vo/yamato/yamato_hunt_03.vsnd	隠れても無駄だ。	Hiding is useless.		claude-fable-5-2
@@ -245,10 +245,10 @@ yamato	yamato_kill_kelvin_04_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_04.vsnd
 yamato	yamato_kill_kelvin_05_hero_3d	sounds/vo/yamato/yamato_kill_kelvin_05.vsnd	あの能天気な男にはうんざりだ。	I'm sick of that happy-go-lucky man.		claude-fable-5-2
 yamato	yamato_kill_krill_01_hero_3d	sounds/vo/yamato/yamato_kill_krill_01.vsnd	でかい方はコートにして、小さい方は帽子にでもするか。	I'll make the big one into a coat, and maybe the small one into a hat.		claude-fable-5-2
 yamato	yamato_kill_krill_02_hero_3d	sounds/vo/yamato/yamato_kill_krill_02.vsnd	おぞましい奴らめ！	Loathsome creatures!		claude-fable-5-2
-yamato	yamato_kill_krill_03_hero_3d	sounds/vo/yamato/yamato_kill_krill_03.vsnd	Vermin.	Vermin.	small heard バーメン and turbo ワーメン; English "Vermin" is a guess	claude-fable-5-2
+yamato	yamato_kill_krill_03_hero_3d	sounds/vo/yamato/yamato_kill_krill_03.vsnd	Vermin.	Vermin.		@bukzor
 yamato	yamato_kill_krill_04_hero_3d	sounds/vo/yamato/yamato_kill_krill_04.vsnd	腕力に頼ったのが間違いだったな。	Relying on brute strength was your mistake.		claude-fable-5-2
 yamato	yamato_kill_krill_05_hero_3d	sounds/vo/yamato/yamato_kill_krill_05.vsnd	私はネズミなど恐れん。	I'm not afraid of rats.		claude-fable-5-2
-yamato	yamato_kill_lash_01_alt_01_hero_3d	sounds/vo/yamato/yamato_kill_lash_01_alt_01.vsnd	Asshole!	Asshole!	small heard アソー and turbo アッスホ; English "Asshole" is a guess (阿呆, "idiot", is the other reading)	claude-fable-5-2
+yamato	yamato_kill_lash_01_alt_01_hero_3d	sounds/vo/yamato/yamato_kill_lash_01_alt_01.vsnd	Asshole!	Asshole!		@bukzor
 yamato	yamato_kill_lash_01_hero_3d	sounds/vo/yamato/yamato_kill_lash_01.vsnd	馬鹿なアメリカ人め。	Stupid American.		claude-fable-5-2
 yamato	yamato_kill_lash_02_hero_3d	sounds/vo/yamato/yamato_kill_lash_02.vsnd	アメリカの傲慢さが招いた報いだ。	This is what American arrogance earns.		claude-fable-5-2
 yamato	yamato_kill_lash_03_hero_3d	sounds/vo/yamato/yamato_kill_lash_03.vsnd	親のしつけが甘かったようだな。	Seems your parents went easy on the discipline.		claude-fable-5-2
@@ -331,7 +331,7 @@ yamato	yamato_kill_viscous_01_hero_3d	sounds/vo/yamato/yamato_kill_viscous_01.vs
 yamato	yamato_kill_viscous_02_hero_3d	sounds/vo/yamato/yamato_kill_viscous_02.vsnd	まったくおぞましい奴だな。	What a truly loathsome creature.		claude-fable-5-2
 yamato	yamato_kill_viscous_03_hero_3d	sounds/vo/yamato/yamato_kill_viscous_03.vsnd	まったく奇怪な存在だ。	A truly bizarre being.		claude-fable-5-2
 yamato	yamato_kill_viscous_04_hero_3d	sounds/vo/yamato/yamato_kill_viscous_04.vsnd	なんなんだあれは。	What on earth is that thing?		claude-fable-5-2
-yamato	yamato_kill_viscous_05_hero_3d	sounds/vo/yamato/yamato_kill_viscous_05.vsnd	不快な生き物だ。	A repulsive creature.	small heard ガイナ and turbo 簡易な; 不快な (repulsive), 厄介な (troublesome) or 奇怪な (bizarre)	claude-fable-5-2
+yamato	yamato_kill_viscous_05_hero_3d	sounds/vo/yamato/yamato_kill_viscous_05.vsnd	無害な生き物だ。	A harmless creature.	owner heard 'gai nai kimono da'; 無害な (mugai na) assumes a faint 'mu'; 奇怪な (kikai na) is the other reading	claude-opus-5.5
 yamato	yamato_kill_warden_01_hero_3d	sounds/vo/yamato/yamato_kill_warden_01.vsnd	お前に私は止められんさ、ウォーデン。	You can't stop me, Warden.		claude-fable-5-2
 yamato	yamato_kill_warden_02_hero_3d	sounds/vo/yamato/yamato_kill_warden_02.vsnd	私は決して屈しないぞ、ウォーデン。	I will never yield, Warden.		claude-fable-5-2
 yamato	yamato_kill_warden_03_hero_3d	sounds/vo/yamato/yamato_kill_warden_03.vsnd	なんでも思う通りに行くと思うな。	Don't think everything goes the way you want.		claude-fable-5-2

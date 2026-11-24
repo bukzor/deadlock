@@ -135,8 +135,8 @@ Benitize is almost back!	Venator is almost back!	Venator is almost back!		claude
 逃がさんぞ、アイビー!	逃がさんぞ、アイビー！	You won't get away, Ivy!		claude-fable-5-2
 私から逃げ続けることはできんぞ	私から逃げ続けることはできんぞ。	You can't keep running from me.		claude-fable-5-2
 やめろレイス!	やめろ、レイス！	Stop it, Wraith!		claude-fable-5-2
-殺せ!	下ろせ！	Put me down!	small heard 滅せ and turbo 殺せ (korose); 下ろせ (orose) fits being lifted, but neither model wrote it	claude-fable-5-2
-滅せ!	下ろせ！	Put me down!	small heard 滅せ and turbo 殺せ (korose); 下ろせ (orose) fits being lifted, but neither model wrote it	claude-fable-5-2
+殺せ!	殺せ！	Go on, kill me!		@bukzor
+滅せ!	殺せ！	Go on, kill me!		@bukzor
 許さんぞ、レイス!	許さんぞ、レイス！	You'll pay for this, Wraith!		claude-fable-5-2
 どこに行った?	どこに行った？	Where did you go?		claude-fable-5-2
 隠れても無駄だ	隠れても無駄だ。	Hiding is useless.		claude-fable-5-2
@@ -277,14 +277,14 @@ I want to lose to scrap metal.	I won't lose to scrap metal.	I won't lose to scra
 あの濃天気な男にはうんざりだ	あの能天気な男にはうんざりだ。	I'm sick of that happy-go-lucky man.		claude-fable-5-2
 デカイホーはコートにして、小さいホーは帽子にでもするか。	でかい方はコートにして、小さい方は帽子にでもするか。	I'll make the big one into a coat, and maybe the small one into a hat.		claude-fable-5-2
 おぞましい奴らめ!	おぞましい奴らめ！	Loathsome creatures!		claude-fable-5-2
-ワーメン	Vermin.	Vermin.	small heard バーメン and turbo ワーメン; English "Vermin" is a guess	claude-fable-5-2
-バーメン	Vermin.	Vermin.	small heard バーメン and turbo ワーメン; English "Vermin" is a guess	claude-fable-5-2
+ワーメン	Vermin.	Vermin.		@bukzor
+バーメン	Vermin.	Vermin.		@bukzor
 腕力に頼ったのが間違いだったな。	腕力に頼ったのが間違いだったな。	Relying on brute strength was your mistake.		claude-fable-5-2
 万力に頼ったのが間違いだったな。	腕力に頼ったのが間違いだったな。	Relying on brute strength was your mistake.		claude-fable-5-2
 私はネズミなど恐れん。	私はネズミなど恐れん。	I'm not afraid of rats.		claude-fable-5-2
 バカなアメリカ人命	馬鹿なアメリカ人め。	Stupid American.		claude-fable-5-2
-アッスホ	Asshole!	Asshole!	small heard アソー and turbo アッスホ; English "Asshole" is a guess (阿呆, "idiot", is the other reading)	claude-fable-5-2
-アソー!	Asshole!	Asshole!	small heard アソー and turbo アッスホ; English "Asshole" is a guess (阿呆, "idiot", is the other reading)	claude-fable-5-2
+アッスホ	Asshole!	Asshole!		@bukzor
+アソー!	Asshole!	Asshole!		@bukzor
 アメリカの豪満さが招いたむくいだ	アメリカの傲慢さが招いた報いだ。	This is what American arrogance earns.		claude-fable-5-2
 親のしつけが甘かったようだな。	親のしつけが甘かったようだな。	Seems your parents went easy on the discipline.		claude-fable-5-2
 ラッシュ、あわれだな。	ラッシュ、哀れだな。	Lash. How pitiful.		claude-fable-5-2
@@ -377,8 +377,8 @@ I want to lose to scrap metal.	I won't lose to scrap metal.	I won't lose to scra
 全くオズマシイヤツだな	まったくおぞましい奴だな。	What a truly loathsome creature.		claude-fable-5-2
 全く機会な存在だ	まったく奇怪な存在だ。	A truly bizarre being.		claude-fable-5-2
 なんなんだあれは。	なんなんだあれは。	What on earth is that thing?		claude-fable-5-2
-簡易な生き物だ。	不快な生き物だ。	A repulsive creature.	small heard ガイナ and turbo 簡易な; 不快な (repulsive), 厄介な (troublesome) or 奇怪な (bizarre)	claude-fable-5-2
-ガイナ生き物だ。	不快な生き物だ。	A repulsive creature.	small heard ガイナ and turbo 簡易な; 不快な (repulsive), 厄介な (troublesome) or 奇怪な (bizarre)	claude-fable-5-2
+簡易な生き物だ。	無害な生き物だ。	A harmless creature.	owner heard 'gai nai kimono da'; 無害な (mugai na) assumes a faint 'mu'; 奇怪な (kikai na) is the other reading	claude-opus-5.5
+ガイナ生き物だ。	無害な生き物だ。	A harmless creature.	owner heard 'gai nai kimono da'; 無害な (mugai na) assumes a faint 'mu'; 奇怪な (kikai na) is the other reading	claude-opus-5.5
 お前に私は止められんさ、ボーデン。	お前に私は止められんさ、ウォーデン。	You can't stop me, Warden.		claude-fable-5-2
 私は決してくっしないぞウォーデン	私は決して屈しないぞ、ウォーデン。	I will never yield, Warden.		claude-fable-5-2
 なんでも思う通りに行くと思うな。	なんでも思う通りに行くと思うな。	Don't think everything goes the way you want.		claude-fable-5-2
