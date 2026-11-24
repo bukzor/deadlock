@@ -53,6 +53,19 @@ let's do those too"): Ivy (`tengu`) has 34 Spanish clips, and Lady Geist
 (`ghost`) and Bebop have 1 French clip each. Their replacement is styled
 for a native reader of that language.
 
+Caption styling for foreign speech ([!@bukzor] 2026-11-24): the spoken
+text as spoken, then the player's-language translation in brackets on the
+next line, because "seeing the Japanese as Japanese adds world flavor":
+
+    奇怪な生き物だ。
+    [A bizarre creature.]
+
+The same applies to every non-English line. Coordinator's reading,
+vetoable: when the spoken language is the player's own (the Japanese
+locale for Yamato), the bracket line is dropped. English-spoken lines that
+were mislabelled (「Vermin.」) are just the English, with a bracketed
+translation in the other locales.
+
 The forum artifact ([!@bukzor] 2026-11-24): a CSV the owner will publish
 on the Deadlock forum, one row per clip, with the current caption and the
 suggested text and translation. The coordinator recommended the columns
@@ -103,6 +116,21 @@ Wave 7:
 Wave 8:
 - [ ] [009 forum csv](2026-11-24-000-vo-transcripts.kb/2026-11-24-009-forum-csv.md): the CSV to publish
 - [ ] [010 caption fidelity pilot](2026-11-24-000-vo-transcripts.kb/2026-11-24-010-caption-fidelity-pilot.md): English ASR on Vyper; how often the audio departs from the caption (the owner's ad-lib theory)
+
+Candidates the owner raised 2026-11-24, not yet briefed. Order: the
+pilot, then 011 → 012, then 013 depending on 010's rate.
+- 011 caption mod: per-locale `citadel_generated_vo_<lang>.txt` (Valve's
+  current file with our lines substituted, in the styling above), plus a
+  unified diff per locale for Valve. Packed as an addon VPK for the mod
+  managers. Rebuilt by redo on every patch. Gated on an owner in-game test:
+  does an addon override the loose caption file, and which line break does
+  the HUD render?
+- 012 locale translations: the bracketed translation in each of the 16
+  other locales, using each locale's own hero names, and labelled machine
+  translations.
+- 013 all-hero caption fidelity: 010's method over about 79k clips, run
+  overnight. Only below-threshold clips go to an LLM, so tokens scale with
+  the mismatch rate.
 
 For the owner, not a unit: every build re-provisions
 `data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream
