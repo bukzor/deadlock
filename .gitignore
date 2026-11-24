@@ -3,9 +3,10 @@
 # gamedata.dense.tsv/), the near-verbatim Valve extracts (gamedata.json/,
 # manifest.jsonl), the per-DLL documents (dlls/<facet>/, dlls.list), the
 # check outputs (dlls.check/), the engine's own cvarlist captures (cvarlist/),
-# and the raw files exploded out of the install's VPKs (vpk/).
+# the raw files exploded out of the install's VPKs (vpk/), and the decompiled
+# VO soundevents and all-locale captions (vo/).
 # Exceptions — committed so `git diff` shows patch changes — are the
-# transformative TSV views (gamedata.tsv/, dlls/<facet>.tsv), the build stamp
+# transformative TSV views (gamedata.tsv/, dlls/<facet>.tsv, vo/lines.tsv), the build stamp
 # naming the game version that produced them, the latest-VRF-release record,
 # and the redo .do scripts (source).
 # See docs/dev/decisions.kb/commit-diffable-data-let-git-diff.md
@@ -45,6 +46,10 @@
 !/data/vpk/
 /data/vpk/*
 !/data/vpk/*.do
+!/data/vo/
+/data/vo/*
+!/data/vo/*.do
+!/data/vo/lines.tsv
 
 # redo's markers for the phony aggregator targets (all.do, clean.do)
 /all

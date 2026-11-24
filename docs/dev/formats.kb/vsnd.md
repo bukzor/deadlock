@@ -32,8 +32,9 @@ tag (starts `FF FB 90`). No transcript exists in the sound resources.
 
 Nor do the neighbouring types carry one. A choreography scene
 (`scenes/conversations/*.vcd_c`) lists `speak` events by soundevent name
-and time only, and `resource/localization/` has no VO caption file in the
-paks (only a 41-byte `items_english.txt`). Transcripts need ASR.
+and time only. The VO captions are loose files beside the paks, not in
+them (`vo-captions.md`), and for Yamato's Japanese lines every locale
+says only "speaks Japanese". Transcripts need ASR.
 
 ## Codec
 
