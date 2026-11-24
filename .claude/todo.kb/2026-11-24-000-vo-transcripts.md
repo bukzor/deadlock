@@ -102,6 +102,7 @@ Wave 7:
 
 Wave 8:
 - [ ] [009 forum csv](2026-11-24-000-vo-transcripts.kb/2026-11-24-009-forum-csv.md): the CSV to publish
+- [ ] [010 caption fidelity pilot](2026-11-24-000-vo-transcripts.kb/2026-11-24-010-caption-fidelity-pilot.md): English ASR on Vyper; how often the audio departs from the caption (the owner's ad-lib theory)
 
 For the owner, not a unit: every build re-provisions
 `data/tools/Source2Viewer-CLI.d`, which rebuilds everything downstream
