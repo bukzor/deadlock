@@ -48,6 +48,10 @@ copies them.
   Deleting files doesn't shrink the vhdx. Before any write over about
   1 GB, estimate its size (for a VPK, sum the index's entry sizes) and keep
   at least 20 GB free on C:.
+- **CPU, from 2026-11-24 on:** the owner works in the foreground. Run every
+  CPU-heavy job (whisper, bulk ffmpeg) under `nice -n 19`, with at most 4
+  threads across all your concurrent jobs. That is the whole budget, not
+  per process.
 - Read the install in place; never write under `$DEADLOCK_HOME`. It is a
   Windows drive seen through WSL (9P), so reads are slow: measure before you
   bulk-copy.

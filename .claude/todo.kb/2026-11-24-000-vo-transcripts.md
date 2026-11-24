@@ -40,8 +40,11 @@ English. So optimize for efficiency:
 
 The fix-up output ([!@bukzor] 2026-11-24): each "Speaks Japanese" clip gets
 two texts:
-- **replacement:** an accurate rendering of what is spoken, in Japanese.
-  Whether accented English is written in katakana is a style choice.
+- **replacement:** an accurate rendering of what is spoken, in Japanese,
+  styled the way a Japanese reader such as Yamato would expect ([!@bukzor]
+  2026-11-24). Agreed reading: Japanese speech in ordinary Japanese
+  orthography, with loanwords in katakana (「パワースラッシュ!」). A sentence
+  spoken in English goes in Latin script (「Careful, Calico!」).
 - **translation:** English that tells English-speaking players what is
   meant.
 
