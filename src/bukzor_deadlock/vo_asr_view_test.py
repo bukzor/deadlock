@@ -31,34 +31,57 @@ class DescribeRows:
         fixups = {"s": fixup("S"), "t": fixup("T", by="@bukzor")}
         got = list(rows([line("a", "0000000a")], {"yamato": ledger}, fixups))
         assert got == [
-            ("yamato", "a", "sounds/vo/yamato/a.vsnd", "T", "means T", "", "@bukzor")
+            (
+                "yamato",
+                "a",
+                "sounds/vo/yamato/a.vsnd",
+                "ja",
+                "T",
+                "means T",
+                "",
+                "@bukzor",
+            )
+        ]
+
+    def it_labels_each_row_with_its_clips_language(self):
+        lines = [{**line("a", "0000000a", "Speaks spanish"), "hero": "tengu"}]
+        got = list(rows(lines, {"tengu": []}, {}))
+        assert [row[:4] for row in got] == [
+            ("tengu", "a", "sounds/vo/yamato/a.vsnd", "es")
         ]
 
     def it_takes_a_weaker_models_fixup_over_unfixed_text(self):
         ledger = [asr("0000000a", TURBO, "t"), asr("0000000a", SMALL, "s")]
         got = list(rows([line("a", "0000000a")], {"yamato": ledger}, {"s": fixup("S")}))
-        assert [row[3:] for row in got] == [("S", "means S", "", "claude-opus-5.5")]
+        assert [row[4:] for row in got] == [("S", "means S", "", "claude-opus-5.5")]
+
+    def it_ranks_detected_rows_by_their_model(self):
+        ledger = [asr("0000000a", TURBO + "/auto", "t"), asr("0000000a", SMALL, "s")]
+        ledger += [asr("0000000a", SMALL + "/auto", "s")]
+        fixups = {"s": fixup("S"), "t": fixup("T")}
+        got = list(rows([line("a", "0000000a")], {"yamato": ledger}, fixups))
+        assert [row[4] for row in got] == ["T"]
 
     def it_carries_the_doubt_of_the_fixup_that_wins(self):
         ledger = [asr("0000000a", TURBO, "t"), asr("0000000a", SMALL, "s")]
         fixups = {"s": fixup("S", doubt="small heard S"), "t": fixup("T")}
         got = list(rows([line("a", "0000000a")], {"yamato": ledger}, fixups))
-        assert [row[3:] for row in got] == [("T", "means T", "", "claude-opus-5.5")]
+        assert [row[4:] for row in got] == [("T", "means T", "", "claude-opus-5.5")]
         got = list(
             rows([line("a", "0000000a")], {"yamato": ledger}, {"s": fixups["s"]})
         )
-        assert [row[3:] for row in got] == [
+        assert [row[4:] for row in got] == [
             ("S", "means S", "small heard S", "claude-opus-5.5")
         ]
 
     def it_shows_the_strongest_asr_text_until_a_fixup_lands(self):
         ledger = [asr("0000000a", TURBO, "t\tx"), asr("0000000a", SMALL, "s")]
         got = list(rows([line("a", "0000000a")], {"yamato": ledger}, {}))
-        assert [row[3:] for row in got] == [("t\\tx", "", "", TURBO)]
+        assert [row[4:] for row in got] == [("t\\tx", "", "", TURBO)]
 
     def it_lists_a_clip_with_no_asr_yet_with_empty_cells(self):
         got = list(rows([line("a", "0000000a")], {"yamato": []}, {}))
-        assert [row[3:] for row in got] == [("", "", "", "")]
+        assert [row[4:] for row in got] == [("", "", "", "")]
 
     def it_gives_each_event_of_a_shared_clip_a_row(self):
         lines = [line("a", "0000000a"), line("b", "0000000a")]

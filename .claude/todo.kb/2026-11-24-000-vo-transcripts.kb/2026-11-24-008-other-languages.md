@@ -1,6 +1,6 @@
 ---
 managed-by: Skill(llm-subtask)
-status: open
+status: done
 blocked-by: []
 required-reading:
   - .claude/todo.kb/2026-11-24-000-vo-transcripts.kb/CLAUDE.md
@@ -67,21 +67,47 @@ file.
 - [x] Scope and `-l` from the caption (`vo_asr_ledger`, `vo_asr_batch`, `vo_asr`); tests
 - [x] View renamed to `data/vo/foreign.tsv` with `lang`; `.do`, `all.do`, `CLAUDE.md`, design doc
 - [x] ASR runs: tengu 48, ghost 34, bebop 24 clips on small; Yamato 0 pending
-- [~] Fix-ups for the new rows; escalate doubtful to turbo
-- [ ] Rebuild view; pytest, pyright; commit
+- [x] Amendment: uncaptioned clips detected (`/auto`), pinned rows dropped
+- [x] Fix-ups for the 106 new clips; 37 escalated to turbo
+- [x] Rebuild view; pytest, pyright; commit
 
 ## Decisions
 
-- **`Clip` carries `lang`;** a hero speaks one language (asserted), so a
-  batch has one `-l`. The caption must match "Speaks <language>" whole:
+- **`Clip` carries `lang`:** the caption's code, `auto` for an uncaptioned
+  clip, or the hero's entry in `PINNED_UNCAPTIONED` (only `yamato: ja`, so
+  her 11 rows stand). The caption must match "Speaks <language>" whole:
   atlas's "Uhhhh <speaks japanese>" stays out.
-- **Every uncaptioned clip is escalated to turbo.** The generalised rule
-  pulls in 70 uncaptioned clips (Ivy 14, Lady Geist 33, Bebop 23), almost
-  all English pings and alt takes. small under `-l fr`/`-l es` *translates*
-  English ("On va enlever Calico !"); turbo writes it as English ("Let's
-  take out Calico."), as it did under `-l ja`. So turbo is the fix-up's
-  source for them, and the replacement is the English spoken.
+- **Detected rows are `<model id>/auto`** (`vo_asr_ledger.decoded_id`);
+  `merge` drops rows decoded unlike their clip, which removed the 70
+  pinned rows (small and turbo) of uncaptioned clips. A detected clip runs
+  alone, since whisper detects once per window
+  (`vo_asr_batch.pack_languages`). The view ranks `/auto` ids with their
+  model.
+- **Found before the amendment:** small under `-l fr`/`-l es` *translates*
+  English speech ("On va enlever Calico !"); turbo writes it as English.
 
 ## Open Questions
 
+- `lang` reads `auto` for the 70 detected clips: the ledger doesn't keep
+  whisper's detected language. All 70 are English except Ivy's
+  `unselect_03_02` (Spanish). 009 may want a real code there.
+- The design doc's "Pinned" bullet still says `whisper-cli -l ja`; it is
+  outside my Layout/Scope remit.
+- Ivy's `ping_can_heal_tengu` and `ping_attack_tengu` say "Tengu" (both
+  models hear Dengu/Tango): her internal name, apparently recorded before
+  the rename to Ivy.
+
 ## Final report
+
+**Result:** 106 clips (36 captioned, 70 uncaptioned) have a replacement
+and a translation in `data/vo/foreign.tsv` (`grep -v ^yamato`); 18 carry
+a `doubt`. Ledgers: `transcripts/asr/{tengu,ghost,bebop}.tsv`, 139 new
+rows in `transcripts/fixups.tsv` (`by` `claude-opus-5-5`, one per ASR
+text). Yamato: 0 pending, ledger and her 543 view rows unchanged.
+`pytest`, `pyright` clean.
+
+**Deviations:** stopped mid-run on the amendment; the pinned turbo rows of
+uncaptioned clips (about 20, wasted) were dropped with the rest. Doubtful
+clips got turbo `/auto` or pinned per their clip. A concurrent run of
+mine lost one turbo row (b3c6c0fe), since rerun. Lines quoted in the
+coordinator reply, not here (the 60-line cap).

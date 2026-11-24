@@ -584,3 +584,142 @@ I wasn't born with this namebut I'll do my best to live up to it	I wasn't born w
 私は魔法など恐れん。	私は魔法など恐れん。	I have no fear of magic.		claude-fable-5-2
 血を奪ってやる。	血を奪ってやる。	I'll take your blood.		claude-fable-5-2
 奴らの血を私のものとしよう	奴らの血を私のものとしよう。	I'll make their blood my own.		claude-fable-5-2
+Let's take out bucket!	Let's take out Pocket!	Let's take out Pocket!		claude-opus-5-5
+Let's take out Dengu!	Let's take out Tengu!	Let's take out Ivy!	both models hear Dengu/Tango; Tengu is Ivy's internal (old) name	claude-opus-5-5
+Let's take out Yamato.	Let's take out Yamato.	Let's take out Yamato.		claude-opus-5-5
+Tango, I can heal you.	Tengu, I can heal you!	Ivy, I can heal you!	both models hear Dengu/Tango; Tengu is Ivy's internal (old) name	claude-opus-5-5
+Tango, I can heal you!	Tengu, I can heal you!	Ivy, I can heal you!	both models hear Dengu/Tango; Tengu is Ivy's internal (old) name	claude-opus-5-5
+Idol's here!	Idol's here!	Idol's here!		claude-opus-5-5
+I'm pulling out!	I'm pulling out!	I'm pulling out!		claude-opus-5-5
+I'll be back when I can!	I'll be back when I can!	I'll be back when I can!		claude-opus-5-5
+You're on your own!	You're on your own!	You're on your own!		claude-opus-5-5
+I'm not ready for a team fight.	I'm not ready for a team fight.	I'm not ready for a team fight.		claude-opus-5-5
+Slurks on the prowl!	Slorks on the prowl!	Fathom's on the prowl!		claude-opus-5-5
+GloGuy is here!	Goo Guy is here!	Goo guy (Viscous) is here!		claude-opus-5-5
+There's a Wraith!	There's Wraith!	There's Wraith!		claude-opus-5-5
+¡Bendito Dios, Seven!	¡Bendito Dios, Seven!	Good Lord, Seven!		claude-opus-5-5
+Bendito Dios, Seben.	¡Bendito Dios, Seven!	Good Lord, Seven!		claude-opus-5-5
+¡Gracias a Dios por este búho!	¡Gracias a Dios por ese búho!	Thank God for that owl!		claude-opus-5-5
+¡Gracias Dios por ese búho!	¡Gracias a Dios por ese búho!	Thank God for that owl!		claude-opus-5-5
+Me encanta ese tipo.	Me encanta ese tipo.	I love that guy.		claude-opus-5-5
+¡Pendejo!	¡Pendejo!	Jerk!		claude-opus-5-5
+Ellos van a pagar.	Van a pagar.	They're gonna pay.		claude-opus-5-5
+Ya vengo por ti.	Ya vengo por ti.	I'm coming for you.		claude-opus-5-5
+Gracias a Dios.	Gracias a Dios.	Thank God.		claude-opus-5-5
+No te preocupes, Ivy.	No te preocupes, Ivy.	Don't worry, Ivy.		claude-opus-5-5
+No pierdas la esperanza.	No pierdas la esperanza.	Don't lose hope.		claude-opus-5-5
+No te dejaré ganar.	No te dejaré ganar.	I won't let you win.		claude-opus-5-5
+¡Por Dios! ¡Muérete!	¡Por Dios! ¡Muérete!	For God's sake, die!		claude-opus-5-5
+¡Buen trabajo, todos!	¡Buen trabajo, todos!	Good work, everybody!		claude-opus-5-5
+Me encanta mi equipo.	Me encanta mi equipo.	I love my team.		claude-opus-5-5
+¡Los detuvo!	¡Los detuve!	Stopped 'em!	small: Los de tubo; turbo: Los detuvo; first person fits an interrupt	claude-opus-5-5
+¡Los de tubo!	¡Los detuve!	Stopped 'em!	small: Los de tubo; turbo: Los detuvo; first person fits an interrupt	claude-opus-5-5
+Nadie amenaza a mis amigos.	Nadie amenaza a mis amigos.	Nobody threatens my friends.		claude-opus-5-5
+Lo siento, chacho.	Lo siento, chacho.	Sorry, pal.		claude-opus-5-5
+Eligiste la pelea equivocada.	Elegiste la pelea equivocada.	You picked the wrong fight.		claude-opus-5-5
+Este será un día largo para ti.	Este será un día largo para ti.	This is gonna be a long day for you.		claude-opus-5-5
+Apenas estoy empezando.	Apenas estoy empezando.	I'm just getting started.		claude-opus-5-5
+¡Uy, esto es malo!	¡Uy, esto está malo!	Uh-oh, this is bad!		claude-opus-5-5
+Uy, esto es malo.	¡Uy, esto está malo!	Uh-oh, this is bad!		claude-opus-5-5
+¡Es nuestro tiempo ahora!	¡Es nuestro momento ahora!	It's our time now!		claude-opus-5-5
+es nuestro tiempo ahora.	¡Es nuestro momento ahora!	It's our time now!		claude-opus-5-5
+Ahora terminamos lo que empezamos.	Ahora terminamos lo que empezamos.	Now we finish what we started.		claude-opus-5-5
+Quédate ahí.	Quédate ahí.	Stay down.		claude-opus-5-5
+No tienes lo que se necesita.	No tienes lo que se necesita.	You don't have what it takes.		claude-opus-5-5
+Este no es mi día.	Este no es mi día.	This isn't my day.		claude-opus-5-5
+Ojalá Carlos estuviera aquí.	Ojalá Carlos estuviera aquí.	I wish Carlos were here.		claude-opus-5-5
+¡Ojalá Carlos estuviera aquí!	Ojalá Carlos estuviera aquí.	I wish Carlos were here.		claude-opus-5-5
+Al menos alguien me aprecia.	Al menos alguien me aprecia.	At least somebody appreciates me.		claude-opus-5-5
+Tal vez debería comprar tickets for South Pacific.	Tal vez debería comprar tickets for South Pacific.	Maybe I should buy tickets for South Pacific.		claude-opus-5-5
+Tal vez debería comprar South Pacific Tickets.	Tal vez debería comprar South Pacific tickets.	Maybe I should buy tickets to South Pacific.		claude-opus-5-5
+No es una granada, pero es mejor que nada.	No es una granada, pero es mejor que nada.	It's not a grenade, but it's better than nothing.		claude-opus-5-5
+No es una gran amada, pero es mejor que nada.	No es una granada, pero es mejor que nada.	It's not a grenade, but it's better than nothing.		claude-opus-5-5
+Esto debería ayudarme.	Esto debería ayudarme.	This should help.		claude-opus-5-5
+Dios me encanta volar.	¡Dios, me encanta volar!	God, I love flying!		claude-opus-5-5
+Hay una razón por la que soy la ángel guardiana del barrio.	Hay una razón por la que soy la ángel guardiana del barrio.	There's a reason I'm the barrio's guardian angel.		claude-opus-5-5
+Hay una razón por la que suela Angel Guardiana del Barrio.	Hay una razón por la que soy la ángel guardiana del barrio.	There's a reason I'm the barrio's guardian angel.		claude-opus-5-5
+¿Creen que están ganando?	¿Creen que están ganando?	You think you're winning?		claude-opus-5-5
+Necesitas mucho más que eso para matarme.	Necesitas mucho más que eso para matarme.	You'll need a lot more than that to kill me.		claude-opus-5-5
+Woohoo!	Woohoo!	Woohoo!		claude-opus-5-5
+Maybe they'll run out of bullets shooting William.	Maybe they'll run out of bullets shooting William.	Maybe they'll run out of bullets shooting William.		claude-opus-5-5
+They took out Vindicta.	They took out Vindicta.	They took out Vindicta.		claude-opus-5-5
+Und ich wünsche Ihnen einen schönen Tag.	They took out Vindicta.	They took out Vindicta.		claude-opus-5-5
+AHH!	Aah!	Aah!		claude-opus-5-5
+For God's sake die!	For God's sake, die!	For God's sake, die!		claude-opus-5-5
+Stay away from seven!	Stay away from Seven!	Stay away from Seven!		claude-opus-5-5
+Thank you for your help, detective.	Thank you for your help, Detective.	Thank you for your help, Detective.		claude-opus-5-5
+Abrams, if there's one thing I'm confident in, it's getting what I want.	Abrams, if there's one thing I'm confident in, it's getting what I want.	Abrams, if there's one thing I'm confident in, it's getting what I want.		claude-opus-5-5
+Yes, yes, I know.	Yes, yes, I know.	Yes, yes, I know.		claude-opus-5-5
+You worry too much, Detective.	You worry too much, Detective.	You worry too much, Detective.		claude-opus-5-5
+Thank you for your help, Professor.	Thank you for your help, Professor.	Thank you for your help, Professor.		claude-opus-5-5
+Tack för ditt hjälp, professor!	Thank you for your help, Professor.	Thank you for your help, Professor.		claude-opus-5-5
+I would say mitigated to my satisfaction.	I would say mitigated to my satisfaction.	I would say mitigated to my satisfaction.		claude-opus-5-5
+You're a man of science, Professor. Do you think what they say about the patrons is true?	You're a man of science, Professor. Do you think what they say about the Patrons is true?	You're a man of science, Professor. Do you think what they say about the Patrons is true?		claude-opus-5-5
+Collect souls, power gauntlet, summon patron, live forever.	Collect souls, power gauntlet, summon Patron, live forever.	Collect souls, power gauntlet, summon Patron, live forever.	small only; 'power gauntlet' unconfirmed	claude-opus-5-5
+Thank you, McGinnis.	Thank you, McGinnis.	Thank you, McGinnis.		claude-opus-5-5
+Tu ne parles pas français, je ne parle pas japonais, mais on est quand même en train de se parler.	Tu ne parles pas français, je ne parle pas japonais, mais on est quand même en train de se parler.	You don't speak French, I don't speak Japanese, and yet here we are, talking.		claude-opus-5-5
+Tu parles pas français, je parle pas japonais, mais on est quand même en train de se parler.	Tu ne parles pas français, je ne parle pas japonais, mais on est quand même en train de se parler.	You don't speak French, I don't speak Japanese, and yet here we are, talking.		claude-opus-5-5
+If you need me, I'll be at the Met.	If you need me, I'll be at the Met.	If you need me, I'll be at the Met.		claude-opus-5-5
+The end comes.	The end comes.	The end comes.		claude-opus-5-5
+Ah ha ha ha!	Ah ha ha ha!	Ah ha ha ha!		claude-opus-5-5
+Let's take out Calico.	Let's take out Calico.	Let's take out Calico.		claude-opus-5-5
+Let's take out Apollo.	Let's take out Apollo.	Let's take out Apollo.		claude-opus-5-5
+Let's take out Geist.	Let's take out Geist.	Let's take out Geist.		claude-opus-5-5
+Let's take out McGinnis.	Let's take out McGinnis.	Let's take out McGinnis.		claude-opus-5-5
+Let's check out Paradox.	Let's take out Paradox.	Let's take out Paradox.	small and turbo both hear 'check out'; the other attack pings say 'take out'	claude-opus-5-5
+Let's take out seven.	Let's take out Seven.	Let's take out Seven.		claude-opus-5-5
+Let's take out Vindicta.	Let's take out Vindicta.	Let's take out Vindicta.		claude-opus-5-5
+Let's take out Vin Dichter.	Let's take out Vindicta.	Let's take out Vindicta.		claude-opus-5-5
+Careful, Talon.	Careful, Talon.	Careful, Talon.		claude-opus-5-5
+Careful Talon!	Careful, Talon!	Careful, Talon!		claude-opus-5-5
+You're on your own for now.	You're on your own for now.	You're on your own for now.		claude-opus-5-5
+Pulling back!	Pulling back!	Pulling back!		claude-opus-5-5
+I'll be back when I can.	I'll be back when I can.	I'll be back when I can.		claude-opus-5-5
+Slok's looking to get the drop on us.	Slorks looking to get the drop on us.	Fathom's looking to get the drop on us.		claude-opus-5-5
+Slokes looking to get the drop on us.	Slorks looking to get the drop on us.	Fathom's looking to get the drop on us.		claude-opus-5-5
+When the time's right, I'll steal their health.	When the time's right, I'll steal their health.	When the time's right, I'll steal their health.		claude-opus-5-5
+When the time is right, I'll steal the health.	When the time's right, I'll steal their health.	When the time's right, I'll steal their health.		claude-opus-5-5
+I killed a detective!	They killed the detective!	They killed the detective!	small: I KILLED AN ATTACKTIVE; turbo: I killed a detective	claude-opus-5-5
+I KILLED AN ATTACKTIVE!	They killed the detective!	They killed the detective!	small: I KILLED AN ATTACKTIVE; turbo: I killed a detective	claude-opus-5-5
+Leading Geist is down!	Lady Geist is down!	Lady Geist is down!		claude-opus-5-5
+Lady guys, he's down!	Lady Geist is down!	Lady Geist is down!		claude-opus-5-5
+That furnace is dead!	That furnace is dead!	Infernus is dead!		claude-opus-5-5
+I killed Bucket.	They killed Pocket!	They killed Pocket!	small: That killed Bucky; turbo: I killed Bucket	claude-opus-5-5
+That killed Bucky!	They killed Pocket!	They killed Pocket!	small: That killed Bucky; turbo: I killed Bucket	claude-opus-5-5
+They killed Ivy!	They killed Ivy!	They killed Ivy!		claude-opus-5-5
+Let's look out warden.	They took out Warden!	They took out Warden!	small: Let's look at Walden; turbo: Let's look out warden; sibling caption: They took out Warden!	claude-opus-5-5
+Let's look at Walden.	They took out Warden!	They took out Warden!	small: Let's look at Walden; turbo: Let's look out warden; sibling caption: They took out Warden!	claude-opus-5-5
+Ah ben super, maintenant je suis coincé avec un bourgeois.	Ah ben super, maintenant je suis coincé avec un bourgeois.	Oh great, now I'm stuck with a snob.		claude-opus-5-5
+Ah mais super, maintenant j'ai su coincer avec un bourgeois	Ah ben super, maintenant je suis coincé avec un bourgeois.	Oh great, now I'm stuck with a snob.		claude-opus-5-5
+HA HA!	Ha ha!	Ha ha!		claude-opus-5-5
+Bebop is missing.	Bebop is missing.	Bebop is missing.		claude-opus-5-5
+People are missing.	Bebop is missing.	Bebop is missing.		claude-opus-5-5
+Heading to blue.	Headed to Blue.	Headed to Blue.		claude-opus-5-5
+Eddie to blue.	Headed to Blue.	Headed to Blue.		claude-opus-5-5
+Check out what krill bought.	Check out what Krill bought.	Check out what Krill bought.		claude-opus-5-5
+Check out what grillball.	Check out what Krill bought.	Check out what Krill bought.		claude-opus-5-5
+Let's go blue.	Let's go Blue!	Let's go Blue!		claude-opus-5-5
+Let's go, Bloom!	Let's go Blue!	Let's go Blue!		claude-opus-5-5
+I'm not ready for a team fight!	I'm not ready for a team fight!	I'm not ready for a team fight!		claude-opus-5-5
+Bow back!	Fall back!	Fall back!	small: BOWBACK; turbo: Bow back	claude-opus-5-5
+BOWBACK!	Fall back!	Fall back!	small: BOWBACK; turbo: Bow back	claude-opus-5-5
+I'll see you down there, boy.	I see Dynamo.	I see Dynamo.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see you down there, mate.	I see Dynamo.	I see Dynamo.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see you, Hayes.	I see Haze.	I see Haze.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see you Hayes!	I see Haze.	I see Haze.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see you, Kelvin.	I see Kelvin.	I see Kelvin.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see Kelvin!	I see Kelvin.	I see Kelvin.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I said crew.	I see Krill.	I see Krill.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll say "Crew".	I see Krill.	I see Krill.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll say lash.	I see Lash.	I see Lash.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see you later.	I see Lash.	I see Lash.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I say Shiv.	I see Shiv.	I see Shiv.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see you soon!	I see Shiv.	I see Shiv.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+Assim, viscas!	I see Viscous.	I see Viscous.	small: Az egy beszkez; turbo: Assim, viscas	claude-opus-5-5
+Az egy beszkez!	I see Viscous.	I see Viscous.	small: Az egy beszkez; turbo: Assim, viscas	claude-opus-5-5
+I'll see you, Warren.	I see Warden.	I see Warden.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see you all in.	I see Warden.	I see Warden.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see you right.	I see Wraith.	I see Wraith.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+I'll see you right!	I see Wraith.	I see Wraith.	small and turbo both hear 'I'll see you'; read as the 'I see <hero>' ping	claude-opus-5-5
+Hyperbeams ready.	Hyperbeam's ready.	Hyperbeam's ready.		claude-opus-5-5
+Hymar beams ready!	Hyperbeam's ready.	Hyperbeam's ready.		claude-opus-5-5

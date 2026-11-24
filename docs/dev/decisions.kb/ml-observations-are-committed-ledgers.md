@@ -18,13 +18,19 @@ records in-game readings. Redo reads them as inputs and never writes them.
 ## Scope
 
 Only clips whose English caption in `data/vo/lines.tsv` is
-"Speaks Japanese" (532 of Yamato's 1806), plus her uncaptioned clips
-outside `emote/` (11: alternate takes and 2 pings). Clips with a real
+"Speaks <language>": Yamato's 532 "Speaks Japanese", Ivy's (`tengu`) 34
+"Speaks spanish", and one "Speaks French" each for Lady Geist (`ghost`) and
+Bebop. Whisper is pinned to the caption's language. A hero with any such
+clip also brings her uncaptioned clips outside `emote/` (Yamato 11, Ivy 14,
+Lady Geist 33, Bebop 23: alternate takes and pings). Their language is
+detected, under a model id ending `/auto`, except Yamato's: hers are
+alternate takes of Japanese lines, pinned to `ja`. Lady Geist and Bebop
+speak English with one French line each, and small pinned to `fr` or `es`
+translates English speech instead of transcribing it. Clips with a real
 caption are English, and the caption is already right. `emote/` holds only
-grunts. Each Japanese clip gets two texts: a
-**replacement**, meaning accurate Japanese in the orthography a Japanese
-reader expects, and a **translation**, meaning English that tells players
-what is meant.
+grunts. Each clip in scope gets two texts: a **replacement**, meaning accurate text in the
+orthography a native reader of its language expects, and a
+**translation**, meaning English that tells players what is meant.
 
 ## Layout
 
@@ -36,7 +42,7 @@ what is meant.
 | `data/tools/whisper/<model>.bin` | the GGML model, fetched | redo | no |
 | `transcripts/asr/<hero>.tsv` | `crc32 vsnd model text`, one row per clip and model | the ASR job | **yes** |
 | `transcripts/fixups.tsv` | `asr_text replacement translation doubt by` | the fix-up pass and the owner | **yes** |
-| `data/vo/japanese.tsv` | `hero event vsnd replacement translation doubt source`: the file to read | redo (join) | yes |
+| `data/vo/foreign.tsv` | `hero event vsnd lang replacement translation doubt source`: the file to read | redo (join) | yes |
 
 ## Why this shape
 

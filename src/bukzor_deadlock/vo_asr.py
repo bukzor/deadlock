@@ -1,10 +1,13 @@
-"""CLI: whisper transcripts of one hero's Japanese VO clips, into its ASR ledger.
+"""CLI: whisper transcripts of one hero's foreign-language VO clips, into its ledger.
 
     python -m bukzor_deadlock.vo_asr HERO MODEL [CRC32 ...]
 
+Whisper is pinned to each clip's language (``Clip.lang``), or detects it,
+once per clip, under a model id that says so (``vo_asr_ledger.decoded_id``).
 Without CRC32s, it transcribes every in-scope clip (``vo_asr_ledger.clips``)
-that has no row for MODEL (a ``MODELS`` key) yet, in batches (``vo_asr_batch``)
-on four one-thread processes; a clip that comes back empty is rerun alone.
+that has no row for MODEL (a ``MODELS`` key) yet, in batches of one language
+(``vo_asr_batch.pack_languages``) on four one-thread processes; a clip that
+comes back empty is rerun alone.
 With CRC32s, it reruns each named clip alone, in one four-thread process,
 replacing that model's row: the escalation of doubtful clips to a stronger
 model.
@@ -30,8 +33,9 @@ from pathlib import Path
 from typing import NamedTuple
 
 from . import paths
-from .vo_asr_batch import decode_pcm, pack, seconds, transcribe
-from .vo_asr_ledger import Clip, Row, clips, merge, parse, pending, render
+from .vo_asr_batch import decode_pcm, pack_languages, seconds, transcribe
+from .vo_asr_ledger import AUTO, Clip, Row, clips, decoded_id, merge, parse, pending
+from .vo_asr_ledger import render
 
 VO = "sounds/vo/"
 THREADS = 4
@@ -100,21 +104,26 @@ def transcribe_batch(
     model: Model, batch: Sequence[Clip], pcms: Sequence[bytes]
 ) -> list[Row]:
     """One process of one thread; an empty clip is rerun alone."""
-    texts = transcribe(model_file(model), model.flags, pcms, threads=1)
+    [lang] = {clip.lang for clip in batch}
+    args = (model_file(model), model.flags, lang)
+    texts = transcribe(*args, pcms, threads=1)
     if len(batch) > 1:
         texts = [
-            text or transcribe(model_file(model), model.flags, [pcm], threads=1)[0]
+            text or transcribe(*args, [pcm], threads=1)[0]
             for text, pcm in zip(texts, pcms)
         ]
+    model_id = decoded_id(model.id, lang)
     return [
-        Row(clip.crc32, clip.vsnd, model.id, text) for clip, text in zip(batch, texts)
+        Row(clip.crc32, clip.vsnd, model_id, text) for clip, text in zip(batch, texts)
     ]
 
 
 def run_batches(model: Model, todo: Sequence[Clip], ledger: Ledger) -> None:
     with ThreadPoolExecutor(THREADS) as pool:
         pcms = list(pool.map(clip_audio, todo))
-        batches = pack([seconds(pcm) for pcm in pcms])
+        batches = pack_languages(
+            [clip.lang for clip in todo], [seconds(pcm) for pcm in pcms], alone=AUTO
+        )
         print(f"{len(todo)} clips in {len(batches)} batches", file=sys.stderr)
         futures = [
             pool.submit(
@@ -139,9 +148,14 @@ def run_batches(model: Model, todo: Sequence[Clip], ledger: Ledger) -> None:
 def run_clips(model: Model, todo: Sequence[Clip], ledger: Ledger) -> None:
     for clip in todo:
         [text] = transcribe(
-            model_file(model), model.flags, [clip_audio(clip)], threads=THREADS
+            model_file(model),
+            model.flags,
+            clip.lang,
+            [clip_audio(clip)],
+            threads=THREADS,
         )
-        ledger.save([Row(clip.crc32, clip.vsnd, model.id, text)])
+        model_id = decoded_id(model.id, clip.lang)
+        ledger.save([Row(clip.crc32, clip.vsnd, model_id, text)])
         print(f"{clip.crc32}\t{clip.vsnd}\t{text}", file=sys.stderr)
 
 

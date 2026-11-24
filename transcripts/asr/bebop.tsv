@@ -1,0 +1,45 @@
+crc32	vsnd	model	text
+0fe86012	sounds/vo/bebop/bebop_ally_atlas_killed_in_lane_01.vsnd	large-v3-turbo/beam5/auto	I killed a detective!
+0fe86012	sounds/vo/bebop/bebop_ally_atlas_killed_in_lane_01.vsnd	small/dtw/greedy/auto	I KILLED AN ATTACKTIVE!
+4d6d4e05	sounds/vo/bebop/bebop_ally_ghost_killed_in_lane_01.vsnd	large-v3-turbo/beam5/auto	Leading Geist is down!
+4d6d4e05	sounds/vo/bebop/bebop_ally_ghost_killed_in_lane_01.vsnd	small/dtw/greedy/auto	Lady guys, he's down!
+ae49923e	sounds/vo/bebop/bebop_ally_inferno_killed_in_lane_01.vsnd	small/dtw/greedy/auto	That furnace is dead!
+fdabcdee	sounds/vo/bebop/bebop_ally_synth_killed_in_lane_01.vsnd	large-v3-turbo/beam5/auto	I killed Bucket.
+fdabcdee	sounds/vo/bebop/bebop_ally_synth_killed_in_lane_01.vsnd	small/dtw/greedy/auto	That killed Bucky!
+a30e4769	sounds/vo/bebop/bebop_ally_tengu_killed_in_lane_01.vsnd	small/dtw/greedy/auto	They killed Ivy!
+654ec486	sounds/vo/bebop/bebop_ally_warden_killed_in_lane_01_alt_01.vsnd	large-v3-turbo/beam5/auto	Let's look out warden.
+654ec486	sounds/vo/bebop/bebop_ally_warden_killed_in_lane_01_alt_01.vsnd	small/dtw/greedy/auto	Let's look at Walden.
+9edbfbf8	sounds/vo/bebop/bebop_match_start_bebop_ghost_convo01_02.vsnd	large-v3-turbo/beam5	Ah ben super, maintenant je suis coincé avec un bourgeois.
+9edbfbf8	sounds/vo/bebop/bebop_match_start_bebop_ghost_convo01_02.vsnd	small/dtw/greedy	Ah mais super, maintenant j'ai su coincer avec un bourgeois
+113533ac	sounds/vo/bebop/bebop_use_hook_07_02.vsnd	small/dtw/greedy/auto	HA HA!
+b59a6665	sounds/vo/bebop/ping/bebop_ping_bebop_missing_01.vsnd	large-v3-turbo/beam5/auto	Bebop is missing.
+b59a6665	sounds/vo/bebop/ping/bebop_ping_bebop_missing_01.vsnd	small/dtw/greedy/auto	People are missing.
+fc8fd913	sounds/vo/bebop/ping/bebop_ping_headed_blue_01_alt_01.vsnd	large-v3-turbo/beam5/auto	Heading to blue.
+fc8fd913	sounds/vo/bebop/ping/bebop_ping_headed_blue_01_alt_01.vsnd	small/dtw/greedy/auto	Eddie to blue.
+6fa980e4	sounds/vo/bebop/ping/bebop_ping_krill_check_items_02.vsnd	large-v3-turbo/beam5/auto	Check out what krill bought.
+6fa980e4	sounds/vo/bebop/ping/bebop_ping_krill_check_items_02.vsnd	small/dtw/greedy/auto	Check out what grillball.
+300b805a	sounds/vo/bebop/ping/bebop_ping_lets_go_blue_alt_01.vsnd	large-v3-turbo/beam5/auto	Let's go blue.
+300b805a	sounds/vo/bebop/ping/bebop_ping_lets_go_blue_alt_01.vsnd	small/dtw/greedy/auto	Let's go, Bloom!
+82de86f5	sounds/vo/bebop/ping/bebop_ping_no_teamfight.vsnd	small/dtw/greedy/auto	I'm not ready for a team fight!
+283adce7	sounds/vo/bebop/ping/bebop_ping_retreat.vsnd	large-v3-turbo/beam5/auto	Bow back!
+283adce7	sounds/vo/bebop/ping/bebop_ping_retreat.vsnd	small/dtw/greedy/auto	BOWBACK!
+8b8f32ee	sounds/vo/bebop/ping/bebop_ping_see_dynamo.vsnd	large-v3-turbo/beam5/auto	I'll see you down there, boy.
+8b8f32ee	sounds/vo/bebop/ping/bebop_ping_see_dynamo.vsnd	small/dtw/greedy/auto	I'll see you down there, mate.
+42cc22bd	sounds/vo/bebop/ping/bebop_ping_see_haze.vsnd	large-v3-turbo/beam5/auto	I'll see you, Hayes.
+42cc22bd	sounds/vo/bebop/ping/bebop_ping_see_haze.vsnd	small/dtw/greedy/auto	I'll see you Hayes!
+c7352d47	sounds/vo/bebop/ping/bebop_ping_see_kelvin.vsnd	large-v3-turbo/beam5/auto	I'll see you, Kelvin.
+c7352d47	sounds/vo/bebop/ping/bebop_ping_see_kelvin.vsnd	small/dtw/greedy/auto	I'll see Kelvin!
+ca3bad13	sounds/vo/bebop/ping/bebop_ping_see_krill.vsnd	large-v3-turbo/beam5/auto	I said crew.
+ca3bad13	sounds/vo/bebop/ping/bebop_ping_see_krill.vsnd	small/dtw/greedy/auto	I'll say "Crew".
+9dd6454a	sounds/vo/bebop/ping/bebop_ping_see_lash.vsnd	large-v3-turbo/beam5/auto	I'll say lash.
+9dd6454a	sounds/vo/bebop/ping/bebop_ping_see_lash.vsnd	small/dtw/greedy/auto	I'll see you later.
+cfc1ff73	sounds/vo/bebop/ping/bebop_ping_see_shiv.vsnd	large-v3-turbo/beam5/auto	I say Shiv.
+cfc1ff73	sounds/vo/bebop/ping/bebop_ping_see_shiv.vsnd	small/dtw/greedy/auto	I'll see you soon!
+e734c35b	sounds/vo/bebop/ping/bebop_ping_see_viscous.vsnd	large-v3-turbo/beam5/auto	Assim, viscas!
+e734c35b	sounds/vo/bebop/ping/bebop_ping_see_viscous.vsnd	small/dtw/greedy/auto	Az egy beszkez!
+2948e108	sounds/vo/bebop/ping/bebop_ping_see_warden.vsnd	large-v3-turbo/beam5/auto	I'll see you, Warren.
+2948e108	sounds/vo/bebop/ping/bebop_ping_see_warden.vsnd	small/dtw/greedy/auto	I'll see you all in.
+a698cdd3	sounds/vo/bebop/ping/bebop_ping_see_wraith.vsnd	large-v3-turbo/beam5/auto	I'll see you right.
+a698cdd3	sounds/vo/bebop/ping/bebop_ping_see_wraith.vsnd	small/dtw/greedy/auto	I'll see you right!
+d19bc6ae	sounds/vo/bebop/ping/bebop_ping_use_ability4.vsnd	large-v3-turbo/beam5/auto	Hyperbeams ready.
+d19bc6ae	sounds/vo/bebop/ping/bebop_ping_use_ability4.vsnd	small/dtw/greedy/auto	Hymar beams ready!

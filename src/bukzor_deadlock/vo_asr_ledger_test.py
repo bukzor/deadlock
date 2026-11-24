@@ -1,6 +1,6 @@
 import pytest
 
-from .vo_asr_ledger import Clip, Row, clips, merge, parse, pending, render
+from .vo_asr_ledger import Clip, Row, clips, decoded_id, merge, parse, pending, render
 
 
 def line(event: str, crc32: str, english: str, hero: str = "yamato") -> dict[str, str]:
@@ -14,8 +14,8 @@ def line(event: str, crc32: str, english: str, hero: str = "yamato") -> dict[str
     }
 
 
-def clip(event: str, crc32: str) -> Clip:
-    return Clip(crc32, f"sounds/vo/yamato/{event}.vsnd")
+def clip(event: str, crc32: str, lang: str = "ja", hero: str = "yamato") -> Clip:
+    return Clip(crc32, f"sounds/vo/{hero}/{event}.vsnd", lang)
 
 
 class DescribeClips:
@@ -46,6 +46,32 @@ class DescribeClips:
     def it_skips_a_clip_the_paks_do_not_ship(self):
         assert clips([line("a", "", "Speaks Japanese")], "yamato") == []
 
+    def it_takes_the_language_from_the_caption_in_any_case(self):
+        lines = [
+            line("a", "0000000a", "Speaks spanish", hero="tengu"),
+            line("c", "0000000c", "speaks spanish to them", hero="tengu"),
+        ]
+        assert clips(lines, "tengu") == [clip("a", "0000000a", "es", "tengu")]
+
+    def it_detects_the_language_of_an_uncaptioned_clip(self):
+        lines = [
+            line("a", "0000000a", "Speaks French", hero="ghost"),
+            line("b", "0000000b", "", hero="ghost"),
+        ]
+        assert clips(lines, "ghost")[1] == clip("b", "0000000b", "auto", "ghost")
+
+    def it_rejects_a_language_it_has_no_whisper_code_for(self):
+        with pytest.raises(AssertionError, match="klingon"):
+            _ = clips([line("a", "0000000a", "Speaks Klingon")], "yamato")
+
+
+class DescribeDecodedId:
+    def it_names_language_detection_in_the_model_id(self):
+        assert decoded_id("small", "auto") == "small/auto"
+
+    def it_leaves_a_pinned_language_out(self):
+        assert decoded_id("small", "fr") == "small"
+
 
 class DescribePending:
     def it_lists_the_clips_with_no_row_for_the_model(self):
@@ -56,8 +82,19 @@ class DescribePending:
         wanted = [clip("a", "0000000a"), clip("b", "0000000b")]
         assert pending(wanted, ledger, "small") == [clip("b", "0000000b")]
 
+    def it_wants_a_detected_row_for_a_clip_whose_language_is_detected(self):
+        ledger = [Row("0000000a", "sounds/vo/yamato/a.vsnd", "small", "x")]
+        wanted = [clip("a", "0000000a", "auto")]
+        assert pending(wanted, ledger, "small") == wanted
+
 
 class DescribeMerge:
+    def it_drops_rows_decoded_unlike_their_clip(self):
+        pinned = Row("0000000a", "sounds/vo/yamato/a.vsnd", "small", "fr")
+        detected = Row("0000000b", "sounds/vo/yamato/b.vsnd", "small/auto", "en")
+        wanted = [clip("a", "0000000a", "auto"), clip("b", "0000000b", "fr")]
+        assert merge([pinned, detected], [], wanted) == []
+
     def it_replaces_a_row_of_the_same_clip_and_model(self):
         old = [Row("0000000a", "sounds/vo/yamato/a.vsnd", "small", "old")]
         new = [Row("0000000a", "sounds/vo/yamato/a.vsnd", "small", "new")]

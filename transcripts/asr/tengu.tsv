@@ -1,0 +1,61 @@
+crc32	vsnd	model	text
+4e5df2e3	sounds/vo/tengu/ping/tengu_ping_attack_synth_01.vsnd	small/dtw/greedy/auto	Let's take out bucket!
+8c77ea9b	sounds/vo/tengu/ping/tengu_ping_attack_tengu.vsnd	large-v3-turbo/beam5/auto	Let's take out Dengu!
+8c77ea9b	sounds/vo/tengu/ping/tengu_ping_attack_tengu.vsnd	small/dtw/greedy/auto	Let's take out Dengu!
+60560e71	sounds/vo/tengu/ping/tengu_ping_attack_yamato-imported.vsnd	small/dtw/greedy/auto	Let's take out Yamato.
+84f90d6f	sounds/vo/tengu/ping/tengu_ping_can_heal_tengu.vsnd	large-v3-turbo/beam5/auto	Tango, I can heal you.
+84f90d6f	sounds/vo/tengu/ping/tengu_ping_can_heal_tengu.vsnd	small/dtw/greedy/auto	Tango, I can heal you!
+93cf9d78	sounds/vo/tengu/ping/tengu_ping_idols_call_01.vsnd	small/dtw/greedy/auto	Idol's here!
+69b307e0	sounds/vo/tengu/ping/tengu_ping_leaving_area_01.vsnd	small/dtw/greedy/auto	I'm pulling out!
+474a4f07	sounds/vo/tengu/ping/tengu_ping_leaving_area_02.vsnd	small/dtw/greedy/auto	I'll be back when I can!
+9c1d3e21	sounds/vo/tengu/ping/tengu_ping_leaving_area_03.vsnd	small/dtw/greedy/auto	You're on your own!
+3589e400	sounds/vo/tengu/ping/tengu_ping_no_teamfight.vsnd	small/dtw/greedy/auto	I'm not ready for a team fight.
+c9e8fa00	sounds/vo/tengu/ping/tengu_ping_see_slork_02.vsnd	small/dtw/greedy/auto	Slurks on the prowl!
+8dc3a6be	sounds/vo/tengu/ping/tengu_ping_see_viscous_02_alt_01.vsnd	small/dtw/greedy/auto	GloGuy is here!
+30ca2a6e	sounds/vo/tengu/ping/tengu_ping_see_wraith_02-imported.vsnd	small/dtw/greedy/auto	There's a Wraith!
+f720bc57	sounds/vo/tengu/tengu_ally_gigawatt_multi_kill_ult_01.vsnd	large-v3-turbo/beam5	¡Bendito Dios, Seven!
+f720bc57	sounds/vo/tengu/tengu_ally_gigawatt_multi_kill_ult_01.vsnd	small/dtw/greedy	Bendito Dios, Seben.
+9e9ca815	sounds/vo/tengu/tengu_ally_orion_missile_stops_ult_02.vsnd	large-v3-turbo/beam5	¡Gracias a Dios por este búho!
+9e9ca815	sounds/vo/tengu/tengu_ally_orion_missile_stops_ult_02.vsnd	small/dtw/greedy	¡Gracias Dios por ese búho!
+e84e6880	sounds/vo/tengu/tengu_ally_shiv_unkillable_01.vsnd	small/dtw/greedy	Me encanta ese tipo.
+c87f5aa7	sounds/vo/tengu/tengu_angry_06.vsnd	small/dtw/greedy	¡Pendejo!
+d56947d1	sounds/vo/tengu/tengu_angry_09.vsnd	small/dtw/greedy	Ellos van a pagar.
+8ebdafca	sounds/vo/tengu/tengu_angry_10.vsnd	small/dtw/greedy	Ya vengo por ti.
+eed6f2a6	sounds/vo/tengu/tengu_close_call_03.vsnd	small/dtw/greedy	Gracias a Dios.
+ed04106f	sounds/vo/tengu/tengu_concerned_09.vsnd	small/dtw/greedy	No te preocupes, Ivy.
+909ceb5d	sounds/vo/tengu/tengu_concerned_10.vsnd	small/dtw/greedy	No pierdas la esperanza.
+38115f57	sounds/vo/tengu/tengu_desperation_power1_03.vsnd	small/dtw/greedy	No te dejaré ganar.
+17dad886	sounds/vo/tengu/tengu_desperation_power1_04.vsnd	small/dtw/greedy	¡Por Dios! ¡Muérete!
+22c3eb3c	sounds/vo/tengu/tengu_happy_09.vsnd	small/dtw/greedy	¡Buen trabajo, todos!
+085c86fb	sounds/vo/tengu/tengu_happy_10.vsnd	small/dtw/greedy	Me encanta mi equipo.
+9842182c	sounds/vo/tengu/tengu_interrupt_03.vsnd	large-v3-turbo/beam5	¡Los detuvo!
+9842182c	sounds/vo/tengu/tengu_interrupt_03.vsnd	small/dtw/greedy	¡Los de tubo!
+ffbbe34b	sounds/vo/tengu/tengu_kill_anyhero_03.vsnd	small/dtw/greedy	Nadie amenaza a mis amigos.
+22eae814	sounds/vo/tengu/tengu_kill_anyhero_04.vsnd	large-v3-turbo/beam5	Lo siento, chacho.
+22eae814	sounds/vo/tengu/tengu_kill_anyhero_04.vsnd	small/dtw/greedy	Lo siento, chacho.
+95221928	sounds/vo/tengu/tengu_kill_anyhero_10.vsnd	small/dtw/greedy	Eligiste la pelea equivocada.
+e1a183cc	sounds/vo/tengu/tengu_killstreak_start_03.vsnd	small/dtw/greedy	Este será un día largo para ti.
+40329345	sounds/vo/tengu/tengu_killstreak_start_04.vsnd	small/dtw/greedy	Apenas estoy empezando.
+63ffaa33	sounds/vo/tengu/tengu_last_one_standing_02.vsnd	large-v3-turbo/beam5	¡Uy, esto es malo!
+63ffaa33	sounds/vo/tengu/tengu_last_one_standing_02.vsnd	small/dtw/greedy	Uy, esto es malo.
+c478188c	sounds/vo/tengu/tengu_leave_base_04.vsnd	large-v3-turbo/beam5	¡Es nuestro tiempo ahora!
+c478188c	sounds/vo/tengu/tengu_leave_base_04.vsnd	small/dtw/greedy	es nuestro tiempo ahora.
+fdccb5c3	sounds/vo/tengu/tengu_leave_base_05.vsnd	small/dtw/greedy	Ahora terminamos lo que empezamos.
+53097d73	sounds/vo/tengu/tengu_melee_kill_02.vsnd	small/dtw/greedy	Quédate ahí.
+62bb9196	sounds/vo/tengu/tengu_parry_03.vsnd	small/dtw/greedy	No tienes lo que se necesita.
+16d0b517	sounds/vo/tengu/tengu_sad_09.vsnd	small/dtw/greedy	Este no es mi día.
+b3c6c0fe	sounds/vo/tengu/tengu_sad_10.vsnd	large-v3-turbo/beam5	Ojalá Carlos estuviera aquí.
+b3c6c0fe	sounds/vo/tengu/tengu_sad_10.vsnd	small/dtw/greedy	¡Ojalá Carlos estuviera aquí!
+0491d3d5	sounds/vo/tengu/tengu_select_10.vsnd	small/dtw/greedy	Al menos alguien me aprecia.
+06f5f3f5	sounds/vo/tengu/tengu_unselect_03.vsnd	large-v3-turbo/beam5	Tal vez debería comprar tickets for South Pacific.
+06f5f3f5	sounds/vo/tengu/tengu_unselect_03.vsnd	small/dtw/greedy	Tal vez debería comprar tickets for South Pacific.
+976891d2	sounds/vo/tengu/tengu_unselect_03_02.vsnd	small/dtw/greedy/auto	Tal vez debería comprar South Pacific Tickets.
+b2013375	sounds/vo/tengu/tengu_upgrade_power1_08.vsnd	large-v3-turbo/beam5	No es una granada, pero es mejor que nada.
+b2013375	sounds/vo/tengu/tengu_upgrade_power1_08.vsnd	small/dtw/greedy	No es una gran amada, pero es mejor que nada.
+0ce5a6f7	sounds/vo/tengu/tengu_upgrade_power3_06.vsnd	small/dtw/greedy	Esto debería ayudarme.
+ee5775ab	sounds/vo/tengu/tengu_upgrade_power4_04.vsnd	small/dtw/greedy	Dios me encanta volar.
+c11728a8	sounds/vo/tengu/tengu_upgrade_power4_09.vsnd	large-v3-turbo/beam5	Hay una razón por la que soy la ángel guardiana del barrio.
+c11728a8	sounds/vo/tengu/tengu_upgrade_power4_09.vsnd	small/dtw/greedy	Hay una razón por la que suela Angel Guardiana del Barrio.
+0fbc8d19	sounds/vo/tengu/tengu_use_power3_08.vsnd	small/dtw/greedy	¿Creen que están ganando?
+4de97942	sounds/vo/tengu/tengu_use_power3_09.vsnd	small/dtw/greedy	Necesitas mucho más que eso para matarme.
+9161de7e	sounds/vo/tengu/tengu_use_power4_03_alt_01.vsnd	small/dtw/greedy/auto	Woohoo!

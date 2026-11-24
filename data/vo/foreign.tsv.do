@@ -1,9 +1,10 @@
 #!/bin/bash
-# The Japanese VO lines with their best English-reader text: hero, event,
-# vsnd, replacement, translation, source (columns: see
-# bukzor_deadlock.vo_asr_view). Committed: the file to read. Joins ./lines.tsv
-# with the committed ML ledgers, transcripts/asr/<hero>.tsv and
-# transcripts/fixups.tsv (which may not exist yet); redo never writes those
+# The VO lines spoken in another language, captioned "Speaks <language>",
+# with their best text: hero, event, vsnd, lang, replacement, translation,
+# doubt, source (columns: see bukzor_deadlock.vo_asr_view). Committed: the
+# file to read. Joins ./lines.tsv with the committed ML ledgers,
+# transcripts/asr/<hero>.tsv and transcripts/fixups.tsv (which may not exist
+# yet); redo never writes those
 # (docs/dev/decisions.kb/ml-observations-are-committed-ledgers.md).
 # redo runs this with cwd = data/vo/.
 set -euo pipefail

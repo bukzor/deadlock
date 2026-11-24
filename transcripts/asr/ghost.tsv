@@ -1,0 +1,44 @@
+crc32	vsnd	model	text
+0af9b0f7	sounds/vo/ghost/ghost_ally_punkgoat_pass_on_zipline_01_alt_01.vsnd	small/dtw/greedy/auto	Maybe they'll run out of bullets shooting William.
+1de08dfc	sounds/vo/ghost/ghost_ally_vindicta_killed_in_lane_01.vsnd	large-v3-turbo/beam5/auto	They took out Vindicta.
+1de08dfc	sounds/vo/ghost/ghost_ally_vindicta_killed_in_lane_01.vsnd	small/dtw/greedy/auto	Und ich wünsche Ihnen einen schönen Tag.
+ba173723	sounds/vo/ghost/ghost_angry_10_alt_01.vsnd	small/dtw/greedy/auto	AHH!
+e1f60916	sounds/vo/ghost/ghost_desperation_power3_03_alt_01.vsnd	small/dtw/greedy/auto	For God's sake die!
+3e6433ca	sounds/vo/ghost/ghost_enemy_gigawatt_hide_from_ult_03_alt_01.vsnd	small/dtw/greedy/auto	Stay away from seven!
+2a2bee39	sounds/vo/ghost/ghost_match_start_atlas_ghost_oathkeeper_convo01_01.vsnd	small/dtw/greedy/auto	Thank you for your help, detective.
+1797febc	sounds/vo/ghost/ghost_match_start_atlas_ghost_oathkeeper_convo01_03.vsnd	small/dtw/greedy/auto	Abrams, if there's one thing I'm confident in, it's getting what I want.
+935c9329	sounds/vo/ghost/ghost_match_start_atlas_ghost_oathkeeper_convo02_02.vsnd	small/dtw/greedy/auto	Yes, yes, I know.
+5cc8ac58	sounds/vo/ghost/ghost_match_start_atlas_ghost_oathkeeper_convo02_04.vsnd	small/dtw/greedy/auto	You worry too much, Detective.
+fe7d4216	sounds/vo/ghost/ghost_match_start_dynamo_ghost_oathkeeper_convo01_02.vsnd	large-v3-turbo/beam5/auto	Thank you for your help, Professor.
+fe7d4216	sounds/vo/ghost/ghost_match_start_dynamo_ghost_oathkeeper_convo01_02.vsnd	small/dtw/greedy/auto	Tack för ditt hjälp, professor!
+7bcb5a44	sounds/vo/ghost/ghost_match_start_dynamo_ghost_oathkeeper_convo01_04.vsnd	large-v3-turbo/beam5/auto	I would say mitigated to my satisfaction.
+7bcb5a44	sounds/vo/ghost/ghost_match_start_dynamo_ghost_oathkeeper_convo01_04.vsnd	small/dtw/greedy/auto	I would say mitigated to my satisfaction.
+dd5f7508	sounds/vo/ghost/ghost_match_start_dynamo_ghost_oathkeeper_convo02_01.vsnd	small/dtw/greedy/auto	You're a man of science, Professor. Do you think what they say about the patrons is true?
+9fb9e6de	sounds/vo/ghost/ghost_match_start_ghost_forge_oathkeeper_convo01_02.vsnd	small/dtw/greedy/auto	Collect souls, power gauntlet, summon patron, live forever.
+4efc622b	sounds/vo/ghost/ghost_match_start_ghost_forge_oathkeeper_convo01_04.vsnd	small/dtw/greedy/auto	Thank you, McGinnis.
+4d002883	sounds/vo/ghost/ghost_match_start_yamato_ghost_convo02_02.vsnd	large-v3-turbo/beam5	Tu ne parles pas français, je ne parle pas japonais, mais on est quand même en train de se parler.
+4d002883	sounds/vo/ghost/ghost_match_start_yamato_ghost_convo02_02.vsnd	small/dtw/greedy	Tu parles pas français, je parle pas japonais, mais on est quand même en train de se parler.
+34891ad9	sounds/vo/ghost/ghost_unselect_09_alt_01.vsnd	small/dtw/greedy/auto	If you need me, I'll be at the Met.
+880e1e1b	sounds/vo/ghost/ghost_unselect_09_alt_02.vsnd	small/dtw/greedy/auto	If you need me, I'll be at the Met.
+4c725861	sounds/vo/ghost/ghost_use_power1_10_alt_01.vsnd	small/dtw/greedy/auto	The end comes.
+bb3e122d	sounds/vo/ghost/ghost_use_power4_03_alt_01.vsnd	small/dtw/greedy/auto	Ah ha ha ha!
+2605de45	sounds/vo/ghost/ping/ghost_ping_attack_calico.vsnd	small/dtw/greedy/auto	Let's take out Calico.
+24b745be	sounds/vo/ghost/ping/ghost_ping_attack_fencer_alt_01.vsnd	small/dtw/greedy/auto	Let's take out Apollo.
+13954c2e	sounds/vo/ghost/ping/ghost_ping_attack_ghost.vsnd	large-v3-turbo/beam5/auto	Let's take out Geist.
+13954c2e	sounds/vo/ghost/ping/ghost_ping_attack_ghost.vsnd	small/dtw/greedy/auto	Let's take out Geist.
+1ede0dbd	sounds/vo/ghost/ping/ghost_ping_attack_mcginnis.vsnd	small/dtw/greedy/auto	Let's take out McGinnis.
+e379764a	sounds/vo/ghost/ping/ghost_ping_attack_paradox.vsnd	large-v3-turbo/beam5/auto	Let's check out Paradox.
+e379764a	sounds/vo/ghost/ping/ghost_ping_attack_paradox.vsnd	small/dtw/greedy/auto	Let's check out Paradox.
+82122f32	sounds/vo/ghost/ping/ghost_ping_attack_seven.vsnd	small/dtw/greedy/auto	Let's take out seven.
+8bb78a75	sounds/vo/ghost/ping/ghost_ping_attack_vindicta.vsnd	large-v3-turbo/beam5/auto	Let's take out Vindicta.
+8bb78a75	sounds/vo/ghost/ping/ghost_ping_attack_vindicta.vsnd	small/dtw/greedy/auto	Let's take out Vin Dichter.
+c9299a35	sounds/vo/ghost/ping/ghost_ping_careful_orion_02_01.vsnd	small/dtw/greedy/auto	Careful, Talon.
+6f3f0472	sounds/vo/ghost/ping/ghost_ping_careful_orion_03_01.vsnd	small/dtw/greedy/auto	Careful Talon!
+50282dc5	sounds/vo/ghost/ping/ghost_ping_leaving_area_01.vsnd	small/dtw/greedy/auto	You're on your own for now.
+dcc846e5	sounds/vo/ghost/ping/ghost_ping_leaving_area_02.vsnd	small/dtw/greedy/auto	Pulling back!
+4c761bcc	sounds/vo/ghost/ping/ghost_ping_leaving_area_03.vsnd	small/dtw/greedy/auto	I'll be back when I can.
+38fa6c2b	sounds/vo/ghost/ping/ghost_ping_no_teamfight.vsnd	small/dtw/greedy/auto	I'm not ready for a team fight.
+92212809	sounds/vo/ghost/ping/ghost_ping_see_slork_02.vsnd	large-v3-turbo/beam5/auto	Slok's looking to get the drop on us.
+92212809	sounds/vo/ghost/ping/ghost_ping_see_slork_02.vsnd	small/dtw/greedy/auto	Slokes looking to get the drop on us.
+a194aabc	sounds/vo/ghost/ping/ghost_ping_use_ability4_06_alt_01.vsnd	large-v3-turbo/beam5/auto	When the time's right, I'll steal their health.
+a194aabc	sounds/vo/ghost/ping/ghost_ping_use_ability4_06_alt_01.vsnd	small/dtw/greedy/auto	When the time is right, I'll steal the health.

@@ -53,6 +53,27 @@ def pack(
     return batches
 
 
+def pack_languages(
+    langs: Sequence[str], durations: Sequence[float], *, alone: str = "auto"
+) -> list[list[int]]:
+    """``pack`` within each language, so a batch has one ``-l``; a clip whose
+    language is ``alone`` (detected, once per window) is its own batch.
+
+    >>> pack_languages(["ja", "auto", "ja", "auto"], [1.0] * 4)
+    [[0, 2], [1], [3]]
+    """
+    batches: list[list[int]] = []
+    for lang in dict.fromkeys(langs):
+        mine = [i for i, other in enumerate(langs) if other == lang]
+        if lang == alone:
+            batches += [[i] for i in mine]
+        else:
+            batches += [
+                [mine[j] for j in batch] for batch in pack([durations[i] for i in mine])
+            ]
+    return batches
+
+
 def cuts(durations: Sequence[float], *, gap: float = GAP) -> list[float]:
     """Each clip's slot end, in seconds: the middle of the gap after it, the last
     slot open-ended."""
@@ -95,9 +116,9 @@ def seconds(pcm: bytes) -> float:
 
 
 def transcribe(
-    model: Path, flags: Sequence[str], pcms: Sequence[bytes], threads: int
+    model: Path, flags: Sequence[str], lang: str, pcms: Sequence[bytes], threads: int
 ) -> list[str]:
-    """Run ``whisper-cli -l ja`` once over the clips, padded and concatenated;
+    """Run ``whisper-cli -l LANG`` once over the clips, padded and concatenated;
     one text per clip.
 
     ``OMP_NUM_THREADS`` is pinned to ``threads``: brew's whisper-cli is an
@@ -112,7 +133,7 @@ def transcribe(
             wav.setsampwidth(2)
             wav.setframerate(RATE)
             wav.writeframes(b"".join(pcm + silence for pcm in pcms))
-        args = ["whisper-cli", "-m", str(model), "-t", str(threads), "-l", "ja", *flags]
+        args = ["whisper-cli", "-m", str(model), "-t", str(threads), "-l", lang, *flags]
         args += ["-np", "-ojf", "-of", str(stem), "-f", f"{stem}.wav"]
         _ = subprocess.run(args, capture_output=True, check=True, env=env)
         raw = Path(f"{stem}.json").read_text(encoding="utf-8", errors="surrogateescape")
