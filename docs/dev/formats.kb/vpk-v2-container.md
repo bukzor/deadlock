@@ -1,8 +1,26 @@
 # VPK v2 container
 
 Deadlock's assets are packaged as a VPK v2 archive set: `pak01_dir.vpk` is the
-directory/index, and `pak01_000.vpk` … `pak01_NNN.vpk` hold the file data
-(Deadlock ships ~271 data archives). Confirmed against the real install.
+directory/index, and `pak01_000.vpk` … `pak01_NNN.vpk` hold the file data. Confirmed against the
+real install.
+
+## The install's paks (build of 2026-11-23)
+
+Every game dir under `game/` that has a `pak01_dir.vpk` is its own pak:
+
+| pak | entries | data | archives |
+|-----|--------:|-----:|---------:|
+| `citadel` | 158,599 | 32.1 GiB | 328 |
+| `core` | 1,450 | 623 MiB | 6 |
+| `citadel_<lang>` (15 of them) | 6 or 50 | ~20 MiB | 1 |
+
+A locale pak holds only `panorama/images/` (localized UI art) plus a few
+panorama manifests. Localized text is not paked; see
+`../environment.kb/game-install-paths.md`.
+
+No entry in any of them uses preload bytes. Two `core` entries store their
+data in the dir file itself (archive index `0x7fff`); the `vpk` library
+rebases those entries' offsets onto the dir file.
 
 ## Header (`pak01_dir.vpk`, little-endian)
 
@@ -28,4 +46,5 @@ two patches' `{path: crc}` maps yields exactly the added/removed/changed files.
 ## Source of truth
 
 We read this via the `vpk` library, not by hand. `Source2Viewer-CLI --vpk_list`
-emits the same `path CRC:… size:…` data directly.
+emits the same `path CRC:… size:…` data directly. File bytes come out through
+`data/vpk/` (`../decisions.kb/explode-vpks-to-plain-files.md`).

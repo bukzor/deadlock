@@ -20,7 +20,14 @@ Layout below `$DEADLOCK_HOME`:
   - `citadel/` — primary content mod; holds `pak01_dir.vpk` + `pak01_NNN.vpk`,
     `gameinfo.gi`, `steam.inf`, maps, etc. **This is the main target.**
   - `core/` — shared engine content (also paked).
-  - `citadel_<lang>/` — localized content; **disregard non-English.**
+  - `citadel_<lang>/` — localized UI art only: each holds a small
+    `pak01_dir.vpk` + `pak01_000.vpk` of `panorama/images/`
+    (`../formats.kb/vpk-v2-container.md`). `citadel_lv/` has no pak, only
+    `maps/`. `bukzor_deadlock.paths.pak_dir_files()` lists every pak.
+  - **Localized text is loose, not paked, and lives under `citadel/`** for
+    every language: `citadel/resource/localization/<group>/<group>_<lang>.txt`
+    (KeyValues). VO captions are the `citadel_generated_vo` group: 17 languages
+    at 0.5-6 MiB each, 12 more as a ~65-byte empty stub (2026-11-24).
   - `bin/win64/` — the Windows engine binaries.
   - **Logs** (in `citadel/`, timestamps in local time, typed commands not echoed):
     - `console.log` — the client console, incl. any in-process listen server

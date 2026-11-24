@@ -2,7 +2,8 @@
 # vendored VRF tool, intermediate dirs (data/gamedata/, the dense views in
 # gamedata.dense.tsv/), the near-verbatim Valve extracts (gamedata.json/,
 # manifest.jsonl), the per-DLL documents (dlls/<facet>/, dlls.list), the
-# check outputs (dlls.check/), and the engine's own cvarlist captures (cvarlist/).
+# check outputs (dlls.check/), the engine's own cvarlist captures (cvarlist/),
+# and the raw files exploded out of the install's VPKs (vpk/).
 # Exceptions — committed so `git diff` shows patch changes — are the
 # transformative TSV views (gamedata.tsv/, dlls/<facet>.tsv), the build stamp
 # naming the game version that produced them, the latest-VRF-release record,
@@ -41,6 +42,9 @@
 !/data/replays/
 /data/replays/*
 !/data/replays/*.do
+!/data/vpk/
+/data/vpk/*
+!/data/vpk/*.do
 
 # redo's markers for the phony aggregator targets (all.do, clean.do)
 /all

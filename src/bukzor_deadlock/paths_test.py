@@ -21,6 +21,19 @@ class DescribeVpkDirFile:
         assert paths.vpk_dir_file(env) == Path("/g/game/citadel/pak01_dir.vpk")
 
 
+class DescribePakDirFiles:
+    def it_finds_every_game_dir_holding_a_pak_sorted(self, tmp_path: Path):
+        for name in ("core", "citadel_french", "citadel"):
+            (tmp_path / "game" / name).mkdir(parents=True)
+            (tmp_path / "game" / name / "pak01_dir.vpk").touch()
+        (tmp_path / "game/citadel_lv").mkdir()  # a locale dir without a pak
+        env = {"DEADLOCK_HOME": str(tmp_path)}
+        assert paths.pak_dir_files(env) == tuple(
+            tmp_path / "game" / name / "pak01_dir.vpk"
+            for name in ("citadel", "citadel_french", "core")
+        )
+
+
 class DescribeHeroNamesLoc:
     def it_points_at_the_english_hero_name_tokens(self):
         env = {"DEADLOCK_HOME": "/g"}
@@ -50,13 +63,9 @@ class DescribeMain:
         paths.main(["paths", "vpk_dir_file"])
         assert capsys.readouterr().out == f"{paths.vpk_dir_file()}\n"
 
-    def it_prints_a_path_list_one_per_line(
-        self, capsys: pytest.CaptureFixture[str]
-    ):
+    def it_prints_a_path_list_one_per_line(self, capsys: pytest.CaptureFixture[str]):
         paths.main(["paths", "bin_dirs"])
-        assert capsys.readouterr().out == "".join(
-            f"{d}\n" for d in paths.bin_dirs()
-        )
+        assert capsys.readouterr().out == "".join(f"{d}\n" for d in paths.bin_dirs())
 
     def it_fails_loudly_on_an_unknown_name(self):
         with pytest.raises(AssertionError, match="bogus"):
@@ -71,6 +80,15 @@ class DescribeMain:
         }
         assert used, "expected the .do scripts to resolve paths this way"
         assert used <= set(paths.RESOLVERS)
+
+
+class DescribeFreeSpaceDir:
+    def it_defaults_to_the_data_dir(self):
+        assert paths.free_space_dir({}) == paths.data_dir({})
+
+    def it_honors_the_environment_override(self):
+        env = {"DEADLOCK_FREE_SPACE_DIR": "/mnt/c"}
+        assert paths.free_space_dir(env) == Path("/mnt/c")
 
 
 class DescribeDataDir:

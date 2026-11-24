@@ -8,6 +8,7 @@ native-Linux Steam library; set the override durably in ``localhost.env``
 Environment overrides:
     DEADLOCK_HOME      the install root — Steam's "Browse local files" dir
     DEADLOCK_DATA_DIR  where generated output is written (default ``<repo>/data``)
+    DEADLOCK_FREE_SPACE_DIR  whose free space bounds bulk writes (default: data dir)
 """
 
 from __future__ import annotations
@@ -51,6 +52,11 @@ def vpk_dir_file(environ: dict[str, str] | None = None) -> Path:
     return citadel_dir(environ) / "pak01_dir.vpk"
 
 
+def pak_dir_files(environ: dict[str, str] | None = None) -> tuple[Path, ...]:
+    """Every game dir's VPK directory file, sorted (impure: lists the install)."""
+    return tuple(sorted(game_dir(environ).glob("*/pak01_dir.vpk")))
+
+
 def hero_names_loc(environ: dict[str, str] | None = None) -> Path:
     """English localization for hero names — codename tokens to display names."""
     return (
@@ -79,6 +85,16 @@ def data_dir(environ: dict[str, str] | None = None) -> Path:
     return Path(override) if override else repo_root() / "data"
 
 
+def free_space_dir(environ: dict[str, str] | None = None) -> Path:
+    """A directory on the filesystem whose free space bounds our bulk writes.
+
+    Defaults to the data dir. Override it where that filesystem's free space is
+    not the real limit, e.g. a WSL virtual disk that grows on the Windows drive.
+    """
+    override = _env("DEADLOCK_FREE_SPACE_DIR", environ)
+    return Path(override) if override else data_dir(environ)
+
+
 # Exposed to the .do scripts, which need these paths to declare dependencies.
 # A named table beats `python -c '...'` in the build scripts: that is real code
 # in a string, which no type checker or test ever sees.
@@ -87,6 +103,7 @@ RESOLVERS: Mapping[str, Callable[[], Path | tuple[Path, ...]]] = {
     "bin_dirs": bin_dirs,
     "citadel_dir": citadel_dir,
     "vpk_dir_file": vpk_dir_file,
+    "pak_dir_files": pak_dir_files,
     "hero_names_loc": hero_names_loc,
     "steam_inf": steam_inf,
     "data_dir": data_dir,

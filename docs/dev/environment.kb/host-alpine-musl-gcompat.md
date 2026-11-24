@@ -16,3 +16,12 @@ Relevant quirks:
 
 Implication: prefer host-native execution. If a native musl build is ever
 needed, Alpine has `dotnet10-sdk` in its repos.
+
+## Disk: the Linux disk lives on C:
+
+`/` is a growable virtual disk, `.../AlpineWSL_.../LocalState/ext4.vhdx`
+on the Windows C: drive, so `df /` overstates the room: the real limit is `df /mnt/c`. Filling C:
+crashes WSL and everything in it (2026-11-24, a 26 GB VPK explode), and
+deleting files inside does not shrink the vhdx back. `localhost.env`
+sets `DEADLOCK_FREE_SPACE_DIR=/mnt/c` so bulk writes check C:
+(`../decisions.kb/explode-vpks-to-plain-files.md`).
